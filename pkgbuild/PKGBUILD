@@ -1,42 +1,84 @@
-# Maintainer: Barnabé di Kartola <barnabedikartola@gmail.com>
+#Maintainer: Tales A. Mendonça <talesam@gmail.com>
 
-pkgname=biglinux-package-template
-pkgdesc="Package template for biglinux"
-# depends=('')
-# makedepends=('')
-# conflicts=('')
+pkgname=appimage-creator
+pkgdesc="Create an AppImage file from an executable"
+# Uncomment and edit the following lines as needed
+depends=(
+    'distrobox'
+    'gtk4'
+    'libadwaita'
+    'python'
+    'python-pillow'
+    'python-gobject'
+    'vte4'
+)
+# Optional dependencies that enhance functionality
+optdepends=(
+    'fuse3: To run downloaded AppImage tools (appimagetool, linuxdeploy)'
+    'fuse2: Legacy support for running AppImage tools'
+    'librsvg: For converting SVG icons to PNG (rsvg-convert)'
+    'imagemagick: Alternative for converting SVG icons (convert)'
+    'docker: Alternative container runtime for distrobox'
+    'podman: Tool and library for running OCI-based containers in pods'
+)
 pkgver=$(date +%y.%m.%d)
 pkgrel=$(date +%H%M)
 arch=('any')
-license=('GPL3')
-url="https://github.com/biglinux/$pkgname"
-provides=("$pkgname")
+license=('MIT')
+url="https://github.com/big-comm/${pkgname}"
 source=("git+${url}.git")
 md5sums=('SKIP')
-if [ -e "${pkgname}.install" ];then
+
+# Automatically detect and use the correct install file
+if [ -e "${pkgname}.install" ]; then
     install=${pkgname}.install
-elif [ -e "pkgbuild.install" ];then
+elif [ -e "pkgbuild.install" ]; then
     install=pkgbuild.install
 fi
 
+prepare() {
+    cd "${srcdir}/${pkgname}"
+    # Add any preparation steps here, if needed
+    # For example: patch -p1 < "${srcdir}/patch-file.patch"
+}
+
+build() {
+    cd "${srcdir}/${pkgname}"
+    # Add build steps here, if needed
+    # For example: make
+}
+
+check() {
+    cd "${srcdir}/${pkgname}"
+    # Add check/test steps here, if needed
+    # For example: make check
+}
+
 package() {
-    # Verify default folder
-    if [ -d "${srcdir}/${pkgname}/${pkgname}" ]; then
-        InternalDir="${srcdir}/${pkgname}/${pkgname}"
+    cd "${srcdir}/${pkgname}"
+
+    # Determine the correct source directory
+    if [ -d "${pkgname}" ]; then
+        srcdir="${srcdir}/${pkgname}/${pkgname}"
     else
-        InternalDir="${srcdir}/${pkgname}"
+        srcdir="${srcdir}/${pkgname}"
     fi
 
-    # Copy files
-    if [ -d "${InternalDir}/usr" ]; then
-        cp -r "${InternalDir}/usr" "${pkgdir}/"
+    # Install files
+    local dirs=("usr" "etc" "opt")
+    for dir in "${dirs[@]}"; do
+        if [ -d "${srcdir}/${dir}" ]; then
+            cp -a "${srcdir}/${dir}" "${pkgdir}/"
+        fi
+    done
+
+    # Install license file if present
+    if [ -f "LICENSE" ]; then
+        install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     fi
 
-    if [ -d "${InternalDir}/etc" ]; then
-        cp -r "${InternalDir}/etc" "${pkgdir}/"
-    fi
-
-    if [ -d "${InternalDir}/opt" ]; then
-        cp -r "${InternalDir}/opt" "${pkgdir}/"
+    # Install documentation if present
+    if [ -f "README.md" ]; then
+        install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
     fi
 }
