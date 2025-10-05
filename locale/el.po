@@ -1,0 +1,2233 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the appimage-creator package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: appimage-creator\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: attranslate\n"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 18
+#: NEEDS WORK
+msgid "Application name must be at least 2 characters long"
+msgstr "Το όνομα της εφαρμογής πρέπει να έχει τουλάχιστον 2 χαρακτήρες."
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 21
+#: NEEDS WORK
+msgid "Application name contains invalid characters"
+msgstr "Το όνομα της εφαρμογής περιέχει μη έγκυρους χαρακτήρες"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 29
+#: NEEDS WORK
+msgid "Version is required"
+msgstr "Η έκδοση είναι απαραίτητη"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 32
+#: NEEDS WORK
+msgid "Invalid version format"
+msgstr "Μη έγκυρη μορφή έκδοσης"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 40
+#: NEEDS WORK
+msgid "Executable file does not exist"
+msgstr "Το εκτελέσιμο αρχείο δεν υπάρχει"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 43
+#: NEEDS WORK
+msgid "File is not executable"
+msgstr "Το αρχείο δεν είναι εκτελέσιμο."
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 54
+#: NEEDS WORK
+msgid "Error: Missing [Desktop Entry] section"
+msgstr "Σφάλμα: Λείπει η ενότητα [Desktop Entry]"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 69
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Missing required keys: {}"
+msgstr "Σφάλμα: Λείπουν απαιτούμενα κλειδιά: {}"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 81
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Empty value for required key: {}"
+msgstr "Σφάλμα: Κενή τιμή για απαιτούμενο κλειδί: {}"
+# 
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to download {}: {}"
+msgstr "Αποτυχία λήψης {}: {}"
+# 
+# File: usr/share/appimage-creator/utils/system.py, line: 108
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to make file executable: {}"
+msgstr "Αποτυχία στην εκτέλεση του αρχείου: {}"
+# 
+# File: usr/share/appimage-creator/generators/files.py, line: 70
+#: NEEDS WORK
+msgid "Warning: Desktop file may have validation issues"
+msgstr "Προειδοποίηση: Το αρχείο επιφάνειας εργασίας μπορεί να έχει προβλήματα επικύρωσης"
+# 
+# File: usr/share/appimage-creator/generators/files.py, line: 85
+#: NEEDS WORK
+msgid "Failed to create desktop file"
+msgstr "Αποτυχία δημιουργίας αρχείου επιφάνειας εργασίας"
+# 
+# File: usr/share/appimage-creator/generators/files.py, line: 196
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to adapt existing desktop file: {}"
+msgstr "Προειδοποίηση: Αποτυχία προσαρμογής υπάρχοντος αρχείου επιφάνειας εργασίας: {}"
+# 
+# File: usr/share/appimage-creator/generators/icons.py, line: 16
+#: NEEDS WORK
+msgid "Warning: PIL/Pillow not available, icon processing will be limited"
+msgstr "Προειδοποίηση: Το PIL/Pillow δεν είναι διαθέσιμο, η επεξεργασία εικονιδίων θα είναι περιορισμένη."
+# 
+# File: usr/share/appimage-creator/generators/icons.py, line: 82
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error processing icon: {}"
+msgstr "Σφάλμα κατά την επεξεργασία εικονιδίου: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
+#: NEEDS WORK
+msgid "Building AppImage"
+msgstr "Δημιουργία AppImage"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
+#: NEEDS WORK
+msgid "Preparing..."
+msgstr "Ετοιμασία..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
+#: NEEDS WORK
+msgid "Cancel Build"
+msgstr "Ακύρωση Δημιουργίας"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
+# File: usr/share/appimage-creator/ui/window.py, line: 405
+#: NEEDS WORK
+msgid "OK"
+msgstr "Εντάξει"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
+#: NEEDS WORK
+msgid "Open Folder"
+msgstr "Άνοιγμα Φακέλου"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
+# File: usr/share/appimage-creator/ui/window.py, line: 341
+#: NEEDS WORK
+msgid "Cancel"
+msgstr "Ακύρωση"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
+#: NEEDS WORK
+msgid "Open"
+msgstr "Άνοιγμα"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
+#: NEEDS WORK
+msgid "Select"
+msgstr "Επιλέξτε"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
+#: NEEDS WORK
+msgid "Save"
+msgstr "Αποθήκευση"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
+#: NEEDS WORK
+msgid "Copy to clipboard"
+msgstr "Αντιγραφή στο πρόχειρο"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
+#: NEEDS WORK
+msgid "Desktop File Content"
+msgstr "Περιεχόμενο Αρχείου Επιφάνειας Εργασίας"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+# File: usr/share/appimage-creator/ui/window.py, line: 906
+#: NEEDS WORK
+msgid "Error"
+msgstr "Σφάλμα"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to read file: {}"
+msgstr "Αποτυχία ανάγνωσης αρχείου: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
+#: NEEDS WORK
+msgid "Starting..."
+msgstr "Ξεκινώντας..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
+#: NEEDS WORK
+msgid "Close"
+msgstr "Κλείσιμο"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
+#: NEEDS WORK
+msgid "Completed successfully!"
+msgstr "Ολοκληρώθηκε με επιτυχία!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
+#: NEEDS WORK
+msgid "Finished with errors."
+msgstr "Ολοκληρώθηκε με σφάλματα."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
+# File: usr/share/appimage-creator/ui/pages.py, line: 459
+#: NEEDS WORK
+msgid "Install Required Packages"
+msgstr "Εγκατάσταση Απαιτούμενων Πακέτων"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
+#: NEEDS WORK
+msgid "Installation Information"
+msgstr "Πληροφορίες Εγκατάστασης"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
+#: NEEDS WORK
+msgid "Packages to Install"
+msgstr "Πακέτα προς Εγκατάσταση"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
+#: NEEDS WORK
+msgid "Command"
+msgstr "Εντολή"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
+#: NEEDS WORK
+msgid ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+msgstr ""
+"<b>Απαιτούνται δικαιώματα διαχειριστή</b>  \n"
+"Θα σας ζητηθεί ο κωδικός πρόσβασής σας για να εγκαταστήσετε πακέτα συστήματος."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
+#: NEEDS WORK
+msgid "Installation Output"
+msgstr "Έξοδος Εγκατάστασης"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
+#: NEEDS WORK
+msgid "Install"
+msgstr "Εγκατάσταση"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 426
+#: NEEDS WORK
+msgid ""
+"Starting installation...\n"
+"\n"
+msgstr "Αρχή εγκατάστασης..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
+#: NEEDS WORK
+msgid "Error running command"
+msgstr "Σφάλμα κατά την εκτέλεση της εντολής"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
+#: NEEDS WORK
+msgid "Pre-command completed successfully."
+msgstr "Η προ-εντολή ολοκληρώθηκε με επιτυχία."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
+#: NEEDS WORK
+msgid "Installation completed successfully!"
+msgstr "Η εγκατάσταση ολοκληρώθηκε με επιτυχία!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
+#: NEEDS WORK
+msgid "Command failed with exit code"
+msgstr "Η εντολή απέτυχε με κωδικό εξόδου"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
+#: NEEDS WORK
+msgid "Installation failed."
+msgstr "Η εγκατάσταση απέτυχε."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
+#: NEEDS WORK
+msgid "Please check the errors above and try again."
+msgstr "Παρακαλώ ελέγξτε τα σφάλματα παραπάνω και προσπαθήστε ξανά."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/widgets.py, line: 32
+# File: usr/share/appimage-creator/ui/widgets.py, line: 104
+# File: usr/share/appimage-creator/ui/pages.py, line: 484
+# File: usr/share/appimage-creator/ui/window.py, line: 342
+#: NEEDS WORK
+msgid "Remove"
+msgstr "Αφαίρεση"
+# 
+# File: usr/share/appimage-creator/ui/widgets.py, line: 147
+#: NEEDS WORK
+#, python-brace-format
+msgid "{}: {}"
+msgstr "{}: {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 21
+#: NEEDS WORK
+msgid "Application Info"
+msgstr "Πληροφορίες Εφαρμογής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 39
+#: NEEDS WORK
+msgid "Basic Information"
+msgstr "Βασικές Πληροφορίες"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 42
+# File: usr/share/appimage-creator/ui/window.py, line: 159
+#: NEEDS WORK
+msgid "Application Name"
+msgstr "Όνομα Εφαρμογής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 46
+#: NEEDS WORK
+msgid "Version"
+msgstr "Έκδοση"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 51
+#: NEEDS WORK
+msgid "Description"
+msgstr "Περιγραφή"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 58
+#: NEEDS WORK
+msgid "Authors"
+msgstr "Συγγραφείς"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 59
+#: NEEDS WORK
+msgid "Add one or more authors/developers"
+msgstr "Προσθέστε έναν ή περισσότερους συγγραφείς/προγραμματιστές"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 62
+# File: usr/share/appimage-creator/ui/pages.py, line: 67
+#: NEEDS WORK
+msgid "Add Author"
+msgstr "Προσθήκη Συγγραφέα"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 63
+#: NEEDS WORK
+msgid "Add a new author or developer"
+msgstr "Προσθέστε έναν νέο συγγραφέα ή προγραμματιστή"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 76
+#: NEEDS WORK
+#, python-brace-format
+msgid "Author {}"
+msgstr "Συγγραφέας {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 83
+#: NEEDS WORK
+msgid "Websites"
+msgstr "Ιστοσελίδες"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 84
+#: NEEDS WORK
+msgid "Add project website, repository, or documentation links"
+msgstr "Προσθέστε συνδέσμους ιστότοπου έργου, αποθετηρίου ή τεκμηρίωσης"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 87
+# File: usr/share/appimage-creator/ui/pages.py, line: 92
+#: NEEDS WORK
+msgid "Add Website"
+msgstr "Προσθήκη Ιστοσελίδας"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 88
+#: NEEDS WORK
+msgid "Add project website or repository link"
+msgstr "Προσθέστε σύνδεσμο ιστότοπου ή αποθετηρίου έργου"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 101
+#: NEEDS WORK
+#, python-brace-format
+msgid "Website {}"
+msgstr "Ιστοσελίδα {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 107
+#: NEEDS WORK
+msgid "Categories"
+msgstr "Κατηγορίες"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 110
+#: NEEDS WORK
+msgid "Primary Category"
+msgstr "Κύρια Κατηγορία"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 120
+#: NEEDS WORK
+msgid "Requires Terminal"
+msgstr "Απαιτεί τερματικό"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 121
+#: NEEDS WORK
+msgid "Check if your application needs to run in a terminal"
+msgstr "Ελέγξτε αν η εφαρμογή σας χρειάζεται να εκτελείται σε τερματικό"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 132
+#: NEEDS WORK
+msgid "Files & Resources"
+msgstr "Αρχεία & Πόροι"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 153
+#: NEEDS WORK
+msgid "Application Files"
+msgstr "Αρχεία Εφαρμογής"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 156
+# File: usr/share/appimage-creator/ui/window.py, line: 164
+#: NEEDS WORK
+msgid "Main Executable"
+msgstr "Κύρια Εκτελέσιμη"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 157
+# File: usr/share/appimage-creator/ui/window.py, line: 165
+#: NEEDS WORK
+msgid "Select the main application file"
+msgstr "Επιλέξτε το κύριο αρχείο εφαρμογής"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 159
+# File: usr/share/appimage-creator/ui/pages.py, line: 241
+# File: usr/share/appimage-creator/ui/window.py, line: 167
+#: NEEDS WORK
+msgid "Choose File"
+msgstr "Επιλέξτε Αρχείο"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 165
+#: NEEDS WORK
+msgid "Application Type"
+msgstr "Τύπος Εφαρμογής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 166
+#: NEEDS WORK
+msgid "Auto-detected from executable"
+msgstr "Αυτόματη ανίχνευση από εκτελέσιμο"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Binary"
+msgstr "Δυαδικός"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Python"
+msgstr "Πύθων"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Python Wrapper"
+msgstr "Python Wrapper"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Shell Script"
+msgstr "Σενάριο Κέλυφος"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "Java"
+msgstr "Τζάβα"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "Qt"
+msgstr "Qt"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "GTK"
+msgstr "GTK"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "Electron"
+msgstr "Ηλεκτρόνιο"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 181
+#: NEEDS WORK
+msgid "Additional Directories"
+msgstr "Επιπλέον Κατάλογοι"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Include extra directories like locale files, plugins, or data"
+msgstr "Συμπεριλάβετε επιπλέον καταλόγους όπως αρχεία τοπικοποίησης, πρόσθετα ή δεδομένα"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 185
+# File: usr/share/appimage-creator/ui/pages.py, line: 188
+# File: usr/share/appimage-creator/ui/window.py, line: 601
+#: NEEDS WORK
+msgid "Add Directory"
+msgstr "Προσθήκη Καταλόγου"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 186
+#: NEEDS WORK
+msgid "Include additional files and directories"
+msgstr "Συμπεριλάβετε επιπλέον αρχεία και καταλόγους"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 204
+#: NEEDS WORK
+msgid "Auto-detected Files"
+msgstr "Αυτόματη ανίχνευση αρχείων"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 205
+#: NEEDS WORK
+msgid "Files automatically found for your application"
+msgstr "Αρχεία που βρέθηκαν αυτόματα για την εφαρμογή σας"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 219
+#: NEEDS WORK
+msgid "Desktop File"
+msgstr "Αρχείο Επιφάνειας Εργασίας"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 223
+#: NEEDS WORK
+msgid "Use Existing Desktop File"
+msgstr "Χρησιμοποίησε το υπάρχον αρχείο επιφάνειας εργασίας"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 224
+#: NEEDS WORK
+msgid "Found desktop file in application"
+msgstr "Βρέθηκε αρχείο επιφάνειας εργασίας στην εφαρμογή"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 229
+#: NEEDS WORK
+msgid "Detected Desktop File"
+msgstr "Ανιχνευμένο Αρχείο Επιφάνειας Εργασίας"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 230
+#: NEEDS WORK
+msgid "No desktop file detected"
+msgstr "Δεν ανιχνεύθηκε αρχείο επιφάνειας εργασίας"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 232
+#: NEEDS WORK
+msgid "View"
+msgstr "Προβολή"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 238
+#: NEEDS WORK
+msgid "Custom Desktop File"
+msgstr "Προσαρμοσμένο Αρχείο Επιφάνειας Εργασίας"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 239
+#: NEEDS WORK
+msgid "Or select a different .desktop file"
+msgstr "Ή επιλέξτε ένα διαφορετικό αρχείο .desktop"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 250
+#: NEEDS WORK
+msgid "Resources"
+msgstr "Πόροι"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 253
+# File: usr/share/appimage-creator/ui/window.py, line: 175
+#: NEEDS WORK
+msgid "Application Icon"
+msgstr "Εικονίδιο Εφαρμογής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 254
+#: NEEDS WORK
+msgid "PNG, SVG, or other image format"
+msgstr "PNG, SVG ή άλλη μορφή εικόνας"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 256
+# File: usr/share/appimage-creator/ui/window.py, line: 178
+# File: usr/share/appimage-creator/ui/window.py, line: 579
+#: NEEDS WORK
+msgid "Choose Icon"
+msgstr "Επιλέξτε Εικονίδιο"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 265
+#: NEEDS WORK
+msgid "Structure Preview"
+msgstr "Προεπισκόπηση Δομής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 266
+#: NEEDS WORK
+msgid "Preview of what will be included in the AppImage"
+msgstr "Προεπισκόπηση του τι θα περιλαμβάνεται στο AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 270
+#: NEEDS WORK
+msgid "Quick Preview"
+msgstr "Γρήγορη Προεπισκόπηση"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 271
+#: NEEDS WORK
+msgid "See basic structure overview"
+msgstr "Δείτε την επισκόπηση της βασικής δομής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 273
+#: NEEDS WORK
+msgid "View Full Structure"
+msgstr "Προβολή Πλήρους Δομής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 297
+#: NEEDS WORK
+msgid "Build Settings"
+msgstr "Ρυθμίσεις Κατασκευής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 314
+#: NEEDS WORK
+msgid "Output Settings"
+msgstr "Ρυθμίσεις Εξόδου"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 317
+#: NEEDS WORK
+msgid "Output Directory"
+msgstr "Κατάλογος Εξόδου"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 320
+#: NEEDS WORK
+msgid "Choose Folder"
+msgstr "Επιλέξτε Φάκελο"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 329
+# File: usr/share/appimage-creator/ui/pages.py, line: 333
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Build Environment"
+msgstr "Περιβάλλον Κατασκευής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 330
+#: NEEDS WORK
+msgid "Choose where to build the AppImage"
+msgstr "Επιλέξτε πού να δημιουργήσετε το AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 334
+#: NEEDS WORK
+msgid "Select container or use local system"
+msgstr "Επιλέξτε δοχείο ή χρησιμοποιήστε το τοπικό σύστημα"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 337
+# File: usr/share/appimage-creator/ui/window.py, line: 456
+#: NEEDS WORK
+msgid "Local System (Current Python)"
+msgstr "Τοπικό Σύστημα (Τρέχων Python)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 346
+#: NEEDS WORK
+msgid "Advanced Options"
+msgstr "Προηγμένες Επιλογές"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 349
+#: NEEDS WORK
+msgid "Include Dependencies"
+msgstr "Συμπερίληψη Εξαρτήσεων"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 350
+#: NEEDS WORK
+msgid "Automatically include system dependencies"
+msgstr "Αυτόματα συμπερίληψη εξαρτήσεων συστήματος"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 355
+#: NEEDS WORK
+msgid "Strip Debug Symbols"
+msgstr "Αφαίρεση Συμβόλων Εντοπισμού Σφαλμάτων"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "Reduce file size by removing debug information"
+msgstr "Μειώστε το μέγεθος του αρχείου αφαιρώντας τις πληροφορίες αποσφαλμάτωσης"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 364
+#: NEEDS WORK
+msgid "Build AppImage"
+msgstr "Δημιουργία AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 365
+#: NEEDS WORK
+msgid "Create your AppImage with current settings"
+msgstr "Δημιουργήστε το AppImage σας με τις τρέχουσες ρυθμίσεις"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 368
+#: NEEDS WORK
+msgid "Generate AppImage"
+msgstr "Δημιουργία AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 369
+#: NEEDS WORK
+msgid "Create AppImage with configured settings"
+msgstr "Δημιουργία AppImage με ρυθμισμένες ρυθμίσεις"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+# File: usr/share/appimage-creator/ui/window.py, line: 201
+# File: usr/share/appimage-creator/ui/window.py, line: 204
+#: NEEDS WORK
+msgid "Create AppImage"
+msgstr "Δημιουργία AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 404
+#: NEEDS WORK
+msgid "Host System Status"
+msgstr "Κατάσταση Συστήματος Φιλοξενίας"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 405
+#: NEEDS WORK
+msgid "Required tools for creating compatible AppImages"
+msgstr "Απαιτούμενα εργαλεία για τη δημιουργία συμβατών AppImages"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 409
+#: NEEDS WORK
+msgid "Checking host system..."
+msgstr "Έλεγχος συστήματος φιλοξενίας..."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 414
+#: NEEDS WORK
+msgid "Available Build Environments"
+msgstr "Διαθέσιμα Περιβάλλοντα Κατασκευής"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 415
+#: NEEDS WORK
+msgid "Select an environment to build your AppImage for maximum compatibility"
+msgstr "Επιλέξτε ένα περιβάλλον για να δημιουργήσετε το AppImage σας για μέγιστη συμβατότητα"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 438
+#: NEEDS WORK
+msgid "Host is Ready"
+msgstr "Ο διακομιστής είναι έτοιμος"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 439
+#: NEEDS WORK
+msgid "Distrobox and a container runtime are installed."
+msgstr "Το Distrobox και ένα runtime κοντέινερ είναι εγκατεστημένα."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 455
+#: NEEDS WORK
+msgid "Host Setup Required"
+msgstr "Απαιτείται Ρύθμιση Φιλοξενίας"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 456
+#: NEEDS WORK
+#, python-brace-format
+msgid "Missing: {}"
+msgstr "Λείπει: {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 493
+#: NEEDS WORK
+msgid "Setup"
+msgstr "Ρύθμιση"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 48
+# File: usr/share/appimage-creator/ui/window.py, line: 131
+#: NEEDS WORK
+msgid "AppImage Creator"
+msgstr "Δημιουργός AppImage"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 214
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "Προηγμένες Ρυθμίσεις"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 138
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
+msgstr ""
+"Δημιουργήστε διανεμόμενα AppImages από οποιαδήποτε εφαρμογή Linux.  \n"
+"<span size='large'>Υποστηρίζει Python, Qt, GTK, Java και δυαδικές εφαρμογές.</span>"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 152
+#: NEEDS WORK
+msgid "Quick Setup"
+msgstr "Γρήγορη Ρύθμιση"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 153
+#: NEEDS WORK
+msgid "Get started quickly with basic information"
+msgstr "Ξεκινήστε γρήγορα με βασικές πληροφορίες"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 176
+#: NEEDS WORK
+msgid "Optional: Choose an icon for your application"
+msgstr "Προαιρετικό: Επιλέξτε ένα εικονίδιο για την εφαρμογή σας"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 186
+#: NEEDS WORK
+msgid "Configuration Status"
+msgstr "Κατάσταση Διαμόρφωσης"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 187
+#: NEEDS WORK
+msgid "Complete setup to enable AppImage creation"
+msgstr "Ολοκληρώστε τη ρύθμιση για να επιτρέψετε τη δημιουργία AppImage"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 202
+#: NEEDS WORK
+msgid "Generate your distributable AppImage file"
+msgstr "Δημιουργήστε το διανεμόμενο αρχείο AppImage σας"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 215
+#: NEEDS WORK
+msgid "Configure authors, categories, and build options"
+msgstr "Ρυθμίστε συγγραφείς, κατηγορίες και επιλογές κατασκευής"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 217
+#: NEEDS WORK
+msgid "Open Settings"
+msgstr "Άνοιγμα Ρυθμίσεων"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 235
+#: NEEDS WORK
+msgid "AppImage Creator Settings"
+msgstr "Ρυθμίσεις Δημιουργού AppImage"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 303
+#: NEEDS WORK
+msgid "Setting Up Environment"
+msgstr "Ρύθμιση Περιβάλλοντος"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 315
+#: NEEDS WORK
+msgid "Creating container..."
+msgstr "Δημιουργία κοντέινερ..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 318
+#: NEEDS WORK
+msgid "Installing dependencies..."
+msgstr "Εγκατάσταση εξαρτήσεων..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 324
+# File: usr/share/appimage-creator/ui/window.py, line: 372
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: {}"
+msgstr "Σφάλμα: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 339
+#: NEEDS WORK
+msgid "Remove Environment?"
+msgstr "Αφαίρεση Περιβάλλοντος;"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 340
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Are you sure you want to remove '{}'?\n"
+"This will delete the container and all its data."
+msgstr ""
+"Είστε σίγουροι ότι θέλετε να αφαιρέσετε '{}';\n"
+"Αυτό θα διαγράψει το κοντέινερ και όλα τα δεδομένα του."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 348
+#: NEEDS WORK
+msgid "Removing Environment"
+msgstr "Αφαίρεση Περιβάλλοντος"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 367
+#: NEEDS WORK
+msgid "Removing container..."
+msgstr "Αφαίρεση κοντέινερ..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Cannot Install"
+msgstr "Δεν μπορεί να εγκατασταθεί"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 387
+#: NEEDS WORK
+msgid "Unable to determine package manager for your distribution."
+msgstr "Αδύνατον να προσδιοριστεί ο διαχειριστής πακέτων για τη διανομή σας."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 402
+#: NEEDS WORK
+msgid "Installation Complete"
+msgstr "Εγκατάσταση Ολοκληρώθηκε"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 403
+#: NEEDS WORK
+msgid ""
+"Required packages were installed successfully!\n"
+"\n"
+"Please restart the application to use the new features."
+msgstr ""
+"Οι απαιτούμενες πακέτες εγκαταστάθηκαν με επιτυχία!\n"
+"\n"
+"Παρακαλώ επανεκκινήστε την εφαρμογή για να χρησιμοποιήσετε τις νέες δυνατότητες."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 427
+#: NEEDS WORK
+msgid "Ready to Build"
+msgstr "Έτοιμο προς κατασκευή"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 428
+#: NEEDS WORK
+msgid "All requirements met"
+msgstr "Όλες οι απαιτήσεις πληρούνται"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 431
+#: NEEDS WORK
+msgid "Almost Ready!"
+msgstr "Σχεδόν Έτοιμο!"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 432
+#: NEEDS WORK
+msgid "Please enter an Application Name"
+msgstr "Παρακαλώ εισάγετε ένα Όνομα Εφαρμογής"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 436
+#: NEEDS WORK
+msgid "Select Executable"
+msgstr "Επιλέξτε Εκτελέσιμο"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 437
+#: NEEDS WORK
+msgid "Please choose the main executable file"
+msgstr "Παρακαλώ επιλέξτε το κύριο εκτελέσιμο αρχείο"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 440
+#: NEEDS WORK
+msgid "Getting Started"
+msgstr "Εισαγωγή"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 441
+#: NEEDS WORK
+msgid "Enter name and select executable"
+msgstr "Εισάγετε όνομα και επιλέξτε εκτελέσιμο"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 516
+#: NEEDS WORK
+msgid "Executable Files"
+msgstr "Εκτελέσιμα Αρχεία"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 517
+#: NEEDS WORK
+msgid "All Files"
+msgstr "Όλα τα Αρχεία"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 520
+#: NEEDS WORK
+msgid "Choose Executable"
+msgstr "Επιλέξτε Εκτελέσιμο"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 534
+# File: usr/share/appimage-creator/ui/window.py, line: 592
+# File: usr/share/appimage-creator/ui/window.py, line: 706
+#: NEEDS WORK
+#, python-brace-format
+msgid "Selected: {}"
+msgstr "Επιλεγμένο: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 577
+#: NEEDS WORK
+msgid "Image Files"
+msgstr "Αρχεία Εικόνας"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 619
+#: NEEDS WORK
+msgid "Choose Output Directory"
+msgstr "Επιλέξτε Κατάλογο Εξόδου"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 674
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found: {}"
+msgstr "Βρέθηκε: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 692
+#: NEEDS WORK
+msgid "Desktop Files"
+msgstr "Αρχεία Επιφάνειας Εργασίας"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 693
+#: NEEDS WORK
+msgid "Choose Desktop File"
+msgstr "Επιλέξτε Αρχείο Επιφάνειας Εργασίας"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 721
+#: NEEDS WORK
+msgid "AppImage Overview:"
+msgstr "Επισκόπηση AppImage:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 722
+#: NEEDS WORK
+#, python-brace-format
+msgid "   App: {}"
+msgstr "Εφαρμογή: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 723
+#: NEEDS WORK
+#, python-brace-format
+msgid "   Type: {}"
+msgstr "Τύπος: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 728
+#: NEEDS WORK
+#, python-brace-format
+msgid "   Additional Dirs: {}"
+msgstr "Επιπλέον Κατάλογοι: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 734
+#: NEEDS WORK
+#, python-brace-format
+msgid "   Auto-detected: {} files"
+msgstr "Αυτόματη ανίχνευση: {} αρχεία"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 737
+#: NEEDS WORK
+msgid "Click 'View Full Structure' for details"
+msgstr "Κάντε κλικ στο 'Προβολή Πλήρους Δομής' για λεπτομέρειες"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 755
+#: NEEDS WORK
+msgid "AppImage Structure - Full View"
+msgstr "Δομή AppImage - Πλήρης Προβολή"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 760
+#: NEEDS WORK
+msgid "AppImage Structure - Detailed View"
+msgstr "Δομή AppImage - Λεπτομερής Προβολή"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 764
+#: NEEDS WORK
+msgid "[AppImage Root]"
+msgstr "[Ρίζα AppImage]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 765
+#: NEEDS WORK
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun (κύριος εκκινητής)"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 768
+#: NEEDS WORK
+msgid "└── usr/"
+msgstr "└── usr/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 769
+#: NEEDS WORK
+msgid "    ├── bin/"
+msgstr "├── εκτελέσιμα/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 771
+#: NEEDS WORK
+msgid "    ├── lib/"
+msgstr "├── βιβλιοθήκη/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 772
+#: NEEDS WORK
+msgid "    └── share/"
+msgstr "└── κοινή χρήση/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 798
+#: NEEDS WORK
+msgid "Summary:"
+msgstr "Περίληψη:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 800
+#: NEEDS WORK
+#, python-brace-format
+msgid "Application Type: {}"
+msgstr "Τύπος Εφαρμογής: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 801
+#: NEEDS WORK
+#, python-brace-format
+msgid "Additional Directories: {}"
+msgstr "Επιπλέον Κατάλογοι: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 806
+#: NEEDS WORK
+#, python-brace-format
+msgid "Auto-detected Files: {}"
+msgstr "Αυτόματα ανιχνευμένα αρχεία: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 817
+#: NEEDS WORK
+msgid "Tip"
+msgstr "Συμβουλή"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 818
+#: NEEDS WORK
+msgid "Enter an Application Name above to continue"
+msgstr "Εισάγετε ένα Όνομα Εφαρμογής παραπάνω για να συνεχίσετε"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 820
+#: NEEDS WORK
+msgid "Ready!"
+msgstr "Έτοιμο!"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 821
+#: NEEDS WORK
+msgid "Ready to create AppImage! Click 'Create AppImage' when ready."
+msgstr "Έτοιμοι να δημιουργήσετε AppImage! Κάντε κλικ στο 'Δημιουργία AppImage' όταν είστε έτοιμοι."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 895
+#: NEEDS WORK
+msgid "Validation Error"
+msgstr "Σφάλμα Επικύρωσης"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to start build: {}"
+msgstr "Αποτυχία εκκίνησης της διαδικασίας κατασκευής: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 941
+#: NEEDS WORK
+msgid "Build Failed"
+msgstr "Η κατασκευή απέτυχε"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 950
+#: NEEDS WORK
+msgid "Build Complete"
+msgstr "Η κατασκευή ολοκληρώθηκε"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 951
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"AppImage created successfully:\n"
+"{}"
+msgstr ""
+"Το AppImage δημιουργήθηκε με επιτυχία:  \n"
+"{}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 954
+#: NEEDS WORK
+msgid "Build Cancelled"
+msgstr "Η κατασκευή ακυρώθηκε"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 954
+#: NEEDS WORK
+msgid "Build was cancelled"
+msgstr "Η κατασκευή ακυρώθηκε"
+# 
+# File: usr/share/appimage-creator/ui/app.py, line: 75
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not load custom CSS: {}"
+msgstr "Προειδοποίηση: Δεν ήταν δυνατή η φόρτωση προσαρμοσμένου CSS: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
+msgid "Latest Ubuntu LTS with newest packages."
+msgstr "Τελευταία έκδοση Ubuntu LTS με τα πιο πρόσφατα πακέτα."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 31
+#: NEEDS WORK
+msgid "Good balance of compatibility and modern packages."
+msgstr "Καλή ισορροπία συμβατότητας και σύγχρονων πακέτων."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 41
+#: NEEDS WORK
+msgid "Excellent compatibility for older systems."
+msgstr "Εξαιρετική συμβατότητα με παλαιότερα συστήματα."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 53
+#: NEEDS WORK
+msgid "Latest Debian stable - very reliable."
+msgstr "Τελευταία σταθερή έκδοση Debian - πολύ αξιόπιστη."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 63
+#: NEEDS WORK
+msgid "Previous Debian stable - proven stability."
+msgstr "Προηγούμενη σταθερή έκδοση Debian - αποδεδειγμένη σταθερότητα."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 73
+#: NEEDS WORK
+msgid "Older Debian for maximum compatibility."
+msgstr "Παλαιότερη Debian για μέγιστη συμβατότητα."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+#: NEEDS WORK
+msgid "Latest Fedora with cutting-edge packages."
+msgstr "Τελευταία Fedora με προηγμένα πακέτα."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
+#: NEEDS WORK
+msgid "Stable Fedora release."
+msgstr "Σταθερή έκδοση Fedora."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 105
+#: NEEDS WORK
+msgid "RHEL 9 compatible - enterprise-grade stability."
+msgstr "Συμβατό με RHEL 9 - σταθερότητα επιπέδου επιχείρησης."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 250
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox (missing dependencies)."
+msgstr "Ο διακομιστής δεν είναι ρυθμισμένος για το Distrobox (λείπουν εξαρτήσεις)."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 263
+#: NEEDS WORK
+#, python-brace-format
+msgid "Environment '{}' already exists."
+msgstr "Το περιβάλλον '{}' υπάρχει ήδη."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 275
+#: NEEDS WORK
+#, python-brace-format
+msgid "Creating environment '{}'... This may take a while."
+msgstr "Δημιουργία περιβάλλοντος '{}'... Αυτό μπορεί να διαρκέσει λίγο."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 295
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to create environment. Distrobox exited with code {}."
+msgstr "Αποτυχία δημιουργίας περιβάλλοντος. Το Distrobox εξήλθε με κωδικό {}."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 304
+#: NEEDS WORK
+msgid "Initializing container (creating user and environment)..."
+msgstr "Αρχικοποίηση κοντέινερ (δημιουργία χρήστη και περιβάλλοντος)..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 305
+#: NEEDS WORK
+msgid "First-time setup may take 5-10 minutes on slow connections..."
+msgstr "Η αρχική ρύθμιση μπορεί να διαρκέσει 5-10 λεπτά σε αργές συνδέσεις..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 306
+#: NEEDS WORK
+msgid "Please be patient - this is a one-time process."
+msgstr "Παρακαλώ να είστε υπομονετικοί - αυτή είναι μια διαδικασία που γίνεται μία φορά."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 336
+#: NEEDS WORK
+msgid "Warning: Container initialization completed with issues"
+msgstr "Προειδοποίηση: Η αρχικοποίηση του κοντέινερ ολοκληρώθηκε με προβλήματα"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 340
+#: NEEDS WORK
+msgid "Container initialization complete!"
+msgstr "Η αρχικοποίηση του κοντέινερ ολοκληρώθηκε!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 344
+#: NEEDS WORK
+msgid "Warning: Failed to initialize container automatically"
+msgstr "Προειδοποίηση: Αποτυχία αυτόματης αρχικοποίησης του κοντέινερ"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 345
+#: NEEDS WORK
+#, python-brace-format
+msgid "You may need to run: distrobox-enter {}"
+msgstr "Μπορεί να χρειαστεί να εκτελέσετε: distrobox-enter {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 348
+#: NEEDS WORK
+msgid "Environment created successfully!"
+msgstr "Το περιβάλλον δημιουργήθηκε με επιτυχία!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 351
+#: NEEDS WORK
+msgid "distrobox-create command not found."
+msgstr "η εντολή distrobox-create δεν βρέθηκε."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 354
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while creating the environment: {}"
+msgstr "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του περιβάλλοντος: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 359
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 435
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox."
+msgstr "Ο διακομιστής δεν είναι ρυθμισμένος για το Distrobox."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 372
+#: NEEDS WORK
+msgid "Waiting for container to be fully ready..."
+msgstr "Περιμένοντας το κοντέινερ να είναι πλήρως έτοιμο..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 379
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' was created but is not accessible. Try again in a moment."
+msgstr "Το κοντέινερ '{}' δημιουργήθηκε αλλά δεν είναι προσβάσιμο. Δοκιμάστε ξανά σε λίγο."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 402
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing dependencies in '{}'..."
+msgstr "Εγκατάσταση εξαρτήσεων στο '{}'..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 421
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to install dependencies. Process exited with code {}."
+msgstr "Αποτυχία εγκατάστασης εξαρτήσεων. Η διαδικασία τερματίστηκε με κωδικό {}."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 424
+#: NEEDS WORK
+msgid "Dependencies installed successfully!"
+msgstr "Οι εξαρτήσεις εγκαταστάθηκαν με επιτυχία!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 430
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while installing dependencies: {}"
+msgstr "Παρουσιάστηκε σφάλμα κατά την εγκατάσταση εξαρτήσεων: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 449
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' does not exist."
+msgstr "Το δοχείο '{}' δεν υπάρχει."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 457
+#: NEEDS WORK
+#, python-brace-format
+msgid "Removing container '{}'..."
+msgstr "Αφαίρεση κοντέινερ '{}'..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 476
+#: NEEDS WORK
+msgid "Failed to remove container."
+msgstr "Αποτυχία κατά την αφαίρεση του κοντέινερ."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 482
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 513
+#: NEEDS WORK
+msgid "Container removed successfully!"
+msgstr "Το κοντέινερ αφαιρέθηκε με επιτυχία!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 490
+#: NEEDS WORK
+msgid "Removing container image to free disk space..."
+msgstr "Αφαίρεση εικόνας κοντέινερ για ελευθέρωση χώρου δίσκου..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 504
+#: NEEDS WORK
+msgid "Image removed successfully"
+msgstr "Η εικόνα αφαιρέθηκε με επιτυχία"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 507
+#: NEEDS WORK
+msgid "Note: Image may still be in use by other containers"
+msgstr "Σημείωση: Η εικόνα μπορεί να είναι ακόμα σε χρήση από άλλους κοντέινερ."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 510
+#: NEEDS WORK
+msgid "Warning: Could not remove image automatically"
+msgstr "Προειδοποίηση: Δεν ήταν δυνατή η αυτόματη αφαίρεση της εικόνας"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 516
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while removing the container: {}"
+msgstr "Παρουσιάστηκε σφάλμα κατά την αφαίρεση του κοντέινερ: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 89
+#: NEEDS WORK
+#, python-brace-format
+msgid "Will build in container: {}"
+msgstr "Θα κατασκευαστεί σε κοντέινερ: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 92
+#: NEEDS WORK
+msgid "Will build in local system"
+msgstr "Θα κατασκευαστεί στο τοπικό σύστημα"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 106
+#: NEEDS WORK
+#, python-brace-format
+msgid "Running in container: {}"
+msgstr "Εκτέλεση σε κοντέινερ: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 162
+#: NEEDS WORK
+msgid "Build cancellation requested"
+msgstr "Αίτημα ακύρωσης κατασκευής"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 169
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created build directory: {}"
+msgstr "Δημιουργήθηκε κατάλογος κατασκευής: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 172
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to create build directory: {}"
+msgstr "Αποτυχία δημιουργίας καταλόγου κατασκευής: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 176
+#: NEEDS WORK
+msgid "Creating AppDir structure..."
+msgstr "Δημιουργία δομής AppDir..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 185
+#: NEEDS WORK
+msgid "AppDir structure created"
+msgstr "Δομή AppDir δημιουργήθηκε"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 187
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to create AppDir structure: {}"
+msgstr "Αποτυχία δημιουργίας δομής AppDir: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 191
+#: NEEDS WORK
+msgid "Copying application files..."
+msgstr "Αντιγραφή αρχείων εφαρμογής..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 198
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying structured project from: {}"
+msgstr "Αντιγραφή δομημένου έργου από: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 206
+#: NEEDS WORK
+msgid "Project root not found, copying as simple application."
+msgstr "Δεν βρέθηκε ρίζα έργου, αντιγραφή ως απλή εφαρμογή."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 218
+#: NEEDS WORK
+msgid "Application files copied"
+msgstr "Αρχεία εφαρμογής αντιγράφηκαν"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 220
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to copy application files: {}"
+msgstr "Αποτυχία αντιγραφής αρχείων εφαρμογής: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 229
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Directory not found: {}"
+msgstr "Προειδοποίηση: Ο φάκελος δεν βρέθηκε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 235
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying additional directory: {} -> {}"
+msgstr "Αντιγραφή επιπλέον καταλόγου: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 238
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to copy directory {}: {}"
+msgstr "Προειδοποίηση: Αποτυχία αντιγραφής καταλόγου {}: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 242
+#: NEEDS WORK
+msgid "Processing icon..."
+msgstr "Επεξεργασία εικονιδίου..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 253
+#: NEEDS WORK
+#, python-brace-format
+msgid "Using detected icon: {}"
+msgstr "Χρησιμοποιώντας το ανιχνευθέν εικονίδιο: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 256
+#: NEEDS WORK
+msgid "No icon provided, will use default from project"
+msgstr "Δεν παρέχεται εικονίδιο, θα χρησιμοποιηθεί το προεπιλεγμένο από το έργο."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 257
+#: NEEDS WORK
+msgid "Icon check complete"
+msgstr "Επιτυχής έλεγχος εικονιδίου"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 265
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied icon to AppDir root: {}"
+msgstr "Αντίγραψε το εικονίδιο στη ρίζα του AppDir: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 267
+#: NEEDS WORK
+msgid "Icon processed"
+msgstr "Εικονίδιο επεξεργασμένο"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 270
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Icon processing failed: {}"
+msgstr "Προειδοποίηση: Αποτυχία επεξεργασίας εικονιδίου: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 274
+#: NEEDS WORK
+msgid "Creating launcher and desktop files..."
+msgstr "Δημιουργία αρχείων εκκίνησης και επιφάνειας εργασίας..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 281
+#: NEEDS WORK
+msgid "No desktop file found in AppDir, generating a new one."
+msgstr "Δεν βρέθηκε αρχείο επιφάνειας εργασίας στο AppDir, δημιουργώντας ένα νέο."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 285
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found desktop file from source project: {}"
+msgstr "Βρέθηκε αρχείο επιφάνειας εργασίας από το έργο πηγής: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 287
+#: NEEDS WORK
+msgid "Creating custom AppRun script..."
+msgstr "Δημιουργία προσαρμοσμένου σεναρίου AppRun..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 312
+#: NEEDS WORK
+#, python-brace-format
+msgid "AppRun will execute Python on: {}"
+msgstr "Η εφαρμογή AppRun θα εκτελέσει Python σε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 324
+#: NEEDS WORK
+#, python-brace-format
+msgid "AppRun will execute: {}"
+msgstr "Η εφαρμογή AppRun θα εκτελέσει: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 329
+#: NEEDS WORK
+msgid "Launcher and desktop files created"
+msgstr "Δημιουργήθηκαν αρχεία εκκίνησης και επιφάνειας εργασίας"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 331
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to create launcher files: {}"
+msgstr "Αποτυχία δημιουργίας αρχείων εκκίνησης: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 336
+#: NEEDS WORK
+msgid "Skipping dependency inclusion."
+msgstr "Παράλειψη συμπερίληψης εξάρτησης."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 337
+#: NEEDS WORK
+msgid "Dependencies skipped"
+msgstr "Παραλείφθηκαν οι εξαρτήσεις"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 351
+#: NEEDS WORK
+msgid "Dependencies installed successfully."
+msgstr "Οι εξαρτήσεις εγκαταστάθηκαν με επιτυχία."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 352
+#: NEEDS WORK
+msgid "Dependencies processed"
+msgstr "Εξαρτήσεις επεξεργασμένες"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 356
+#: NEEDS WORK
+msgid "Setting up Python environment..."
+msgstr "Ρύθμιση περιβάλλοντος Python..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 370
+#: NEEDS WORK
+msgid "Warning: requirements.txt not found. Using default packages."
+msgstr "Προειδοποίηση: δεν βρέθηκε το requirements.txt. Χρησιμοποιούνται οι προεπιλεγμένες πακέτες."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 379
+#: NEEDS WORK
+msgid "Creating Python virtualenv..."
+msgstr "Δημιουργία Python virtualenv..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 382
+#: NEEDS WORK
+#, python-brace-format
+msgid "Creating isolated virtualenv at: {}"
+msgstr "Δημιουργία απομονωμένου virtualenv στη διεύθυνση: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 390
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to create virtualenv: {}"
+msgstr "Αποτυχία δημιουργίας virtualenv: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 392
+#: NEEDS WORK
+msgid "Virtualenv created successfully."
+msgstr "Η εικονική περιβάλλουσα δημιουργήθηκε με επιτυχία."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 395
+#: NEEDS WORK
+msgid "Copying Python standard library to venv..."
+msgstr "Αντιγραφή της βιβλιοθήκης standard του Python στο venv..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 396
+#: NEEDS WORK
+msgid "Copying Python stdlib..."
+msgstr "Αντιγραφή της βιβλιοθήκης stdlib του Python..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not detect Python version in container. Falling back to host version: {}"
+msgstr ""
+"Προειδοποίηση: Δεν ήταν δυνατή η ανίχνευση της έκδοσης Python στο κοντέινερ. Επιστρέφω στην έκδοση "
+"του κεντρικού υπολογιστή: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 426
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying stdlib from {} to {}"
+msgstr "Αντιγραφή της stdlib από {} σε {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 450
+#: NEEDS WORK
+msgid "Failed to copy stdlib from container"
+msgstr "Αποτυχία αντιγραφής του stdlib από το κοντέινερ"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 454
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not find stdlib at: {}"
+msgstr "Δεν μπόρεσα να βρω τη stdlib στη διεύθυνση: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 463
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping system packages: {}"
+msgstr "Παράλειψη συστημικών πακέτων: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 475
+#: NEEDS WORK
+msgid "encodings module not found after stdlib copy"
+msgstr "δεν βρέθηκε το module encodings μετά την αντιγραφή της stdlib"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 477
+#: NEEDS WORK
+msgid "Python stdlib copied successfully"
+msgstr "Η βιβλιοθήκη Python αντιγράφηκε με επιτυχία"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 480
+#: NEEDS WORK
+msgid "Cleaning up copied stdlib..."
+msgstr "Καθαρισμός αντιγραμμένου stdlib..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 497
+#: NEEDS WORK
+msgid "Stdlib cleanup complete."
+msgstr "Η καθαριότητα της Stdlib ολοκληρώθηκε."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Εκτέλεση επιθετικού καθαρισμού για βελτιστοποίηση μεγέθους..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Αφαιρέθηκε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Αφαίρεση αρχείων cache bytecode..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Αφαιρέθηκαν {} φάκελοι __pycache__ και {} αρχεία .pyc"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Η επιθετική καθαριότητα ολοκληρώθηκε."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 559
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error copying Python stdlib: {}"
+msgstr "Σφάλμα αντιγραφής της βιβλιοθήκης Python stdlib: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 560
+#: NEEDS WORK
+msgid "Python stdlib required for AppImage"
+msgstr "Η βιβλιοθήκη Python stdlib απαιτείται για το AppImage"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 563
+#: NEEDS WORK
+msgid "Installing Python packages..."
+msgstr "Εγκατάσταση πακέτων Python..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 568
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing packages: {}"
+msgstr "Εγκατάσταση πακέτων: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 584
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing {}..."
+msgstr "Εγκατάσταση {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 590
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to install {}: {}"
+msgstr "Προειδοποίηση: Αποτυχία εγκατάστασης {}: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 593
+#: NEEDS WORK
+msgid "Attempting fallback: using system PyGObject bindings"
+msgstr "Προσπάθεια εναλλακτικής λύσης: χρήση των συστημικών δεσμών PyGObject"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 596
+#: NEEDS WORK
+#, python-brace-format
+msgid "Successfully installed {}"
+msgstr "Επιτυχής εγκατάσταση {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 598
+#: NEEDS WORK
+msgid "Python environment ready"
+msgstr "Το περιβάλλον Python είναι έτοιμο"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 601
+#: NEEDS WORK
+msgid "Python setup timed out"
+msgstr "Η ρύθμιση του Python υπερέβη το χρονικό όριο"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 603
+#: NEEDS WORK
+#, python-brace-format
+msgid "Python setup failed: {}"
+msgstr "Η ρύθμιση του Python απέτυχε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 611
+#: NEEDS WORK
+msgid "Copying system gi module to virtualenv..."
+msgstr "Αντιγραφή του συστήματος gi module στο virtualenv..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 639
+#: NEEDS WORK
+msgid "Error: System gi module not found"
+msgstr "Σφάλμα: Δεν βρέθηκε το σύστημα gi module"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 701
+#: NEEDS WORK
+msgid "System PyGObject copied successfully"
+msgstr "Το σύστημα PyGObject αντιγράφηκε με επιτυχία"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 704
+#: NEEDS WORK
+msgid "Failed to copy system PyGObject"
+msgstr "Αποτυχία αντιγραφής του συστήματος PyGObject"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 708
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error using system PyGObject: {}"
+msgstr "Σφάλμα κατά τη χρήση του συστήματος PyGObject: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 716
+#: NEEDS WORK
+msgid "Detecting GUI framework dependencies..."
+msgstr "Ανίχνευση εξαρτήσεων πλαισίου GUI..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 726
+#: NEEDS WORK
+msgid "No Python files found for dependency detection"
+msgstr "Δεν βρέθηκαν αρχεία Python για ανίχνευση εξαρτήσεων"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 729
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing {} Python files..."
+msgstr "Ανάλυση {} αρχείων Python..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 760
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected: {}"
+msgstr "Ανιχνεύθηκε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 774
+#: NEEDS WORK
+msgid "Ensuring native GUI dependencies..."
+msgstr "Διασφάλιση εγγενών εξαρτήσεων GUI..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 793
+#: NEEDS WORK
+#, python-brace-format
+msgid "Required packages: {}"
+msgstr "Απαιτούμενα πακέτα: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 799
+#: NEEDS WORK
+msgid ""
+"GTK4 application detected, but Ubuntu 20.04 does not have GTK4 in repositories.\n"
+"\n"
+"Solution: Use Ubuntu 22.04 or 24.04 container instead.\n"
+"Go to: Build Environment → Select a newer Ubuntu version"
+msgstr ""
+"Ανιχνεύτηκε εφαρμογή GTK4, αλλά το Ubuntu 20.04 δεν έχει GTK4 στα αποθετήρια.\n"
+"\n"
+"Λύση: Χρησιμοποιήστε κοντέινερ Ubuntu 22.04 ή 24.04 αντί.\n"
+"Μεταβείτε: Περιβάλλον Κατασκευής → Επιλέξτε μια νεότερη έκδοση του Ubuntu"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 804
+#: NEEDS WORK
+msgid "Note: GTK4 detected - using modern container recommended"
+msgstr "Σημείωση: Ανιχνεύτηκε GTK4 - προτείνεται η χρήση σύγχρονου κοντέινερ"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 807
+#: NEEDS WORK
+msgid "Updating package lists..."
+msgstr "Ενημέρωση λιστών πακέτων..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 811
+#: NEEDS WORK
+msgid "Installing GUI libraries..."
+msgstr "Εγκατάσταση βιβλιοθηκών GUI..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 816
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies"
+msgstr "Επιτυχής εγκατάσταση εξαρτήσεων GUI"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 818
+#: NEEDS WORK
+msgid "Warning: Some packages may have failed to install"
+msgstr "Προειδοποίηση: Ορισμένα πακέτα ενδέχεται να απέτυχαν να εγκατασταθούν"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 823
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Installed: {}"
+msgstr "Εγκατεστημένο: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 827
+#: NEEDS WORK
+msgid "Processing external binaries with linuxdeploy..."
+msgstr "Επεξεργασία εξωτερικών δυαδικών αρχείων με το linuxdeploy..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 830
+#: NEEDS WORK
+msgid "Warning: linuxdeploy not available, skipping binary bundling"
+msgstr "Προειδοποίηση: το linuxdeploy δεν είναι διαθέσιμο, παραλείπεται η συσκευασία δυαδικών αρχείων"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 841
+#: NEEDS WORK
+#, python-brace-format
+msgid "Backed up original wrapper: {}"
+msgstr "Εφεδρικό αντίγραφο του αρχικού περιτυλίγματος: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 855
+#: NEEDS WORK
+msgid "Backed up custom AppRun"
+msgstr "Αντίγραφο ασφαλείας προσαρμοσμένου AppRun"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 861
+#: NEEDS WORK
+msgid "Warning: No .desktop file found, skipping linuxdeploy"
+msgstr "Προειδοποίηση: Δεν βρέθηκε αρχείο .desktop, παραλείπεται το linuxdeploy"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 891
+#: NEEDS WORK
+#, python-brace-format
+msgid "Will bundle: {}"
+msgstr "Θα συμπεριληφθεί: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 895
+#: NEEDS WORK
+msgid "No external binaries detected"
+msgstr "Δεν ανιχνεύθηκαν εξωτερικά δυαδικά αρχεία"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 902
+#: NEEDS WORK
+msgid "Running linuxdeploy..."
+msgstr "Εκτέλεση του linuxdeploy..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 903
+#: NEEDS WORK
+msgid "Bundling binary dependencies..."
+msgstr "Συσκευασία δυαδικών εξαρτήσεων..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 906
+#: NEEDS WORK
+msgid "Note: linuxdeploy runs locally but accesses container files"
+msgstr "Σημείωση: το linuxdeploy εκτελείται τοπικά αλλά έχει πρόσβαση σε αρχεία κοντέινερ"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 920
+#: NEEDS WORK
+msgid "Warning: linuxdeploy had issues but continuing..."
+msgstr "Προειδοποίηση: το linuxdeploy είχε προβλήματα αλλά συνεχίζει..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 922
+#: NEEDS WORK
+msgid "External binaries bundled successfully"
+msgstr "Εξωτερικές δυαδικές μονάδες συσκευάστηκαν με επιτυχία"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 932
+#: NEEDS WORK
+msgid "Restored custom AppRun"
+msgstr "Ανακτήθηκε προσαρμοσμένο AppRun"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 942
+#: NEEDS WORK
+#, python-brace-format
+msgid "Restored original wrapper: {}"
+msgstr "Αποκαταστάθηκε η αρχική θήκη: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 945
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Binary bundling failed: {}"
+msgstr "Προειδοποίηση: Αποτυχία ομαδοποίησης δυαδικών αρχείων: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 979
+#: NEEDS WORK
+msgid "Copying system libraries from local host..."
+msgstr "Αντιγραφή συστημικών βιβλιοθηκών από τον τοπικό υπολογιστή..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 993
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied library: {}"
+msgstr "Αντιγραμμένη βιβλιοθήκη: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 995
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not copy {}: {}"
+msgstr "Προειδοποίηση: Δεν ήταν δυνατή η αντιγραφή {}: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1002
+#: NEEDS WORK
+msgid "Generating script to copy system libraries from container..."
+msgstr "Δημιουργία σεναρίου για την αντιγραφή συστημικών βιβλιοθηκών από το κοντέινερ..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1028
+#: NEEDS WORK
+msgid "Executing library copy script inside container..."
+msgstr "Εκτέλεση σεναρίου αντιγραφής βιβλιοθήκης μέσα στο κοντέινερ..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1039
+#: NEEDS WORK
+msgid "Warning: Library copy script finished with errors."
+msgstr "Προειδοποίηση: Το σενάριο αντιγραφής βιβλιοθήκης ολοκληρώθηκε με σφάλματα."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1041
+#: NEEDS WORK
+msgid "Library copy script finished successfully."
+msgstr "Η αντιγραφή του σεναρίου βιβλιοθήκης ολοκληρώθηκε με επιτυχία."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1045
+#: NEEDS WORK
+msgid "Setting up linuxdeploy..."
+msgstr "Ρύθμιση του linuxdeploy..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1051
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found linuxdeploy: {}"
+msgstr "Βρέθηκε το linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1064
+#: NEEDS WORK
+msgid "Downloading linuxdeploy..."
+msgstr "Κατεβάζω το linuxdeploy..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1067
+#: NEEDS WORK
+msgid "Downloading linuxdeploy"
+msgstr "Κατεβάζω το linuxdeploy"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1076
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to setup linuxdeploy: {}"
+msgstr "Αποτυχία ρύθμισης του linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1131
+#: NEEDS WORK
+#, python-brace-format
+msgid "Detected binary dependencies: {}"
+msgstr "Αναγνωρισμένες δυαδικές εξαρτήσεις: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1144
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied binary: {}"
+msgstr "Αντιγραμμένο δυαδικό: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1151
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to copy {}: {}"
+msgstr "Προειδοποίηση: Αποτυχία αντιγραφής {}: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1154
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: {} not found in system"
+msgstr "Προειδοποίηση: {} δεν βρέθηκε στο σύστημα"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1157
+#: NEEDS WORK
+#, python-brace-format
+msgid "Missing binaries (app may not work): {}"
+msgstr "Λείπουν δυαδικά αρχεία (η εφαρμογή ενδέχεται να μην λειτουργεί): {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1159
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied {} external binaries"
+msgstr "Αντιγράφηκαν {} εξωτερικά δυαδικά αρχεία"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1195
+#: NEEDS WORK
+#, python-brace-format
+msgid "Fixed absolute path in: {}"
+msgstr "Διορθωμένη απόλυτη διαδρομή σε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not fix script {}: {}"
+msgstr "Προειδοποίηση: Δεν ήταν δυνατή η διόρθωση του σεναρίου {}: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1226
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Copied lib: {}"
+msgstr "Αντιγράφηκε βιβλιοθήκη: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1231
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not analyze dependencies for {}: {}"
+msgstr "Προειδοποίηση: Δεν ήταν δυνατή η ανάλυση των εξαρτήσεων για {}: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1235
+#: NEEDS WORK
+msgid "Setting up appimagetool..."
+msgstr "Ρύθμιση του appimagetool..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found appimagetool: {}"
+msgstr "Βρέθηκε το appimagetool: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1251
+#: NEEDS WORK
+msgid "Downloading appimagetool..."
+msgstr "Κατεβάζω το appimagetool..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1254
+#: NEEDS WORK
+msgid "Downloading appimagetool"
+msgstr "Κατέβασμα του appimagetool"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1263
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to setup appimagetool: {}"
+msgstr "Αποτυχία ρύθμισης του appimagetool: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1268
+# File: usr/share/appimage-creator/core/builder.py, line: 1432
+#: NEEDS WORK
+msgid "Building AppImage..."
+msgstr "Δημιουργία AppImage..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1271
+#: NEEDS WORK
+msgid "appimagetool not available"
+msgstr "το appimagetool δεν είναι διαθέσιμο"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
+#: NEEDS WORK
+#, python-brace-format
+msgid "Running: {}"
+msgstr "Εκτέλεση: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1290
+#: NEEDS WORK
+msgid "Note: appimagetool runs locally (requires FUSE)"
+msgstr "Σημείωση: το appimagetool εκτελείται τοπικά (απαιτεί FUSE)"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1296
+#: NEEDS WORK
+#, python-brace-format
+msgid "AppImage created: {}"
+msgstr "AppImage δημιουργήθηκε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1299
+#: NEEDS WORK
+msgid "Unknown error"
+msgstr "Άγνωστο σφάλμα"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1302
+# File: usr/share/appimage-creator/core/builder.py, line: 1307
+#: NEEDS WORK
+#, python-brace-format
+msgid "Build failed: {}"
+msgstr "Η κατασκευή απέτυχε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1305
+#: NEEDS WORK
+msgid "Build timed out"
+msgstr "Η διαδικασία κατασκευής υπερέβη το χρονικό όριο"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1315
+#: NEEDS WORK
+msgid "Cleaned up temporary files"
+msgstr "Καθαρίστηκαν τα προσωρινά αρχεία"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1317
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Cleanup failed: {}"
+msgstr "Προειδοποίηση: Αποτυχία καθαρισμού: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1322
+#: NEEDS WORK
+msgid "Application information not set"
+msgstr "Πληροφορίες εφαρμογής μη καθορισμένες"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1326
+#: NEEDS WORK
+#, python-brace-format
+msgid "Validating build environment for {} application..."
+msgstr "Επικύρωση περιβάλλοντος κατασκευής για την εφαρμογή {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "✓ Python: {}"
+msgstr "✓ Python: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1355
+#: NEEDS WORK
+msgid "✓ Java installed"
+msgstr "✓ Εγκατεστημένο το Java"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1366
+#: NEEDS WORK
+#, python-brace-format
+msgid "✓ {} available"
+msgstr "✓ {} διαθέσιμο"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1370
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Missing dependencies in container '{}':\n"
+"{}\n"
+"\n"
+"Go to Build Environment → click Setup for this container."
+msgstr ""
+"Λείπουν εξαρτήσεις στο κοντέινερ '{}':\n"
+"{}\n"
+"\n"
+"Μεταβείτε στο Περιβάλλον Κατασκευής → κάντε κλικ στην Ρύθμιση για αυτό το κοντέινερ."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1379
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' is not responding."
+msgstr "Το κοντέινερ '{}' δεν ανταποκρίνεται."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1386
+#: NEEDS WORK
+msgid "Initializing..."
+msgstr "Αρχικοποίηση..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1388
+# File: usr/share/appimage-creator/core/builder.py, line: 1390
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+# File: usr/share/appimage-creator/core/builder.py, line: 1400
+# File: usr/share/appimage-creator/core/builder.py, line: 1404
+# File: usr/share/appimage-creator/core/builder.py, line: 1420
+# File: usr/share/appimage-creator/core/builder.py, line: 1424
+# File: usr/share/appimage-creator/core/builder.py, line: 1429
+#: NEEDS WORK
+msgid "Build cancelled"
+msgstr "Η κατασκευή ακυρώθηκε"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1412
+#: NEEDS WORK
+#, python-brace-format
+msgid "Detected Python version for AppRun: {}"
+msgstr "Ανιχνεύθηκε έκδοση Python για το AppRun: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1416
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not detect container Python, using builder Python: {}"
+msgstr ""
+"Προειδοποίηση: Δεν ήταν δυνατή η ανίχνευση του κοντέινερ Python, χρησιμοποιώντας τον κατασκευαστή "
+"Python: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1428
+#: NEEDS WORK
+msgid "Failed to setup appimagetool"
+msgstr "Αποτυχία ρύθμισης του appimagetool"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1435
+#: NEEDS WORK
+msgid "Build complete!"
+msgstr "Η κατασκευή ολοκληρώθηκε!"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1439
+#: NEEDS WORK
+#, python-brace-format
+msgid "✗ Build failed: {}"
+msgstr "✗ Η κατασκευή απέτυχε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1454
+#: NEEDS WORK
+msgid "Build already in progress"
+msgstr "Η διαδικασία κατασκευής είναι ήδη σε εξέλιξη"
