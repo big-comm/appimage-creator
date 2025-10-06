@@ -46,7 +46,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
         # Setup
         self.set_title(_("AppImage Creator"))
-        self.set_default_size(820, 740)
+        self.set_default_size(820, 755)
         self.set_size_request(700, 500)
         self.set_resizable(True)
         
@@ -114,6 +114,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         """Create welcome card"""
         welcome_container = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
         welcome_container.add_css_class("card")
+        welcome_container.set_margin_top(10)
         welcome_container.set_margin_bottom(16)
         welcome_container.set_margin_start(32)
         welcome_container.set_margin_end(32)
@@ -300,11 +301,108 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
     def _on_setup_environment_clicked(self, env_id: str):
         """Handles the click on the 'Setup' button for an environment"""
-        dialog = LogProgressDialog(self.preferences_window, _("Setting Up Environment"))
+        env_spec = next((env for env in SUPPORTED_ENVIRONMENTS if env['id'] == env_id), None)
+        if not env_spec:
+            return
+        
+        # Create custom confirmation dialog
+        dialog = Adw.Window()
+        dialog.set_transient_for(self.preferences_window)
+        dialog.set_modal(True)
+        dialog.set_default_size(450, 400)
+        dialog.set_resizable(False)
+        
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        dialog.set_content(main_box)
+        
+        # Header with title centered
+        header = Adw.HeaderBar()
+        header.set_show_end_title_buttons(False)
+        header.set_show_start_title_buttons(False)
+        main_box.append(header)
+        
+        # Title label
+        title_label = Gtk.Label(label=_("Setup Build Environment?"))
+        title_label.add_css_class("title-2")
+        header.set_title_widget(title_label)
+        
+        # Content box
+        content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16)
+        content.set_margin_top(24)
+        content.set_margin_bottom(24)
+        content.set_margin_start(24)
+        content.set_margin_end(24)
+        main_box.append(content)
+        
+        # Info text - left aligned
+        info_text = _("This will download and setup '{}'.\n\n"
+                    "This process may take 5-15 minutes depending on your internet connection.\n\n"
+                    "The following will be installed:").format(env_spec['name'])
+        
+        info_label = Gtk.Label(label=info_text)
+        info_label.set_wrap(True)
+        info_label.set_xalign(0)  # Left align
+        info_label.set_justify(Gtk.Justification.LEFT)
+        content.append(info_label)
+        
+        # Details in a card
+        details_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+        details_box.add_css_class("card")
+        details_box.set_margin_start(12)
+        details_box.set_margin_end(12)
+        details_box.set_margin_top(8)
+        details_box.set_margin_bottom(8)
+        content.append(details_box)
+        
+        image_label = Gtk.Label(label=f"• Container image: {env_spec['image']}")
+        image_label.set_xalign(0)
+        image_label.set_margin_start(12)
+        image_label.set_margin_top(8)
+        details_box.append(image_label)
+        
+        deps_label = Gtk.Label(label=f"• Build dependencies: {len(env_spec['build_deps'])} packages")
+        deps_label.set_xalign(0)
+        deps_label.set_margin_start(12)
+        deps_label.set_margin_bottom(8)
+        details_box.append(deps_label)
+        
+        # Question
+        question_label = Gtk.Label(label=_("Do you want to continue?"))
+        question_label.set_xalign(0)
+        question_label.set_margin_top(8)
+        content.append(question_label)
+        
+        # Buttons side by side at the bottom
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        button_box.set_halign(Gtk.Align.CENTER)
+        button_box.set_margin_top(16)
+        content.append(button_box)
+        
+        cancel_button = Gtk.Button(label=_("Cancelar"))
+        cancel_button.set_size_request(140, -1)
+        cancel_button.connect("clicked", lambda btn: dialog.close())
+        button_box.append(cancel_button)
+        
+        setup_button = Gtk.Button(label=_("Setup Environment"))
+        setup_button.set_size_request(180, -1)
+        setup_button.add_css_class("suggested-action")
+        button_box.append(setup_button)
+        
+        def on_setup_clicked(btn):
+            dialog.close()
+            progress_dialog = LogProgressDialog(self.preferences_window, _("Setting Up Environment"))
+            progress_dialog.present()
+            
+            thread = threading.Thread(
+                target=self._run_environment_setup, 
+                args=(env_id, progress_dialog), 
+                daemon=True
+            )
+            thread.start()
+        
+        setup_button.connect("clicked", on_setup_clicked)
+        
         dialog.present()
-
-        thread = threading.Thread(target=self._run_environment_setup, args=(env_id, dialog), daemon=True)
-        thread.start()
 
     def _run_environment_setup(self, env_id: str, dialog: LogProgressDialog):
         """The actual setup logic that runs in a thread"""
@@ -539,9 +637,12 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                 # Analyze structure
                 self.structure_analysis = detect_application_structure(path)
                 
-                # Auto-detect app type
+                # Auto-detect app type and store it
+                app_type = get_app_type_from_file(path, self.structure_analysis)
+                self.app_info.app_type = app_type  # Store in app_info
+                
+                # Update UI if preferences window exists
                 if self.files_page:
-                    app_type = get_app_type_from_file(path, self.structure_analysis)
                     type_mapping = {'binary': 0, 'python': 1, 'python_wrapper': 2, 
                                 'shell': 3, 'java': 4, 'qt': 5, 'gtk': 6, 'electron': 7}
                     if app_type in type_mapping:

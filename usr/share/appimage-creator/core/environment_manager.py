@@ -103,7 +103,7 @@ SUPPORTED_ENVIRONMENTS = [
         'name': 'AlmaLinux 9',
         'image': 'almalinux:9',
         'description': _('RHEL 9 compatible - enterprise-grade stability.'),
-        'build_deps': ['python3', 'python3-devel', 'gcc', 'gcc-c++', 'make', 
+        'build_deps': ['epel-release', 'python3', 'python3-devel', 'gcc', 'gcc-c++', 'make', 
                     'pkg-config', 'cairo-devel', 'gobject-introspection-devel', 
                     'git', 'binutils', 'file'],
         'package_manager': 'dnf',
@@ -381,12 +381,15 @@ class EnvironmentManager:
         # Build the installation command based on the package manager
         pm = env_spec['package_manager']
         deps_str = " ".join(env_spec['build_deps'])
-        
+
         if pm == 'apt':
             install_cmd = f"sudo apt-get update && sudo apt-get install -y {deps_str}"
         elif pm == 'yum':
             install_cmd = f"sudo yum install -y {deps_str}"
-        # Add other package managers like dnf, pacman if needed
+        elif pm == 'dnf':
+            install_cmd = f"sudo dnf install -y {deps_str}"
+        elif pm == 'pacman':
+            install_cmd = f"sudo pacman -Sy --noconfirm {deps_str}"
         else:
             raise NotImplementedError(f"Package manager '{pm}' is not supported.")
 

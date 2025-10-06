@@ -4,6 +4,7 @@ Core AppImage builder - orchestrates the build process
 
 import os
 import sys
+import re
 import sysconfig
 import shutil
 import subprocess
@@ -257,12 +258,8 @@ class AppImageBuilder:
                 self.update_progress(35, _("Icon check complete"))
                 return
 
-            # Copy icon to AppDir root with original filename
-            source_path = Path(icon_path)
-            dest_path = self.appdir_path / source_path.name
-            
-            shutil.copy2(source_path, dest_path)
-            self.log(_("Copied icon to AppDir root: {}").format(source_path.name))
+            # Store icon info for later use in desktop file creation
+            self.app_info['_detected_icon_path'] = icon_path
 
             self.update_progress(35, _("Icon processed"))
             
@@ -283,6 +280,14 @@ class AppImageBuilder:
             else:
                 source_desktop_file = appdir_desktop_files[0]
                 self.log(_("Found desktop file from source project: {}").format(source_desktop_file.name))
+                
+                # Create symlink to desktop file in AppDir root (required by appimagetool)
+                root_desktop_path = self.appdir_path / source_desktop_file.name
+                relative_desktop = os.path.relpath(source_desktop_file, self.appdir_path)
+                if root_desktop_path.exists():
+                    root_desktop_path.unlink()
+                root_desktop_path.symlink_to(relative_desktop)
+                self.log(_("Created desktop symlink in AppDir root: {}").format(source_desktop_file.name))
 
             self.log(_("Creating custom AppRun script..."))
             
@@ -342,11 +347,17 @@ class AppImageBuilder:
         if app_type in ['python', 'python_wrapper', 'gtk', 'qt']:
             self._setup_python_environment()
         
-        # External binaries (ffmpeg, etc) with linuxdeploy
+        # External binaries with linuxdeploy
         self._bundle_external_binaries()
+        
+        # Create icon symlinks matching desktop file name
+        self._create_icon_symlinks()
         
         # System libraries (fallback)
         self._copy_system_libraries()
+        
+        # GObject Introspection typelibs (for PyGObject apps)
+        self._copy_typelibs()
         
         self.log(_("Dependencies installed successfully."))
         self.update_progress(70, _("Dependencies processed"))
@@ -559,6 +570,38 @@ fi
                 self.log(_("Error copying Python stdlib: {}").format(e))
                 raise RuntimeError(_("Python stdlib required for AppImage"))
             
+            # Copy Python shared libraries to AppImage
+            self.log(_("Copying Python shared libraries..."))
+            
+            lib_dir = self.appdir_path / "usr" / "lib"
+            lib_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Find and copy libpython*.so files
+            python_lib_patterns = [
+                f"/usr/lib/libpython{py_version_str}*.so*",
+                f"/usr/lib/x86_64-linux-gnu/libpython{py_version_str}*.so*",
+            ]
+            
+            for pattern in python_lib_patterns:
+                try:
+                    result = self._run_command(["sh", "-c", f"ls {pattern} 2>/dev/null || true"], 
+                                              capture_output=True, timeout=10)
+                    if result.returncode == 0 and result.stdout.strip():
+                        for lib_path in result.stdout.strip().split('\n'):
+                            lib_path = lib_path.strip()
+                            if lib_path and os.path.exists(lib_path):
+                                lib_name = os.path.basename(lib_path)
+                                dest = lib_dir / lib_name
+                                
+                                # Copy the file (following symlinks)
+                                copy_cmd = ["cp", "-L", lib_path, str(dest)]
+                                self._run_command(copy_cmd, timeout=10)
+                                self.log(f"  Copied: {lib_name}")
+                except Exception as e:
+                    self.log(f"  Warning: Could not copy Python libs from {pattern}: {e}")
+            
+            self.log(_("Python shared libraries copied"))
+            
             # Install required packages into the venv
             self.update_progress(60, _("Installing Python packages..."))
             
@@ -736,6 +779,9 @@ echo "System PyGObject copied successfully"
             'gtk4': [
                 r"gi\.require_version\(['\"]Gtk['\"],\s*['\"]4\.0['\"]",
             ],
+            'adwaita': [
+                r"gi\.require_version\(['\"]Adw['\"],\s*['\"]1['\"]",
+            ],
             'qt5': [
                 r"from PyQt5",
                 r"import PyQt5"
@@ -745,8 +791,6 @@ echo "System PyGObject copied successfully"
                 r"import PyQt6"
             ]
         }
-        
-        import re
         
         for py_file in python_files[:50]:
             try:
@@ -764,6 +808,42 @@ echo "System PyGObject copied successfully"
         
         return dependencies
     
+    def _detect_gi_usage(self):
+        """
+        Detect if the application uses PyGObject (gi module).
+        Returns True if gi is imported anywhere in the code.
+        """
+        self.log(_("Checking for PyGObject usage..."))
+        
+        python_files = []
+        appdir_share = self.appdir_path / "usr" / "share"
+        if appdir_share.exists():
+            python_files = list(appdir_share.rglob("*.py"))
+        
+        if not python_files:
+            return False
+        
+        import re
+        gi_patterns = [
+            r'\bimport\s+gi\b',
+            r'\bfrom\s+gi\b',
+            r'\bfrom\s+gi\.repository\b'
+        ]
+        
+        for py_file in python_files[:50]:
+            try:
+                with open(py_file, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                    
+                    for pattern in gi_patterns:
+                        if re.search(pattern, content):
+                            self.log(_("  Detected PyGObject usage"))
+                            return True
+            except Exception:
+                continue
+        
+        return False
+    
     def _ensure_native_dependencies(self, dependencies):
         """
         Install native GUI libraries in container if missing.
@@ -773,13 +853,30 @@ echo "System PyGObject copied successfully"
         
         self.log(_("Ensuring native GUI dependencies..."))
         
-        # Package mapping for Ubuntu/Debian
-        package_map = {
+        # Detect package manager based on build environment
+        package_manager = 'apt'  # default
+        if self.build_environment:
+            if any(distro in self.build_environment.lower() for distro in ['fedora', 'alma', 'rhel', 'centos']):
+                package_manager = 'dnf'
+        
+        # Package mappings per distro family
+        debian_packages = {
             'gtk3': ['libgtk-3-0', 'gir1.2-gtk-3.0', 'libgirepository-1.0-1', 'python3-gi', 'python3-gi-cairo'],
             'gtk4': ['libgtk-4-1', 'gir1.2-gtk-4.0', 'libgirepository-1.0-1', 'python3-gi', 'python3-gi-cairo'],
+            'adwaita': ['libadwaita-1-0', 'gir1.2-adw-1'],
             'qt5': ['libqt5core5a', 'libqt5gui5', 'libqt5widgets5'],
             'qt6': ['libqt6core6', 'libqt6gui6', 'libqt6widgets6']
         }
+
+        rpm_packages = {
+            'gtk3': ['gtk3', 'gtk3-devel', 'gobject-introspection', 'python3-gobject', 'python3-cairo'],
+            'gtk4': ['gtk4', 'gtk4-devel', 'gobject-introspection', 'python3-gobject', 'python3-cairo'],
+            'adwaita': ['libadwaita', 'libadwaita-devel'],
+            'qt5': ['qt5-qtbase', 'qt5-qtbase-devel'],
+            'qt6': ['qt6-qtbase', 'qt6-qtbase-devel']
+        }
+        
+        package_map = debian_packages if package_manager == 'apt' else rpm_packages
         
         packages_needed = []
         for fw in dependencies.keys():
@@ -805,11 +902,18 @@ echo "System PyGObject copied successfully"
         
         # Update repos first
         self.log(_("Updating package lists..."))
-        self._run_command(["apt-get", "update"], timeout=120)
+        if package_manager == 'apt':
+            self._run_command(["sudo", "apt-get", "update"], timeout=120)
+        else:
+            self._run_command(["sudo", "dnf", "check-update"], timeout=120)
         
         # Install packages
         self.log(_("Installing GUI libraries..."))
-        install_cmd = ["apt-get", "install", "-y", "--no-install-recommends"] + packages_needed
+        if package_manager == 'apt':
+            install_cmd = ["sudo", "apt-get", "install", "-y", "--no-install-recommends"] + packages_needed
+        else:
+            install_cmd = ["sudo", "dnf", "install", "-y"] + packages_needed
+        
         result = self._run_command(install_cmd, timeout=300)
         
         if result.returncode == 0:
@@ -818,7 +922,11 @@ echo "System PyGObject copied successfully"
             self.log(_("Warning: Some packages may have failed to install"))
             # Try one by one
             for pkg in packages_needed:
-                result = self._run_command(["apt-get", "install", "-y", pkg], timeout=60)
+                if package_manager == 'apt':
+                    result = self._run_command(["sudo", "apt-get", "install", "-y", pkg], timeout=60)
+                else:
+                    result = self._run_command(["sudo", "dnf", "install", "-y", pkg], timeout=60)
+                
                 if result.returncode == 0:
                     self.log(_("  Installed: {}").format(pkg))
 
@@ -963,6 +1071,10 @@ echo "System PyGObject copied successfully"
             'libffi.so.8',
             'libffi.so*',
             'libpcre.so.3',
+            # GTK4 e Adwaita
+            'libgtk-4.so*',
+            'libadwaita-1.so*',
+            'libgraphene-1.0.so*',
         ]
         
         system_lib_paths = [
@@ -1039,6 +1151,199 @@ echo "System PyGObject copied successfully"
                 self.log(_("Warning: Library copy script finished with errors."))
             else:
                 self.log(_("Library copy script finished successfully."))
+    
+    def _copy_typelibs(self):
+        """
+        Copy GObject Introspection typelib files based on detected dependencies.
+        """
+        # Check if app uses PyGObject at all
+        uses_gi = self._detect_gi_usage()
+        if not uses_gi:
+            self.log(_("Application does not use PyGObject, skipping typelibs"))
+            return
+        
+        # Detect which GUI frameworks are used
+        gui_deps = self._detect_gui_dependencies()
+        
+        typelib_dir = self.appdir_path / "usr" / "lib" / "girepository-1.0"
+        typelib_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Base typelibs always needed when using gi
+        base_typelibs = [
+            'GLib-2.0.typelib',
+            'GObject-2.0.typelib',
+            'Gio-2.0.typelib',
+            'GModule-2.0.typelib',
+        ]
+        
+        # Framework-specific typelibs
+        framework_typelibs = {
+            'gtk3': [
+                'Gtk-3.0.typelib',
+                'Gdk-3.0.typelib',
+                'GdkPixbuf-2.0.typelib',
+                'Pango-1.0.typelib',
+                'PangoCairo-1.0.typelib',
+                'cairo-1.0.typelib',
+                'HarfBuzz-0.0.typelib',
+                'Atk-1.0.typelib',
+            ],
+            'gtk4': [
+                'Gtk-4.0.typelib',
+                'Gdk-4.0.typelib',
+                'GdkPixbuf-2.0.typelib',
+                'Pango-1.0.typelib',
+                'PangoCairo-1.0.typelib',
+                'cairo-1.0.typelib',
+                'HarfBuzz-0.0.typelib',
+                'Graphene-1.0.typelib',
+                'Gsk-4.0.typelib',
+            ],
+            'adwaita': [
+                'Adw-1.typelib',
+            ],
+        }
+        
+        # Build list of required typelibs
+        required_typelibs = base_typelibs.copy()
+        
+        for framework, detected in gui_deps.items():
+            if detected and framework in framework_typelibs:
+                required_typelibs.extend(framework_typelibs[framework])
+                self.log(_("Adding typelibs for: {}").format(framework.upper()))
+        
+        # Remove duplicates
+        required_typelibs = list(set(required_typelibs))
+        
+        system_typelib_paths = [
+            '/usr/lib/x86_64-linux-gnu/girepository-1.0',
+            '/usr/lib/girepository-1.0',
+            '/usr/lib64/girepository-1.0',
+        ]
+        
+        if not self.container_name:
+            # Local build
+            self.log(_("Copying typelib files from local system..."))
+            copied_count = 0
+            
+            for typelib in required_typelibs:
+                for search_path in system_typelib_paths:
+                    typelib_file = Path(search_path) / typelib
+                    if typelib_file.exists():
+                        dest = typelib_dir / typelib
+                        try:
+                            shutil.copy2(typelib_file, dest)
+                            self.log(_("  Copied: {}").format(typelib))
+                            copied_count += 1
+                        except Exception as e:
+                            self.log(_("  Warning: Could not copy {}: {}").format(typelib, e))
+                        break
+            
+            self.log(_("Copied {} typelib files").format(copied_count))
+        else:
+            # Container build
+            self.log(_("Copying typelib files from container..."))
+            
+            script_lines = [
+                "#!/bin/bash",
+                "set -e",
+                f"DEST_DIR='{typelib_dir}'",
+                "mkdir -p \"$DEST_DIR\"",
+                "COPIED=0",
+                ""
+            ]
+            
+            for typelib in required_typelibs:
+                script_lines.append(f'echo "Searching for {typelib}..."')
+                script_lines.append("FOUND=0")
+                for search_path in system_typelib_paths:
+                    script_lines.append(f'if [ -f "{search_path}/{typelib}" ]; then')
+                    script_lines.append(f'    cp -v "{search_path}/{typelib}" "$DEST_DIR/"')
+                    script_lines.append('    COPIED=$((COPIED + 1))')
+                    script_lines.append('    FOUND=1')
+                    script_lines.append('fi')
+                script_lines.append('if [ $FOUND -eq 0 ]; then')
+                script_lines.append(f'    echo "  -> {typelib} not found (may be optional)"')
+                script_lines.append('fi')
+                script_lines.append("")
+            
+            script_lines.append('echo "Copied $COPIED typelib files"')
+            
+            script_content = "\n".join(script_lines)
+            script_path = self.build_dir / "copy_typelibs.sh"
+            
+            with open(script_path, "w") as f:
+                f.write(script_content)
+            make_executable(script_path)
+            
+            result = self._run_command([str(script_path)])
+            
+            if result.stdout:
+                for line in result.stdout.splitlines():
+                    self.log(f"[typelibs] {line}")
+            
+            if result.returncode != 0:
+                self.log(_("Warning: Some typelibs may not have been copied"))
+            else:
+                self.log(_("Typelib copy complete"))
+                
+    def _create_icon_symlinks(self):
+        """Create icon symlinks in AppDir root matching desktop file name"""
+        try:
+            # Find icon in usr/share/icons/
+            icons_dir = self.appdir_path / "usr" / "share" / "icons"
+            if not icons_dir.exists():
+                return
+            
+            # Find any icon file
+            icon_file = None
+            for ext in ['.svg', '.png', '.xpm']:
+                for found_icon in icons_dir.rglob(f"*{ext}"):
+                    if found_icon.is_file():
+                        icon_file = found_icon
+                        break
+                if icon_file:
+                    break
+            
+            if not icon_file:
+                self.log(_("No icon found in usr/share/icons"))
+                return
+            
+            # Get desktop file name (without .desktop)
+            desktop_files = list((self.appdir_path / "usr/share/applications").glob("*.desktop"))
+            if not desktop_files:
+                return
+            
+            desktop_name = desktop_files[0].stem  # e.g., br.com.biglinux.converter
+            icon_extension = icon_file.suffix  # e.g., .svg
+            
+            # Create symlink with desktop file name
+            symlink_name = f"{desktop_name}{icon_extension}"
+            symlink_path = self.appdir_path / symlink_name
+            relative_icon = os.path.relpath(icon_file, self.appdir_path)
+            
+            if symlink_path.exists():
+                symlink_path.unlink()
+            symlink_path.symlink_to(relative_icon)
+            
+            self.log(_("Created icon symlink: {} -> {}").format(symlink_name, relative_icon))
+            
+            # Update Icon= in desktop file
+            desktop_file_path = desktop_files[0]
+            with open(desktop_file_path, 'r') as f:
+                content = f.read()
+            
+            # Replace Icon= line
+            import re
+            content = re.sub(r'^Icon=.*$', f'Icon={desktop_name}', content, flags=re.MULTILINE)
+            
+            with open(desktop_file_path, 'w') as f:
+                f.write(content)
+            
+            self.log(_("Updated Icon= in desktop file to: {}").format(desktop_name))
+            
+        except Exception as e:
+            self.log(_("Warning: Failed to create icon symlinks: {}").format(e))
                     
     def download_linuxdeploy(self):
         """Download or find linuxdeploy"""
@@ -1093,14 +1398,12 @@ echo "System PyGObject copied successfully"
                         with open(script_file, 'r', encoding='utf-8', errors='ignore') as f:
                             content = f.read()
                             
-                        # Look for common video/audio tools
-                        if 'ffmpeg' in content:
-                            detected_binaries.add('ffmpeg')
-                            detected_binaries.add('ffprobe')
-                        if 'mencoder' in content:
-                            detected_binaries.add('mencoder')
-                        if 'avconv' in content:
-                            detected_binaries.add('avconv')
+                        # NOTE: We intentionally skip ffmpeg, mencoder, avconv
+                        # as they pull in too many conflicting libraries.
+                        # These should come from the system.
+                        
+                        # Add other tools if needed in the future
+                        
                     except Exception:
                         pass
         
@@ -1112,9 +1415,9 @@ echo "System PyGObject copied successfully"
                     with open(py_file, 'r', encoding='utf-8', errors='ignore') as f:
                         content = f.read()
                         
-                    if 'ffmpeg' in content or 'FFmpeg' in content:
-                        detected_binaries.add('ffmpeg')
-                        detected_binaries.add('ffprobe')
+                    # Add detection for other binaries here if needed
+                    # But NOT ffmpeg/mencoder/avconv
+                    
                 except Exception:
                     pass
         

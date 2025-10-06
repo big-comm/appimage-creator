@@ -227,7 +227,7 @@ class LogProgressDialog(Adw.Window):
         self.set_transient_for(parent)
         self.set_modal(True)
         self.set_title(title)
-        self.set_default_size(600, 400)
+        self.set_default_size(700, 450)
         self.set_resizable(True)
         self.set_deletable(False)
 
@@ -260,12 +260,16 @@ class LogProgressDialog(Adw.Window):
         scrolled_window.set_vexpand(True)
         content_box.append(scrolled_window)
 
-        self.log_view = Gtk.TextView()
-        self.log_view.set_editable(False)
-        self.log_view.set_cursor_visible(False)
-        self.log_view.add_css_class("monospace")
-        self.log_buffer = self.log_view.get_buffer()
-        scrolled_window.set_child(self.log_view)
+        self.terminal = Vte.Terminal()
+        self.terminal.set_scroll_on_output(True)
+        self.terminal.set_scroll_on_keystroke(False)
+        self.terminal.set_mouse_autohide(True)
+        
+        # Set terminal font
+        font_desc = Pango.FontDescription.from_string("Monospace 10")
+        self.terminal.set_font(font_desc)
+        
+        scrolled_window.set_child(self.terminal)
 
         self.close_button = Gtk.Button(label=_("Close"))
         self.close_button.set_sensitive(False)
@@ -273,12 +277,8 @@ class LogProgressDialog(Adw.Window):
         header_bar.pack_start(self.close_button)
 
     def add_log(self, message):
-        """Append a message to the log view."""
-        end_iter = self.log_buffer.get_end_iter()
-        self.log_buffer.insert(end_iter, message + "\n")
-        # Auto-scroll to the bottom
-        adj = self.log_view.get_parent().get_vadjustment()
-        adj.set_value(adj.get_upper() - adj.get_page_size())
+        """Append a message to the terminal."""
+        self.terminal.feed((message + "\r\n").encode('utf-8'))
 
     def set_status(self, status_text):
         """Update the status label."""

@@ -5,6 +5,7 @@ Application structure analysis and detection
 import os
 import re
 import glob
+import sys
 from pathlib import Path
 from utils.file_ops import get_file_type
 from utils.i18n import _
@@ -24,14 +25,49 @@ def analyze_wrapper_script(script_path):
             'additional_paths': []
         }
         
-        # Look for Python calls
-        if re.search(r'\bpython3?\b', content):
+        # Look for Python calls (improved regex patterns)
+        python_patterns = [
+            r'\bpython3?\b',           # python or python3
+            r'\bpython3\.\d+\b',       # python3.11, python3.12, etc.
+            r'/usr/bin/python3?',      # /usr/bin/python or /usr/bin/python3
+            r'/usr/bin/env\s+python3?' # /usr/bin/env python or python3
+        ]
+        
+        if any(re.search(pattern, content, re.IGNORECASE) for pattern in python_patterns):
             analysis['type'] = 'python_wrapper'
             
-            python_match = re.search(r'python3?\s+(?:"([^"]+\.py)"|\'([^\']+\.py)\'|([^\s]+\.py))', content)
-            if python_match:
-                # This is the raw path string from the script, e.g., '/usr/share/app/main.py'
-                target_path_from_script = next(g for g in python_match.groups() if g is not None)
+            # Improved regex to capture Python script paths in various formats
+            python_call_patterns = [
+                r'python3?\s+(?:"([^"]+\.py)"|\'([^\']+\.py)\'|([^\s]+\.py))',  # python3 "script.py", 'script.py', or script.py
+                r'python3?\s+(?:"([^"]+)"|\'([^\']+)\'|(\S+))\s+\$@',           # python3 /path/to/script "$@"
+                r'python3?\s+-[mu]\s+(\S+)',                                     # python3 -m module or python3 -u script
+                r'/usr/bin/python3?\s+(?:"([^"]+)"|\'([^\']+)\'|(\S+))',       # /usr/bin/python3 /path/script
+                r'/usr/bin/env\s+python3?\s+(?:"([^"]+)"|\'([^\']+)\'|(\S+))'  # /usr/bin/env python3 /path/script
+            ]
+            
+            target_path_from_script = None
+            for pattern in python_call_patterns:
+                python_match = re.search(pattern, content)
+                if python_match:
+                    # Get the first non-None group (the captured path/module)
+                    groups = [g for g in python_match.groups() if g is not None]
+                    if groups:
+                        target_path_from_script = groups[0]
+                        # If it doesn't end with .py, add it (for module paths)
+                        if not target_path_from_script.endswith('.py'):
+                            # Check if next line or same line has .py file
+                            # This handles cases like: python3 -m package.__main__
+                            if '.' in target_path_from_script:
+                                # Convert module path to file path (e.g., package.main -> package/main.py)
+                                target_path_from_script = target_path_from_script.replace('.', '/') + '.py'
+                            else:
+                                target_path_from_script += '.py'
+                        break
+            
+            if target_path_from_script:
+                # DEBUG: Log wrapper detection
+                print(f"[DEBUG analyze_wrapper_script] Detected python wrapper", file=sys.stderr)
+                print(f"  target_path_from_script: {target_path_from_script}", file=sys.stderr)
                 
                 # --- START OF CORRECTED GENERIC LOGIC ---
 
@@ -99,8 +135,11 @@ def detect_application_structure(executable_path):
     """Detect complex application structure from executable"""
     path = Path(executable_path).resolve()
     
-    # First check if it's a wrapper script BEFORE anything else
+    # DEBUG: Log file type detection
     file_type = get_file_type(executable_path)
+    print(f"[DEBUG] File: {path.name}, Detected type: {file_type}", file=sys.stderr)
+    
+    # Check if it's a shell script by shebang OR file type
     if file_type == 'shell':
         wrapper_analysis = analyze_wrapper_script(executable_path)
         if wrapper_analysis.get('type') == 'python_wrapper':

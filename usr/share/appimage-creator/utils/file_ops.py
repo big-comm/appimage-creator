@@ -87,42 +87,67 @@ def scan_directory_structure(directory_path):
 
 
 def get_file_type(file_path):
-    """Detect file type based on extension and content"""
+    """Detect file type based on content first, then extension"""
     path = Path(file_path)
+    
+    # PRIORITY 1: Detect by file content (shebang and magic bytes)
+    # This is more reliable than extension, especially for files without extensions
+    try:
+        with open(file_path, 'rb') as f:
+            header = f.read(1024)
+        
+        # Check for shebang first (highest priority for scripts)
+        if header.startswith(b'#!/'):
+            shebang = header.split(b'\n')[0].decode('utf-8', errors='ignore').lower()
+            
+            # Python shebangs
+            if 'python' in shebang:
+                return 'python'
+            
+            # Shell shebangs (comprehensive list)
+            shell_indicators = ['bash', 'sh', 'zsh', 'ksh', 'csh', 'tcsh', 'dash', '/bin/sh', '/usr/bin/env sh', '/usr/bin/env bash']
+            if any(indicator in shebang for indicator in shell_indicators):
+                return 'shell'
+            
+            # Node.js shebangs
+            if 'node' in shebang:
+                return 'javascript'
+        
+        # Check for ELF binary (Linux executables)
+        if header.startswith(b'\x7fELF'):
+            return 'binary'
+        
+        # Check for Java class file
+        if header.startswith(b'\xca\xfe\xba\xbe'):
+            return 'java'
+            
+    except (IOError, OSError, UnicodeDecodeError, PermissionError) as e:
+        # If we can't read the file, fall through to extension-based detection
+        pass
+    
+    # PRIORITY 2: Detect by file extension (fallback)
     ext = path.suffix.lower()
     
     # Script files
     if ext in ['.py', '.pyw']:
         return 'python'
-    elif ext in ['.sh', '.bash']:
+    elif ext in ['.sh', '.bash', '.zsh', '.ksh']:
         return 'shell'
-    elif ext in ['.js', '.mjs']:
+    elif ext in ['.js', '.mjs', '.cjs']:
         return 'javascript'
-    elif ext in ['.exe', '.deb', '.rpm', '.flatpak']:
-        return 'binary'
     elif ext in ['.jar']:
         return 'java'
-    elif ext in ['.tar.gz', '.tar.bz2', '.zip']:
+    elif ext in ['.exe', '.deb', '.rpm', '.flatpak', '.appimage']:
+        return 'binary'
+    elif ext in ['.tar.gz', '.tar.bz2', '.zip', '.tar', '.gz', '.bz2', '.xz']:
         return 'archive'
     
-    # Try to detect by file content
+    # PRIORITY 3: If no extension and no recognizable content
+    # For executable files without extension, assume binary
     try:
-        with open(file_path, 'rb') as f:
-            header = f.read(1024)
-            
-        # Check for shebang
-        if header.startswith(b'#!/'):
-            shebang = header.split(b'\n')[0].decode('utf-8', errors='ignore')
-            if 'python' in shebang:
-                return 'python'
-            elif any(shell in shebang for shell in ['bash', 'sh', 'zsh']):
-                return 'shell'
-                
-        # Check for ELF binary
-        if header.startswith(b'\x7fELF'):
+        if os.access(file_path, os.X_OK):  # If file is executable
             return 'binary'
-            
-    except (IOError, UnicodeDecodeError):
+    except:
         pass
     
     return 'unknown'
