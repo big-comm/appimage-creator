@@ -829,6 +829,42 @@ msgstr "Otwórz Ustawienia"
 msgid "AppImage Creator Settings"
 msgstr "Ustawienia kreatora AppImage"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 325
+#: NEEDS WORK
+msgid "Setup Build Environment?"
+msgstr "Czy skonfigurować środowisko kompilacji?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 338
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"This will download and setup '{}'.\n"
+"\n"
+"This process may take 5-15 minutes depending on your internet connection.\n"
+"\n"
+"The following will be installed:"
+msgstr ""
+"To pobierze i skonfiguruje '{}'.\n"
+"\n"
+"Ten proces może potrwać od 5 do 15 minut w zależności od twojego połączenia internetowego.\n"
+"\n"
+"Zostanie zainstalowane:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Do you want to continue?"
+msgstr "Czy chcesz kontynuować?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Cancelar"
+msgstr "Anuluj"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Setup Environment"
+msgstr "Konfiguracja środowiska"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 303
 #: NEEDS WORK
 msgid "Setting Up Environment"
@@ -1480,12 +1516,6 @@ msgstr "Nie podano ikony, użyję domyślnej z projektu."
 msgid "Icon check complete"
 msgstr "Ikona sprawdzania zakończona"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 265
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied icon to AppDir root: {}"
-msgstr "Skopiowano ikonę do katalogu głównego AppDir: {}"
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK
 msgid "Icon processed"
@@ -1512,6 +1542,12 @@ msgstr "Nie znaleziono pliku desktop w AppDir, generuję nowy."
 #, python-brace-format
 msgid "Found desktop file from source project: {}"
 msgstr "Znaleziono plik desktop z projektu źródłowego: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 290
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created desktop symlink in AppDir root: {}"
+msgstr "Utworzono skrót pulpitu w katalogu głównym AppDir: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 287
 #: NEEDS WORK
@@ -1691,6 +1727,16 @@ msgstr "Błąd podczas kopiowania biblioteki standardowej Pythona: {}"
 msgid "Python stdlib required for AppImage"
 msgstr "Wymagana biblioteka standardowa Pythona dla AppImage"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 574
+#: NEEDS WORK
+msgid "Copying Python shared libraries..."
+msgstr "Kopiowanie bibliotek współdzielonych Pythona..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 603
+#: NEEDS WORK
+msgid "Python shared libraries copied"
+msgstr "Skopiowane biblioteki współdzielone Pythona"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 563
 #: NEEDS WORK
 msgid "Installing Python packages..."
@@ -1788,6 +1834,16 @@ msgstr "Analizowanie plików Python {}..."
 #, python-brace-format
 msgid "  Detected: {}"
 msgstr "Wykryto: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 816
+#: NEEDS WORK
+msgid "Checking for PyGObject usage..."
+msgstr "Sprawdzanie użycia PyGObject..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 840
+#: NEEDS WORK
+msgid "  Detected PyGObject usage"
+msgstr "Wykryto użycie PyGObject"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 774
 #: NEEDS WORK
@@ -1959,6 +2015,78 @@ msgstr "Ostrzeżenie: Skrypt kopiowania biblioteki zakończył się błędami."
 #: NEEDS WORK
 msgid "Library copy script finished successfully."
 msgstr "Skrypt kopiowania biblioteki zakończony pomyślnie."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Application does not use PyGObject, skipping typelibs"
+msgstr "Aplikacja nie używa PyGObject, pomijam typelibs"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1213
+#: NEEDS WORK
+#, python-brace-format
+msgid "Adding typelibs for: {}"
+msgstr "Dodawanie typów bibliotek dla: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1226
+#: NEEDS WORK
+msgid "Copying typelib files from local system..."
+msgstr "Kopiowanie plików typelib z lokalnego systemu..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1236
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Copied: {}"
+msgstr "Skopiowano: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1239
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Warning: Could not copy {}: {}"
+msgstr "Ostrzeżenie: Nie można skopiować {}: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1242
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied {} typelib files"
+msgstr "Skopiowane {} pliki typelib"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1245
+#: NEEDS WORK
+msgid "Copying typelib files from container..."
+msgstr "Kopiowanie plików typelib z kontenera..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
+#: NEEDS WORK
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "Ostrzeżenie: Niektóre typy bibliotek mogą nie zostać skopiowane"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
+#: NEEDS WORK
+msgid "Typelib copy complete"
+msgstr "Kopia typelib zakończona"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1309
+#: NEEDS WORK
+msgid "No icon found in usr/share/icons"
+msgstr "Nie znaleziono ikony w usr/share/icons"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1329
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created icon symlink: {} -> {}"
+msgstr "Utworzono symlink do ikony: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1343
+#: NEEDS WORK
+#, python-brace-format
+msgid "Updated Icon= in desktop file to: {}"
+msgstr "Zaktualizowano Ikonę= w pliku desktop do: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1346
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to create icon symlinks: {}"
+msgstr "Ostrzeżenie: Nie udało się utworzyć symlinków ikon: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1045
 #: NEEDS WORK

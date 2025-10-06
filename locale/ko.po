@@ -829,6 +829,42 @@ msgstr "설정 열기"
 msgid "AppImage Creator Settings"
 msgstr "AppImage 생성기 설정"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 325
+#: NEEDS WORK
+msgid "Setup Build Environment?"
+msgstr "빌드 환경 설정?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 338
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"This will download and setup '{}'.\n"
+"\n"
+"This process may take 5-15 minutes depending on your internet connection.\n"
+"\n"
+"The following will be installed:"
+msgstr ""
+"이것은 '{}'를 다운로드하고 설정합니다.\n"
+"\n"
+"이 과정은 인터넷 연결에 따라 5-15분이 걸릴 수 있습니다.\n"
+"\n"
+"다음이 설치됩니다:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Do you want to continue?"
+msgstr "계속하시겠습니까?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Cancelar"
+msgstr "취소"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Setup Environment"
+msgstr "환경 설정"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 303
 #: NEEDS WORK
 msgid "Setting Up Environment"
@@ -1480,12 +1516,6 @@ msgstr "아이콘이 제공되지 않았습니다. 프로젝트의 기본값을 
 msgid "Icon check complete"
 msgstr "아이콘 검사 완료"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 265
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied icon to AppDir root: {}"
-msgstr "아이콘을 AppDir 루트에 복사했습니다: {}"
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK
 msgid "Icon processed"
@@ -1512,6 +1542,12 @@ msgstr "AppDir에 데스크탑 파일이 없습니다. 새 파일을 생성하�
 #, python-brace-format
 msgid "Found desktop file from source project: {}"
 msgstr "소스 프로젝트에서 데스크탑 파일을 찾았습니다: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 290
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created desktop symlink in AppDir root: {}"
+msgstr "AppDir 루트에 데스크탑 심볼릭 링크가 생성되었습니다: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 287
 #: NEEDS WORK
@@ -1691,6 +1727,16 @@ msgstr "Python 표준 라이브러리 복사 오류: {}"
 msgid "Python stdlib required for AppImage"
 msgstr "AppImage에 필요한 Python 표준 라이브러리"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 574
+#: NEEDS WORK
+msgid "Copying Python shared libraries..."
+msgstr "파이썬 공유 라이브러리 복사 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 603
+#: NEEDS WORK
+msgid "Python shared libraries copied"
+msgstr "파이썬 공유 라이브러리 복사됨"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 563
 #: NEEDS WORK
 msgid "Installing Python packages..."
@@ -1788,6 +1834,16 @@ msgstr "{} 파이썬 파일 분석 중..."
 #, python-brace-format
 msgid "  Detected: {}"
 msgstr "감지됨: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 816
+#: NEEDS WORK
+msgid "Checking for PyGObject usage..."
+msgstr "PyGObject 사용 확인 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 840
+#: NEEDS WORK
+msgid "  Detected PyGObject usage"
+msgstr "PyGObject 사용 감지됨"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 774
 #: NEEDS WORK
@@ -1959,6 +2015,78 @@ msgstr "경고: 라이브러리 복사 스크립트가 오류로 종료되었습
 #: NEEDS WORK
 msgid "Library copy script finished successfully."
 msgstr "라이브러리 복사 스크립트가 성공적으로 완료되었습니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Application does not use PyGObject, skipping typelibs"
+msgstr "응용 프로그램이 PyGObject를 사용하지 않으므로 typelibs를 건너뜁니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1213
+#: NEEDS WORK
+#, python-brace-format
+msgid "Adding typelibs for: {}"
+msgstr "타입 라이브러리 추가: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1226
+#: NEEDS WORK
+msgid "Copying typelib files from local system..."
+msgstr "로컬 시스템에서 typelib 파일 복사 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1236
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Copied: {}"
+msgstr "복사됨: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1239
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Warning: Could not copy {}: {}"
+msgstr "경고: {}를 복사할 수 없습니다: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1242
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied {} typelib files"
+msgstr "복사된 {} typelib 파일"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1245
+#: NEEDS WORK
+msgid "Copying typelib files from container..."
+msgstr "컨테이너에서 typelib 파일 복사 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
+#: NEEDS WORK
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "경고: 일부 타입 라이브러리가 복사되지 않았을 수 있습니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
+#: NEEDS WORK
+msgid "Typelib copy complete"
+msgstr "타입 라이브러리 복사 완료"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1309
+#: NEEDS WORK
+msgid "No icon found in usr/share/icons"
+msgstr "usr/share/icons에 아이콘이 없습니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1329
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created icon symlink: {} -> {}"
+msgstr "아이콘 심볼릭 링크 생성됨: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1343
+#: NEEDS WORK
+#, python-brace-format
+msgid "Updated Icon= in desktop file to: {}"
+msgstr "데스크탑 파일의 아이콘이 업데이트되었습니다: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1346
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to create icon symlinks: {}"
+msgstr "경고: 아이콘 심볼릭 링크를 생성하지 못했습니다: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1045
 #: NEEDS WORK

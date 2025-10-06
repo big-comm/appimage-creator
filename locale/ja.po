@@ -829,6 +829,42 @@ msgstr "設定を開く"
 msgid "AppImage Creator Settings"
 msgstr "AppImageクリエイター設定"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 325
+#: NEEDS WORK
+msgid "Setup Build Environment?"
+msgstr "ビルド環境をセットアップしますか？"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 338
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"This will download and setup '{}'.\n"
+"\n"
+"This process may take 5-15 minutes depending on your internet connection.\n"
+"\n"
+"The following will be installed:"
+msgstr ""
+"これにより、'{}'がダウンロードされ、セットアップされます。\n"
+"\n"
+"このプロセスは、インターネット接続によって5〜15分かかる場合があります。\n"
+"\n"
+"次のものがインストールされます："
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Do you want to continue?"
+msgstr "続けますか？"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Cancelar"
+msgstr "キャンセル"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Setup Environment"
+msgstr "環境設定"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 303
 #: NEEDS WORK
 msgid "Setting Up Environment"
@@ -1480,12 +1516,6 @@ msgstr "アイコンが提供されていないため、プロジェクトのデ
 msgid "Icon check complete"
 msgstr "アイコンチェック完了"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 265
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied icon to AppDir root: {}"
-msgstr "アイコンをAppDirルートにコピーしました: {}"
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK
 msgid "Icon processed"
@@ -1512,6 +1542,12 @@ msgstr "AppDirにデスクトップファイルが見つかりません。新し
 #, python-brace-format
 msgid "Found desktop file from source project: {}"
 msgstr "ソースプロジェクトからデスクトップファイルが見つかりました: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 290
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created desktop symlink in AppDir root: {}"
+msgstr "AppDir ルートにデスクトップシンボリックリンクを作成しました: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 287
 #: NEEDS WORK
@@ -1691,6 +1727,16 @@ msgstr "Python標準ライブラリのコピー中にエラーが発生しまし
 msgid "Python stdlib required for AppImage"
 msgstr "AppImageに必要なPython標準ライブラリ"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 574
+#: NEEDS WORK
+msgid "Copying Python shared libraries..."
+msgstr "Python共有ライブラリをコピーしています..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 603
+#: NEEDS WORK
+msgid "Python shared libraries copied"
+msgstr "Python共有ライブラリがコピーされました"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 563
 #: NEEDS WORK
 msgid "Installing Python packages..."
@@ -1788,6 +1834,16 @@ msgstr "{} の Python ファイルを分析中..."
 #, python-brace-format
 msgid "  Detected: {}"
 msgstr "検出された: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 816
+#: NEEDS WORK
+msgid "Checking for PyGObject usage..."
+msgstr "PyGObjectの使用状況を確認しています..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 840
+#: NEEDS WORK
+msgid "  Detected PyGObject usage"
+msgstr "PyGObjectの使用が検出されました"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 774
 #: NEEDS WORK
@@ -1959,6 +2015,78 @@ msgstr "警告: ライブラリコピースクリプトがエラーで終了し�
 #: NEEDS WORK
 msgid "Library copy script finished successfully."
 msgstr "ライブラリコピースクリプトが正常に終了しました。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Application does not use PyGObject, skipping typelibs"
+msgstr "アプリケーションはPyGObjectを使用していないため、typelibsをスキップします。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1213
+#: NEEDS WORK
+#, python-brace-format
+msgid "Adding typelibs for: {}"
+msgstr "タイプライブラリを追加しています: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1226
+#: NEEDS WORK
+msgid "Copying typelib files from local system..."
+msgstr "ローカルシステムからタイプライブラリファイルをコピーしています..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1236
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Copied: {}"
+msgstr "コピーしました: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1239
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Warning: Could not copy {}: {}"
+msgstr "警告: {}をコピーできませんでした: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1242
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied {} typelib files"
+msgstr "コピーされた {} タイプライブラリファイル"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1245
+#: NEEDS WORK
+msgid "Copying typelib files from container..."
+msgstr "コンテナからタイプライブラリファイルをコピーしています..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
+#: NEEDS WORK
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "警告: 一部のタイプライブラリがコピーされていない可能性があります"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
+#: NEEDS WORK
+msgid "Typelib copy complete"
+msgstr "タイプライブラリのコピーが完了しました"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1309
+#: NEEDS WORK
+msgid "No icon found in usr/share/icons"
+msgstr "/usr/share/iconsにアイコンが見つかりません。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1329
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created icon symlink: {} -> {}"
+msgstr "アイコンのシンボリックリンクを作成しました: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1343
+#: NEEDS WORK
+#, python-brace-format
+msgid "Updated Icon= in desktop file to: {}"
+msgstr "デスクトップファイルのアイコンを更新しました: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1346
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to create icon symlinks: {}"
+msgstr "警告: アイコンのシンボリックリンクの作成に失敗しました: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1045
 #: NEEDS WORK

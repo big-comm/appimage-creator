@@ -829,6 +829,42 @@ msgstr "Ava Seaded"
 msgid "AppImage Creator Settings"
 msgstr "AppImage'i looja seaded"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 325
+#: NEEDS WORK
+msgid "Setup Build Environment?"
+msgstr "Seadistuse ehitamise keskkond?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 338
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"This will download and setup '{}'.\n"
+"\n"
+"This process may take 5-15 minutes depending on your internet connection.\n"
+"\n"
+"The following will be installed:"
+msgstr ""
+"See alla alla ja seadistab '{}'.\n"
+"\n"
+"See protsess võib võtta 5-15 minutit, sõltuvalt teie internetiühendusest.\n"
+"\n"
+"Järgmised installitakse:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Do you want to continue?"
+msgstr "Kas soovite jätkata?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Cancelar"
+msgstr "Tühista"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Setup Environment"
+msgstr "Seadistuse keskkond"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 303
 #: NEEDS WORK
 msgid "Setting Up Environment"
@@ -1480,12 +1516,6 @@ msgstr "Ikonit pole esitatud, kasutatakse projekti vaikeikooni."
 msgid "Icon check complete"
 msgstr "Ikoni kontrollimine lõpetatud"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 265
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied icon to AppDir root: {}"
-msgstr "Kopeeritud ikoon AppDir juurkausta: {}"
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK
 msgid "Icon processed"
@@ -1512,6 +1542,12 @@ msgstr "AppDir'is ei leitud töölaua faili, genereeritakse uus."
 #, python-brace-format
 msgid "Found desktop file from source project: {}"
 msgstr "Leitud töölaua fail allikaprojektist: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 290
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created desktop symlink in AppDir root: {}"
+msgstr "Loodud töölaua sümbol AppDir juures: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 287
 #: NEEDS WORK
@@ -1691,6 +1727,16 @@ msgstr "Viga Pythoni stdlib'i kopeerimisel: {}"
 msgid "Python stdlib required for AppImage"
 msgstr "AppImage'i jaoks vajalik Pythoni stdlib"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 574
+#: NEEDS WORK
+msgid "Copying Python shared libraries..."
+msgstr "Kopeerimine Pythoni jagatud teeke..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 603
+#: NEEDS WORK
+msgid "Python shared libraries copied"
+msgstr "Pythoni jagatud teegid kopeeritud"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 563
 #: NEEDS WORK
 msgid "Installing Python packages..."
@@ -1788,6 +1834,16 @@ msgstr "Analüüsitakse {} Pythoni faile..."
 #, python-brace-format
 msgid "  Detected: {}"
 msgstr "Tuvastatud: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 816
+#: NEEDS WORK
+msgid "Checking for PyGObject usage..."
+msgstr "Kontrollin PyGObjecti kasutamist..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 840
+#: NEEDS WORK
+msgid "  Detected PyGObject usage"
+msgstr "Tuvastatud PyGObjecti kasutamine"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 774
 #: NEEDS WORK
@@ -1959,6 +2015,78 @@ msgstr "Hoiatus: Raamatukogu kopeerimise skript lõpetas vigadega."
 #: NEEDS WORK
 msgid "Library copy script finished successfully."
 msgstr "Raamatukogu kopeerimise skript lõpetati edukalt."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Application does not use PyGObject, skipping typelibs"
+msgstr "Rakendus ei kasuta PyGObject'i, vahele jätan typelib'id."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1213
+#: NEEDS WORK
+#, python-brace-format
+msgid "Adding typelibs for: {}"
+msgstr "Tüüpide teekide lisamine: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1226
+#: NEEDS WORK
+msgid "Copying typelib files from local system..."
+msgstr "Kopeerimine typelib-failidest kohalikust süsteemist..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1236
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Copied: {}"
+msgstr "Kopeeritud: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1239
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Warning: Could not copy {}: {}"
+msgstr "Hoiatus: Ei saanud kopeerida {}: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1242
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied {} typelib files"
+msgstr "Kopeeritud {} typelib failid"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1245
+#: NEEDS WORK
+msgid "Copying typelib files from container..."
+msgstr "Kopeerimine typelib-failide konteinerist..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
+#: NEEDS WORK
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "Hoiatus: Mõned tüübiraamatud ei pruugi olla kopeeritud"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
+#: NEEDS WORK
+msgid "Typelib copy complete"
+msgstr "Typelib koopia lõpetatud"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1309
+#: NEEDS WORK
+msgid "No icon found in usr/share/icons"
+msgstr "Ikonit puuduvad usr/share/icons kaustas"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1329
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created icon symlink: {} -> {}"
+msgstr "Loodud ikooni sümbol: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1343
+#: NEEDS WORK
+#, python-brace-format
+msgid "Updated Icon= in desktop file to: {}"
+msgstr "Uuendatud ikoon= töölauafailis: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1346
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to create icon symlinks: {}"
+msgstr "Hoiatus: ikooni sümbolsid ei õnnestunud luua: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1045
 #: NEEDS WORK

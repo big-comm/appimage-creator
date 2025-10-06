@@ -829,6 +829,42 @@ msgstr "Öppna Inställningar"
 msgid "AppImage Creator Settings"
 msgstr "AppImage Skapare Inställningar"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 325
+#: NEEDS WORK
+msgid "Setup Build Environment?"
+msgstr "Konfigurera byggmiljö?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 338
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"This will download and setup '{}'.\n"
+"\n"
+"This process may take 5-15 minutes depending on your internet connection.\n"
+"\n"
+"The following will be installed:"
+msgstr ""
+"Detta kommer att ladda ner och installera '{}'.\n"
+"\n"
+"Denna process kan ta 5-15 minuter beroende på din internetanslutning.\n"
+"\n"
+"Följande kommer att installeras:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Do you want to continue?"
+msgstr "Vill du fortsätta?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Cancelar"
+msgstr "Avbryt"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Setup Environment"
+msgstr "Installationsmiljö"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 303
 #: NEEDS WORK
 msgid "Setting Up Environment"
@@ -1480,12 +1516,6 @@ msgstr "Ingen ikon angiven, kommer att använda standard från projektet"
 msgid "Icon check complete"
 msgstr "Ikonkontroll slutförd"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 265
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied icon to AppDir root: {}"
-msgstr "Kopierade ikon till AppDir-root: {}"
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK
 msgid "Icon processed"
@@ -1512,6 +1542,12 @@ msgstr "Ingen skrivbordsfil hittades i AppDir, en ny skapas."
 #, python-brace-format
 msgid "Found desktop file from source project: {}"
 msgstr "Hittade skrivbordsfil från källprojekt: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 290
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created desktop symlink in AppDir root: {}"
+msgstr "Skapade skrivbords-symlink i AppDir-root: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 287
 #: NEEDS WORK
@@ -1691,6 +1727,16 @@ msgstr "Fel vid kopiering av Python stdlib: {}"
 msgid "Python stdlib required for AppImage"
 msgstr "Python stdlib krävs för AppImage"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 574
+#: NEEDS WORK
+msgid "Copying Python shared libraries..."
+msgstr "Kopierar Python-delade bibliotek..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 603
+#: NEEDS WORK
+msgid "Python shared libraries copied"
+msgstr "Python delade bibliotek kopierade"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 563
 #: NEEDS WORK
 msgid "Installing Python packages..."
@@ -1788,6 +1834,16 @@ msgstr "Analyserar {} Python-filer..."
 #, python-brace-format
 msgid "  Detected: {}"
 msgstr "Upptäckte: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 816
+#: NEEDS WORK
+msgid "Checking for PyGObject usage..."
+msgstr "Kontrollerar användning av PyGObject..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 840
+#: NEEDS WORK
+msgid "  Detected PyGObject usage"
+msgstr "Upptäckte PyGObject-användning"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 774
 #: NEEDS WORK
@@ -1959,6 +2015,78 @@ msgstr "Varning: Biblioteks kopieringsskript avslutades med fel."
 #: NEEDS WORK
 msgid "Library copy script finished successfully."
 msgstr "Biblioteks kopieringsskriptet avslutades framgångsrikt."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Application does not use PyGObject, skipping typelibs"
+msgstr "Applikationen använder inte PyGObject, hoppar över typbibliotek."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1213
+#: NEEDS WORK
+#, python-brace-format
+msgid "Adding typelibs for: {}"
+msgstr "Lägger till typbibliotek för: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1226
+#: NEEDS WORK
+msgid "Copying typelib files from local system..."
+msgstr "Kopierar typelib-filer från det lokala systemet..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1236
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Copied: {}"
+msgstr "Kopierad: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1239
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Warning: Could not copy {}: {}"
+msgstr "Varning: Kunde inte kopiera {}: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1242
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied {} typelib files"
+msgstr "Kopierade {} typelib-filer"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1245
+#: NEEDS WORK
+msgid "Copying typelib files from container..."
+msgstr "Kopierar typelib-filer från behållare..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
+#: NEEDS WORK
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "Varning: Vissa typbibliotek kanske inte har kopierats."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
+#: NEEDS WORK
+msgid "Typelib copy complete"
+msgstr "Typelib-kopiering slutförd"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1309
+#: NEEDS WORK
+msgid "No icon found in usr/share/icons"
+msgstr "Ingen ikon hittades i usr/share/icons"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1329
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created icon symlink: {} -> {}"
+msgstr "Skapad ikon-symlink: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1343
+#: NEEDS WORK
+#, python-brace-format
+msgid "Updated Icon= in desktop file to: {}"
+msgstr "Uppdaterad Ikon= i skrivbordsfilen till: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1346
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to create icon symlinks: {}"
+msgstr "Varning: Misslyckades med att skapa ikon-symlänkar: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1045
 #: NEEDS WORK

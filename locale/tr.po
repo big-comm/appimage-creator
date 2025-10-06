@@ -829,6 +829,42 @@ msgstr "Ayarları Aç"
 msgid "AppImage Creator Settings"
 msgstr "AppImage Oluşturucu Ayarları"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 325
+#: NEEDS WORK
+msgid "Setup Build Environment?"
+msgstr "Kurulum Yapı Ortamı?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 338
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"This will download and setup '{}'.\n"
+"\n"
+"This process may take 5-15 minutes depending on your internet connection.\n"
+"\n"
+"The following will be installed:"
+msgstr ""
+"Bu, '{}' indirilip kurulacaktır.\n"
+"\n"
+"Bu işlem, internet bağlantınıza bağlı olarak 5-15 dakika sürebilir.\n"
+"\n"
+"Aşağıdakiler yüklenecektir:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Do you want to continue?"
+msgstr "Devam etmek istiyor musunuz?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Cancelar"
+msgstr "İptal et"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Setup Environment"
+msgstr "Kurulum Ortamı"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 303
 #: NEEDS WORK
 msgid "Setting Up Environment"
@@ -1543,12 +1579,6 @@ msgstr "İkon sağlanmadı, projeden varsayılan kullanılacak."
 msgid "Icon check complete"
 msgstr "Simge kontrolü tamamlandı"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 265
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied icon to AppDir root: {}"
-msgstr "AppDir köküne simge kopyalandı: {}"
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK
 msgid "Icon processed"
@@ -1575,6 +1605,12 @@ msgstr "AppDir'de masaüstü dosyası bulunamadı, yenisi oluşturuluyor."
 #, python-brace-format
 msgid "Found desktop file from source project: {}"
 msgstr "Kaynak projeden masaüstü dosyası bulundu: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 290
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created desktop symlink in AppDir root: {}"
+msgstr "AppDir kökünde masaüstü simgesi oluşturuldu: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 287
 #: NEEDS WORK
@@ -1754,6 +1790,16 @@ msgstr "Python stdlib'ını kopyalarken hata: {}"
 msgid "Python stdlib required for AppImage"
 msgstr "AppImage için gerekli Python stdlib"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 574
+#: NEEDS WORK
+msgid "Copying Python shared libraries..."
+msgstr "Python paylaşılan kütüphaneleri kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 603
+#: NEEDS WORK
+msgid "Python shared libraries copied"
+msgstr "Python paylaşılan kütüphaneleri kopyalandı"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 563
 #: NEEDS WORK
 msgid "Installing Python packages..."
@@ -1851,6 +1897,16 @@ msgstr "{} Python dosyası analiz ediliyor..."
 #, python-brace-format
 msgid "  Detected: {}"
 msgstr "Tespit Edildi: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 816
+#: NEEDS WORK
+msgid "Checking for PyGObject usage..."
+msgstr "PyGObject kullanımını kontrol ediliyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 840
+#: NEEDS WORK
+msgid "  Detected PyGObject usage"
+msgstr "PyGObject kullanımı tespit edildi"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 774
 #: NEEDS WORK
@@ -2022,6 +2078,78 @@ msgstr "Uyarı: Kütüphane kopyalama betiği hatalarla tamamlandı."
 #: NEEDS WORK
 msgid "Library copy script finished successfully."
 msgstr "Kütüphane kopya betiği başarıyla tamamlandı."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Application does not use PyGObject, skipping typelibs"
+msgstr "Uygulama PyGObject kullanmıyor, typelibs atlanıyor."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1213
+#: NEEDS WORK
+#, python-brace-format
+msgid "Adding typelibs for: {}"
+msgstr "Tip kitaplıkları ekleniyor: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1226
+#: NEEDS WORK
+msgid "Copying typelib files from local system..."
+msgstr "Yerel sistemden typelib dosyaları kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1236
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Copied: {}"
+msgstr "Kopyalandı: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1239
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Warning: Could not copy {}: {}"
+msgstr "Uyarı: {} kopyalanamadı: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1242
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied {} typelib files"
+msgstr "Kopyalanan {} typelib dosyaları"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1245
+#: NEEDS WORK
+msgid "Copying typelib files from container..."
+msgstr "Konteynerden typelib dosyaları kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
+#: NEEDS WORK
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "Uyarı: Bazı tip kütüphaneleri kopyalanmamış olabilir."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
+#: NEEDS WORK
+msgid "Typelib copy complete"
+msgstr "Typelib kopyası tamamlandı"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1309
+#: NEEDS WORK
+msgid "No icon found in usr/share/icons"
+msgstr "usr/share/icons dizininde simge bulunamadı"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1329
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created icon symlink: {} -> {}"
+msgstr "Oluşturulan simge sembolü: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1343
+#: NEEDS WORK
+#, python-brace-format
+msgid "Updated Icon= in desktop file to: {}"
+msgstr "Masaüstü dosyasındaki İkon= güncellendi: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1346
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to create icon symlinks: {}"
+msgstr "Uyarı: Simge sembolik bağlantıları oluşturulamadı: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1045
 #: NEEDS WORK
