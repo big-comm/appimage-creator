@@ -43,6 +43,7 @@ class AppInfo:
     # Build options
     output_dir: Optional[str] = None
     include_dependencies: bool = True
+    selected_dependencies: List[str] = field(default_factory=list)
     strip_binaries: bool = False
     build_environment: Optional[str] = None
     
@@ -82,6 +83,7 @@ class AppInfo:
             'wrapper_analysis': self.wrapper_analysis,
             'output_dir': self.output_dir,
             'include_dependencies': self.include_dependencies,
+            'selected_dependencies': self.selected_dependencies,
             'strip_binaries': self.strip_binaries,
             'build_environment': self.build_environment,
         }

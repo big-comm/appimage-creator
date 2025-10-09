@@ -87,18 +87,15 @@ def analyze_wrapper_script(script_path):
                     # Fallback if no 'usr' dir is found: assume project root is two levels up from the script.
                     project_root = Path(script_path).resolve().parent.parent
 
-                # Now, resolve the path of the target script correctly.
-                if os.path.isabs(target_path_from_script):
-                    # If the path is absolute (e.g., '/usr/share/app/main.py'),
-                    # treat it as relative to the discovered project root.
-                    # We strip the leading '/' to correctly join the paths.
-                    path_inside_project = target_path_from_script.lstrip(os.sep)
-                    target_path = project_root / path_inside_project
-                else:
-                    # If the path is relative (e.g., '../share/app/main.py'),
-                    # resolve it relative to the wrapper script's directory.
-                    script_dir = os.path.dirname(script_path)
-                    target_path = Path(os.path.abspath(os.path.join(script_dir, target_path_from_script)))
+                # Now, search for the target script within the entire project root. This is more robust.
+                # We use os.path.basename to handle cases where the script path is complex (e.g., "app/main.py").
+                search_filename = os.path.basename(target_path_from_script)
+                found_targets = list(project_root.rglob(search_filename))
+                
+                target_path = None
+                if found_targets:
+                    # Take the first match. A more complex heuristic could be added if needed.
+                    target_path = found_targets[0]
 
                 # The final target_executable is the full, correct path on the build system.
                 if target_path.exists():

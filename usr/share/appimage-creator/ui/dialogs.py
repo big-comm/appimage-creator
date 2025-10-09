@@ -19,6 +19,7 @@ class BuildProgressDialog(Adw.Window):
     
     def __init__(self, parent):
         super().__init__()
+        print(f"[DIALOG] BuildProgressDialog.__init__ chamado - ID: {id(self)}")
         self.set_transient_for(parent)
         self.set_modal(True)
         self.set_title(_("Building AppImage"))
@@ -64,6 +65,9 @@ class BuildProgressDialog(Adw.Window):
         """Update progress bar and message"""
         self.progress_bar.set_fraction(percentage / 100.0)
         self.progress_label.set_text(message)
+        
+    def __del__(self):
+        print(f"[DIALOG] BuildProgressDialog.__del__ chamado - objeto sendo destruído - ID: {id(self)}")
 
 
 def show_error_dialog(parent, title, message):

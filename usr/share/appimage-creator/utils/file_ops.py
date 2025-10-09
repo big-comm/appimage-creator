@@ -12,31 +12,34 @@ from utils.i18n import _
 def copy_files_recursively(src, dst, exclude_patterns=None):
     """Copy files and directories recursively with exclusion patterns"""
     if exclude_patterns is None:
-        exclude_patterns = ['.git', '__pycache__', '*.pyc', '.DS_Store', '*.tmp']
+        exclude_patterns = ['.git', '.github', '.gitignore', '__pycache__', '*.pyc', '.DS_Store', '*.tmp']
     
     src_path = Path(src)
     dst_path = Path(dst)
     
     if src_path.is_file():
-        # Copy single file
         dst_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src_path, dst_path)
     else:
         # Copy directory
         for item in src_path.rglob('*'):
             try:
-                # Check if item should be excluded
+                rel_path = item.relative_to(src_path)
+                
+                # Check if ANY part of the path matches exclusion patterns
+                if any(part for part in rel_path.parts if any(Path(part).match(pattern) for pattern in exclude_patterns)):
+                    continue
+                
+                # Also check the file itself
                 if any(item.match(pattern) for pattern in exclude_patterns):
                     continue
                     
-                rel_path = item.relative_to(src_path)
                 dest_item = dst_path / rel_path
                 
                 if item.is_file():
                     dest_item.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(item, dest_item)
             except (OSError, PermissionError):
-                # Skip files we can't access
                 continue
 
 

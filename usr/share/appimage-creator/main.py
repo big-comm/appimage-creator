@@ -15,11 +15,13 @@ import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
+from gi.repository import GObject
 from ui.app import AppImageCreatorApp
 
 
 def main():
     """Main function"""
+    GObject.threads_init()
     app = AppImageCreatorApp()
     return app.run(sys.argv)
 

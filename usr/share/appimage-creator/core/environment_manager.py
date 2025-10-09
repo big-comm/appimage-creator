@@ -13,7 +13,17 @@ from utils.i18n import _
 # Define the supported build environments
 # We can easily add more here in the future
 SUPPORTED_ENVIRONMENTS = [
-    # Ubuntu LTS versions
+    # Ubuntu versions (latest first, then LTS versions)
+    {
+        'id': 'ubuntu-24.10',
+        'name': 'Ubuntu 24.10 (Oracular)',
+        'image': 'ubuntu:24.10',
+        'description': _('Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps.'),
+        'build_deps': ['python3', 'python3-venv', 'python3-dev', 'python3-gi', 'build-essential', 
+                    'pkg-config', 'libcairo2-dev', 'libgirepository1.0-dev', 'gir1.2-glib-2.0',
+                    'git', 'binutils', 'file'],
+        'package_manager': 'apt',
+    },
     {
         'id': 'ubuntu-24.04',
         'name': 'Ubuntu 24.04 LTS',
@@ -77,12 +87,12 @@ SUPPORTED_ENVIRONMENTS = [
         'package_manager': 'apt',
     },
     
-    # Red Hat based distributions
+    # Red Hat based distributions (latest first)
     {
         'id': 'fedora-41',
         'name': 'Fedora 41',
         'image': 'fedora:41',
-        'description': _('Latest Fedora with cutting-edge packages.'),
+        'description': _('Latest Fedora with cutting-edge packages and GTK4/VTE support.'),
         'build_deps': ['python3', 'python3-devel', 'gcc', 'gcc-c++', 'make', 
                     'pkg-config', 'cairo-devel', 'gobject-introspection-devel', 
                     'git', 'binutils', 'file'],
@@ -387,7 +397,11 @@ class EnvironmentManager:
         elif pm == 'yum':
             install_cmd = f"sudo yum install -y {deps_str}"
         elif pm == 'dnf':
-            install_cmd = f"sudo dnf install -y {deps_str}"
+            # Check if it's AlmaLinux/RHEL - need to enable CRB repo first
+            if 'almalinux' in env_id or 'rhel' in env_id:
+                install_cmd = f"sudo dnf install -y epel-release && sudo crb enable && sudo dnf install -y {deps_str}"
+            else:
+                install_cmd = f"sudo dnf install -y {deps_str}"
         elif pm == 'pacman':
             install_cmd = f"sudo pacman -Sy --noconfirm {deps_str}"
         else:

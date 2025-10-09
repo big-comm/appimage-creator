@@ -25,6 +25,66 @@ from utils.system import (sanitize_filename, get_system_info,
 from core.environment_manager import EnvironmentManager
 from utils.i18n import _
 
+# Master dictionary for system dependencies
+SYSTEM_DEPENDENCIES = {
+    'glib': {
+        'name': 'GLib/GObject',
+        'libs': [
+            'libgobject-2.0.so*', 'libglib-2.0.so*', 'libgio-2.0.so*',
+            'libgmodule-2.0.so*', 'libgirepository-1.0.so*', 'libffi.so*',
+            'libpcre.so.3'
+        ],
+        'typelibs': [
+            'GLib-2.0.typelib', 'GObject-2.0.typelib', 'Gio-2.0.typelib',
+            'GModule-2.0.typelib'
+        ],
+        'detection_keyword': 'gi',
+        'essential': True
+    },
+    'gtk3': {
+        'name': 'GTK3',
+        'libs': ['libgtk-3.so*', 'libcairo.so*', 'libcairo-gobject.so*'],
+        'typelibs': [
+            'Gtk-3.0.typelib', 'Gdk-3.0.typelib', 'GdkPixbuf-2.0.typelib',
+            'Pango-1.0.typelib', 'PangoCairo-1.0.typelib', 'cairo-1.0.typelib',
+            'HarfBuzz-0.0.typelib', 'Atk-1.0.typelib'
+        ],
+        'detection_keyword': 'gtk3',
+        'essential': False
+    },
+    'gtk4': {
+        'name': 'GTK4',
+        'libs': ['libgtk-4.so*', 'libgraphene-1.0.so*'],
+        'typelibs': [
+            'Gtk-4.0.typelib', 'Gdk-4.0.typelib', 'Gsk-4.0.typelib',
+            'Graphene-1.0.typelib'
+        ],
+        'detection_keyword': 'gtk4',
+        'essential': False
+    },
+    'adwaita': {
+        'name': 'Libadwaita 1',
+        'libs': ['libadwaita-1.so*'],
+        'typelibs': ['Adw-1.typelib'],
+        'detection_keyword': 'adwaita',
+        'essential': False
+    },
+    'vte': {
+        'name': 'VTE (Terminal Widget)',
+        'libs': ['libvte-2.91.so*', 'libvte-2.91-gtk4.so*'],
+        'typelibs': ['Vte-2.91.typelib', 'Vte-3.91.typelib'],
+        'detection_keyword': 'vte',
+        'essential': False
+    },
+    'libsecret': {
+        'name': 'Libsecret (Keyring)',
+        'libs': ['libsecret-1.so*'],
+        'typelibs': ['Secret-1.typelib'],
+        'detection_keyword': 'libsecret',
+        'essential': False
+    }
+}
+
 class AppImageBuilder:
     """Main class for building AppImages"""
     
@@ -432,7 +492,9 @@ class AppImageBuilder:
                     import sysconfig
                     stdlib_path = sysconfig.get_path('stdlib')
                 
-                venv_stdlib_dest = venv_path / "lib" / py_version_short
+                # venv_stdlib_dest = venv_path / "lib" / py_version_short
+                venv_lib_dir = venv_path / "lib"
+                venv_stdlib_dest = venv_lib_dir / py_version_short
                 
                 self.log(_("Copying stdlib from {} to {}").format(stdlib_path, venv_stdlib_dest))
                 
@@ -580,6 +642,7 @@ fi
             python_lib_patterns = [
                 f"/usr/lib/libpython{py_version_str}*.so*",
                 f"/usr/lib/x86_64-linux-gnu/libpython{py_version_str}*.so*",
+                f"/usr/lib64/libpython{py_version_str}*.so*",
             ]
             
             for pattern in python_lib_patterns:
@@ -589,14 +652,28 @@ fi
                     if result.returncode == 0 and result.stdout.strip():
                         for lib_path in result.stdout.strip().split('\n'):
                             lib_path = lib_path.strip()
-                            if lib_path and os.path.exists(lib_path):
+                            
+                            # When using container, trust the ls command result
+                            # When local, verify file exists on host
+                            should_copy = False
+                            if self.container_name:
+                                # Container: trust ls result, don't check os.path.exists
+                                should_copy = bool(lib_path)
+                            else:
+                                # Local: verify file exists
+                                should_copy = lib_path and os.path.exists(lib_path)
+                            
+                            if should_copy:
                                 lib_name = os.path.basename(lib_path)
                                 dest = lib_dir / lib_name
                                 
                                 # Copy the file (following symlinks)
                                 copy_cmd = ["cp", "-L", lib_path, str(dest)]
-                                self._run_command(copy_cmd, timeout=10)
-                                self.log(f"  Copied: {lib_name}")
+                                result_cp = self._run_command(copy_cmd, timeout=10)
+                                if result_cp.returncode == 0:
+                                    self.log(f"  Copied: {lib_name}")
+                                else:
+                                    self.log(f"  Warning: Failed to copy {lib_name}")
                 except Exception as e:
                     self.log(f"  Warning: Could not copy Python libs from {pattern}: {e}")
             
@@ -662,14 +739,18 @@ fi
             else:
                 py_version = f"python{sys.version_info.major}.{sys.version_info.minor}"
             
-            # Source: system site-packages
+            # Source: system site-packages (Debian/Ubuntu and Red Hat/AlmaLinux paths)
             system_gi_paths = [
+                # Debian/Ubuntu paths
                 f'/usr/lib/{py_version}/site-packages/gi',
                 f'/usr/lib/{py_version}/dist-packages/gi',
                 '/usr/lib/python3/dist-packages/gi',
                 '/usr/lib/python3/site-packages/gi',
+                # Red Hat/AlmaLinux/Fedora paths
+                f'/usr/lib64/{py_version}/site-packages/gi',
+                '/usr/lib64/python3/site-packages/gi',
             ]
-            
+
             source_gi = None
             for path in system_gi_paths:
                 check_cmd = ["test", "-d", path]
@@ -712,7 +793,16 @@ for gi_file in /usr/lib/python3/site-packages/_gi*.so; do
     [ -f "$gi_file" ] && cp "$gi_file" "{venv_site_packages}/" && echo "Copied: $(basename $gi_file)"
 done
 
-# Copy _gi_cairo*.so if exists
+# Copy _gi*.so files from lib64/site-packages (Red Hat/AlmaLinux/Fedora)
+for gi_file in /usr/lib64/{py_version}/site-packages/_gi*.so; do
+    [ -f "$gi_file" ] && cp "$gi_file" "{venv_site_packages}/" && echo "Copied: $(basename $gi_file)"
+done
+
+for gi_file in /usr/lib64/python3/site-packages/_gi*.so; do
+    [ -f "$gi_file" ] && cp "$gi_file" "{venv_site_packages}/" && echo "Copied: $(basename $gi_file)"
+done
+
+# Copy _gi_cairo*.so if exists (Debian/Ubuntu)
 for gi_file in /usr/lib/{py_version}/dist-packages/_gi_cairo*.so; do
     [ -f "$gi_file" ] && cp "$gi_file" "{venv_site_packages}/" && echo "Copied: $(basename $gi_file)"
 done
@@ -727,6 +817,15 @@ for gi_file in /usr/lib/{py_version}/site-packages/_gi_cairo*.so; do
 done
 
 for gi_file in /usr/lib/python3/site-packages/_gi_cairo*.so; do
+    [ -f "$gi_file" ] && cp "$gi_file" "{venv_site_packages}/" && echo "Copied: $(basename $gi_file)"
+done
+
+# Copy _gi_cairo*.so from lib64/site-packages (Red Hat/AlmaLinux/Fedora)
+for gi_file in /usr/lib64/{py_version}/site-packages/_gi_cairo*.so; do
+    [ -f "$gi_file" ] && cp "$gi_file" "{venv_site_packages}/" && echo "Copied: $(basename $gi_file)"
+done
+
+for gi_file in /usr/lib64/python3/site-packages/_gi_cairo*.so; do
     [ -f "$gi_file" ] && cp "$gi_file" "{venv_site_packages}/" && echo "Copied: $(basename $gi_file)"
 done
 
@@ -751,7 +850,7 @@ echo "System PyGObject copied successfully"
             self.log(_("Error using system PyGObject: {}").format(e))
             return False
 
-    def _detect_gui_dependencies(self):
+    def _detect_gui_dependencies(self, app_info: dict):
         """
         Detect GUI framework dependencies by analyzing Python source code.
         Returns dict with framework info: {'gtk3': True, 'gtk4': True, etc}
@@ -759,12 +858,22 @@ echo "System PyGObject copied successfully"
         self.log(_("Detecting GUI framework dependencies..."))
         dependencies = {}
         
-        # Find Python files in AppDir
+        # Find Python files in the original project source, not the AppDir
         python_files = []
-        appdir_share = self.appdir_path / "usr" / "share"
-        if appdir_share.exists():
-            python_files = list(appdir_share.rglob("*.py"))
-        
+        structure_analysis = app_info.get('structure_analysis', {})
+        project_root = structure_analysis.get('project_root')
+
+        if project_root and Path(project_root).exists():
+            self.log(_("Analyzing Python files in: {}").format(project_root))
+            python_files = list(Path(project_root).rglob("*.py"))
+        else:
+            # Fallback if project root is not available
+            executable_path = app_info.get('executable')
+            if executable_path:
+                executable_dir = Path(executable_path).parent
+                self.log(_("Analyzing Python files in executable's directory: {}").format(executable_dir))
+                python_files = list(executable_dir.rglob("*.py"))
+
         if not python_files:
             self.log(_("No Python files found for dependency detection"))
             return dependencies
@@ -781,6 +890,15 @@ echo "System PyGObject copied successfully"
             ],
             'adwaita': [
                 r"gi\.require_version\(['\"]Adw['\"],\s*['\"]1['\"]",
+            ],
+            'vte': [
+                r"gi\.require_version\(['\"]Vte['\"],\s*['\"]3\.91['\"]",
+                r"gi\.require_version\(['\"]Vte['\"],\s*['\"]2\.91['\"]",
+            ],
+            'libsecret': [
+                r"gi\.require_version\(['\"]Secret['\"],\s*['\"]1['\"]",
+                r"from gi\.repository import Secret",
+                r"import.*Secret"
             ],
             'qt5': [
                 r"from PyQt5",
@@ -808,7 +926,7 @@ echo "System PyGObject copied successfully"
         
         return dependencies
     
-    def _detect_gi_usage(self):
+    def _detect_gi_usage(self, app_info: dict):
         """
         Detect if the application uses PyGObject (gi module).
         Returns True if gi is imported anywhere in the code.
@@ -816,10 +934,18 @@ echo "System PyGObject copied successfully"
         self.log(_("Checking for PyGObject usage..."))
         
         python_files = []
-        appdir_share = self.appdir_path / "usr" / "share"
-        if appdir_share.exists():
-            python_files = list(appdir_share.rglob("*.py"))
-        
+        structure_analysis = app_info.get('structure_analysis', {})
+        project_root = structure_analysis.get('project_root')
+
+        if project_root and Path(project_root).exists():
+            python_files = list(Path(project_root).rglob("*.py"))
+        else:
+            # Fallback if project root is not available
+            executable_path = app_info.get('executable')
+            if executable_path:
+                executable_dir = Path(executable_path).parent
+                python_files = list(executable_dir.rglob("*.py"))
+
         if not python_files:
             return False
         
@@ -864,6 +990,8 @@ echo "System PyGObject copied successfully"
             'gtk3': ['libgtk-3-0', 'gir1.2-gtk-3.0', 'libgirepository-1.0-1', 'python3-gi', 'python3-gi-cairo'],
             'gtk4': ['libgtk-4-1', 'gir1.2-gtk-4.0', 'libgirepository-1.0-1', 'python3-gi', 'python3-gi-cairo'],
             'adwaita': ['libadwaita-1-0', 'gir1.2-adw-1'],
+            'vte': ['libvte-2.91-0', 'gir1.2-vte-2.91', 'libvte-2.91-gtk4-0', 'gir1.2-vte-3.91', 'libvte-2.91-gtk4-dev'],
+            'libsecret': ['libsecret-1-0', 'gir1.2-secret-1'],
             'qt5': ['libqt5core5a', 'libqt5gui5', 'libqt5widgets5'],
             'qt6': ['libqt6core6', 'libqt6gui6', 'libqt6widgets6']
         }
@@ -872,6 +1000,8 @@ echo "System PyGObject copied successfully"
             'gtk3': ['gtk3', 'gtk3-devel', 'gobject-introspection', 'python3-gobject', 'python3-cairo'],
             'gtk4': ['gtk4', 'gtk4-devel', 'gobject-introspection', 'python3-gobject', 'python3-cairo'],
             'adwaita': ['libadwaita', 'libadwaita-devel'],
+            'vte': ['vte291', 'vte291-devel'],
+            'libsecret': ['libsecret', 'libsecret-devel'],
             'qt5': ['qt5-qtbase', 'qt5-qtbase-devel'],
             'qt6': ['qt6-qtbase', 'qt6-qtbase-devel']
         }
@@ -1054,29 +1184,26 @@ echo "System PyGObject copied successfully"
 
     def _copy_system_libraries(self):
         """
-        Copy required system .so libraries to AppDir.
+        Copy required system .so libraries to AppDir based on selected dependencies.
         """
         lib_dir = self.appdir_path / "usr" / "lib"
         lib_dir.mkdir(parents=True, exist_ok=True)
 
-        required_libs = [
-            'libgobject-2.0.so*',
-            'libglib-2.0.so*',
-            'libgio-2.0.so*',
-            'libgmodule-2.0.so*',
-            'libgirepository-1.0.so*',
-            'libcairo.so*',
-            'libcairo-gobject.so*',
-            'libffi.so.7',
-            'libffi.so.8',
-            'libffi.so*',
-            'libpcre.so.3',
-            # GTK4 e Adwaita
-            'libgtk-4.so*',
-            'libadwaita-1.so*',
-            'libgraphene-1.0.so*',
-        ]
+        # Build the list of required libraries dynamically
+        required_libs = []
+        selected_deps = self.app_info.get('selected_dependencies', [])
+        for dep_key in selected_deps:
+            if dep_key in SYSTEM_DEPENDENCIES:
+                required_libs.extend(SYSTEM_DEPENDENCIES[dep_key].get('libs', []))
         
+        # Remove duplicates
+        required_libs = sorted(list(set(required_libs)))
+        if not required_libs:
+            self.log(_("No system libraries selected for inclusion."))
+            return
+
+        self.log(_("Copying selected system libraries: {}").format(', '.join(required_libs)))
+
         system_lib_paths = [
             '/usr/lib/x86_64-linux-gnu',
             '/usr/lib64',
@@ -1086,206 +1213,119 @@ echo "System PyGObject copied successfully"
             '/lib',
         ]
 
-        if not self.container_name:
-            # Local build logic
-            self.log(_("Copying system libraries from local host..."))
-            for lib_pattern in required_libs:
-                for lib_path_str in system_lib_paths:
-                    lib_path = Path(lib_path_str)
-                    if not lib_path.exists():
-                        continue
-                    
-                    found = False
-                    for lib_file in lib_path.glob(lib_pattern):
-                        if lib_file.is_file() or lib_file.is_symlink():
-                            dest = lib_dir / lib_file.name
-                            if not dest.exists():
-                                try:
-                                    shutil.copy2(lib_file.resolve(), dest)
-                                    self.log(_("Copied library: {}").format(lib_file.name))
-                                except Exception as e:
-                                    self.log(_("Warning: Could not copy {}: {}").format(lib_file.name, e))
-                            found = True
-                            break
-                    if found:
-                        break
+        # The rest of the logic can be simplified as it's the same for local/container
+        self.log(_("Generating script to copy system libraries..."))
+        
+        script_lines = ["#!/bin/bash", "set -e", f"DEST_DIR='{lib_dir}'", ""]
+        
+        for pattern in required_libs:
+            script_lines.append(f'echo "--- Searching for {pattern} ---"')
+            script_lines.append("( ")
+            for search_path in system_lib_paths:
+                script_lines.append(f'    for f in {search_path}/{pattern}; do')
+                script_lines.append('        if [ -e "$f" ]; then')
+                script_lines.append('            cp -vL "$f" "$DEST_DIR/"')
+                script_lines.append('            exit 0')
+                script_lines.append('        fi')
+                script_lines.append('    done')
+            script_lines.append(") || echo '    -> Not found.'")
+            script_lines.append("")
+
+        script_content = "\n".join(script_lines)
+        script_path = self.build_dir / "copy_libs.sh"
+        
+        with open(script_path, "w") as f:
+            f.write(script_content)
+        make_executable(script_path)
+
+        self.log(_("Executing library copy script..."))
+        result = self._run_command([str(script_path)])
+
+        if result.stdout:
+            for line in result.stdout.splitlines():
+                self.log(f"[copy_libs] {line}")
+        if result.stderr:
+            for line in result.stderr.splitlines():
+                self.log(f"[copy_libs ERROR] {line}")
+
+        if result.returncode != 0:
+            self.log(_("Warning: Library copy script finished with errors."))
         else:
-            # Container build logic
-            self.log(_("Generating script to copy system libraries from container..."))
-            
-            script_lines = ["#!/bin/bash", "set -e", f"DEST_DIR='{lib_dir}'", ""]
-            
-            unique_patterns = sorted(list(set(required_libs)))
-
-            for pattern in unique_patterns:
-                script_lines.append(f'echo "--- Searching for {pattern} ---"')
-                script_lines.append("( ")
-                for search_path in system_lib_paths:
-                    script_lines.append(f'    for f in {search_path}/{pattern}; do')
-                    script_lines.append('        if [ -e "$f" ]; then')
-                    script_lines.append('            cp -vL "$f" "$DEST_DIR/"')
-                    script_lines.append('            exit 0')
-                    script_lines.append('        fi')
-                    script_lines.append('    done')
-                script_lines.append(") || echo '    -> Not found.'")
-                script_lines.append("")
-
-            script_content = "\n".join(script_lines)
-            script_path = self.build_dir / "copy_libs.sh"
-            
-            with open(script_path, "w") as f:
-                f.write(script_content)
-            make_executable(script_path)
-
-            self.log(_("Executing library copy script inside container..."))
-            result = self._run_command([str(script_path)])
-
-            if result.stdout:
-                for line in result.stdout.splitlines():
-                    self.log(f"[copy_libs] {line}")
-            if result.stderr:
-                for line in result.stderr.splitlines():
-                    self.log(f"[copy_libs ERROR] {line}")
-
-            if result.returncode != 0:
-                self.log(_("Warning: Library copy script finished with errors."))
-            else:
-                self.log(_("Library copy script finished successfully."))
+            self.log(_("Library copy script finished successfully."))
     
     def _copy_typelibs(self):
         """
-        Copy GObject Introspection typelib files based on detected dependencies.
+        Copy GObject Introspection typelib files based on selected dependencies.
         """
-        # Check if app uses PyGObject at all
-        uses_gi = self._detect_gi_usage()
-        if not uses_gi:
-            self.log(_("Application does not use PyGObject, skipping typelibs"))
-            return
-        
-        # Detect which GUI frameworks are used
-        gui_deps = self._detect_gui_dependencies()
-        
         typelib_dir = self.appdir_path / "usr" / "lib" / "girepository-1.0"
         typelib_dir.mkdir(parents=True, exist_ok=True)
-        
-        # Base typelibs always needed when using gi
-        base_typelibs = [
-            'GLib-2.0.typelib',
-            'GObject-2.0.typelib',
-            'Gio-2.0.typelib',
-            'GModule-2.0.typelib',
-        ]
-        
-        # Framework-specific typelibs
-        framework_typelibs = {
-            'gtk3': [
-                'Gtk-3.0.typelib',
-                'Gdk-3.0.typelib',
-                'GdkPixbuf-2.0.typelib',
-                'Pango-1.0.typelib',
-                'PangoCairo-1.0.typelib',
-                'cairo-1.0.typelib',
-                'HarfBuzz-0.0.typelib',
-                'Atk-1.0.typelib',
-            ],
-            'gtk4': [
-                'Gtk-4.0.typelib',
-                'Gdk-4.0.typelib',
-                'GdkPixbuf-2.0.typelib',
-                'Pango-1.0.typelib',
-                'PangoCairo-1.0.typelib',
-                'cairo-1.0.typelib',
-                'HarfBuzz-0.0.typelib',
-                'Graphene-1.0.typelib',
-                'Gsk-4.0.typelib',
-            ],
-            'adwaita': [
-                'Adw-1.typelib',
-            ],
-        }
-        
-        # Build list of required typelibs
-        required_typelibs = base_typelibs.copy()
-        
-        for framework, detected in gui_deps.items():
-            if detected and framework in framework_typelibs:
-                required_typelibs.extend(framework_typelibs[framework])
-                self.log(_("Adding typelibs for: {}").format(framework.upper()))
-        
+
+        # Build the list of required typelibs dynamically
+        required_typelibs = []
+        selected_deps = self.app_info.get('selected_dependencies', [])
+        for dep_key in selected_deps:
+            if dep_key in SYSTEM_DEPENDENCIES:
+                required_typelibs.extend(SYSTEM_DEPENDENCIES[dep_key].get('typelibs', []))
+
         # Remove duplicates
-        required_typelibs = list(set(required_typelibs))
-        
+        required_typelibs = sorted(list(set(required_typelibs)))
+        if not required_typelibs:
+            self.log(_("No typelibs selected for inclusion."))
+            return
+
+        self.log(_("Copying selected typelibs: {}").format(', '.join(required_typelibs)))
+
         system_typelib_paths = [
             '/usr/lib/x86_64-linux-gnu/girepository-1.0',
             '/usr/lib/girepository-1.0',
             '/usr/lib64/girepository-1.0',
         ]
         
-        if not self.container_name:
-            # Local build
-            self.log(_("Copying typelib files from local system..."))
-            copied_count = 0
-            
-            for typelib in required_typelibs:
-                for search_path in system_typelib_paths:
-                    typelib_file = Path(search_path) / typelib
-                    if typelib_file.exists():
-                        dest = typelib_dir / typelib
-                        try:
-                            shutil.copy2(typelib_file, dest)
-                            self.log(_("  Copied: {}").format(typelib))
-                            copied_count += 1
-                        except Exception as e:
-                            self.log(_("  Warning: Could not copy {}: {}").format(typelib, e))
-                        break
-            
-            self.log(_("Copied {} typelib files").format(copied_count))
-        else:
-            # Container build
-            self.log(_("Copying typelib files from container..."))
-            
-            script_lines = [
-                "#!/bin/bash",
-                "set -e",
-                f"DEST_DIR='{typelib_dir}'",
-                "mkdir -p \"$DEST_DIR\"",
-                "COPIED=0",
-                ""
-            ]
-            
-            for typelib in required_typelibs:
-                script_lines.append(f'echo "Searching for {typelib}..."')
-                script_lines.append("FOUND=0")
-                for search_path in system_typelib_paths:
-                    script_lines.append(f'if [ -f "{search_path}/{typelib}" ]; then')
-                    script_lines.append(f'    cp -v "{search_path}/{typelib}" "$DEST_DIR/"')
-                    script_lines.append('    COPIED=$((COPIED + 1))')
-                    script_lines.append('    FOUND=1')
-                    script_lines.append('fi')
-                script_lines.append('if [ $FOUND -eq 0 ]; then')
-                script_lines.append(f'    echo "  -> {typelib} not found (may be optional)"')
+        self.log(_("Generating script to copy typelibs..."))
+        
+        script_lines = [
+            "#!/bin/bash",
+            "set -e",
+            f"DEST_DIR='{typelib_dir}'",
+            "mkdir -p \"$DEST_DIR\"",
+            "COPIED=0",
+            ""
+        ]
+        
+        for typelib in required_typelibs:
+            script_lines.append(f'echo "Searching for {typelib}..."')
+            script_lines.append("FOUND=0")
+            for search_path in system_typelib_paths:
+                script_lines.append(f'if [ -f "{search_path}/{typelib}" ]; then')
+                script_lines.append(f'    cp -v "{search_path}/{typelib}" "$DEST_DIR/"')
+                script_lines.append('    COPIED=$((COPIED + 1))')
+                script_lines.append('    FOUND=1')
                 script_lines.append('fi')
-                script_lines.append("")
-            
-            script_lines.append('echo "Copied $COPIED typelib files"')
-            
-            script_content = "\n".join(script_lines)
-            script_path = self.build_dir / "copy_typelibs.sh"
-            
-            with open(script_path, "w") as f:
-                f.write(script_content)
-            make_executable(script_path)
-            
-            result = self._run_command([str(script_path)])
-            
-            if result.stdout:
-                for line in result.stdout.splitlines():
-                    self.log(f"[typelibs] {line}")
-            
-            if result.returncode != 0:
-                self.log(_("Warning: Some typelibs may not have been copied"))
-            else:
-                self.log(_("Typelib copy complete"))
+            script_lines.append('if [ $FOUND -eq 0 ]; then')
+            script_lines.append(f'    echo "  -> {typelib} not found (may be optional)"')
+            script_lines.append('fi')
+            script_lines.append("")
+        
+        script_lines.append('echo "Copied $COPIED typelib files"')
+        
+        script_content = "\n".join(script_lines)
+        script_path = self.build_dir / "copy_typelibs.sh"
+        
+        with open(script_path, "w") as f:
+            f.write(script_content)
+        make_executable(script_path)
+        
+        self.log(_("Executing typelib copy script..."))
+        result = self._run_command([str(script_path)])
+        
+        if result.stdout:
+            for line in result.stdout.splitlines():
+                self.log(f"[typelibs] {line}")
+        
+        if result.returncode != 0:
+            self.log(_("Warning: Some typelibs may not have been copied"))
+        else:
+            self.log(_("Typelib copy complete"))
                 
     def _create_icon_symlinks(self):
         """Create icon symlinks in AppDir root matching desktop file name"""
@@ -1697,7 +1737,7 @@ echo "System PyGObject copied successfully"
             if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
 
             # Install native GUI dependencies in the container
-            gui_deps = self._detect_gui_dependencies()
+            gui_deps = self._detect_gui_dependencies(self.app_info)
             if gui_deps:
                 self._ensure_native_dependencies(gui_deps)
             if self.cancel_requested: raise RuntimeError(_("Build cancelled"))

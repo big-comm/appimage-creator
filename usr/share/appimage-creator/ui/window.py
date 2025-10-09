@@ -37,6 +37,12 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self.structure_analysis = None
         self.progress_dialog = None
         self.preferences_window = None
+        self.dependency_switches = {}
+        self.build_in_progress = False
+
+        # Initialize default dependencies for new projects
+        # These will be updated when preferences are opened or executable is selected
+        self.app_info.selected_dependencies = []
         
         # Create pages once
         self.app_info_page = AppInfoPage()
@@ -53,6 +59,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self._setup_ui()
         self._setup_builder_callbacks()
         self._connect_signals()
+        self._populate_dependency_switches()
         
     def _get_last_chooser_path(self) -> str:
         """Gets the last used path from JSON settings"""
@@ -230,18 +237,17 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
     def _on_preferences_clicked(self, button):
         """Show preferences window"""
+        if self.preferences_window and self.preferences_window.is_visible():
+            self.preferences_window.present()
+            return
+
         self.preferences_window = Adw.PreferencesWindow()
         self.preferences_window.set_transient_for(self)
         self.preferences_window.set_modal(True)
         self.preferences_window.set_title(_("AppImage Creator Settings"))
         self.preferences_window.set_default_size(750, 700)
         
-        # Create pages
-        self.app_info_page = AppInfoPage()
-        self.files_page = FilesPage()
-        self.env_page = EnvironmentPage()
-        self.build_page = BuildPage()
-        
+        # Add existing pages (don't create new ones)
         self.preferences_window.add(self.app_info_page.page)
         self.preferences_window.add(self.files_page.page)
         self.preferences_window.add(self.env_page.page)
@@ -273,6 +279,10 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
     def _connect_preferences_signals(self):
         """Connect signals for preferences window pages"""
+        # Check if signals are already connected to avoid duplicate connections
+        if hasattr(self, '_preferences_signals_connected'):
+            return  # Already connected, skip
+        
         # App info page signals
         self.app_info_page.add_author_button.connect("clicked", 
             lambda btn: self.app_info_page.authors_list.add_entry())
@@ -298,6 +308,9 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         # Build page signals
         self.build_page.output_button.connect("clicked", self._on_choose_output_dir)
         self.build_page.build_button.connect("clicked", self._on_preferences_build_clicked)
+        
+        # Mark as connected to prevent duplicate connections
+        self._preferences_signals_connected = True
         
     def _on_setup_environment_clicked(self, env_id: str):
         """Handles the click on the 'Setup' button for an environment"""
@@ -545,6 +558,72 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         """Handle preferences window close"""
         self._sync_from_preferences()
         return False
+    
+    def _populate_dependency_switches(self):
+        """Create and populate the dependency switches in the build page."""
+        from core.builder import SYSTEM_DEPENDENCIES
+
+        # Clear any existing switches
+        while child := self.build_page.deps_list_box.get_first_child():
+            self.build_page.deps_list_box.remove(child)
+        self.dependency_switches.clear()
+
+        for key, data in SYSTEM_DEPENDENCIES.items():
+            switch_row = Adw.SwitchRow()
+            switch_row.set_title(data['name'])
+            
+            # Store the key for later reference
+            switch_row.dependency_key = key
+            
+            self.build_page.deps_list_box.append(switch_row)
+            self.dependency_switches[key] = switch_row
+
+        # Connect the main toggle to the expander's visibility
+        def on_deps_toggle(switch, _):
+            is_active = switch.get_active()
+            self.build_page.deps_expander_row.set_sensitive(is_active)
+        
+        self.build_page.deps_row.connect("notify::active", on_deps_toggle)
+        # Initial state
+        self.build_page.deps_expander_row.set_sensitive(self.build_page.deps_row.get_active())
+        
+    def _update_autodetected_dependencies(self):
+        """Check detected dependencies and toggle the corresponding switches."""
+        from core.builder import SYSTEM_DEPENDENCIES
+
+        # First, reset all non-essential switches to off
+        for key, switch in self.dependency_switches.items():
+            if not SYSTEM_DEPENDENCIES[key].get('essential', False):
+                switch.set_active(False)
+
+        # Run GUI dependency detection
+        gui_deps = self.builder._detect_gui_dependencies(self.app_info.to_dict())
+        
+        # Also detect if 'gi' is used at all for the base libs
+        if self.builder._detect_gi_usage(self.app_info.to_dict()):
+            gui_deps['gi'] = True
+
+        for dep_key, switch in self.dependency_switches.items():
+            dep_info = SYSTEM_DEPENDENCIES[dep_key]
+            detection_keyword = dep_info.get('detection_keyword')
+            
+            if detection_keyword and gui_deps.get(detection_keyword):
+                switch.set_active(True)
+                # If it's essential, disable the switch so the user can't turn it off
+                if dep_info.get('essential', False):
+                    switch.set_sensitive(False)
+                    switch.set_subtitle(_("Essential for this application type"))
+            elif dep_info.get('essential', False):
+                # Handle essential but not detected (e.g. glib for a non-gi app)
+                switch.set_sensitive(True)
+                switch.set_subtitle("")
+
+        # After setting all switches, sync to app_info immediately
+        # This ensures data is available even if preferences window is closed
+        self.app_info.selected_dependencies = [
+            key for key, switch in self.dependency_switches.items() 
+            if switch.get_active()
+        ]
         
     def _update_build_environments_list(self):
         """Update the list of available build environments"""
@@ -604,6 +683,17 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                 if selected_idx - 1 < len(ready_envs):
                     self.app_info.build_environment = ready_envs[selected_idx - 1]['id']
         
+        # Save selected system dependencies from switches (safely)
+        try:
+            if hasattr(self, 'dependency_switches') and self.dependency_switches:
+                self.app_info.selected_dependencies = [
+                    key for key, switch in self.dependency_switches.items() 
+                    if switch and switch.get_active()
+                ]
+        except Exception as e:
+            # If widgets are destroyed or invalid, keep existing dependencies
+            print(f"Warning: Could not sync dependencies from switches: {e}")
+        
         self._validate_inputs()
         
     def _on_choose_executable(self, button):
@@ -634,8 +724,9 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                 # Update UI - preferences window
                 self.files_page.executable_row.set_subtitle(filename)
                 
-                # Analyze structure
+                # Analyze structure and store it in the main app_info object
                 self.structure_analysis = detect_application_structure(path)
+                self.app_info.structure_analysis = self.structure_analysis
                 
                 # Auto-detect app type and store it
                 app_type = get_app_type_from_file(path, self.structure_analysis)
@@ -665,6 +756,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                     self._update_additional_directories_from_analysis()
                     self._update_desktop_file_options()
                     self._update_structure_preview()
+                    self._update_autodetected_dependencies()
                 
                 self._show_next_steps_message()
                 self._validate_inputs()
@@ -962,7 +1054,11 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self.app_info.terminal = self.app_info_page.terminal_row.get_active()
         self.app_info.additional_directories = self.files_page.directory_list.get_directories()
         self.app_info.structure_analysis = self.structure_analysis
-        
+
+        # Selected dependencies are already stored in app_info from _sync_from_preferences()
+        # No need to access widgets here - data is already in the model
+        # This prevents accessing destroyed widgets and causing UI freeze
+
         # Build settings
         self.app_info.include_dependencies = self.build_page.deps_row.get_active()
         self.app_info.strip_binaries = self.build_page.strip_row.get_active()
@@ -982,7 +1078,11 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
     def _on_build_clicked(self, button):
         """Start build process"""
+        print(f"[BOTAO] _on_build_clicked chamado! button ID: {id(button)}")
+        import traceback
+        traceback.print_stack()
         try:
+            self.build_in_progress = True
             self._collect_app_info()
             self.builder.set_app_info(self.app_info.to_dict())
             
@@ -1012,6 +1112,10 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
     def _update_progress_ui(self, percentage, message):
         """Update progress UI"""
+        # Ignore updates if build finished - prevents updates to destroyed window
+        if not self.build_in_progress:
+            return False
+            
         if self.progress_dialog:
             self.progress_dialog.update_progress(percentage, message)
         return False
@@ -1022,10 +1126,12 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
     def _on_cancel_build(self, button):
         """Cancel build"""
+        self.build_in_progress = False
+        
         if self.builder:
             self.builder.cancel_build()
         if self.progress_dialog:
-            self.progress_dialog.close()
+            self.progress_dialog.destroy()  # Use destroy() instead of close() because deletable=False
             self.progress_dialog = None
             
     def _on_build_complete(self, result, error):
@@ -1033,11 +1139,37 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         GLib.idle_add(self._handle_build_result, result, error)
         
     def _handle_build_result(self, result, error):
-        """Handle build result"""
+        """Handle build result - cleanup progress dialog properly"""
+        
+        # CRITICAL: Set flag FIRST to stop any pending updates
+        self.build_in_progress = False
+        
+        # Give pending callbacks time to check flag and abort (flush event queue)
+        # This ensures no callbacks try to update after we destroy the window
+        GLib.idle_add(self._finish_build_cleanup, result, error, priority=GLib.PRIORITY_LOW)
+        
+        return False
+
+    def _finish_build_cleanup(self, result, error):
+        """Complete the build cleanup after all pending updates are ignored"""
+        print(f"[CLEANUP] _finish_build_cleanup iniciando")
+        print(f"[CLEANUP] progress_dialog existe? {self.progress_dialog is not None}")
         if self.progress_dialog:
-            self.progress_dialog.close()
+            print(f"[CLEANUP] progress_dialog ID: {id(self.progress_dialog)}")
+        
+        # Clean up progress dialog with proper GTK4 lifecycle management
+        if self.progress_dialog:
+            print(f"[CLEANUP] Tornando janela invisível...")
+            self.progress_dialog.set_visible(False)
+            print(f"[CLEANUP] Habilitando deletable...")
+            self.progress_dialog.set_deletable(True)
+            print(f"[CLEANUP] Chamando destroy()...")
+            self.progress_dialog.destroy()
+            print(f"[CLEANUP] Destroy executado, setando para None...")
             self.progress_dialog = None
+            print(f"[CLEANUP] progress_dialog agora é None")
             
+        # Show appropriate result dialog
         if error:
             show_error_dialog(self, _("Build Failed"), str(error))
         elif result:
@@ -1049,8 +1181,8 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                         pass
                         
             show_success_dialog(self, _("Build Complete"), 
-                              _("AppImage created successfully:\n{}").format(result),
-                              on_response)
+                            _("AppImage created successfully:\n{}").format(result),
+                            on_response)
         else:
             show_info_dialog(self, _("Build Cancelled"), _("Build was cancelled"))
             

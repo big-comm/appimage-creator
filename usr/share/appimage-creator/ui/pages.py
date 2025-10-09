@@ -350,6 +350,18 @@ class BuildPage:
         self.deps_row.set_subtitle(_("Automatically include system dependencies"))
         self.deps_row.set_active(True)
         advanced_group.add(self.deps_row)
+
+        # Expander for detailed dependency selection
+        self.deps_expander_row = Adw.ExpanderRow()
+        self.deps_expander_row.set_title(_("System Dependencies"))
+        self.deps_expander_row.set_subtitle(_("Select which system libraries to bundle"))
+        self.deps_expander_row.set_show_enable_switch(False)
+        advanced_group.add(self.deps_expander_row)
+
+        self.deps_list_box = Gtk.ListBox()
+        self.deps_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+        self.deps_list_box.add_css_class("boxed-list")
+        self.deps_expander_row.add_row(self.deps_list_box)
         
         self.strip_row = Adw.SwitchRow()
         self.strip_row.set_title(_("Strip Debug Symbols"))
@@ -376,7 +388,7 @@ class BuildPage:
         
         build_group.add(build_row)
         self.page.add(build_group)
-        
+
 
 class EnvironmentPage:
     """Build environment preferences page"""
