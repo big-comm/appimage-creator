@@ -673,6 +673,16 @@ msgstr "Zahrnout závislosti"
 msgid "Automatically include system dependencies"
 msgstr "Automaticky zahrnout systémové závislosti"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Závislosti systému"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Vyberte, které systémové knihovny chcete zahrnout."
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "Začínáme"
 msgid "Enter name and select executable"
 msgstr "Zadejte název a vyberte spustitelný soubor"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Základní pro tento typ aplikace"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1193,6 +1208,11 @@ msgstr "Upozornění: Nelze načíst vlastní CSS: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "Nejnovější Ubuntu s plnou podporou GTK4/VTE 3.91 pro moderní aplikace."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "Nejnovější Ubuntu LTS s nejnovějšími balíčky."
 # 
@@ -1221,10 +1241,10 @@ msgstr "Předchozí stabilní Debian - osvědčená stabilita."
 msgid "Older Debian for maximum compatibility."
 msgstr "Starší Debian pro maximální kompatibilitu."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "Nejnovější Fedora s nejmodernějšími balíčky."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Nejnovější Fedora s nejmodernějšími balíčky a podporou GTK4/VTE."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1818,6 +1838,18 @@ msgstr "Chyba při používání systému PyGObject: {}"
 msgid "Detecting GUI framework dependencies..."
 msgstr "Detekce závislostí na GUI frameworku..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Analyzuji Python soubory v: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "Analyzování Python souborů v adresáři spustitelného souboru: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1979,32 +2011,26 @@ msgstr "Obnovený původní obal: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Upozornění: Sbalení binárního souboru selhalo: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "Kopírování systémových knihoven z místního hostitele..."
+msgid "No system libraries selected for inclusion."
+msgstr "Nebyly vybrány žádné systémové knihovny k zahrnutí."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "Zkopírovaná knihovna: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "Kopírování vybraných systémových knihoven: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "Upozornění: Nelze zkopírovat {}: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "Generování skriptu pro kopírování systémových knihoven..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "Generování skriptu pro kopírování systémových knihoven z kontejneru..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "Provádění skriptu pro kopírování knihovny uvnitř kontejneru..."
+msgid "Executing library copy script..."
+msgstr "Provádění skriptu pro kopírování knihovny..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2016,44 +2042,26 @@ msgstr "Upozornění: Skript pro kopírování knihovny skončil s chybami."
 msgid "Library copy script finished successfully."
 msgstr "Kopírování skriptu knihovny bylo úspěšně dokončeno."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "Aplikace nepoužívá PyGObject, přeskočení typových knihoven"
+msgid "No typelibs selected for inclusion."
+msgstr "Nebyly vybrány žádné typové knihovny k zahrnutí."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "Přidávání typových knihoven pro: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Kopírování vybraných typových knihoven: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "Kopírování typových knihoven z místního systému..."
+msgid "Generating script to copy typelibs..."
+msgstr "Generování skriptu pro kopírování typelibů..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "Zkopírováno: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "Upozornění: Nelze zkopírovat {}: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "Zkopírovány {} typelib soubory"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "Kopírování typových knihoven z kontejneru..."
+msgid "Executing typelib copy script..."
+msgstr "Provádění skriptu pro kopírování typových knihoven..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK

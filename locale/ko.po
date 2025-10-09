@@ -673,6 +673,16 @@ msgstr "종속성 포함"
 msgid "Automatically include system dependencies"
 msgstr "시스템 종속성을 자동으로 포함합니다."
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "시스템 종속성"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "번들할 시스템 라이브러리를 선택하세요"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "시작하기"
 msgid "Enter name and select executable"
 msgstr "이름을 입력하고 실행 파일을 선택하세요"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "이 애플리케이션 유형에 필수적입니다."
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1193,6 +1208,11 @@ msgstr "경고: 사용자 정의 CSS를 로드할 수 없습니다: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "최신 우분투, 현대 앱을 위한 완전한 GTK4/VTE 3.91 지원."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "최신 Ubuntu LTS와 최신 패키지."
 # 
@@ -1221,10 +1241,10 @@ msgstr "이전 Debian 안정 버전 - 검증된 안정성."
 msgid "Older Debian for maximum compatibility."
 msgstr "최대 호환성을 위한 구버전 Debian."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "최신 페도라와 최첨단 패키지."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "최신 페도라, 최첨단 패키지 및 GTK4/VTE 지원."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1818,6 +1838,18 @@ msgstr "시스템 PyGObject 사용 중 오류: {}"
 msgid "Detecting GUI framework dependencies..."
 msgstr "GUI 프레임워크 종속성 감지 중..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Python 파일 분석 중: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "실행 파일의 디렉토리에서 Python 파일 분석 중: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1979,32 +2011,26 @@ msgstr "복원된 원래 래퍼: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "경고: 이진 번들링 실패: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "로컬 호스트에서 시스템 라이브러리 복사 중..."
+msgid "No system libraries selected for inclusion."
+msgstr "포함할 시스템 라이브러리가 선택되지 않았습니다."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "복사된 라이브러리: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "선택한 시스템 라이브러리 복사 중: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "경고: {}를 복사할 수 없습니다: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "시스템 라이브러리를 복사하는 스크립트 생성 중..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "컨테이너에서 시스템 라이브러리를 복사하는 스크립트 생성 중..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "컨테이너 내에서 라이브러리 복사 스크립트 실행 중..."
+msgid "Executing library copy script..."
+msgstr "라이브러리 복사 스크립트 실행 중..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2016,44 +2042,26 @@ msgstr "경고: 라이브러리 복사 스크립트가 오류로 종료되었습
 msgid "Library copy script finished successfully."
 msgstr "라이브러리 복사 스크립트가 성공적으로 완료되었습니다."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "응용 프로그램이 PyGObject를 사용하지 않으므로 typelibs를 건너뜁니다."
+msgid "No typelibs selected for inclusion."
+msgstr "포함할 typelibs가 선택되지 않았습니다."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "타입 라이브러리 추가: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "선택한 타입 라이브러리 복사: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "로컬 시스템에서 typelib 파일 복사 중..."
+msgid "Generating script to copy typelibs..."
+msgstr "타입 라이브러리를 복사하는 스크립트 생성 중..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "복사됨: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "경고: {}를 복사할 수 없습니다: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "복사된 {} typelib 파일"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "컨테이너에서 typelib 파일 복사 중..."
+msgid "Executing typelib copy script..."
+msgstr "타입 라이브러리 복사 스크립트 실행 중..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK

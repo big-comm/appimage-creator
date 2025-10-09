@@ -673,6 +673,16 @@ msgstr "包含依赖项"
 msgid "Automatically include system dependencies"
 msgstr "自动包含系统依赖项"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "系统依赖项"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "选择要捆绑的系统库"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "开始使用"
 msgid "Enter name and select executable"
 msgstr "输入名称并选择可执行文件"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "此应用程序类型必不可少"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 614
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1191,6 +1206,11 @@ msgstr "警告：无法加载自定义 CSS：{}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "最新的 Ubuntu，全面支持现代应用的 GTK4/VTE 3.91。"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "最新的 Ubuntu LTS 及最新软件包。"
 # 
@@ -1219,10 +1239,10 @@ msgstr "之前的 Debian 稳定版 - 经过验证的稳定性。"
 msgid "Older Debian for maximum compatibility."
 msgstr "较旧的 Debian 以获得最大兼容性。"
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "最新的 Fedora 及前沿软件包。"
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "最新的 Fedora，配备前沿软件包和 GTK4/VTE 支持。"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1816,6 +1836,18 @@ msgstr "使用系统 PyGObject 时出错：{}"
 msgid "Detecting GUI framework dependencies..."
 msgstr "检测 GUI 框架依赖项..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "正在分析 Python 文件：{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "分析可执行文件目录中的 Python 文件：{}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 769
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1977,32 +2009,26 @@ msgstr "恢复了原始包装：{}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "警告：二进制打包失败：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1091
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "从本地主机复制系统库..."
+msgid "No system libraries selected for inclusion."
+msgstr "未选择任何系统库以供包含。"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1105
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "已复制的库：{}"
+msgid "Copying selected system libraries: {}"
+msgstr "复制选定的系统库：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1107
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "警告：无法复制 {}：{}"
+msgid "Generating script to copy system libraries..."
+msgstr "正在生成脚本以复制系统库..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1114
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "正在生成脚本以从容器中复制系统库..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1140
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "在容器内执行库复制脚本..."
+msgid "Executing library copy script..."
+msgstr "正在执行库复制脚本..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1151
 #: NEEDS WORK
@@ -2014,44 +2040,26 @@ msgstr "警告：库复制脚本完成，但出现错误。"
 msgid "Library copy script finished successfully."
 msgstr "库复制脚本成功完成。"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "应用程序不使用 PyGObject，跳过 typelibs"
+msgid "No typelibs selected for inclusion."
+msgstr "未选择要包含的类型库。"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "添加类型库：{}"
+msgid "Copying selected typelibs: {}"
+msgstr "复制选定的类型库：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "正在从本地系统复制类型库文件..."
+msgid "Generating script to copy typelibs..."
+msgstr "正在生成脚本以复制类型库..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "已复制：{}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "警告：无法复制 {}：{}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "已复制 {} typelib 文件"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "从容器中复制 typelib 文件..."
+msgid "Executing typelib copy script..."
+msgstr "正在执行类型库复制脚本..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK

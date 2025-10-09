@@ -673,6 +673,16 @@ msgstr "Συμπερίληψη Εξαρτήσεων"
 msgid "Automatically include system dependencies"
 msgstr "Αυτόματα συμπερίληψη εξαρτήσεων συστήματος"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Εξαρτήσεις Συστήματος"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Επιλέξτε ποιες βιβλιοθήκες συστήματος να συμπεριληφθούν"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "Εισαγωγή"
 msgid "Enter name and select executable"
 msgstr "Εισάγετε όνομα και επιλέξτε εκτελέσιμο"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Απαραίτητο για αυτόν τον τύπο εφαρμογής"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1193,6 +1208,11 @@ msgstr "Προειδοποίηση: Δεν ήταν δυνατή η φόρτωσ
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "Τελευταία έκδοση του Ubuntu με πλήρη υποστήριξη GTK4/VTE 3.91 για σύγχρονες εφαρμογές."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "Τελευταία έκδοση Ubuntu LTS με τα πιο πρόσφατα πακέτα."
 # 
@@ -1221,10 +1241,10 @@ msgstr "Προηγούμενη σταθερή έκδοση Debian - αποδεδ
 msgid "Older Debian for maximum compatibility."
 msgstr "Παλαιότερη Debian για μέγιστη συμβατότητα."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "Τελευταία Fedora με προηγμένα πακέτα."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Τελευταία έκδοση Fedora με προηγμένα πακέτα και υποστήριξη GTK4/VTE."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1820,6 +1840,18 @@ msgstr "Σφάλμα κατά τη χρήση του συστήματος PyGObj
 msgid "Detecting GUI framework dependencies..."
 msgstr "Ανίχνευση εξαρτήσεων πλαισίου GUI..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Ανάλυση αρχείων Python σε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "Ανάλυση αρχείων Python στον κατάλογο του εκτελέσιμου: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1981,32 +2013,26 @@ msgstr "Αποκαταστάθηκε η αρχική θήκη: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Προειδοποίηση: Αποτυχία ομαδοποίησης δυαδικών αρχείων: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "Αντιγραφή συστημικών βιβλιοθηκών από τον τοπικό υπολογιστή..."
+msgid "No system libraries selected for inclusion."
+msgstr "Δεν έχουν επιλεγεί βιβλιοθήκες συστήματος για συμπερίληψη."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "Αντιγραμμένη βιβλιοθήκη: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "Αντιγραφή επιλεγμένων βιβλιοθηκών συστήματος: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "Προειδοποίηση: Δεν ήταν δυνατή η αντιγραφή {}: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "Δημιουργία σεναρίου για την αντιγραφή βιβλιοθηκών συστήματος..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "Δημιουργία σεναρίου για την αντιγραφή συστημικών βιβλιοθηκών από το κοντέινερ..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "Εκτέλεση σεναρίου αντιγραφής βιβλιοθήκης μέσα στο κοντέινερ..."
+msgid "Executing library copy script..."
+msgstr "Εκτέλεση σεναρίου αντιγραφής βιβλιοθήκης..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2018,44 +2044,26 @@ msgstr "Προειδοποίηση: Το σενάριο αντιγραφής β�
 msgid "Library copy script finished successfully."
 msgstr "Η αντιγραφή του σεναρίου βιβλιοθήκης ολοκληρώθηκε με επιτυχία."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "Η εφαρμογή δεν χρησιμοποιεί το PyGObject, παραλείποντας τα typelibs."
+msgid "No typelibs selected for inclusion."
+msgstr "Δεν έχουν επιλεγεί typelibs για συμπερίληψη."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "Προσθήκη typelibs για: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Αντιγραφή επιλεγμένων typelibs: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "Αντιγραφή αρχείων typelib από το τοπικό σύστημα..."
+msgid "Generating script to copy typelibs..."
+msgstr "Δημιουργία σεναρίου για την αντιγραφή typelibs..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "Αντιγράφηκε: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "Προειδοποίηση: Δεν ήταν δυνατή η αντιγραφή {}: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "Αντιγράφηκαν {} αρχεία typelib"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "Αντιγραφή αρχείων typelib από το κοντέινερ..."
+msgid "Executing typelib copy script..."
+msgstr "Εκτέλεση σεναρίου αντιγραφής typelib..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK

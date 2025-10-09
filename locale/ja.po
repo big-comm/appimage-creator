@@ -673,6 +673,16 @@ msgstr "依存関係を含める"
 msgid "Automatically include system dependencies"
 msgstr "システム依存関係を自動的に含める"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "システム依存関係"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "バンドルするシステムライブラリを選択してください"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "はじめに"
 msgid "Enter name and select executable"
 msgstr "名前を入力し、実行可能ファイルを選択してください"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "このアプリケーションタイプにとって不可欠です"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1193,6 +1208,11 @@ msgstr "警告: カスタムCSSを読み込めませんでした: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "最新のUbuntuは、モダンアプリ向けに完全なGTK4/VTE 3.91サポートを提供します。"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "最新のUbuntu LTSと最新のパッケージ。"
 # 
@@ -1221,10 +1241,10 @@ msgstr "以前のDebian安定版 - 実証済みの安定性。"
 msgid "Older Debian for maximum compatibility."
 msgstr "最大の互換性のための古いDebian。"
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "最新のFedoraと最先端のパッケージ。"
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "最新のFedora、最先端のパッケージとGTK4/VTEサポート。"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1818,6 +1838,18 @@ msgstr "システムPyGObjectの使用中にエラーが発生しました: {}"
 msgid "Detecting GUI framework dependencies..."
 msgstr "GUIフレームワークの依存関係を検出しています..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Pythonファイルを分析中: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "実行可能ファイルのディレクトリ内のPythonファイルを分析中: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1979,32 +2011,26 @@ msgstr "元のラッパーを復元しました: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "警告: バイナリバンドルに失敗しました: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "ローカルホストからシステムライブラリをコピーしています..."
+msgid "No system libraries selected for inclusion."
+msgstr "システムライブラリは含めるために選択されていません。"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "コピーされたライブラリ: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "選択したシステムライブラリをコピーしています: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "警告: {}をコピーできませんでした: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "システムライブラリをコピーするスクリプトを生成中..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "コンテナからシステムライブラリをコピーするスクリプトを生成中..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "コンテナ内でライブラリコピースクリプトを実行中..."
+msgid "Executing library copy script..."
+msgstr "ライブラリコピースクリプトを実行中..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2016,44 +2042,26 @@ msgstr "警告: ライブラリコピースクリプトがエラーで終了し�
 msgid "Library copy script finished successfully."
 msgstr "ライブラリコピースクリプトが正常に終了しました。"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "アプリケーションはPyGObjectを使用していないため、typelibsをスキップします。"
+msgid "No typelibs selected for inclusion."
+msgstr "含めるために選択されたタイプライブラリはありません。"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "タイプライブラリを追加しています: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "選択したタイプライブラリをコピーしています: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "ローカルシステムからタイプライブラリファイルをコピーしています..."
+msgid "Generating script to copy typelibs..."
+msgstr "タイプライブラリをコピーするスクリプトを生成中..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "コピーしました: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "警告: {}をコピーできませんでした: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "コピーされた {} タイプライブラリファイル"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "コンテナからタイプライブラリファイルをコピーしています..."
+msgid "Executing typelib copy script..."
+msgstr "タイプライブラリコピースクリプトを実行中..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK

@@ -673,6 +673,16 @@ msgstr "Függőségek hozzáadása"
 msgid "Automatically include system dependencies"
 msgstr "Automatikusan belefoglalja a rendszerfüggőségeket"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Rendszerfüggőségek"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Válassza ki, mely rendszerkönyvtárakat szeretné csomagolni"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "Kezdő lépések"
 msgid "Enter name and select executable"
 msgstr "Írja be a nevet és válassza ki az végrehajtható fájlt"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Lényeges ehhez az alkalmazástípushoz"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1193,6 +1208,11 @@ msgstr "Figyelmeztetés: Nem sikerült betölteni a testreszabott CSS-t: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "Legújabb Ubuntu teljes GTK4/VTE 3.91 támogatással a modern alkalmazásokhoz."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "Legújabb Ubuntu LTS a legújabb csomagokkal."
 # 
@@ -1221,10 +1241,10 @@ msgstr "Előző Debian stabil - bizonyított stabilitás."
 msgid "Older Debian for maximum compatibility."
 msgstr "Régebbi Debian a maximális kompatibilitás érdekében."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "Legújabb Fedora élvonalbeli csomagokkal."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Legújabb Fedora a legmodernebb csomagokkal és GTK4/VTE támogatással."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1820,6 +1840,18 @@ msgstr "Hiba a PyGObject rendszer használata közben: {}"
 msgid "Detecting GUI framework dependencies..."
 msgstr "GUI keretrendszerek függőségeinek észlelése..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Python fájlok elemzése itt: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "A Python fájlok elemzése az végrehajtható fájl könyvtárában: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1981,32 +2013,26 @@ msgstr "Visszaállított eredeti burkoló: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Figyelmeztetés: A bináris csomagolás meghiúsult: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "Rendszerkönyvtárak másolása a helyi gépről..."
+msgid "No system libraries selected for inclusion."
+msgstr "Nincsenek kiválasztva rendszerkönyvtárak a beillesztéshez."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "Másolt könyvtár: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "A kiválasztott rendszerkönyvtárak másolása: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "Figyelmeztetés: Nem sikerült másolni {}: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "Rendszerkönyvtárak másolásához szükséges script generálása..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "A rendszerkönyvtárak másolásához szükséges szkript generálása a konténerből..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "A könyvtár másoló szkript végrehajtása a konténeren belül..."
+msgid "Executing library copy script..."
+msgstr "Könyvtár másoló szkript végrehajtása..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2018,44 +2044,26 @@ msgstr "Figyelmeztetés: A könyvtár másoló szkript hibákkal fejeződött be
 msgid "Library copy script finished successfully."
 msgstr "A könyvtár másoló szkript sikeresen befejeződött."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "Az alkalmazás nem használja a PyGObject-ot, a typelibs kihagyva."
+msgid "No typelibs selected for inclusion."
+msgstr "Nincsenek kiválasztva típuskönyvtárak a beillesztéshez."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "Típuskönyvtárak hozzáadása: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Kiválasztott típuskönyvtárak másolása: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "A típusleíró fájlok másolása a helyi rendszerről..."
+msgid "Generating script to copy typelibs..."
+msgstr "A typelibrary-k másolásához szükséges script generálása..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "Másolt: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "Figyelmeztetés: Nem sikerült másolni {}: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "Másolt {} typelib fájlok"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "Typelib fájlok másolása a konténerből..."
+msgid "Executing typelib copy script..."
+msgstr "A típuskönyvtár másoló szkript végrehajtása..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK

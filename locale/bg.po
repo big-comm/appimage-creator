@@ -673,6 +673,16 @@ msgstr "Включи зависимости"
 msgid "Automatically include system dependencies"
 msgstr "Автоматично включване на системни зависимости"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Системни зависимости"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Изберете кои системни библиотеки да включите"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "Започване"
 msgid "Enter name and select executable"
 msgstr "Въведете име и изберете изпълним файл"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Съществено за този тип приложение"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1193,6 +1208,11 @@ msgstr "Предупреждение: Не можа да зареди персо
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "Най-новият Ubuntu с пълна поддръжка на GTK4/VTE 3.91 за съвременни приложения."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "Най-новият Ubuntu LTS с най-новите пакети."
 # 
@@ -1221,10 +1241,10 @@ msgstr "Предишен Debian стабилен - доказана стабил
 msgid "Older Debian for maximum compatibility."
 msgstr "По-стара версия на Debian за максимална съвместимост."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "Най-новият Fedora с авангардни пакети."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Най-новият Fedora с авангардни пакети и поддръжка на GTK4/VTE."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1820,6 +1840,18 @@ msgstr "Грешка при използване на системата PyGObje
 msgid "Detecting GUI framework dependencies..."
 msgstr "Откриване на зависимости от GUI фреймуърк..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Анализиране на Python файлове в: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "Анализиране на Python файлове в директорията на изпълнимия файл: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1981,32 +2013,26 @@ msgstr "Възстановен оригинален обвивка: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Предупреждение: Сглобяването на бинарни файлове не успя: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "Копиране на системни библиотеки от локален хост..."
+msgid "No system libraries selected for inclusion."
+msgstr "Не са избрани системни библиотеки за включване."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "Копирана библиотека: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "Копиране на избраните системни библиотеки: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "Предупреждение: Не можа да копира {}: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "Генериране на скрипт за копиране на системни библиотеки..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "Генериране на скрипт за копиране на системни библиотеки от контейнер..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "Изпълняване на скрипт за копиране на библиотека вътре в контейнера..."
+msgid "Executing library copy script..."
+msgstr "Изпълняване на скрипт за копиране на библиотека..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2018,44 +2044,26 @@ msgstr "Внимание: Скрипт за копиране на библиот
 msgid "Library copy script finished successfully."
 msgstr "Скриптът за копиране на библиотека завърши успешно."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "Приложението не използва PyGObject, пропускане на typelibs"
+msgid "No typelibs selected for inclusion."
+msgstr "Не са избрани типови библиотеки за включване."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "Добавяне на типови библиотеки за: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Копиране на избраните типови библиотеки: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "Копиране на typelib файлове от локалната система..."
+msgid "Generating script to copy typelibs..."
+msgstr "Генериране на скрипт за копиране на типови библиотеки..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "Копирано: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "Предупреждение: Не можа да копира {}: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "Копирани {} typelib файлове"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "Копиране на typelib файлове от контейнера..."
+msgid "Executing typelib copy script..."
+msgstr "Изпълняване на скрипт за копиране на тип библиотека..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK

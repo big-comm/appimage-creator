@@ -673,6 +673,16 @@ msgstr "Innihalda háð."
 msgid "Automatically include system dependencies"
 msgstr "Sjálfvirkt að fela í sér kerfisfylgni"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Kerfissur kerfi"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Veldu hvaða kerfisbókasöfn á að pakka saman"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "Byrjun"
 msgid "Enter name and select executable"
 msgstr "Sláðu inn nafn og veldu keyfile"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Nauðsynlegt fyrir þessa tegund forrits"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1193,6 +1208,11 @@ msgstr "Aðvörun: Gat ekki hlaðið sérsniðnu CSS: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "Nýjasta Ubuntu með fullri GTK4/VTE 3.91 stuðningi fyrir nútíma forrit."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "Nýjasta Ubuntu LTS með nýjustu pakkunum."
 # 
@@ -1221,10 +1241,10 @@ msgstr "Fyrri Debian stöðugleiki - sannaður stöðugleiki."
 msgid "Older Debian for maximum compatibility."
 msgstr "Eldri Debian fyrir hámarks samhæfi."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "Nýjasta Fedora með nýjustu pakkunum."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Nýjasta Fedora með nýjustu pakkunum og GTK4/VTE stuðningi."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1818,6 +1838,18 @@ msgstr "Villa við kerfið PyGObject: {}"
 msgid "Detecting GUI framework dependencies..."
 msgstr "Að greina GUI rammafíkn..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Analysera Python skrár í: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "Greining Python skrár í skráarsafni keyrsluforritsins: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1979,32 +2011,26 @@ msgstr "Endurheimt upprunalega umbúðin: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Aðvörun: Binary bundling mistókst: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "Afritun kerfissafnanna frá staðbundnum hýsli..."
+msgid "No system libraries selected for inclusion."
+msgstr "Engin kerfissafn bókasöfn valin til að fela í sér."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "Afrit bókasafn: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "Afritun valinna kerfisbókasafna: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "Aðvörun: Gat ekki afritað {}: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "Að búa til skriftu til að afrita kerfisbókasöfn..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "Að búa til skriftu til að afrita kerfisbókasafn úr ílátinu..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "Að keyra bókasafnsafritunarskrá inn í gáminn..."
+msgid "Executing library copy script..."
+msgstr "Að keyra bókasafn afritunar skrift..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2016,44 +2042,26 @@ msgstr "Aðvörun: Bókasafn afrit skrift lauk með villum."
 msgid "Library copy script finished successfully."
 msgstr "Bókasafn afritunarskrá kláraðist með góðum árangri."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "Forritið notar ekki PyGObject, sleppum typelibs"
+msgid "No typelibs selected for inclusion."
+msgstr "Engin ekki valdar typelibs til að fela."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "Að bæta typelibs fyrir: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Afritun valinnaðra typelib: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "Afrit aðgerðaskrár frá staðbundnu kerfi..."
+msgid "Generating script to copy typelibs..."
+msgstr "Að búa til skriftu til að afrita typelibs..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "Afrit: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "Aðvörun: Gat ekki afritað {}: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "Afrit {} typelib skrár"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "Afritun typelib skráa úr ílátinu..."
+msgid "Executing typelib copy script..."
+msgstr "Að keyra typelib afrit skrift..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK

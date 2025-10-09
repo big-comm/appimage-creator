@@ -673,6 +673,16 @@ msgstr "Abhängigkeiten einbeziehen"
 msgid "Automatically include system dependencies"
 msgstr "Systemabhängigkeiten automatisch einbeziehen"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Systemabhängigkeiten"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Wählen Sie aus, welche Systembibliotheken gebündelt werden sollen."
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "Erste Schritte"
 msgid "Enter name and select executable"
 msgstr "Geben Sie den Namen ein und wählen Sie die ausführbare Datei aus"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Wesentlich für diesen Anwendungstyp"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1193,6 +1208,11 @@ msgstr "Warnung: Benutzerdefiniertes CSS konnte nicht geladen werden: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "Neueste Ubuntu-Version mit vollständiger GTK4/VTE 3.91-Unterstützung für moderne Anwendungen."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "Neueste Ubuntu LTS mit den neuesten Paketen."
 # 
@@ -1221,10 +1241,10 @@ msgstr "Vorherige Debian-Stable - bewährte Stabilität."
 msgid "Older Debian for maximum compatibility."
 msgstr "Älteres Debian für maximale Kompatibilität."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "Neueste Fedora mit neuesten Paketen."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Neueste Fedora mit neuesten Paketen und Unterstützung für GTK4/VTE."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1818,6 +1838,18 @@ msgstr "Fehler bei der Verwendung des Systems PyGObject: {}"
 msgid "Detecting GUI framework dependencies..."
 msgstr "Erkennung von GUI-Framework-Abhängigkeiten..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Analysiere Python-Dateien in: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "Analysiere Python-Dateien im Verzeichnis der ausführbaren Datei: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1979,32 +2011,26 @@ msgstr "Wiederhergestellter ursprünglicher Wrapper: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Warnung: Binärbündelung fehlgeschlagen: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "Kopiere Systembibliotheken vom lokalen Host..."
+msgid "No system libraries selected for inclusion."
+msgstr "Keine Systembibliotheken zur Einbeziehung ausgewählt."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "Kopierte Bibliothek: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "Kopiere ausgewählte Systembibliotheken: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "Warnung: Konnte {} nicht kopieren: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "Generiere Skript zum Kopieren von Systembibliotheken..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "Erstelle Skript zum Kopieren von Systembibliotheken aus dem Container..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "Führe das Bibliothekskopierskript im Container aus..."
+msgid "Executing library copy script..."
+msgstr "Führe das Skript zum Kopieren der Bibliothek aus..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2016,44 +2042,26 @@ msgstr "Warnung: Das Skript zum Kopieren der Bibliothek wurde mit Fehlern beende
 msgid "Library copy script finished successfully."
 msgstr "Bibliothekskopierskript erfolgreich abgeschlossen."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "Anwendung verwendet kein PyGObject, überspringe Typbibliotheken"
+msgid "No typelibs selected for inclusion."
+msgstr "Keine Typbibliotheken zur Einbeziehung ausgewählt."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "Typbibliotheken hinzufügen für: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Kopiere ausgewählte Typbibliotheken: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "Kopiere Typbibliotheksdateien vom lokalen System..."
+msgid "Generating script to copy typelibs..."
+msgstr "Generiere Skript zum Kopieren von Typbibliotheken..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "Kopiert: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "Warnung: Konnte {} nicht kopieren: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "Kopierte {} Typbibliotheksdateien"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "Kopiere Typbibliotheksdateien aus dem Container..."
+msgid "Executing typelib copy script..."
+msgstr "Führe das Typbibliotheks-Kopierskript aus..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK

@@ -673,6 +673,16 @@ msgstr "Uključi ovisnosti"
 msgid "Automatically include system dependencies"
 msgstr "Automatski uključite sistemske ovisnosti"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Sustavi ovisnosti"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Odaberite koje sustavne biblioteke uključiti"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "Započinjanje"
 msgid "Enter name and select executable"
 msgstr "Unesite ime i odaberite izvršnu datoteku"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Bitno za ovu vrstu aplikacije"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1193,6 +1208,11 @@ msgstr "Upozorenje: Nije moguće učitati prilagođeni CSS: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "Najnoviji Ubuntu s punom podrškom za GTK4/VTE 3.91 za moderne aplikacije."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "Najnoviji Ubuntu LTS s najnovijim paketima."
 # 
@@ -1221,10 +1241,10 @@ msgstr "Prethodna stabilna verzija Debiana - dokazana stabilnost."
 msgid "Older Debian for maximum compatibility."
 msgstr "Starija verzija Debiana za maksimalnu kompatibilnost."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "Najnoviji Fedora s najnovijim paketima."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Najnovija Fedora s najnovijim paketima i podrškom za GTK4/VTE."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1818,6 +1838,18 @@ msgstr "Greška pri korištenju sustava PyGObject: {}"
 msgid "Detecting GUI framework dependencies..."
 msgstr "Otkrivanje ovisnosti o GUI okviru..."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 867
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Analiziranje Python datoteka u: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 874
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "Analiziranje Python datoteka u direktoriju izvršne datoteke: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
 msgid "No Python files found for dependency detection"
@@ -1979,32 +2011,26 @@ msgstr "Vraćena izvorna omotnica: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Upozorenje: Neuspješno spajanje binarnih datoteka: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1202
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "Kopiranje sustavnih biblioteka s lokalnog računala..."
+msgid "No system libraries selected for inclusion."
+msgstr "Nema odabranih sistemskih biblioteka za uključivanje."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "Kopirana biblioteka: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "Kopiranje odabranih sustavskih biblioteka: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1217
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "Upozorenje: Nije moguće kopirati {}: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "Generiranje skripte za kopiranje sustavnih biblioteka..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "Generiranje skripte za kopiranje sustavnih biblioteka iz kontejnera..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "Izvršavanje skripte za kopiranje biblioteke unutar kontejnera..."
+msgid "Executing library copy script..."
+msgstr "Izvršavanje skripte za kopiranje biblioteke..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2016,44 +2042,26 @@ msgstr "Upozorenje: Skripta za kopiranje knjižnice završila je s pogreškama."
 msgid "Library copy script finished successfully."
 msgstr "Završena je kopija skripte knjižnice."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "Aplikacija ne koristi PyGObject, preskočene tipne biblioteke"
+msgid "No typelibs selected for inclusion."
+msgstr "Nema odabranih typelibova za uključivanje."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "Dodavanje tipa biblioteka za: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Kopiranje odabranih typeliba: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "Kopiranje typelib datoteka s lokalnog sustava..."
+msgid "Generating script to copy typelibs..."
+msgstr "Generiranje skripte za kopiranje tipa..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "Kopirano: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "Upozorenje: Nije moguće kopirati {}: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "Kopirani {} typelib datoteke"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "Kopiranje typelib datoteka iz kontejnera..."
+msgid "Executing typelib copy script..."
+msgstr "Izvršavanje skripte za kopiranje typelib-a..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK
