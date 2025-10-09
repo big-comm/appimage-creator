@@ -432,17 +432,24 @@ class AppImageBuilder:
             
             if project_root_str:
                 project_root = Path(project_root_str)
-                requirements_source = project_root.parent / "requirements.txt"
+                requirements_source = project_root / "requirements.txt"
             else:
                 executable_path = Path(self.app_info['executable'])
                 requirements_source = executable_path.parent / "requirements.txt"
             
-            if not requirements_source.exists():
-                self.log(_("Warning: requirements.txt not found. Using default packages."))
-                requirements_content = "pygobject\npycairo\n"
-            else:
+            # Start with essential packages for GTK/Python applications
+            packages_to_install = ['PyGObject', 'PyCairo']
+
+            # If requirements.txt exists, add its content to the list
+            if requirements_source.exists():
                 with open(requirements_source, 'r') as f:
-                    requirements_content = f.read()
+                    user_packages = [line.strip() for line in f if line.strip()]
+                    packages_to_install.extend(user_packages)
+            else:
+                self.log(_("Warning: requirements.txt not found. Using default packages."))
+
+            # Remove duplicates (in case user already listed PyGObject) and join everything
+            requirements_content = "\n".join(list(set(packages_to_install)))
             
             python_dir = self.appdir_path / "usr" / "python"
             python_dir.mkdir(parents=True, exist_ok=True)
@@ -569,65 +576,6 @@ fi
                 
                 self.log(_("Stdlib cleanup complete."))
                 
-                # Aggressive cleanup for smaller AppImage size
-                self.log(_("Performing aggressive cleanup for size optimization..."))
-                
-                extra_dirs_to_remove = [
-                    "unittest",
-                    "__phello__",
-                    "turtle.py",
-                ]
-                
-                for dirname in extra_dirs_to_remove:
-                    dir_path = venv_stdlib_dest / dirname
-                    if dir_path.is_dir():
-                        shutil.rmtree(dir_path, ignore_errors=True)
-                    elif dir_path.is_file():
-                        dir_path.unlink(missing_ok=True)
-                
-                # Clean up site-packages directory
-                site_packages = venv_path / "lib" / py_version_short / "site-packages"
-                if site_packages.exists():
-                    # Remove pip, setuptools, and pkg_resources
-                    for dirname in ["pip", "setuptools", "pkg_resources", "_distutils_hack"]:
-                        pkg_dir = site_packages / dirname
-                        if pkg_dir.is_dir():
-                            shutil.rmtree(pkg_dir, ignore_errors=True)
-                            self.log(_("  Removed: {}").format(dirname))
-                    
-                    # Remove .dist-info directories
-                    for dist_info in site_packages.glob("*.dist-info"):
-                        if dist_info.is_dir():
-                            shutil.rmtree(dist_info, ignore_errors=True)
-                            
-                    # Remove .pth files that reference deleted modules
-                    for pth_file in site_packages.glob("*.pth"):
-                        if pth_file.is_file():
-                            try:
-                                with open(pth_file, 'r') as f:
-                                    content = f.read()
-                                if '_distutils_hack' in content or 'setuptools' in content:
-                                    pth_file.unlink()
-                                    self.log(_("  Removed: {}").format(pth_file.name))
-                            except:
-                                pass
-                
-                # Remove all __pycache__ and .pyc files from entire venv
-                self.log(_("Removing bytecode cache files..."))
-                removed_pycache = 0
-                removed_pyc = 0
-                
-                for pycache_dir in venv_path.rglob('__pycache__'):
-                    shutil.rmtree(pycache_dir, ignore_errors=True)
-                    removed_pycache += 1
-                
-                for pyc_file in venv_path.rglob('*.pyc'):
-                    pyc_file.unlink(missing_ok=True)
-                    removed_pyc += 1
-                
-                self.log(_("  Removed {} __pycache__ dirs and {} .pyc files").format(removed_pycache, removed_pyc))
-                self.log(_("Aggressive cleanup complete."))
-                
             except Exception as e:
                 self.log(_("Error copying Python stdlib: {}").format(e))
                 raise RuntimeError(_("Python stdlib required for AppImage"))
@@ -714,6 +662,67 @@ fi
                         self._use_system_pygobject(venv_path)
                 else:
                     self.log(_("Successfully installed {}").format(package))
+            
+            self.log(_("Python packages installed"))
+            
+            # NOW perform aggressive cleanup AFTER pip installation
+            self.log(_("Performing aggressive cleanup for size optimization..."))
+            
+            extra_dirs_to_remove = [
+                "unittest",
+                "__phello__",
+                "turtle.py",
+            ]
+            
+            for dirname in extra_dirs_to_remove:
+                dir_path = venv_stdlib_dest / dirname
+                if dir_path.is_dir():
+                    shutil.rmtree(dir_path, ignore_errors=True)
+                elif dir_path.is_file():
+                    dir_path.unlink(missing_ok=True)
+            
+            # Clean up site-packages directory
+            site_packages = venv_path / "lib" / py_version_short / "site-packages"
+            if site_packages.exists():
+                # Remove pip, setuptools, and pkg_resources
+                for dirname in ["pip", "setuptools", "pkg_resources", "_distutils_hack"]:
+                    pkg_dir = site_packages / dirname
+                    if pkg_dir.is_dir():
+                        shutil.rmtree(pkg_dir, ignore_errors=True)
+                        self.log(_("  Removed: {}").format(dirname))
+                
+                # Remove .dist-info directories
+                for dist_info in site_packages.glob("*.dist-info"):
+                    if dist_info.is_dir():
+                        shutil.rmtree(dist_info, ignore_errors=True)
+                        
+                # Remove .pth files that reference deleted modules
+                for pth_file in site_packages.glob("*.pth"):
+                    if pth_file.is_file():
+                        try:
+                            with open(pth_file, 'r') as f:
+                                content = f.read()
+                            if '_distutils_hack' in content or 'setuptools' in content:
+                                pth_file.unlink()
+                                self.log(_("  Removed: {}").format(pth_file.name))
+                        except:
+                            pass
+            
+            # Remove all __pycache__ and .pyc files from entire venv
+            self.log(_("Removing bytecode cache files..."))
+            removed_pycache = 0
+            removed_pyc = 0
+            
+            for pycache_dir in venv_path.rglob('__pycache__'):
+                shutil.rmtree(pycache_dir, ignore_errors=True)
+                removed_pycache += 1
+            
+            for pyc_file in venv_path.rglob('*.pyc'):
+                pyc_file.unlink(missing_ok=True)
+                removed_pyc += 1
+            
+            self.log(_("  Removed {} __pycache__ dirs and {} .pyc files").format(removed_pycache, removed_pyc))
+            self.log(_("Aggressive cleanup complete."))
             
             self.log(_("Python environment ready"))
             
