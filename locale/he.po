@@ -1170,6 +1170,16 @@ msgstr "שגיאת אימות"
 msgid "Failed to start build: {}"
 msgstr "נכשל בהתחלת הבנייה: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "אפליקציות AppImage שנבנו על המערכת שלך עשויות לא לעבוד על הפצות אחרות בגלל:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "המשך בכל מקרה"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1419,6 +1429,39 @@ msgstr "אזהרה: לא ניתן להסיר את התמונה באופן אוט
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "שגיאה התרחשה בעת הסרת המיכל: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ אזהרת בנייה מקומית"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"אתה בונה באופן מקומי על {distro}.\n"
+"\n"
+"AppImages שנבנו על המערכת שלך עשויים לא לעבוד על הפצות אחרות בגלל:\n"
+"• גרסאות פייתון שונות\n"
+"• גרסאות ספריות שונות\n"
+"• תלותיות ספציפיות להפצה\n"
+"\n"
+"למקסימום תאימות, השתמש ב:\n"
+"סביבת בנייה → אובונטו 20.04 או 22.04\n"
+"\n"
+"להמשיך בכל מקרה?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1708,34 +1751,6 @@ msgstr "מנקה את ה-stdlib שהועתק..."
 msgid "Stdlib cleanup complete."
 msgstr "ניקוי Stdlib הושלם."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "ביצוע ניקוי אגרסיבי לאופטימיזציית גודל..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "הוסר: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "מניעת קבצי מטמון בייטקוד..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "הוסרו {} תיקיות __pycache__ ו-{} קבצי .pyc"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "ניקוי אגרסיבי הושלם."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1790,6 +1805,39 @@ msgstr "מנסה גיבוי: משתמש בקישורי PyGObject של המערכ
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "הותקן בהצלחה {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "חבילות פייתון מותקנות"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "ביצוע ניקוי אגרסיבי לאופטימיזציית גודל..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "הוסר: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "מניעת קבצי מטמון בייטקוד..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "הוסרו {} תיקיות __pycache__ ו-{} קבצי .pyc"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "ניקוי אגרסיבי הושלם."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
@@ -2073,6 +2121,37 @@ msgstr "אזהרה: ייתכן שחלק מהטיפולים לא הועתקו"
 msgid "Typelib copy complete"
 msgstr "העתקת Typelib הושלמה"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "מעתיק סמלים סימבוליים של אדווייטה..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "אייקונים סימבוליים כבר קיימים"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "מעתיק סמלים סמליים מ-{}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "מבצע סקריפט העתקת סמלים סימבוליים..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "אזהרה: כישלון בהעתקת סמלים סימבוליים"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "אייקונים סימבוליים הועתקו בהצלחה"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2270,6 +2349,11 @@ msgstr "אזהרה: ניקוי נכשל: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "מידע על היישום לא הוגדר"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ אזהרה: בנייה מקומית - תאימות עשויה להיות מוגבלת"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

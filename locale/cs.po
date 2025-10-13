@@ -1170,6 +1170,16 @@ msgstr "Chyba validace"
 msgid "Failed to start build: {}"
 msgstr "Nepodařilo se spustit sestavení: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "AppImages vytvořené na vašem systému nemusí fungovat na jiných distribucích z důvodu:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Pokračovat přesto"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1419,6 +1429,39 @@ msgstr "Upozornění: Nelze automaticky odstranit obrázek"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Došlo k chybě při odstraňování kontejneru: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ Varování místní sestavy"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Místně vytváříte na {distro}.\n"
+"\n"
+"AppImages vytvořené na vašem systému NEMUSÍ fungovat na jiných distribucích z důvodu:\n"
+"• Různé verze Pythonu\n"
+"• Různé verze knihoven\n"
+"• Závislosti specifické pro distribuci\n"
+"\n"
+"Pro MAXIMÁLNÍ KOMPATIBILITU použijte:\n"
+"Vývojové prostředí → Ubuntu 20.04 nebo 22.04\n"
+"\n"
+"Pokračovat přesto?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1708,34 +1751,6 @@ msgstr "Úklid zkopírované stdlib..."
 msgid "Stdlib cleanup complete."
 msgstr "Úklid Stdlib dokončen."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Provádění agresivního úklidu pro optimalizaci velikosti..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Odebráno: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "Odstraňování souborů mezipaměti bytecode..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Odstraněny {} __pycache__ adresáře a {} .pyc soubory"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Agresivní úklid dokončen."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1790,6 +1805,39 @@ msgstr "Pokouším se o zálohu: používám systémové vazby PyGObject"
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "Úspěšně nainstalováno {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Nainstalované balíčky Python"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Provádění agresivního úklidu pro optimalizaci velikosti..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Odebráno: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Odstraňování souborů mezipaměti bytecode..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Odstraněny {} __pycache__ adresáře a {} .pyc soubory"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Agresivní úklid dokončen."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
@@ -2073,6 +2121,37 @@ msgstr "Upozornění: Některé typelibs nemusely být zkopírovány"
 msgid "Typelib copy complete"
 msgstr "Kopírování typové knihovny dokončeno"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Kopírování symbolických ikon Adwaita..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Symbolické ikony již přítomny"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "Kopírování symbolických ikon z {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "Provádění skriptu pro kopírování symbolických ikon..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Upozornění: Kopírování symbolických ikon se nezdařilo"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Symbolické ikony byly úspěšně zkopírovány"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2270,6 +2349,11 @@ msgstr "Upozornění: Úklid se nezdařil: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "Informace o aplikaci nejsou nastaveny"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ UPOZORNĚNÍ: Lokální sestavení - kompatibilita může být omezená"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

@@ -1170,6 +1170,16 @@ msgstr "验证错误"
 msgid "Failed to start build: {}"
 msgstr "启动构建失败：{}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "在您的系统上构建的 AppImages 可能无法在其他发行版上运行，原因如下："
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "继续执行"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 1042
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1417,6 +1427,39 @@ msgstr "警告：无法自动删除图像"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "在移除容器时发生错误：{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ 本地构建警告"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"您正在 {distro} 上本地构建。\n"
+"\n"
+"在您的系统上构建的 AppImages 可能无法在其他发行版上运行，原因包括：\n"
+"• 不同的 Python 版本\n"
+"• 不同的库版本\n"
+"• 特定于发行版的依赖项\n"
+"\n"
+"为了获得最大兼容性，请使用：\n"
+"构建环境 → Ubuntu 20.04 或 22.04\n"
+"\n"
+"仍然继续吗？"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 90
 #: NEEDS WORK
@@ -1706,34 +1749,6 @@ msgstr "清理复制的标准库..."
 msgid "Stdlib cleanup complete."
 msgstr "标准库清理完成。"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 511
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "执行激进清理以优化大小..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 534
-# File: usr/share/appimage-creator/core/builder.py, line: 549
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "移除：{}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 554
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "正在删除字节码缓存文件..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 566
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "已移除 {} __pycache__ 目录和 {} .pyc 文件"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 567
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "激进清理完成。"
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 570
 #: NEEDS WORK
 #, python-brace-format
@@ -1788,6 +1803,39 @@ msgstr "尝试回退：使用系统 PyGObject 绑定"
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "成功安装 {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "已安装的Python包"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 511
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "执行激进清理以优化大小..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 534
+# File: usr/share/appimage-creator/core/builder.py, line: 549
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "移除：{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 554
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "正在删除字节码缓存文件..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 566
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "已移除 {} __pycache__ 目录和 {} .pyc 文件"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 567
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "激进清理完成。"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 641
 #: NEEDS WORK
@@ -2071,6 +2119,37 @@ msgstr "警告：某些类型库可能未被复制"
 msgid "Typelib copy complete"
 msgstr "类型库复制完成"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "复制 Adwaita 符号图标..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "已存在符号图标"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "从{}复制符号图标..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "正在执行符号图标复制脚本..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "警告：复制符号图标失败"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "符号图标复制成功"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2268,6 +2347,11 @@ msgstr "警告：清理失败：{}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "应用程序信息未设置"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ 警告：本地构建 - 兼容性可能有限"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1629
 #: NEEDS WORK

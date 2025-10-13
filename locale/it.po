@@ -1170,6 +1170,16 @@ msgstr "Errore di convalida"
 msgid "Failed to start build: {}"
 msgstr "Impossibile avviare la compilazione: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "Le AppImage create sul tuo sistema potrebbero NON funzionare su altre distribuzioni a causa di:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Continua comunque"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1419,6 +1429,39 @@ msgstr "Avviso: Impossibile rimuovere l'immagine automaticamente"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Si è verificato un errore durante la rimozione del contenitore: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ Avviso di Build Locale"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Stai costruendo localmente su {distro}.\n"
+"\n"
+"Le AppImage costruite sul tuo sistema potrebbero NON funzionare su altre distribuzioni a causa di:\n"
+"• Diverse versioni di Python\n"
+"• Diverse versioni delle librerie\n"
+"• Dipendenze specifiche della distribuzione\n"
+"\n"
+"Per la MASSIMA COMPATIBILITÀ, utilizza:\n"
+"Ambiente di costruzione → Ubuntu 20.04 o 22.04\n"
+"\n"
+"Continuare comunque?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1710,34 +1753,6 @@ msgstr "Pulizia della stdlib copiata..."
 msgid "Stdlib cleanup complete."
 msgstr "Pulizia della libreria standard completata."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Esecuzione di una pulizia aggressiva per l'ottimizzazione delle dimensioni..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Rimosso: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "Rimozione dei file della cache del bytecode..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Rimossi {} directory __pycache__ e {} file .pyc"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Pulizia aggressiva completata."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1792,6 +1807,39 @@ msgstr "Tentativo di ripiego: utilizzo dei binding PyGObject di sistema"
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "Installato con successo {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Pacchetti Python installati"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Esecuzione di una pulizia aggressiva per l'ottimizzazione delle dimensioni..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Rimosso: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Rimozione dei file della cache del bytecode..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Rimossi {} directory __pycache__ e {} file .pyc"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Pulizia aggressiva completata."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
@@ -2075,6 +2123,37 @@ msgstr "Attenzione: alcune librerie di tipi potrebbero non essere state copiate"
 msgid "Typelib copy complete"
 msgstr "Copia della typelib completata"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Copiare le icone simboliche Adwaita..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Icone simboliche già presenti"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "Copia di icone simboliche da {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "Esecuzione dello script di copia delle icone simboliche..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Avviso: Impossibile copiare le icone simboliche"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Icone simboliche copiate con successo"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2272,6 +2351,11 @@ msgstr "Avviso: Pulizia non riuscita: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "Informazioni sull'applicazione non impostate"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ ATTENZIONE: Costruzione locale - la compatibilità potrebbe essere limitata"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

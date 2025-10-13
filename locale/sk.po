@@ -673,6 +673,16 @@ msgstr "Zahrnúť závislosti"
 msgid "Automatically include system dependencies"
 msgstr "Automaticky zahrnúť systémové závislosti"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Závislosti systému"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Vyberte, ktoré systémové knižnice zahrnúť"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "Začiatok"
 msgid "Enter name and select executable"
 msgstr "Zadajte názov a vyberte spustiteľný súbor"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Základné pre tento typ aplikácie"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1155,6 +1170,16 @@ msgstr "Chyba validácie"
 msgid "Failed to start build: {}"
 msgstr "Nepodarilo sa spustiť zostavenie: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "AppImages vytvorené vo vašom systéme nemusia fungovať na iných distribúciách z dôvodu:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Pokračovať aj tak"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1191,6 +1216,11 @@ msgstr "Upozornenie: Nepodarilo sa načítať vlastný CSS: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "Najnovší Ubuntu s plnou podporou GTK4/VTE 3.91 pre moderné aplikácie."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "Najnovší Ubuntu LTS s najnovšími balíkmi."
 # 
@@ -1219,10 +1249,10 @@ msgstr "Predchádzajúca stabilná verzia Debianu - overená stabilita."
 msgid "Older Debian for maximum compatibility."
 msgstr "Starší Debian pre maximálnu kompatibilitu."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "Najnovší Fedora s najnovšími balíkmi."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Najnovší Fedora s najmodernejšími balíkmi a podporou GTK4/VTE."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1397,6 +1427,39 @@ msgstr "Upozornenie: Nepodarilo sa automaticky odstrániť obrázok"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Pri odstraňovaní kontajnera došlo k chybe: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ Varovanie o lokálnej kompilácii"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Staviate lokálne na {distro}.\n"
+"\n"
+"AppImages vytvorené na vašom systéme NEMUSIA fungovať na iných distribúciách z dôvodu:\n"
+"• Rôzne verzie Pythonu\n"
+"• Rôzne verzie knižníc\n"
+"• Závislosti špecifické pre distribúciu\n"
+"\n"
+"Pre MAXIMÁLNU KOMPATIBILITU použite:\n"
+"Prostredie na zostavenie → Ubuntu 20.04 alebo 22.04\n"
+"\n"
+"Pokračovať aj tak?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1686,34 +1749,6 @@ msgstr "Čistenie skopírovanej štandardnej knižnice..."
 msgid "Stdlib cleanup complete."
 msgstr "Údržba knižnice Stdlib bola dokončená."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Vykonáva sa agresívne čistenie na optimalizáciu veľkosti..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Odstránené: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "Odstraňovanie súborov cache bytecode..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Odstránené {} __pycache__ adresáre a {} .pyc súbory"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Agresívne čistenie dokončené."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1769,6 +1804,39 @@ msgstr "Pokúšam sa o zálohu: používam systémové väzby PyGObject"
 msgid "Successfully installed {}"
 msgstr "Úspešne nainštalované {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Nainštalované balíky Python"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Vykonáva sa agresívne čistenie na optimalizáciu veľkosti..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Odstránené: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Odstraňovanie súborov cache bytecode..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Odstránené {} __pycache__ adresáre a {} .pyc súbory"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Agresívne čistenie dokončené."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
 msgid "Python environment ready"
@@ -1815,6 +1883,18 @@ msgstr "Chyba pri používaní systému PyGObject: {}"
 #: NEEDS WORK
 msgid "Detecting GUI framework dependencies..."
 msgstr "Detekovanie závislostí GUI rámca..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 916
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Analyzovanie súborov Python v: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 923
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "Analyzovanie súborov Python v adresári spustiteľného súboru: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
@@ -1977,32 +2057,26 @@ msgstr "Obnovený pôvodný obal: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Upozornenie: Zlyhalo zbalenie binárneho súboru: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1251
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "Kopírovanie systémových knižníc z lokálneho hostiteľa..."
+msgid "No system libraries selected for inclusion."
+msgstr "Neboli vybrané žiadne systémové knižnice na zahrnutie."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1254
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "Skopírovaná knižnica: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "Kopírovanie vybraných systémových knižníc: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1266
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "Upozornenie: Nepodarilo sa skopírovať {}: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "Generovanie skriptu na kopírovanie systémových knižníc..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1290
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "Generovanie skriptu na kopírovanie systémových knižníc z kontajnera..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "Spúšťanie skriptu na kopírovanie knižnice vo vnútri kontajnera..."
+msgid "Executing library copy script..."
+msgstr "Spúšťam skript na kopírovanie knižnice..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2014,44 +2088,26 @@ msgstr "Upozornenie: Skript na kopírovanie knižnice sa skončil s chybami."
 msgid "Library copy script finished successfully."
 msgstr "Kopírovanie knižnice sa úspešne dokončilo."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1322
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "Aplikácia nepoužíva PyGObject, preskakuje typové knižnice."
+msgid "No typelibs selected for inclusion."
+msgstr "Neboli vybrané žiadne typové knižnice na zahrnutie."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1325
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "Pridávanie typových knižníc pre: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Kopírovanie vybraných typových knižníc: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1333
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "Kopírovanie typových súborov z lokálneho systému..."
+msgid "Generating script to copy typelibs..."
+msgstr "Generovanie skriptu na kopírovanie typových knižníc..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1367
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "Skopírované: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "Upozornenie: Nepodarilo sa skopírovať {}: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "Skopírované {} typelib súbory"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "Kopírovanie typových súborov z kontajnera..."
+msgid "Executing typelib copy script..."
+msgstr "Spúšťam skript na kopírovanie typov..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK
@@ -2062,6 +2118,37 @@ msgstr "Upozornenie: Niektoré typové knižnice nemusia byť skopírované."
 #: NEEDS WORK
 msgid "Typelib copy complete"
 msgstr "Kopírovanie typovej knižnice dokončené"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Kopírovanie symbolických ikon Adwaita..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Symbolické ikony sú už prítomné"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "Kopírovanie symbolických ikon z {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "Spúšťam skript na kopírovanie symbolických ikon..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Upozornenie: Nepodarilo sa skopírovať symbolické ikony"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Symbolické ikony boli úspešne skopírované"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
@@ -2260,6 +2347,11 @@ msgstr "Upozornenie: Čistenie zlyhalo: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "Informácie o aplikácii nie sú nastavené"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ UPOZORNENIE: Lokálna výstavba - kompatibilita môže byť obmedzená"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

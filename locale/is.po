@@ -1170,6 +1170,16 @@ msgstr "Gildisvilla Villa"
 msgid "Failed to start build: {}"
 msgstr "Mistók að hefja uppbyggingu: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "AppImages sem smíðaðar á kerfinu þínu virka EKKI á öðrum dreifingum vegna:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Fara áfram"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1419,6 +1429,39 @@ msgstr "Aðvörun: Gekk ekki að fjarlægja myndina sjálfkrafa"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Villa kom upp þegar reynt var að fjarlægja ílát: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ Viðvörun um staðbundna byggingu"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Þú ert að byggja á staðnum á {distro}.\n"
+"\n"
+"AppImages sem byggðar eru á kerfinu þínu virka EKKI á öðrum dreifingum vegna:\n"
+"• Ólíkar Python útgáfur\n"
+"• Ólíkar bókasafn útgáfur\n"
+"• Dreifingarsértæk háð\n"
+"\n"
+"Til MAXIMUM SAMHÆFIS, notaðu:\n"
+"Byggingarumhverfi → Ubuntu 20.04 eða 22.04\n"
+"\n"
+"Viltu halda áfram?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1708,34 +1751,6 @@ msgstr "Þrífa upp afritaða stdlib..."
 msgid "Stdlib cleanup complete."
 msgstr "Stdlib hreinsun lokið."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Að framkvæma árásargjarnan hreinsun til að hámarka stærð..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Fjarlægð: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "Að fjarlægja bytecode skyndiminningar..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Fjarlægð {} __pycache__ möppur og {} .pyc skrár"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Aggressív hreinsun lokið."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1790,6 +1805,39 @@ msgstr "Reynir að falla tilbaka: nota kerfis PyGObject bindingar"
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "Sukrýmt {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Python pakka uppsettir"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Að framkvæma árásargjarnan hreinsun til að hámarka stærð..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Fjarlægð: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Að fjarlægja bytecode skyndiminningar..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Fjarlægð {} __pycache__ möppur og {} .pyc skrár"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Aggressív hreinsun lokið."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
@@ -2073,6 +2121,37 @@ msgstr "Aðvörun: Sum typelibs gætu ekki verið afritaðar"
 msgid "Typelib copy complete"
 msgstr "Typelib afritun lokið"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Afritun Adwaita táknrænna tákna..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Sýndartákn þegar til staðar"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "Afritun táknrænna tákna frá {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "Að keyra skrift til að afrita táknmyndir..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Aðvörun: Mistókst að afrita táknrænar myndir"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Táknmyndir afritaðar með árangri"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2270,6 +2349,11 @@ msgstr "Aðvörun: Hreinsun mistókst: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "Forritsupplýsingar ekki stilltar"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ VARÚÐ: Bygging á staðnum - samhæfi kann að vera takmarkað"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

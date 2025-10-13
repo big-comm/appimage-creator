@@ -673,6 +673,16 @@ msgstr "Inkludera beroenden"
 msgid "Automatically include system dependencies"
 msgstr "Automatiskt inkludera systemberoenden"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Systemberoenden"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Välj vilka systembibliotek som ska inkluderas"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -978,6 +988,11 @@ msgstr "Komma igång"
 msgid "Enter name and select executable"
 msgstr "Ange namn och välj körbar fil"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Avgörande för den här applikationstypen"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1155,6 +1170,16 @@ msgstr "Valideringsfel"
 msgid "Failed to start build: {}"
 msgstr "Misslyckades med att starta bygget: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "AppImages som är byggda på ditt system kanske INTE fungerar på andra distributioner på grund av:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Fortsätt ändå"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1193,6 +1218,11 @@ msgstr "Varning: Kunde inte ladda anpassad CSS: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
+msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
+msgstr "Senaste Ubuntu med full GTK4/VTE 3.91-stöd för moderna appar."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+#: NEEDS WORK
 msgid "Latest Ubuntu LTS with newest packages."
 msgstr "Senaste Ubuntu LTS med de senaste paketen."
 # 
@@ -1221,10 +1251,10 @@ msgstr "Tidigare Debian stabil - beprövad stabilitet."
 msgid "Older Debian for maximum compatibility."
 msgstr "Äldre Debian för maximal kompatibilitet."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 85
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages."
-msgstr "Senaste Fedora med banbrytande paket."
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Senaste Fedora med banbrytande paket och GTK4/VTE-stöd."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
@@ -1399,6 +1429,39 @@ msgstr "Varning: Kunde inte ta bort bilden automatiskt"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Ett fel uppstod vid borttagning av containern: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ Lokal byggvarning"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Du bygger lokalt på {distro}.\n"
+"\n"
+"AppImages som byggs på ditt system kanske INTE fungerar på andra distributioner på grund av:\n"
+"• Olika Python-versioner\n"
+"• Olika biblioteksversioner\n"
+"• Distribution-specifika beroenden\n"
+"\n"
+"För MAXIMAL KOMPATIBILITET, använd:\n"
+"Byggmiljö → Ubuntu 20.04 eller 22.04\n"
+"\n"
+"Fortsätt ändå?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1688,34 +1751,6 @@ msgstr "Rensar kopierad stdlib..."
 msgid "Stdlib cleanup complete."
 msgstr "Stdlib rensning slutförd."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Utför aggressiv rengöring för storleksoptimering..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Borttagen: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "Tar bort bytekodscachefiler..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Borttagna {} __pycache__ mappar och {} .pyc filer"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Aggressiv rensning slutförd."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1771,6 +1806,39 @@ msgstr "Försöker återgå: använder systemets PyGObject-bindningar"
 msgid "Successfully installed {}"
 msgstr "Installerades framgångsrikt {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Installerade Python-paket"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Utför aggressiv rengöring för storleksoptimering..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Borttagen: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Tar bort bytekodscachefiler..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Borttagna {} __pycache__ mappar och {} .pyc filer"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Aggressiv rensning slutförd."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
 msgid "Python environment ready"
@@ -1817,6 +1885,18 @@ msgstr "Fel vid användning av system PyGObject: {}"
 #: NEEDS WORK
 msgid "Detecting GUI framework dependencies..."
 msgstr "Upptäckar GUI-ramverksberoenden..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 916
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in: {}"
+msgstr "Analyserar Python-filer i: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 923
+#: NEEDS WORK
+#, python-brace-format
+msgid "Analyzing Python files in executable's directory: {}"
+msgstr "Analyserar Python-filer i körbarhetens katalog: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK
@@ -1979,32 +2059,26 @@ msgstr "Återställd originalomslag: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Varning: Binär paketering misslyckades: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 979
+# File: usr/share/appimage-creator/core/builder.py, line: 1251
 #: NEEDS WORK
-msgid "Copying system libraries from local host..."
-msgstr "Kopierar systembibliotek från lokal värd..."
+msgid "No system libraries selected for inclusion."
+msgstr "Inga systembibliotek valda för inkludering."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 993
+# File: usr/share/appimage-creator/core/builder.py, line: 1254
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copied library: {}"
-msgstr "Kopierad bibliotek: {}"
+msgid "Copying selected system libraries: {}"
+msgstr "Kopierar valda systembibliotek: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 995
+# File: usr/share/appimage-creator/core/builder.py, line: 1266
 #: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not copy {}: {}"
-msgstr "Varning: Kunde inte kopiera {}: {}"
+msgid "Generating script to copy system libraries..."
+msgstr "Genererar skript för att kopiera systembibliotek..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1002
+# File: usr/share/appimage-creator/core/builder.py, line: 1290
 #: NEEDS WORK
-msgid "Generating script to copy system libraries from container..."
-msgstr "Genererar skript för att kopiera systembibliotek från behållare..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1028
-#: NEEDS WORK
-msgid "Executing library copy script inside container..."
-msgstr "Kör bibliotekskopieringsskript inuti containern..."
+msgid "Executing library copy script..."
+msgstr "Kör bibliotekskopieringsskript..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1039
 #: NEEDS WORK
@@ -2016,44 +2090,26 @@ msgstr "Varning: Biblioteks kopieringsskript avslutades med fel."
 msgid "Library copy script finished successfully."
 msgstr "Biblioteks kopieringsskriptet avslutades framgångsrikt."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1322
 #: NEEDS WORK
-msgid "Application does not use PyGObject, skipping typelibs"
-msgstr "Applikationen använder inte PyGObject, hoppar över typbibliotek."
+msgid "No typelibs selected for inclusion."
+msgstr "Inga typbibliotek valda för inkludering."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1213
+# File: usr/share/appimage-creator/core/builder.py, line: 1325
 #: NEEDS WORK
 #, python-brace-format
-msgid "Adding typelibs for: {}"
-msgstr "Lägger till typbibliotek för: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Kopierar valda typbibliotek: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
+# File: usr/share/appimage-creator/core/builder.py, line: 1333
 #: NEEDS WORK
-msgid "Copying typelib files from local system..."
-msgstr "Kopierar typelib-filer från det lokala systemet..."
+msgid "Generating script to copy typelibs..."
+msgstr "Genererar skript för att kopiera typbibliotek..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1236
+# File: usr/share/appimage-creator/core/builder.py, line: 1367
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied: {}"
-msgstr "Kopierad: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Warning: Could not copy {}: {}"
-msgstr "Varning: Kunde inte kopiera {}: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1242
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} typelib files"
-msgstr "Kopierade {} typelib-filer"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1245
-#: NEEDS WORK
-msgid "Copying typelib files from container..."
-msgstr "Kopierar typelib-filer från behållare..."
+msgid "Executing typelib copy script..."
+msgstr "Kör typbibliotek kopieringsskript..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK
@@ -2064,6 +2120,37 @@ msgstr "Varning: Vissa typbibliotek kanske inte har kopierats."
 #: NEEDS WORK
 msgid "Typelib copy complete"
 msgstr "Typelib-kopiering slutförd"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Kopierar Adwaita symboliska ikoner..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Symboliska ikoner finns redan"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "Kopierar symboliska ikoner från {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "Kör skript för att kopiera symboliska ikoner..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Varning: Misslyckades med att kopiera symboliska ikoner"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Symboliska ikoner kopierades framgångsrikt"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
@@ -2262,6 +2349,11 @@ msgstr "Varning: Rensning misslyckades: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "Applikationsinformation är inte angiven"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ VARNING: Bygger lokalt - kompatibiliteten kan vara begränsad"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

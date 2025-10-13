@@ -1170,6 +1170,16 @@ msgstr "Keerukuse viga"
 msgid "Failed to start build: {}"
 msgstr "Ehituse käivitamine ebaõnnestus: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "Teie süsteemis loodud AppImage'id ei pruugi töötada teistel distributsioonidel järgmistel põhjustel:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Jätka igal juhul"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1419,6 +1429,39 @@ msgstr "Hoiatus: Pilti ei saanud automaatselt eemaldada"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Konteineri eemaldamisel tekkis viga: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ Kohalik ehituse hoiatus"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Te ehitad kohapeal {distro}.\n"
+"\n"
+"Teie süsteemis loodud AppImages ei pruugi töötada teistel distributsioonidel järgmistel põhjustel:\n"
+"• Erinevad Python'i versioonid\n"
+"• Erinevad teegiversioonid\n"
+"• Distributsioonispetsiifilised sõltuvused\n"
+"\n"
+"MAKSIMAALSE ÜHILDUVUSE TAGAMISEKS kasutage:\n"
+"Ehituskeskkond → Ubuntu 20.04 või 22.04\n"
+"\n"
+"Kas jätkata ikkagi?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1708,34 +1751,6 @@ msgstr "Kopeeritud stdlibi puhastamine..."
 msgid "Stdlib cleanup complete."
 msgstr "Stdlibi puhastamine lõpetatud."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Tegev agressiivne puhastus suuruse optimeerimiseks..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Eemaldatud: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "Eemaldamine baitkoodi vahemälu faile..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Eemaldatud {} __pycache__ kaustad ja {} .pyc failid"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Aggressiivne puhastus lõpetatud."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1790,6 +1805,39 @@ msgstr "Katse varuvariant: kasutades süsteemi PyGObject sidemeid"
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "Edukalt installitud {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Pythoni paketid installitud"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Tegev agressiivne puhastus suuruse optimeerimiseks..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Eemaldatud: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Eemaldamine baitkoodi vahemälu faile..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Eemaldatud {} __pycache__ kaustad ja {} .pyc failid"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Aggressiivne puhastus lõpetatud."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
@@ -2073,6 +2121,37 @@ msgstr "Hoiatus: Mõned tüübiraamatud ei pruugi olla kopeeritud"
 msgid "Typelib copy complete"
 msgstr "Typelib koopia lõpetatud"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Kopeerimine Adwaita sümboolsetest ikoonidest..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Sümboolsed ikoonid on juba olemas"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "Kopeerimine sümboolsetest ikoonidest {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "Tegevus sümboolsete ikoonide kopeerimise skript..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Hoiatus: Sümboolsete ikoonide kopeerimine ebaõnnestus"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Sümboolsete ikoonide kopeerimine õnnestus."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2270,6 +2349,11 @@ msgstr "Hoiatus: Puhastus ebaõnnestus: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "Rakenduse teave pole seadistatud"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ HOIATUS: Kohapealne ehitamine - ühilduvus võib olla piiratud"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

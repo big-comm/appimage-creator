@@ -1170,6 +1170,16 @@ msgstr "유효성 검사 오류"
 msgid "Failed to start build: {}"
 msgstr "빌드를 시작하지 못했습니다: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "귀하의 시스템에서 빌드된 AppImage는 다음과 같은 이유로 다른 배포판에서 작동하지 않을 수 있습니다:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "계속 진행하기"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1419,6 +1429,39 @@ msgstr "경고: 이미지를 자동으로 제거할 수 없습니다."
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "컨테이너를 제거하는 동안 오류가 발생했습니다: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ 로컬 빌드 경고"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"{distro}에서 로컬로 빌드하고 있습니다.\n"
+"\n"
+"귀하의 시스템에서 빌드된 AppImage는 다음과 같은 이유로 다른 배포판에서 작동하지 않을 수 있습니다:\n"
+"• 다른 Python 버전\n"
+"• 다른 라이브러리 버전\n"
+"• 배포판별 종속성\n"
+"\n"
+"최대 호환성을 위해 다음을 사용하십시오:\n"
+"빌드 환경 → Ubuntu 20.04 또는 22.04\n"
+"\n"
+"계속하시겠습니까?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1708,34 +1751,6 @@ msgstr "복사된 표준 라이브러리 정리 중..."
 msgid "Stdlib cleanup complete."
 msgstr "표준 라이브러리 정리 완료."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "크기 최적화를 위한 공격적인 정리 수행 중..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "제거됨: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "바이트코드 캐시 파일 제거 중..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "{} __pycache__ 디렉토리와 {} .pyc 파일이 제거되었습니다."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "공격적인 정리 완료."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1790,6 +1805,39 @@ msgstr "대체 시도 중: 시스템 PyGObject 바인딩 사용"
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "성공적으로 설치되었습니다 {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "설치된 Python 패키지"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "크기 최적화를 위한 공격적인 정리 수행 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "제거됨: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "바이트코드 캐시 파일 제거 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "{} __pycache__ 디렉토리와 {} .pyc 파일이 제거되었습니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "공격적인 정리 완료."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
@@ -2073,6 +2121,37 @@ msgstr "경고: 일부 타입 라이브러리가 복사되지 않았을 수 있�
 msgid "Typelib copy complete"
 msgstr "타입 라이브러리 복사 완료"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "아드와이타 기호 아이콘 복사 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "이미 존재하는 상징 아이콘"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "{}에서 기호 아이콘 복사 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "상징 아이콘 복사 스크립트 실행 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "경고: 기호 아이콘 복사에 실패했습니다"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "상징 아이콘이 성공적으로 복사되었습니다."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2270,6 +2349,11 @@ msgstr "경고: 정리 실패: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "애플리케이션 정보가 설정되지 않음"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ 경고: 로컬에서 빌드 중 - 호환성이 제한될 수 있습니다"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

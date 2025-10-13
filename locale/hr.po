@@ -1170,6 +1170,16 @@ msgstr "Pogreška validacije"
 msgid "Failed to start build: {}"
 msgstr "Neuspjelo pokretanje izrade: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "AppImages izgrađene na vašem sustavu možda NEĆE raditi na drugim distribucijama zbog:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Nastavi unatoč tome"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1419,6 +1429,39 @@ msgstr "Upozorenje: Nije moguće automatski ukloniti sliku"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Došlo je do pogreške prilikom uklanjanja kontejnera: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ Upozorenje o lokalnoj izradi"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Gradite lokalno na {distro}.\n"
+"\n"
+"AppImages izgrađene na vašem sustavu možda NEĆE raditi na drugim distribucijama zbog:\n"
+"• Različitih verzija Pythona\n"
+"• Različitih verzija biblioteka\n"
+"• Ovisnosti specifičnih za distribuciju\n"
+"\n"
+"Za MAKSIMALNU KOMPATIBILNOST, koristite:\n"
+"Okruženje za izgradnju → Ubuntu 20.04 ili 22.04\n"
+"\n"
+"Nastaviti u svakom slučaju?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1708,34 +1751,6 @@ msgstr "Čišćenje kopirane stdlib..."
 msgid "Stdlib cleanup complete."
 msgstr "Čišćenje Stdlib-a završeno."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Izvodi agresivno čišćenje radi optimizacije veličine..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Uklonjeno: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "Uklanjanje datoteka predmemorije bajtkoda..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Uklonjena {} __pycache__ direktorija i {} .pyc datoteke"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Agresivno čišćenje završeno."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1790,6 +1805,39 @@ msgstr "Pokušavam rezervnu opciju: korištenje sistemskih PyGObject veza"
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "Uspješno instalirano {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Instalirani Python paketi"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Izvodi agresivno čišćenje radi optimizacije veličine..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Uklonjeno: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Uklanjanje datoteka predmemorije bajtkoda..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Uklonjena {} __pycache__ direktorija i {} .pyc datoteke"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Agresivno čišćenje završeno."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
@@ -2073,6 +2121,37 @@ msgstr "Upozorenje: Neki tipovi biblioteka možda nisu kopirani"
 msgid "Typelib copy complete"
 msgstr "Kopiranje typelib-a završeno"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Kopiranje Adwaita simboličkih ikona..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Simboličke ikone već prisutne"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "Kopiranje simboličkih ikona iz {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "Izvršavanje skripte za kopiranje simboličkih ikona..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Upozorenje: Neuspješno kopiranje simboličkih ikona"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Simbolične ikone su uspješno kopirane"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2270,6 +2349,11 @@ msgstr "Upozorenje: Čišćenje nije uspjelo: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "Informacije o aplikaciji nisu postavljene"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ UPOZORENJE: Gradnja lokalno - kompatibilnost može biti ograničena"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

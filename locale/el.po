@@ -1170,6 +1170,18 @@ msgstr "Σφάλμα Επικύρωσης"
 msgid "Failed to start build: {}"
 msgstr "Αποτυχία εκκίνησης της διαδικασίας κατασκευής: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr ""
+"Οι AppImages που έχουν κατασκευαστεί στο σύστημά σας ενδέχεται να ΜΗΝ λειτουργούν σε άλλες διανομές "
+"λόγω:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Συνέχισε ούτως ή άλλως"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1419,6 +1431,40 @@ msgstr "Προειδοποίηση: Δεν ήταν δυνατή η αυτόμα
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Παρουσιάστηκε σφάλμα κατά την αφαίρεση του κοντέινερ: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ Προειδοποίηση Τοπικής Κατασκευής"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Κατασκευάζετε τοπικά σε {distro}.\n"
+"\n"
+"Τα AppImages που κατασκευάζονται στο σύστημά σας ενδέχεται να ΜΗΝ λειτουργούν σε άλλες διανομές "
+"λόγω:\n"
+"• Διαφορετικών εκδόσεων Python\n"
+"• Διαφορετικών εκδόσεων βιβλιοθηκών\n"
+"• Εξαρτήσεων συγκεκριμένων για τη διανομή\n"
+"\n"
+"Για ΜΕΓΙΣΤΗ ΣΥΜΒΑΤΟΤΗΤΑ, χρησιμοποιήστε:\n"
+"Περιβάλλον Κατασκευής → Ubuntu 20.04 ή 22.04\n"
+"\n"
+"Συνεχίσετε ούτως ή άλλως;"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1710,34 +1756,6 @@ msgstr "Καθαρισμός αντιγραμμένου stdlib..."
 msgid "Stdlib cleanup complete."
 msgstr "Η καθαριότητα της Stdlib ολοκληρώθηκε."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Εκτέλεση επιθετικού καθαρισμού για βελτιστοποίηση μεγέθους..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Αφαιρέθηκε: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "Αφαίρεση αρχείων cache bytecode..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Αφαιρέθηκαν {} φάκελοι __pycache__ και {} αρχεία .pyc"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Η επιθετική καθαριότητα ολοκληρώθηκε."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1792,6 +1810,39 @@ msgstr "Προσπάθεια εναλλακτικής λύσης: χρήση τ�
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "Επιτυχής εγκατάσταση {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Εγκατεστημένα πακέτα Python"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Εκτέλεση επιθετικού καθαρισμού για βελτιστοποίηση μεγέθους..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Αφαιρέθηκε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Αφαίρεση αρχείων cache bytecode..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Αφαιρέθηκαν {} φάκελοι __pycache__ και {} αρχεία .pyc"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Η επιθετική καθαριότητα ολοκληρώθηκε."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
@@ -2075,6 +2126,37 @@ msgstr "Προειδοποίηση: Ορισμένα typelibs ενδέχεται
 msgid "Typelib copy complete"
 msgstr "Η αντιγραφή του Typelib ολοκληρώθηκε"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Αντιγραφή συμβολικών εικονιδίων Adwaita..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Συμβολικά εικονίδια που είναι ήδη παρόντα"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "Αντιγραφή συμβολικών εικονιδίων από {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "Εκτέλεση σεναρίου αντιγραφής συμβολικών εικονιδίων..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Προειδοποίηση: Αποτυχία αντιγραφής συμβολικών εικονιδίων"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Τα συμβολικά εικονίδια αντιγράφηκαν με επιτυχία"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2272,6 +2354,11 @@ msgstr "Προειδοποίηση: Αποτυχία καθαρισμού: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "Πληροφορίες εφαρμογής μη καθορισμένες"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Κατασκευή τοπικά - η συμβατότητα μπορεί να είναι περιορισμένη"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK

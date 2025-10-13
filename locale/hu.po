@@ -1170,6 +1170,16 @@ msgstr "Érvényesítési hiba"
 msgid "Failed to start build: {}"
 msgstr "A build indítása nem sikerült: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "Az Ön rendszerén készült AppImage-ek NEM működhetnek más disztribúciókon a következők miatt:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Folytatás mindenképpen"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 941
 #: NEEDS WORK
 msgid "Build Failed"
@@ -1419,6 +1429,40 @@ msgstr "Figyelmeztetés: Nem sikerült automatikusan eltávolítani a képet"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Hiba történt a konténer eltávolítása során: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 125
+#: NEEDS WORK
+msgid "⚠️ Local Build Warning"
+msgstr "⚠️ Helyi Fordítási Figyelmeztetés"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 127
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"You are building locally on {distro}.\n"
+"\n"
+"AppImages built on your system may NOT work on other distributions due to:\n"
+"• Different Python versions\n"
+"• Different library versions\n"
+"• Distribution-specific dependencies\n"
+"\n"
+"For MAXIMUM COMPATIBILITY, use:\n"
+"Build Environment → Ubuntu 20.04 or 22.04\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Helyben építkezik a(z) {distro} rendszeren.\n"
+"\n"
+"A rendszerén készült AppImage-ek NEM biztos, hogy működni fognak más disztribúciókon a következők "
+"miatt:\n"
+"• Különböző Python verziók\n"
+"• Különböző könyvtár verziók\n"
+"• Disztribúció-specifikus függőségek\n"
+"\n"
+"A MAXIMÁLIS KOMPATIBILITÁS érdekében használja:\n"
+"Build Environment → Ubuntu 20.04 vagy 22.04\n"
+"\n"
+"Folytatja így is?"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 89
 #: NEEDS WORK
@@ -1710,34 +1754,6 @@ msgstr "A másolt stdlib takarítása..."
 msgid "Stdlib cleanup complete."
 msgstr "A Stdlib takarítása befejeződött."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Aggresszív takarítás végrehajtása a méretoptimalizálás érdekében..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Eltávolítva: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "A bájt-kód gyorsítótár fájlok eltávolítása..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Eltávolítva {} __pycache__ könyvtár és {} .pyc fájl"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Aggresszív takarítás befejezve."
-# 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
 #, python-brace-format
@@ -1792,6 +1808,39 @@ msgstr "Próbálkozás visszaeséssel: a rendszer PyGObject kötéseinek haszná
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "Sikeresen telepítve: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Telepített Python csomagok"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Aggresszív takarítás végrehajtása a méretoptimalizálás érdekében..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Eltávolítva: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "A bájt-kód gyorsítótár fájlok eltávolítása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Eltávolítva {} __pycache__ könyvtár és {} .pyc fájl"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Aggresszív takarítás befejezve."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 598
 #: NEEDS WORK
@@ -2075,6 +2124,37 @@ msgstr "Figyelmeztetés: Néhány típuskönyvtár lehet, hogy nem lett átmáso
 msgid "Typelib copy complete"
 msgstr "Typelib másolat kész."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Adwaita szimbolikus ikonok másolása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Jelképes ikonok már jelen vannak"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying symbolic icons from {}..."
+msgstr "Szimbólikus ikonok másolása innen: {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1434
+#: NEEDS WORK
+msgid "Executing symbolic icons copy script..."
+msgstr "Szimbólum ikonok másolási szkript végrehajtása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Figyelmeztetés: A szimbolikus ikonok másolása nem sikerült"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "A szimbolikus ikonok sikeresen másolva lettek."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
 msgid "No icon found in usr/share/icons"
@@ -2272,6 +2352,11 @@ msgstr "Figyelmeztetés: Takarítási hiba: {}"
 #: NEEDS WORK
 msgid "Application information not set"
 msgstr "Alkalmazásinformációk nincsenek beállítva"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1786
+#: NEEDS WORK
+msgid "⚠️ WARNING: Building locally - compatibility may be limited"
+msgstr "⚠️ FIGYELMEZTETÉS: Helyi építés - a kompatibilitás korlátozott lehet"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1326
 #: NEEDS WORK
