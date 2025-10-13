@@ -71,7 +71,10 @@ SYSTEM_DEPENDENCIES = {
     },
     'vte': {
         'name': 'VTE (Terminal Widget)',
-        'libs': ['libvte-2.91.so*', 'libvte-2.91-gtk4.so*'],
+        'libs': [
+            'libvte-2.91.so*', 'libvte-2.91-gtk4.so*',
+            'libicuuc.so*', 'libicudata.so*', 'libicui18n.so*'
+        ],
         'typelibs': ['Vte-2.91.typelib', 'Vte-3.91.typelib'],
         'detection_keyword': 'vte',
         'essential': False
@@ -101,6 +104,37 @@ class AppImageBuilder:
         self.build_environment = None
         self.python_version = None
         self.container_name = None
+        
+    def is_local_build(self):
+        """Check if building locally (not in container)"""
+        return self.build_environment is None or self.container_name is None
+    
+    def get_compatibility_warning(self):
+        """Get compatibility warning message for local builds"""
+        if not self.is_local_build():
+            return None
+        
+        app_type = self.app_info.get('app_type', 'binary')
+        if app_type not in ['python', 'python_wrapper', 'gtk', 'qt']:
+            return None
+        
+        import platform
+        host_distro = platform.freedesktop_os_release().get('NAME', 'Unknown')
+        
+        return {
+            'title': _("⚠️ Local Build Warning"),
+            'message': _(
+                "You are building locally on {distro}.\n\n"
+                "AppImages built on your system may NOT work on other distributions due to:\n"
+                "• Different Python versions\n"
+                "• Different library versions\n"
+                "• Distribution-specific dependencies\n\n"
+                "For MAXIMUM COMPATIBILITY, use:\n"
+                "Build Environment → Ubuntu 20.04 or 22.04\n\n"
+                "Continue anyway?"
+            ).format(distro=host_distro),
+            'severity': 'warning'
+        }
         
     def set_app_info(self, app_info: dict):
         """Set application information with structure analysis"""
@@ -418,6 +452,12 @@ class AppImageBuilder:
         
         # GObject Introspection typelibs (for PyGObject apps)
         self._copy_typelibs()
+        
+        # Copy symbolic icons for UI elements (folder, refresh, home icons)
+        # Always copy for GTK4/Adwaita applications to ensure UI renders correctly
+        selected_deps = self.app_info.get('selected_dependencies', [])
+        if 'gtk4' in selected_deps or 'adwaita' in selected_deps:
+            self._copy_symbolic_icons()
         
         self.log(_("Dependencies installed successfully."))
         self.update_progress(70, _("Dependencies processed"))
@@ -1335,6 +1375,73 @@ echo "System PyGObject copied successfully"
             self.log(_("Warning: Some typelibs may not have been copied"))
         else:
             self.log(_("Typelib copy complete"))
+            
+    def _copy_symbolic_icons(self):
+        """
+        Copy Adwaita symbolic icons for UI elements (folder, refresh, home, etc).
+        These small icons (~2.6MB) ensure UI elements display correctly across all systems.
+        Automatically detects if running in container or local and copies from appropriate source.
+        """
+        self.log(_("Copying Adwaita symbolic icons..."))
+        
+        icons_dir = self.appdir_path / "usr" / "share" / "icons" / "Adwaita"
+        icons_dir.mkdir(parents=True, exist_ok=True)
+        
+        symbolic_dest = icons_dir / "symbolic"
+        
+        # Check if already copied
+        if symbolic_dest.exists() and (symbolic_dest / "ui").exists():
+            self.log(_("Symbolic icons already present"))
+            return
+        
+        # Determine source path based on execution environment
+        if self.container_name:
+            source_info = "container"
+            source_path = "/usr/share/icons/Adwaita/symbolic"
+        else:
+            source_info = "host system"
+            source_path = "/usr/share/icons/Adwaita/symbolic"
+        
+        self.log(_("Copying symbolic icons from {}...").format(source_info))
+        
+        # Script to copy symbolic icons
+        script_lines = [
+            "#!/bin/bash",
+            "set -e",
+            f"SOURCE='{source_path}'",
+            f"DEST='{symbolic_dest}'",
+            "",
+            "if [ ! -d \"$SOURCE\" ]; then",
+            "    echo 'ERROR: Adwaita symbolic icons not found at $SOURCE'",
+            "    exit 1",
+            "fi",
+            "",
+            "echo 'Copying symbolic icons...'",
+            "cp -r \"$SOURCE\" \"$DEST\"",
+            "",
+            "# Count copied icons",
+            "ICON_COUNT=$(find \"$DEST\" -name '*.svg' | wc -l)",
+            "echo \"Copied $ICON_COUNT symbolic icons (~2.6MB)\"",
+        ]
+        
+        script_content = "\n".join(script_lines)
+        script_path = self.build_dir / "copy_symbolic_icons.sh"
+        
+        with open(script_path, "w") as f:
+            f.write(script_content)
+        make_executable(script_path)
+        
+        self.log(_("Executing symbolic icons copy script..."))
+        result = self._run_command([str(script_path)])
+        
+        if result.stdout:
+            for line in result.stdout.splitlines():
+                self.log(f"[icons] {line}")
+        
+        if result.returncode != 0:
+            self.log(_("Warning: Failed to copy symbolic icons"))
+        else:
+            self.log(_("Symbolic icons copied successfully"))
                 
     def _create_icon_symlinks(self):
         """Create icon symlinks in AppDir root matching desktop file name"""
@@ -1672,6 +1779,12 @@ echo "System PyGObject copied successfully"
         """Main build process"""
         if not self.app_info:
             raise ValueError(_("Application information not set"))
+        
+        # Check for local build compatibility warning
+        warning = self.get_compatibility_warning()
+        if warning:
+            self.log(_("⚠️ WARNING: Building locally - compatibility may be limited"))
+            self.log(warning['message'])
         
         # Validate container if using one
         if self.build_environment:

@@ -108,21 +108,25 @@ def create_apprun_script(app_info):
 
 HERE="$(dirname "$(readlink -f "${{0}}")")"
 
+# Setup standard AppImage environment variables
+export PATH="${{HERE}}/usr/bin:${{PATH}}"
+export LD_LIBRARY_PATH="${{HERE}}/usr/lib:${{LD_LIBRARY_PATH}}"
+
+# GObject Introspection typelibs
+export GI_TYPELIB_PATH="${{HERE}}/usr/lib/girepository-1.0:${{HERE}}/usr/lib/x86_64-linux-gnu/girepository-1.0:${{GI_TYPELIB_PATH}}"
+
+# Data directories (icons, themes)
+export XDG_DATA_DIRS="${{HERE}}/usr/share:${{XDG_DATA_DIRS}}"
+
+# Setup localization
+export TEXTDOMAINDIR="${{HERE}}/usr/share/locale"
+
 # Setup Python virtualenv if it exists
 if [ -d "${{HERE}}/usr/python/venv" ]; then
     export PYTHONHOME="${{HERE}}/usr/python/venv"
     export PYTHONPATH="${{HERE}}/usr/python/venv/lib/python{py_version}/site-packages"
     export PATH="${{HERE}}/usr/python/venv/bin:${{PATH}}"
 fi
-
-# Setup standard AppImage environment variables
-export PATH="${{HERE}}/usr/bin:${{PATH}}"
-export LD_LIBRARY_PATH="${{HERE}}/usr/lib:${{LD_LIBRARY_PATH}}"
-export GI_TYPELIB_PATH="${{HERE}}/usr/lib/girepository-1.0:${{HERE}}/usr/lib/x86_64-linux-gnu/girepository-1.0:${{GI_TYPELIB_PATH}}"
-export XDG_DATA_DIRS="${{HERE}}/usr/share:${{XDG_DATA_DIRS}}"
-
-# Setup localization
-export TEXTDOMAINDIR="${{HERE}}/usr/share/locale"
 
 # Execute the target application
 {exec_line}

@@ -1086,15 +1086,144 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             self._collect_app_info()
             self.builder.set_app_info(self.app_info.to_dict())
             
+            # Check for local build compatibility warning
+            warning = self.builder.get_compatibility_warning()
+            if warning:
+                self.build_in_progress = False  # Reset flag until user confirms
+                self._show_local_build_warning(warning)
+                return  # Wait for user response
+            
+            # No warning - proceed directly
+            self._start_actual_build()
+            
+        except ValidationError as e:
+            show_error_dialog(self, _("Validation Error"), str(e))
+        except Exception as e:
+            show_error_dialog(self, _("Error"), _("Failed to start build: {}").format(e))
+            
+    def _show_local_build_warning(self, warning):
+        """Show custom local build warning dialog with better formatting"""
+        # Create custom dialog
+        dialog = Adw.Window()
+        dialog.set_transient_for(self)
+        dialog.set_modal(True)
+        dialog.set_default_size(500, 450)
+        dialog.set_resizable(False)
+        
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        dialog.set_content(main_box)
+        
+        # Header
+        header = Adw.HeaderBar()
+        header.set_show_end_title_buttons(False)
+        header.set_show_start_title_buttons(False)
+        main_box.append(header)
+        
+        # Title centered
+        title_label = Gtk.Label(label=warning['title'])
+        title_label.add_css_class("title-2")
+        header.set_title_widget(title_label)
+        
+        # Content box
+        content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16)
+        content.set_margin_top(24)
+        content.set_margin_bottom(24)
+        content.set_margin_start(24)
+        content.set_margin_end(24)
+        main_box.append(content)
+        
+        # Parse message into parts
+        message_parts = warning['message'].split('\n\n')
+        
+        # First part (intro) - left aligned
+        intro = Gtk.Label(label=message_parts[0])
+        intro.set_wrap(True)
+        intro.set_xalign(0)
+        intro.set_justify(Gtk.Justification.LEFT)
+        content.append(intro)
+        
+        # Problems card - left aligned
+        if len(message_parts) > 1:
+            problems_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
+            problems_box.add_css_class("card")
+            problems_box.set_margin_start(12)
+            problems_box.set_margin_end(12)
+            problems_box.set_margin_top(8)
+            problems_box.set_margin_bottom(8)
+            content.append(problems_box)
+            
+            problems_title = Gtk.Label(label=_("AppImages built on your system may NOT work on other distributions due to:"))
+            problems_title.set_wrap(True)
+            problems_title.set_xalign(0)
+            problems_title.set_margin_start(12)
+            problems_title.set_margin_top(8)
+            problems_box.append(problems_title)
+            
+            # Parse bullet points
+            problems_text = message_parts[1]
+            for line in problems_text.split('\n'):
+                if line.strip().startswith('•'):
+                    problem_label = Gtk.Label(label=line.strip())
+                    problem_label.set_xalign(0)
+                    problem_label.set_margin_start(12)
+                    problems_box.append(problem_label)
+            
+            # Last item margin
+            problems_box.set_margin_bottom(8)
+        
+        # Recommendation - left aligned
+        if len(message_parts) > 2:
+            recommendation = Gtk.Label()
+            recommendation.set_markup(f"<b>{message_parts[2].split(':')[0]}:</b>\n{message_parts[2].split(':')[1]}")
+            recommendation.set_wrap(True)
+            recommendation.set_xalign(0)
+            recommendation.set_justify(Gtk.Justification.LEFT)
+            content.append(recommendation)
+        
+        # Question - left aligned
+        if len(message_parts) > 3:
+            question = Gtk.Label(label=message_parts[3])
+            question.set_xalign(0)
+            question.set_margin_top(8)
+            content.append(question)
+        
+        # Buttons side by side
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        button_box.set_halign(Gtk.Align.CENTER)
+        button_box.set_margin_top(16)
+        content.append(button_box)
+        
+        cancel_button = Gtk.Button(label=_("Cancel"))
+        cancel_button.set_size_request(140, -1)
+        cancel_button.connect("clicked", lambda btn: dialog.close())
+        button_box.append(cancel_button)
+        
+        continue_button = Gtk.Button(label=_("Continue Anyway"))
+        continue_button.set_size_request(160, -1)
+        continue_button.add_css_class("destructive-action")
+        button_box.append(continue_button)
+        
+        def on_continue_clicked(btn):
+            dialog.close()
+            self._start_actual_build()
+        
+        continue_button.connect("clicked", on_continue_clicked)
+        
+        dialog.present()
+    
+    def _start_actual_build(self):
+        """Actually start the build process after confirmation"""
+        try:
+            self.build_in_progress = True
+            
             self.progress_dialog = BuildProgressDialog(self)
             self.progress_dialog.cancel_button.connect("clicked", self._on_cancel_build)
             self.progress_dialog.present()
             
             self.builder.build_async(self._on_build_complete)
             
-        except ValidationError as e:
-            show_error_dialog(self, _("Validation Error"), str(e))
         except Exception as e:
+            self.build_in_progress = False
             show_error_dialog(self, _("Error"), _("Failed to start build: {}").format(e))
             
     def _on_preferences_build_clicked(self, button):
