@@ -47,6 +47,10 @@ class AppInfo:
     strip_binaries: bool = False
     build_environment: Optional[str] = None
     
+    # Icon theme options
+    include_icon_theme: bool = True
+    icon_theme_choice: str = "papirus"  # Options: "papirus", "adwaita", "none"
+    
     # Compatibility properties
     @property
     def author(self) -> str:
@@ -86,4 +90,6 @@ class AppInfo:
             'selected_dependencies': self.selected_dependencies,
             'strip_binaries': self.strip_binaries,
             'build_environment': self.build_environment,
+            'include_icon_theme': self.include_icon_theme,
+            'icon_theme_choice': self.icon_theme_choice,
         }

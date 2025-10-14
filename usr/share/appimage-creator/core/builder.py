@@ -453,11 +453,36 @@ class AppImageBuilder:
         # GObject Introspection typelibs (for PyGObject apps)
         self._copy_typelibs()
         
-        # Copy symbolic icons for UI elements (folder, refresh, home icons)
-        # Always copy for GTK4/Adwaita applications to ensure UI renders correctly
-        selected_deps = self.app_info.get('selected_dependencies', [])
-        if 'gtk4' in selected_deps or 'adwaita' in selected_deps:
-            self._copy_symbolic_icons()
+        # Icon theme handling based on user configuration
+        include_icon_theme = self.app_info.get('include_icon_theme', True)
+        icon_theme_choice = self.app_info.get('icon_theme_choice', 'papirus')
+        
+        if include_icon_theme:
+            # Check if it's a GTK application
+            is_gtk_app = False
+            if app_type in ['python', 'python_wrapper', 'gtk', 'qt']:
+                is_gtk_app = self._detect_gi_usage(self.app_info)
+            
+            # If GTK app or user explicitly enabled, copy the selected theme
+            if is_gtk_app:
+                if icon_theme_choice == 'papirus':
+                    self.log(_("Installing Papirus icon theme for GTK application"))
+                    self._copy_papirus_symbolic_icons()
+                elif icon_theme_choice == 'adwaita':
+                    self.log(_("Installing Adwaita icon theme for GTK application"))
+                    self._copy_symbolic_icons()
+            else:
+                # Not a GTK app, but user enabled icon theme
+                selected_deps = self.app_info.get('selected_dependencies', [])
+                if 'gtk4' in selected_deps or 'adwaita' in selected_deps:
+                    if icon_theme_choice == 'papirus':
+                        self.log(_("Installing Papirus icon theme"))
+                        self._copy_papirus_symbolic_icons()
+                    elif icon_theme_choice == 'adwaita':
+                        self.log(_("Installing Adwaita icon theme"))
+                        self._copy_symbolic_icons()
+        else:
+            self.log(_("Icon theme inclusion disabled by user"))
         
         self.log(_("Dependencies installed successfully."))
         self.update_progress(70, _("Dependencies processed"))
@@ -1442,6 +1467,134 @@ echo "System PyGObject copied successfully"
             self.log(_("Warning: Failed to copy symbolic icons"))
         else:
             self.log(_("Symbolic icons copied successfully"))
+            
+    def _copy_papirus_symbolic_icons(self):
+        """
+        Copy Papirus symbolic icons for GTK applications.
+        Copies both Papirus and Papirus-Dark themes (excluding apps/ category).
+        Total size: ~6.4MB for comprehensive icon coverage.
+        """
+        self.log(_("Copying Papirus symbolic icons..."))
+        
+        # Categories to copy (excluding 'apps' to save space)
+        categories = [
+            'actions',      # 1.4MB - UI actions (pin, refresh, delete, etc)
+            'categories',   # 96K  - preferences, system categories
+            'devices',      # 308K - computer, phone, printer icons
+            'emblems',      # 44K  - symbolic badges
+            'emotes',       # 108K - emoji fallbacks
+            'mimetypes',    # 108K - file type icons
+            'places',       # 112K - folder, home, network icons
+            'status',       # 1.2MB - info, warning, error, battery, etc
+            'up-to-32',     # 4K   - icon cache/metadata
+        ]
+        
+        # Themes to copy (light and dark)
+        themes = ['Papirus', 'Papirus-Dark']
+        
+        icons_base_dir = self.appdir_path / "usr" / "share" / "icons"
+        icons_base_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Check if already copied
+        papirus_test = icons_base_dir / "Papirus" / "symbolic" / "actions"
+        if papirus_test.exists() and list(papirus_test.glob("*.svg")):
+            self.log(_("Papirus symbolic icons already present"))
+            return
+        
+        # Determine source path
+        if self.container_name:
+            source_base = "/usr/share/icons"
+        else:
+            source_base = "/usr/share/icons"
+        
+        self.log(_("Copying Papirus and Papirus-Dark symbolic icons..."))
+        
+        # Build copy script
+        script_lines = [
+            "#!/bin/bash",
+            "set -e",
+            f"SOURCE_BASE='{source_base}'",
+            f"DEST_BASE='{icons_base_dir}'",
+            "",
+            "COPIED=0",
+            "THEMES_COPIED=0",
+            "",
+        ]
+        
+        # Copy each theme
+        for theme in themes:
+            script_lines.extend([
+                f"# Process {theme} theme",
+                f"SOURCE_THEME=\"$SOURCE_BASE/{theme}\"",
+                f"DEST_THEME=\"$DEST_BASE/{theme}\"",
+                "",
+                "if [ ! -d \"$SOURCE_THEME\" ]; then",
+                f"    echo 'Warning: {theme} not found in container - skipping'",
+                "else",
+                "    THEMES_COPIED=$((THEMES_COPIED + 1))",
+                "    mkdir -p \"$DEST_THEME\"",
+                "",
+                "    # Copy index.theme file",
+                "    if [ -f \"$SOURCE_THEME/index.theme\" ]; then",
+                "        cp \"$SOURCE_THEME/index.theme\" \"$DEST_THEME/\"",
+                f"        echo 'Copied {theme}/index.theme'",
+                "    fi",
+                "",
+            ])
+            
+            # Copy each category
+            for category in categories:
+                script_lines.extend([
+                    f"    # Copy symbolic/{category}/",
+                    f"    if [ -d \"$SOURCE_THEME/symbolic/{category}\" ]; then",
+                    f"        mkdir -p \"$DEST_THEME/symbolic/{category}\"",
+                    f"        cp -r \"$SOURCE_THEME/symbolic/{category}\"/* \"$DEST_THEME/symbolic/{category}/\" 2>/dev/null || true",
+                    "        COUNT=$(find \"$DEST_THEME/symbolic/" + category + "\" -name '*.svg' 2>/dev/null | wc -l)",
+                    "        COPIED=$((COPIED + COUNT))",
+                    f"        echo '  Copied {category}/: '$COUNT' icons'",
+                    "    fi",
+                    "",
+                ])
+            
+            script_lines.append("fi")
+            script_lines.append("")
+        
+        # Final summary
+        script_lines.extend([
+            "if [ $THEMES_COPIED -eq 0 ]; then",
+            "    echo 'ERROR: No Papirus themes found in container'",
+            "    echo 'Falling back to Adwaita icons...'",
+            "    exit 1",
+            "fi",
+            "",
+            "echo ''",
+            "echo '=== Summary ==='",
+            "echo \"Themes copied: $THEMES_COPIED/2\"",
+            "echo \"Total icons: $COPIED\"",
+            "echo \"Size: ~6.4MB\"",
+        ])
+        
+        script_content = "\n".join(script_lines)
+        script_path = self.build_dir / "copy_papirus_icons.sh"
+        
+        with open(script_path, "w") as f:
+            f.write(script_content)
+        make_executable(script_path)
+        
+        self.log(_("Executing Papirus icons copy script..."))
+        result = self._run_command([str(script_path)])
+        
+        if result.stdout:
+            for line in result.stdout.splitlines():
+                if line.strip():
+                    self.log(f"[papirus] {line}")
+        
+        if result.returncode != 0:
+            # Fallback to Adwaita if Papirus not available
+            self.log(_("Warning: Papirus icons not available, falling back to Adwaita"))
+            self._copy_symbolic_icons()
+        else:
+            self.log(_("Papirus symbolic icons copied successfully"))
                 
     def _create_icon_symlinks(self):
         """Create icon symlinks in AppDir root matching desktop file name"""

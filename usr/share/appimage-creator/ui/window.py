@@ -309,8 +309,26 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self.build_page.output_button.connect("clicked", self._on_choose_output_dir)
         self.build_page.build_button.connect("clicked", self._on_preferences_build_clicked)
         
+        # Icon theme signals - ADICIONAR AQUI
+        self.build_page.icon_theme_row.connect("notify::active", self._on_icon_theme_toggle)
+        self.build_page.papirus_radio.connect("toggled", self._on_icon_theme_changed)
+        self.build_page.adwaita_radio.connect("toggled", self._on_icon_theme_changed)
+        
         # Mark as connected to prevent duplicate connections
         self._preferences_signals_connected = True
+        
+    def _on_icon_theme_toggle(self, switch_row, param):
+        """Handle icon theme switch toggle"""
+        is_active = switch_row.get_active()
+        self.app_info.include_icon_theme = is_active
+        self.build_page.icon_theme_expander_row.set_sensitive(is_active)
+    
+    def _on_icon_theme_changed(self, radio_button):
+        """Handle icon theme selection change"""
+        if self.build_page.papirus_radio.get_active():
+            self.app_info.icon_theme_choice = "papirus"
+        elif self.build_page.adwaita_radio.get_active():
+            self.app_info.icon_theme_choice = "adwaita"
         
     def _on_setup_environment_clicked(self, env_id: str):
         """Handles the click on the 'Setup' button for an environment"""
@@ -661,6 +679,14 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             filename = os.path.basename(self.app_info.icon)
             self.files_page.icon_row.set_subtitle(filename)
             
+        # Sync icon theme settings - ADICIONAR AQUI
+        if self.build_page.icon_theme_row:
+            self.build_page.icon_theme_row.set_active(self.app_info.include_icon_theme)
+            if self.app_info.icon_theme_choice == "papirus":
+                self.build_page.papirus_radio.set_active(True)
+            elif self.app_info.icon_theme_choice == "adwaita":
+                self.build_page.adwaita_radio.set_active(True)
+            
     def _sync_from_preferences(self):
         """Sync preferences back to main window"""
         self.name_row.set_text(self.app_info_page.name_row.get_text())
@@ -693,6 +719,14 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         except Exception as e:
             # If widgets are destroyed or invalid, keep existing dependencies
             print(f"Warning: Could not sync dependencies from switches: {e}")
+        
+        # Sync icon theme settings
+        if self.build_page.icon_theme_row:
+            self.app_info.include_icon_theme = self.build_page.icon_theme_row.get_active()
+        if self.build_page.papirus_radio.get_active():
+            self.app_info.icon_theme_choice = "papirus"
+        elif self.build_page.adwaita_radio.get_active():
+            self.app_info.icon_theme_choice = "adwaita"
         
         self._validate_inputs()
         
@@ -757,6 +791,17 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                     self._update_desktop_file_options()
                     self._update_structure_preview()
                     self._update_autodetected_dependencies()
+                    
+                    # Auto-enable Papirus icon theme for GTK applications - ADICIONAR AQUI
+                    if app_type in ['python', 'python_wrapper', 'gtk']:
+                        is_gtk = self.builder._detect_gi_usage(self.app_info.to_dict())
+                        if is_gtk:
+                            self.app_info.include_icon_theme = True
+                            self.app_info.icon_theme_choice = "papirus"
+                            # Update UI if preferences window is open
+                            if self.build_page.icon_theme_row:
+                                self.build_page.icon_theme_row.set_active(True)
+                                self.build_page.papirus_radio.set_active(True)
                 
                 self._show_next_steps_message()
                 self._validate_inputs()

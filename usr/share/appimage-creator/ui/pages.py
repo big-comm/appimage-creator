@@ -18,17 +18,20 @@ class AppInfoPage:
     
     def __init__(self):
         self.page = Adw.PreferencesPage()
-        self.page.set_title(_("Application Info"))
+        self.page.set_title(_("App"))
         self.page.set_icon_name("application-x-executable-symbolic")
         
         # Widgets we need to access
-        self.name_row = None
-        self.version_row = None
-        self.description_row = None
-        self.category_row = None
-        self.terminal_row = None
-        self.authors_list = None
-        self.websites_list = None
+        self.output_row = None
+        self.deps_row = None
+        self.strip_row = None
+        self.build_button = None
+        self.environment_row = None
+        self.env_model = None
+        self.icon_theme_row = None
+        self.icon_theme_expander_row = None
+        self.papirus_radio = None
+        self.adwaita_radio = None
         
         self._build_page()
         
@@ -129,7 +132,7 @@ class FilesPage:
     
     def __init__(self):
         self.page = Adw.PreferencesPage()
-        self.page.set_title(_("Files & Resources"))
+        self.page.set_title(_("Files"))
         self.page.set_icon_name("folder-symbolic")
         
         # Widgets we need to access
@@ -294,7 +297,7 @@ class BuildPage:
     
     def __init__(self):
         self.page = Adw.PreferencesPage()
-        self.page.set_title(_("Build Settings"))
+        self.page.set_title(_("Build"))
         self.page.set_icon_name("builder-symbolic")
         
         # Widgets we need to access
@@ -362,7 +365,40 @@ class BuildPage:
         self.deps_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
         self.deps_list_box.add_css_class("boxed-list")
         self.deps_expander_row.add_row(self.deps_list_box)
-        
+
+        # Icon theme selection
+        self.icon_theme_row = Adw.SwitchRow()
+        self.icon_theme_row.set_title(_("Include Icon Theme"))
+        self.icon_theme_row.set_subtitle(_("Bundle icons for consistent UI across systems"))
+        self.icon_theme_row.set_active(True)
+        advanced_group.add(self.icon_theme_row)
+
+        # Expander for icon theme selection
+        self.icon_theme_expander_row = Adw.ExpanderRow()
+        self.icon_theme_expander_row.set_title(_("Icon Theme Selection"))
+        self.icon_theme_expander_row.set_subtitle(_("Choose which icon theme to bundle"))
+        self.icon_theme_expander_row.set_show_enable_switch(False)
+        advanced_group.add(self.icon_theme_expander_row)
+
+        # Radio buttons for icon theme choice
+        papirus_row = Adw.ActionRow()
+        papirus_row.set_title(_("Papirus"))
+        papirus_row.set_subtitle(_("Modern, colorful icons (~6.4MB) - Default for GTK apps"))
+        self.papirus_radio = Gtk.CheckButton()
+        self.papirus_radio.set_active(True)
+        papirus_row.add_prefix(self.papirus_radio)
+        papirus_row.set_activatable_widget(self.papirus_radio)
+        self.icon_theme_expander_row.add_row(papirus_row)
+
+        adwaita_row = Adw.ActionRow()
+        adwaita_row.set_title(_("Adwaita"))
+        adwaita_row.set_subtitle(_("GNOME default icons (~2.6MB)"))
+        self.adwaita_radio = Gtk.CheckButton()
+        self.adwaita_radio.set_group(self.papirus_radio)
+        adwaita_row.add_prefix(self.adwaita_radio)
+        adwaita_row.set_activatable_widget(self.adwaita_radio)
+        self.icon_theme_expander_row.add_row(adwaita_row)
+
         self.strip_row = Adw.SwitchRow()
         self.strip_row.set_title(_("Strip Debug Symbols"))
         self.strip_row.set_subtitle(_("Reduce file size by removing debug information"))
@@ -395,7 +431,7 @@ class EnvironmentPage:
 
     def __init__(self):
         self.page = Adw.PreferencesPage()
-        self.page.set_title(_("Build Environment"))
+        self.page.set_title(_("Environment"))
         self.page.set_icon_name("box-seam-symbolic")
 
         # Widgets we need to access
