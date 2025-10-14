@@ -302,8 +302,8 @@ msgstr "{}: {}"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 21
 #: NEEDS WORK
-msgid "Application Info"
-msgstr "Sovellustiedot"
+msgid "App"
+msgstr "Sovellus"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 39
 #: NEEDS WORK
@@ -402,10 +402,10 @@ msgstr "Vaatii terminaalin"
 msgid "Check if your application needs to run in a terminal"
 msgstr "Tarkista, tarvitseeko sovelluksesi suorittaa terminaalissa."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 132
+# File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
-msgid "Files & Resources"
-msgstr "Tiedostot ja resurssit"
+msgid "Files"
+msgstr "Tiedostot"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 153
 #: NEEDS WORK
@@ -613,10 +613,10 @@ msgstr "Näe perusrakenteen yleiskatsaus"
 msgid "View Full Structure"
 msgstr "Näytä koko rakenne"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 297
+# File: usr/share/appimage-creator/ui/pages.py, line: 300
 #: NEEDS WORK
-msgid "Build Settings"
-msgstr "Kokoamisasetukset"
+msgid "Build"
+msgstr "Kokoaminen"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 314
 #: NEEDS WORK
@@ -683,6 +683,46 @@ msgstr "Järjestelmäriippuvuudet"
 msgid "Select which system libraries to bundle"
 msgstr "Valitse, mitkä järjestelmäkirjastot pakataan."
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+#: NEEDS WORK
+msgid "Include Icon Theme"
+msgstr "Sisällytä kuvakeaihe"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 372
+#: NEEDS WORK
+msgid "Bundle icons for consistent UI across systems"
+msgstr "Yhdistä kuvakkeet johdonmukaisen käyttöliittymän saavuttamiseksi eri järjestelmissä"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 378
+#: NEEDS WORK
+msgid "Icon Theme Selection"
+msgstr "Ikoniteeman valinta"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 379
+#: NEEDS WORK
+msgid "Choose which icon theme to bundle"
+msgstr "Valitse, minkä kuvakeaiheen haluat pakata."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 385
+#: NEEDS WORK
+msgid "Papirus"
+msgstr "Papirus"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
+msgstr "Modernit, värikkäät ikonit (~6.4MB) - Oletus GTK-sovelluksille"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 394
+#: NEEDS WORK
+msgid "Adwaita"
+msgstr "Adwaita"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 395
+#: NEEDS WORK
+msgid "GNOME default icons (~2.6MB)"
+msgstr "GNOME-oletuskuvakkeet (~2,6 Mt)"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -721,6 +761,11 @@ msgstr "Luo AppImage määritetyillä asetuksilla"
 #: NEEDS WORK
 msgid "Create AppImage"
 msgstr "Luo AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+#: NEEDS WORK
+msgid "Environment"
+msgstr "Ympäristö"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 404
 #: NEEDS WORK
@@ -1220,8 +1265,8 @@ msgstr "Varoitus: Mukautettua CSS:ää ei voitu ladata: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
-msgstr "Uusin Ubuntu, jossa on täysi GTK4/VTE 3.91 -tuki moderneille sovelluksille."
+msgid "Optimized for Linux Mint users - based on Ubuntu 24.04 LTS."
+msgstr "Optimoitu Linux Mint -käyttäjille - perustuu Ubuntu 24.04 LTS:ään."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
@@ -1651,6 +1696,31 @@ msgstr "Ohittamalla riippuvuuden sisällyttäminen."
 #: NEEDS WORK
 msgid "Dependencies skipped"
 msgstr "Riippuvuudet ohitettu"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 469
+#: NEEDS WORK
+msgid "Installing Papirus icon theme for GTK application"
+msgstr "Asennetaan Papirus-ikoni-teemaa GTK-sovellukselle"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 472
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme for GTK application"
+msgstr "Asennetaan Adwaita-ikoni-teemaa GTK-sovellukselle"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 479
+#: NEEDS WORK
+msgid "Installing Papirus icon theme"
+msgstr "Asennetaan Papirus-ikoni-teemaa"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 482
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme"
+msgstr "Asennetaan Adwaita-kuvaketta téemaa"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 485
+#: NEEDS WORK
+msgid "Icon theme inclusion disabled by user"
+msgstr "Kuvakeaiheen sisällyttäminen poistettu käytöstä käyttäjän toimesta"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 351
 #: NEEDS WORK
@@ -2153,6 +2223,36 @@ msgstr "Varoitus: Symbolisten kuvakkeiden kopiointi epäonnistui"
 #: NEEDS WORK
 msgid "Symbolic icons copied successfully"
 msgstr "Symboliset ikonit kopioitiin onnistuneesti"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "Kopioidaan Papirus-symboliikoneita..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Papirus-symboliset ikonit jo olemassa"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Kopioidaan Papirus- ja Papirus-Dark-symbolisia kuvakkeita..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "Suoritetaan Papirus-ikoneiden kopioskriptiä..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Varoitus: Papirus-ikoneita ei ole saatavilla, siirrytään Adwaita-ikoneihin."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Papirus-symboliset ikonit kopioitiin onnistuneesti"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK

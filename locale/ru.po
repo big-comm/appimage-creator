@@ -302,8 +302,8 @@ msgstr "{}: {}"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 21
 #: NEEDS WORK
-msgid "Application Info"
-msgstr "Информация о приложении"
+msgid "App"
+msgstr "Приложение"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 39
 #: NEEDS WORK
@@ -402,10 +402,10 @@ msgstr "Требуется терминал"
 msgid "Check if your application needs to run in a terminal"
 msgstr "Проверьте, нужно ли вашему приложению запускаться в терминале"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 132
+# File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
-msgid "Files & Resources"
-msgstr "Файлы и ресурсы"
+msgid "Files"
+msgstr "Файлы"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 153
 #: NEEDS WORK
@@ -613,10 +613,10 @@ msgstr "Посмотреть обзор базовой структуры"
 msgid "View Full Structure"
 msgstr "Просмотреть полную структуру"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 297
+# File: usr/share/appimage-creator/ui/pages.py, line: 300
 #: NEEDS WORK
-msgid "Build Settings"
-msgstr "Настройки сборки"
+msgid "Build"
+msgstr "Сборка"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 314
 #: NEEDS WORK
@@ -683,6 +683,46 @@ msgstr "Системные зависимости"
 msgid "Select which system libraries to bundle"
 msgstr "Выберите, какие системные библиотеки включить в пакет"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+#: NEEDS WORK
+msgid "Include Icon Theme"
+msgstr "Включить тему значков"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 372
+#: NEEDS WORK
+msgid "Bundle icons for consistent UI across systems"
+msgstr "Пакет значков для согласованного пользовательского интерфейса на разных системах"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 378
+#: NEEDS WORK
+msgid "Icon Theme Selection"
+msgstr "Выбор темы значков"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 379
+#: NEEDS WORK
+msgid "Choose which icon theme to bundle"
+msgstr "Выберите, какую тему значков включить в пакет"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 385
+#: NEEDS WORK
+msgid "Papirus"
+msgstr "Папирус"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
+msgstr "Современные, цветные значки (~6.4MB) - По умолчанию для приложений GTK"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 394
+#: NEEDS WORK
+msgid "Adwaita"
+msgstr "Адвайта"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 395
+#: NEEDS WORK
+msgid "GNOME default icons (~2.6MB)"
+msgstr "Иконки по умолчанию GNOME (~2.6MB)"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -721,6 +761,11 @@ msgstr "Создать AppImage с настроенными параметрам
 #: NEEDS WORK
 msgid "Create AppImage"
 msgstr "Создать AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+#: NEEDS WORK
+msgid "Environment"
+msgstr "Окружение"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 404
 #: NEEDS WORK
@@ -1218,8 +1263,8 @@ msgstr "Предупреждение: Не удалось загрузить п�
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
-msgstr "Последняя версия Ubuntu с полной поддержкой GTK4/VTE 3.91 для современных приложений."
+msgid "Optimized for Linux Mint users - based on Ubuntu 24.04 LTS."
+msgstr "Оптимизировано для пользователей Linux Mint - основано на Ubuntu 24.04 LTS."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
@@ -1649,6 +1694,31 @@ msgstr "Пропуск включения зависимостей."
 #: NEEDS WORK
 msgid "Dependencies skipped"
 msgstr "Зависимости пропущены"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 469
+#: NEEDS WORK
+msgid "Installing Papirus icon theme for GTK application"
+msgstr "Установка темы значков Papirus для GTK-приложения"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 472
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme for GTK application"
+msgstr "Установка темы значков Adwaita для GTK-приложения"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 479
+#: NEEDS WORK
+msgid "Installing Papirus icon theme"
+msgstr "Установка темы значков Papirus"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 482
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme"
+msgstr "Установка темы значков Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 485
+#: NEEDS WORK
+msgid "Icon theme inclusion disabled by user"
+msgstr "Включение темы значков отключено пользователем"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 351
 #: NEEDS WORK
@@ -2151,6 +2221,36 @@ msgstr "Предупреждение: Не удалось скопировать
 #: NEEDS WORK
 msgid "Symbolic icons copied successfully"
 msgstr "Символические значки успешно скопированы"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "Копирование символических иконок Papirus..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Иконки символов Papirus уже присутствуют"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Копирование символических иконок Papirus и Papirus-Dark..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "Выполнение скрипта копирования иконок Papirus..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Предупреждение: Иконки Papirus недоступны, используется Adwaita."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Иконки символов Papirus успешно скопированы"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK

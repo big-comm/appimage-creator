@@ -302,8 +302,8 @@ msgstr "Kľúč: {}"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 21
 #: NEEDS WORK
-msgid "Application Info"
-msgstr "Informácie o aplikácii"
+msgid "App"
+msgstr "Aplikácia"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 39
 #: NEEDS WORK
@@ -402,10 +402,10 @@ msgstr "Vyžaduje terminál"
 msgid "Check if your application needs to run in a terminal"
 msgstr "Skontrolujte, či vaša aplikácia potrebuje bežať v termináli"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 132
+# File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
-msgid "Files & Resources"
-msgstr "Súbory a zdroje"
+msgid "Files"
+msgstr "Súbory"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 153
 #: NEEDS WORK
@@ -613,10 +613,10 @@ msgstr "Pozrite si prehľad základnej štruktúry"
 msgid "View Full Structure"
 msgstr "Zobraziť celú štruktúru"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 297
+# File: usr/share/appimage-creator/ui/pages.py, line: 300
 #: NEEDS WORK
-msgid "Build Settings"
-msgstr "Nastavenia zostavenia"
+msgid "Build"
+msgstr "Stavať"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 314
 #: NEEDS WORK
@@ -683,6 +683,46 @@ msgstr "Závislosti systému"
 msgid "Select which system libraries to bundle"
 msgstr "Vyberte, ktoré systémové knižnice zahrnúť"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+#: NEEDS WORK
+msgid "Include Icon Theme"
+msgstr "Zahrnúť tému ikon"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 372
+#: NEEDS WORK
+msgid "Bundle icons for consistent UI across systems"
+msgstr "Zlúčiť ikony pre konzistentné používateľské rozhranie naprieč systémami"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 378
+#: NEEDS WORK
+msgid "Icon Theme Selection"
+msgstr "Výber témy ikony"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 379
+#: NEEDS WORK
+msgid "Choose which icon theme to bundle"
+msgstr "Vyberte, ktorú tému ikon chcete zabaliť"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 385
+#: NEEDS WORK
+msgid "Papirus"
+msgstr "Papirus"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
+msgstr "Moderné, farebné ikony (~6.4MB) - Predvolené pre GTK aplikácie"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 394
+#: NEEDS WORK
+msgid "Adwaita"
+msgstr "Adwaita"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 395
+#: NEEDS WORK
+msgid "GNOME default icons (~2.6MB)"
+msgstr "Predvolené ikony GNOME (~2,6 MB)"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -721,6 +761,11 @@ msgstr "Vytvoriť AppImage s nakonfigurovanými nastaveniami"
 #: NEEDS WORK
 msgid "Create AppImage"
 msgstr "Vytvoriť AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+#: NEEDS WORK
+msgid "Environment"
+msgstr "Prostredie"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 404
 #: NEEDS WORK
@@ -1216,8 +1261,8 @@ msgstr "Upozornenie: Nepodarilo sa načítať vlastný CSS: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
-msgstr "Najnovší Ubuntu s plnou podporou GTK4/VTE 3.91 pre moderné aplikácie."
+msgid "Optimized for Linux Mint users - based on Ubuntu 24.04 LTS."
+msgstr "Optimalizované pre používateľov Linux Mint - založené na Ubuntu 24.04 LTS."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
@@ -1647,6 +1692,31 @@ msgstr "Preskočenie zahrnutia závislostí."
 #: NEEDS WORK
 msgid "Dependencies skipped"
 msgstr "Závislosti preskočené"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 469
+#: NEEDS WORK
+msgid "Installing Papirus icon theme for GTK application"
+msgstr "Inštalácia ikónovej témy Papirus pre aplikáciu GTK"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 472
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme for GTK application"
+msgstr "Inštalácia ikónovej témy Adwaita pre aplikáciu GTK"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 479
+#: NEEDS WORK
+msgid "Installing Papirus icon theme"
+msgstr "Inštalácia ikónovej témy Papirus"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 482
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme"
+msgstr "Inštalácia ikónovej témy Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 485
+#: NEEDS WORK
+msgid "Icon theme inclusion disabled by user"
+msgstr "Zahrnutie témy ikony je používateľom zakázané"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 351
 #: NEEDS WORK
@@ -2149,6 +2219,36 @@ msgstr "Upozornenie: Nepodarilo sa skopírovať symbolické ikony"
 #: NEEDS WORK
 msgid "Symbolic icons copied successfully"
 msgstr "Symbolické ikony boli úspešne skopírované"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "Kopírovanie symbolických ikon Papirus..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Ikony Papirus symbolov sú už prítomné"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Kopírovanie symbolických ikon Papirus a Papirus-Dark..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "Spúšťam skript na kopírovanie ikon Papirus..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Upozornenie: Ikony Papirus nie sú k dispozícii, prechádza sa na Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Symbolické ikony Papirus boli úspešne skopírované."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK

@@ -302,8 +302,8 @@ msgstr "{}: {}"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 21
 #: NEEDS WORK
-msgid "Application Info"
-msgstr "Forritaupplýsingar"
+msgid "App"
+msgstr "Forrit"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 39
 #: NEEDS WORK
@@ -402,10 +402,10 @@ msgstr "Krafar Terminal"
 msgid "Check if your application needs to run in a terminal"
 msgstr "Athugaðu hvort forritið þitt þurfi að keyra í terminal."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 132
+# File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
-msgid "Files & Resources"
-msgstr "Skrár og auðlindir"
+msgid "Files"
+msgstr "Skrár"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 153
 #: NEEDS WORK
@@ -613,10 +613,10 @@ msgstr "Sjáðu grunnuppbyggingu yfirlit"
 msgid "View Full Structure"
 msgstr "Skoða Heildaruppbyggingu"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 297
+# File: usr/share/appimage-creator/ui/pages.py, line: 300
 #: NEEDS WORK
-msgid "Build Settings"
-msgstr "Byggingarstillingar"
+msgid "Build"
+msgstr "Byggja"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 314
 #: NEEDS WORK
@@ -683,6 +683,46 @@ msgstr "Kerfissur kerfi"
 msgid "Select which system libraries to bundle"
 msgstr "Veldu hvaða kerfisbókasöfn á að pakka saman"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+#: NEEDS WORK
+msgid "Include Icon Theme"
+msgstr "Inni táknasnið"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 372
+#: NEEDS WORK
+msgid "Bundle icons for consistent UI across systems"
+msgstr "Pakkaðu tákn fyrir samræmda notendaviðmót um kerfi."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 378
+#: NEEDS WORK
+msgid "Icon Theme Selection"
+msgstr "Valmynd fyrir táknasnið"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 379
+#: NEEDS WORK
+msgid "Choose which icon theme to bundle"
+msgstr "Veldu hvaða táknþema á að pakka saman"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 385
+#: NEEDS WORK
+msgid "Papirus"
+msgstr "Papirus"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
+msgstr "Nútímaleg, litríkar tákn (~6.4MB) - Sjálfgefið fyrir GTK forrit"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 394
+#: NEEDS WORK
+msgid "Adwaita"
+msgstr "Adwaita"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 395
+#: NEEDS WORK
+msgid "GNOME default icons (~2.6MB)"
+msgstr "GNOME sjálfgefnar tákn (~2.6MB)"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -721,6 +761,11 @@ msgstr "Búa til AppImage með stilltum stillingum"
 #: NEEDS WORK
 msgid "Create AppImage"
 msgstr "Búa til AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+#: NEEDS WORK
+msgid "Environment"
+msgstr "Umhverfi"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 404
 #: NEEDS WORK
@@ -1218,8 +1263,8 @@ msgstr "Aðvörun: Gat ekki hlaðið sérsniðnu CSS: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
-msgstr "Nýjasta Ubuntu með fullri GTK4/VTE 3.91 stuðningi fyrir nútíma forrit."
+msgid "Optimized for Linux Mint users - based on Ubuntu 24.04 LTS."
+msgstr "Hagrætt fyrir Linux Mint notendur - byggt á Ubuntu 24.04 LTS."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
@@ -1649,6 +1694,31 @@ msgstr "Sleppa innifaldsþáttum."
 #: NEEDS WORK
 msgid "Dependencies skipped"
 msgstr "Fyrirkomulag sleppt"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 469
+#: NEEDS WORK
+msgid "Installing Papirus icon theme for GTK application"
+msgstr "Installing Papirus táknasnið fyrir GTK forrit"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 472
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme for GTK application"
+msgstr "Að setja upp Adwaita táknasnið fyrir GTK forrit"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 479
+#: NEEDS WORK
+msgid "Installing Papirus icon theme"
+msgstr "Installing Papirus táknasnið"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 482
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme"
+msgstr "Installing Adwaita táknasnið."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 485
+#: NEEDS WORK
+msgid "Icon theme inclusion disabled by user"
+msgstr "Inni íkonasniðs hefur verið slökkt af notanda"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 351
 #: NEEDS WORK
@@ -2151,6 +2221,36 @@ msgstr "Aðvörun: Mistókst að afrita táknrænar myndir"
 #: NEEDS WORK
 msgid "Symbolic icons copied successfully"
 msgstr "Táknmyndir afritaðar með árangri"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "Afritun Papirus táknmynda tákna..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Papirus táknræn tákn þegar til staðar"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Afritun Papirus og Papirus-Dark táknsniðs tákna..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "Að keyra Papirus tákn afritunarskrá..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Aðvörun: Papirus tákn ekki tiltæk, fellur aftur á Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Papirus táknmyndir afritaðar með árangri"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK

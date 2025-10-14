@@ -302,8 +302,8 @@ msgstr "Anahtar: {}"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 21
 #: NEEDS WORK
-msgid "Application Info"
-msgstr "Uygulama Bilgisi"
+msgid "App"
+msgstr "Uygulama"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 39
 #: NEEDS WORK
@@ -402,10 +402,10 @@ msgstr "Terminal Gerektirir"
 msgid "Check if your application needs to run in a terminal"
 msgstr "Uygulamanızın bir terminalde çalışması gerekip gerekmediğini kontrol edin."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 132
+# File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
-msgid "Files & Resources"
-msgstr "Dosyalar ve Kaynaklar"
+msgid "Files"
+msgstr "Dosyalar"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 153
 #: NEEDS WORK
@@ -613,10 +613,10 @@ msgstr "Temel yapı genel görünümünü görüntüle"
 msgid "View Full Structure"
 msgstr "Tam Yapıyı Görüntüle"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 297
+# File: usr/share/appimage-creator/ui/pages.py, line: 300
 #: NEEDS WORK
-msgid "Build Settings"
-msgstr "Derleme Ayarları"
+msgid "Build"
+msgstr "Derleme"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 314
 #: NEEDS WORK
@@ -683,6 +683,46 @@ msgstr "Sistem Bağımlılıkları"
 msgid "Select which system libraries to bundle"
 msgstr "Hangi sistem kütüphanelerinin paketleneceğini seçin"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+#: NEEDS WORK
+msgid "Include Icon Theme"
+msgstr "Simge Temasını Dahil Et"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 372
+#: NEEDS WORK
+msgid "Bundle icons for consistent UI across systems"
+msgstr "Sistemler arasında tutarlı bir kullanıcı arayüzü için simgeleri paketle"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 378
+#: NEEDS WORK
+msgid "Icon Theme Selection"
+msgstr "Simge Teması Seçimi"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 379
+#: NEEDS WORK
+msgid "Choose which icon theme to bundle"
+msgstr "Hangi simge temasını paketleyeceğinizi seçin"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 385
+#: NEEDS WORK
+msgid "Papirus"
+msgstr "Papirus"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
+msgstr "Modern, renkli simgeler (~6.4MB) - GTK uygulamaları için varsayılan"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 394
+#: NEEDS WORK
+msgid "Adwaita"
+msgstr "Adwaita"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 395
+#: NEEDS WORK
+msgid "GNOME default icons (~2.6MB)"
+msgstr "GNOME varsayılan simgeleri (~2.6MB)"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -721,6 +761,11 @@ msgstr "Yapılandırılmış ayarlarla AppImage oluşturun"
 #: NEEDS WORK
 msgid "Create AppImage"
 msgstr "AppImage Oluştur"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+#: NEEDS WORK
+msgid "Environment"
+msgstr "Ortam"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 404
 #: NEEDS WORK
@@ -1218,8 +1263,8 @@ msgstr "Uyarı: Özel CSS yüklenemedi: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
-msgstr "En son Ubuntu, modern uygulamalar için tam GTK4/VTE 3.91 desteği ile."
+msgid "Optimized for Linux Mint users - based on Ubuntu 24.04 LTS."
+msgstr "Linux Mint kullanıcıları için optimize edilmiştir - Ubuntu 24.04 LTS tabanlı."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
@@ -1713,6 +1758,31 @@ msgstr "Bağımlılık dahil etmeyi atlıyorum."
 #: NEEDS WORK
 msgid "Dependencies skipped"
 msgstr "Bağımlılıklar atlandı"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 469
+#: NEEDS WORK
+msgid "Installing Papirus icon theme for GTK application"
+msgstr "GTK uygulaması için Papirus simge temasını yükleme"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 472
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme for GTK application"
+msgstr "GTK uygulaması için Adwaita simge temasını yükleme"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 479
+#: NEEDS WORK
+msgid "Installing Papirus icon theme"
+msgstr "Papirus simge temasını yüklüyor"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 482
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme"
+msgstr "Adwaita simge temasını yükleme"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 485
+#: NEEDS WORK
+msgid "Icon theme inclusion disabled by user"
+msgstr "Kullanıcı tarafından simge teması dahil edilmesi devre dışı bırakıldı."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 351
 #: NEEDS WORK
@@ -2471,6 +2541,36 @@ msgstr "Uyarı: Sembolik simgeler kopyalanamadı"
 #: NEEDS WORK
 msgid "Symbolic icons copied successfully"
 msgstr "Sembolik simgeler başarıyla kopyalandı"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "Papirus sembolik simgeleri kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Papirus sembolik simgeleri zaten mevcut"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Papirus ve Papirus-Dark sembolik simgeleri kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "Papirus simgelerini kopyalama betiği çalıştırılıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Uyarı: Papirus simgeleri mevcut değil, Adwaita'ya geçiliyor."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Papirus sembolik simgeleri başarıyla kopyalandı"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK

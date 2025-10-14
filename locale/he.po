@@ -302,8 +302,8 @@ msgstr "מפתח: {}"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 21
 #: NEEDS WORK
-msgid "Application Info"
-msgstr "מידע על היישום"
+msgid "App"
+msgstr "אפליקציה"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 39
 #: NEEDS WORK
@@ -402,10 +402,10 @@ msgstr "דרוש טרמינל"
 msgid "Check if your application needs to run in a terminal"
 msgstr "בדוק אם היישום שלך צריך לפעול במסוף"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 132
+# File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
-msgid "Files & Resources"
-msgstr "קבצים ומשאבים"
+msgid "Files"
+msgstr "קבצים"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 153
 #: NEEDS WORK
@@ -613,10 +613,10 @@ msgstr "ראה סקירה כללית של המבנה הבסיסי"
 msgid "View Full Structure"
 msgstr "צפה במבנה המלא"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 297
+# File: usr/share/appimage-creator/ui/pages.py, line: 300
 #: NEEDS WORK
-msgid "Build Settings"
-msgstr "הגדרות בנייה"
+msgid "Build"
+msgstr "בנייה"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 314
 #: NEEDS WORK
@@ -683,6 +683,46 @@ msgstr "תלויות מערכת"
 msgid "Select which system libraries to bundle"
 msgstr "בחר אילו ספריות מערכת לכלול"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+#: NEEDS WORK
+msgid "Include Icon Theme"
+msgstr "כלול נושא אייקונים"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 372
+#: NEEDS WORK
+msgid "Bundle icons for consistent UI across systems"
+msgstr "אייקונים של חבילה עבור ממשק משתמש עקבי בין מערכות"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 378
+#: NEEDS WORK
+msgid "Icon Theme Selection"
+msgstr "בחירת נושא אייקונים"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 379
+#: NEEDS WORK
+msgid "Choose which icon theme to bundle"
+msgstr "בחר איזו ערכת סמלים לכלול"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 385
+#: NEEDS WORK
+msgid "Papirus"
+msgstr "פאפירוס"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
+msgstr "אייקונים מודרניים וצבעוניים (~6.4MB) - ברירת מחדל עבור אפליקציות GTK"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 394
+#: NEEDS WORK
+msgid "Adwaita"
+msgstr "אדווייטה"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 395
+#: NEEDS WORK
+msgid "GNOME default icons (~2.6MB)"
+msgstr "אייקונים ברירת מחדל של GNOME (~2.6MB)"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -721,6 +761,11 @@ msgstr "צור AppImage עם הגדרות מוגדרות"
 #: NEEDS WORK
 msgid "Create AppImage"
 msgstr "צור אפליקציית AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+#: NEEDS WORK
+msgid "Environment"
+msgstr "סביבה"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 404
 #: NEEDS WORK
@@ -1218,8 +1263,8 @@ msgstr "אזהרה: לא ניתן לטעון CSS מותאם אישית: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Latest Ubuntu with full GTK4/VTE 3.91 support for modern apps."
-msgstr "אובונטו האחרון עם תמיכה מלאה ב-GTK4/VTE 3.91 עבור אפליקציות מודרניות."
+msgid "Optimized for Linux Mint users - based on Ubuntu 24.04 LTS."
+msgstr "מוטבע למשתמשי לינוקס מינט - מבוסס על אובונטו 24.04 LTS."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
@@ -1649,6 +1694,31 @@ msgstr "דלג על הכללת תלות."
 #: NEEDS WORK
 msgid "Dependencies skipped"
 msgstr "תלויות הושמטו"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 469
+#: NEEDS WORK
+msgid "Installing Papirus icon theme for GTK application"
+msgstr "מתקין את ערכת האייקונים Papirus עבור יישום GTK"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 472
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme for GTK application"
+msgstr "מתקין את ערכת האייקונים Adwaita עבור יישום GTK"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 479
+#: NEEDS WORK
+msgid "Installing Papirus icon theme"
+msgstr "מתקין את ערכת האייקונים פאפירוס"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 482
+#: NEEDS WORK
+msgid "Installing Adwaita icon theme"
+msgstr "מתקין ערכת סמלים Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 485
+#: NEEDS WORK
+msgid "Icon theme inclusion disabled by user"
+msgstr "הכללת נושא האייקונים מושבתה על ידי המשתמש"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 351
 #: NEEDS WORK
@@ -2151,6 +2221,36 @@ msgstr "אזהרה: כישלון בהעתקת סמלים סימבוליים"
 #: NEEDS WORK
 msgid "Symbolic icons copied successfully"
 msgstr "אייקונים סימבוליים הועתקו בהצלחה"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "מעתיק סמלים סימבוליים של פאפירוס..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "אייקונים סימבוליים של פאפירוס כבר קיימים"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "מעתיק סמלים של פאפירוס ופאפירוס-דארק..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "מבצע סקריפט העתקת אייקוני פאפירוס..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "אזהרה: אייקוני פאפירוס אינם זמינים, חוזרים לאדווייטה"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "אייקונים סימבוליים של פאפירוס הועתקו בהצלחה"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1309
 #: NEEDS WORK
