@@ -41,6 +41,13 @@ SYSTEM_DEPENDENCIES = {
         'detection_keyword': 'gi',
         'essential': True
     },
+    'jpeg': {
+        'name': 'JPEG Library',
+        'libs': ['libjpeg.so*', 'libjpeg.so.8*', 'libjpeg.so.62*'],
+        'typelibs': [],
+        'detection_keyword': 'gtk4',
+        'essential': False
+    },
     'gtk3': {
         'name': 'GTK3',
         'libs': ['libgtk-3.so*', 'libcairo.so*', 'libcairo-gobject.so*'],

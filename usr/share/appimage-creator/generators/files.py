@@ -103,26 +103,6 @@ def create_apprun_script(app_info):
 
     py_version = app_info.get('python_version', f"{sys.version_info.major}.{sys.version_info.minor}")
     
-    # Determine icon theme based on user choice
-    icon_theme_choice = app_info.get('icon_theme_choice', 'papirus')
-    include_icon_theme = app_info.get('include_icon_theme', True)
-    
-    # Build GTK_THEME export based on user selection
-    gtk_theme_export = ""
-    if include_icon_theme:
-        if icon_theme_choice == 'papirus':
-            gtk_theme_export = '''
-# Force Papirus icon theme from AppImage
-if [ -d "${HERE}/usr/share/icons/Papirus" ]; then
-    export GTK_THEME="Papirus:dark"
-fi'''
-        elif icon_theme_choice == 'adwaita':
-            gtk_theme_export = '''
-# Force Adwaita icon theme from AppImage (if bundled)
-if [ -d "${HERE}/usr/share/icons/Adwaita" ]; then
-    export GTK_THEME="Adwaita"
-fi'''
-    
     return f'''#!/bin/bash
 # AppRun for {app_info['name']}
 
@@ -130,7 +110,18 @@ HERE="$(dirname "$(readlink -f "${{0}}")")"
 
 # Setup standard AppImage environment variables
 export PATH="${{HERE}}/usr/bin:${{PATH}}"
-export LD_LIBRARY_PATH="${{HERE}}/usr/lib:${{LD_LIBRARY_PATH}}"
+
+# Smart library conflict resolution
+# Check if system has libjpeg.so.8 - if yes, don't use AppImage's libs at all
+# to avoid conflicts between system libtiff and AppImage libjpeg
+if ldconfig -p 2>/dev/null | grep -q "libjpeg.so.8"; then
+    # System has full graphics stack - use it instead of AppImage's
+    # Only use AppImage libs for Python-specific dependencies
+    export LD_LIBRARY_PATH="${{LD_LIBRARY_PATH}}"
+else
+    # System missing graphics libs - use AppImage's bundled versions
+    export LD_LIBRARY_PATH="${{HERE}}/usr/lib:${{LD_LIBRARY_PATH}}"
+fi
 
 # GObject Introspection typelibs
 export GI_TYPELIB_PATH="${{HERE}}/usr/lib/girepository-1.0:${{HERE}}/usr/lib/x86_64-linux-gnu/girepository-1.0:${{GI_TYPELIB_PATH}}"
@@ -140,7 +131,6 @@ export XDG_DATA_DIRS="${{HERE}}/usr/share:${{XDG_DATA_DIRS:-/usr/local/share:/us
 export GTK_PATH="${{HERE}}/usr/lib/gtk-4.0:${{HERE}}/usr/lib/gtk-3.0:${{GTK_PATH}}"
 export GTK_DATA_PREFIX="${{HERE}}/usr"
 export GTK_EXE_PREFIX="${{HERE}}/usr"
-{gtk_theme_export}
 
 # GSettings schemas (for icon theme settings)
 if [ -d "${{HERE}}/usr/share/glib-2.0/schemas" ]; then
