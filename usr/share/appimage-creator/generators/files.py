@@ -115,8 +115,16 @@ export LD_LIBRARY_PATH="${{HERE}}/usr/lib:${{LD_LIBRARY_PATH}}"
 # GObject Introspection typelibs
 export GI_TYPELIB_PATH="${{HERE}}/usr/lib/girepository-1.0:${{HERE}}/usr/lib/x86_64-linux-gnu/girepository-1.0:${{GI_TYPELIB_PATH}}"
 
-# Data directories (icons, themes)
-export XDG_DATA_DIRS="${{HERE}}/usr/share:${{XDG_DATA_DIRS}}"
+# GTK icon and theme paths - CRITICAL for bundled icon themes
+export XDG_DATA_DIRS="${{HERE}}/usr/share:${{XDG_DATA_DIRS:-/usr/local/share:/usr/share}}"
+export GTK_PATH="${{HERE}}/usr/lib/gtk-4.0:${{HERE}}/usr/lib/gtk-3.0:${{GTK_PATH}}"
+export GTK_DATA_PREFIX="${{HERE}}/usr"
+export GTK_EXE_PREFIX="${{HERE}}/usr"
+
+# GSettings schemas (for icon theme settings)
+if [ -d "${{HERE}}/usr/share/glib-2.0/schemas" ]; then
+    export GSETTINGS_SCHEMA_DIR="${{HERE}}/usr/share/glib-2.0/schemas:${{GSETTINGS_SCHEMA_DIR}}"
+fi
 
 # Setup localization
 export TEXTDOMAINDIR="${{HERE}}/usr/share/locale"

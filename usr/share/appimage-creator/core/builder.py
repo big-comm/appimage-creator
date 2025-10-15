@@ -1466,6 +1466,104 @@ echo "System PyGObject copied successfully"
         if result.returncode != 0:
             self.log(_("Warning: Failed to copy symbolic icons"))
         else:
+            # Create custom index.theme with ONLY symbolic directories for Adwaita
+            self.log(_("Creating custom index.theme for Adwaita symbolic icons..."))
+            
+            icons_dir = self.appdir_path / "usr" / "share" / "icons" / "Adwaita"
+            index_file = icons_dir / "index.theme"
+            
+            if icons_dir.exists():
+                custom_index = """[Icon Theme]
+Name=Adwaita
+Comment=Adwaita icon theme (symbolic only)
+Inherits=hicolor
+
+# Only symbolic directory included
+Directories=symbolic/actions,symbolic/apps,symbolic/categories,symbolic/devices,symbolic/emblems,symbolic/emotes,symbolic/legacy,symbolic/mimetypes,symbolic/places,symbolic/status,symbolic/ui
+
+[symbolic/actions]
+Context=Actions
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/apps]
+Context=Applications
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/categories]
+Context=Categories
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/devices]
+Context=Devices
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/emblems]
+Context=Emblems
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/emotes]
+Context=Emotes
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/legacy]
+Context=Legacy
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/mimetypes]
+Context=MimeTypes
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/places]
+Context=Places
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/status]
+Context=Status
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/ui]
+Context=UI
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+"""
+                
+                with open(index_file, 'w') as f:
+                    f.write(custom_index)
+                
+                self.log("Created custom index.theme for Adwaita")
+            
             self.log(_("Symbolic icons copied successfully"))
             
     def _copy_papirus_symbolic_icons(self):
@@ -1594,6 +1692,93 @@ echo "System PyGObject copied successfully"
             self.log(_("Warning: Papirus icons not available, falling back to Adwaita"))
             self._copy_symbolic_icons()
         else:
+            # Create custom index.theme with ONLY symbolic directories for Papirus
+            self.log(_("Creating custom index.theme for Papirus symbolic icons..."))
+            
+            for theme in ['Papirus', 'Papirus-Dark']:
+                theme_dir = icons_base_dir / theme
+                index_file = theme_dir / "index.theme"
+                
+                if theme_dir.exists():
+                    inherits = "breeze,hicolor" if theme == "Papirus" else "breeze-dark,hicolor"
+                    
+                    custom_index = f"""[Icon Theme]
+Name={theme}
+Comment={theme} icon theme (symbolic only)
+Inherits={inherits}
+
+# Only symbolic directories included
+Directories=symbolic/actions,symbolic/categories,symbolic/devices,symbolic/emblems,symbolic/emotes,symbolic/mimetypes,symbolic/places,symbolic/status,symbolic/up-to-32
+
+[symbolic/actions]
+Context=Actions
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/categories]
+Context=Categories
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/devices]
+Context=Devices
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/emblems]
+Context=Emblems
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/emotes]
+Context=Emotes
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/mimetypes]
+Context=MimeTypes
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/places]
+Context=Places
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/status]
+Context=Status
+Size=16
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[symbolic/up-to-32]
+Context=Status
+Size=16
+MinSize=16
+MaxSize=32
+Type=Scalable
+"""
+                    
+                    with open(index_file, 'w') as f:
+                        f.write(custom_index)
+                    
+                    self.log(f"Created custom index.theme for {theme}")
+            
             self.log(_("Papirus symbolic icons copied successfully"))
                 
     def _create_icon_symlinks(self):
