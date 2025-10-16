@@ -21,7 +21,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('Optimized for Linux Mint users - based on Ubuntu 24.04 LTS.'),
         'build_deps': ['python3', 'python3-venv', 'python3-dev', 'python3-gi', 'build-essential', 
                     'pkg-config', 'libcairo2-dev', 'libgirepository1.0-dev', 'gir1.2-glib-2.0',
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'vainfo', 'gstreamer1.0-gtk3'],
         'package_manager': 'apt',
     },
     {
@@ -31,7 +31,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('Latest Ubuntu LTS with newest packages.'),
         'build_deps': ['python3', 'python3-venv', 'python3-dev', 'python3-gi', 'build-essential', 
                     'pkg-config', 'libcairo2-dev', 'libgirepository1.0-dev', 'gir1.2-glib-2.0',
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'vainfo', 'gstreamer1.0-gtk3'],
         'package_manager': 'apt',
     },
     {
@@ -41,7 +41,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('Good balance of compatibility and modern packages.'),
         'build_deps': ['python3', 'python3-venv', 'python3-dev', 'python3-gi', 'build-essential', 
                     'pkg-config', 'libcairo2-dev', 'libgirepository1.0-dev', 'gir1.2-glib-2.0',
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'vainfo', 'gstreamer1.0-gtk3'],
         'package_manager': 'apt',
     },
     {
@@ -51,7 +51,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('Excellent compatibility for older systems.'),
         'build_deps': ['python3', 'python3-venv', 'python3-dev', 'build-essential', 
                     'pkg-config', 'libcairo2-dev', 'libgirepository1.0-dev', 
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'vainfo', 'gstreamer1.0-gtk3'],
         'package_manager': 'apt',
     },
     
@@ -63,7 +63,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('Latest Debian stable - very reliable.'),
         'build_deps': ['python3', 'python3-venv', 'python3-dev', 'build-essential', 
                     'pkg-config', 'libcairo2-dev', 'libgirepository1.0-dev', 
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'vainfo', 'gstreamer1.0-gtk3'],
         'package_manager': 'apt',
     },
     {
@@ -73,7 +73,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('Previous Debian stable - proven stability.'),
         'build_deps': ['python3', 'python3-venv', 'python3-dev', 'build-essential', 
                     'pkg-config', 'libcairo2-dev', 'libgirepository1.0-dev', 
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'vainfo', 'gstreamer1.0-gtk3'],
         'package_manager': 'apt',
     },
     {
@@ -83,7 +83,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('Older Debian for maximum compatibility.'),
         'build_deps': ['python3', 'python3-venv', 'python3-dev', 'build-essential', 
                     'pkg-config', 'libcairo2-dev', 'libgirepository1.0-dev', 
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'vainfo', 'gstreamer1.0-gtk3'],
         'package_manager': 'apt',
     },
     
@@ -95,7 +95,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('Latest Fedora with cutting-edge packages and GTK4/VTE support.'),
         'build_deps': ['python3', 'python3-devel', 'gcc', 'gcc-c++', 'make', 
                     'pkg-config', 'cairo-devel', 'gobject-introspection-devel', 
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'libva-utils', 'gstreamer1.0-plugins-good-gtk'],
         'package_manager': 'dnf',
     },
     {
@@ -105,7 +105,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('Stable Fedora release.'),
         'build_deps': ['python3', 'python3-devel', 'gcc', 'gcc-c++', 'make', 
                     'pkg-config', 'cairo-devel', 'gobject-introspection-devel', 
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'libva-utils', 'gstreamer1.0-plugins-good-gtk'],
         'package_manager': 'dnf',
     },
     {
@@ -115,7 +115,7 @@ SUPPORTED_ENVIRONMENTS = [
         'description': _('RHEL 9 compatible - enterprise-grade stability.'),
         'build_deps': ['epel-release', 'python3', 'python3-devel', 'gcc', 'gcc-c++', 'make', 
                     'pkg-config', 'cairo-devel', 'gobject-introspection-devel', 
-                    'git', 'binutils', 'file', 'papirus-icon-theme'],
+                    'git', 'binutils', 'file', 'papirus-icon-theme', 'libva-utils', 'gstreamer1.0-plugins-good-gtk'],
         'package_manager': 'dnf',
     },
     # Example of an older, highly compatible environment (might need different deps)

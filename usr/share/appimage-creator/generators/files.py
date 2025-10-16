@@ -108,9 +108,6 @@ def create_apprun_script(app_info):
 
 HERE="$(dirname "$(readlink -f "${{0}}")")"
 
-# Setup standard AppImage environment variables
-export PATH="${{HERE}}/usr/bin:${{PATH}}"
-
 # Set up the primary library path, always prioritizing bundled libraries
 # for essential components like libvte, libadwaita, etc.
 export LD_LIBRARY_PATH="${{HERE}}/usr/lib:${{LD_LIBRARY_PATH}}"
@@ -122,8 +119,18 @@ if ! ldconfig -p 2>/dev/null | grep -q "libjpeg.so.8"; then
     export LD_LIBRARY_PATH="${{HERE}}/usr/lib-fallback:${{LD_LIBRARY_PATH}}"
 fi
 
+# Construct the PATH environment variable with correct priority.
+# 1. Python venv bin (if it exists)
+# 2. AppImage's main usr/bin (for tools like vainfo)
+# 3. The original system PATH
+APPIMAGE_BIN_PATH="${{HERE}}/usr/bin"
+
 # GObject Introspection typelibs
 export GI_TYPELIB_PATH="${{HERE}}/usr/lib/girepository-1.0:${{HERE}}/usr/lib/x86_64-linux-gnu/girepository-1.0:${{GI_TYPELIB_PATH}}"
+
+# GStreamer plugin path
+export GST_PLUGIN_PATH="${{HERE}}/usr/lib/gstreamer-1.0:${{GST_PLUGIN_PATH}}"
+export GST_PLUGIN_SYSTEM_PATH="${{HERE}}/usr/lib/gstreamer-1.0"
 
 # GTK icon and theme paths - CRITICAL for bundled icon themes
 export XDG_DATA_DIRS="${{HERE}}/usr/share:${{XDG_DATA_DIRS:-/usr/local/share:/usr/share}}"
@@ -143,8 +150,13 @@ export TEXTDOMAINDIR="${{HERE}}/usr/share/locale"
 if [ -d "${{HERE}}/usr/python/venv" ]; then
     export PYTHONHOME="${{HERE}}/usr/python/venv"
     export PYTHONPATH="${{HERE}}/usr/python/venv/lib/python{py_version}/site-packages"
-    export PATH="${{HERE}}/usr/python/venv/bin:${{PATH}}"
+
+    # Prepend the venv bin path to our custom path
+    APPIMAGE_BIN_PATH="${{HERE}}/usr/python/venv/bin:${{APPIMAGE_BIN_PATH}}"
 fi
+
+# Export the final, correctly ordered PATH
+export PATH="${{APPIMAGE_BIN_PATH}}:${{PATH}}"
 
 # Execute the target application
 {exec_line}

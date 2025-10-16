@@ -94,7 +94,25 @@ SYSTEM_DEPENDENCIES = {
         'typelibs': ['Secret-1.typelib'],
         'detection_keyword': 'libsecret',
         'essential': False
+    },
+    'gstreamer-gtk': {
+        'name': 'GStreamer GTK Sink',
+        'libs': ['libgstgtk.so*'],
+        'typelibs': ['GstGtk-1.0.typelib'],
+        'detection_keyword': 'gstreamer-gtk',
+        'essential': False
     }
+}
+
+# Master dictionary for system binaries to be detected and bundled
+SYSTEM_BINARIES = {
+    'vainfo': {
+        'name': 'VA-API Info Tool',
+        'binary_name': 'vainfo',
+        'detection_keyword': 'vainfo',
+        'essential': False
+    },
+    # Add other binaries here in the future, e.g., 'vdpauinfo'
 }
 
 class AppImageBuilder:
@@ -461,6 +479,9 @@ class AppImageBuilder:
         
         # GObject Introspection typelibs (for PyGObject apps)
         self._copy_typelibs()
+        
+        # Copy only essential GStreamer plugins
+        self._copy_gstreamer_plugins()
         
         # Icon theme handling based on user configuration
         include_icon_theme = self.app_info.get('include_icon_theme', True)
@@ -990,6 +1011,13 @@ echo "System PyGObject copied successfully"
             'qt6': [
                 r"from PyQt6",
                 r"import PyQt6"
+            ],
+            'gstreamer-gtk': [
+                # Detects modern GStreamer GTK4 integration via gtk4paintablesink
+                # as well as the older GstGtk import.
+                r"gtk4paintablesink",
+                r"from gi\.repository import GstGtk",
+                r"gi\.require_version\(['\"]GstGtk['\"],"
             ]
         }
         
@@ -1127,21 +1155,20 @@ echo "System PyGObject copied successfully"
         else:
             install_cmd = ["sudo", "dnf", "install", "-y"] + packages_needed
         
+        self.log(_("Running install command: {}").format(' '.join(install_cmd)))
         result = self._run_command(install_cmd, timeout=300)
         
         if result.returncode == 0:
-            self.log(_("Successfully installed GUI dependencies"))
+            self.log(_("Successfully installed GUI dependencies in container."))
         else:
-            self.log(_("Warning: Some packages may have failed to install"))
-            # Try one by one
-            for pkg in packages_needed:
-                if package_manager == 'apt':
-                    result = self._run_command(["sudo", "apt-get", "install", "-y", pkg], timeout=60)
-                else:
-                    result = self._run_command(["sudo", "dnf", "install", "-y", pkg], timeout=60)
-                
-                if result.returncode == 0:
-                    self.log(_("  Installed: {}").format(pkg))
+            # If the main install command fails, raise a clear error.
+            error_message = result.stderr or result.stdout or _("Unknown error from package manager.")
+            self.log(_("Error installing dependencies in container:"))
+            self.log(error_message)
+            raise RuntimeError(
+                _("Failed to install required build dependencies in the container: {pkgs}\n\n"
+                  "Error details:\n{err}").format(pkgs=', '.join(packages_needed), err=error_message)
+            )
 
     def _bundle_external_binaries(self):
         """Bundle external binaries (ffmpeg, etc) using linuxdeploy"""
@@ -1211,9 +1238,9 @@ echo "System PyGObject copied successfully"
                     cmd.extend(["--executable", str(dest)])
                     self.log(_("Will bundle: {}").format(binary))
             
-            # Skip if no binaries to bundle
+            # Skip if no binaries or plugins to bundle
             if len(cmd) <= 4:
-                self.log(_("No external binaries detected"))
+                self.log(_("No external binaries or plugins to process with linuxdeploy."))
                 return
             
             env = os.environ.copy()
@@ -1309,6 +1336,9 @@ echo "System PyGObject copied successfully"
             '/lib64',
             '/usr/lib',
             '/lib',
+            # GStreamer plugin paths
+            '/usr/lib/x86_64-linux-gnu/gstreamer-1.0',
+            '/usr/lib64/gstreamer-1.0',
         ]
 
         self.log(_("Generating script to copy libraries to {}...").format(dest_dir))
@@ -1423,6 +1453,139 @@ echo "System PyGObject copied successfully"
             self.log(_("Warning: Some typelibs may not have been copied"))
         else:
             self.log(_("Typelib copy complete"))
+            
+    def _copy_gstreamer_plugins(self):
+        """
+        Copy only essential GStreamer plugins based on detected usage.
+        This replaces the linuxdeploy plugin that copies everything.
+        """
+        # Check if GStreamer is being used
+        selected_deps = self.app_info.get('selected_dependencies', [])
+        if 'gstreamer-gtk' not in selected_deps:
+            return
+            
+        self.log(_("Copying essential GStreamer plugins..."))
+        
+        # Define plugin profiles
+        GSTREAMER_PLUGIN_PROFILES = {
+            'audio-preview': [
+                # Core elements
+                'libgstcoreelements.so',
+                'libgstautodetect.so',
+                'libgstvolume.so',
+                'libgstplayback.so',
+                'libgsttypefindfunctions.so',
+                # Audio decoders for preview
+                'libgstaudioparsers.so',
+                'libgstaudioconvert.so',
+                'libgstaudioresample.so',
+            ],
+            'video-playback': [
+                # Core elements
+                'libgstcoreelements.so',
+                'libgstautodetect.so',
+                'libgstplayback.so',
+                'libgsttypefindfunctions.so',
+                # Video elements
+                'libgstvideoconvert.so',
+                'libgstvideoscale.so',
+                'libgstvideorate.so',
+                'libgstvideofilter.so',
+                'libgstvideobalance.so',
+                # GTK4 sink
+                'libgstgtk4.so',
+                # Audio elements
+                'libgstaudioconvert.so',
+                'libgstaudioresample.so',
+                'libgstvolume.so',
+                # Container parsers
+                'libgstmatroska.so',
+                'libgstisomp4.so',
+                'libgstavi.so',
+                # Basic decoders
+                'libgstaudioparsers.so',
+                'libgstvideoparsersbad.so',
+            ]
+        }
+        
+        # Detect which profile to use based on app analysis
+        profile_to_use = 'audio-preview'  # default
+        
+        # Check if video elements are used
+        structure_analysis = self.app_info.get('structure_analysis', {})
+        if structure_analysis:
+            project_root = structure_analysis.get('project_root')
+            if project_root:
+                # Look for gtk4paintablesink usage
+                try:
+                    import subprocess
+                    result = subprocess.run(
+                        ['grep', '-r', 'gtk4paintablesink', project_root, '--include=*.py'],
+                        capture_output=True,
+                        text=True,
+                        timeout=5
+                    )
+                    if result.returncode == 0 and result.stdout:
+                        profile_to_use = 'video-playback'
+                        self.log(_("Detected video playback requirements"))
+                except:
+                    pass
+        
+        # Get plugins to copy
+        plugins_to_copy = GSTREAMER_PLUGIN_PROFILES.get(profile_to_use, [])
+        
+        # Create plugin directory
+        plugin_dir = self.appdir_path / "usr" / "lib" / "gstreamer-1.0"
+        plugin_dir.mkdir(parents=True, exist_ok=True)
+        
+        # System paths where plugins might be
+        system_plugin_paths = [
+            '/usr/lib/x86_64-linux-gnu/gstreamer-1.0',
+            '/usr/lib64/gstreamer-1.0',
+            '/usr/lib/gstreamer-1.0',
+        ]
+        
+        # Copy script
+        script_lines = [
+            "#!/bin/bash",
+            "set -e",
+            f"DEST_DIR='{plugin_dir}'",
+            "COPIED=0",
+            "",
+            f"echo 'Using GStreamer profile: {profile_to_use}'",
+            ""
+        ]
+        
+        for plugin in plugins_to_copy:
+            script_lines.append(f'# Searching for {plugin}')
+            for search_path in system_plugin_paths:
+                script_lines.append(f'if [ -f "{search_path}/{plugin}" ]; then')
+                script_lines.append(f'    cp -v "{search_path}/{plugin}" "$DEST_DIR/"')
+                script_lines.append('    COPIED=$((COPIED + 1))')
+                script_lines.append('    break')
+                script_lines.append('fi')
+            script_lines.append("")
+        
+        script_lines.append('echo "Copied $COPIED GStreamer plugins"')
+        script_lines.append(f'echo "Total size: $(du -sh "$DEST_DIR" | cut -f1)"')
+        
+        script_content = "\n".join(script_lines)
+        script_path = self.build_dir / "copy_gstreamer_plugins.sh"
+        
+        with open(script_path, "w") as f:
+            f.write(script_content)
+        make_executable(script_path)
+        
+        self.log(_("Copying GStreamer plugins..."))
+        result = self._run_command([str(script_path)])
+        
+        if result.stdout:
+            for line in result.stdout.splitlines():
+                self.log(f"[gst-plugins] {line}")
+                
+        # Set GST_PLUGIN_PATH in AppRun will be handled by existing AppRun template
+        
+        self.log(_("GStreamer plugin copying complete"))
             
     def _copy_symbolic_icons(self):
         """
@@ -1899,44 +2062,49 @@ Type=Scalable
             return False
 
     def _detect_binary_dependencies(self):
-        """Detect required system binaries by scanning project files"""
+        """Detect required system binaries by scanning project files using SYSTEM_BINARIES."""
         detected_binaries = set()
         
-        # Always include common utilities
-        common_bins = ['sh', 'bash']
-        detected_binaries.update(common_bins)
+        # Always include common shell utilities
+        detected_binaries.update(['sh', 'bash'])
+
+        # Determine search path for source files
+        source_path = None
+        structure_analysis = self.app_info.get('structure_analysis', {})
+        project_root = structure_analysis.get('project_root')
+        if project_root and Path(project_root).exists():
+            source_path = Path(project_root)
+        elif self.app_info.get('executable'):
+            source_path = Path(self.app_info['executable']).parent
+
+        if not source_path:
+            self.log(_("Warning: Could not determine source path for binary detection."))
+            return list(detected_binaries)
+
+        self.log(_("Scanning for binary dependencies in: {}").format(source_path))
         
-        # Scan shell scripts in usr/bin for external commands
-        bin_dir = self.appdir_path / "usr" / "bin"
-        if bin_dir.exists():
-            for script_file in bin_dir.glob("*"):
-                if script_file.is_file():
-                    try:
-                        with open(script_file, 'r', encoding='utf-8', errors='ignore') as f:
-                            content = f.read()
-                            
-                        # NOTE: We intentionally skip ffmpeg, mencoder, avconv
-                        # as they pull in too many conflicting libraries.
-                        # These should come from the system.
-                        
-                        # Add other tools if needed in the future
-                        
-                    except Exception:
-                        pass
-        
-        # Scan Python files for subprocess calls
-        share_dir = self.appdir_path / "usr" / "share"
-        if share_dir.exists():
-            for py_file in share_dir.rglob("*.py"):
-                try:
-                    with open(py_file, 'r', encoding='utf-8', errors='ignore') as f:
-                        content = f.read()
-                        
-                    # Add detection for other binaries here if needed
-                    # But NOT ffmpeg/mencoder/avconv
-                    
-                except Exception:
-                    pass
+        # Scan all relevant files (.py, .sh, scripts without extension)
+        files_to_scan = list(source_path.rglob("*.py")) + \
+                        list(source_path.rglob("*.sh"))
+
+        for item in source_path.rglob("*"):
+            if item.is_file() and not item.suffix and os.access(item, os.X_OK):
+                files_to_scan.append(item)
+
+        for file_path in set(files_to_scan):
+            try:
+                with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                
+                for key, info in SYSTEM_BINARIES.items():
+                    keyword = info['detection_keyword']
+                    if keyword in content:
+                        binary_name = info['binary_name']
+                        if binary_name not in detected_binaries:
+                            self.log(_("  Detected dependency on binary: {}").format(binary_name))
+                            detected_binaries.add(binary_name)
+            except Exception:
+                continue
         
         return list(detected_binaries)
     
@@ -2219,10 +2387,11 @@ Type=Scalable
             self.copy_application_files()
             if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
 
-            # Install native GUI dependencies in the container
+            # Install native GUI dependencies in the container and download plugins
             gui_deps = self._detect_gui_dependencies(self.app_info)
             if gui_deps:
                 self._ensure_native_dependencies(gui_deps)
+
             if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
 
             # Process the application icon
