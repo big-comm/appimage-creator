@@ -2034,21 +2034,40 @@ msgstr "Að uppfæra pakkalista..."
 msgid "Installing GUI libraries..."
 msgstr "Að setja upp GUI bókasöfn..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "Samhent GUI háðingar."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Viðvörun: Sumir pakkar gætu hafa ekki náð að setja upp."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Installd: {}"
+msgid "Running install command: {}"
+msgstr "Keyra að keyra uppsetningarskipun: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "Samhent GUI háð í ílátinu."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Óþekkt villa frá pakka stjórnanda."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Villa við að setja upp háð í ílát:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Ekki tókst að setja upp nauðsynlegar byggingarferlar í gáminum: {pkgs}\n"
+"\n"
+"Villudetails:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2082,10 +2101,10 @@ msgstr "Aðvörun: Engin .desktop skrá fannst, sleppa linuxdeploy"
 msgid "Will bundle: {}"
 msgstr "Mun bundla: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Engin ytri tvíburðir fundust ekki"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Engin ytri tvíburðir eða viðbætur til að vinna úr með linuxdeploy."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2129,21 +2148,23 @@ msgstr "Endurheimt upprunalega umbúðin: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Aðvörun: Binary bundling mistókst: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "Engin kerfissafn bókasöfn valin til að fela í sér."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "Afritun valinna kerfisbókasafna: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Afritun staðlaðra kerfisbókasafna: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Að búa til skriftu til að afrita kerfisbókasöfn..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Afritun á deilandi kerfisbókasöfnum í varasafn: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Að búa til skriftu til að afrita bókasöfn í {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2191,6 +2212,26 @@ msgstr "Aðvörun: Sum typelibs gætu ekki verið afritaðar"
 msgid "Typelib copy complete"
 msgstr "Typelib afritun lokið"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Afritun nauðsynlegra GStreamer viðbóta..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Grein kröfu um vídeóspilun"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "Að afrita GStreamer viðbætur..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer viðbót afritun lokið"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2216,6 +2257,11 @@ msgstr "Að keyra skrift til að afrita táknmyndir..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Aðvörun: Mistókst að afrita táknrænar myndir"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Búa til sérsniðið index.theme fyrir Adwaita táknmyndir..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2246,6 +2292,11 @@ msgstr "Að keyra Papirus tákn afritunarskrá..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Aðvörun: Papirus tákn ekki tiltæk, fellur aftur á Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Búin til sérsniðins index.theme fyrir Papirus táknmyndir..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2301,6 +2352,23 @@ msgstr "Sækja linuxdeploy"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Mistók að stilla linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Aðvörun: Gat ekki ákvarðað uppsprettustíg fyrir tvíundagreiningu."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Skoðun á tvítyngdum háðum í: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Greind á tvíund: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

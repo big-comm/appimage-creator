@@ -2036,21 +2036,40 @@ msgstr "Aggiornamento delle liste dei pacchetti..."
 msgid "Installing GUI libraries..."
 msgstr "Installazione delle librerie GUI..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "Dipendenze GUI installate con successo"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Attenzione: Alcuni pacchetti potrebbero non essere stati installati correttamente"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Installato: {}"
+msgid "Running install command: {}"
+msgstr "Esecuzione del comando di installazione: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "Dipendenze GUI installate con successo nel contenitore."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Errore sconosciuto dal gestore pacchetti."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Errore durante l'installazione delle dipendenze nel contenitore:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Impossibile installare le dipendenze di build richieste nel contenitore: {pkgs}\n"
+"\n"
+"Dettagli errore:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2084,10 +2103,10 @@ msgstr "Avviso: Nessun file .desktop trovato, salto linuxdeploy"
 msgid "Will bundle: {}"
 msgstr "Bundlerà: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Nessun binario esterno rilevato"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Nessun binario esterno o plugin da elaborare con linuxdeploy."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2131,21 +2150,23 @@ msgstr "Ripristinato il wrapper originale: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Avviso: Il raggruppamento binario è fallito: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "Nessuna libreria di sistema selezionata per l'inclusione."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "Copia delle librerie di sistema selezionate: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Copia delle librerie di sistema standard: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Generazione di uno script per copiare le librerie di sistema..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Copia delle librerie di sistema in conflitto nella directory di fallback: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Generazione dello script per copiare le librerie in {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2193,6 +2214,26 @@ msgstr "Attenzione: alcune librerie di tipi potrebbero non essere state copiate"
 msgid "Typelib copy complete"
 msgstr "Copia della typelib completata"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Copia di plugin GStreamer essenziali..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Requisiti di riproduzione video rilevati"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "Copiare i plugin GStreamer..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "Copia del plugin GStreamer completata"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2218,6 +2259,11 @@ msgstr "Esecuzione dello script di copia delle icone simboliche..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Avviso: Impossibile copiare le icone simboliche"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Creazione di un index.theme personalizzato per le icone simboliche Adwaita..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2248,6 +2294,11 @@ msgstr "Esecuzione dello script di copia delle icone Papirus..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Avviso: le icone Papirus non sono disponibili, ripristinando Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Creazione di un file index.theme personalizzato per le icone simboliche di Papirus..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2303,6 +2354,23 @@ msgstr "Scaricamento di linuxdeploy"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Impossibile configurare linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Avviso: Impossibile determinare il percorso sorgente per il rilevamento del binario."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Scansione delle dipendenze binarie in: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Dipendenza rilevata su binario: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

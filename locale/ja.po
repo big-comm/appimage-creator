@@ -2034,21 +2034,40 @@ msgstr "パッケージリストを更新中..."
 msgid "Installing GUI libraries..."
 msgstr "GUIライブラリをインストール中..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "GUI依存関係が正常にインストールされました"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "警告: 一部のパッケージのインストールに失敗した可能性があります"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "インストール済み: {}"
+msgid "Running install command: {}"
+msgstr "インストールコマンドを実行中: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "コンテナ内にGUI依存関係を正常にインストールしました。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "パッケージマネージャーからの不明なエラー。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "コンテナ内の依存関係のインストール中にエラーが発生しました："
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"コンテナ内で必要なビルド依存関係のインストールに失敗しました: {pkgs}\n"
+"\n"
+"エラーの詳細:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2082,10 +2101,10 @@ msgstr "警告: .desktopファイルが見つかりません、linuxdeployをス
 msgid "Will bundle: {}"
 msgstr "バンドルします: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "外部バイナリは検出されませんでした"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "外部バイナリやプラグインは、linuxdeployで処理できません。"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2129,21 +2148,23 @@ msgstr "元のラッパーを復元しました: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "警告: バイナリバンドルに失敗しました: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "システムライブラリは含めるために選択されていません。"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "選択したシステムライブラリをコピーしています: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "標準システムライブラリをコピーしています: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "システムライブラリをコピーするスクリプトを生成中..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "競合するシステムライブラリをフォールバックディレクトリにコピーしています: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "ライブラリを{}にコピーするスクリプトを生成中..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2191,6 +2212,26 @@ msgstr "警告: 一部のタイプライブラリがコピーされていない�
 msgid "Typelib copy complete"
 msgstr "タイプライブラリのコピーが完了しました"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "重要なGStreamerプラグインをコピーしています..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "検出されたビデオ再生要件"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "GStreamer プラグインをコピーしています..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamerプラグインのコピーが完了しました"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2216,6 +2257,11 @@ msgstr "シンボリックアイコンコピースクリプトを実行中..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "警告: シンボリックアイコンのコピーに失敗しました"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Adwaitaシンボリックアイコン用のカスタムindex.themeを作成中..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2246,6 +2292,11 @@ msgstr "Papirusアイコンコピースクリプトを実行中..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "警告: Papirus アイコンが利用できません。Adwaita にフォールバックします。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Papirusシンボリックアイコン用のカスタムindex.themeを作成中..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2301,6 +2352,23 @@ msgstr "linuxdeployをダウンロード中"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "linuxdeployのセットアップに失敗しました: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "警告: バイナリ検出のためのソースパスを特定できませんでした。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "バイナリ依存関係をスキャン中: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "バイナリの依存関係が検出されました: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

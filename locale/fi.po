@@ -2036,21 +2036,40 @@ msgstr "Pakettilistojen päivittäminen..."
 msgid "Installing GUI libraries..."
 msgstr "Asennetaan GUI-kirjastoja..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "GUI-riippuvuudet asennettu onnistuneesti"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Varoitus: Jotkin paketit saattavat olla epäonnistuneet asennuksessa"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Asennettu: {}"
+msgid "Running install command: {}"
+msgstr "Asennuskomennon suorittaminen: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "GUI-riippuvuudet asennettu onnistuneesti säilöön."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Tuntematon virhe pakettien hallinnasta."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Virhe asennettaessa riippuvuuksia säilöön:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Asennus epäonnistui, koska tarvittavia rakennusriippuvuuksia ei voitu asentaa säilöön: {pkgs}\n"
+"\n"
+"Virhe tiedot:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2084,10 +2103,10 @@ msgstr "Varoitus: .desktop-tiedostoa ei löytynyt, ohitetaan linuxdeploy"
 msgid "Will bundle: {}"
 msgstr "Kokoaa: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Ei ulkoisia binäärejä havaittu"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Ei ulkoisia binääreitä tai liitännäisiä käsiteltäväksi linuxdeployn kanssa."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2131,21 +2150,23 @@ msgstr "Palautettu alkuperäinen kääre: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Varoitus: Binaaripaketointi epäonnistui: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "Ei järjestelmäkirjastoja valittu mukaan."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "Kopioidaan valittuja järjestelmäkirjastoja: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Kopioidaan standardijärjestelmäkirjastoja: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Generoidaan skripti järjestelmäkirjastojen kopioimiseen..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Kopioidaan ristiriitaisia järjestelmäkirjastoja varahakemistoon: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Generoidaan skripti kirjastoiden kopioimiseen {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2193,6 +2214,26 @@ msgstr "Varoitus: Jotkin tyyppikirjastot eivät ehkä ole kopioitu."
 msgid "Typelib copy complete"
 msgstr "Typelib-kopiointi valmis"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Kopioidaan olennaisia GStreamer-laajennuksia..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Havaitut videotoistovaatimukset"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "Kopioidaan GStreamer-laajennoksia..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer-laajennoksen kopiointi valmis"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2218,6 +2259,11 @@ msgstr "Suoritetaan symbolisten kuvakkeiden kopioskriptiä..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Varoitus: Symbolisten kuvakkeiden kopiointi epäonnistui"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Luodaan mukautettua index.theme-tiedostoa Adwaita-symboli-ikoneille..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2248,6 +2294,11 @@ msgstr "Suoritetaan Papirus-ikoneiden kopioskriptiä..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Varoitus: Papirus-ikoneita ei ole saatavilla, siirrytään Adwaita-ikoneihin."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Luodaan mukautettua index.theme-tiedostoa Papirus-symboli-ikoneille..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2303,6 +2354,23 @@ msgstr "Lataaminen linuxdeployia"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Linuxdeployn asetuksessa tapahtui virhe: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Varoitus: Lähdepolkua ei voitu määrittää binäärin havaitsemista varten."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Skannataan binaaririippuvuuksia kohdassa: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Havaittu riippuvuus binääristä: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

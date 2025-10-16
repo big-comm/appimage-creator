@@ -2032,21 +2032,40 @@ msgstr "Pakketlijsten bijwerken..."
 msgid "Installing GUI libraries..."
 msgstr "GUI-bibliotheken installeren..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "GUI-afhankelijkheden succesvol geïnstalleerd"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Waarschuwing: Sommige pakketten zijn mogelijk niet geïnstalleerd."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Geïnstalleerd: {}"
+msgid "Running install command: {}"
+msgstr "Installatieopdracht uitvoeren: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "GUI-afhankelijkheden succesvol geïnstalleerd in container."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Onbekende fout van pakketbeheerder."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Fout bij het installeren van afhankelijkheden in de container:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Kon niet de vereiste build-afhankelijkheden in de container installeren: {pkgs}\n"
+"\n"
+"Foutdetails:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2080,10 +2099,10 @@ msgstr "Waarschuwing: Geen .desktop-bestand gevonden, linuxdeploy wordt overgesl
 msgid "Will bundle: {}"
 msgstr "Zal bundelen: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Geen externe binaire bestanden gedetecteerd"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Geen externe binaire bestanden of plugins om te verwerken met linuxdeploy."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2127,21 +2146,23 @@ msgstr "Herstelde originele wrapper: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Waarschuwing: Binaire bundeling mislukt: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "Geen systeembibliotheken geselecteerd voor opname."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "Geselecteerde systeembibliotheken kopiëren: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Kopiëren van standaard systeembibliotheken: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Script aan het genereren om systeembibliotheken te kopiëren..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Kopiëren van conflicterende systeembibliotheken naar fallback-map: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Script aan het genereren om bibliotheken naar {} te kopiëren..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2189,6 +2210,26 @@ msgstr "Waarschuwing: Sommige typelibs zijn mogelijk niet gekopieerd."
 msgid "Typelib copy complete"
 msgstr "Typelib-kopie voltooid"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Essentiële GStreamer-plug-ins kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Gedetecteerde video-afspeelvereisten"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "GStreamer-plug-ins kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer-plugin kopiëren voltooid"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2214,6 +2255,11 @@ msgstr "Voer script voor het kopiëren van symbolische pictogrammen uit..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Waarschuwing: Kopiëren van symbolische pictogrammen mislukt"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Aangepaste index.theme maken voor Adwaita symbolische pictogrammen..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2244,6 +2290,11 @@ msgstr "Voer het kopieerscript voor Papirus-iconen uit..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Waarschuwing: Papirus-pictogrammen niet beschikbaar, terugvallen op Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Aangepaste index.theme maken voor Papirus symbolische pictogrammen..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2299,6 +2350,23 @@ msgstr "Aan het downloaden van linuxdeploy"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Mislukt om linuxdeploy in te stellen: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Waarschuwing: Kon de brondirectory voor binaire detectie niet bepalen."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Scannen op binaire afhankelijkheden in: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Gedetecteerde afhankelijkheid van binaire: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

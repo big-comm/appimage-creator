@@ -2039,21 +2039,40 @@ msgstr "Ενημέρωση λιστών πακέτων..."
 msgid "Installing GUI libraries..."
 msgstr "Εγκατάσταση βιβλιοθηκών GUI..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "Επιτυχής εγκατάσταση εξαρτήσεων GUI"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Προειδοποίηση: Ορισμένα πακέτα ενδέχεται να απέτυχαν να εγκατασταθούν"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Εγκατεστημένο: {}"
+msgid "Running install command: {}"
+msgstr "Εκτέλεση εντολής εγκατάστασης: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "Επιτυχής εγκατάσταση εξαρτήσεων GUI στο κοντέινερ."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Άγνωστο σφάλμα από τον διαχειριστή πακέτων."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Σφάλμα κατά την εγκατάσταση εξαρτήσεων στο κοντέινερ:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Αποτυχία εγκατάστασης απαιτούμενων εξαρτήσεων κατασκευής στο κοντέινερ: {pkgs}\n"
+"\n"
+"Λεπτομέρειες σφάλματος:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2087,10 +2106,10 @@ msgstr "Προειδοποίηση: Δεν βρέθηκε αρχείο .desktop,
 msgid "Will bundle: {}"
 msgstr "Θα συμπεριληφθεί: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Δεν ανιχνεύθηκαν εξωτερικά δυαδικά αρχεία"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Κανένα εξωτερικό δυαδικό αρχείο ή πρόσθετο για επεξεργασία με το linuxdeploy."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2134,21 +2153,23 @@ msgstr "Αποκαταστάθηκε η αρχική θήκη: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Προειδοποίηση: Αποτυχία ομαδοποίησης δυαδικών αρχείων: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "Δεν έχουν επιλεγεί βιβλιοθήκες συστήματος για συμπερίληψη."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "Αντιγραφή επιλεγμένων βιβλιοθηκών συστήματος: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Αντιγραφή τυπικών βιβλιοθηκών συστήματος: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Δημιουργία σεναρίου για την αντιγραφή βιβλιοθηκών συστήματος..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Αντιγραφή συγκρουόμενων βιβλιοθηκών συστήματος στον κατάλογο εφεδρείας: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Δημιουργία σεναρίου για την αντιγραφή βιβλιοθηκών στο {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2196,6 +2217,26 @@ msgstr "Προειδοποίηση: Ορισμένα typelibs ενδέχεται
 msgid "Typelib copy complete"
 msgstr "Η αντιγραφή του Typelib ολοκληρώθηκε"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Αντιγραφή βασικών plugins GStreamer..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Απαιτήσεις αναπαραγωγής βίντεο ανιχνεύθηκαν"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "Αντιγραφή προσθέτων GStreamer..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "Η αντιγραφή του πρόσθετου GStreamer ολοκληρώθηκε"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2221,6 +2262,11 @@ msgstr "Εκτέλεση σεναρίου αντιγραφής συμβολικ�
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Προειδοποίηση: Αποτυχία αντιγραφής συμβολικών εικονιδίων"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Δημιουργία προσαρμοσμένου index.theme για τα συμβολικά εικονίδια Adwaita..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2251,6 +2297,11 @@ msgstr "Εκτέλεση σεναρίου αντιγραφής εικονιδί�
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Προειδοποίηση: Τα εικονίδια Papirus δεν είναι διαθέσιμα, επιστροφή στα Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Δημιουργία προσαρμοσμένου index.theme για τα συμβολικά εικονίδια Papirus..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2306,6 +2357,25 @@ msgstr "Κατεβάζω το linuxdeploy"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Αποτυχία ρύθμισης του linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr ""
+"Προειδοποίηση: Δεν ήταν δυνατός ο προσδιορισμός της διαδρομής πηγής για την ανίχνευση δυαδικών "
+"αρχείων."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Σάρωση για δυαδικές εξαρτήσεις σε: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Ανιχνεύθηκε εξάρτηση από το δυαδικό: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

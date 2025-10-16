@@ -2037,21 +2037,40 @@ msgstr "Csomaglisták frissítése..."
 msgid "Installing GUI libraries..."
 msgstr "GUI könyvtárak telepítése..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "Sikeresen telepítve a GUI függőségek"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Figyelmeztetés: Néhány csomag telepítése sikertelen lehet."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Telepítve: {}"
+msgid "Running install command: {}"
+msgstr "Telepítési parancs futtatása: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "Sikeresen telepítette a GUI függőségeit a konténerben."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Ismeretlen hiba a csomagkezelőtől."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Hiba a függőségek telepítésekor a konténerben:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Sikertelen a szükséges build függőségek telepítése a konténerben: {pkgs}\n"
+"\n"
+"Hiba részletei:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2085,10 +2104,10 @@ msgstr "Figyelmeztetés: Nincs .desktop fájl, a linuxdeploy kihagyva"
 msgid "Will bundle: {}"
 msgstr "Csomagolni fog: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Nincs külső bináris észlelve"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Nincsenek külső binárisok vagy bővítmények a linuxdeploy feldolgozásához."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2132,21 +2151,23 @@ msgstr "Visszaállított eredeti burkoló: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Figyelmeztetés: A bináris csomagolás meghiúsult: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "Nincsenek kiválasztva rendszerkönyvtárak a beillesztéshez."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "A kiválasztott rendszerkönyvtárak másolása: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "A szabványos rendszerkönyvtárak másolása: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Rendszerkönyvtárak másolásához szükséges script generálása..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Ütköző rendszerkönyvtárak másolása a visszaállító könyvtárba: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Könyvtárak másolásához script generálása a(z) {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2194,6 +2215,26 @@ msgstr "Figyelmeztetés: Néhány típuskönyvtár lehet, hogy nem lett átmáso
 msgid "Typelib copy complete"
 msgstr "Typelib másolat kész."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Fontos GStreamer bővítmények másolása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "A videolejátszási követelmények észlelve"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "GStreamer bővítmények másolása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "A GStreamer bővítmény másolása befejeződött"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2219,6 +2260,11 @@ msgstr "Szimbólum ikonok másolási szkript végrehajtása..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Figyelmeztetés: A szimbolikus ikonok másolása nem sikerült"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Egyedi index.theme létrehozása az Adwaita szimbolikus ikonokhoz..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2249,6 +2295,11 @@ msgstr "A Papirus ikonok másolási szkript végrehajtása..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Figyelem: A Papirus ikonok nem elérhetők, visszaállás az Adwaitára."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Egyedi index.theme létrehozása a Papirus szimbolikus ikonokhoz..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2304,6 +2355,23 @@ msgstr "A linuxdeploy letöltése"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "A linuxdeploy beállítása nem sikerült: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Figyelmeztetés: Nem sikerült meghatározni a forrásútvonalat a bináris észleléshez."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Binaris függőségek keresése itt: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Felfedezett függőség a bináristól: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

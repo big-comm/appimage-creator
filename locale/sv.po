@@ -2034,21 +2034,40 @@ msgstr "Uppdaterar paketlistor..."
 msgid "Installing GUI libraries..."
 msgstr "Installerar GUI-bibliotek..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "Framgångsrikt installerade GUI-beroenden"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Varning: Vissa paket kan ha misslyckats med att installeras"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Installerad: {}"
+msgid "Running install command: {}"
+msgstr "Kör installationskommando: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "Framgångsrikt installerade GUI-beroenden i containern."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Okänt fel från paketförvaltaren."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Fel vid installation av beroenden i containern:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Misslyckades med att installera nödvändiga byggberoenden i containern: {pkgs}\n"
+"\n"
+"Fel detaljer:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2082,10 +2101,10 @@ msgstr "Varning: Ingen .desktop-fil hittades, hoppar över linuxdeploy"
 msgid "Will bundle: {}"
 msgstr "Kommer att paketera: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Inga externa binärer upptäcktes"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Inga externa binärer eller plugins för att bearbeta med linuxdeploy."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2129,21 +2148,23 @@ msgstr "Återställd originalomslag: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Varning: Binär paketering misslyckades: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1251
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "Inga systembibliotek valda för inkludering."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1254
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "Kopierar valda systembibliotek: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Kopierar standard systembibliotek: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1266
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Genererar skript för att kopiera systembibliotek..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Kopierar konfliktande systembibliotek till fallback-mapp: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Genererar skript för att kopiera bibliotek till {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1290
 #: NEEDS WORK
@@ -2191,6 +2212,26 @@ msgstr "Varning: Vissa typbibliotek kanske inte har kopierats."
 msgid "Typelib copy complete"
 msgstr "Typelib-kopiering slutförd"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Kopierar viktiga GStreamer-plugins..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Upptäckta krav för videouppspelning"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "Kopierar GStreamer-plugins..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer-plugin kopiering slutförd"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2216,6 +2257,11 @@ msgstr "Kör skript för att kopiera symboliska ikoner..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Varning: Misslyckades med att kopiera symboliska ikoner"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Skapar anpassad index.theme för Adwaita symboliska ikoner..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2246,6 +2292,11 @@ msgstr "Kör Papirus-ikoner kopieringsskript..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Varning: Papirus-ikoner är inte tillgängliga, återgår till Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Skapar anpassad index.theme för Papirus symboliska ikoner..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2301,6 +2352,23 @@ msgstr "Laddar ner linuxdeploy"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Misslyckades med att konfigurera linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Varning: Kunde inte bestämma källväg för binär detektering."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Skannar efter binära beroenden i: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Upptäckte beroende av binär: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

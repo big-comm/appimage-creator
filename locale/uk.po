@@ -2034,21 +2034,40 @@ msgstr "Оновлення списків пакетів..."
 msgid "Installing GUI libraries..."
 msgstr "Встановлення бібліотек GUI..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 920
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "Успішно встановлено залежності GUI"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 922
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Warning: Some packages may have failed to install"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 931
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Встановлено: {}"
+msgid "Running install command: {}"
+msgstr "Виконання команди встановлення: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "Успішно встановлено залежності GUI в контейнері."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Невідома помилка з менеджера пакетів."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Помилка встановлення залежностей у контейнері:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 935
 #: NEEDS WORK
@@ -2082,10 +2101,10 @@ msgstr "Увага: .desktop файл не знайдено, пропускає�
 msgid "Will bundle: {}"
 msgstr "Будуть об'єднані: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1003
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Не виявлено зовнішніх бінарних файлів"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Немає зовнішніх бінарних файлів або плагінів для обробки з linuxdeploy."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1010
 #: NEEDS WORK
@@ -2129,21 +2148,23 @@ msgstr "Відновлено оригінальну обгортку: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Увага: Збірка бінарних файлів не вдалася: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "Немає вибраних системних бібліотек для включення."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "Копіювання вибраних системних бібліотек: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Копіювання стандартних системних бібліотек: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Генерація скрипту для копіювання системних бібліотек..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Копіювання конфліктуючих системних бібліотек до резервного каталогу: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Генерація скрипту для копіювання бібліотек до {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2191,6 +2212,26 @@ msgstr "Увага: Деякі типи бібліотек можуть не б�
 msgid "Typelib copy complete"
 msgstr "Копіювання типу бібліотеки завершено"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Копіювання основних плагінів GStreamer..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Виявлені вимоги до відтворення відео"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "Копіювання плагінів GStreamer..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "Копіювання плагіна GStreamer завершено"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2216,6 +2257,11 @@ msgstr "Виконання скрипту копіювання символіч�
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Увага: Не вдалося скопіювати символічні значки"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Створення користувацького index.theme для символічних ікон Adwaita..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2246,6 +2292,11 @@ msgstr "Виконання скрипту копіювання іконок Papi
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Увага: Іконки Papirus недоступні, використовується Adwaita."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Створення користувацького index.theme для символічних ікон Papirus..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2301,6 +2352,23 @@ msgstr "Завантаження linuxdeploy"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Не вдалося налаштувати linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Попередження: Не вдалося визначити шлях до джерела для виявлення бінарних файлів."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Сканування бінарних залежностей у: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Виявлено залежність від двійкового файлу: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1434
 #: NEEDS WORK

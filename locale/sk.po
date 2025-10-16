@@ -2032,21 +2032,40 @@ msgstr "Aktualizácia zoznamu balíkov..."
 msgid "Installing GUI libraries..."
 msgstr "Inštalácia knižníc GUI..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "Úspešne nainštalované závislosti GUI"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Upozornenie: Niektoré balíky sa mohli nepodarilo nainštalovať"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Nainštalované: {}"
+msgid "Running install command: {}"
+msgstr "Spúšťam inštalačný príkaz: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "Úspešne nainštalované závislosti GUI v kontajneri."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Neznáma chyba z správcu balíkov."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Chyba pri inštalácii závislostí v kontejnery:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Nepodarilo sa nainštalovať požadované závislosti pre zostavenie v kontejnery: {pkgs}\n"
+"\n"
+"Podrobnosti o chybe:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2080,10 +2099,10 @@ msgstr "Upozornenie: Nebola nájdená žiadna .desktop súbor, preskakuje sa lin
 msgid "Will bundle: {}"
 msgstr "Bude zbalené: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Neboli zistené žiadne externé binárne súbory"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Žiadne externé binárne súbory ani pluginy na spracovanie s linuxdeploy."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2127,21 +2146,23 @@ msgstr "Obnovený pôvodný obal: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Upozornenie: Zlyhalo zbalenie binárneho súboru: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1251
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "Neboli vybrané žiadne systémové knižnice na zahrnutie."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1254
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "Kopírovanie vybraných systémových knižníc: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Kopírovanie štandardných systémových knižníc: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1266
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Generovanie skriptu na kopírovanie systémových knižníc..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Kopírovanie konfliktujúcich systémových knižníc do záložného adresára: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Generovanie skriptu na kopírovanie knižníc do {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1290
 #: NEEDS WORK
@@ -2189,6 +2210,26 @@ msgstr "Upozornenie: Niektoré typové knižnice nemusia byť skopírované."
 msgid "Typelib copy complete"
 msgstr "Kopírovanie typovej knižnice dokončené"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Kopírovanie základných pluginov GStreamer..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Zistené požiadavky na prehrávanie videa"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "Kopírovanie GStreamer pluginov..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "Kopírovanie GStreamer pluginu dokončené"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2214,6 +2255,11 @@ msgstr "Spúšťam skript na kopírovanie symbolických ikon..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Upozornenie: Nepodarilo sa skopírovať symbolické ikony"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Vytváranie vlastného index.theme pre symbolické ikony Adwaita..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2244,6 +2290,11 @@ msgstr "Spúšťam skript na kopírovanie ikon Papirus..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Upozornenie: Ikony Papirus nie sú k dispozícii, prechádza sa na Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Vytváranie vlastného index.theme pre symbolické ikony Papirus..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2299,6 +2350,23 @@ msgstr "Sťahovanie linuxdeploy"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Nepodarilo sa nastaviť linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Upozornenie: Nepodarilo sa určiť zdrojovú cestu pre detekciu binárnych súborov."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Skenovanie binárnych závislostí v: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Zistená závislosť na binárnom súbore: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

@@ -2098,21 +2098,40 @@ msgstr "Paket listeleri güncelleniyor..."
 msgid "Installing GUI libraries..."
 msgstr "GUI kütüphaneleri kuruluyor..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "Başarıyla GUI bağımlılıkları yüklendi"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "Uyarı: Bazı paketlerin yüklenmesi başarısız olmuş olabilir."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "Yüklü: {}"
+msgid "Running install command: {}"
+msgstr "Yükleme komutunu çalıştırma: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "Konteynerde GUI bağımlılıkları başarıyla yüklendi."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "Paket yöneticisinden bilinmeyen hata."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "Konteynerde bağımlılıkları yüklerken hata:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"Konteynerde gerekli derleme bağımlılıklarını yüklemekte başarısız olundu: {pkgs}\n"
+"\n"
+"Hata ayrıntıları:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2146,10 +2165,10 @@ msgstr "Uyarı: .desktop dosyası bulunamadı, linuxdeploy atlanıyor"
 msgid "Will bundle: {}"
 msgstr "Paketlenecek: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "Harici ikili dosya tespit edilmedi"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Linuxdeploy ile işlemek için dış ikili dosyalar veya eklentiler yok."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2193,149 +2212,23 @@ msgstr "Orijinal sargı geri yüklendi: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Uyarı: İkili paketleme başarısız oldu: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr ""
-"Dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "Seçilen sistem kütüphaneleri kopyalanıyor: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Standart sistem kütüphanelerini kopyalama: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "Sistem kütüphanelerini kopyalamak için betik oluşturuluyor..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Çatışan sistem kütüphanelerini yedek dizine kopyalanıyor: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Kütüphaneleri {}'ye kopyalamak için betik oluşturuluyor..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2511,6 +2404,26 @@ msgstr "Uyarı: Bazı tip kütüphaneleri kopyalanmamış olabilir."
 msgid "Typelib copy complete"
 msgstr "Typelib kopyası tamamlandı"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Temel GStreamer eklentileri kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Algılanan video oynatma gereksinimleri"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "GStreamer eklentileri kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer eklentisi kopyalama tamamlandı"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2536,6 +2449,11 @@ msgstr "Sembolik simgelerin kopyalama beti çalıştırılıyor..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Uyarı: Sembolik simgeler kopyalanamadı"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Adwaita sembolik simgeler için özel index.theme oluşturuluyor..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2566,6 +2484,11 @@ msgstr "Papirus simgelerini kopyalama betiği çalıştırılıyor..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Uyarı: Papirus simgeleri mevcut değil, Adwaita'ya geçiliyor."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Papirus simgesi ikonları için özel index.theme oluşturuluyor..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2621,6 +2544,23 @@ msgstr "linuxdeploy indiriliyor"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "linuxdeploy kurulumu başarısız oldu: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Uyarı: İkili tespit için kaynak yolu belirlenemedi."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "İçinde ikili bağımlılıkları tarama: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "İkili dosyaya bağımlılık tespit edildi: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

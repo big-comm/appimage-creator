@@ -2032,21 +2032,40 @@ msgstr "正在更新软件包列表..."
 msgid "Installing GUI libraries..."
 msgstr "正在安装图形用户界面库..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 920
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "成功安装了GUI依赖项"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 922
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "警告：某些软件包可能未能安装"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 931
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "已安装：{}"
+msgid "Running install command: {}"
+msgstr "正在运行安装命令：{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "成功在容器中安装了GUI依赖项。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "来自软件包管理器的未知错误。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "在容器中安装依赖项时出错："
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"在容器中安装所需的构建依赖项失败：{pkgs}\n"
+"\n"
+"错误详情：\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 935
 #: NEEDS WORK
@@ -2080,10 +2099,10 @@ msgstr "警告：未找到 .desktop 文件，跳过 linuxdeploy"
 msgid "Will bundle: {}"
 msgstr "将捆绑：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1003
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "未检测到外部二进制文件"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "没有外部二进制文件或插件可用于使用 linuxdeploy 处理。"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1010
 #: NEEDS WORK
@@ -2127,21 +2146,23 @@ msgstr "恢复了原始包装：{}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "警告：二进制打包失败：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "未选择任何系统库以供包含。"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "复制选定的系统库：{}"
+msgid "Copying standard system libraries: {}"
+msgstr "复制标准系统库：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "正在生成脚本以复制系统库..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "正在将冲突的系统库复制到备用目录：{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "正在生成脚本以将库复制到 {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2189,6 +2210,26 @@ msgstr "警告：某些类型库可能未被复制"
 msgid "Typelib copy complete"
 msgstr "类型库复制完成"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "复制基本的 GStreamer 插件..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "检测到的视频播放要求"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "正在复制 GStreamer 插件..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer 插件复制完成"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2214,6 +2255,11 @@ msgstr "正在执行符号图标复制脚本..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "警告：复制符号图标失败"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "为Adwaita符号图标创建自定义index.theme..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2244,6 +2290,11 @@ msgstr "正在执行 Papirus 图标复制脚本..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "警告：Papirus 图标不可用，正在回退到 Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "为Papirus符号图标创建自定义index.theme..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2299,6 +2350,23 @@ msgstr "正在下载 linuxdeploy"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "无法设置 linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "警告：无法确定二进制检测的源路径。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "正在扫描二进制依赖项：{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "检测到对二进制文件的依赖：{}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1434
 #: NEEDS WORK

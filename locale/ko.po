@@ -2034,21 +2034,40 @@ msgstr "패키지 목록 업데이트 중..."
 msgid "Installing GUI libraries..."
 msgstr "GUI 라이브러리 설치 중..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "GUI 종속성이 성공적으로 설치되었습니다."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "경고: 일부 패키지가 설치에 실패했을 수 있습니다."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "설치됨: {}"
+msgid "Running install command: {}"
+msgstr "설치 명령 실행 중: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "컨테이너에 GUI 종속성이 성공적으로 설치되었습니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "패키지 관리자에서 알 수 없는 오류."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "컨테이너에서 종속성 설치 오류:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"컨테이너에 필요한 빌드 종속성을 설치하지 못했습니다: {pkgs}\n"
+"\n"
+"오류 세부정보:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2082,10 +2101,10 @@ msgstr "경고: .desktop 파일을 찾을 수 없습니다. linuxdeploy를 건�
 msgid "Will bundle: {}"
 msgstr "번들할 것입니다: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "외부 바이너리가 감지되지 않았습니다."
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "외부 바이너리 또는 플러그인이 linuxdeploy로 처리되지 않습니다."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2129,21 +2148,23 @@ msgstr "복원된 원래 래퍼: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "경고: 이진 번들링 실패: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "포함할 시스템 라이브러리가 선택되지 않았습니다."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "선택한 시스템 라이브러리 복사 중: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "표준 시스템 라이브러리 복사 중: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "시스템 라이브러리를 복사하는 스크립트 생성 중..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "충돌하는 시스템 라이브러리를 대체 디렉토리로 복사 중: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "{}에 라이브러리를 복사하는 스크립트 생성 중..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2191,6 +2212,26 @@ msgstr "경고: 일부 타입 라이브러리가 복사되지 않았을 수 있�
 msgid "Typelib copy complete"
 msgstr "타입 라이브러리 복사 완료"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "필수 GStreamer 플러그인 복사 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "감지된 비디오 재생 요구 사항"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "GStreamer 플러그인 복사 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer 플러그인 복사 완료"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2216,6 +2257,11 @@ msgstr "상징 아이콘 복사 스크립트 실행 중..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "경고: 기호 아이콘 복사에 실패했습니다"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Adwaita 기호 아이콘을 위한 사용자 정의 index.theme 생성 중..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2246,6 +2292,11 @@ msgstr "파피루스 아이콘 복사 스크립트 실행 중..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "경고: 파피루스 아이콘을 사용할 수 없습니다. 아드와이타로 대체합니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Papirus 심볼릭 아이콘을 위한 사용자 정의 index.theme 생성 중..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2301,6 +2352,23 @@ msgstr "linuxdeploy 다운로드 중"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "linuxdeploy 설정 실패: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "경고: 이진 감지를 위한 소스 경로를 확인할 수 없습니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "다음의 이진 종속성을 스캔하는 중: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "바이너리에 대한 종속성이 감지되었습니다: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK

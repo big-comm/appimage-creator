@@ -2034,21 +2034,40 @@ msgstr "מעודכן רשימות חבילות..."
 msgid "Installing GUI libraries..."
 msgstr "מתקין ספריות GUI..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 816
-#: NEEDS WORK
-msgid "Successfully installed GUI dependencies"
-msgstr "התקנת תלויות ה-GUI בוצעה בהצלחה"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 818
-#: NEEDS WORK
-msgid "Warning: Some packages may have failed to install"
-msgstr "אזהרה: ייתכן שחלק מהחבילות לא הצליחו להתקין"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 823
+# File: usr/share/appimage-creator/core/builder.py, line: 1158
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Installed: {}"
-msgstr "מותקן: {}"
+msgid "Running install command: {}"
+msgstr "מפעיל פקודת התקנה: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1162
+#: NEEDS WORK
+msgid "Successfully installed GUI dependencies in container."
+msgstr "התקנת בהצלחה את התלויות של ממשק המשתמש במיכל."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1165
+#: NEEDS WORK
+msgid "Unknown error from package manager."
+msgstr "שגיאה לא ידועה ממנהל החבילות."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1166
+#: NEEDS WORK
+msgid "Error installing dependencies in container:"
+msgstr "שגיאה בהתקנת תלויות במיכל:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1169
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Failed to install required build dependencies in the container: {pkgs}\n"
+"\n"
+"Error details:\n"
+"{err}"
+msgstr ""
+"נכשל בהתקנת תלויות הבנייה הנדרשות במיכל: {pkgs}\n"
+"\n"
+"פרטי שגיאה:\n"
+"{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
@@ -2082,10 +2101,10 @@ msgstr "אזהרה: לא נמצא קובץ .desktop, מדלגים על linuxdepl
 msgid "Will bundle: {}"
 msgstr "יבנה חבילה: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 895
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
-msgid "No external binaries detected"
-msgstr "לא נמצאו בינאריים חיצוניים"
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "אין בינארים חיצוניים או תוספים לעיבוד עם linuxdeploy."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 902
 #: NEEDS WORK
@@ -2129,21 +2148,23 @@ msgstr "שחזר עטיפה מקורית: {}"
 msgid "Warning: Binary bundling failed: {}"
 msgstr "אזהרה: כינוס בינארי נכשל: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-msgid "No system libraries selected for inclusion."
-msgstr "לא נבחרו ספריות מערכת לכלול."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1205
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected system libraries: {}"
-msgstr "מעתיק ספריות מערכת שנבחרו: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "מעתיק ספריות מערכת סטנדרטיות: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1217
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
-msgid "Generating script to copy system libraries..."
-msgstr "מייצר סקריפט להעתקת ספריות מערכת..."
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "מעתיק ספריות מערכת סותרות לתיקיית גיבוי: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "מייצר סקריפט להעתקת ספריות ל{}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
@@ -2191,6 +2212,26 @@ msgstr "אזהרה: ייתכן שחלק מהטיפולים לא הועתקו"
 msgid "Typelib copy complete"
 msgstr "העתקת Typelib הושלמה"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "מעתיק תוספי GStreamer חיוניים..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "דרישות ניגון וידאו זוהו"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "מעתיק תוספי GStreamer..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "העתקת תוסף GStreamer הושלמה"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
 msgid "Copying Adwaita symbolic icons..."
@@ -2216,6 +2257,11 @@ msgstr "מבצע סקריפט העתקת סמלים סימבוליים..."
 #: NEEDS WORK
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "אזהרה: כישלון בהעתקת סמלים סימבוליים"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "יצירת index.theme מותאם אישית עבור סמלים סימבוליים של Adwaita..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1444
 #: NEEDS WORK
@@ -2246,6 +2292,11 @@ msgstr "מבצע סקריפט העתקת אייקוני פאפירוס..."
 #: NEEDS WORK
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "אזהרה: אייקוני פאפירוס אינם זמינים, חוזרים לאדווייטה"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "יצירת index.theme מותאם אישית עבור סמלים של פאפירוס..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1597
 #: NEEDS WORK
@@ -2301,6 +2352,23 @@ msgstr "מוריד את linuxdeploy"
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "נכשל בהגדרת linuxdeploy: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "אזהרה: לא ניתן לקבוע את נתיב המקור לזיהוי בינארי."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "סריקה עבור תלותים בינאריים ב: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "תלות זוהתה בבינארי: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1131
 #: NEEDS WORK
