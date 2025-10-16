@@ -792,16 +792,8 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                     self._update_structure_preview()
                     self._update_autodetected_dependencies()
                     
-                    # Auto-enable Papirus icon theme for GTK applications - ADICIONAR AQUI
-                    if app_type in ['python', 'python_wrapper', 'gtk']:
-                        is_gtk = self.builder._detect_gi_usage(self.app_info.to_dict())
-                        if is_gtk:
-                            self.app_info.include_icon_theme = True
-                            self.app_info.icon_theme_choice = "papirus"
-                            # Update UI if preferences window is open
-                            if self.build_page.icon_theme_row:
-                                self.build_page.icon_theme_row.set_active(True)
-                                self.build_page.papirus_radio.set_active(True)
+                    # The logic to auto-enable the icon theme for GTK apps has been removed.
+                    # The default is now False, and the user can enable it manually if needed.
                 
                 self._show_next_steps_message()
                 self._validate_inputs()

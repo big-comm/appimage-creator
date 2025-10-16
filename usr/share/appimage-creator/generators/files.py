@@ -111,16 +111,15 @@ HERE="$(dirname "$(readlink -f "${{0}}")")"
 # Setup standard AppImage environment variables
 export PATH="${{HERE}}/usr/bin:${{PATH}}"
 
-# Smart library conflict resolution
-# Check if system has libjpeg.so.8 - if yes, don't use AppImage's libs at all
-# to avoid conflicts between system libtiff and AppImage libjpeg
-if ldconfig -p 2>/dev/null | grep -q "libjpeg.so.8"; then
-    # System has full graphics stack - use it instead of AppImage's
-    # Only use AppImage libs for Python-specific dependencies
-    export LD_LIBRARY_PATH="${{LD_LIBRARY_PATH}}"
-else
-    # System missing graphics libs - use AppImage's bundled versions
-    export LD_LIBRARY_PATH="${{HERE}}/usr/lib:${{LD_LIBRARY_PATH}}"
+# Set up the primary library path, always prioritizing bundled libraries
+# for essential components like libvte, libadwaita, etc.
+export LD_LIBRARY_PATH="${{HERE}}/usr/lib:${{LD_LIBRARY_PATH}}"
+
+# Conditionally add the fallback library path for conflicting libraries (e.g., libjpeg).
+# This path is only added if the host system does NOT have the library,
+# ensuring portability on systems like Fedora without causing conflicts on systems like Manjaro.
+if ! ldconfig -p 2>/dev/null | grep -q "libjpeg.so.8"; then
+    export LD_LIBRARY_PATH="${{HERE}}/usr/lib-fallback:${{LD_LIBRARY_PATH}}"
 fi
 
 # GObject Introspection typelibs

@@ -48,7 +48,7 @@ class AppInfo:
     build_environment: Optional[str] = None
     
     # Icon theme options
-    include_icon_theme: bool = True
+    include_icon_theme: bool = False
     icon_theme_choice: str = "papirus"  # Options: "papirus", "adwaita", "none"
     
     # Compatibility properties

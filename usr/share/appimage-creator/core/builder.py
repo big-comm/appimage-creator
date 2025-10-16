@@ -43,10 +43,12 @@ SYSTEM_DEPENDENCIES = {
     },
     'jpeg': {
         'name': 'JPEG Library',
-        'libs': ['libjpeg.so*', 'libjpeg.so.8*', 'libjpeg.so.62*'],
+        # 'libs': ['libjpeg.so*', 'libjpeg.so.8*', 'libjpeg.so.62*'],
+        'libs': ['libjpeg.so.8*'],
         'typelibs': [],
         'detection_keyword': 'gtk4',
-        'essential': False
+        'essential': False,
+        'conflicting': True
     },
     'gtk3': {
         'name': 'GTK3',
@@ -1265,26 +1267,41 @@ echo "System PyGObject copied successfully"
 
     def _copy_system_libraries(self):
         """
-        Copy required system .so libraries to AppDir based on selected dependencies.
+        Copy required system .so libraries to AppDir, separating conflicting ones.
         """
         lib_dir = self.appdir_path / "usr" / "lib"
         lib_dir.mkdir(parents=True, exist_ok=True)
+        
+        fallback_lib_dir = self.appdir_path / "usr" / "lib-fallback"
+        fallback_lib_dir.mkdir(parents=True, exist_ok=True)
 
         # Build the list of required libraries dynamically
         required_libs = []
+        conflicting_libs = []
         selected_deps = self.app_info.get('selected_dependencies', [])
+        
         for dep_key in selected_deps:
             if dep_key in SYSTEM_DEPENDENCIES:
-                required_libs.extend(SYSTEM_DEPENDENCIES[dep_key].get('libs', []))
+                dep_info = SYSTEM_DEPENDENCIES[dep_key]
+                if dep_info.get('conflicting', False):
+                    conflicting_libs.extend(dep_info.get('libs', []))
+                else:
+                    required_libs.extend(dep_info.get('libs', []))
         
         # Remove duplicates
         required_libs = sorted(list(set(required_libs)))
-        if not required_libs:
-            self.log(_("No system libraries selected for inclusion."))
-            return
+        conflicting_libs = sorted(list(set(conflicting_libs)))
 
-        self.log(_("Copying selected system libraries: {}").format(', '.join(required_libs)))
+        if required_libs:
+            self.log(_("Copying standard system libraries: {}").format(', '.join(required_libs)))
+            self._execute_library_copy(required_libs, lib_dir)
 
+        if conflicting_libs:
+            self.log(_("Copying conflicting system libraries to fallback dir: {}").format(', '.join(conflicting_libs)))
+            self._execute_library_copy(conflicting_libs, fallback_lib_dir)
+
+    def _execute_library_copy(self, lib_patterns, dest_dir):
+        """Helper function to run the library copy script for a given set of patterns and destination."""
         system_lib_paths = [
             '/usr/lib/x86_64-linux-gnu',
             '/usr/lib64',
@@ -1294,12 +1311,11 @@ echo "System PyGObject copied successfully"
             '/lib',
         ]
 
-        # The rest of the logic can be simplified as it's the same for local/container
-        self.log(_("Generating script to copy system libraries..."))
+        self.log(_("Generating script to copy libraries to {}...").format(dest_dir))
         
-        script_lines = ["#!/bin/bash", "set -e", f"DEST_DIR='{lib_dir}'", ""]
+        script_lines = ["#!/bin/bash", "set -e", f"DEST_DIR='{dest_dir}'", ""]
         
-        for pattern in required_libs:
+        for pattern in lib_patterns:
             script_lines.append(f'echo "--- Searching for {pattern} ---"')
             script_lines.append("( ")
             for search_path in system_lib_paths:
@@ -1313,7 +1329,7 @@ echo "System PyGObject copied successfully"
             script_lines.append("")
 
         script_content = "\n".join(script_lines)
-        script_path = self.build_dir / "copy_libs.sh"
+        script_path = self.build_dir / f"copy_libs_{dest_dir.name}.sh"
         
         with open(script_path, "w") as f:
             f.write(script_content)
