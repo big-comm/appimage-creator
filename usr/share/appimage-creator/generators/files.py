@@ -120,10 +120,22 @@ if ! ldconfig -p 2>/dev/null | grep -q "libjpeg.so.8"; then
 fi
 
 # Construct the PATH environment variable with correct priority.
-# 1. Python venv bin (if it exists)
-# 2. AppImage's main usr/bin (for tools like vainfo)
-# 3. The original system PATH
-APPIMAGE_BIN_PATH="${{HERE}}/usr/bin"
+# The AppImage's own bin directories must come first to ensure
+# bundled tools like 'vainfo' are used instead of system tools.
+
+# 1. Start with the original system PATH
+FINAL_PATH="$PATH"
+
+# 2. Prepend the AppImage's main usr/bin (for tools like vainfo)
+FINAL_PATH="${{HERE}}/usr/bin:$FINAL_PATH"
+
+# 3. Prepend the Python venv bin path if it exists (highest priority)
+if [ -d "${{HERE}}/usr/python/venv" ]; then
+    FINAL_PATH="${{HERE}}/usr/python/venv/bin:$FINAL_PATH"
+fi
+
+# 4. Export the final, correctly ordered PATH
+export PATH="$FINAL_PATH"
 
 # GObject Introspection typelibs
 export GI_TYPELIB_PATH="${{HERE}}/usr/lib/girepository-1.0:${{HERE}}/usr/lib/x86_64-linux-gnu/girepository-1.0:${{GI_TYPELIB_PATH}}"
@@ -150,17 +162,11 @@ export TEXTDOMAINDIR="${{HERE}}/usr/share/locale"
 if [ -d "${{HERE}}/usr/python/venv" ]; then
     export PYTHONHOME="${{HERE}}/usr/python/venv"
     export PYTHONPATH="${{HERE}}/usr/python/venv/lib/python{py_version}/site-packages"
-
-    # Prepend the venv bin path to our custom path
-    APPIMAGE_BIN_PATH="${{HERE}}/usr/python/venv/bin:${{APPIMAGE_BIN_PATH}}"
 fi
-
-# Export the final, correctly ordered PATH
-export PATH="${{APPIMAGE_BIN_PATH}}:${{PATH}}"
 
 # Execute the target application
 {exec_line}
-'''
+''' 
 
 
 def create_apprun_file(appdir_path, app_info):
