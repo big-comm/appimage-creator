@@ -15,62 +15,14 @@ msgstr  "Project-Id-Version: appimage-creator\n"
         "Content-Transfer-Encoding: 8bit\n"
 
 #
-# File: usr/share/appimage-creator/validators/validators.py, line: 18
-msgid   "Application name must be at least 2 characters long"
+# File: usr/share/appimage-creator/generators/icons.py, line: 16
+msgid   "Warning: PIL/Pillow not available, icon processing will be limited"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/validators/validators.py, line: 21
-msgid   "Application name contains invalid characters"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 29
-msgid   "Version is required"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 32
-msgid   "Invalid version format"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 40
-msgid   "Executable file does not exist"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 43
-msgid   "File is not executable"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 54
-msgid   "Error: Missing [Desktop Entry] section"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 69
+# File: usr/share/appimage-creator/generators/icons.py, line: 82
 #, python-brace-format
-msgid   "Error: Missing required keys: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 81
-#, python-brace-format
-msgid   "Error: Empty value for required key: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/utils/file_ops.py, line: 57
-#, python-brace-format
-msgid   "Failed to download {}: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/utils/system.py, line: 108
-#, python-brace-format
-msgid   "Failed to make file executable: {}"
+msgid   "Error processing icon: {}"
 msgstr  ""
 
 #
@@ -84,1162 +36,21 @@ msgid   "Failed to create desktop file"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/generators/files.py, line: 236
+# File: usr/share/appimage-creator/generators/files.py, line: 249
 #, python-brace-format
 msgid   "Warning: Failed to adapt existing desktop file: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/generators/icons.py, line: 16
-msgid   "Warning: PIL/Pillow not available, icon processing will be limited"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/generators/icons.py, line: 82
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 57
 #, python-brace-format
-msgid   "Error processing icon: {}"
+msgid   "Failed to download {}: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 25
-msgid   "Building AppImage"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 47
-msgid   "Preparing..."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 58
-msgid   "Cancel Build"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 88
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 103
-# File: usr/share/appimage-creator/ui/window.py, line: 534
-msgid   "OK"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 89
-msgid   "Open Folder"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
-# File: usr/share/appimage-creator/ui/window.py, line: 470
-# File: usr/share/appimage-creator/ui/window.py, line: 1233
-msgid   "Cancel"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
-msgid   "Open"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 127
-msgid   "Select"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 129
-msgid   "Save"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 203
-msgid   "Copy to clipboard"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 221
-msgid   "Desktop File Content"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 223
-# File: usr/share/appimage-creator/ui/window.py, line: 1139
-# File: usr/share/appimage-creator/ui/window.py, line: 1264
-# File: usr/share/appimage-creator/ui/window.py, line: 1273
-msgid   "Error"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 223
+# File: usr/share/appimage-creator/utils/system.py, line: 108
 #, python-brace-format
-msgid   "Failed to read file: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 258
-msgid   "Starting..."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 278
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 415
-msgid   "Close"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 296
-msgid   "Completed successfully!"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 298
-msgid   "Finished with errors."
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 308
-# File: usr/share/appimage-creator/ui/pages.py, line: 507
-msgid   "Install Required Packages"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 334
-msgid   "Installation Information"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 339
-msgid   "Packages to Install"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 346
-msgid   "Command"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 364
-msgid   "<b>Administrator privileges required</b>\n"
-        "You will be asked for your password to install system packages."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 375
-msgid   "Installation Output"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 410
-msgid   "Install"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 430
-msgid   "Starting installation...\n"
-        "\n"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 460
-msgid   "Error running command"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
-msgid   "Pre-command completed successfully."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 473
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 495
-msgid   "Installation completed successfully!"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 476
-msgid   "Command failed with exit code"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 503
-msgid   "Installation failed."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 504
-msgid   "Please check the errors above and try again."
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/widgets.py, line: 32
-# File: usr/share/appimage-creator/ui/widgets.py, line: 104
-# File: usr/share/appimage-creator/ui/pages.py, line: 532
-# File: usr/share/appimage-creator/ui/window.py, line: 471
-msgid   "Remove"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/widgets.py, line: 147
-#, python-brace-format
-msgid   "{}: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 21
-msgid   "App"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 42
-msgid   "Basic Information"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 45
-# File: usr/share/appimage-creator/ui/window.py, line: 167
-msgid   "Application Name"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 49
-msgid   "Version"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 54
-msgid   "Description"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 61
-msgid   "Authors"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 62
-msgid   "Add one or more authors/developers"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 65
-# File: usr/share/appimage-creator/ui/pages.py, line: 70
-msgid   "Add Author"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 66
-msgid   "Add a new author or developer"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 79
-#, python-brace-format
-msgid   "Author {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 86
-msgid   "Websites"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 87
-msgid   "Add project website, repository, or documentation links"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 90
-# File: usr/share/appimage-creator/ui/pages.py, line: 95
-msgid   "Add Website"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 91
-msgid   "Add project website or repository link"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 104
-#, python-brace-format
-msgid   "Website {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 110
-msgid   "Categories"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 113
-msgid   "Primary Category"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 123
-msgid   "Requires Terminal"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 124
-msgid   "Check if your application needs to run in a terminal"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 135
-msgid   "Files"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 156
-msgid   "Application Files"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 159
-# File: usr/share/appimage-creator/ui/window.py, line: 172
-msgid   "Main Executable"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 160
-# File: usr/share/appimage-creator/ui/window.py, line: 173
-msgid   "Select the main application file"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 162
-# File: usr/share/appimage-creator/ui/pages.py, line: 244
-# File: usr/share/appimage-creator/ui/window.py, line: 175
-msgid   "Choose File"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 168
-msgid   "Application Type"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-msgid   "Auto-detected from executable"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 172
-msgid   "Binary"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 172
-msgid   "Python"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 172
-msgid   "Python Wrapper"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 172
-msgid   "Shell Script"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 173
-msgid   "Java"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 173
-msgid   "Qt"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 173
-msgid   "GTK"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 173
-msgid   "Electron"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 184
-msgid   "Additional Directories"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 185
-msgid   "Include extra directories like locale files, plugins, or data"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 188
-# File: usr/share/appimage-creator/ui/pages.py, line: 191
-# File: usr/share/appimage-creator/ui/window.py, line: 831
-msgid   "Add Directory"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 189
-msgid   "Include additional files and directories"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 207
-msgid   "Auto-detected Files"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 208
-msgid   "Files automatically found for your application"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 222
-msgid   "Desktop File"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 226
-msgid   "Use Existing Desktop File"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 227
-msgid   "Found desktop file in application"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 232
-msgid   "Detected Desktop File"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 233
-msgid   "No desktop file detected"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 235
-msgid   "View"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 241
-msgid   "Custom Desktop File"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 242
-msgid   "Or select a different .desktop file"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 253
-msgid   "Resources"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 256
-# File: usr/share/appimage-creator/ui/window.py, line: 183
-msgid   "Application Icon"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 257
-msgid   "PNG, SVG, or other image format"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 259
-# File: usr/share/appimage-creator/ui/window.py, line: 186
-# File: usr/share/appimage-creator/ui/window.py, line: 809
-msgid   "Choose Icon"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 268
-msgid   "Structure Preview"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 269
-msgid   "Preview of what will be included in the AppImage"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 273
-msgid   "Quick Preview"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 274
-msgid   "See basic structure overview"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 276
-msgid   "View Full Structure"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 300
-msgid   "Build"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 317
-msgid   "Output Settings"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 320
-msgid   "Output Directory"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 323
-msgid   "Choose Folder"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 332
-# File: usr/share/appimage-creator/ui/pages.py, line: 336
-msgid   "Build Environment"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 333
-msgid   "Choose where to build the AppImage"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 337
-msgid   "Select container or use local system"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 340
-# File: usr/share/appimage-creator/ui/window.py, line: 651
-msgid   "Local System (Current Python)"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 349
-msgid   "Advanced Options"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 352
-msgid   "Include Dependencies"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 353
-msgid   "Automatically include system dependencies"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 359
-msgid   "System Dependencies"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 360
-msgid   "Select which system libraries to bundle"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 371
-msgid   "Include Icon Theme"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 372
-msgid   "Bundle icons for consistent UI across systems"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 378
-msgid   "Icon Theme Selection"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 379
-msgid   "Choose which icon theme to bundle"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 385
-msgid   "Papirus"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 386
-msgid   "Modern, colorful icons (~6.4MB) - Default for GTK apps"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 394
-msgid   "Adwaita"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 395
-msgid   "GNOME default icons (~2.6MB)"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 403
-msgid   "Strip Debug Symbols"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 404
-msgid   "Reduce file size by removing debug information"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 412
-msgid   "Build AppImage"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 413
-msgid   "Create your AppImage with current settings"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 416
-msgid   "Generate AppImage"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 417
-msgid   "Create AppImage with configured settings"
-msgstr  ""
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 419
-# File: usr/share/appimage-creator/ui/window.py, line: 209
-# File: usr/share/appimage-creator/ui/window.py, line: 212
-msgid   "Create AppImage"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
-msgid   "Environment"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 452
-msgid   "Host System Status"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 453
-msgid   "Required tools for creating compatible AppImages"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 457
-msgid   "Checking host system..."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 462
-msgid   "Available Build Environments"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 463
-msgid   "Select an environment to build your AppImage for maximum "
-        "compatibility"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 486
-msgid   "Host is Ready"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 487
-msgid   "Distrobox and a container runtime are installed."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 503
-msgid   "Host Setup Required"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 504
-#, python-brace-format
-msgid   "Missing: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/pages.py, line: 541
-msgid   "Setup"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 54
-# File: usr/share/appimage-creator/ui/window.py, line: 139
-msgid   "AppImage Creator"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 89
-# File: usr/share/appimage-creator/ui/window.py, line: 222
-msgid   "Advanced Settings"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 146
-msgid   "Create distributable AppImages from any Linux application.\n"
-        "<span size='large'>Supports Python, Qt, GTK, Java, and binary "
-        "applications.</span>"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 160
-msgid   "Quick Setup"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 161
-msgid   "Get started quickly with basic information"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 184
-msgid   "Optional: Choose an icon for your application"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 194
-msgid   "Configuration Status"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 195
-msgid   "Complete setup to enable AppImage creation"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 210
-msgid   "Generate your distributable AppImage file"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 223
-msgid   "Configure authors, categories, and build options"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 225
-msgid   "Open Settings"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 247
-msgid   "AppImage Creator Settings"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 356
-msgid   "Setup Build Environment?"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 369
-#, python-brace-format
-msgid   "This will download and setup '{}'.\n"
-        "\n"
-        "This process may take 5-15 minutes depending on your internet "
-        "connection.\n"
-        "\n"
-        "The following will be installed:"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 401
-msgid   "Do you want to continue?"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 412
-msgid   "Cancelar"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 417
-msgid   "Setup Environment"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 424
-msgid   "Setting Up Environment"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 444
-msgid   "Creating container..."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 447
-msgid   "Installing dependencies..."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 453
-# File: usr/share/appimage-creator/ui/window.py, line: 501
-#, python-brace-format
-msgid   "Error: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 468
-msgid   "Remove Environment?"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 469
-#, python-brace-format
-msgid   "Are you sure you want to remove '{}'?\n"
-        "This will delete the container and all its data."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 477
-msgid   "Removing Environment"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 496
-msgid   "Removing container..."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 515
-msgid   "Cannot Install"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 516
-msgid   "Unable to determine package manager for your distribution."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 531
-msgid   "Installation Complete"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 532
-msgid   "Required packages were installed successfully!\n"
-        "\n"
-        "Please restart the application to use the new features."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 556
-msgid   "Ready to Build"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 557
-msgid   "All requirements met"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 560
-msgid   "Almost Ready!"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 561
-msgid   "Please enter an Application Name"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 565
-msgid   "Select Executable"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 566
-msgid   "Please choose the main executable file"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 569
-msgid   "Getting Started"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 570
-msgid   "Enter name and select executable"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 633
-msgid   "Essential for this application type"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 738
-msgid   "Executable Files"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 739
-msgid   "All Files"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 742
-msgid   "Choose Executable"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 756
-# File: usr/share/appimage-creator/ui/window.py, line: 822
-# File: usr/share/appimage-creator/ui/window.py, line: 936
-#, python-brace-format
-msgid   "Selected: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 807
-msgid   "Image Files"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 849
-msgid   "Choose Output Directory"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 904
-#, python-brace-format
-msgid   "Found: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 922
-msgid   "Desktop Files"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 923
-msgid   "Choose Desktop File"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 951
-msgid   "AppImage Overview:"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 952
-#, python-brace-format
-msgid   "   App: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 953
-#, python-brace-format
-msgid   "   Type: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 958
-#, python-brace-format
-msgid   "   Additional Dirs: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 964
-#, python-brace-format
-msgid   "   Auto-detected: {} files"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 967
-msgid   "Click 'View Full Structure' for details"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 985
-msgid   "AppImage Structure - Full View"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 990
-msgid   "AppImage Structure - Detailed View"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 994
-msgid   "[AppImage Root]"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 995
-msgid   "├── AppRun (main launcher)"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 998
-msgid   "└── usr/"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 999
-msgid   "    ├── bin/"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1001
-msgid   "    ├── lib/"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1002
-msgid   "    └── share/"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1028
-msgid   "Summary:"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1030
-#, python-brace-format
-msgid   "Application Type: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1031
-#, python-brace-format
-msgid   "Additional Directories: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1036
-#, python-brace-format
-msgid   "Auto-detected Files: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1047
-msgid   "Tip"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1048
-msgid   "Enter an Application Name above to continue"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1050
-msgid   "Ready!"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1051
-msgid   "Ready to create AppImage! Click 'Create AppImage' when ready."
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1137
-msgid   "Validation Error"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1139
-# File: usr/share/appimage-creator/ui/window.py, line: 1264
-#, python-brace-format
-msgid   "Failed to start build: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1192
-msgid   "AppImages built on your system may NOT work on other distributions "
-        "due to:"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1238
-msgid   "Continue Anyway"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1340
-msgid   "Build Failed"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1349
-msgid   "Build Complete"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1350
-#, python-brace-format
-msgid   "AppImage created successfully:\n"
-        "{}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1353
-msgid   "Build Cancelled"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/window.py, line: 1353
-msgid   "Build was cancelled"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/ui/app.py, line: 75
-#, python-brace-format
-msgid   "Warning: Could not load custom CSS: {}"
+msgid   "Failed to make file executable: {}"
 msgstr  ""
 
 #
@@ -2125,393 +936,393 @@ msgid   "Copying conflicting system libraries to fallback dir: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1344
+# File: usr/share/appimage-creator/core/builder.py, line: 1345
 #, python-brace-format
 msgid   "Generating script to copy libraries to {}..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1368
+# File: usr/share/appimage-creator/core/builder.py, line: 1389
 msgid   "Executing library copy script..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1379
+# File: usr/share/appimage-creator/core/builder.py, line: 1400
 msgid   "Warning: Library copy script finished with errors."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1381
+# File: usr/share/appimage-creator/core/builder.py, line: 1402
 msgid   "Library copy script finished successfully."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1400
+# File: usr/share/appimage-creator/core/builder.py, line: 1421
 msgid   "No typelibs selected for inclusion."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1403
+# File: usr/share/appimage-creator/core/builder.py, line: 1424
 #, python-brace-format
 msgid   "Copying selected typelibs: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1411
+# File: usr/share/appimage-creator/core/builder.py, line: 1432
 msgid   "Generating script to copy typelibs..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1445
+# File: usr/share/appimage-creator/core/builder.py, line: 1466
 msgid   "Executing typelib copy script..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1453
+# File: usr/share/appimage-creator/core/builder.py, line: 1474
 msgid   "Warning: Some typelibs may not have been copied"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1455
+# File: usr/share/appimage-creator/core/builder.py, line: 1476
 msgid   "Typelib copy complete"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1467
+# File: usr/share/appimage-creator/core/builder.py, line: 1488
 msgid   "Copying essential GStreamer plugins..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1530
+# File: usr/share/appimage-creator/core/builder.py, line: 1551
 msgid   "Detected video playback requirements"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1579
+# File: usr/share/appimage-creator/core/builder.py, line: 1600
 msgid   "Copying GStreamer plugins..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1588
+# File: usr/share/appimage-creator/core/builder.py, line: 1609
 msgid   "GStreamer plugin copying complete"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1596
+# File: usr/share/appimage-creator/core/builder.py, line: 1617
 msgid   "Copying Adwaita symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1605
+# File: usr/share/appimage-creator/core/builder.py, line: 1626
 msgid   "Symbolic icons already present"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1616
+# File: usr/share/appimage-creator/core/builder.py, line: 1637
 #, python-brace-format
 msgid   "Copying symbolic icons from {}..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1645
+# File: usr/share/appimage-creator/core/builder.py, line: 1666
 msgid   "Executing symbolic icons copy script..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1653
+# File: usr/share/appimage-creator/core/builder.py, line: 1674
 msgid   "Warning: Failed to copy symbolic icons"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1656
+# File: usr/share/appimage-creator/core/builder.py, line: 1677
 msgid   "Creating custom index.theme for Adwaita symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1753
+# File: usr/share/appimage-creator/core/builder.py, line: 1774
 msgid   "Symbolic icons copied successfully"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1761
+# File: usr/share/appimage-creator/core/builder.py, line: 1782
 msgid   "Copying Papirus symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1785
+# File: usr/share/appimage-creator/core/builder.py, line: 1806
 msgid   "Papirus symbolic icons already present"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1794
+# File: usr/share/appimage-creator/core/builder.py, line: 1815
 msgid   "Copying Papirus and Papirus-Dark symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1868
+# File: usr/share/appimage-creator/core/builder.py, line: 1889
 msgid   "Executing Papirus icons copy script..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1878
+# File: usr/share/appimage-creator/core/builder.py, line: 1899
 msgid   "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1882
+# File: usr/share/appimage-creator/core/builder.py, line: 1903
 msgid   "Creating custom index.theme for Papirus symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1968
+# File: usr/share/appimage-creator/core/builder.py, line: 1989
 msgid   "Papirus symbolic icons copied successfully"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1989
+# File: usr/share/appimage-creator/core/builder.py, line: 2010
 msgid   "No icon found in usr/share/icons"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2009
+# File: usr/share/appimage-creator/core/builder.py, line: 2030
 #, python-brace-format
 msgid   "Created icon symlink: {} -> {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2023
+# File: usr/share/appimage-creator/core/builder.py, line: 2044
 #, python-brace-format
 msgid   "Updated Icon= in desktop file to: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2026
+# File: usr/share/appimage-creator/core/builder.py, line: 2047
 #, python-brace-format
 msgid   "Warning: Failed to create icon symlinks: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2030
+# File: usr/share/appimage-creator/core/builder.py, line: 2051
 msgid   "Setting up linuxdeploy..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2036
+# File: usr/share/appimage-creator/core/builder.py, line: 2057
 #, python-brace-format
 msgid   "Found linuxdeploy: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2049
+# File: usr/share/appimage-creator/core/builder.py, line: 2070
 msgid   "Downloading linuxdeploy..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2052
+# File: usr/share/appimage-creator/core/builder.py, line: 2073
 msgid   "Downloading linuxdeploy"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2061
+# File: usr/share/appimage-creator/core/builder.py, line: 2082
 #, python-brace-format
 msgid   "Failed to setup linuxdeploy: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2081
+# File: usr/share/appimage-creator/core/builder.py, line: 2102
 msgid   "Warning: Could not determine source path for binary detection."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2084
+# File: usr/share/appimage-creator/core/builder.py, line: 2105
 #, python-brace-format
 msgid   "Scanning for binary dependencies in: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2104
+# File: usr/share/appimage-creator/core/builder.py, line: 2125
 #, python-brace-format
 msgid   "  Detected dependency on binary: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2119
+# File: usr/share/appimage-creator/core/builder.py, line: 2140
 #, python-brace-format
 msgid   "Detected binary dependencies: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2132
+# File: usr/share/appimage-creator/core/builder.py, line: 2153
 #, python-brace-format
 msgid   "Copied binary: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2139
+# File: usr/share/appimage-creator/core/builder.py, line: 2160
 #, python-brace-format
 msgid   "Warning: Failed to copy {}: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2142
+# File: usr/share/appimage-creator/core/builder.py, line: 2163
 #, python-brace-format
 msgid   "Warning: {} not found in system"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2145
+# File: usr/share/appimage-creator/core/builder.py, line: 2166
 #, python-brace-format
 msgid   "Missing binaries (app may not work): {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2147
+# File: usr/share/appimage-creator/core/builder.py, line: 2168
 #, python-brace-format
 msgid   "Copied {} external binaries"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2183
+# File: usr/share/appimage-creator/core/builder.py, line: 2204
 #, python-brace-format
 msgid   "Fixed absolute path in: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2190
+# File: usr/share/appimage-creator/core/builder.py, line: 2211
 #, python-brace-format
 msgid   "Warning: Could not fix script {}: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2214
+# File: usr/share/appimage-creator/core/builder.py, line: 2235
 #, python-brace-format
 msgid   "  Copied lib: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2219
+# File: usr/share/appimage-creator/core/builder.py, line: 2240
 #, python-brace-format
 msgid   "Warning: Could not analyze dependencies for {}: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2223
+# File: usr/share/appimage-creator/core/builder.py, line: 2244
 msgid   "Setting up appimagetool..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2229
+# File: usr/share/appimage-creator/core/builder.py, line: 2250
 #, python-brace-format
 msgid   "Found appimagetool: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2239
+# File: usr/share/appimage-creator/core/builder.py, line: 2260
 msgid   "Downloading appimagetool..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2242
+# File: usr/share/appimage-creator/core/builder.py, line: 2263
 msgid   "Downloading appimagetool"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2251
+# File: usr/share/appimage-creator/core/builder.py, line: 2272
 #, python-brace-format
 msgid   "Failed to setup appimagetool: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2256
-# File: usr/share/appimage-creator/core/builder.py, line: 2427
+# File: usr/share/appimage-creator/core/builder.py, line: 2277
+# File: usr/share/appimage-creator/core/builder.py, line: 2448
 msgid   "Building AppImage..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2259
+# File: usr/share/appimage-creator/core/builder.py, line: 2280
 msgid   "appimagetool not available"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2274
+# File: usr/share/appimage-creator/core/builder.py, line: 2295
 #, python-brace-format
 msgid   "Running: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2278
+# File: usr/share/appimage-creator/core/builder.py, line: 2299
 msgid   "Note: appimagetool runs locally (requires FUSE)"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/core/builder.py, line: 2284
-#, python-brace-format
-msgid   "AppImage created: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/core/builder.py, line: 2287
-msgid   "Unknown error"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/core/builder.py, line: 2290
-# File: usr/share/appimage-creator/core/builder.py, line: 2295
-#, python-brace-format
-msgid   "Build failed: {}"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/core/builder.py, line: 2293
-msgid   "Build timed out"
-msgstr  ""
-
-#
-# File: usr/share/appimage-creator/core/builder.py, line: 2303
-msgid   "Cleaned up temporary files"
 msgstr  ""
 
 #
 # File: usr/share/appimage-creator/core/builder.py, line: 2305
 #, python-brace-format
+msgid   "AppImage created: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 2308
+msgid   "Unknown error"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 2311
+# File: usr/share/appimage-creator/core/builder.py, line: 2316
+#, python-brace-format
+msgid   "Build failed: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 2314
+msgid   "Build timed out"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 2324
+msgid   "Cleaned up temporary files"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 2326
+#, python-brace-format
 msgid   "Warning: Cleanup failed: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2310
+# File: usr/share/appimage-creator/core/builder.py, line: 2331
 msgid   "Application information not set"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2315
+# File: usr/share/appimage-creator/core/builder.py, line: 2336
 msgid   "⚠️ WARNING: Building locally - compatibility may be limited"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2320
+# File: usr/share/appimage-creator/core/builder.py, line: 2341
 #, python-brace-format
 msgid   "Validating build environment for {} application..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2338
+# File: usr/share/appimage-creator/core/builder.py, line: 2359
 #, python-brace-format
 msgid   "✓ Python: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2349
+# File: usr/share/appimage-creator/core/builder.py, line: 2370
 msgid   "✓ Java installed"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2360
+# File: usr/share/appimage-creator/core/builder.py, line: 2381
 #, python-brace-format
 msgid   "✓ {} available"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2364
+# File: usr/share/appimage-creator/core/builder.py, line: 2385
 #, python-brace-format
 msgid   "Missing dependencies in container '{}':\n"
         "{}\n"
@@ -2520,57 +1331,1246 @@ msgid   "Missing dependencies in container '{}':\n"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2373
+# File: usr/share/appimage-creator/core/builder.py, line: 2394
 #, python-brace-format
 msgid   "Container '{}' is not responding."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2380
+# File: usr/share/appimage-creator/core/builder.py, line: 2401
 msgid   "Initializing..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2382
-# File: usr/share/appimage-creator/core/builder.py, line: 2384
-# File: usr/share/appimage-creator/core/builder.py, line: 2388
-# File: usr/share/appimage-creator/core/builder.py, line: 2395
-# File: usr/share/appimage-creator/core/builder.py, line: 2399
-# File: usr/share/appimage-creator/core/builder.py, line: 2415
-# File: usr/share/appimage-creator/core/builder.py, line: 2419
-# File: usr/share/appimage-creator/core/builder.py, line: 2424
+# File: usr/share/appimage-creator/core/builder.py, line: 2403
+# File: usr/share/appimage-creator/core/builder.py, line: 2405
+# File: usr/share/appimage-creator/core/builder.py, line: 2409
+# File: usr/share/appimage-creator/core/builder.py, line: 2416
+# File: usr/share/appimage-creator/core/builder.py, line: 2420
+# File: usr/share/appimage-creator/core/builder.py, line: 2436
+# File: usr/share/appimage-creator/core/builder.py, line: 2440
+# File: usr/share/appimage-creator/core/builder.py, line: 2445
 msgid   "Build cancelled"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2407
+# File: usr/share/appimage-creator/core/builder.py, line: 2428
 #, python-brace-format
 msgid   "Detected Python version for AppRun: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2411
+# File: usr/share/appimage-creator/core/builder.py, line: 2432
 #, python-brace-format
 msgid   "Warning: Could not detect container Python, using builder Python: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2423
+# File: usr/share/appimage-creator/core/builder.py, line: 2444
 msgid   "Failed to setup appimagetool"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2430
+# File: usr/share/appimage-creator/core/builder.py, line: 2451
 msgid   "Build complete!"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2434
+# File: usr/share/appimage-creator/core/builder.py, line: 2455
 #, python-brace-format
 msgid   "✗ Build failed: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2449
+# File: usr/share/appimage-creator/core/builder.py, line: 2470
 msgid   "Build already in progress"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 18
+msgid   "Application name must be at least 2 characters long"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 21
+msgid   "Application name contains invalid characters"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 29
+msgid   "Version is required"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 32
+msgid   "Invalid version format"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 40
+msgid   "Executable file does not exist"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 43
+msgid   "File is not executable"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 54
+msgid   "Error: Missing [Desktop Entry] section"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 69
+#, python-brace-format
+msgid   "Error: Missing required keys: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 81
+#, python-brace-format
+msgid   "Error: Empty value for required key: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/app.py, line: 75
+#, python-brace-format
+msgid   "Warning: Could not load custom CSS: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 21
+msgid   "App"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 42
+msgid   "Basic Information"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 45
+# File: usr/share/appimage-creator/ui/window.py, line: 167
+msgid   "Application Name"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 49
+msgid   "Version"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 54
+msgid   "Description"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 61
+msgid   "Authors"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 62
+msgid   "Add one or more authors/developers"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 65
+# File: usr/share/appimage-creator/ui/pages.py, line: 70
+msgid   "Add Author"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 66
+msgid   "Add a new author or developer"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 79
+#, python-brace-format
+msgid   "Author {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 86
+msgid   "Websites"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 87
+msgid   "Add project website, repository, or documentation links"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 90
+# File: usr/share/appimage-creator/ui/pages.py, line: 95
+msgid   "Add Website"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 91
+msgid   "Add project website or repository link"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 104
+#, python-brace-format
+msgid   "Website {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 110
+msgid   "Categories"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 113
+msgid   "Primary Category"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 123
+msgid   "Requires Terminal"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 124
+msgid   "Check if your application needs to run in a terminal"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 135
+msgid   "Files"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 156
+msgid   "Application Files"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 159
+# File: usr/share/appimage-creator/ui/window.py, line: 172
+msgid   "Main Executable"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 160
+# File: usr/share/appimage-creator/ui/window.py, line: 173
+msgid   "Select the main application file"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 162
+# File: usr/share/appimage-creator/ui/pages.py, line: 244
+# File: usr/share/appimage-creator/ui/window.py, line: 175
+msgid   "Choose File"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+msgid   "Application Type"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+msgid   "Auto-detected from executable"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+msgid   "Binary"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+msgid   "Python"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+msgid   "Python Wrapper"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+msgid   "Shell Script"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 173
+msgid   "Java"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 173
+msgid   "Qt"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 173
+msgid   "GTK"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 173
+msgid   "Electron"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 184
+msgid   "Additional Directories"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 185
+msgid   "Include extra directories like locale files, plugins, or data"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 188
+# File: usr/share/appimage-creator/ui/pages.py, line: 191
+# File: usr/share/appimage-creator/ui/window.py, line: 831
+msgid   "Add Directory"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 189
+msgid   "Include additional files and directories"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 207
+msgid   "Auto-detected Files"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 208
+msgid   "Files automatically found for your application"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 222
+msgid   "Desktop File"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 226
+msgid   "Use Existing Desktop File"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 227
+msgid   "Found desktop file in application"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 232
+msgid   "Detected Desktop File"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 233
+msgid   "No desktop file detected"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 235
+msgid   "View"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 241
+msgid   "Custom Desktop File"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 242
+msgid   "Or select a different .desktop file"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 253
+msgid   "Resources"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 256
+# File: usr/share/appimage-creator/ui/window.py, line: 183
+msgid   "Application Icon"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 257
+msgid   "PNG, SVG, or other image format"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 259
+# File: usr/share/appimage-creator/ui/window.py, line: 186
+# File: usr/share/appimage-creator/ui/window.py, line: 809
+msgid   "Choose Icon"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 268
+msgid   "Structure Preview"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 269
+msgid   "Preview of what will be included in the AppImage"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 273
+msgid   "Quick Preview"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 274
+msgid   "See basic structure overview"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 276
+msgid   "View Full Structure"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 300
+msgid   "Build"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 317
+msgid   "Output Settings"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 320
+msgid   "Output Directory"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 323
+msgid   "Choose Folder"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 332
+# File: usr/share/appimage-creator/ui/pages.py, line: 336
+msgid   "Build Environment"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 333
+msgid   "Choose where to build the AppImage"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 337
+msgid   "Select container or use local system"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 340
+# File: usr/share/appimage-creator/ui/window.py, line: 651
+msgid   "Local System (Current Python)"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 349
+msgid   "Advanced Options"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 352
+msgid   "Include Dependencies"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 353
+msgid   "Automatically include system dependencies"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 359
+msgid   "System Dependencies"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 360
+msgid   "Select which system libraries to bundle"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+msgid   "Include Icon Theme"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 372
+msgid   "Bundle icons for consistent UI across systems"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 378
+msgid   "Icon Theme Selection"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 379
+msgid   "Choose which icon theme to bundle"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 385
+msgid   "Papirus"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+msgid   "Modern, colorful icons (~6.4MB) - Default for GTK apps"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 394
+msgid   "Adwaita"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 395
+msgid   "GNOME default icons (~2.6MB)"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 403
+msgid   "Strip Debug Symbols"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 404
+msgid   "Reduce file size by removing debug information"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 412
+msgid   "Build AppImage"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 413
+msgid   "Create your AppImage with current settings"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 416
+msgid   "Generate AppImage"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 417
+msgid   "Create AppImage with configured settings"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 419
+# File: usr/share/appimage-creator/ui/window.py, line: 209
+# File: usr/share/appimage-creator/ui/window.py, line: 212
+msgid   "Create AppImage"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+msgid   "Environment"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 452
+msgid   "Host System Status"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 453
+msgid   "Required tools for creating compatible AppImages"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 457
+msgid   "Checking host system..."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 462
+msgid   "Available Build Environments"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 463
+msgid   "Select an environment to build your AppImage for maximum "
+        "compatibility"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 486
+msgid   "Host is Ready"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 487
+msgid   "Distrobox and a container runtime are installed."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 503
+msgid   "Host Setup Required"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 504
+#, python-brace-format
+msgid   "Missing: {}"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 507
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 308
+msgid   "Install Required Packages"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 532
+# File: usr/share/appimage-creator/ui/window.py, line: 471
+# File: usr/share/appimage-creator/ui/widgets.py, line: 32
+# File: usr/share/appimage-creator/ui/widgets.py, line: 104
+msgid   "Remove"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 541
+msgid   "Setup"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 54
+# File: usr/share/appimage-creator/ui/window.py, line: 139
+msgid   "AppImage Creator"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 89
+# File: usr/share/appimage-creator/ui/window.py, line: 222
+msgid   "Advanced Settings"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 146
+msgid   "Create distributable AppImages from any Linux application.\n"
+        "<span size='large'>Supports Python, Qt, GTK, Java, and binary "
+        "applications.</span>"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 160
+msgid   "Quick Setup"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 161
+msgid   "Get started quickly with basic information"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 184
+msgid   "Optional: Choose an icon for your application"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 194
+msgid   "Configuration Status"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 195
+msgid   "Complete setup to enable AppImage creation"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 210
+msgid   "Generate your distributable AppImage file"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 223
+msgid   "Configure authors, categories, and build options"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 225
+msgid   "Open Settings"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 247
+msgid   "AppImage Creator Settings"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 356
+msgid   "Setup Build Environment?"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 369
+#, python-brace-format
+msgid   "This will download and setup '{}'.\n"
+        "\n"
+        "This process may take 5-15 minutes depending on your internet "
+        "connection.\n"
+        "\n"
+        "The following will be installed:"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 401
+msgid   "Do you want to continue?"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 412
+msgid   "Cancelar"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 417
+msgid   "Setup Environment"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 424
+msgid   "Setting Up Environment"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 444
+msgid   "Creating container..."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 447
+msgid   "Installing dependencies..."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 453
+# File: usr/share/appimage-creator/ui/window.py, line: 501
+#, python-brace-format
+msgid   "Error: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 468
+msgid   "Remove Environment?"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 469
+#, python-brace-format
+msgid   "Are you sure you want to remove '{}'?\n"
+        "This will delete the container and all its data."
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 470
+# File: usr/share/appimage-creator/ui/window.py, line: 1233
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
+msgid   "Cancel"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 477
+msgid   "Removing Environment"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 496
+msgid   "Removing container..."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 515
+msgid   "Cannot Install"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 516
+msgid   "Unable to determine package manager for your distribution."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 531
+msgid   "Installation Complete"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 532
+msgid   "Required packages were installed successfully!\n"
+        "\n"
+        "Please restart the application to use the new features."
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 534
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 88
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 103
+msgid   "OK"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 556
+msgid   "Ready to Build"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 557
+msgid   "All requirements met"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 560
+msgid   "Almost Ready!"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 561
+msgid   "Please enter an Application Name"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 565
+msgid   "Select Executable"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 566
+msgid   "Please choose the main executable file"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 569
+msgid   "Getting Started"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 570
+msgid   "Enter name and select executable"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 633
+msgid   "Essential for this application type"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 738
+msgid   "Executable Files"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 739
+msgid   "All Files"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 742
+msgid   "Choose Executable"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 756
+# File: usr/share/appimage-creator/ui/window.py, line: 822
+# File: usr/share/appimage-creator/ui/window.py, line: 936
+#, python-brace-format
+msgid   "Selected: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 807
+msgid   "Image Files"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 849
+msgid   "Choose Output Directory"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 904
+#, python-brace-format
+msgid   "Found: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 922
+msgid   "Desktop Files"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 923
+msgid   "Choose Desktop File"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 951
+msgid   "AppImage Overview:"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 952
+#, python-brace-format
+msgid   "   App: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 953
+#, python-brace-format
+msgid   "   Type: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 958
+#, python-brace-format
+msgid   "   Additional Dirs: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 964
+#, python-brace-format
+msgid   "   Auto-detected: {} files"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 967
+msgid   "Click 'View Full Structure' for details"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 985
+msgid   "AppImage Structure - Full View"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 990
+msgid   "AppImage Structure - Detailed View"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 994
+msgid   "[AppImage Root]"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 995
+msgid   "├── AppRun (main launcher)"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 998
+msgid   "└── usr/"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 999
+msgid   "    ├── bin/"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1001
+msgid   "    ├── lib/"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1002
+msgid   "    └── share/"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1028
+msgid   "Summary:"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1030
+#, python-brace-format
+msgid   "Application Type: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1031
+#, python-brace-format
+msgid   "Additional Directories: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1036
+#, python-brace-format
+msgid   "Auto-detected Files: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1047
+msgid   "Tip"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1048
+msgid   "Enter an Application Name above to continue"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1050
+msgid   "Ready!"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1051
+msgid   "Ready to create AppImage! Click 'Create AppImage' when ready."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1137
+msgid   "Validation Error"
+msgstr  ""
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1139
+# File: usr/share/appimage-creator/ui/window.py, line: 1264
+# File: usr/share/appimage-creator/ui/window.py, line: 1273
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 223
+msgid   "Error"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1139
+# File: usr/share/appimage-creator/ui/window.py, line: 1264
+#, python-brace-format
+msgid   "Failed to start build: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1192
+msgid   "AppImages built on your system may NOT work on other distributions "
+        "due to:"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1238
+msgid   "Continue Anyway"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1340
+msgid   "Build Failed"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1349
+msgid   "Build Complete"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1350
+#, python-brace-format
+msgid   "AppImage created successfully:\n"
+        "{}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1353
+msgid   "Build Cancelled"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 1353
+msgid   "Build was cancelled"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/widgets.py, line: 147
+#, python-brace-format
+msgid   "{}: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 25
+msgid   "Building AppImage"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 47
+msgid   "Preparing..."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 58
+msgid   "Cancel Build"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 89
+msgid   "Open Folder"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
+msgid   "Open"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 127
+msgid   "Select"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 129
+msgid   "Save"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 203
+msgid   "Copy to clipboard"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 221
+msgid   "Desktop File Content"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 223
+#, python-brace-format
+msgid   "Failed to read file: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 258
+msgid   "Starting..."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 278
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 415
+msgid   "Close"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 296
+msgid   "Completed successfully!"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 298
+msgid   "Finished with errors."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 334
+msgid   "Installation Information"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 339
+msgid   "Packages to Install"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 346
+msgid   "Command"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 364
+msgid   "<b>Administrator privileges required</b>\n"
+        "You will be asked for your password to install system packages."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 375
+msgid   "Installation Output"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 410
+msgid   "Install"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 430
+msgid   "Starting installation...\n"
+        "\n"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 460
+msgid   "Error running command"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
+msgid   "Pre-command completed successfully."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 473
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 495
+msgid   "Installation completed successfully!"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 476
+msgid   "Command failed with exit code"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 503
+msgid   "Installation failed."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 504
+msgid   "Please check the errors above and try again."
 msgstr  ""
