@@ -146,9 +146,22 @@ export GST_PLUGIN_SYSTEM_PATH="${{HERE}}/usr/lib/gstreamer-1.0"
 
 # GTK icon and theme paths - CRITICAL for bundled icon themes
 export XDG_DATA_DIRS="${{HERE}}/usr/share:${{XDG_DATA_DIRS:-/usr/local/share:/usr/share}}"
+
+# Auto-detect and add application icon directories to XDG_DATA_DIRS
+# This allows GTK to find icons bundled inside the application
+for app_dir in "${{HERE}}/usr/share"/*; do
+    if [ -d "$app_dir" ] && [ -d "$app_dir/icons" ]; then
+        # Add this app's directory to XDG_DATA_DIRS so GTK can find its icons
+        export XDG_DATA_DIRS="$app_dir:${{XDG_DATA_DIRS}}"
+    fi
+done
+
 export GTK_PATH="${{HERE}}/usr/lib/gtk-4.0:${{HERE}}/usr/lib/gtk-3.0:${{GTK_PATH}}"
 export GTK_DATA_PREFIX="${{HERE}}/usr"
 export GTK_EXE_PREFIX="${{HERE}}/usr"
+
+# Force GTK to update icon theme cache
+export GTK_THEME_ICON_CACHE_TIMESTAMP=0
 
 # GSettings schemas (for icon theme settings)
 if [ -d "${{HERE}}/usr/share/glib-2.0/schemas" ]; then

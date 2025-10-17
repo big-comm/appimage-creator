@@ -30,13 +30,13 @@ SYSTEM_DEPENDENCIES = {
     'glib': {
         'name': 'GLib/GObject',
         'libs': [
-            'libgobject-2.0.so*', 'libglib-2.0.so*', 'libgio-2.0.so*',
-            'libgmodule-2.0.so*', 'libgirepository-1.0.so*', 'libffi.so*',
+            # 'libgobject-2.0.so*', 'libglib-2.0.so*', 'libgio-2.0.so*', 'libffi.so*',
+            'libgmodule-2.0.so*', 'libgirepository-1.0.so*',
             'libpcre.so.3'
         ],
         'typelibs': [
             'GLib-2.0.typelib', 'GObject-2.0.typelib', 'Gio-2.0.typelib',
-            'GModule-2.0.typelib'
+            'GModule-2.0.typelib', 'cairo-1.0.typelib',
         ],
         'detection_keyword': 'gi',
         'essential': True
@@ -1328,7 +1328,11 @@ echo "System PyGObject copied successfully"
             self._execute_library_copy(conflicting_libs, fallback_lib_dir)
 
     def _execute_library_copy(self, lib_patterns, dest_dir):
-        """Helper function to run the library copy script for a given set of patterns and destination."""
+        """
+        Helper function to find and copy the correct SONAME-versioned library file.
+        This copies only the single, correctly named file needed for compatibility,
+        replicating the structure of a known-good AppImage.
+        """
         system_lib_paths = [
             '/usr/lib/x86_64-linux-gnu',
             '/usr/lib64',
@@ -1336,9 +1340,6 @@ echo "System PyGObject copied successfully"
             '/lib64',
             '/usr/lib',
             '/lib',
-            # GStreamer plugin paths
-            '/usr/lib/x86_64-linux-gnu/gstreamer-1.0',
-            '/usr/lib64/gstreamer-1.0',
         ]
 
         self.log(_("Generating script to copy libraries to {}...").format(dest_dir))
@@ -1346,17 +1347,37 @@ echo "System PyGObject copied successfully"
         script_lines = ["#!/bin/bash", "set -e", f"DEST_DIR='{dest_dir}'", ""]
         
         for pattern in lib_patterns:
-            script_lines.append(f'echo "--- Searching for {pattern} ---"')
-            script_lines.append("( ")
-            for search_path in system_lib_paths:
-                script_lines.append(f'    for f in {search_path}/{pattern}; do')
-                script_lines.append('        if [ -e "$f" ]; then')
-                script_lines.append('            cp -vL "$f" "$DEST_DIR/"')
-                script_lines.append('            exit 0')
-                script_lines.append('        fi')
-                script_lines.append('    done')
-            script_lines.append(") || echo '    -> Not found.'")
-            script_lines.append("")
+            script_lines.extend([
+                f'echo "--- Processing {pattern} ---"',
+                "FOUND=0",
+                "for search_path in " + " ".join(f'"{p}"' for p in system_lib_paths) + "; do",
+                # Find the base library file (shortest name, typically the main symlink)
+                "    BASE_FILE=$(find \"$search_path\" -maxdepth 1 -name " + f"'{pattern}'" + " | sort | head -n 1)",
+                '    if [ -n "$BASE_FILE" ] && [ -e "$BASE_FILE" ]; then',
+                # Use readelf to find the exact SONAME the system needs
+                "        SONAME=$(readelf -d \"$BASE_FILE\" 2>/dev/null | grep '(SONAME)' | awk -F'[][]' '{print $2}')",
+                # Determine the final target file to copy
+                '        if [ -n "$SONAME" ]; then',
+                '            TARGET_FILE="$(dirname "$BASE_FILE")/$SONAME"',
+                '        else',
+                # If no SONAME, it's a non-versioned lib like libffi.so, use the base file
+                '            TARGET_FILE="$BASE_FILE"',
+                '        fi',
+                
+                '        if [ -e "$TARGET_FILE" ]; then',
+                '            echo "Copying $(basename "$TARGET_FILE") from $search_path..."',
+                # Use cp -L to copy the final content with the correct SONAME
+                '            cp -vL "$TARGET_FILE" "$DEST_DIR/"',
+                '            FOUND=1',
+                '            break # Found it, stop searching other paths',
+                '        fi',
+                '    fi',
+                "done",
+                'if [ $FOUND -eq 0 ]; then',
+                f"    echo '    -> {pattern} not found.'",
+                "fi",
+                ""
+            ])
 
         script_content = "\n".join(script_lines)
         script_path = self.build_dir / f"copy_libs_{dest_dir.name}.sh"
