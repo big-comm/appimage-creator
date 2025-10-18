@@ -35,8 +35,14 @@ SYSTEM_DEPENDENCIES = {
             'libpcre.so.3'
         ],
         'typelibs': [
-            'GLib-2.0.typelib', 'GObject-2.0.typelib', 'Gio-2.0.typelib',
-            'GModule-2.0.typelib', 'cairo-1.0.typelib',
+            'GLib-2.0.typelib', 
+            'GObject-2.0.typelib', 
+            'Gio-2.0.typelib',
+            'GModule-2.0.typelib',
+            'cairo-1.0.typelib',
+            'Pango-1.0.typelib',
+            'PangoCairo-1.0.typelib',
+            'GdkPixbuf-2.0.typelib'
         ],
         'detection_keyword': 'gi',
         'essential': True
@@ -101,6 +107,24 @@ SYSTEM_DEPENDENCIES = {
         'typelibs': ['GstGtk-1.0.typelib'],
         'detection_keyword': 'gstreamer-gtk',
         'essential': False
+    },
+    'mpv': {
+        'name': 'MPV Library',
+        # Expanded list for selective bundling of essential MPV/FFmpeg libs
+        'libs': [
+            'libmpv.so*',
+            'libavutil.so*',
+            'libavcodec.so*',
+            'libavformat.so*',
+            'libswresample.so*',
+            'libswscale.so*',
+            'libplacebo.so*',
+            'libvulkan.so*',
+            'libx264.so*'
+        ],
+        'typelibs': [], # MPV does not use GObject Introspection
+        'detection_keyword': 'mpv',
+        'essential': False
     }
 }
 
@@ -111,6 +135,14 @@ SYSTEM_BINARIES = {
         'binary_name': 'vainfo',
         'detection_keyword': 'vainfo',
         'essential': False
+    },
+    # Add mpv
+    'mpv': {
+        'name': 'MPV Media Player',
+        'binary_name': 'mpv',
+        'detection_keyword': 'mpv',
+        'essential': False,
+        'manage_libs_manually': True  # This new flag prevents the aggressive 'ldd' scan
     },
     # Add other binaries here in the future, e.g., 'vdpauinfo'
 }
@@ -482,6 +514,9 @@ class AppImageBuilder:
         
         # Copy only essential GStreamer plugins
         self._copy_gstreamer_plugins()
+        
+        # Copy MPV configuration if needed
+        self._copy_mpv_config()
         
         # Icon theme handling based on user configuration
         include_icon_theme = self.app_info.get('include_icon_theme', True)
@@ -1018,6 +1053,10 @@ echo "System PyGObject copied successfully"
                 r"gtk4paintablesink",
                 r"from gi\.repository import GstGtk",
                 r"gi\.require_version\(['\"]GstGtk['\"],"
+            ],
+            'mpv': [
+                r"import\s+mpv",
+                r"from\s+mpv"
             ]
         }
         
@@ -1119,16 +1158,44 @@ echo "System PyGObject copied successfully"
         
         package_map = debian_packages if package_manager == 'apt' else rpm_packages
         
+        # Add specific package maps for non-GUI dependencies like media libraries
+        debian_media_packages = {
+            'mpv': ['libmpv-dev'],
+        }
+        rpm_media_packages = {
+            'mpv': ['mpv-libs-devel'],
+        }
+        media_package_map = debian_media_packages if package_manager == 'apt' else rpm_media_packages
+
         packages_needed = []
         for fw in dependencies.keys():
             if fw in package_map:
                 packages_needed.extend(package_map[fw])
-        
-        if not packages_needed or not self.container_name:
-            return
+            # Check for media dependencies as well
+            if fw in media_package_map:
+                packages_needed.extend(media_package_map[fw])
         
         packages_needed = list(set(packages_needed))
         self.log(_("Required packages: {}").format(', '.join(packages_needed)))
+        
+        # Check which packages are actually missing from the container
+        packages_to_install = []
+        self.log(_("Checking for missing packages in the container..."))
+        for pkg in packages_needed:
+            # Use dpkg-query to check package status. It returns non-zero if not installed.
+            check_cmd = ["dpkg-query", "-W", "-f='${Status}'", pkg]
+            result = self._run_command(check_cmd, capture_output=True)
+            # A successful query contains 'install ok installed'
+            if result.returncode != 0 or 'install ok installed' not in result.stdout:
+                packages_to_install.append(pkg)
+                self.log(f"  -> Package '{pkg}' is missing.")
+
+        # If there's nothing to install, we can stop here.
+        if not packages_to_install:
+            self.log(_("All required native dependencies are already installed."))
+            return
+        
+        self.log(_("Packages to install: {}").format(', '.join(packages_to_install)))
         
         # Check for GTK4 on Ubuntu 20.04
         if 'gtk4' in dependencies:
@@ -1151,9 +1218,9 @@ echo "System PyGObject copied successfully"
         # Install packages
         self.log(_("Installing GUI libraries..."))
         if package_manager == 'apt':
-            install_cmd = ["sudo", "apt-get", "install", "-y", "--no-install-recommends"] + packages_needed
+            install_cmd = ["sudo", "apt-get", "install", "-y", "--no-install-recommends"] + packages_to_install
         else:
-            install_cmd = ["sudo", "dnf", "install", "-y"] + packages_needed
+            install_cmd = ["sudo", "dnf", "install", "-y"] + packages_to_install
         
         self.log(_("Running install command: {}").format(' '.join(install_cmd)))
         result = self._run_command(install_cmd, timeout=300)
@@ -1226,6 +1293,10 @@ echo "System PyGObject copied successfully"
             for binary in detected_binaries:
                 if binary in ['sh', 'bash']:
                     continue
+                
+                if SYSTEM_BINARIES.get(binary, {}).get('manage_libs_manually'):
+                    self.log(_("Skipping copy of '{}' executable, as it is treated as a library provider.").format(binary))
+                    continue
                     
                 system_bin = shutil.which(binary)
                 if system_bin:
@@ -1288,6 +1359,27 @@ echo "System PyGObject copied successfully"
                 make_executable(original_wrapper)
                 wrapper_backup.unlink()
                 self.log(_("Restored original wrapper: {}").format(original_wrapper.name))
+                
+            # Generate icon cache inside the AppDir for better integration
+            self.log(_("Generating icon cache inside AppDir..."))
+            hicolor_dir = self.appdir_path / "usr/share/icons/hicolor"
+            if hicolor_dir.is_dir():
+                try:
+                    # The command must be run from within the container to find gtk-update-icon-cache
+                    cache_cmd = [
+                        "gtk-update-icon-cache",
+                        "-f",
+                        "-t",
+                        str(hicolor_dir)
+                    ]
+                    result = self._run_command(cache_cmd, timeout=60)
+                    if result.returncode == 0:
+                        self.log(_("Successfully generated icon-theme.cache."))
+                    else:
+                        self.log(_("Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."))
+                        self.log(result.stderr or result.stdout)
+                except Exception as cache_error:
+                    self.log(_("Warning: Could not run gtk-update-icon-cache: {}").format(cache_error))
 
         except Exception as e:
             self.log(_("Warning: Binary bundling failed: {}").format(e))
@@ -1607,6 +1699,40 @@ echo "System PyGObject copied successfully"
         # Set GST_PLUGIN_PATH in AppRun will be handled by existing AppRun template
         
         self.log(_("GStreamer plugin copying complete"))
+        
+    def _copy_mpv_config(self):
+        """Copies MPV configuration files if MPV is a detected dependency."""
+        selected_deps = self.app_info.get('selected_dependencies', [])
+        if 'mpv' not in selected_deps:
+            return
+
+        self.log("Copying MPV configuration files...")
+        
+        system_mpv_paths = [
+            '/etc/mpv',
+            '/usr/share/mpv',
+        ]
+        
+        dest_dir = self.appdir_path / "usr" / "share" / "mpv"
+        dest_dir.mkdir(parents=True, exist_ok=True)
+
+        copied = False
+        for path in system_mpv_paths:
+            script = f"""
+            if [ -d "{path}" ]; then
+                echo "Found MPV config at {path}"
+                cp -a "{path}"/* "{dest_dir}/"
+                exit 0
+            fi
+            """
+            result = self._run_command(['bash', '-c', script])
+            if result.returncode == 0:
+                self.log(f"MPV config copied from {path}")
+                copied = True
+                break
+        
+        if not copied:
+            self.log("Warning: Could not find MPV configuration files to copy.")
             
     def _copy_symbolic_icons(self):
         """
@@ -1996,7 +2122,6 @@ Type=Scalable
             if not icons_dir.exists():
                 return
             
-            # Find any icon file
             icon_file = None
             for ext in ['.svg', '.png', '.xpm']:
                 for found_icon in icons_dir.rglob(f"*{ext}"):
@@ -2010,38 +2135,63 @@ Type=Scalable
                 self.log(_("No icon found in usr/share/icons"))
                 return
             
-            # Get desktop file name (without .desktop)
-            desktop_files = list((self.appdir_path / "usr/share/applications").glob("*.desktop"))
-            if not desktop_files:
+            # Reliably find the main application's desktop file.
+            main_desktop_file = None
+            
+            all_desktop_files = list((self.appdir_path / "usr/share/applications").glob("*.desktop"))
+
+            # Strategy 1: Find a desktop file that was copied from the source project.
+            # This is often the most reliable.
+            if self.app_info.get('structure_analysis'):
+                detected_desktops = self.app_info['structure_analysis']['detected_files'].get('desktop_files', [])
+                if detected_desktops:
+                    original_desktop_name = Path(detected_desktops[0]).name
+                    for f in all_desktop_files:
+                        if f.name == original_desktop_name:
+                            main_desktop_file = f
+                            break
+            
+            # Strategy 2: If not found, fall back to finding one that is not auto-generated.
+            if not main_desktop_file:
+                for f in all_desktop_files:
+                    # Ignore files created by linuxdeploy for secondary binaries
+                    if 'vainfo' not in f.name:
+                        main_desktop_file = f
+                        break
+            
+            # If still no file, we can't proceed.
+            if not main_desktop_file:
+                self.log(_("Warning: Could not reliably determine the main desktop file to update the icon path."))
                 return
+
+            self.log(_("Using main desktop file for icon association: {}").format(main_desktop_file.name))
+            desktop_name = main_desktop_file.stem  # e.g., org.communitybig.ashyterm
+            icon_extension = icon_file.suffix      # e.g., .svg
             
-            desktop_name = desktop_files[0].stem  # e.g., br.com.biglinux.converter
-            icon_extension = icon_file.suffix  # e.g., .svg
-            
-            # Create symlink with desktop file name
+            # Create symlink in the root of the AppDir
             symlink_name = f"{desktop_name}{icon_extension}"
             symlink_path = self.appdir_path / symlink_name
-            relative_icon = os.path.relpath(icon_file, self.appdir_path)
+            relative_icon_path = os.path.relpath(icon_file, self.appdir_path)
             
             if symlink_path.exists():
                 symlink_path.unlink()
-            symlink_path.symlink_to(relative_icon)
+            symlink_path.symlink_to(relative_icon_path)
             
-            self.log(_("Created icon symlink: {} -> {}").format(symlink_name, relative_icon))
+            self.log(_("Created root icon symlink: {} -> {}").format(symlink_name, relative_icon_path))
             
-            # Update Icon= in desktop file
-            desktop_file_path = desktop_files[0]
-            with open(desktop_file_path, 'r') as f:
+            # Update the Icon= line in the main desktop file to use the base name
+            desktop_file_path = main_desktop_file # Use a variável correta
+            with open(desktop_file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            # Replace Icon= line
+            # Replace Icon= line with the name (without extension)
             import re
             content = re.sub(r'^Icon=.*$', f'Icon={desktop_name}', content, flags=re.MULTILINE)
             
-            with open(desktop_file_path, 'w') as f:
+            with open(desktop_file_path, 'w', encoding='utf-8') as f:
                 f.write(content)
             
-            self.log(_("Updated Icon= in desktop file to: {}").format(desktop_name))
+            self.log(_("Updated 'Icon=' in {} to: {}").format(desktop_file_path.name, desktop_name))
             
         except Exception as e:
             self.log(_("Warning: Failed to create icon symlinks: {}").format(e))
