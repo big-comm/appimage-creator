@@ -357,9 +357,28 @@ class AppImageBuilder:
             if project_root and os.path.exists(project_root):
                 self.log(_("Copying structured project from: {}").format(project_root))
                 exclude_patterns = [
-                    '.git', '__pycache__', '*.pyc', '.DS_Store', '*.tmp',
-                    '*.po', '*.pot'
+                    # Version control and cache
+                    '.git', 
+                    '.github',
+                    '.gitignore',
+                    '__pycache__',
+                    '*.pyc',
+                    '.DS_Store',
+                    
+                    # Temporary and translation files
+                    '*.tmp',
+                    '*.po',
+                    '*.pot',
+                    
+                    # Documentation and project metadata files
+                    'README.md',
+                    'LICENSE',
+                    'requirements.txt', # The builder uses it, but it doesn't need to be in the final AppImage
+                    
+                    # Specific build/package directories
+                    'pkgbuild'
                 ]
+
                 copy_files_recursively(project_root, self.appdir_path, exclude_patterns=exclude_patterns)
             else:
                 # Fallback for simple applications without a clear root
