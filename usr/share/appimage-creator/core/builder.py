@@ -72,7 +72,13 @@ SYSTEM_DEPENDENCIES = {
         'libs': ['libgtk-4.so*', 'libgraphene-1.0.so*'],
         'typelibs': [
             'Gtk-4.0.typelib', 'Gdk-4.0.typelib', 'Gsk-4.0.typelib',
-            'Graphene-1.0.typelib'
+            'Graphene-1.0.typelib',
+            'Pango-1.0.typelib',
+            'PangoCairo-1.0.typelib',
+            'cairo-1.0.typelib',
+            'GdkPixbuf-2.0.typelib',
+            'HarfBuzz-0.0.typelib',
+            'freetype2-2.0.typelib'
         ],
         'detection_keyword': 'gtk4',
         'essential': False
