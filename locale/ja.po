@@ -16,64 +16,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: attranslate\n"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 18
+# File: usr/share/appimage-creator/generators/icons.py, line: 16
 #: NEEDS WORK
-msgid "Application name must be at least 2 characters long"
-msgstr "アプリケーション名は2文字以上でなければなりません"
+msgid "Warning: PIL/Pillow not available, icon processing will be limited"
+msgstr "警告: PIL/Pillowが利用できません。アイコン処理は制限されます。"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 21
-#: NEEDS WORK
-msgid "Application name contains invalid characters"
-msgstr "アプリケーション名に無効な文字が含まれています"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 29
-#: NEEDS WORK
-msgid "Version is required"
-msgstr "バージョンが必要です"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 32
-#: NEEDS WORK
-msgid "Invalid version format"
-msgstr "無効なバージョン形式"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 40
-#: NEEDS WORK
-msgid "Executable file does not exist"
-msgstr "実行可能ファイルが存在しません"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 43
-#: NEEDS WORK
-msgid "File is not executable"
-msgstr "ファイルは実行可能ではありません"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 54
-#: NEEDS WORK
-msgid "Error: Missing [Desktop Entry] section"
-msgstr "エラー: [Desktop Entry] セクションが見つかりません"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 69
+# File: usr/share/appimage-creator/generators/icons.py, line: 82
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Missing required keys: {}"
-msgstr "エラー: 必要なキーが不足しています: {}"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 81
-#: NEEDS WORK
-#, python-brace-format
-msgid "Error: Empty value for required key: {}"
-msgstr "エラー: 必須キーの空の値: {}"
-# 
-# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to download {}: {}"
-msgstr "{}のダウンロードに失敗しました: {}"
-# 
-# File: usr/share/appimage-creator/utils/system.py, line: 108
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to make file executable: {}"
-msgstr "ファイルを実行可能にできませんでした: {}"
+msgid "Error processing icon: {}"
+msgstr "アイコンの処理中にエラーが発生しました: {}"
 # 
 # File: usr/share/appimage-creator/generators/files.py, line: 70
 #: NEEDS WORK
@@ -91,1175 +43,17 @@ msgstr "デスクトップファイルの作成に失敗しました"
 msgid "Warning: Failed to adapt existing desktop file: {}"
 msgstr "警告: 既存のデスクトップファイルの適応に失敗しました: {}"
 # 
-# File: usr/share/appimage-creator/generators/icons.py, line: 16
-#: NEEDS WORK
-msgid "Warning: PIL/Pillow not available, icon processing will be limited"
-msgstr "警告: PIL/Pillowが利用できません。アイコン処理は制限されます。"
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 82
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error processing icon: {}"
-msgstr "アイコンの処理中にエラーが発生しました: {}"
+msgid "Failed to download {}: {}"
+msgstr "{}のダウンロードに失敗しました: {}"
 # 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
-#: NEEDS WORK
-msgid "Building AppImage"
-msgstr "AppImageをビルド中"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
-#: NEEDS WORK
-msgid "Preparing..."
-msgstr "準備中..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
-#: NEEDS WORK
-msgid "Cancel Build"
-msgstr "ビルドをキャンセル"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
-# File: usr/share/appimage-creator/ui/window.py, line: 405
-#: NEEDS WORK
-msgid "OK"
-msgstr "OK"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
-#: NEEDS WORK
-msgid "Open Folder"
-msgstr "フォルダーを開く"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
-# File: usr/share/appimage-creator/ui/window.py, line: 341
-#: NEEDS WORK
-msgid "Cancel"
-msgstr "キャンセル"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
-#: NEEDS WORK
-msgid "Open"
-msgstr "開く"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
-#: NEEDS WORK
-msgid "Select"
-msgstr "選択"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
-#: NEEDS WORK
-msgid "Save"
-msgstr "保存"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
-#: NEEDS WORK
-msgid "Copy to clipboard"
-msgstr "クリップボードにコピー"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
-#: NEEDS WORK
-msgid "Desktop File Content"
-msgstr "デスクトップファイルの内容"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-# File: usr/share/appimage-creator/ui/window.py, line: 897
-# File: usr/share/appimage-creator/ui/window.py, line: 906
-#: NEEDS WORK
-msgid "Error"
-msgstr "エラー"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/utils/system.py, line: 108
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to read file: {}"
-msgstr "ファイルの読み込みに失敗しました: {}"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
-#: NEEDS WORK
-msgid "Starting..."
-msgstr "開始中..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
-#: NEEDS WORK
-msgid "Close"
-msgstr "閉じる"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
-#: NEEDS WORK
-msgid "Completed successfully!"
-msgstr "正常に完了しました！"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
-#: NEEDS WORK
-msgid "Finished with errors."
-msgstr "エラーが発生しました。"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
-# File: usr/share/appimage-creator/ui/pages.py, line: 459
-#: NEEDS WORK
-msgid "Install Required Packages"
-msgstr "必要なパッケージをインストール"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
-#: NEEDS WORK
-msgid "Installation Information"
-msgstr "インストール情報"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
-#: NEEDS WORK
-msgid "Packages to Install"
-msgstr "インストールするパッケージ"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
-#: NEEDS WORK
-msgid "Command"
-msgstr "コマンド"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
-#: NEEDS WORK
-msgid ""
-"<b>Administrator privileges required</b>\n"
-"You will be asked for your password to install system packages."
-msgstr ""
-"<b>管理者権限が必要です</b>  \n"
-"システムパッケージをインストールするためにパスワードの入力を求められます。"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
-#: NEEDS WORK
-msgid "Installation Output"
-msgstr "インストール出力"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
-#: NEEDS WORK
-msgid "Install"
-msgstr "インストール"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 426
-#: NEEDS WORK
-msgid ""
-"Starting installation...\n"
-"\n"
-msgstr "インストールを開始しています..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
-#: NEEDS WORK
-msgid "Error running command"
-msgstr "コマンドの実行中にエラーが発生しました"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
-#: NEEDS WORK
-msgid "Pre-command completed successfully."
-msgstr "プレコマンドが正常に完了しました。"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
-#: NEEDS WORK
-msgid "Installation completed successfully!"
-msgstr "インストールが成功しました！"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
-#: NEEDS WORK
-msgid "Command failed with exit code"
-msgstr "コマンドが終了コードで失敗しました"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
-#: NEEDS WORK
-msgid "Installation failed."
-msgstr "インストールに失敗しました。"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
-#: NEEDS WORK
-msgid "Please check the errors above and try again."
-msgstr "上記のエラーを確認し、再試行してください。"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/widgets.py, line: 32
-# File: usr/share/appimage-creator/ui/widgets.py, line: 104
-# File: usr/share/appimage-creator/ui/pages.py, line: 484
-# File: usr/share/appimage-creator/ui/window.py, line: 342
-#: NEEDS WORK
-msgid "Remove"
-msgstr "削除"
-# 
-# File: usr/share/appimage-creator/ui/widgets.py, line: 147
-#: NEEDS WORK
-#, python-brace-format
-msgid "{}: {}"
-msgstr "{}: {}"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 21
-#: NEEDS WORK
-msgid "App"
-msgstr "アプリ"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 39
-#: NEEDS WORK
-msgid "Basic Information"
-msgstr "基本情報"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 42
-# File: usr/share/appimage-creator/ui/window.py, line: 159
-#: NEEDS WORK
-msgid "Application Name"
-msgstr "アプリケーション名"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 46
-#: NEEDS WORK
-msgid "Version"
-msgstr "バージョン"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 51
-#: NEEDS WORK
-msgid "Description"
-msgstr "説明"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 58
-#: NEEDS WORK
-msgid "Authors"
-msgstr "著者"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 59
-#: NEEDS WORK
-msgid "Add one or more authors/developers"
-msgstr "1人以上の著者/開発者を追加"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 62
-# File: usr/share/appimage-creator/ui/pages.py, line: 67
-#: NEEDS WORK
-msgid "Add Author"
-msgstr "著者を追加"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 63
-#: NEEDS WORK
-msgid "Add a new author or developer"
-msgstr "新しい著者または開発者を追加"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 76
-#: NEEDS WORK
-#, python-brace-format
-msgid "Author {}"
-msgstr "著者 {}"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 83
-#: NEEDS WORK
-msgid "Websites"
-msgstr "ウェブサイト"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 84
-#: NEEDS WORK
-msgid "Add project website, repository, or documentation links"
-msgstr "プロジェクトのウェブサイト、リポジトリ、またはドキュメントのリンクを追加"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 87
-# File: usr/share/appimage-creator/ui/pages.py, line: 92
-#: NEEDS WORK
-msgid "Add Website"
-msgstr "ウェブサイトを追加"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 88
-#: NEEDS WORK
-msgid "Add project website or repository link"
-msgstr "プロジェクトのウェブサイトまたはリポジトリリンクを追加"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 101
-#: NEEDS WORK
-#, python-brace-format
-msgid "Website {}"
-msgstr "ウェブサイト {}"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 107
-#: NEEDS WORK
-msgid "Categories"
-msgstr "カテゴリ"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 110
-#: NEEDS WORK
-msgid "Primary Category"
-msgstr "主要カテゴリ"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 120
-#: NEEDS WORK
-msgid "Requires Terminal"
-msgstr "ターミナルが必要です"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 121
-#: NEEDS WORK
-msgid "Check if your application needs to run in a terminal"
-msgstr "アプリケーションがターミナルで実行する必要があるか確認してください"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 135
-#: NEEDS WORK
-msgid "Files"
-msgstr "ファイル"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 153
-#: NEEDS WORK
-msgid "Application Files"
-msgstr "アプリケーションファイル"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 156
-# File: usr/share/appimage-creator/ui/window.py, line: 164
-#: NEEDS WORK
-msgid "Main Executable"
-msgstr "メイン実行ファイル"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 157
-# File: usr/share/appimage-creator/ui/window.py, line: 165
-#: NEEDS WORK
-msgid "Select the main application file"
-msgstr "メインアプリケーションファイルを選択してください"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 159
-# File: usr/share/appimage-creator/ui/pages.py, line: 241
-# File: usr/share/appimage-creator/ui/window.py, line: 167
-#: NEEDS WORK
-msgid "Choose File"
-msgstr "ファイルを選択"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 165
-#: NEEDS WORK
-msgid "Application Type"
-msgstr "アプリケーションタイプ"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 166
-#: NEEDS WORK
-msgid "Auto-detected from executable"
-msgstr "実行可能ファイルから自動検出されました"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-#: NEEDS WORK
-msgid "Binary"
-msgstr "バイナリ"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-#: NEEDS WORK
-msgid "Python"
-msgstr "パイソン"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-#: NEEDS WORK
-msgid "Python Wrapper"
-msgstr "Pythonラッパー"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-#: NEEDS WORK
-msgid "Shell Script"
-msgstr "シェルスクリプト"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 170
-#: NEEDS WORK
-msgid "Java"
-msgstr "ジャバ"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 170
-#: NEEDS WORK
-msgid "Qt"
-msgstr "Qt"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 170
-#: NEEDS WORK
-msgid "GTK"
-msgstr "GTK"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 170
-#: NEEDS WORK
-msgid "Electron"
-msgstr "エレクトロン"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 181
-#: NEEDS WORK
-msgid "Additional Directories"
-msgstr "追加ディレクトリ"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 182
-#: NEEDS WORK
-msgid "Include extra directories like locale files, plugins, or data"
-msgstr "ロケールファイル、プラグイン、またはデータのような追加ディレクトリを含める"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 185
-# File: usr/share/appimage-creator/ui/pages.py, line: 188
-# File: usr/share/appimage-creator/ui/window.py, line: 601
-#: NEEDS WORK
-msgid "Add Directory"
-msgstr "ディレクトリを追加"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 186
-#: NEEDS WORK
-msgid "Include additional files and directories"
-msgstr "追加のファイルとディレクトリを含める"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 204
-#: NEEDS WORK
-msgid "Auto-detected Files"
-msgstr "自動検出されたファイル"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 205
-#: NEEDS WORK
-msgid "Files automatically found for your application"
-msgstr "アプリケーションに自動的に見つかったファイル"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 219
-#: NEEDS WORK
-msgid "Desktop File"
-msgstr "デスクトップファイル"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 223
-#: NEEDS WORK
-msgid "Use Existing Desktop File"
-msgstr "既存のデスクトップファイルを使用"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 224
-#: NEEDS WORK
-msgid "Found desktop file in application"
-msgstr "アプリケーションにデスクトップファイルが見つかりました"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 229
-#: NEEDS WORK
-msgid "Detected Desktop File"
-msgstr "検出されたデスクトップファイル"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 230
-#: NEEDS WORK
-msgid "No desktop file detected"
-msgstr "デスクトップファイルが検出されませんでした"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 232
-#: NEEDS WORK
-msgid "View"
-msgstr "表示"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 238
-#: NEEDS WORK
-msgid "Custom Desktop File"
-msgstr "カスタムデスクトップファイル"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 239
-#: NEEDS WORK
-msgid "Or select a different .desktop file"
-msgstr "別の .desktop ファイルを選択してください"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 250
-#: NEEDS WORK
-msgid "Resources"
-msgstr "リソース"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 253
-# File: usr/share/appimage-creator/ui/window.py, line: 175
-#: NEEDS WORK
-msgid "Application Icon"
-msgstr "アプリケーションアイコン"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 254
-#: NEEDS WORK
-msgid "PNG, SVG, or other image format"
-msgstr "PNG、SVG、またはその他の画像形式"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 256
-# File: usr/share/appimage-creator/ui/window.py, line: 178
-# File: usr/share/appimage-creator/ui/window.py, line: 579
-#: NEEDS WORK
-msgid "Choose Icon"
-msgstr "アイコンを選択"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 265
-#: NEEDS WORK
-msgid "Structure Preview"
-msgstr "構造プレビュー"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
-#: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "AppImageに含まれる内容のプレビュー"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
-#: NEEDS WORK
-msgid "Quick Preview"
-msgstr "クイックプレビュー"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
-#: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "基本構造の概要を参照してください"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 273
-#: NEEDS WORK
-msgid "View Full Structure"
-msgstr "全構造を表示"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 300
-#: NEEDS WORK
-msgid "Build"
-msgstr "ビルド"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 314
-#: NEEDS WORK
-msgid "Output Settings"
-msgstr "出力設定"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 317
-#: NEEDS WORK
-msgid "Output Directory"
-msgstr "出力ディレクトリ"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 320
-#: NEEDS WORK
-msgid "Choose Folder"
-msgstr "フォルダーを選択"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 329
-# File: usr/share/appimage-creator/ui/pages.py, line: 333
-# File: usr/share/appimage-creator/ui/pages.py, line: 386
-#: NEEDS WORK
-msgid "Build Environment"
-msgstr "ビルド環境"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 330
-#: NEEDS WORK
-msgid "Choose where to build the AppImage"
-msgstr "AppImageをビルドする場所を選択してください"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 334
-#: NEEDS WORK
-msgid "Select container or use local system"
-msgstr "コンテナを選択するか、ローカルシステムを使用してください"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 337
-# File: usr/share/appimage-creator/ui/window.py, line: 456
-#: NEEDS WORK
-msgid "Local System (Current Python)"
-msgstr "ローカルシステム（現在のPython）"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 346
-#: NEEDS WORK
-msgid "Advanced Options"
-msgstr "詳細オプション"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 349
-#: NEEDS WORK
-msgid "Include Dependencies"
-msgstr "依存関係を含める"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 350
-#: NEEDS WORK
-msgid "Automatically include system dependencies"
-msgstr "システム依存関係を自動的に含める"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 356
-#: NEEDS WORK
-msgid "System Dependencies"
-msgstr "システム依存関係"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 357
-#: NEEDS WORK
-msgid "Select which system libraries to bundle"
-msgstr "バンドルするシステムライブラリを選択してください"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 371
-#: NEEDS WORK
-msgid "Include Icon Theme"
-msgstr "アイコンテーマを含める"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 372
-#: NEEDS WORK
-msgid "Bundle icons for consistent UI across systems"
-msgstr "システム全体で一貫したUIのためのアイコンをバンドルする"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 378
-#: NEEDS WORK
-msgid "Icon Theme Selection"
-msgstr "アイコンテーマの選択"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 379
-#: NEEDS WORK
-msgid "Choose which icon theme to bundle"
-msgstr "バンドルするアイコンテーマを選択してください"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 385
-#: NEEDS WORK
-msgid "Papirus"
-msgstr "パピルス"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 386
-#: NEEDS WORK
-msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
-msgstr "モダンでカラフルなアイコン（約6.4MB） - GTKアプリのデフォルト"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 394
-#: NEEDS WORK
-msgid "Adwaita"
-msgstr "アドウェイタ"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 395
-#: NEEDS WORK
-msgid "GNOME default icons (~2.6MB)"
-msgstr "GNOMEデフォルトアイコン（約2.6MB）"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 355
-#: NEEDS WORK
-msgid "Strip Debug Symbols"
-msgstr "デバッグシンボルを削除"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 356
-#: NEEDS WORK
-msgid "Reduce file size by removing debug information"
-msgstr "デバッグ情報を削除してファイルサイズを縮小する"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 364
-#: NEEDS WORK
-msgid "Build AppImage"
-msgstr "AppImageをビルド"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 365
-#: NEEDS WORK
-msgid "Create your AppImage with current settings"
-msgstr "現在の設定でAppImageを作成します"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 368
-#: NEEDS WORK
-msgid "Generate AppImage"
-msgstr "AppImageを生成"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 369
-#: NEEDS WORK
-msgid "Create AppImage with configured settings"
-msgstr "設定された設定でAppImageを作成"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 371
-# File: usr/share/appimage-creator/ui/window.py, line: 201
-# File: usr/share/appimage-creator/ui/window.py, line: 204
-#: NEEDS WORK
-msgid "Create AppImage"
-msgstr "AppImageを作成"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
-#: NEEDS WORK
-msgid "Environment"
-msgstr "環境"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 404
-#: NEEDS WORK
-msgid "Host System Status"
-msgstr "ホストシステムのステータス"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 405
-#: NEEDS WORK
-msgid "Required tools for creating compatible AppImages"
-msgstr "互換性のあるAppImageを作成するために必要なツール"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 409
-#: NEEDS WORK
-msgid "Checking host system..."
-msgstr "ホストシステムを確認中..."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 414
-#: NEEDS WORK
-msgid "Available Build Environments"
-msgstr "利用可能なビルド環境"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 415
-#: NEEDS WORK
-msgid "Select an environment to build your AppImage for maximum compatibility"
-msgstr "アプリイメージを最大の互換性のためにビルドする環境を選択してください"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 438
-#: NEEDS WORK
-msgid "Host is Ready"
-msgstr "ホストは準備完了です"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 439
-#: NEEDS WORK
-msgid "Distrobox and a container runtime are installed."
-msgstr "Distroboxとコンテナランタイムがインストールされています。"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 455
-#: NEEDS WORK
-msgid "Host Setup Required"
-msgstr "ホストセットアップが必要です"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 456
-#: NEEDS WORK
-#, python-brace-format
-msgid "Missing: {}"
-msgstr "不足: {}"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 493
-#: NEEDS WORK
-msgid "Setup"
-msgstr "セットアップ"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 48
-# File: usr/share/appimage-creator/ui/window.py, line: 131
-#: NEEDS WORK
-msgid "AppImage Creator"
-msgstr "AppImageクリエーター"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 214
-#: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "詳細設定"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 138
-#: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"任意のLinuxアプリケーションから配布可能なAppImageを作成します。  \n"
-"<span size='large'>Python、Qt、GTK、Java、およびバイナリアプリケーションをサポートしています。</span>"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 152
-#: NEEDS WORK
-msgid "Quick Setup"
-msgstr "クイックセットアップ"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 153
-#: NEEDS WORK
-msgid "Get started quickly with basic information"
-msgstr "基本情報を使ってすぐに始めましょう"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 176
-#: NEEDS WORK
-msgid "Optional: Choose an icon for your application"
-msgstr "オプション: アプリケーションのアイコンを選択してください"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 186
-#: NEEDS WORK
-msgid "Configuration Status"
-msgstr "構成状況"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 187
-#: NEEDS WORK
-msgid "Complete setup to enable AppImage creation"
-msgstr "AppImage作成を有効にするための完全なセットアップ"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 202
-#: NEEDS WORK
-msgid "Generate your distributable AppImage file"
-msgstr "配布可能なAppImageファイルを生成する"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 215
-#: NEEDS WORK
-msgid "Configure authors, categories, and build options"
-msgstr "著者、カテゴリ、およびビルドオプションを設定する"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 217
-#: NEEDS WORK
-msgid "Open Settings"
-msgstr "設定を開く"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 235
-#: NEEDS WORK
-msgid "AppImage Creator Settings"
-msgstr "AppImageクリエイター設定"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 325
-#: NEEDS WORK
-msgid "Setup Build Environment?"
-msgstr "ビルド環境をセットアップしますか？"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 338
-#: NEEDS WORK
-#, python-brace-format
-msgid ""
-"This will download and setup '{}'.\n"
-"\n"
-"This process may take 5-15 minutes depending on your internet connection.\n"
-"\n"
-"The following will be installed:"
-msgstr ""
-"これにより、'{}'がダウンロードされ、セットアップされます。\n"
-"\n"
-"このプロセスは、インターネット接続によって5〜15分かかる場合があります。\n"
-"\n"
-"次のものがインストールされます："
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 370
-#: NEEDS WORK
-msgid "Do you want to continue?"
-msgstr "続けますか？"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 381
-#: NEEDS WORK
-msgid "Cancelar"
-msgstr "キャンセル"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 386
-#: NEEDS WORK
-msgid "Setup Environment"
-msgstr "環境設定"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 303
-#: NEEDS WORK
-msgid "Setting Up Environment"
-msgstr "環境の設定"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 315
-#: NEEDS WORK
-msgid "Creating container..."
-msgstr "コンテナを作成中..."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 318
-#: NEEDS WORK
-msgid "Installing dependencies..."
-msgstr "依存関係をインストールしています..."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 324
-# File: usr/share/appimage-creator/ui/window.py, line: 372
-#: NEEDS WORK
-#, python-brace-format
-msgid "Error: {}"
-msgstr "エラー: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 339
-#: NEEDS WORK
-msgid "Remove Environment?"
-msgstr "環境を削除しますか？"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 340
-#: NEEDS WORK
-#, python-brace-format
-msgid ""
-"Are you sure you want to remove '{}'?\n"
-"This will delete the container and all its data."
-msgstr ""
-"'{}'を削除してもよろしいですか？\n"
-"これにより、コンテナとそのすべてのデータが削除されます。"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 348
-#: NEEDS WORK
-msgid "Removing Environment"
-msgstr "環境を削除中"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 367
-#: NEEDS WORK
-msgid "Removing container..."
-msgstr "コンテナを削除しています..."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 386
-#: NEEDS WORK
-msgid "Cannot Install"
-msgstr "インストールできません"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 387
-#: NEEDS WORK
-msgid "Unable to determine package manager for your distribution."
-msgstr "あなたのディストリビューションのパッケージマネージャーを特定できません。"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 402
-#: NEEDS WORK
-msgid "Installation Complete"
-msgstr "インストール完了"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 403
-#: NEEDS WORK
-msgid ""
-"Required packages were installed successfully!\n"
-"\n"
-"Please restart the application to use the new features."
-msgstr ""
-"必要なパッケージが正常にインストールされました！\n"
-"\n"
-"新機能を使用するには、アプリケーションを再起動してください。"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 427
-#: NEEDS WORK
-msgid "Ready to Build"
-msgstr "ビルド準備完了"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 428
-#: NEEDS WORK
-msgid "All requirements met"
-msgstr "すべての要件が満たされました"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 431
-#: NEEDS WORK
-msgid "Almost Ready!"
-msgstr "ほぼ準備完了！"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 432
-#: NEEDS WORK
-msgid "Please enter an Application Name"
-msgstr "アプリケーション名を入力してください"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 436
-#: NEEDS WORK
-msgid "Select Executable"
-msgstr "実行可能ファイルを選択"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 437
-#: NEEDS WORK
-msgid "Please choose the main executable file"
-msgstr "メイン実行ファイルを選択してください"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 440
-#: NEEDS WORK
-msgid "Getting Started"
-msgstr "はじめに"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 441
-#: NEEDS WORK
-msgid "Enter name and select executable"
-msgstr "名前を入力し、実行可能ファイルを選択してください"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 615
-#: NEEDS WORK
-msgid "Essential for this application type"
-msgstr "このアプリケーションタイプにとって不可欠です"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 516
-#: NEEDS WORK
-msgid "Executable Files"
-msgstr "実行可能ファイル"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 517
-#: NEEDS WORK
-msgid "All Files"
-msgstr "すべてのファイル"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 520
-#: NEEDS WORK
-msgid "Choose Executable"
-msgstr "実行可能ファイルを選択"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 534
-# File: usr/share/appimage-creator/ui/window.py, line: 592
-# File: usr/share/appimage-creator/ui/window.py, line: 706
-#: NEEDS WORK
-#, python-brace-format
-msgid "Selected: {}"
-msgstr "選択された: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 577
-#: NEEDS WORK
-msgid "Image Files"
-msgstr "画像ファイル"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 619
-#: NEEDS WORK
-msgid "Choose Output Directory"
-msgstr "出力ディレクトリを選択してください"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 674
-#: NEEDS WORK
-#, python-brace-format
-msgid "Found: {}"
-msgstr "見つかりました: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 692
-#: NEEDS WORK
-msgid "Desktop Files"
-msgstr "デスクトップファイル"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 693
-#: NEEDS WORK
-msgid "Choose Desktop File"
-msgstr "デスクトップファイルを選択"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 721
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "AppImage 概要:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 722
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "アプリ: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 723
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "タイプ: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 728
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "追加ディレクトリ: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 734
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "自動検出: {} ファイル"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 737
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "「詳細を見るには「フル構造を表示」をクリックしてください」"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 755
-#: NEEDS WORK
-msgid "AppImage Structure - Full View"
-msgstr "AppImage構造 - フルビュー"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 760
-#: NEEDS WORK
-msgid "AppImage Structure - Detailed View"
-msgstr "AppImage構造 - 詳細ビュー"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 764
-#: NEEDS WORK
-msgid "[AppImage Root]"
-msgstr "[AppImage ルート]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 765
-#: NEEDS WORK
-msgid "├── AppRun (main launcher)"
-msgstr "├── AppRun (メインランチャー)"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 768
-#: NEEDS WORK
-msgid "└── usr/"
-msgstr "└── usr/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 769
-#: NEEDS WORK
-msgid "    ├── bin/"
-msgstr "├── バイナリ/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 771
-#: NEEDS WORK
-msgid "    ├── lib/"
-msgstr "├── ライブラリ/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 772
-#: NEEDS WORK
-msgid "    └── share/"
-msgstr "└── 共有/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 798
-#: NEEDS WORK
-msgid "Summary:"
-msgstr "概要:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 800
-#: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "アプリケーションタイプ: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 801
-#: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "追加ディレクトリ: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 806
-#: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "自動検出されたファイル: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 817
-#: NEEDS WORK
-msgid "Tip"
-msgstr "ヒント"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 818
-#: NEEDS WORK
-msgid "Enter an Application Name above to continue"
-msgstr "続行するには、上にアプリケーション名を入力してください。"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 820
-#: NEEDS WORK
-msgid "Ready!"
-msgstr "準備完了！"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 821
-#: NEEDS WORK
-msgid "Ready to create AppImage! Click 'Create AppImage' when ready."
-msgstr "AppImageを作成する準備ができました！準備ができたら「AppImageを作成」をクリックしてください。"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 895
-#: NEEDS WORK
-msgid "Validation Error"
-msgstr "検証エラー"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 897
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to start build: {}"
-msgstr "ビルドの開始に失敗しました: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1155
-#: NEEDS WORK
-msgid "AppImages built on your system may NOT work on other distributions due to:"
-msgstr "あなたのシステムでビルドされたAppImageは、他のディストリビューションでは動作しない可能性があります:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1201
-#: NEEDS WORK
-msgid "Continue Anyway"
-msgstr "とにかく続ける"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 941
-#: NEEDS WORK
-msgid "Build Failed"
-msgstr "ビルドに失敗しました"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 950
-#: NEEDS WORK
-msgid "Build Complete"
-msgstr "ビルド完了"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 951
-#: NEEDS WORK
-#, python-brace-format
-msgid ""
-"AppImage created successfully:\n"
-"{}"
-msgstr ""
-"AppImageが正常に作成されました:\n"
-"{}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 954
-#: NEEDS WORK
-msgid "Build Cancelled"
-msgstr "ビルドがキャンセルされました"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 954
-#: NEEDS WORK
-msgid "Build was cancelled"
-msgstr "ビルドはキャンセルされました"
-# 
-# File: usr/share/appimage-creator/ui/app.py, line: 75
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not load custom CSS: {}"
-msgstr "警告: カスタムCSSを読み込めませんでした: {}"
+msgid "Failed to make file executable: {}"
+msgstr "ファイルを実行可能にできませんでした: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
@@ -2006,6 +800,22 @@ msgstr "ネイティブGUI依存関係を確認しています..."
 msgid "Required packages: {}"
 msgstr "必要なパッケージ: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1189
+#: NEEDS WORK
+msgid "Checking for missing packages in the container..."
+msgstr "コンテナ内の欠落しているパッケージを確認しています..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1201
+#: NEEDS WORK
+msgid "All required native dependencies are already installed."
+msgstr "すべての必要なネイティブ依存関係はすでにインストールされています。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1204
+#: NEEDS WORK
+#, python-brace-format
+msgid "Packages to install: {}"
+msgstr "インストールするパッケージ: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 799
 #: NEEDS WORK
 msgid ""
@@ -2095,6 +905,12 @@ msgstr "バックアップされたカスタムAppRun"
 msgid "Warning: No .desktop file found, skipping linuxdeploy"
 msgstr "警告: .desktopファイルが見つかりません、linuxdeployをスキップします"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1304
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping copy of '{}' executable, as it is treated as a library provider."
+msgstr "'{}' 実行可能ファイルのコピーをスキップしています。ライブラリプロバイダーとして扱われています。"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 891
 #: NEEDS WORK
 #, python-brace-format
@@ -2141,6 +957,27 @@ msgstr "復元されたカスタムAppRun"
 #, python-brace-format
 msgid "Restored original wrapper: {}"
 msgstr "元のラッパーを復元しました: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1370
+#: NEEDS WORK
+msgid "Generating icon cache inside AppDir..."
+msgstr "AppDir内でアイコンキャッシュを生成しています..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1383
+#: NEEDS WORK
+msgid "Successfully generated icon-theme.cache."
+msgstr "アイコンテーマ.cacheを正常に生成しました。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
+msgstr "警告: icon-theme.cacheの生成に失敗しました。アイコンがメニューに表示されない可能性があります。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1388
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not run gtk-update-icon-cache: {}"
+msgstr "警告: gtk-update-icon-cacheを実行できませんでした: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 945
 #: NEEDS WORK
@@ -2308,17 +1145,28 @@ msgstr "Papirusのシンボリックアイコンが正常にコピーされま�
 msgid "No icon found in usr/share/icons"
 msgstr "/usr/share/iconsにアイコンが見つかりません。"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1329
+# File: usr/share/appimage-creator/core/builder.py, line: 2170
 #: NEEDS WORK
-#, python-brace-format
-msgid "Created icon symlink: {} -> {}"
-msgstr "アイコンのシンボリックリンクを作成しました: {} -> {}"
+msgid "Warning: Could not reliably determine the main desktop file to update the icon path."
+msgstr "警告: アイコンパスを更新するためのメインデスクトップファイルを信頼性高く特定できませんでした。"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1343
+# File: usr/share/appimage-creator/core/builder.py, line: 2173
 #: NEEDS WORK
 #, python-brace-format
-msgid "Updated Icon= in desktop file to: {}"
-msgstr "デスクトップファイルのアイコンを更新しました: {}"
+msgid "Using main desktop file for icon association: {}"
+msgstr "アイコン関連付けのためのメインデスクトップファイルを使用しています: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2186
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created root icon symlink: {} -> {}"
+msgstr "ルートアイコンのシンボリックリンクを作成しました: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2200
+#: NEEDS WORK
+#, python-brace-format
+msgid "Updated 'Icon=' in {} to: {}"
+msgstr "{}の'Icon='を{}に更新しました。"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1346
 #: NEEDS WORK
@@ -2615,3 +1463,1209 @@ msgstr "✗ ビルドに失敗しました: {}"
 #: NEEDS WORK
 msgid "Build already in progress"
 msgstr "ビルドはすでに進行中です"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 18
+#: NEEDS WORK
+msgid "Application name must be at least 2 characters long"
+msgstr "アプリケーション名は2文字以上でなければなりません"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 21
+#: NEEDS WORK
+msgid "Application name contains invalid characters"
+msgstr "アプリケーション名に無効な文字が含まれています"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 29
+#: NEEDS WORK
+msgid "Version is required"
+msgstr "バージョンが必要です"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 32
+#: NEEDS WORK
+msgid "Invalid version format"
+msgstr "無効なバージョン形式"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 40
+#: NEEDS WORK
+msgid "Executable file does not exist"
+msgstr "実行可能ファイルが存在しません"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 43
+#: NEEDS WORK
+msgid "File is not executable"
+msgstr "ファイルは実行可能ではありません"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 54
+#: NEEDS WORK
+msgid "Error: Missing [Desktop Entry] section"
+msgstr "エラー: [Desktop Entry] セクションが見つかりません"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 69
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Missing required keys: {}"
+msgstr "エラー: 必要なキーが不足しています: {}"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 81
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Empty value for required key: {}"
+msgstr "エラー: 必須キーの空の値: {}"
+# 
+# File: usr/share/appimage-creator/ui/app.py, line: 75
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not load custom CSS: {}"
+msgstr "警告: カスタムCSSを読み込めませんでした: {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 21
+#: NEEDS WORK
+msgid "App"
+msgstr "アプリ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 39
+#: NEEDS WORK
+msgid "Basic Information"
+msgstr "基本情報"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 42
+# File: usr/share/appimage-creator/ui/window.py, line: 159
+#: NEEDS WORK
+msgid "Application Name"
+msgstr "アプリケーション名"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 46
+#: NEEDS WORK
+msgid "Version"
+msgstr "バージョン"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 51
+#: NEEDS WORK
+msgid "Description"
+msgstr "説明"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 58
+#: NEEDS WORK
+msgid "Authors"
+msgstr "著者"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 59
+#: NEEDS WORK
+msgid "Add one or more authors/developers"
+msgstr "1人以上の著者/開発者を追加"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 62
+# File: usr/share/appimage-creator/ui/pages.py, line: 67
+#: NEEDS WORK
+msgid "Add Author"
+msgstr "著者を追加"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 63
+#: NEEDS WORK
+msgid "Add a new author or developer"
+msgstr "新しい著者または開発者を追加"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 76
+#: NEEDS WORK
+#, python-brace-format
+msgid "Author {}"
+msgstr "著者 {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 83
+#: NEEDS WORK
+msgid "Websites"
+msgstr "ウェブサイト"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 84
+#: NEEDS WORK
+msgid "Add project website, repository, or documentation links"
+msgstr "プロジェクトのウェブサイト、リポジトリ、またはドキュメントのリンクを追加"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 87
+# File: usr/share/appimage-creator/ui/pages.py, line: 92
+#: NEEDS WORK
+msgid "Add Website"
+msgstr "ウェブサイトを追加"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 88
+#: NEEDS WORK
+msgid "Add project website or repository link"
+msgstr "プロジェクトのウェブサイトまたはリポジトリリンクを追加"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 101
+#: NEEDS WORK
+#, python-brace-format
+msgid "Website {}"
+msgstr "ウェブサイト {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 107
+#: NEEDS WORK
+msgid "Categories"
+msgstr "カテゴリ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 110
+#: NEEDS WORK
+msgid "Primary Category"
+msgstr "主要カテゴリ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 120
+#: NEEDS WORK
+msgid "Requires Terminal"
+msgstr "ターミナルが必要です"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 121
+#: NEEDS WORK
+msgid "Check if your application needs to run in a terminal"
+msgstr "アプリケーションがターミナルで実行する必要があるか確認してください"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 135
+#: NEEDS WORK
+msgid "Files"
+msgstr "ファイル"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 153
+#: NEEDS WORK
+msgid "Application Files"
+msgstr "アプリケーションファイル"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 156
+# File: usr/share/appimage-creator/ui/window.py, line: 164
+#: NEEDS WORK
+msgid "Main Executable"
+msgstr "メイン実行ファイル"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 157
+# File: usr/share/appimage-creator/ui/window.py, line: 165
+#: NEEDS WORK
+msgid "Select the main application file"
+msgstr "メインアプリケーションファイルを選択してください"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 159
+# File: usr/share/appimage-creator/ui/pages.py, line: 241
+# File: usr/share/appimage-creator/ui/window.py, line: 167
+#: NEEDS WORK
+msgid "Choose File"
+msgstr "ファイルを選択"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 165
+#: NEEDS WORK
+msgid "Application Type"
+msgstr "アプリケーションタイプ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 166
+#: NEEDS WORK
+msgid "Auto-detected from executable"
+msgstr "実行可能ファイルから自動検出されました"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Binary"
+msgstr "バイナリ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Python"
+msgstr "パイソン"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Python Wrapper"
+msgstr "Pythonラッパー"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Shell Script"
+msgstr "シェルスクリプト"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "Java"
+msgstr "ジャバ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "Qt"
+msgstr "Qt"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "GTK"
+msgstr "GTK"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "Electron"
+msgstr "エレクトロン"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 181
+#: NEEDS WORK
+msgid "Additional Directories"
+msgstr "追加ディレクトリ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Include extra directories like locale files, plugins, or data"
+msgstr "ロケールファイル、プラグイン、またはデータのような追加ディレクトリを含める"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 185
+# File: usr/share/appimage-creator/ui/pages.py, line: 188
+# File: usr/share/appimage-creator/ui/window.py, line: 601
+#: NEEDS WORK
+msgid "Add Directory"
+msgstr "ディレクトリを追加"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 186
+#: NEEDS WORK
+msgid "Include additional files and directories"
+msgstr "追加のファイルとディレクトリを含める"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 204
+#: NEEDS WORK
+msgid "Auto-detected Files"
+msgstr "自動検出されたファイル"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 205
+#: NEEDS WORK
+msgid "Files automatically found for your application"
+msgstr "アプリケーションに自動的に見つかったファイル"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 219
+#: NEEDS WORK
+msgid "Desktop File"
+msgstr "デスクトップファイル"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 223
+#: NEEDS WORK
+msgid "Use Existing Desktop File"
+msgstr "既存のデスクトップファイルを使用"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 224
+#: NEEDS WORK
+msgid "Found desktop file in application"
+msgstr "アプリケーションにデスクトップファイルが見つかりました"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 229
+#: NEEDS WORK
+msgid "Detected Desktop File"
+msgstr "検出されたデスクトップファイル"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 230
+#: NEEDS WORK
+msgid "No desktop file detected"
+msgstr "デスクトップファイルが検出されませんでした"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 232
+#: NEEDS WORK
+msgid "View"
+msgstr "表示"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 238
+#: NEEDS WORK
+msgid "Custom Desktop File"
+msgstr "カスタムデスクトップファイル"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 239
+#: NEEDS WORK
+msgid "Or select a different .desktop file"
+msgstr "別の .desktop ファイルを選択してください"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 250
+#: NEEDS WORK
+msgid "Resources"
+msgstr "リソース"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 253
+# File: usr/share/appimage-creator/ui/window.py, line: 175
+#: NEEDS WORK
+msgid "Application Icon"
+msgstr "アプリケーションアイコン"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 254
+#: NEEDS WORK
+msgid "PNG, SVG, or other image format"
+msgstr "PNG、SVG、またはその他の画像形式"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 256
+# File: usr/share/appimage-creator/ui/window.py, line: 178
+# File: usr/share/appimage-creator/ui/window.py, line: 579
+#: NEEDS WORK
+msgid "Choose Icon"
+msgstr "アイコンを選択"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 265
+#: NEEDS WORK
+msgid "Structure Preview"
+msgstr "構造プレビュー"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 266
+#: NEEDS WORK
+msgid "Preview of what will be included in the AppImage"
+msgstr "AppImageに含まれる内容のプレビュー"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 270
+#: NEEDS WORK
+msgid "Quick Preview"
+msgstr "クイックプレビュー"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 271
+#: NEEDS WORK
+msgid "See basic structure overview"
+msgstr "基本構造の概要を参照してください"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 273
+#: NEEDS WORK
+msgid "View Full Structure"
+msgstr "全構造を表示"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 300
+#: NEEDS WORK
+msgid "Build"
+msgstr "ビルド"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 314
+#: NEEDS WORK
+msgid "Output Settings"
+msgstr "出力設定"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 317
+#: NEEDS WORK
+msgid "Output Directory"
+msgstr "出力ディレクトリ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 320
+#: NEEDS WORK
+msgid "Choose Folder"
+msgstr "フォルダーを選択"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 329
+# File: usr/share/appimage-creator/ui/pages.py, line: 333
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Build Environment"
+msgstr "ビルド環境"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 330
+#: NEEDS WORK
+msgid "Choose where to build the AppImage"
+msgstr "AppImageをビルドする場所を選択してください"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 334
+#: NEEDS WORK
+msgid "Select container or use local system"
+msgstr "コンテナを選択するか、ローカルシステムを使用してください"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 337
+# File: usr/share/appimage-creator/ui/window.py, line: 456
+#: NEEDS WORK
+msgid "Local System (Current Python)"
+msgstr "ローカルシステム（現在のPython）"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 346
+#: NEEDS WORK
+msgid "Advanced Options"
+msgstr "詳細オプション"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 349
+#: NEEDS WORK
+msgid "Include Dependencies"
+msgstr "依存関係を含める"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 350
+#: NEEDS WORK
+msgid "Automatically include system dependencies"
+msgstr "システム依存関係を自動的に含める"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "システム依存関係"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "バンドルするシステムライブラリを選択してください"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+#: NEEDS WORK
+msgid "Include Icon Theme"
+msgstr "アイコンテーマを含める"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 372
+#: NEEDS WORK
+msgid "Bundle icons for consistent UI across systems"
+msgstr "システム全体で一貫したUIのためのアイコンをバンドルする"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 378
+#: NEEDS WORK
+msgid "Icon Theme Selection"
+msgstr "アイコンテーマの選択"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 379
+#: NEEDS WORK
+msgid "Choose which icon theme to bundle"
+msgstr "バンドルするアイコンテーマを選択してください"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 385
+#: NEEDS WORK
+msgid "Papirus"
+msgstr "パピルス"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
+msgstr "モダンでカラフルなアイコン（約6.4MB） - GTKアプリのデフォルト"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 394
+#: NEEDS WORK
+msgid "Adwaita"
+msgstr "アドウェイタ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 395
+#: NEEDS WORK
+msgid "GNOME default icons (~2.6MB)"
+msgstr "GNOMEデフォルトアイコン（約2.6MB）"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 355
+#: NEEDS WORK
+msgid "Strip Debug Symbols"
+msgstr "デバッグシンボルを削除"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "Reduce file size by removing debug information"
+msgstr "デバッグ情報を削除してファイルサイズを縮小する"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 364
+#: NEEDS WORK
+msgid "Build AppImage"
+msgstr "AppImageをビルド"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 365
+#: NEEDS WORK
+msgid "Create your AppImage with current settings"
+msgstr "現在の設定でAppImageを作成します"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 368
+#: NEEDS WORK
+msgid "Generate AppImage"
+msgstr "AppImageを生成"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 369
+#: NEEDS WORK
+msgid "Create AppImage with configured settings"
+msgstr "設定された設定でAppImageを作成"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+# File: usr/share/appimage-creator/ui/window.py, line: 201
+# File: usr/share/appimage-creator/ui/window.py, line: 204
+#: NEEDS WORK
+msgid "Create AppImage"
+msgstr "AppImageを作成"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+#: NEEDS WORK
+msgid "Environment"
+msgstr "環境"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 404
+#: NEEDS WORK
+msgid "Host System Status"
+msgstr "ホストシステムのステータス"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 405
+#: NEEDS WORK
+msgid "Required tools for creating compatible AppImages"
+msgstr "互換性のあるAppImageを作成するために必要なツール"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 409
+#: NEEDS WORK
+msgid "Checking host system..."
+msgstr "ホストシステムを確認中..."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 414
+#: NEEDS WORK
+msgid "Available Build Environments"
+msgstr "利用可能なビルド環境"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 415
+#: NEEDS WORK
+msgid "Select an environment to build your AppImage for maximum compatibility"
+msgstr "アプリイメージを最大の互換性のためにビルドする環境を選択してください"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 438
+#: NEEDS WORK
+msgid "Host is Ready"
+msgstr "ホストは準備完了です"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 439
+#: NEEDS WORK
+msgid "Distrobox and a container runtime are installed."
+msgstr "Distroboxとコンテナランタイムがインストールされています。"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 455
+#: NEEDS WORK
+msgid "Host Setup Required"
+msgstr "ホストセットアップが必要です"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 456
+#: NEEDS WORK
+#, python-brace-format
+msgid "Missing: {}"
+msgstr "不足: {}"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
+# File: usr/share/appimage-creator/ui/pages.py, line: 459
+#: NEEDS WORK
+msgid "Install Required Packages"
+msgstr "必要なパッケージをインストール"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/widgets.py, line: 32
+# File: usr/share/appimage-creator/ui/widgets.py, line: 104
+# File: usr/share/appimage-creator/ui/pages.py, line: 484
+# File: usr/share/appimage-creator/ui/window.py, line: 342
+#: NEEDS WORK
+msgid "Remove"
+msgstr "削除"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 493
+#: NEEDS WORK
+msgid "Setup"
+msgstr "セットアップ"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 48
+# File: usr/share/appimage-creator/ui/window.py, line: 131
+#: NEEDS WORK
+msgid "AppImage Creator"
+msgstr "AppImageクリエーター"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 214
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "詳細設定"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 138
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
+msgstr ""
+"任意のLinuxアプリケーションから配布可能なAppImageを作成します。  \n"
+"<span size='large'>Python、Qt、GTK、Java、およびバイナリアプリケーションをサポートしています。</span>"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 152
+#: NEEDS WORK
+msgid "Quick Setup"
+msgstr "クイックセットアップ"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 153
+#: NEEDS WORK
+msgid "Get started quickly with basic information"
+msgstr "基本情報を使ってすぐに始めましょう"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 176
+#: NEEDS WORK
+msgid "Optional: Choose an icon for your application"
+msgstr "オプション: アプリケーションのアイコンを選択してください"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 186
+#: NEEDS WORK
+msgid "Configuration Status"
+msgstr "構成状況"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 187
+#: NEEDS WORK
+msgid "Complete setup to enable AppImage creation"
+msgstr "AppImage作成を有効にするための完全なセットアップ"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 202
+#: NEEDS WORK
+msgid "Generate your distributable AppImage file"
+msgstr "配布可能なAppImageファイルを生成する"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 215
+#: NEEDS WORK
+msgid "Configure authors, categories, and build options"
+msgstr "著者、カテゴリ、およびビルドオプションを設定する"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 217
+#: NEEDS WORK
+msgid "Open Settings"
+msgstr "設定を開く"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 235
+#: NEEDS WORK
+msgid "AppImage Creator Settings"
+msgstr "AppImageクリエイター設定"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 325
+#: NEEDS WORK
+msgid "Setup Build Environment?"
+msgstr "ビルド環境をセットアップしますか？"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 338
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"This will download and setup '{}'.\n"
+"\n"
+"This process may take 5-15 minutes depending on your internet connection.\n"
+"\n"
+"The following will be installed:"
+msgstr ""
+"これにより、'{}'がダウンロードされ、セットアップされます。\n"
+"\n"
+"このプロセスは、インターネット接続によって5〜15分かかる場合があります。\n"
+"\n"
+"次のものがインストールされます："
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Do you want to continue?"
+msgstr "続けますか？"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Cancelar"
+msgstr "キャンセル"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Setup Environment"
+msgstr "環境設定"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 303
+#: NEEDS WORK
+msgid "Setting Up Environment"
+msgstr "環境の設定"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 315
+#: NEEDS WORK
+msgid "Creating container..."
+msgstr "コンテナを作成中..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 318
+#: NEEDS WORK
+msgid "Installing dependencies..."
+msgstr "依存関係をインストールしています..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 324
+# File: usr/share/appimage-creator/ui/window.py, line: 372
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: {}"
+msgstr "エラー: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 339
+#: NEEDS WORK
+msgid "Remove Environment?"
+msgstr "環境を削除しますか？"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 340
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Are you sure you want to remove '{}'?\n"
+"This will delete the container and all its data."
+msgstr ""
+"'{}'を削除してもよろしいですか？\n"
+"これにより、コンテナとそのすべてのデータが削除されます。"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
+# File: usr/share/appimage-creator/ui/window.py, line: 341
+#: NEEDS WORK
+msgid "Cancel"
+msgstr "キャンセル"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 348
+#: NEEDS WORK
+msgid "Removing Environment"
+msgstr "環境を削除中"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 367
+#: NEEDS WORK
+msgid "Removing container..."
+msgstr "コンテナを削除しています..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Cannot Install"
+msgstr "インストールできません"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 387
+#: NEEDS WORK
+msgid "Unable to determine package manager for your distribution."
+msgstr "あなたのディストリビューションのパッケージマネージャーを特定できません。"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 402
+#: NEEDS WORK
+msgid "Installation Complete"
+msgstr "インストール完了"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 403
+#: NEEDS WORK
+msgid ""
+"Required packages were installed successfully!\n"
+"\n"
+"Please restart the application to use the new features."
+msgstr ""
+"必要なパッケージが正常にインストールされました！\n"
+"\n"
+"新機能を使用するには、アプリケーションを再起動してください。"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
+# File: usr/share/appimage-creator/ui/window.py, line: 405
+#: NEEDS WORK
+msgid "OK"
+msgstr "OK"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 427
+#: NEEDS WORK
+msgid "Ready to Build"
+msgstr "ビルド準備完了"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 428
+#: NEEDS WORK
+msgid "All requirements met"
+msgstr "すべての要件が満たされました"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 431
+#: NEEDS WORK
+msgid "Almost Ready!"
+msgstr "ほぼ準備完了！"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 432
+#: NEEDS WORK
+msgid "Please enter an Application Name"
+msgstr "アプリケーション名を入力してください"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 436
+#: NEEDS WORK
+msgid "Select Executable"
+msgstr "実行可能ファイルを選択"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 437
+#: NEEDS WORK
+msgid "Please choose the main executable file"
+msgstr "メイン実行ファイルを選択してください"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 440
+#: NEEDS WORK
+msgid "Getting Started"
+msgstr "はじめに"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 441
+#: NEEDS WORK
+msgid "Enter name and select executable"
+msgstr "名前を入力し、実行可能ファイルを選択してください"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "このアプリケーションタイプにとって不可欠です"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 516
+#: NEEDS WORK
+msgid "Executable Files"
+msgstr "実行可能ファイル"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 517
+#: NEEDS WORK
+msgid "All Files"
+msgstr "すべてのファイル"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 520
+#: NEEDS WORK
+msgid "Choose Executable"
+msgstr "実行可能ファイルを選択"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 534
+# File: usr/share/appimage-creator/ui/window.py, line: 592
+# File: usr/share/appimage-creator/ui/window.py, line: 706
+#: NEEDS WORK
+#, python-brace-format
+msgid "Selected: {}"
+msgstr "選択された: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 577
+#: NEEDS WORK
+msgid "Image Files"
+msgstr "画像ファイル"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 619
+#: NEEDS WORK
+msgid "Choose Output Directory"
+msgstr "出力ディレクトリを選択してください"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 674
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found: {}"
+msgstr "見つかりました: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 692
+#: NEEDS WORK
+msgid "Desktop Files"
+msgstr "デスクトップファイル"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 693
+#: NEEDS WORK
+msgid "Choose Desktop File"
+msgstr "デスクトップファイルを選択"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 721
+#: NEEDS WORK
+msgid "AppImage Overview:"
+msgstr "AppImage 概要:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 722
+#: NEEDS WORK
+#, python-brace-format
+msgid "   App: {}"
+msgstr "アプリ: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 723
+#: NEEDS WORK
+#, python-brace-format
+msgid "   Type: {}"
+msgstr "タイプ: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 728
+#: NEEDS WORK
+#, python-brace-format
+msgid "   Additional Dirs: {}"
+msgstr "追加ディレクトリ: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 734
+#: NEEDS WORK
+#, python-brace-format
+msgid "   Auto-detected: {} files"
+msgstr "自動検出: {} ファイル"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 737
+#: NEEDS WORK
+msgid "Click 'View Full Structure' for details"
+msgstr "「詳細を見るには「フル構造を表示」をクリックしてください」"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 755
+#: NEEDS WORK
+msgid "AppImage Structure - Full View"
+msgstr "AppImage構造 - フルビュー"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 760
+#: NEEDS WORK
+msgid "AppImage Structure - Detailed View"
+msgstr "AppImage構造 - 詳細ビュー"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 764
+#: NEEDS WORK
+msgid "[AppImage Root]"
+msgstr "[AppImage ルート]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 765
+#: NEEDS WORK
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun (メインランチャー)"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 768
+#: NEEDS WORK
+msgid "└── usr/"
+msgstr "└── usr/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 769
+#: NEEDS WORK
+msgid "    ├── bin/"
+msgstr "├── バイナリ/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 771
+#: NEEDS WORK
+msgid "    ├── lib/"
+msgstr "├── ライブラリ/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 772
+#: NEEDS WORK
+msgid "    └── share/"
+msgstr "└── 共有/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 798
+#: NEEDS WORK
+msgid "Summary:"
+msgstr "概要:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 800
+#: NEEDS WORK
+#, python-brace-format
+msgid "Application Type: {}"
+msgstr "アプリケーションタイプ: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 801
+#: NEEDS WORK
+#, python-brace-format
+msgid "Additional Directories: {}"
+msgstr "追加ディレクトリ: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 806
+#: NEEDS WORK
+#, python-brace-format
+msgid "Auto-detected Files: {}"
+msgstr "自動検出されたファイル: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 817
+#: NEEDS WORK
+msgid "Tip"
+msgstr "ヒント"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 818
+#: NEEDS WORK
+msgid "Enter an Application Name above to continue"
+msgstr "続行するには、上にアプリケーション名を入力してください。"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 820
+#: NEEDS WORK
+msgid "Ready!"
+msgstr "準備完了！"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 821
+#: NEEDS WORK
+msgid "Ready to create AppImage! Click 'Create AppImage' when ready."
+msgstr "AppImageを作成する準備ができました！準備ができたら「AppImageを作成」をクリックしてください。"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 895
+#: NEEDS WORK
+msgid "Validation Error"
+msgstr "検証エラー"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+# File: usr/share/appimage-creator/ui/window.py, line: 906
+#: NEEDS WORK
+msgid "Error"
+msgstr "エラー"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to start build: {}"
+msgstr "ビルドの開始に失敗しました: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "あなたのシステムでビルドされたAppImageは、他のディストリビューションでは動作しない可能性があります:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "とにかく続ける"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 941
+#: NEEDS WORK
+msgid "Build Failed"
+msgstr "ビルドに失敗しました"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 950
+#: NEEDS WORK
+msgid "Build Complete"
+msgstr "ビルド完了"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 951
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"AppImage created successfully:\n"
+"{}"
+msgstr ""
+"AppImageが正常に作成されました:\n"
+"{}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 954
+#: NEEDS WORK
+msgid "Build Cancelled"
+msgstr "ビルドがキャンセルされました"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 954
+#: NEEDS WORK
+msgid "Build was cancelled"
+msgstr "ビルドはキャンセルされました"
+# 
+# File: usr/share/appimage-creator/ui/widgets.py, line: 147
+#: NEEDS WORK
+#, python-brace-format
+msgid "{}: {}"
+msgstr "{}: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
+#: NEEDS WORK
+msgid "Building AppImage"
+msgstr "AppImageをビルド中"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
+#: NEEDS WORK
+msgid "Preparing..."
+msgstr "準備中..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
+#: NEEDS WORK
+msgid "Cancel Build"
+msgstr "ビルドをキャンセル"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
+#: NEEDS WORK
+msgid "Open Folder"
+msgstr "フォルダーを開く"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
+#: NEEDS WORK
+msgid "Open"
+msgstr "開く"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
+#: NEEDS WORK
+msgid "Select"
+msgstr "選択"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
+#: NEEDS WORK
+msgid "Save"
+msgstr "保存"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
+#: NEEDS WORK
+msgid "Copy to clipboard"
+msgstr "クリップボードにコピー"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
+#: NEEDS WORK
+msgid "Desktop File Content"
+msgstr "デスクトップファイルの内容"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to read file: {}"
+msgstr "ファイルの読み込みに失敗しました: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
+#: NEEDS WORK
+msgid "Starting..."
+msgstr "開始中..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
+#: NEEDS WORK
+msgid "Close"
+msgstr "閉じる"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
+#: NEEDS WORK
+msgid "Completed successfully!"
+msgstr "正常に完了しました！"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
+#: NEEDS WORK
+msgid "Finished with errors."
+msgstr "エラーが発生しました。"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
+#: NEEDS WORK
+msgid "Installation Information"
+msgstr "インストール情報"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
+#: NEEDS WORK
+msgid "Packages to Install"
+msgstr "インストールするパッケージ"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
+#: NEEDS WORK
+msgid "Command"
+msgstr "コマンド"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
+#: NEEDS WORK
+msgid ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+msgstr ""
+"<b>管理者権限が必要です</b>  \n"
+"システムパッケージをインストールするためにパスワードの入力を求められます。"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
+#: NEEDS WORK
+msgid "Installation Output"
+msgstr "インストール出力"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
+#: NEEDS WORK
+msgid "Install"
+msgstr "インストール"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 426
+#: NEEDS WORK
+msgid ""
+"Starting installation...\n"
+"\n"
+msgstr "インストールを開始しています..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
+#: NEEDS WORK
+msgid "Error running command"
+msgstr "コマンドの実行中にエラーが発生しました"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
+#: NEEDS WORK
+msgid "Pre-command completed successfully."
+msgstr "プレコマンドが正常に完了しました。"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
+#: NEEDS WORK
+msgid "Installation completed successfully!"
+msgstr "インストールが成功しました！"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
+#: NEEDS WORK
+msgid "Command failed with exit code"
+msgstr "コマンドが終了コードで失敗しました"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
+#: NEEDS WORK
+msgid "Installation failed."
+msgstr "インストールに失敗しました。"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
+#: NEEDS WORK
+msgid "Please check the errors above and try again."
+msgstr "上記のエラーを確認し、再試行してください。"

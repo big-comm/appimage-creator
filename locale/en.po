@@ -271,12 +271,12 @@ msgid "An error occurred while removing the container: {}"
 msgstr "An error occurred while removing the container: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 152
+# File: usr/share/appimage-creator/core/builder.py, line: 190
 msgid "⚠️ Local Build Warning"
 msgstr "⚠️ Local Build Warning"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 154
+# File: usr/share/appimage-creator/core/builder.py, line: 192
 #, python-brace-format
 msgid ""
 "You are building locally on {distro}.\n"
@@ -304,271 +304,271 @@ msgstr ""
 "Continue anyway?"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 211
+# File: usr/share/appimage-creator/core/builder.py, line: 249
 #, python-brace-format
 msgid "Will build in container: {}"
 msgstr "Will build in container: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 214
+# File: usr/share/appimage-creator/core/builder.py, line: 252
 msgid "Will build in local system"
 msgstr "Will build in local system"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 228
+# File: usr/share/appimage-creator/core/builder.py, line: 266
 #, python-brace-format
 msgid "Running in container: {}"
 msgstr "Running in container: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 284
+# File: usr/share/appimage-creator/core/builder.py, line: 322
 msgid "Build cancellation requested"
 msgstr "Build cancellation requested"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 291
+# File: usr/share/appimage-creator/core/builder.py, line: 329
 #, python-brace-format
 msgid "Created build directory: {}"
 msgstr "Created build directory: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 294
+# File: usr/share/appimage-creator/core/builder.py, line: 332
 #, python-brace-format
 msgid "Failed to create build directory: {}"
 msgstr "Failed to create build directory: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 298
+# File: usr/share/appimage-creator/core/builder.py, line: 336
 msgid "Creating AppDir structure..."
 msgstr "Creating AppDir structure..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 307
+# File: usr/share/appimage-creator/core/builder.py, line: 345
 msgid "AppDir structure created"
 msgstr "AppDir structure created"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 309
+# File: usr/share/appimage-creator/core/builder.py, line: 347
 #, python-brace-format
 msgid "Failed to create AppDir structure: {}"
 msgstr "Failed to create AppDir structure: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 313
+# File: usr/share/appimage-creator/core/builder.py, line: 351
 msgid "Copying application files..."
 msgstr "Copying application files..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 320
+# File: usr/share/appimage-creator/core/builder.py, line: 358
 #, python-brace-format
 msgid "Copying structured project from: {}"
 msgstr "Copying structured project from: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 328
+# File: usr/share/appimage-creator/core/builder.py, line: 366
 msgid "Project root not found, copying as simple application."
 msgstr "Project root not found, copying as simple application."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 340
+# File: usr/share/appimage-creator/core/builder.py, line: 378
 msgid "Application files copied"
 msgstr "Application files copied"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 342
+# File: usr/share/appimage-creator/core/builder.py, line: 380
 #, python-brace-format
 msgid "Failed to copy application files: {}"
 msgstr "Failed to copy application files: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 351
+# File: usr/share/appimage-creator/core/builder.py, line: 389
 #, python-brace-format
 msgid "Warning: Directory not found: {}"
 msgstr "Warning: Directory not found: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 357
+# File: usr/share/appimage-creator/core/builder.py, line: 395
 #, python-brace-format
 msgid "Copying additional directory: {} -> {}"
 msgstr "Copying additional directory: {} -> {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 360
+# File: usr/share/appimage-creator/core/builder.py, line: 398
 #, python-brace-format
 msgid "Warning: Failed to copy directory {}: {}"
 msgstr "Warning: Failed to copy directory {}: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 364
+# File: usr/share/appimage-creator/core/builder.py, line: 402
 msgid "Processing icon..."
 msgstr "Processing icon..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 375
+# File: usr/share/appimage-creator/core/builder.py, line: 413
 #, python-brace-format
 msgid "Using detected icon: {}"
 msgstr "Using detected icon: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 378
+# File: usr/share/appimage-creator/core/builder.py, line: 416
 msgid "No icon provided, will use default from project"
 msgstr "No icon provided, will use default from project"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 379
+# File: usr/share/appimage-creator/core/builder.py, line: 417
 msgid "Icon check complete"
 msgstr "Icon check complete"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 385
+# File: usr/share/appimage-creator/core/builder.py, line: 423
 msgid "Icon processed"
 msgstr "Icon processed"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 388
+# File: usr/share/appimage-creator/core/builder.py, line: 426
 #, python-brace-format
 msgid "Warning: Icon processing failed: {}"
 msgstr "Warning: Icon processing failed: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 392
+# File: usr/share/appimage-creator/core/builder.py, line: 430
 msgid "Creating launcher and desktop files..."
 msgstr "Creating launcher and desktop files..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 399
+# File: usr/share/appimage-creator/core/builder.py, line: 437
 msgid "No desktop file found in AppDir, generating a new one."
 msgstr "No desktop file found in AppDir, generating a new one."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 403
+# File: usr/share/appimage-creator/core/builder.py, line: 441
 #, python-brace-format
 msgid "Found desktop file from source project: {}"
 msgstr "Found desktop file from source project: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 411
+# File: usr/share/appimage-creator/core/builder.py, line: 449
 #, python-brace-format
 msgid "Created desktop symlink in AppDir root: {}"
 msgstr "Created desktop symlink in AppDir root: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 413
+# File: usr/share/appimage-creator/core/builder.py, line: 451
 msgid "Creating custom AppRun script..."
 msgstr "Creating custom AppRun script..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 438
+# File: usr/share/appimage-creator/core/builder.py, line: 476
 #, python-brace-format
 msgid "AppRun will execute Python on: {}"
 msgstr "AppRun will execute Python on: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 450
+# File: usr/share/appimage-creator/core/builder.py, line: 488
 #, python-brace-format
 msgid "AppRun will execute: {}"
 msgstr "AppRun will execute: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 455
+# File: usr/share/appimage-creator/core/builder.py, line: 493
 msgid "Launcher and desktop files created"
 msgstr "Launcher and desktop files created"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 457
+# File: usr/share/appimage-creator/core/builder.py, line: 495
 #, python-brace-format
 msgid "Failed to create launcher files: {}"
 msgstr "Failed to create launcher files: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 462
+# File: usr/share/appimage-creator/core/builder.py, line: 500
 msgid "Skipping dependency inclusion."
 msgstr "Skipping dependency inclusion."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 463
+# File: usr/share/appimage-creator/core/builder.py, line: 501
 msgid "Dependencies skipped"
 msgstr "Dependencies skipped"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 499
+# File: usr/share/appimage-creator/core/builder.py, line: 540
 msgid "Installing Papirus icon theme for GTK application"
 msgstr "Installing Papirus icon theme for GTK application"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 502
+# File: usr/share/appimage-creator/core/builder.py, line: 543
 msgid "Installing Adwaita icon theme for GTK application"
 msgstr "Installing Adwaita icon theme for GTK application"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 509
+# File: usr/share/appimage-creator/core/builder.py, line: 550
 msgid "Installing Papirus icon theme"
 msgstr "Installing Papirus icon theme"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 512
+# File: usr/share/appimage-creator/core/builder.py, line: 553
 msgid "Installing Adwaita icon theme"
 msgstr "Installing Adwaita icon theme"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 515
+# File: usr/share/appimage-creator/core/builder.py, line: 556
 msgid "Icon theme inclusion disabled by user"
 msgstr "Icon theme inclusion disabled by user"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 517
+# File: usr/share/appimage-creator/core/builder.py, line: 558
 msgid "Dependencies installed successfully."
 msgstr "Dependencies installed successfully."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 518
+# File: usr/share/appimage-creator/core/builder.py, line: 559
 msgid "Dependencies processed"
 msgstr "Dependencies processed"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 522
+# File: usr/share/appimage-creator/core/builder.py, line: 563
 msgid "Setting up Python environment..."
 msgstr "Setting up Python environment..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 544
+# File: usr/share/appimage-creator/core/builder.py, line: 585
 msgid "Warning: requirements.txt not found. Using default packages."
 msgstr "Warning: requirements.txt not found. Using default packages."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 552
+# File: usr/share/appimage-creator/core/builder.py, line: 593
 msgid "Creating Python virtualenv..."
 msgstr "Creating Python virtualenv..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 555
+# File: usr/share/appimage-creator/core/builder.py, line: 596
 #, python-brace-format
 msgid "Creating isolated virtualenv at: {}"
 msgstr "Creating isolated virtualenv at: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 563
+# File: usr/share/appimage-creator/core/builder.py, line: 604
 #, python-brace-format
 msgid "Failed to create virtualenv: {}"
 msgstr "Failed to create virtualenv: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 565
+# File: usr/share/appimage-creator/core/builder.py, line: 606
 msgid "Virtualenv created successfully."
 msgstr "Virtualenv created successfully."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 568
+# File: usr/share/appimage-creator/core/builder.py, line: 609
 msgid "Copying Python standard library to venv..."
 msgstr "Copying Python standard library to venv..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 569
+# File: usr/share/appimage-creator/core/builder.py, line: 610
 msgid "Copying Python stdlib..."
 msgstr "Copying Python stdlib..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 583
+# File: usr/share/appimage-creator/core/builder.py, line: 624
 #, python-brace-format
 msgid ""
 "Warning: Could not detect Python version in container. Falling back to host "
@@ -578,235 +578,251 @@ msgstr ""
 "version: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 601
+# File: usr/share/appimage-creator/core/builder.py, line: 642
 #, python-brace-format
 msgid "Copying stdlib from {} to {}"
 msgstr "Copying stdlib from {} to {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 625
+# File: usr/share/appimage-creator/core/builder.py, line: 666
 msgid "Failed to copy stdlib from container"
 msgstr "Failed to copy stdlib from container"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 629
+# File: usr/share/appimage-creator/core/builder.py, line: 670
 #, python-brace-format
 msgid "Could not find stdlib at: {}"
 msgstr "Could not find stdlib at: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 638
+# File: usr/share/appimage-creator/core/builder.py, line: 679
 #, python-brace-format
 msgid "Skipping system packages: {}"
 msgstr "Skipping system packages: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 650
+# File: usr/share/appimage-creator/core/builder.py, line: 691
 msgid "encodings module not found after stdlib copy"
 msgstr "encodings module not found after stdlib copy"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 652
+# File: usr/share/appimage-creator/core/builder.py, line: 693
 msgid "Python stdlib copied successfully"
 msgstr "Python stdlib copied successfully"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 655
+# File: usr/share/appimage-creator/core/builder.py, line: 696
 msgid "Cleaning up copied stdlib..."
 msgstr "Cleaning up copied stdlib..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 672
+# File: usr/share/appimage-creator/core/builder.py, line: 713
 msgid "Stdlib cleanup complete."
 msgstr "Stdlib cleanup complete."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 675
+# File: usr/share/appimage-creator/core/builder.py, line: 716
 #, python-brace-format
 msgid "Error copying Python stdlib: {}"
 msgstr "Error copying Python stdlib: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 676
+# File: usr/share/appimage-creator/core/builder.py, line: 717
 msgid "Python stdlib required for AppImage"
 msgstr "Python stdlib required for AppImage"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 679
+# File: usr/share/appimage-creator/core/builder.py, line: 720
 msgid "Copying Python shared libraries..."
 msgstr "Copying Python shared libraries..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 723
+# File: usr/share/appimage-creator/core/builder.py, line: 764
 msgid "Python shared libraries copied"
 msgstr "Python shared libraries copied"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 726
+# File: usr/share/appimage-creator/core/builder.py, line: 767
 msgid "Installing Python packages..."
 msgstr "Installing Python packages..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 731
+# File: usr/share/appimage-creator/core/builder.py, line: 772
 #, python-brace-format
 msgid "Installing packages: {}"
 msgstr "Installing packages: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 747
+# File: usr/share/appimage-creator/core/builder.py, line: 788
 #, python-brace-format
 msgid "Installing {}..."
 msgstr "Installing {}..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 753
+# File: usr/share/appimage-creator/core/builder.py, line: 794
 #, python-brace-format
 msgid "Warning: Failed to install {}: {}"
 msgstr "Warning: Failed to install {}: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 756
+# File: usr/share/appimage-creator/core/builder.py, line: 797
 msgid "Attempting fallback: using system PyGObject bindings"
 msgstr "Attempting fallback: using system PyGObject bindings"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 759
+# File: usr/share/appimage-creator/core/builder.py, line: 800
 #, python-brace-format
 msgid "Successfully installed {}"
 msgstr "Successfully installed {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 761
+# File: usr/share/appimage-creator/core/builder.py, line: 802
 msgid "Python packages installed"
 msgstr "Python packages installed"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 764
+# File: usr/share/appimage-creator/core/builder.py, line: 805
 msgid "Performing aggressive cleanup for size optimization..."
 msgstr "Performing aggressive cleanup for size optimization..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 787
-# File: usr/share/appimage-creator/core/builder.py, line: 802
+# File: usr/share/appimage-creator/core/builder.py, line: 828
+# File: usr/share/appimage-creator/core/builder.py, line: 843
 #, python-brace-format
 msgid "  Removed: {}"
 msgstr "  Removed: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 807
+# File: usr/share/appimage-creator/core/builder.py, line: 848
 msgid "Removing bytecode cache files..."
 msgstr "Removing bytecode cache files..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 819
+# File: usr/share/appimage-creator/core/builder.py, line: 860
 #, python-brace-format
 msgid "  Removed {} __pycache__ dirs and {} .pyc files"
 msgstr "  Removed {} __pycache__ dirs and {} .pyc files"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 820
+# File: usr/share/appimage-creator/core/builder.py, line: 861
 msgid "Aggressive cleanup complete."
 msgstr "Aggressive cleanup complete."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 822
+# File: usr/share/appimage-creator/core/builder.py, line: 863
 msgid "Python environment ready"
 msgstr "Python environment ready"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 825
+# File: usr/share/appimage-creator/core/builder.py, line: 866
 msgid "Python setup timed out"
 msgstr "Python setup timed out"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 827
+# File: usr/share/appimage-creator/core/builder.py, line: 868
 #, python-brace-format
 msgid "Python setup failed: {}"
 msgstr "Python setup failed: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 835
+# File: usr/share/appimage-creator/core/builder.py, line: 876
 msgid "Copying system gi module to virtualenv..."
 msgstr "Copying system gi module to virtualenv..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 867
+# File: usr/share/appimage-creator/core/builder.py, line: 908
 msgid "Error: System gi module not found"
 msgstr "Error: System gi module not found"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 947
+# File: usr/share/appimage-creator/core/builder.py, line: 988
 msgid "System PyGObject copied successfully"
 msgstr "System PyGObject copied successfully"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 950
+# File: usr/share/appimage-creator/core/builder.py, line: 991
 msgid "Failed to copy system PyGObject"
 msgstr "Failed to copy system PyGObject"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 954
+# File: usr/share/appimage-creator/core/builder.py, line: 995
 #, python-brace-format
 msgid "Error using system PyGObject: {}"
 msgstr "Error using system PyGObject: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 962
+# File: usr/share/appimage-creator/core/builder.py, line: 1003
 msgid "Detecting GUI framework dependencies..."
 msgstr "Detecting GUI framework dependencies..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 971
+# File: usr/share/appimage-creator/core/builder.py, line: 1012
 #, python-brace-format
 msgid "Analyzing Python files in: {}"
 msgstr "Analyzing Python files in: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 978
+# File: usr/share/appimage-creator/core/builder.py, line: 1019
 #, python-brace-format
 msgid "Analyzing Python files in executable's directory: {}"
 msgstr "Analyzing Python files in executable's directory: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 982
+# File: usr/share/appimage-creator/core/builder.py, line: 1023
 msgid "No Python files found for dependency detection"
 msgstr "No Python files found for dependency detection"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 985
+# File: usr/share/appimage-creator/core/builder.py, line: 1026
 #, python-brace-format
 msgid "Analyzing {} Python files..."
 msgstr "Analyzing {} Python files..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1033
+# File: usr/share/appimage-creator/core/builder.py, line: 1078
 #, python-brace-format
 msgid "  Detected: {}"
 msgstr "  Detected: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1045
+# File: usr/share/appimage-creator/core/builder.py, line: 1090
 msgid "Checking for PyGObject usage..."
 msgstr "Checking for PyGObject usage..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1077
+# File: usr/share/appimage-creator/core/builder.py, line: 1122
 msgid "  Detected PyGObject usage"
 msgstr "  Detected PyGObject usage"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1091
+# File: usr/share/appimage-creator/core/builder.py, line: 1136
 msgid "Ensuring native GUI dependencies..."
 msgstr "Ensuring native GUI dependencies..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1131
+# File: usr/share/appimage-creator/core/builder.py, line: 1185
 #, python-brace-format
 msgid "Required packages: {}"
 msgstr "Required packages: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1137
+# File: usr/share/appimage-creator/core/builder.py, line: 1189
+msgid "Checking for missing packages in the container..."
+msgstr "Checking for missing packages in the container..."
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 1201
+msgid "All required native dependencies are already installed."
+msgstr "All required native dependencies are already installed."
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 1204
+#, python-brace-format
+msgid "Packages to install: {}"
+msgstr "Packages to install: {}"
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 1210
 msgid ""
 "GTK4 application detected, but Ubuntu 20.04 does not have GTK4 in "
 "repositories.\n"
@@ -821,43 +837,43 @@ msgstr ""
 "Go to: Build Environment → Select a newer Ubuntu version"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1142
+# File: usr/share/appimage-creator/core/builder.py, line: 1215
 msgid "Note: GTK4 detected - using modern container recommended"
 msgstr "Note: GTK4 detected - using modern container recommended"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1145
+# File: usr/share/appimage-creator/core/builder.py, line: 1218
 msgid "Updating package lists..."
 msgstr "Updating package lists..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1152
+# File: usr/share/appimage-creator/core/builder.py, line: 1225
 msgid "Installing GUI libraries..."
 msgstr "Installing GUI libraries..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1158
+# File: usr/share/appimage-creator/core/builder.py, line: 1231
 #, python-brace-format
 msgid "Running install command: {}"
 msgstr "Running install command: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1162
+# File: usr/share/appimage-creator/core/builder.py, line: 1235
 msgid "Successfully installed GUI dependencies in container."
 msgstr "Successfully installed GUI dependencies in container."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1165
+# File: usr/share/appimage-creator/core/builder.py, line: 1238
 msgid "Unknown error from package manager."
 msgstr "Unknown error from package manager."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1166
+# File: usr/share/appimage-creator/core/builder.py, line: 1239
 msgid "Error installing dependencies in container:"
 msgstr "Error installing dependencies in container:"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1169
+# File: usr/share/appimage-creator/core/builder.py, line: 1242
 #, python-brace-format
 msgid ""
 "Failed to install required build dependencies in the container: {pkgs}\n"
@@ -871,484 +887,530 @@ msgstr ""
 "{err}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1175
+# File: usr/share/appimage-creator/core/builder.py, line: 1248
 msgid "Processing external binaries with linuxdeploy..."
 msgstr "Processing external binaries with linuxdeploy..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1178
+# File: usr/share/appimage-creator/core/builder.py, line: 1251
 msgid "Warning: linuxdeploy not available, skipping binary bundling"
 msgstr "Warning: linuxdeploy not available, skipping binary bundling"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1189
+# File: usr/share/appimage-creator/core/builder.py, line: 1262
 #, python-brace-format
 msgid "Backed up original wrapper: {}"
 msgstr "Backed up original wrapper: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1203
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 msgid "Backed up custom AppRun"
 msgstr "Backed up custom AppRun"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1209
+# File: usr/share/appimage-creator/core/builder.py, line: 1282
 msgid "Warning: No .desktop file found, skipping linuxdeploy"
 msgstr "Warning: No .desktop file found, skipping linuxdeploy"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1239
+# File: usr/share/appimage-creator/core/builder.py, line: 1304
+#, python-brace-format
+msgid ""
+"Skipping copy of '{}' executable, as it is treated as a library provider."
+msgstr ""
+"Skipping copy of '{}' executable, as it is treated as a library provider."
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 1316
 #, python-brace-format
 msgid "Will bundle: {}"
 msgstr "Will bundle: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1243
+# File: usr/share/appimage-creator/core/builder.py, line: 1320
 msgid "No external binaries or plugins to process with linuxdeploy."
 msgstr "No external binaries or plugins to process with linuxdeploy."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1250
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 msgid "Running linuxdeploy..."
 msgstr "Running linuxdeploy..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1251
+# File: usr/share/appimage-creator/core/builder.py, line: 1328
 msgid "Bundling binary dependencies..."
 msgstr "Bundling binary dependencies..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1254
+# File: usr/share/appimage-creator/core/builder.py, line: 1331
 msgid "Note: linuxdeploy runs locally but accesses container files"
 msgstr "Note: linuxdeploy runs locally but accesses container files"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1268
+# File: usr/share/appimage-creator/core/builder.py, line: 1345
 msgid "Warning: linuxdeploy had issues but continuing..."
 msgstr "Warning: linuxdeploy had issues but continuing..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1270
+# File: usr/share/appimage-creator/core/builder.py, line: 1347
 msgid "External binaries bundled successfully"
 msgstr "External binaries bundled successfully"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1280
+# File: usr/share/appimage-creator/core/builder.py, line: 1357
 msgid "Restored custom AppRun"
 msgstr "Restored custom AppRun"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1290
+# File: usr/share/appimage-creator/core/builder.py, line: 1367
 #, python-brace-format
 msgid "Restored original wrapper: {}"
 msgstr "Restored original wrapper: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1293
+# File: usr/share/appimage-creator/core/builder.py, line: 1370
+msgid "Generating icon cache inside AppDir..."
+msgstr "Generating icon cache inside AppDir..."
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 1383
+msgid "Successfully generated icon-theme.cache."
+msgstr "Successfully generated icon-theme.cache."
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+msgid ""
+"Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
+msgstr ""
+"Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 1388
+#, python-brace-format
+msgid "Warning: Could not run gtk-update-icon-cache: {}"
+msgstr "Warning: Could not run gtk-update-icon-cache: {}"
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 1391
 #, python-brace-format
 msgid "Warning: Binary bundling failed: {}"
 msgstr "Warning: Binary bundling failed: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1323
+# File: usr/share/appimage-creator/core/builder.py, line: 1421
 #, python-brace-format
 msgid "Copying standard system libraries: {}"
 msgstr "Copying standard system libraries: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1327
+# File: usr/share/appimage-creator/core/builder.py, line: 1425
 #, python-brace-format
 msgid "Copying conflicting system libraries to fallback dir: {}"
 msgstr "Copying conflicting system libraries to fallback dir: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1345
+# File: usr/share/appimage-creator/core/builder.py, line: 1443
 #, python-brace-format
 msgid "Generating script to copy libraries to {}..."
 msgstr "Generating script to copy libraries to {}..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1389
+# File: usr/share/appimage-creator/core/builder.py, line: 1487
 msgid "Executing library copy script..."
 msgstr "Executing library copy script..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1400
+# File: usr/share/appimage-creator/core/builder.py, line: 1498
 msgid "Warning: Library copy script finished with errors."
 msgstr "Warning: Library copy script finished with errors."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1402
+# File: usr/share/appimage-creator/core/builder.py, line: 1500
 msgid "Library copy script finished successfully."
 msgstr "Library copy script finished successfully."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1421
+# File: usr/share/appimage-creator/core/builder.py, line: 1519
 msgid "No typelibs selected for inclusion."
 msgstr "No typelibs selected for inclusion."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1424
+# File: usr/share/appimage-creator/core/builder.py, line: 1522
 #, python-brace-format
 msgid "Copying selected typelibs: {}"
 msgstr "Copying selected typelibs: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1432
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
 msgid "Generating script to copy typelibs..."
 msgstr "Generating script to copy typelibs..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1466
+# File: usr/share/appimage-creator/core/builder.py, line: 1564
 msgid "Executing typelib copy script..."
 msgstr "Executing typelib copy script..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1474
+# File: usr/share/appimage-creator/core/builder.py, line: 1572
 msgid "Warning: Some typelibs may not have been copied"
 msgstr "Warning: Some typelibs may not have been copied"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1476
+# File: usr/share/appimage-creator/core/builder.py, line: 1574
 msgid "Typelib copy complete"
 msgstr "Typelib copy complete"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1488
+# File: usr/share/appimage-creator/core/builder.py, line: 1586
 msgid "Copying essential GStreamer plugins..."
 msgstr "Copying essential GStreamer plugins..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1551
+# File: usr/share/appimage-creator/core/builder.py, line: 1649
 msgid "Detected video playback requirements"
 msgstr "Detected video playback requirements"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1600
+# File: usr/share/appimage-creator/core/builder.py, line: 1698
 msgid "Copying GStreamer plugins..."
 msgstr "Copying GStreamer plugins..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1609
+# File: usr/share/appimage-creator/core/builder.py, line: 1707
 msgid "GStreamer plugin copying complete"
 msgstr "GStreamer plugin copying complete"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1617
+# File: usr/share/appimage-creator/core/builder.py, line: 1749
 msgid "Copying Adwaita symbolic icons..."
 msgstr "Copying Adwaita symbolic icons..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1626
+# File: usr/share/appimage-creator/core/builder.py, line: 1758
 msgid "Symbolic icons already present"
 msgstr "Symbolic icons already present"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1637
+# File: usr/share/appimage-creator/core/builder.py, line: 1769
 #, python-brace-format
 msgid "Copying symbolic icons from {}..."
 msgstr "Copying symbolic icons from {}..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1666
+# File: usr/share/appimage-creator/core/builder.py, line: 1798
 msgid "Executing symbolic icons copy script..."
 msgstr "Executing symbolic icons copy script..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1674
+# File: usr/share/appimage-creator/core/builder.py, line: 1806
 msgid "Warning: Failed to copy symbolic icons"
 msgstr "Warning: Failed to copy symbolic icons"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1677
+# File: usr/share/appimage-creator/core/builder.py, line: 1809
 msgid "Creating custom index.theme for Adwaita symbolic icons..."
 msgstr "Creating custom index.theme for Adwaita symbolic icons..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1774
+# File: usr/share/appimage-creator/core/builder.py, line: 1906
 msgid "Symbolic icons copied successfully"
 msgstr "Symbolic icons copied successfully"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1782
+# File: usr/share/appimage-creator/core/builder.py, line: 1914
 msgid "Copying Papirus symbolic icons..."
 msgstr "Copying Papirus symbolic icons..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1806
+# File: usr/share/appimage-creator/core/builder.py, line: 1938
 msgid "Papirus symbolic icons already present"
 msgstr "Papirus symbolic icons already present"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1815
+# File: usr/share/appimage-creator/core/builder.py, line: 1947
 msgid "Copying Papirus and Papirus-Dark symbolic icons..."
 msgstr "Copying Papirus and Papirus-Dark symbolic icons..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1889
+# File: usr/share/appimage-creator/core/builder.py, line: 2021
 msgid "Executing Papirus icons copy script..."
 msgstr "Executing Papirus icons copy script..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1899
+# File: usr/share/appimage-creator/core/builder.py, line: 2031
 msgid "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr "Warning: Papirus icons not available, falling back to Adwaita"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1903
+# File: usr/share/appimage-creator/core/builder.py, line: 2035
 msgid "Creating custom index.theme for Papirus symbolic icons..."
 msgstr "Creating custom index.theme for Papirus symbolic icons..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 1989
+# File: usr/share/appimage-creator/core/builder.py, line: 2121
 msgid "Papirus symbolic icons copied successfully"
 msgstr "Papirus symbolic icons copied successfully"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2010
+# File: usr/share/appimage-creator/core/builder.py, line: 2141
 msgid "No icon found in usr/share/icons"
 msgstr "No icon found in usr/share/icons"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2030
-#, python-brace-format
-msgid "Created icon symlink: {} -> {}"
-msgstr "Created icon symlink: {} -> {}"
+# File: usr/share/appimage-creator/core/builder.py, line: 2170
+msgid ""
+"Warning: Could not reliably determine the main desktop file to update the "
+"icon path."
+msgstr ""
+"Warning: Could not reliably determine the main desktop file to update the "
+"icon path."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2044
+# File: usr/share/appimage-creator/core/builder.py, line: 2173
 #, python-brace-format
-msgid "Updated Icon= in desktop file to: {}"
-msgstr "Updated Icon= in desktop file to: {}"
+msgid "Using main desktop file for icon association: {}"
+msgstr "Using main desktop file for icon association: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2047
+# File: usr/share/appimage-creator/core/builder.py, line: 2186
+#, python-brace-format
+msgid "Created root icon symlink: {} -> {}"
+msgstr "Created root icon symlink: {} -> {}"
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 2200
+#, python-brace-format
+msgid "Updated 'Icon=' in {} to: {}"
+msgstr "Updated 'Icon=' in {} to: {}"
+
+#
+# File: usr/share/appimage-creator/core/builder.py, line: 2203
 #, python-brace-format
 msgid "Warning: Failed to create icon symlinks: {}"
 msgstr "Warning: Failed to create icon symlinks: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2051
+# File: usr/share/appimage-creator/core/builder.py, line: 2207
 msgid "Setting up linuxdeploy..."
 msgstr "Setting up linuxdeploy..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2057
+# File: usr/share/appimage-creator/core/builder.py, line: 2213
 #, python-brace-format
 msgid "Found linuxdeploy: {}"
 msgstr "Found linuxdeploy: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2070
+# File: usr/share/appimage-creator/core/builder.py, line: 2226
 msgid "Downloading linuxdeploy..."
 msgstr "Downloading linuxdeploy..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2073
+# File: usr/share/appimage-creator/core/builder.py, line: 2229
 msgid "Downloading linuxdeploy"
 msgstr "Downloading linuxdeploy"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2082
+# File: usr/share/appimage-creator/core/builder.py, line: 2238
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Failed to setup linuxdeploy: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2102
+# File: usr/share/appimage-creator/core/builder.py, line: 2258
 msgid "Warning: Could not determine source path for binary detection."
 msgstr "Warning: Could not determine source path for binary detection."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2105
+# File: usr/share/appimage-creator/core/builder.py, line: 2261
 #, python-brace-format
 msgid "Scanning for binary dependencies in: {}"
 msgstr "Scanning for binary dependencies in: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2125
+# File: usr/share/appimage-creator/core/builder.py, line: 2281
 #, python-brace-format
 msgid "  Detected dependency on binary: {}"
 msgstr "  Detected dependency on binary: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2140
+# File: usr/share/appimage-creator/core/builder.py, line: 2296
 #, python-brace-format
 msgid "Detected binary dependencies: {}"
 msgstr "Detected binary dependencies: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2153
+# File: usr/share/appimage-creator/core/builder.py, line: 2309
 #, python-brace-format
 msgid "Copied binary: {}"
 msgstr "Copied binary: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2160
+# File: usr/share/appimage-creator/core/builder.py, line: 2316
 #, python-brace-format
 msgid "Warning: Failed to copy {}: {}"
 msgstr "Warning: Failed to copy {}: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2163
+# File: usr/share/appimage-creator/core/builder.py, line: 2319
 #, python-brace-format
 msgid "Warning: {} not found in system"
 msgstr "Warning: {} not found in system"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2166
+# File: usr/share/appimage-creator/core/builder.py, line: 2322
 #, python-brace-format
 msgid "Missing binaries (app may not work): {}"
 msgstr "Missing binaries (app may not work): {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2168
+# File: usr/share/appimage-creator/core/builder.py, line: 2324
 #, python-brace-format
 msgid "Copied {} external binaries"
 msgstr "Copied {} external binaries"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2204
+# File: usr/share/appimage-creator/core/builder.py, line: 2360
 #, python-brace-format
 msgid "Fixed absolute path in: {}"
 msgstr "Fixed absolute path in: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2211
+# File: usr/share/appimage-creator/core/builder.py, line: 2367
 #, python-brace-format
 msgid "Warning: Could not fix script {}: {}"
 msgstr "Warning: Could not fix script {}: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2235
+# File: usr/share/appimage-creator/core/builder.py, line: 2391
 #, python-brace-format
 msgid "  Copied lib: {}"
 msgstr "  Copied lib: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2240
+# File: usr/share/appimage-creator/core/builder.py, line: 2396
 #, python-brace-format
 msgid "Warning: Could not analyze dependencies for {}: {}"
 msgstr "Warning: Could not analyze dependencies for {}: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2244
+# File: usr/share/appimage-creator/core/builder.py, line: 2400
 msgid "Setting up appimagetool..."
 msgstr "Setting up appimagetool..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2250
+# File: usr/share/appimage-creator/core/builder.py, line: 2406
 #, python-brace-format
 msgid "Found appimagetool: {}"
 msgstr "Found appimagetool: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2260
+# File: usr/share/appimage-creator/core/builder.py, line: 2416
 msgid "Downloading appimagetool..."
 msgstr "Downloading appimagetool..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2263
+# File: usr/share/appimage-creator/core/builder.py, line: 2419
 msgid "Downloading appimagetool"
 msgstr "Downloading appimagetool"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2272
+# File: usr/share/appimage-creator/core/builder.py, line: 2428
 #, python-brace-format
 msgid "Failed to setup appimagetool: {}"
 msgstr "Failed to setup appimagetool: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2277
-# File: usr/share/appimage-creator/core/builder.py, line: 2448
+# File: usr/share/appimage-creator/core/builder.py, line: 2433
+# File: usr/share/appimage-creator/core/builder.py, line: 2604
 msgid "Building AppImage..."
 msgstr "Building AppImage..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2280
+# File: usr/share/appimage-creator/core/builder.py, line: 2436
 msgid "appimagetool not available"
 msgstr "appimagetool not available"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2295
+# File: usr/share/appimage-creator/core/builder.py, line: 2451
 #, python-brace-format
 msgid "Running: {}"
 msgstr "Running: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2299
+# File: usr/share/appimage-creator/core/builder.py, line: 2455
 msgid "Note: appimagetool runs locally (requires FUSE)"
 msgstr "Note: appimagetool runs locally (requires FUSE)"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2305
+# File: usr/share/appimage-creator/core/builder.py, line: 2461
 #, python-brace-format
 msgid "AppImage created: {}"
 msgstr "AppImage created: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2308
+# File: usr/share/appimage-creator/core/builder.py, line: 2464
 msgid "Unknown error"
 msgstr "Unknown error"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2311
-# File: usr/share/appimage-creator/core/builder.py, line: 2316
+# File: usr/share/appimage-creator/core/builder.py, line: 2467
+# File: usr/share/appimage-creator/core/builder.py, line: 2472
 #, python-brace-format
 msgid "Build failed: {}"
 msgstr "Build failed: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2314
+# File: usr/share/appimage-creator/core/builder.py, line: 2470
 msgid "Build timed out"
 msgstr "Build timed out"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2324
+# File: usr/share/appimage-creator/core/builder.py, line: 2480
 msgid "Cleaned up temporary files"
 msgstr "Cleaned up temporary files"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2326
+# File: usr/share/appimage-creator/core/builder.py, line: 2482
 #, python-brace-format
 msgid "Warning: Cleanup failed: {}"
 msgstr "Warning: Cleanup failed: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2331
+# File: usr/share/appimage-creator/core/builder.py, line: 2487
 msgid "Application information not set"
 msgstr "Application information not set"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2336
+# File: usr/share/appimage-creator/core/builder.py, line: 2492
 msgid "⚠️ WARNING: Building locally - compatibility may be limited"
 msgstr "⚠️ WARNING: Building locally - compatibility may be limited"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2341
+# File: usr/share/appimage-creator/core/builder.py, line: 2497
 #, python-brace-format
 msgid "Validating build environment for {} application..."
 msgstr "Validating build environment for {} application..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2359
+# File: usr/share/appimage-creator/core/builder.py, line: 2515
 #, python-brace-format
 msgid "✓ Python: {}"
 msgstr "✓ Python: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2370
+# File: usr/share/appimage-creator/core/builder.py, line: 2526
 msgid "✓ Java installed"
 msgstr "✓ Java installed"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2381
+# File: usr/share/appimage-creator/core/builder.py, line: 2537
 #, python-brace-format
 msgid "✓ {} available"
 msgstr "✓ {} available"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2385
+# File: usr/share/appimage-creator/core/builder.py, line: 2541
 #, python-brace-format
 msgid ""
 "Missing dependencies in container '{}':\n"
@@ -1362,58 +1424,58 @@ msgstr ""
 "Go to Build Environment → click Setup for this container."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2394
+# File: usr/share/appimage-creator/core/builder.py, line: 2550
 #, python-brace-format
 msgid "Container '{}' is not responding."
 msgstr "Container '{}' is not responding."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2401
+# File: usr/share/appimage-creator/core/builder.py, line: 2557
 msgid "Initializing..."
 msgstr "Initializing..."
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2403
-# File: usr/share/appimage-creator/core/builder.py, line: 2405
-# File: usr/share/appimage-creator/core/builder.py, line: 2409
-# File: usr/share/appimage-creator/core/builder.py, line: 2416
-# File: usr/share/appimage-creator/core/builder.py, line: 2420
-# File: usr/share/appimage-creator/core/builder.py, line: 2436
-# File: usr/share/appimage-creator/core/builder.py, line: 2440
-# File: usr/share/appimage-creator/core/builder.py, line: 2445
+# File: usr/share/appimage-creator/core/builder.py, line: 2559
+# File: usr/share/appimage-creator/core/builder.py, line: 2561
+# File: usr/share/appimage-creator/core/builder.py, line: 2565
+# File: usr/share/appimage-creator/core/builder.py, line: 2572
+# File: usr/share/appimage-creator/core/builder.py, line: 2576
+# File: usr/share/appimage-creator/core/builder.py, line: 2592
+# File: usr/share/appimage-creator/core/builder.py, line: 2596
+# File: usr/share/appimage-creator/core/builder.py, line: 2601
 msgid "Build cancelled"
 msgstr "Build cancelled"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2428
+# File: usr/share/appimage-creator/core/builder.py, line: 2584
 #, python-brace-format
 msgid "Detected Python version for AppRun: {}"
 msgstr "Detected Python version for AppRun: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2432
+# File: usr/share/appimage-creator/core/builder.py, line: 2588
 #, python-brace-format
 msgid "Warning: Could not detect container Python, using builder Python: {}"
 msgstr "Warning: Could not detect container Python, using builder Python: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2444
+# File: usr/share/appimage-creator/core/builder.py, line: 2600
 msgid "Failed to setup appimagetool"
 msgstr "Failed to setup appimagetool"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2451
+# File: usr/share/appimage-creator/core/builder.py, line: 2607
 msgid "Build complete!"
 msgstr "Build complete!"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2455
+# File: usr/share/appimage-creator/core/builder.py, line: 2611
 #, python-brace-format
 msgid "✗ Build failed: {}"
 msgstr "✗ Build failed: {}"
 
 #
-# File: usr/share/appimage-creator/core/builder.py, line: 2470
+# File: usr/share/appimage-creator/core/builder.py, line: 2626
 msgid "Build already in progress"
 msgstr "Build already in progress"
 

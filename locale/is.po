@@ -16,64 +16,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: attranslate\n"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 18
+# File: usr/share/appimage-creator/generators/icons.py, line: 16
 #: NEEDS WORK
-msgid "Application name must be at least 2 characters long"
-msgstr "Nafn forritsins verður að vera að minnsta kosti 2 stafir að lengd."
+msgid "Warning: PIL/Pillow not available, icon processing will be limited"
+msgstr "Aðvörun: PIL/Pillow ekki tiltækt, vinnsla tákna verður takmörkuð"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 21
-#: NEEDS WORK
-msgid "Application name contains invalid characters"
-msgstr "Forritsnafn inniheldur ógild tákn."
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 29
-#: NEEDS WORK
-msgid "Version is required"
-msgstr "Útgáfa er nauðsynleg"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 32
-#: NEEDS WORK
-msgid "Invalid version format"
-msgstr "Ógildur útgáfuformát"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 40
-#: NEEDS WORK
-msgid "Executable file does not exist"
-msgstr "Framleiðsluskjal er ekki til."
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 43
-#: NEEDS WORK
-msgid "File is not executable"
-msgstr "Skjali er ekki keyrandi"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 54
-#: NEEDS WORK
-msgid "Error: Missing [Desktop Entry] section"
-msgstr "Villa: Vantar [Desktop Entry] kafla"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 69
+# File: usr/share/appimage-creator/generators/icons.py, line: 82
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Missing required keys: {}"
-msgstr "Villa: Vantar nauðsynlegar lyklarnir: {}"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 81
-#: NEEDS WORK
-#, python-brace-format
-msgid "Error: Empty value for required key: {}"
-msgstr "Villa: Tómur gildi fyrir nauðsynlegan lykil: {}"
-# 
-# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to download {}: {}"
-msgstr "Ekki tókst að sækja {}: {}"
-# 
-# File: usr/share/appimage-creator/utils/system.py, line: 108
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to make file executable: {}"
-msgstr "Mistók að gera skrána framkvæmanlega: {}"
+msgid "Error processing icon: {}"
+msgstr "Villa við að vinna úr tákni: {}"
 # 
 # File: usr/share/appimage-creator/generators/files.py, line: 70
 #: NEEDS WORK
@@ -91,1175 +43,17 @@ msgstr "Mistók að búa til skrifborðs skrá"
 msgid "Warning: Failed to adapt existing desktop file: {}"
 msgstr "Aðvörun: Gekk ekki að aðlaga núverandi skrifborðs skrá: {}"
 # 
-# File: usr/share/appimage-creator/generators/icons.py, line: 16
-#: NEEDS WORK
-msgid "Warning: PIL/Pillow not available, icon processing will be limited"
-msgstr "Aðvörun: PIL/Pillow ekki tiltækt, vinnsla tákna verður takmörkuð"
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 82
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error processing icon: {}"
-msgstr "Villa við að vinna úr tákni: {}"
+msgid "Failed to download {}: {}"
+msgstr "Ekki tókst að sækja {}: {}"
 # 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
-#: NEEDS WORK
-msgid "Building AppImage"
-msgstr "Bygging AppImage"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
-#: NEEDS WORK
-msgid "Preparing..."
-msgstr "Undirbúningur..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
-#: NEEDS WORK
-msgid "Cancel Build"
-msgstr "Hætta við byggingu"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
-# File: usr/share/appimage-creator/ui/window.py, line: 405
-#: NEEDS WORK
-msgid "OK"
-msgstr "Í lagi"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
-#: NEEDS WORK
-msgid "Open Folder"
-msgstr "Opna möppu"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
-# File: usr/share/appimage-creator/ui/window.py, line: 341
-#: NEEDS WORK
-msgid "Cancel"
-msgstr "Hætta við"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
-#: NEEDS WORK
-msgid "Open"
-msgstr "Opna"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
-#: NEEDS WORK
-msgid "Select"
-msgstr "Veljaðu"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
-#: NEEDS WORK
-msgid "Save"
-msgstr "Vista"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
-#: NEEDS WORK
-msgid "Copy to clipboard"
-msgstr "Afrita í klippiborð"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
-#: NEEDS WORK
-msgid "Desktop File Content"
-msgstr "Skráarsniðsinnihald"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-# File: usr/share/appimage-creator/ui/window.py, line: 897
-# File: usr/share/appimage-creator/ui/window.py, line: 906
-#: NEEDS WORK
-msgid "Error"
-msgstr "Villa"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/utils/system.py, line: 108
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to read file: {}"
-msgstr "Ekki tókst að lesa skrá: {}"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
-#: NEEDS WORK
-msgid "Starting..."
-msgstr "Byrjar..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
-#: NEEDS WORK
-msgid "Close"
-msgstr "Lokaðu"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
-#: NEEDS WORK
-msgid "Completed successfully!"
-msgstr "Lokið með góðum árangri!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
-#: NEEDS WORK
-msgid "Finished with errors."
-msgstr "Lokið með villum."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
-# File: usr/share/appimage-creator/ui/pages.py, line: 459
-#: NEEDS WORK
-msgid "Install Required Packages"
-msgstr "Setja upp nauðsynlegar pakkar"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
-#: NEEDS WORK
-msgid "Installation Information"
-msgstr "Upplýsingar um uppsetningu"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
-#: NEEDS WORK
-msgid "Packages to Install"
-msgstr "Pakkar til að setja upp"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
-#: NEEDS WORK
-msgid "Command"
-msgstr "Skipta"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
-#: NEEDS WORK
-msgid ""
-"<b>Administrator privileges required</b>\n"
-"You will be asked for your password to install system packages."
-msgstr ""
-"<b>Stjórnandaheimildir nauðsynlegar</b>  \n"
-"Þú verður beðinn um að slá inn lykilorðið þitt til að setja upp kerfispakka."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
-#: NEEDS WORK
-msgid "Installation Output"
-msgstr "Uppsetning Úttak"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
-#: NEEDS WORK
-msgid "Install"
-msgstr "Setja upp"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 426
-#: NEEDS WORK
-msgid ""
-"Starting installation...\n"
-"\n"
-msgstr "Byrjar uppsetningu..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
-#: NEEDS WORK
-msgid "Error running command"
-msgstr "Villa að keyra skipun"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
-#: NEEDS WORK
-msgid "Pre-command completed successfully."
-msgstr "Fyrirskipun lokið með góðum árangri."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
-#: NEEDS WORK
-msgid "Installation completed successfully!"
-msgstr "Uppsetningu lokið með góðum árangri!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
-#: NEEDS WORK
-msgid "Command failed with exit code"
-msgstr "Skipun mistók með útgöngukóða"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
-#: NEEDS WORK
-msgid "Installation failed."
-msgstr "Uppsetning mistókst."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
-#: NEEDS WORK
-msgid "Please check the errors above and try again."
-msgstr "Vinsamlegast athugaðu villurnar hér að ofan og reyndu aftur."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/widgets.py, line: 32
-# File: usr/share/appimage-creator/ui/widgets.py, line: 104
-# File: usr/share/appimage-creator/ui/pages.py, line: 484
-# File: usr/share/appimage-creator/ui/window.py, line: 342
-#: NEEDS WORK
-msgid "Remove"
-msgstr "Fjarlægja"
-# 
-# File: usr/share/appimage-creator/ui/widgets.py, line: 147
-#: NEEDS WORK
-#, python-brace-format
-msgid "{}: {}"
-msgstr "{}: {}"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 21
-#: NEEDS WORK
-msgid "App"
-msgstr "Forrit"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 39
-#: NEEDS WORK
-msgid "Basic Information"
-msgstr "Grunnupplýsingar"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 42
-# File: usr/share/appimage-creator/ui/window.py, line: 159
-#: NEEDS WORK
-msgid "Application Name"
-msgstr "Forritsnafn"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 46
-#: NEEDS WORK
-msgid "Version"
-msgstr "Útgáfa"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 51
-#: NEEDS WORK
-msgid "Description"
-msgstr "Lýsing"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 58
-#: NEEDS WORK
-msgid "Authors"
-msgstr "Höfundar"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 59
-#: NEEDS WORK
-msgid "Add one or more authors/developers"
-msgstr "Bættu við einum eða fleiri höfundum/þróunaraðilum"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 62
-# File: usr/share/appimage-creator/ui/pages.py, line: 67
-#: NEEDS WORK
-msgid "Add Author"
-msgstr "Bæta við höfundi"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 63
-#: NEEDS WORK
-msgid "Add a new author or developer"
-msgstr "Bæta við nýjum höfundi eða þróunaraðila"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 76
-#: NEEDS WORK
-#, python-brace-format
-msgid "Author {}"
-msgstr "Höfundur {}"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 83
-#: NEEDS WORK
-msgid "Websites"
-msgstr "Vefsíður"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 84
-#: NEEDS WORK
-msgid "Add project website, repository, or documentation links"
-msgstr "Bæta við vefsíðu verkefnis, geymslu eða skjala tenglum"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 87
-# File: usr/share/appimage-creator/ui/pages.py, line: 92
-#: NEEDS WORK
-msgid "Add Website"
-msgstr "Bæta við vefsíðu"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 88
-#: NEEDS WORK
-msgid "Add project website or repository link"
-msgstr "Bættu við vefsíðu eða geymslu tengli verkefnisins"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 101
-#: NEEDS WORK
-#, python-brace-format
-msgid "Website {}"
-msgstr "Vefsíða {}"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 107
-#: NEEDS WORK
-msgid "Categories"
-msgstr "Flokkar"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 110
-#: NEEDS WORK
-msgid "Primary Category"
-msgstr "Aðalflokkur"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 120
-#: NEEDS WORK
-msgid "Requires Terminal"
-msgstr "Krafar Terminal"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 121
-#: NEEDS WORK
-msgid "Check if your application needs to run in a terminal"
-msgstr "Athugaðu hvort forritið þitt þurfi að keyra í terminal."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 135
-#: NEEDS WORK
-msgid "Files"
-msgstr "Skrár"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 153
-#: NEEDS WORK
-msgid "Application Files"
-msgstr "Forritaskrár"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 156
-# File: usr/share/appimage-creator/ui/window.py, line: 164
-#: NEEDS WORK
-msgid "Main Executable"
-msgstr "Aðalkeyrsluskrá"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 157
-# File: usr/share/appimage-creator/ui/window.py, line: 165
-#: NEEDS WORK
-msgid "Select the main application file"
-msgstr "Veldu aðalforritaskrána"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 159
-# File: usr/share/appimage-creator/ui/pages.py, line: 241
-# File: usr/share/appimage-creator/ui/window.py, line: 167
-#: NEEDS WORK
-msgid "Choose File"
-msgstr "Veldu skrá"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 165
-#: NEEDS WORK
-msgid "Application Type"
-msgstr "Forritategund"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 166
-#: NEEDS WORK
-msgid "Auto-detected from executable"
-msgstr "Sjálfvirkt greint úr keyrandi forriti"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-#: NEEDS WORK
-msgid "Binary"
-msgstr "Bítnar"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-#: NEEDS WORK
-msgid "Python"
-msgstr "Python"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-#: NEEDS WORK
-msgid "Python Wrapper"
-msgstr "Python umbúningur"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-#: NEEDS WORK
-msgid "Shell Script"
-msgstr "Skel Script"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 170
-#: NEEDS WORK
-msgid "Java"
-msgstr "Java"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 170
-#: NEEDS WORK
-msgid "Qt"
-msgstr "Qt"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 170
-#: NEEDS WORK
-msgid "GTK"
-msgstr "GTK"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 170
-#: NEEDS WORK
-msgid "Electron"
-msgstr "Elektrón"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 181
-#: NEEDS WORK
-msgid "Additional Directories"
-msgstr "Aukalegar Skráarskrár"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 182
-#: NEEDS WORK
-msgid "Include extra directories like locale files, plugins, or data"
-msgstr "Inkludera extra kataloger som språkfiler, plugins eller data"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 185
-# File: usr/share/appimage-creator/ui/pages.py, line: 188
-# File: usr/share/appimage-creator/ui/window.py, line: 601
-#: NEEDS WORK
-msgid "Add Directory"
-msgstr "Bæta við skráarsafni"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 186
-#: NEEDS WORK
-msgid "Include additional files and directories"
-msgstr "Inkludera aukafail og skráarsafn"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 204
-#: NEEDS WORK
-msgid "Auto-detected Files"
-msgstr "Sjálfvirkt greind skrár"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 205
-#: NEEDS WORK
-msgid "Files automatically found for your application"
-msgstr "Skrár sem fundust sjálfkrafa fyrir forritið þitt"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 219
-#: NEEDS WORK
-msgid "Desktop File"
-msgstr "Skrá á skrifborð"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 223
-#: NEEDS WORK
-msgid "Use Existing Desktop File"
-msgstr "Nota um desktop sem notação"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 224
-#: NEEDS WORK
-msgid "Found desktop file in application"
-msgstr "Fundin skrifborðs skrá í forriti"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 229
-#: NEEDS WORK
-msgid "Detected Desktop File"
-msgstr "Greindur skrifborðs skrá"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 230
-#: NEEDS WORK
-msgid "No desktop file detected"
-msgstr "Engin skrifborðs skrá ekki fundin"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 232
-#: NEEDS WORK
-msgid "View"
-msgstr "Skoða"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 238
-#: NEEDS WORK
-msgid "Custom Desktop File"
-msgstr "Sérsniðin skrifborðs skrá"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 239
-#: NEEDS WORK
-msgid "Or select a different .desktop file"
-msgstr "Eða veldu annað .desktop skjal"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 250
-#: NEEDS WORK
-msgid "Resources"
-msgstr "Auðlindir"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 253
-# File: usr/share/appimage-creator/ui/window.py, line: 175
-#: NEEDS WORK
-msgid "Application Icon"
-msgstr "Forrits tákn"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 254
-#: NEEDS WORK
-msgid "PNG, SVG, or other image format"
-msgstr "PNG, SVG eða annað myndform"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 256
-# File: usr/share/appimage-creator/ui/window.py, line: 178
-# File: usr/share/appimage-creator/ui/window.py, line: 579
-#: NEEDS WORK
-msgid "Choose Icon"
-msgstr "Veldu tákn"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 265
-#: NEEDS WORK
-msgid "Structure Preview"
-msgstr "Strúktúr Forsýning"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
-#: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "Forsýning á því sem verður innifalið í AppImage"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
-#: NEEDS WORK
-msgid "Quick Preview"
-msgstr "Hraðforskoðun"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
-#: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "Sjáðu grunnuppbyggingu yfirlit"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 273
-#: NEEDS WORK
-msgid "View Full Structure"
-msgstr "Skoða Heildaruppbyggingu"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 300
-#: NEEDS WORK
-msgid "Build"
-msgstr "Byggja"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 314
-#: NEEDS WORK
-msgid "Output Settings"
-msgstr "Útgangsstillingar"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 317
-#: NEEDS WORK
-msgid "Output Directory"
-msgstr "Útgangsleið."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 320
-#: NEEDS WORK
-msgid "Choose Folder"
-msgstr "Veldu möppu"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 329
-# File: usr/share/appimage-creator/ui/pages.py, line: 333
-# File: usr/share/appimage-creator/ui/pages.py, line: 386
-#: NEEDS WORK
-msgid "Build Environment"
-msgstr "Byggumhverfi"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 330
-#: NEEDS WORK
-msgid "Choose where to build the AppImage"
-msgstr "Veldu hvar á að búa til AppImage"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 334
-#: NEEDS WORK
-msgid "Select container or use local system"
-msgstr "Veldu gáma eða notaðu staðbundið kerfi"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 337
-# File: usr/share/appimage-creator/ui/window.py, line: 456
-#: NEEDS WORK
-msgid "Local System (Current Python)"
-msgstr "Staðbundið kerfi (Núverandi Python)"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 346
-#: NEEDS WORK
-msgid "Advanced Options"
-msgstr "Fyrirlestrarvalkostir"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 349
-#: NEEDS WORK
-msgid "Include Dependencies"
-msgstr "Innihalda háð."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 350
-#: NEEDS WORK
-msgid "Automatically include system dependencies"
-msgstr "Sjálfvirkt að fela í sér kerfisfylgni"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 356
-#: NEEDS WORK
-msgid "System Dependencies"
-msgstr "Kerfissur kerfi"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 357
-#: NEEDS WORK
-msgid "Select which system libraries to bundle"
-msgstr "Veldu hvaða kerfisbókasöfn á að pakka saman"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 371
-#: NEEDS WORK
-msgid "Include Icon Theme"
-msgstr "Inni táknasnið"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 372
-#: NEEDS WORK
-msgid "Bundle icons for consistent UI across systems"
-msgstr "Pakkaðu tákn fyrir samræmda notendaviðmót um kerfi."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 378
-#: NEEDS WORK
-msgid "Icon Theme Selection"
-msgstr "Valmynd fyrir táknasnið"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 379
-#: NEEDS WORK
-msgid "Choose which icon theme to bundle"
-msgstr "Veldu hvaða táknþema á að pakka saman"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 385
-#: NEEDS WORK
-msgid "Papirus"
-msgstr "Papirus"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 386
-#: NEEDS WORK
-msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
-msgstr "Nútímaleg, litríkar tákn (~6.4MB) - Sjálfgefið fyrir GTK forrit"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 394
-#: NEEDS WORK
-msgid "Adwaita"
-msgstr "Adwaita"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 395
-#: NEEDS WORK
-msgid "GNOME default icons (~2.6MB)"
-msgstr "GNOME sjálfgefnar tákn (~2.6MB)"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 355
-#: NEEDS WORK
-msgid "Strip Debug Symbols"
-msgstr "Fjarlægja villuþætti"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 356
-#: NEEDS WORK
-msgid "Reduce file size by removing debug information"
-msgstr "Minnka skráarstærð með því að fjarlægja villuupplýsingar"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 364
-#: NEEDS WORK
-msgid "Build AppImage"
-msgstr "Byggðu AppImage"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 365
-#: NEEDS WORK
-msgid "Create your AppImage with current settings"
-msgstr "Búðu til AppImage-ið þitt með núverandi stillingum"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 368
-#: NEEDS WORK
-msgid "Generate AppImage"
-msgstr "Búa til AppImage"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 369
-#: NEEDS WORK
-msgid "Create AppImage with configured settings"
-msgstr "Búa til AppImage með stilltum stillingum"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 371
-# File: usr/share/appimage-creator/ui/window.py, line: 201
-# File: usr/share/appimage-creator/ui/window.py, line: 204
-#: NEEDS WORK
-msgid "Create AppImage"
-msgstr "Búa til AppImage"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
-#: NEEDS WORK
-msgid "Environment"
-msgstr "Umhverfi"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 404
-#: NEEDS WORK
-msgid "Host System Status"
-msgstr "Hýsingarstaða Staða"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 405
-#: NEEDS WORK
-msgid "Required tools for creating compatible AppImages"
-msgstr "Nauðsynleg verkfæri til að búa til samhæf AppImages"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 409
-#: NEEDS WORK
-msgid "Checking host system..."
-msgstr "Athugun gestkerfis..."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 414
-#: NEEDS WORK
-msgid "Available Build Environments"
-msgstr "Tiltanlegar byggingar umhverfi"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 415
-#: NEEDS WORK
-msgid "Select an environment to build your AppImage for maximum compatibility"
-msgstr "Veldu umhverfi til að byggja AppImage þitt fyrir hámarks samhæfi"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 438
-#: NEEDS WORK
-msgid "Host is Ready"
-msgstr "Gesturinn er tilbúinn"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 439
-#: NEEDS WORK
-msgid "Distrobox and a container runtime are installed."
-msgstr "Distrobox og ílátakörfu eru uppsett."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 455
-#: NEEDS WORK
-msgid "Host Setup Required"
-msgstr "Hýsingaruppsetning nauðsynleg"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 456
-#: NEEDS WORK
-#, python-brace-format
-msgid "Missing: {}"
-msgstr "Vantar: {}"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 493
-#: NEEDS WORK
-msgid "Setup"
-msgstr "Uppsetning"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 48
-# File: usr/share/appimage-creator/ui/window.py, line: 131
-#: NEEDS WORK
-msgid "AppImage Creator"
-msgstr "AppImage Skaparinn"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 214
-#: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "Fyrirlestrarstillingar"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 138
-#: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"Búðu til dreifanleg AppImages úr hvaða Linux forriti sem er.  \n"
-"<span size='large'>Styður Python, Qt, GTK, Java og tvíundarforrit.</span>"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 152
-#: NEEDS WORK
-msgid "Quick Setup"
-msgstr "Hraðuppsetning"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 153
-#: NEEDS WORK
-msgid "Get started quickly with basic information"
-msgstr "Byrjaðu fljótt með grunnupplýsingar"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 176
-#: NEEDS WORK
-msgid "Optional: Choose an icon for your application"
-msgstr "Valfrjálst: Veldu tákn fyrir forritið þitt"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 186
-#: NEEDS WORK
-msgid "Configuration Status"
-msgstr "Staða stillingar"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 187
-#: NEEDS WORK
-msgid "Complete setup to enable AppImage creation"
-msgstr "Fullkomin uppsetning til að gera AppImage sköpun mögulega"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 202
-#: NEEDS WORK
-msgid "Generate your distributable AppImage file"
-msgstr "Búðu til dreifanlega AppImage skrána þína"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 215
-#: NEEDS WORK
-msgid "Configure authors, categories, and build options"
-msgstr "Stilltu höfunda, flokka og byggingarvalkosti"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 217
-#: NEEDS WORK
-msgid "Open Settings"
-msgstr "Opna stillingar"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 235
-#: NEEDS WORK
-msgid "AppImage Creator Settings"
-msgstr "AppImage Creator Stillingar"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 325
-#: NEEDS WORK
-msgid "Setup Build Environment?"
-msgstr "Uppsetning byggingarumhverfis?"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 338
-#: NEEDS WORK
-#, python-brace-format
-msgid ""
-"This will download and setup '{}'.\n"
-"\n"
-"This process may take 5-15 minutes depending on your internet connection.\n"
-"\n"
-"The following will be installed:"
-msgstr ""
-"Þetta mun hlaða niður og setja upp '{}'.\n"
-"\n"
-"Þessi ferli getur tekið 5-15 mínútur, allt eftir internettengingu þinni.\n"
-"\n"
-"Eftirfarandi verður sett upp:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 370
-#: NEEDS WORK
-msgid "Do you want to continue?"
-msgstr "Viltu halda áfram?"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 381
-#: NEEDS WORK
-msgid "Cancelar"
-msgstr "Hætta við"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 386
-#: NEEDS WORK
-msgid "Setup Environment"
-msgstr "Uppsetning umhverfis"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 303
-#: NEEDS WORK
-msgid "Setting Up Environment"
-msgstr "Uppsetning umhverfis"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 315
-#: NEEDS WORK
-msgid "Creating container..."
-msgstr "Búa til ílát..."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 318
-#: NEEDS WORK
-msgid "Installing dependencies..."
-msgstr "Að setja upp háð."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 324
-# File: usr/share/appimage-creator/ui/window.py, line: 372
-#: NEEDS WORK
-#, python-brace-format
-msgid "Error: {}"
-msgstr "Villa: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 339
-#: NEEDS WORK
-msgid "Remove Environment?"
-msgstr "Fjarlægja umhverfi?"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 340
-#: NEEDS WORK
-#, python-brace-format
-msgid ""
-"Are you sure you want to remove '{}'?\n"
-"This will delete the container and all its data."
-msgstr ""
-"Ertu viss um að þú viljir fjarlægja '{}'?\n"
-"Þetta mun eyða ílátinu og öllum gögnum þess."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 348
-#: NEEDS WORK
-msgid "Removing Environment"
-msgstr "Fjarlægja umhverfi"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 367
-#: NEEDS WORK
-msgid "Removing container..."
-msgstr "Að fjarlægja ílát..."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 386
-#: NEEDS WORK
-msgid "Cannot Install"
-msgstr "Get ekki hægt að setja upp"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 387
-#: NEEDS WORK
-msgid "Unable to determine package manager for your distribution."
-msgstr "Ekki er hægt að ákvarða pakka stjórnanda fyrir dreifingu þína."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 402
-#: NEEDS WORK
-msgid "Installation Complete"
-msgstr "Uppsetningu lokið"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 403
-#: NEEDS WORK
-msgid ""
-"Required packages were installed successfully!\n"
-"\n"
-"Please restart the application to use the new features."
-msgstr ""
-"Nauðsynlegu pakkarnir voru settir upp með góðum árangri!\n"
-"\n"
-"Vinsamlegast endurræstu forritið til að nota nýju eiginleikanna."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 427
-#: NEEDS WORK
-msgid "Ready to Build"
-msgstr "Klár til að byggja"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 428
-#: NEEDS WORK
-msgid "All requirements met"
-msgstr "Öll skilyrði uppfyllt"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 431
-#: NEEDS WORK
-msgid "Almost Ready!"
-msgstr "Næstum tilbúið!"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 432
-#: NEEDS WORK
-msgid "Please enter an Application Name"
-msgstr "Vinsamlegast sláðu inn nafn forrits"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 436
-#: NEEDS WORK
-msgid "Select Executable"
-msgstr "Veldu keyrsluforrit"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 437
-#: NEEDS WORK
-msgid "Please choose the main executable file"
-msgstr "Vinsamlegast veldu aðalkeyrsluskrá."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 440
-#: NEEDS WORK
-msgid "Getting Started"
-msgstr "Byrjun"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 441
-#: NEEDS WORK
-msgid "Enter name and select executable"
-msgstr "Sláðu inn nafn og veldu keyfile"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 615
-#: NEEDS WORK
-msgid "Essential for this application type"
-msgstr "Nauðsynlegt fyrir þessa tegund forrits"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 516
-#: NEEDS WORK
-msgid "Executable Files"
-msgstr "Framkvæmanlegar skrár"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 517
-#: NEEDS WORK
-msgid "All Files"
-msgstr "Öll skrár"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 520
-#: NEEDS WORK
-msgid "Choose Executable"
-msgstr "Veldu keyrsluforrit"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 534
-# File: usr/share/appimage-creator/ui/window.py, line: 592
-# File: usr/share/appimage-creator/ui/window.py, line: 706
-#: NEEDS WORK
-#, python-brace-format
-msgid "Selected: {}"
-msgstr "Valið: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 577
-#: NEEDS WORK
-msgid "Image Files"
-msgstr "Myndaskrár"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 619
-#: NEEDS WORK
-msgid "Choose Output Directory"
-msgstr "Veldu úttaksstefnu"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 674
-#: NEEDS WORK
-#, python-brace-format
-msgid "Found: {}"
-msgstr "Fundið: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 692
-#: NEEDS WORK
-msgid "Desktop Files"
-msgstr "Skrár á skrifborð"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 693
-#: NEEDS WORK
-msgid "Choose Desktop File"
-msgstr "Veldu skrifborðs skrá"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 721
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "Yfirlit AppImage:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 722
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "App: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 723
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "Tegund: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 728
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "Aukagögn: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 734
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "Sjálfvirkt greint: {} skrár"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 737
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "Smelltu á 'Skoða Heildaruppbyggingu' fyrir nánari upplýsingar"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 755
-#: NEEDS WORK
-msgid "AppImage Structure - Full View"
-msgstr "AppImage uppbygging - Heildarsýn"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 760
-#: NEEDS WORK
-msgid "AppImage Structure - Detailed View"
-msgstr "AppImage uppbygging - Nákvæm útsýn"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 764
-#: NEEDS WORK
-msgid "[AppImage Root]"
-msgstr "[AppImage Rót]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 765
-#: NEEDS WORK
-msgid "├── AppRun (main launcher)"
-msgstr "├── AppRun (aðal hlekkur)"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 768
-#: NEEDS WORK
-msgid "└── usr/"
-msgstr "└── usr/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 769
-#: NEEDS WORK
-msgid "    ├── bin/"
-msgstr "├── bin/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 771
-#: NEEDS WORK
-msgid "    ├── lib/"
-msgstr "├── bókasafn/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 772
-#: NEEDS WORK
-msgid "    └── share/"
-msgstr "└── deila/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 798
-#: NEEDS WORK
-msgid "Summary:"
-msgstr "Yfirlit:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 800
-#: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "Forritategund: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 801
-#: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "Aukalegðir: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 806
-#: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "Sjálfvirkt greind skrár: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 817
-#: NEEDS WORK
-msgid "Tip"
-msgstr "Tipp"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 818
-#: NEEDS WORK
-msgid "Enter an Application Name above to continue"
-msgstr "Sláðu inn nafn forrits hér að ofan til að halda áfram"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 820
-#: NEEDS WORK
-msgid "Ready!"
-msgstr "Klárt!"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 821
-#: NEEDS WORK
-msgid "Ready to create AppImage! Click 'Create AppImage' when ready."
-msgstr "Tilbúinn að búa til AppImage! Smelltu á 'Búa til AppImage' þegar þú ert tilbúinn."
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 895
-#: NEEDS WORK
-msgid "Validation Error"
-msgstr "Gildisvilla Villa"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 897
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to start build: {}"
-msgstr "Mistók að hefja uppbyggingu: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1155
-#: NEEDS WORK
-msgid "AppImages built on your system may NOT work on other distributions due to:"
-msgstr "AppImages sem smíðaðar á kerfinu þínu virka EKKI á öðrum dreifingum vegna:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1201
-#: NEEDS WORK
-msgid "Continue Anyway"
-msgstr "Fara áfram"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 941
-#: NEEDS WORK
-msgid "Build Failed"
-msgstr "Bygging misheppnað"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 950
-#: NEEDS WORK
-msgid "Build Complete"
-msgstr "Bygging lokið"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 951
-#: NEEDS WORK
-#, python-brace-format
-msgid ""
-"AppImage created successfully:\n"
-"{}"
-msgstr ""
-"AppImage búið til með árangri:  \n"
-"{}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 954
-#: NEEDS WORK
-msgid "Build Cancelled"
-msgstr "Bygging aflýst"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 954
-#: NEEDS WORK
-msgid "Build was cancelled"
-msgstr "Byggingu var hætt við"
-# 
-# File: usr/share/appimage-creator/ui/app.py, line: 75
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not load custom CSS: {}"
-msgstr "Aðvörun: Gat ekki hlaðið sérsniðnu CSS: {}"
+msgid "Failed to make file executable: {}"
+msgstr "Mistók að gera skrána framkvæmanlega: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
@@ -2006,6 +800,22 @@ msgstr "Að tryggja innfæddar GUI háð..."
 msgid "Required packages: {}"
 msgstr "Skyldugar pakkar: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1189
+#: NEEDS WORK
+msgid "Checking for missing packages in the container..."
+msgstr "Athugun fyrir vanta pakka í ílátinu..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1201
+#: NEEDS WORK
+msgid "All required native dependencies are already installed."
+msgstr "Öll nauðsynleg innfædd tengsl eru þegar komin."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1204
+#: NEEDS WORK
+#, python-brace-format
+msgid "Packages to install: {}"
+msgstr "Pakkar til að setja upp: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 799
 #: NEEDS WORK
 msgid ""
@@ -2095,6 +905,12 @@ msgstr "Afritaður sérsniðinn AppRun"
 msgid "Warning: No .desktop file found, skipping linuxdeploy"
 msgstr "Aðvörun: Engin .desktop skrá fannst, sleppa linuxdeploy"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1304
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping copy of '{}' executable, as it is treated as a library provider."
+msgstr "Snið að afritun á '{}' keyrandi forriti, þar sem það er talið vera bókasafnaraðili."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 891
 #: NEEDS WORK
 #, python-brace-format
@@ -2141,6 +957,27 @@ msgstr "Endurður sérsniðin AppRun"
 #, python-brace-format
 msgid "Restored original wrapper: {}"
 msgstr "Endurheimt upprunalega umbúðin: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1370
+#: NEEDS WORK
+msgid "Generating icon cache inside AppDir..."
+msgstr "Að búa til táknaskjal í AppDir..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1383
+#: NEEDS WORK
+msgid "Successfully generated icon-theme.cache."
+msgstr "Tókst að búa til icon-theme.cache."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
+msgstr "Aðvörun: Mistókst að búa til icon-theme.cache. Táknin kunna ekki að birtast í valmyndum."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1388
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not run gtk-update-icon-cache: {}"
+msgstr "Viðvörun: Gat ekki keyrt gtk-update-icon-cache: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 945
 #: NEEDS WORK
@@ -2308,17 +1145,28 @@ msgstr "Papirus táknmyndir afritaðar með árangri"
 msgid "No icon found in usr/share/icons"
 msgstr "Engin fannst ekki í usr/share/icons"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1329
+# File: usr/share/appimage-creator/core/builder.py, line: 2170
 #: NEEDS WORK
-#, python-brace-format
-msgid "Created icon symlink: {} -> {}"
-msgstr "Búin tákn táknsamband: {} -> {}"
+msgid "Warning: Could not reliably determine the main desktop file to update the icon path."
+msgstr "Aðvörun: Gat ekki áreiðanlega ákvarðað aðal skrifborðs skrá til að uppfæra táknstíginn."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1343
+# File: usr/share/appimage-creator/core/builder.py, line: 2173
 #: NEEDS WORK
 #, python-brace-format
-msgid "Updated Icon= in desktop file to: {}"
-msgstr "Uppfært tákn= í skrifborðs skrá til: {}"
+msgid "Using main desktop file for icon association: {}"
+msgstr "Notandi aðal skrifborðs skrá fyrir tákn tengingu: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2186
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created root icon symlink: {} -> {}"
+msgstr "Búin rót tákn simból: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2200
+#: NEEDS WORK
+#, python-brace-format
+msgid "Updated 'Icon=' in {} to: {}"
+msgstr "Uppfært 'Icon=' í {} í: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1346
 #: NEEDS WORK
@@ -2615,3 +1463,1209 @@ msgstr "✗ Bygging mistókst: {}"
 #: NEEDS WORK
 msgid "Build already in progress"
 msgstr "Bygging þegar í gangi"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 18
+#: NEEDS WORK
+msgid "Application name must be at least 2 characters long"
+msgstr "Nafn forritsins verður að vera að minnsta kosti 2 stafir að lengd."
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 21
+#: NEEDS WORK
+msgid "Application name contains invalid characters"
+msgstr "Forritsnafn inniheldur ógild tákn."
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 29
+#: NEEDS WORK
+msgid "Version is required"
+msgstr "Útgáfa er nauðsynleg"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 32
+#: NEEDS WORK
+msgid "Invalid version format"
+msgstr "Ógildur útgáfuformát"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 40
+#: NEEDS WORK
+msgid "Executable file does not exist"
+msgstr "Framleiðsluskjal er ekki til."
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 43
+#: NEEDS WORK
+msgid "File is not executable"
+msgstr "Skjali er ekki keyrandi"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 54
+#: NEEDS WORK
+msgid "Error: Missing [Desktop Entry] section"
+msgstr "Villa: Vantar [Desktop Entry] kafla"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 69
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Missing required keys: {}"
+msgstr "Villa: Vantar nauðsynlegar lyklarnir: {}"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 81
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Empty value for required key: {}"
+msgstr "Villa: Tómur gildi fyrir nauðsynlegan lykil: {}"
+# 
+# File: usr/share/appimage-creator/ui/app.py, line: 75
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not load custom CSS: {}"
+msgstr "Aðvörun: Gat ekki hlaðið sérsniðnu CSS: {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 21
+#: NEEDS WORK
+msgid "App"
+msgstr "Forrit"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 39
+#: NEEDS WORK
+msgid "Basic Information"
+msgstr "Grunnupplýsingar"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 42
+# File: usr/share/appimage-creator/ui/window.py, line: 159
+#: NEEDS WORK
+msgid "Application Name"
+msgstr "Forritsnafn"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 46
+#: NEEDS WORK
+msgid "Version"
+msgstr "Útgáfa"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 51
+#: NEEDS WORK
+msgid "Description"
+msgstr "Lýsing"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 58
+#: NEEDS WORK
+msgid "Authors"
+msgstr "Höfundar"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 59
+#: NEEDS WORK
+msgid "Add one or more authors/developers"
+msgstr "Bættu við einum eða fleiri höfundum/þróunaraðilum"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 62
+# File: usr/share/appimage-creator/ui/pages.py, line: 67
+#: NEEDS WORK
+msgid "Add Author"
+msgstr "Bæta við höfundi"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 63
+#: NEEDS WORK
+msgid "Add a new author or developer"
+msgstr "Bæta við nýjum höfundi eða þróunaraðila"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 76
+#: NEEDS WORK
+#, python-brace-format
+msgid "Author {}"
+msgstr "Höfundur {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 83
+#: NEEDS WORK
+msgid "Websites"
+msgstr "Vefsíður"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 84
+#: NEEDS WORK
+msgid "Add project website, repository, or documentation links"
+msgstr "Bæta við vefsíðu verkefnis, geymslu eða skjala tenglum"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 87
+# File: usr/share/appimage-creator/ui/pages.py, line: 92
+#: NEEDS WORK
+msgid "Add Website"
+msgstr "Bæta við vefsíðu"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 88
+#: NEEDS WORK
+msgid "Add project website or repository link"
+msgstr "Bættu við vefsíðu eða geymslu tengli verkefnisins"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 101
+#: NEEDS WORK
+#, python-brace-format
+msgid "Website {}"
+msgstr "Vefsíða {}"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 107
+#: NEEDS WORK
+msgid "Categories"
+msgstr "Flokkar"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 110
+#: NEEDS WORK
+msgid "Primary Category"
+msgstr "Aðalflokkur"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 120
+#: NEEDS WORK
+msgid "Requires Terminal"
+msgstr "Krafar Terminal"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 121
+#: NEEDS WORK
+msgid "Check if your application needs to run in a terminal"
+msgstr "Athugaðu hvort forritið þitt þurfi að keyra í terminal."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 135
+#: NEEDS WORK
+msgid "Files"
+msgstr "Skrár"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 153
+#: NEEDS WORK
+msgid "Application Files"
+msgstr "Forritaskrár"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 156
+# File: usr/share/appimage-creator/ui/window.py, line: 164
+#: NEEDS WORK
+msgid "Main Executable"
+msgstr "Aðalkeyrsluskrá"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 157
+# File: usr/share/appimage-creator/ui/window.py, line: 165
+#: NEEDS WORK
+msgid "Select the main application file"
+msgstr "Veldu aðalforritaskrána"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 159
+# File: usr/share/appimage-creator/ui/pages.py, line: 241
+# File: usr/share/appimage-creator/ui/window.py, line: 167
+#: NEEDS WORK
+msgid "Choose File"
+msgstr "Veldu skrá"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 165
+#: NEEDS WORK
+msgid "Application Type"
+msgstr "Forritategund"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 166
+#: NEEDS WORK
+msgid "Auto-detected from executable"
+msgstr "Sjálfvirkt greint úr keyrandi forriti"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Binary"
+msgstr "Bítnar"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Python"
+msgstr "Python"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Python Wrapper"
+msgstr "Python umbúningur"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "Shell Script"
+msgstr "Skel Script"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "Java"
+msgstr "Java"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "Qt"
+msgstr "Qt"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "GTK"
+msgstr "GTK"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 170
+#: NEEDS WORK
+msgid "Electron"
+msgstr "Elektrón"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 181
+#: NEEDS WORK
+msgid "Additional Directories"
+msgstr "Aukalegar Skráarskrár"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Include extra directories like locale files, plugins, or data"
+msgstr "Inkludera extra kataloger som språkfiler, plugins eller data"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 185
+# File: usr/share/appimage-creator/ui/pages.py, line: 188
+# File: usr/share/appimage-creator/ui/window.py, line: 601
+#: NEEDS WORK
+msgid "Add Directory"
+msgstr "Bæta við skráarsafni"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 186
+#: NEEDS WORK
+msgid "Include additional files and directories"
+msgstr "Inkludera aukafail og skráarsafn"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 204
+#: NEEDS WORK
+msgid "Auto-detected Files"
+msgstr "Sjálfvirkt greind skrár"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 205
+#: NEEDS WORK
+msgid "Files automatically found for your application"
+msgstr "Skrár sem fundust sjálfkrafa fyrir forritið þitt"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 219
+#: NEEDS WORK
+msgid "Desktop File"
+msgstr "Skrá á skrifborð"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 223
+#: NEEDS WORK
+msgid "Use Existing Desktop File"
+msgstr "Nota um desktop sem notação"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 224
+#: NEEDS WORK
+msgid "Found desktop file in application"
+msgstr "Fundin skrifborðs skrá í forriti"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 229
+#: NEEDS WORK
+msgid "Detected Desktop File"
+msgstr "Greindur skrifborðs skrá"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 230
+#: NEEDS WORK
+msgid "No desktop file detected"
+msgstr "Engin skrifborðs skrá ekki fundin"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 232
+#: NEEDS WORK
+msgid "View"
+msgstr "Skoða"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 238
+#: NEEDS WORK
+msgid "Custom Desktop File"
+msgstr "Sérsniðin skrifborðs skrá"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 239
+#: NEEDS WORK
+msgid "Or select a different .desktop file"
+msgstr "Eða veldu annað .desktop skjal"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 250
+#: NEEDS WORK
+msgid "Resources"
+msgstr "Auðlindir"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 253
+# File: usr/share/appimage-creator/ui/window.py, line: 175
+#: NEEDS WORK
+msgid "Application Icon"
+msgstr "Forrits tákn"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 254
+#: NEEDS WORK
+msgid "PNG, SVG, or other image format"
+msgstr "PNG, SVG eða annað myndform"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 256
+# File: usr/share/appimage-creator/ui/window.py, line: 178
+# File: usr/share/appimage-creator/ui/window.py, line: 579
+#: NEEDS WORK
+msgid "Choose Icon"
+msgstr "Veldu tákn"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 265
+#: NEEDS WORK
+msgid "Structure Preview"
+msgstr "Strúktúr Forsýning"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 266
+#: NEEDS WORK
+msgid "Preview of what will be included in the AppImage"
+msgstr "Forsýning á því sem verður innifalið í AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 270
+#: NEEDS WORK
+msgid "Quick Preview"
+msgstr "Hraðforskoðun"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 271
+#: NEEDS WORK
+msgid "See basic structure overview"
+msgstr "Sjáðu grunnuppbyggingu yfirlit"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 273
+#: NEEDS WORK
+msgid "View Full Structure"
+msgstr "Skoða Heildaruppbyggingu"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 300
+#: NEEDS WORK
+msgid "Build"
+msgstr "Byggja"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 314
+#: NEEDS WORK
+msgid "Output Settings"
+msgstr "Útgangsstillingar"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 317
+#: NEEDS WORK
+msgid "Output Directory"
+msgstr "Útgangsleið."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 320
+#: NEEDS WORK
+msgid "Choose Folder"
+msgstr "Veldu möppu"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 329
+# File: usr/share/appimage-creator/ui/pages.py, line: 333
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Build Environment"
+msgstr "Byggumhverfi"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 330
+#: NEEDS WORK
+msgid "Choose where to build the AppImage"
+msgstr "Veldu hvar á að búa til AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 334
+#: NEEDS WORK
+msgid "Select container or use local system"
+msgstr "Veldu gáma eða notaðu staðbundið kerfi"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 337
+# File: usr/share/appimage-creator/ui/window.py, line: 456
+#: NEEDS WORK
+msgid "Local System (Current Python)"
+msgstr "Staðbundið kerfi (Núverandi Python)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 346
+#: NEEDS WORK
+msgid "Advanced Options"
+msgstr "Fyrirlestrarvalkostir"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 349
+#: NEEDS WORK
+msgid "Include Dependencies"
+msgstr "Innihalda háð."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 350
+#: NEEDS WORK
+msgid "Automatically include system dependencies"
+msgstr "Sjálfvirkt að fela í sér kerfisfylgni"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "System Dependencies"
+msgstr "Kerfissur kerfi"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 357
+#: NEEDS WORK
+msgid "Select which system libraries to bundle"
+msgstr "Veldu hvaða kerfisbókasöfn á að pakka saman"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+#: NEEDS WORK
+msgid "Include Icon Theme"
+msgstr "Inni táknasnið"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 372
+#: NEEDS WORK
+msgid "Bundle icons for consistent UI across systems"
+msgstr "Pakkaðu tákn fyrir samræmda notendaviðmót um kerfi."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 378
+#: NEEDS WORK
+msgid "Icon Theme Selection"
+msgstr "Valmynd fyrir táknasnið"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 379
+#: NEEDS WORK
+msgid "Choose which icon theme to bundle"
+msgstr "Veldu hvaða táknþema á að pakka saman"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 385
+#: NEEDS WORK
+msgid "Papirus"
+msgstr "Papirus"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 386
+#: NEEDS WORK
+msgid "Modern, colorful icons (~6.4MB) - Default for GTK apps"
+msgstr "Nútímaleg, litríkar tákn (~6.4MB) - Sjálfgefið fyrir GTK forrit"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 394
+#: NEEDS WORK
+msgid "Adwaita"
+msgstr "Adwaita"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 395
+#: NEEDS WORK
+msgid "GNOME default icons (~2.6MB)"
+msgstr "GNOME sjálfgefnar tákn (~2.6MB)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 355
+#: NEEDS WORK
+msgid "Strip Debug Symbols"
+msgstr "Fjarlægja villuþætti"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 356
+#: NEEDS WORK
+msgid "Reduce file size by removing debug information"
+msgstr "Minnka skráarstærð með því að fjarlægja villuupplýsingar"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 364
+#: NEEDS WORK
+msgid "Build AppImage"
+msgstr "Byggðu AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 365
+#: NEEDS WORK
+msgid "Create your AppImage with current settings"
+msgstr "Búðu til AppImage-ið þitt með núverandi stillingum"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 368
+#: NEEDS WORK
+msgid "Generate AppImage"
+msgstr "Búa til AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 369
+#: NEEDS WORK
+msgid "Create AppImage with configured settings"
+msgstr "Búa til AppImage með stilltum stillingum"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 371
+# File: usr/share/appimage-creator/ui/window.py, line: 201
+# File: usr/share/appimage-creator/ui/window.py, line: 204
+#: NEEDS WORK
+msgid "Create AppImage"
+msgstr "Búa til AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+#: NEEDS WORK
+msgid "Environment"
+msgstr "Umhverfi"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 404
+#: NEEDS WORK
+msgid "Host System Status"
+msgstr "Hýsingarstaða Staða"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 405
+#: NEEDS WORK
+msgid "Required tools for creating compatible AppImages"
+msgstr "Nauðsynleg verkfæri til að búa til samhæf AppImages"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 409
+#: NEEDS WORK
+msgid "Checking host system..."
+msgstr "Athugun gestkerfis..."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 414
+#: NEEDS WORK
+msgid "Available Build Environments"
+msgstr "Tiltanlegar byggingar umhverfi"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 415
+#: NEEDS WORK
+msgid "Select an environment to build your AppImage for maximum compatibility"
+msgstr "Veldu umhverfi til að byggja AppImage þitt fyrir hámarks samhæfi"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 438
+#: NEEDS WORK
+msgid "Host is Ready"
+msgstr "Gesturinn er tilbúinn"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 439
+#: NEEDS WORK
+msgid "Distrobox and a container runtime are installed."
+msgstr "Distrobox og ílátakörfu eru uppsett."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 455
+#: NEEDS WORK
+msgid "Host Setup Required"
+msgstr "Hýsingaruppsetning nauðsynleg"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 456
+#: NEEDS WORK
+#, python-brace-format
+msgid "Missing: {}"
+msgstr "Vantar: {}"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
+# File: usr/share/appimage-creator/ui/pages.py, line: 459
+#: NEEDS WORK
+msgid "Install Required Packages"
+msgstr "Setja upp nauðsynlegar pakkar"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/widgets.py, line: 32
+# File: usr/share/appimage-creator/ui/widgets.py, line: 104
+# File: usr/share/appimage-creator/ui/pages.py, line: 484
+# File: usr/share/appimage-creator/ui/window.py, line: 342
+#: NEEDS WORK
+msgid "Remove"
+msgstr "Fjarlægja"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 493
+#: NEEDS WORK
+msgid "Setup"
+msgstr "Uppsetning"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 48
+# File: usr/share/appimage-creator/ui/window.py, line: 131
+#: NEEDS WORK
+msgid "AppImage Creator"
+msgstr "AppImage Skaparinn"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 214
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "Fyrirlestrarstillingar"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 138
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
+msgstr ""
+"Búðu til dreifanleg AppImages úr hvaða Linux forriti sem er.  \n"
+"<span size='large'>Styður Python, Qt, GTK, Java og tvíundarforrit.</span>"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 152
+#: NEEDS WORK
+msgid "Quick Setup"
+msgstr "Hraðuppsetning"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 153
+#: NEEDS WORK
+msgid "Get started quickly with basic information"
+msgstr "Byrjaðu fljótt með grunnupplýsingar"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 176
+#: NEEDS WORK
+msgid "Optional: Choose an icon for your application"
+msgstr "Valfrjálst: Veldu tákn fyrir forritið þitt"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 186
+#: NEEDS WORK
+msgid "Configuration Status"
+msgstr "Staða stillingar"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 187
+#: NEEDS WORK
+msgid "Complete setup to enable AppImage creation"
+msgstr "Fullkomin uppsetning til að gera AppImage sköpun mögulega"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 202
+#: NEEDS WORK
+msgid "Generate your distributable AppImage file"
+msgstr "Búðu til dreifanlega AppImage skrána þína"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 215
+#: NEEDS WORK
+msgid "Configure authors, categories, and build options"
+msgstr "Stilltu höfunda, flokka og byggingarvalkosti"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 217
+#: NEEDS WORK
+msgid "Open Settings"
+msgstr "Opna stillingar"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 235
+#: NEEDS WORK
+msgid "AppImage Creator Settings"
+msgstr "AppImage Creator Stillingar"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 325
+#: NEEDS WORK
+msgid "Setup Build Environment?"
+msgstr "Uppsetning byggingarumhverfis?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 338
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"This will download and setup '{}'.\n"
+"\n"
+"This process may take 5-15 minutes depending on your internet connection.\n"
+"\n"
+"The following will be installed:"
+msgstr ""
+"Þetta mun hlaða niður og setja upp '{}'.\n"
+"\n"
+"Þessi ferli getur tekið 5-15 mínútur, allt eftir internettengingu þinni.\n"
+"\n"
+"Eftirfarandi verður sett upp:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Do you want to continue?"
+msgstr "Viltu halda áfram?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Cancelar"
+msgstr "Hætta við"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Setup Environment"
+msgstr "Uppsetning umhverfis"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 303
+#: NEEDS WORK
+msgid "Setting Up Environment"
+msgstr "Uppsetning umhverfis"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 315
+#: NEEDS WORK
+msgid "Creating container..."
+msgstr "Búa til ílát..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 318
+#: NEEDS WORK
+msgid "Installing dependencies..."
+msgstr "Að setja upp háð."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 324
+# File: usr/share/appimage-creator/ui/window.py, line: 372
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: {}"
+msgstr "Villa: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 339
+#: NEEDS WORK
+msgid "Remove Environment?"
+msgstr "Fjarlægja umhverfi?"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 340
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Are you sure you want to remove '{}'?\n"
+"This will delete the container and all its data."
+msgstr ""
+"Ertu viss um að þú viljir fjarlægja '{}'?\n"
+"Þetta mun eyða ílátinu og öllum gögnum þess."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
+# File: usr/share/appimage-creator/ui/window.py, line: 341
+#: NEEDS WORK
+msgid "Cancel"
+msgstr "Hætta við"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 348
+#: NEEDS WORK
+msgid "Removing Environment"
+msgstr "Fjarlægja umhverfi"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 367
+#: NEEDS WORK
+msgid "Removing container..."
+msgstr "Að fjarlægja ílát..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 386
+#: NEEDS WORK
+msgid "Cannot Install"
+msgstr "Get ekki hægt að setja upp"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 387
+#: NEEDS WORK
+msgid "Unable to determine package manager for your distribution."
+msgstr "Ekki er hægt að ákvarða pakka stjórnanda fyrir dreifingu þína."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 402
+#: NEEDS WORK
+msgid "Installation Complete"
+msgstr "Uppsetningu lokið"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 403
+#: NEEDS WORK
+msgid ""
+"Required packages were installed successfully!\n"
+"\n"
+"Please restart the application to use the new features."
+msgstr ""
+"Nauðsynlegu pakkarnir voru settir upp með góðum árangri!\n"
+"\n"
+"Vinsamlegast endurræstu forritið til að nota nýju eiginleikanna."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
+# File: usr/share/appimage-creator/ui/window.py, line: 405
+#: NEEDS WORK
+msgid "OK"
+msgstr "Í lagi"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 427
+#: NEEDS WORK
+msgid "Ready to Build"
+msgstr "Klár til að byggja"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 428
+#: NEEDS WORK
+msgid "All requirements met"
+msgstr "Öll skilyrði uppfyllt"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 431
+#: NEEDS WORK
+msgid "Almost Ready!"
+msgstr "Næstum tilbúið!"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 432
+#: NEEDS WORK
+msgid "Please enter an Application Name"
+msgstr "Vinsamlegast sláðu inn nafn forrits"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 436
+#: NEEDS WORK
+msgid "Select Executable"
+msgstr "Veldu keyrsluforrit"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 437
+#: NEEDS WORK
+msgid "Please choose the main executable file"
+msgstr "Vinsamlegast veldu aðalkeyrsluskrá."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 440
+#: NEEDS WORK
+msgid "Getting Started"
+msgstr "Byrjun"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 441
+#: NEEDS WORK
+msgid "Enter name and select executable"
+msgstr "Sláðu inn nafn og veldu keyfile"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Nauðsynlegt fyrir þessa tegund forrits"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 516
+#: NEEDS WORK
+msgid "Executable Files"
+msgstr "Framkvæmanlegar skrár"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 517
+#: NEEDS WORK
+msgid "All Files"
+msgstr "Öll skrár"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 520
+#: NEEDS WORK
+msgid "Choose Executable"
+msgstr "Veldu keyrsluforrit"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 534
+# File: usr/share/appimage-creator/ui/window.py, line: 592
+# File: usr/share/appimage-creator/ui/window.py, line: 706
+#: NEEDS WORK
+#, python-brace-format
+msgid "Selected: {}"
+msgstr "Valið: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 577
+#: NEEDS WORK
+msgid "Image Files"
+msgstr "Myndaskrár"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 619
+#: NEEDS WORK
+msgid "Choose Output Directory"
+msgstr "Veldu úttaksstefnu"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 674
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found: {}"
+msgstr "Fundið: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 692
+#: NEEDS WORK
+msgid "Desktop Files"
+msgstr "Skrár á skrifborð"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 693
+#: NEEDS WORK
+msgid "Choose Desktop File"
+msgstr "Veldu skrifborðs skrá"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 721
+#: NEEDS WORK
+msgid "AppImage Overview:"
+msgstr "Yfirlit AppImage:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 722
+#: NEEDS WORK
+#, python-brace-format
+msgid "   App: {}"
+msgstr "App: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 723
+#: NEEDS WORK
+#, python-brace-format
+msgid "   Type: {}"
+msgstr "Tegund: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 728
+#: NEEDS WORK
+#, python-brace-format
+msgid "   Additional Dirs: {}"
+msgstr "Aukagögn: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 734
+#: NEEDS WORK
+#, python-brace-format
+msgid "   Auto-detected: {} files"
+msgstr "Sjálfvirkt greint: {} skrár"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 737
+#: NEEDS WORK
+msgid "Click 'View Full Structure' for details"
+msgstr "Smelltu á 'Skoða Heildaruppbyggingu' fyrir nánari upplýsingar"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 755
+#: NEEDS WORK
+msgid "AppImage Structure - Full View"
+msgstr "AppImage uppbygging - Heildarsýn"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 760
+#: NEEDS WORK
+msgid "AppImage Structure - Detailed View"
+msgstr "AppImage uppbygging - Nákvæm útsýn"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 764
+#: NEEDS WORK
+msgid "[AppImage Root]"
+msgstr "[AppImage Rót]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 765
+#: NEEDS WORK
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun (aðal hlekkur)"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 768
+#: NEEDS WORK
+msgid "└── usr/"
+msgstr "└── usr/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 769
+#: NEEDS WORK
+msgid "    ├── bin/"
+msgstr "├── bin/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 771
+#: NEEDS WORK
+msgid "    ├── lib/"
+msgstr "├── bókasafn/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 772
+#: NEEDS WORK
+msgid "    └── share/"
+msgstr "└── deila/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 798
+#: NEEDS WORK
+msgid "Summary:"
+msgstr "Yfirlit:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 800
+#: NEEDS WORK
+#, python-brace-format
+msgid "Application Type: {}"
+msgstr "Forritategund: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 801
+#: NEEDS WORK
+#, python-brace-format
+msgid "Additional Directories: {}"
+msgstr "Aukalegðir: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 806
+#: NEEDS WORK
+#, python-brace-format
+msgid "Auto-detected Files: {}"
+msgstr "Sjálfvirkt greind skrár: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 817
+#: NEEDS WORK
+msgid "Tip"
+msgstr "Tipp"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 818
+#: NEEDS WORK
+msgid "Enter an Application Name above to continue"
+msgstr "Sláðu inn nafn forrits hér að ofan til að halda áfram"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 820
+#: NEEDS WORK
+msgid "Ready!"
+msgstr "Klárt!"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 821
+#: NEEDS WORK
+msgid "Ready to create AppImage! Click 'Create AppImage' when ready."
+msgstr "Tilbúinn að búa til AppImage! Smelltu á 'Búa til AppImage' þegar þú ert tilbúinn."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 895
+#: NEEDS WORK
+msgid "Validation Error"
+msgstr "Gildisvilla Villa"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+# File: usr/share/appimage-creator/ui/window.py, line: 906
+#: NEEDS WORK
+msgid "Error"
+msgstr "Villa"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to start build: {}"
+msgstr "Mistók að hefja uppbyggingu: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1155
+#: NEEDS WORK
+msgid "AppImages built on your system may NOT work on other distributions due to:"
+msgstr "AppImages sem smíðaðar á kerfinu þínu virka EKKI á öðrum dreifingum vegna:"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1201
+#: NEEDS WORK
+msgid "Continue Anyway"
+msgstr "Fara áfram"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 941
+#: NEEDS WORK
+msgid "Build Failed"
+msgstr "Bygging misheppnað"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 950
+#: NEEDS WORK
+msgid "Build Complete"
+msgstr "Bygging lokið"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 951
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"AppImage created successfully:\n"
+"{}"
+msgstr ""
+"AppImage búið til með árangri:  \n"
+"{}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 954
+#: NEEDS WORK
+msgid "Build Cancelled"
+msgstr "Bygging aflýst"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 954
+#: NEEDS WORK
+msgid "Build was cancelled"
+msgstr "Byggingu var hætt við"
+# 
+# File: usr/share/appimage-creator/ui/widgets.py, line: 147
+#: NEEDS WORK
+#, python-brace-format
+msgid "{}: {}"
+msgstr "{}: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
+#: NEEDS WORK
+msgid "Building AppImage"
+msgstr "Bygging AppImage"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
+#: NEEDS WORK
+msgid "Preparing..."
+msgstr "Undirbúningur..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
+#: NEEDS WORK
+msgid "Cancel Build"
+msgstr "Hætta við byggingu"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
+#: NEEDS WORK
+msgid "Open Folder"
+msgstr "Opna möppu"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
+#: NEEDS WORK
+msgid "Open"
+msgstr "Opna"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
+#: NEEDS WORK
+msgid "Select"
+msgstr "Veljaðu"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
+#: NEEDS WORK
+msgid "Save"
+msgstr "Vista"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
+#: NEEDS WORK
+msgid "Copy to clipboard"
+msgstr "Afrita í klippiborð"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
+#: NEEDS WORK
+msgid "Desktop File Content"
+msgstr "Skráarsniðsinnihald"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to read file: {}"
+msgstr "Ekki tókst að lesa skrá: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
+#: NEEDS WORK
+msgid "Starting..."
+msgstr "Byrjar..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
+#: NEEDS WORK
+msgid "Close"
+msgstr "Lokaðu"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
+#: NEEDS WORK
+msgid "Completed successfully!"
+msgstr "Lokið með góðum árangri!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
+#: NEEDS WORK
+msgid "Finished with errors."
+msgstr "Lokið með villum."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
+#: NEEDS WORK
+msgid "Installation Information"
+msgstr "Upplýsingar um uppsetningu"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
+#: NEEDS WORK
+msgid "Packages to Install"
+msgstr "Pakkar til að setja upp"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
+#: NEEDS WORK
+msgid "Command"
+msgstr "Skipta"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
+#: NEEDS WORK
+msgid ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+msgstr ""
+"<b>Stjórnandaheimildir nauðsynlegar</b>  \n"
+"Þú verður beðinn um að slá inn lykilorðið þitt til að setja upp kerfispakka."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
+#: NEEDS WORK
+msgid "Installation Output"
+msgstr "Uppsetning Úttak"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
+#: NEEDS WORK
+msgid "Install"
+msgstr "Setja upp"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 426
+#: NEEDS WORK
+msgid ""
+"Starting installation...\n"
+"\n"
+msgstr "Byrjar uppsetningu..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
+#: NEEDS WORK
+msgid "Error running command"
+msgstr "Villa að keyra skipun"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
+#: NEEDS WORK
+msgid "Pre-command completed successfully."
+msgstr "Fyrirskipun lokið með góðum árangri."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
+#: NEEDS WORK
+msgid "Installation completed successfully!"
+msgstr "Uppsetningu lokið með góðum árangri!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
+#: NEEDS WORK
+msgid "Command failed with exit code"
+msgstr "Skipun mistók með útgöngukóða"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
+#: NEEDS WORK
+msgid "Installation failed."
+msgstr "Uppsetning mistókst."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
+#: NEEDS WORK
+msgid "Please check the errors above and try again."
+msgstr "Vinsamlegast athugaðu villurnar hér að ofan og reyndu aftur."
