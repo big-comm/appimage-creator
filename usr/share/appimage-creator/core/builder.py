@@ -2140,86 +2140,88 @@ Type=Scalable
             self.log(_("Papirus symbolic icons copied successfully"))
                 
     def _create_icon_symlinks(self):
-        """Create icon symlinks in AppDir root matching desktop file name"""
+        """
+        Renames the main icon to match the .desktop file name,
+        creates symlinks in the root, and updates the .desktop file.
+        """
         try:
-            # Find icon in usr/share/icons/
+            # Find the icon file inside usr/share/icons/
             icons_dir = self.appdir_path / "usr" / "share" / "icons"
             if not icons_dir.exists():
                 return
             
             icon_file = None
+            # Prioritize SVG, then PNG
             for ext in ['.svg', '.png', '.xpm']:
-                for found_icon in icons_dir.rglob(f"*{ext}"):
-                    if found_icon.is_file():
-                        icon_file = found_icon
-                        break
-                if icon_file:
+                # Recursively search for any icon
+                found_icons = list(icons_dir.rglob(f"*{ext}"))
+                if found_icons:
+                    icon_file = found_icons[0]
                     break
             
             if not icon_file:
-                self.log(_("No icon found in usr/share/icons"))
+                self.log("No icon file found in usr/share/icons to create symlinks for.")
                 return
             
-            # Reliably find the main application's desktop file.
-            main_desktop_file = None
-            
-            all_desktop_files = list((self.appdir_path / "usr/share/applications").glob("*.desktop"))
-
-            # Strategy 1: Find a desktop file that was copied from the source project.
-            # This is often the most reliable.
-            if self.app_info.get('structure_analysis'):
-                detected_desktops = self.app_info['structure_analysis']['detected_files'].get('desktop_files', [])
-                if detected_desktops:
-                    original_desktop_name = Path(detected_desktops[0]).name
-                    for f in all_desktop_files:
-                        if f.name == original_desktop_name:
-                            main_desktop_file = f
-                            break
-            
-            # Strategy 2: If not found, fall back to finding one that is not auto-generated.
-            if not main_desktop_file:
-                for f in all_desktop_files:
-                    # Ignore files created by linuxdeploy for secondary binaries
-                    if 'vainfo' not in f.name:
-                        main_desktop_file = f
-                        break
-            
-            # If still no file, we can't proceed.
-            if not main_desktop_file:
-                self.log(_("Warning: Could not reliably determine the main desktop file to update the icon path."))
+            # Find the main application .desktop file
+            desktop_files_dir = self.appdir_path / "usr" / "share" / "applications"
+            if not desktop_files_dir.exists():
+                self.log("Warning: applications directory not found, cannot create icon symlinks.")
                 return
+            
+            all_desktop_files = list(desktop_files_dir.glob("*.desktop"))
+            if not all_desktop_files:
+                self.log("Warning: No .desktop file found, cannot create icon symlinks.")
+                return
+            
+            # Use the first .desktop file found as the main one
+            main_desktop_file = all_desktop_files[0]
+            self.log(f"Using main desktop file for icon association: {main_desktop_file.name}")
 
-            self.log(_("Using main desktop file for icon association: {}").format(main_desktop_file.name))
             desktop_name = main_desktop_file.stem  # e.g., org.communitybig.ashyterm
             icon_extension = icon_file.suffix      # e.g., .svg
             
-            # Create symlink in the root of the AppDir
-            symlink_name = f"{desktop_name}{icon_extension}"
-            symlink_path = self.appdir_path / symlink_name
+            # 1. Rename the actual icon file to match the .desktop name
+            new_icon_name = f"{desktop_name}{icon_extension}"
+            new_icon_path = icon_file.parent / new_icon_name
+            
+            if icon_file != new_icon_path:
+                self.log(f"Renaming icon file: {icon_file.name} -> {new_icon_name}")
+                icon_file.rename(new_icon_path)
+                icon_file = new_icon_path # Update variable to the new path
+
+            # 2. Create the icon symlink in the AppDir root
+            root_icon_symlink = self.appdir_path / new_icon_name
             relative_icon_path = os.path.relpath(icon_file, self.appdir_path)
             
-            if symlink_path.exists():
-                symlink_path.unlink()
-            symlink_path.symlink_to(relative_icon_path)
-            
-            self.log(_("Created root icon symlink: {} -> {}").format(symlink_name, relative_icon_path))
-            
-            # Update the Icon= line in the main desktop file to use the base name
-            desktop_file_path = main_desktop_file # Use a variável correta
-            with open(desktop_file_path, 'r', encoding='utf-8') as f:
+            if root_icon_symlink.exists():
+                root_icon_symlink.unlink()
+            root_icon_symlink.symlink_to(relative_icon_path)
+            self.log(f"Created root icon symlink: {root_icon_symlink.name} -> {relative_icon_path}")
+
+            # 3. Create the .DirIcon symlink (best practice)
+            dir_icon_symlink = self.appdir_path / ".DirIcon"
+            if dir_icon_symlink.exists():
+                dir_icon_symlink.unlink()
+            # Point .DirIcon to the root symlink, which is simpler
+            dir_icon_symlink.symlink_to(root_icon_symlink.name)
+            self.log(f"Created .DirIcon symlink: .DirIcon -> {root_icon_symlink.name}")
+
+            # 4. Update the Icon= line in the .desktop file to use the base name
+            with open(main_desktop_file, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            # Replace Icon= line with the name (without extension)
             import re
+            # Ensure the Icon= line uses only the base name, without path or extension
             content = re.sub(r'^Icon=.*$', f'Icon={desktop_name}', content, flags=re.MULTILINE)
             
-            with open(desktop_file_path, 'w', encoding='utf-8') as f:
+            with open(main_desktop_file, 'w', encoding='utf-8') as f:
                 f.write(content)
             
-            self.log(_("Updated 'Icon=' in {} to: {}").format(desktop_file_path.name, desktop_name))
+            self.log(f"Updated 'Icon=' in {main_desktop_file.name} to: {desktop_name}")
             
         except Exception as e:
-            self.log(_("Warning: Failed to create icon symlinks: {}").format(e))
+            self.log(f"Warning: Failed to create icon symlinks: {e}")
                     
     def download_linuxdeploy(self):
         """Download or find linuxdeploy"""
