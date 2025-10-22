@@ -22,8 +22,20 @@ def generate_desktop_file(app_info):
     
     app_name = escape_value(app_info.get('name', 'Application'))
     description = escape_value(app_info.get('description', app_name))
-    executable_name = escape_value(app_info.get('executable_name', 'app'))
     
+    # The real executable name (e.g., big-video-converter-gui)
+    real_executable_name = escape_value(app_info.get('executable_name', 'app'))
+    
+    # The canonical base name, derived from the App Name, used for consistency.
+    # This will be used for the .desktop filename, Icon=, and StartupWMClass=.
+    # e.g., "Big Video Converter" -> "big-video-converter"
+    canonical_basename = app_info.get('name', 'app').lower().replace(' ', '-')
+
+    app_type = app_info.get('app_type', 'binary')
+    exec_prefix = ""
+    if app_type in ['gtk', 'python', 'python_wrapper']:
+        exec_prefix = "env GDK_BACKEND=x11 UBUNTU_MENUPROXY=0 "
+
     categories = app_info.get('categories', ['Utility'])
     if not categories:
         categories = ['Utility']
@@ -34,10 +46,11 @@ Version=1.0
 Type=Application
 Name={app_name}
 Comment={description}
-Exec={executable_name} %F
-Icon={executable_name}
+Exec={exec_prefix}{real_executable_name} %F
+Icon={canonical_basename}
 Categories={categories_str}
 StartupNotify=true
+StartupWMClass={canonical_basename}
 Terminal={str(app_info.get('terminal', False)).lower()}
 '''
 
