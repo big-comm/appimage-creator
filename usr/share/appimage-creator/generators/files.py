@@ -116,39 +116,56 @@ def create_apprun_script(app_info):
 
     py_version = app_info.get('python_version', f"{sys.version_info.major}.{sys.version_info.minor}")
     
+    # The source of truth is the name of the original detected .desktop file
+    structure_analysis = app_info.get('structure_analysis', {})
+    detected_desktops = structure_analysis.get('detected_files', {}).get('desktop_files', [])
+    main_desktop_filename = ""
+    if detected_desktops:
+        main_desktop_filename = Path(detected_desktops[0]).name
+    
     return f'''#!/bin/bash
 # AppRun for {app_info['name']}
 
 HERE="$(dirname "$(readlink -f "${{0}}")")"
 
+# --- CRITICAL: SETUP ENVIRONMENT FIRST ---
+# The Python environment and PATH must be set up before any script is called.
+
 # Set up the primary library path, always prioritizing bundled libraries
-# for essential components like libvte, libadwaita, etc.
 export LD_LIBRARY_PATH="${{HERE}}/usr/lib:${{LD_LIBRARY_PATH}}"
 
-# Conditionally add the fallback library path for conflicting libraries (e.g., libjpeg).
-# This path is only added if the host system does NOT have the library,
-# ensuring portability on systems like Fedora without causing conflicts on systems like Manjaro.
+# Conditionally add the fallback library path for conflicting libraries
 if ! ldconfig -p 2>/dev/null | grep -q "libjpeg.so.8"; then
     export LD_LIBRARY_PATH="${{HERE}}/usr/lib-fallback:${{LD_LIBRARY_PATH}}"
 fi
 
 # Construct the PATH environment variable with correct priority.
-# The AppImage's own bin directories must come first to ensure
-# bundled tools like 'vainfo' are used instead of system tools.
-
-# 1. Start with the original system PATH
 FINAL_PATH="$PATH"
-
-# 2. Prepend the AppImage's main usr/bin (for tools like vainfo)
 FINAL_PATH="${{HERE}}/usr/bin:$FINAL_PATH"
-
-# 3. Prepend the Python venv bin path if it exists (highest priority)
 if [ -d "${{HERE}}/usr/python/venv" ]; then
     FINAL_PATH="${{HERE}}/usr/python/venv/bin:$FINAL_PATH"
 fi
-
-# 4. Export the final, correctly ordered PATH
 export PATH="$FINAL_PATH"
+
+# Setup Python virtualenv if it exists
+if [ -d "${{HERE}}/usr/python/venv" ]; then
+    export PYTHONHOME="${{HERE}}/usr/python/venv"
+    export PYTHONPATH="${{HERE}}/usr/python/venv/lib/python{py_version}/site-packages"
+fi
+# --- END OF CRITICAL ENVIRONMENT SETUP ---
+
+# --- Optional Desktop Integration Helper ---
+# This section runs a helper script on first launch in a Wayland session
+# to offer the user to integrate the AppImage into their system menu.
+if [ -n "$APPIMAGE" ] && [ -f "$HERE/usr/bin/integration_helper.py" ]; then
+    # We need to find the main .desktop file name to pass to the helper
+    DESKTOP_FILE_NAME="{main_desktop_filename}"
+    if [ -n "$DESKTOP_FILE_NAME" ]; then
+        # Now we can just call 'python3' because the PATH is correctly set
+        python3 "$HERE/usr/bin/integration_helper.py" "{app_info['name']}" "$APPIMAGE" "$DESKTOP_FILE_NAME"
+    fi
+fi
+# --- End of Integration Helper ---
 
 # GObject Introspection typelibs
 export GI_TYPELIB_PATH="${{HERE}}/usr/lib/girepository-1.0:${{HERE}}/usr/lib/x86_64-linux-gnu/girepository-1.0:${{GI_TYPELIB_PATH}}"
@@ -173,9 +190,6 @@ export GTK_PATH="${{HERE}}/usr/lib/gtk-4.0:${{HERE}}/usr/lib/gtk-3.0:${{GTK_PATH
 export GTK_DATA_PREFIX="${{HERE}}/usr"
 export GTK_EXE_PREFIX="${{HERE}}/usr"
 
-# Force GTK to update icon theme cache
-export GTK_THEME_ICON_CACHE_TIMESTAMP=0
-
 # GSettings schemas (for icon theme settings)
 if [ -d "${{HERE}}/usr/share/glib-2.0/schemas" ]; then
     export GSETTINGS_SCHEMA_DIR="${{HERE}}/usr/share/glib-2.0/schemas:${{GSETTINGS_SCHEMA_DIR}}"
@@ -184,15 +198,9 @@ fi
 # Setup localization
 export TEXTDOMAINDIR="${{HERE}}/usr/share/locale"
 
-# Setup Python virtualenv if it exists
-if [ -d "${{HERE}}/usr/python/venv" ]; then
-    export PYTHONHOME="${{HERE}}/usr/python/venv"
-    export PYTHONPATH="${{HERE}}/usr/python/venv/lib/python{py_version}/site-packages"
-fi
-
 # Execute the target application
 {exec_line}
-''' 
+'''
 
 
 def create_apprun_file(appdir_path, app_info):

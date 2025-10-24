@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import tempfile
 import threading
+import configparser
 from pathlib import Path
 from typing import Callable, Optional
 
@@ -395,6 +396,20 @@ class AppImageBuilder:
             # Copy any extra user-defined directories
             self._copy_additional_directories()
             
+            # --- NEW: Copy the integration helper script ---
+            self.log(_("Copying desktop integration helper..."))
+            helper_script_src = Path(__file__).parent.parent / "integration_helper.py"
+            if helper_script_src.exists():
+                helper_script_dest_dir = self.appdir_path / "usr" / "bin"
+                helper_script_dest_dir.mkdir(parents=True, exist_ok=True)
+                helper_script_dest = helper_script_dest_dir / "integration_helper.py"
+                shutil.copy2(helper_script_src, helper_script_dest)
+                make_executable(helper_script_dest)  # ← ADICIONE ESTA LINHA
+                self.log(_("Integration helper copied successfully."))
+            else:
+                self.log(_("Warning: integration_helper.py not found, skipping."))
+            # --- END OF NEW SECTION ---
+            
             self.update_progress(25, _("Application files copied"))
         except Exception as e:
             raise RuntimeError(_("Failed to copy application files: {}").format(e))
@@ -451,50 +466,32 @@ class AppImageBuilder:
             self.log(_("Warning: Icon processing failed: {}").format(e))
         
     def create_launcher_and_desktop_files(self):
-        """Create launcher and desktop files with consistent naming."""
+        """Create launcher and desktop files preserving original .desktop filename."""
         self.log(_("Creating launcher and desktop files..."))
         
         try:
-            # Determine the canonical base name that will be used for everything.
-            canonical_basename = self.app_info.get('name', 'app').lower().replace(' ', '-')
-            self.app_info['canonical_basename'] = canonical_basename # Store for later use
-            
             appdir_desktop_files_dir = self.appdir_path / "usr/share/applications"
             appdir_desktop_files = list(appdir_desktop_files_dir.glob("*.desktop"))
             
             if not appdir_desktop_files:
                 self.log(_("No desktop file found in AppDir, generating a new one."))
-                # Generate a new desktop file with the canonical name
+                # Generate a new desktop file with a canonical name
+                canonical_basename = self.app_info.get('name', 'app').lower().replace(' ', '-')
                 desktop_content = generate_desktop_file(self.app_info)
                 new_desktop_path = appdir_desktop_files_dir / f"{canonical_basename}.desktop"
                 with open(new_desktop_path, 'w', encoding='utf-8') as f:
                     f.write(desktop_content)
                 main_desktop_file_path = new_desktop_path
             else:
-                # Adapt the existing desktop file
+                # Use the existing desktop file, preserving its original name
                 source_desktop_file = appdir_desktop_files[0]
                 self.log(_("Found desktop file from source project: {}").format(source_desktop_file.name))
                 
-                # Read its content
-                with open(source_desktop_file, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                
-                # Modify Icon and StartupWMClass to be consistent
-                import re
-                content = re.sub(r'^Icon=.*$', f'Icon={canonical_basename}', content, flags=re.MULTILINE)
-                content = re.sub(r'^StartupWMClass=.*$', f'StartupWMClass={canonical_basename}', content, flags=re.MULTILINE)
-                
-                # Rename the file to the canonical name
-                new_desktop_path = source_desktop_file.parent / f"{canonical_basename}.desktop"
-                if source_desktop_file != new_desktop_path:
-                    source_desktop_file.unlink() # Remove the old file
-                
-                with open(new_desktop_path, 'w', encoding='utf-8') as f:
-                    f.write(content)
-                main_desktop_file_path = new_desktop_path
-                self.log(f"Adapted and renamed desktop file to: {new_desktop_path.name}")
+                # Keep the original filename - do NOT rename it
+                main_desktop_file_path = source_desktop_file
+                self.log(f"Using desktop file with original name: {main_desktop_file_path.name}")
 
-            # Create symlink to the (now correctly named) desktop file in AppDir root
+            # Create symlink to the desktop file in AppDir root (using original name)
             root_desktop_path = self.appdir_path / main_desktop_file_path.name
             relative_desktop = os.path.relpath(main_desktop_file_path, self.appdir_path)
             if root_desktop_path.exists():
@@ -2176,11 +2173,12 @@ Type=Scalable
                 
     def _create_icon_symlinks(self):
         """
-        Cleans up old icon symlinks, renames the main icon to match the .desktop file,
-        creates correct symlinks in the root, and updates the .desktop file.
+        Read the Icon= field from the .desktop file, rename icon files to match that name,
+        create symlinks in the root, and ensure .desktop file uses the correct Icon= value.
+        The .desktop filename is NOT changed - only icon files are renamed based on Icon= field.
         """
         try:
-            # --- NEW: Clean up any pre-existing icon symlinks in the AppDir root ---
+            # --- Clean up any pre-existing icon symlinks in the AppDir root ---
             self.log("Cleaning up existing icon symlinks in AppDir root...")
             root_path = self.appdir_path
             for item in root_path.iterdir():
@@ -2191,12 +2189,14 @@ Type=Scalable
             if dir_icon_path.is_symlink():
                 self.log("Removing old .DirIcon symlink")
                 dir_icon_path.unlink()
-            # --- END OF NEW CLEANUP LOGIC ---
+            # --- END OF CLEANUP LOGIC ---
 
             icons_dir = self.appdir_path / "usr" / "share" / "icons"
             if not icons_dir.exists():
+                self.log("No icons directory found, skipping icon symlinks.")
                 return
             
+            # Find the icon file (SVG preferred, then PNG, then XPM)
             icon_file = None
             for ext in ['.svg', '.png', '.xpm']:
                 found_icons = list(icons_dir.rglob(f"*{ext}"))
@@ -2208,6 +2208,7 @@ Type=Scalable
                 self.log("No icon file found in usr/share/icons to create symlinks for.")
                 return
             
+            # Find the main .desktop file
             desktop_files_dir = self.appdir_path / "usr" / "share" / "applications"
             if not desktop_files_dir.exists():
                 self.log("Warning: applications directory not found, cannot create icon symlinks.")
@@ -2217,6 +2218,7 @@ Type=Scalable
             structure_analysis = self.app_info.get('structure_analysis', {})
             detected_desktops = structure_analysis.get('detected_files', {}).get('desktop_files', [])
             
+            # Try to find the desktop file from structure analysis
             if detected_desktops:
                 original_desktop_filename = Path(detected_desktops[0]).name
                 candidate_path = desktop_files_dir / original_desktop_filename
@@ -2224,6 +2226,7 @@ Type=Scalable
                     main_desktop_file = candidate_path
                     self.log(f"Found main desktop file via analysis: {original_desktop_filename}")
 
+            # Fallback: search for any .desktop file
             if not main_desktop_file:
                 all_desktop_files = list(desktop_files_dir.glob("*.desktop"))
                 if not all_desktop_files:
@@ -2241,37 +2244,56 @@ Type=Scalable
                 
                 self.log(f"Warning: Using fallback to find main desktop file: {main_desktop_file.name}")
 
-            desktop_name = main_desktop_file.stem
-            icon_extension = icon_file.suffix
+            # Read the .desktop file and extract the Icon= field value
+            with open(main_desktop_file, 'r', encoding='utf-8') as f:
+                desktop_content = f.read()
             
-            new_icon_name = f"{desktop_name}{icon_extension}"
+            import re
+            icon_match = re.search(r'^Icon=(.+)$', desktop_content, flags=re.MULTILINE)
+            
+            if not icon_match:
+                self.log("Warning: No Icon= field found in .desktop file, cannot determine icon name.")
+                return
+            
+            # Extract the icon base name (without path or extension)
+            icon_value = icon_match.group(1).strip()
+            # Remove any path components if present
+            icon_basename = Path(icon_value).stem
+            
+            self.log(f"Extracted icon name from .desktop file: {icon_basename}")
+            
+            # Rename the icon file to match the Icon= field value
+            icon_extension = icon_file.suffix
+            new_icon_name = f"{icon_basename}{icon_extension}"
             new_icon_path = icon_file.parent / new_icon_name
             
             if icon_file != new_icon_path:
                 self.log(f"Renaming icon file: {icon_file.name} -> {new_icon_name}")
                 icon_file.rename(new_icon_path)
                 icon_file = new_icon_path
+            else:
+                self.log(f"Icon file already has correct name: {new_icon_name}")
 
+            # Create symlinks in the AppDir root
             relative_icon_path = os.path.relpath(icon_file, self.appdir_path)
             
+            # Create main icon symlink
             root_icon_symlink = self.appdir_path / new_icon_name
             root_icon_symlink.symlink_to(relative_icon_path)
             self.log(f"Created root icon symlink: {root_icon_symlink.name} -> {relative_icon_path}")
 
+            # Create .DirIcon symlink
             dir_icon_symlink = self.appdir_path / ".DirIcon"
             dir_icon_symlink.symlink_to(relative_icon_path)
             self.log(f"Created .DirIcon symlink: .DirIcon -> {relative_icon_path}")
 
-            with open(main_desktop_file, 'r', encoding='utf-8') as f:
-                content = f.read()
-            
-            import re
-            content = re.sub(r'^Icon=.*$', f'Icon={desktop_name}', content, flags=re.MULTILINE)
+            # Update the Icon= field in .desktop to use just the base name (no path, no extension)
+            desktop_content = re.sub(r'^Icon=.*$', f'Icon={icon_basename}', desktop_content, flags=re.MULTILINE)
             
             with open(main_desktop_file, 'w', encoding='utf-8') as f:
-                f.write(content)
+                f.write(desktop_content)
             
-            self.log(f"Updated 'Icon=' in {main_desktop_file.name} to: {desktop_name}")
+            self.log(f"Updated 'Icon=' field in {main_desktop_file.name} to: {icon_basename}")
             
         except Exception as e:
             self.log(f"Warning: Failed to create icon symlinks: {e}")
@@ -2630,24 +2652,29 @@ Type=Scalable
             # Initialize the build environment
             self.update_progress(0, _("Initializing..."))
             self.create_build_directory()
-            if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
             self.create_appdir_structure()
-            if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
 
             # Copy application source files
             self.copy_application_files()
-            if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
 
             # Install native GUI dependencies in the container and download plugins
             gui_deps = self._detect_gui_dependencies(self.app_info)
             if gui_deps:
                 self._ensure_native_dependencies(gui_deps)
 
-            if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
 
             # Process the application icon
             self.process_application_icon()
-            if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
             
             # Detect Python version from container
             if self.app_info.get('app_type') in ['python', 'python_wrapper', 'gtk', 'qt']:
@@ -2663,16 +2690,19 @@ Type=Scalable
 
             # Create the custom AppRun and desktop files
             self.create_launcher_and_desktop_files()
-            if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
             
             # Bundle all dependencies
             self.copy_dependencies()
-            if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
             
             # Download appimagetool
             if not self.download_appimagetool():
                 raise RuntimeError(_("Failed to setup appimagetool"))
-            if self.cancel_requested: raise RuntimeError(_("Build cancelled"))
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
                 
             # Generate the final AppImage file
             self.update_progress(85, _("Building AppImage..."))
