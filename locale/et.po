@@ -1574,6 +1574,21 @@ msgstr "Kopeerimine struktureeritud projektist: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "Projektijuurt ei leitud, kopeerimine lihtsa rakendusena."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Kopeerimine töölaua integreerimise abistaja..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Integratsiooni abimees kopeeriti edukalt."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Hoiatus: integration_helper.py ei leitud, vahele jätmine."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1614,15 +1629,10 @@ msgstr "Töötlemise ikoon..."
 msgid "Using detected icon: {}"
 msgstr "Kasutades tuvastatud ikooni: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "Ikonit pole esitatud, kasutatakse projekti vaikeikooni."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Ikoni kontrollimine lõpetatud"
+msgid "No icon provided or found, generating a default one."
+msgstr "Ikonit ei ole esitatud ega leitud, genereeritakse vaikimisi."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

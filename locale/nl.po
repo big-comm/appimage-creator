@@ -1572,6 +1572,21 @@ msgstr "Gestructureerd project kopiëren van: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "Projectroot niet gevonden, kopiëren als eenvoudige applicatie."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Kopieert desktopintegratiehelper..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Integratiehulp succesvol gekopieerd."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Waarschuwing: integration_helper.py niet gevonden, overslaan."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1612,15 +1627,10 @@ msgstr "Verwerkingspictogram..."
 msgid "Using detected icon: {}"
 msgstr "Gebruik het gedetecteerde pictogram: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "Geen pictogram opgegeven, zal standaard uit het project gebruiken."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Pictogram controle voltooid"
+msgid "No icon provided or found, generating a default one."
+msgstr "Geen pictogram opgegeven of gevonden, een standaardpictogram wordt gegenereerd."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

@@ -1572,6 +1572,21 @@ msgstr "从以下位置复制结构化项目：{}"
 msgid "Project root not found, copying as simple application."
 msgstr "未找到项目根目录，正在复制为简单应用程序。"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "正在复制桌面集成助手..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "集成助手复制成功。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "警告：未找到 integration_helper.py，跳过。"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 219
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1612,15 +1627,10 @@ msgstr "处理图标..."
 msgid "Using detected icon: {}"
 msgstr "使用检测到的图标：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "未提供图标，将使用项目中的默认图标。"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 258
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "图标检查完成"
+msgid "No icon provided or found, generating a default one."
+msgstr "未提供或找到图标，正在生成默认图标。"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 264
 #: NEEDS WORK

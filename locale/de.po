@@ -1577,6 +1577,21 @@ msgstr "Strukturiertes Projekt wird kopiert von: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "Projektstamm nicht gefunden, wird als einfache Anwendung kopiert."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Kopiere Desktop-Integrationshelfer..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Integrationshelfer erfolgreich kopiert."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Warnung: integration_helper.py nicht gefunden, überspringe."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1617,15 +1632,10 @@ msgstr "Verarbeite Symbol..."
 msgid "Using detected icon: {}"
 msgstr "Verwende erkannten Icon: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "Kein Symbol bereitgestellt, es wird das Standard-Symbol aus dem Projekt verwendet."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Symbolprüfung abgeschlossen"
+msgid "No icon provided or found, generating a default one."
+msgstr "Kein Symbol bereitgestellt oder gefunden, ein Standard-Symbol wird generiert."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

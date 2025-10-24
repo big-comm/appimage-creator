@@ -1574,6 +1574,21 @@ msgstr "Copiando proyecto estructurado de: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "No se encontró la raíz del proyecto, copiando como aplicación simple."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Copiando asistente de integración de escritorio..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Ayudante de integración copiado con éxito."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Advertencia: integration_helper.py no encontrado, omitiendo."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1614,15 +1629,10 @@ msgstr "Procesando icono..."
 msgid "Using detected icon: {}"
 msgstr "Usando el icono detectado: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "No se proporcionó ningún icono, se utilizará el predeterminado del proyecto."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Verificación de icono completa"
+msgid "No icon provided or found, generating a default one."
+msgstr "No se proporcionó ni se encontró un ícono, generando uno predeterminado."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

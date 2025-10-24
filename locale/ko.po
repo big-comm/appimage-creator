@@ -1574,6 +1574,21 @@ msgstr "구조화된 프로젝트 복사 중: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "프로젝트 루트가 발견되지 않았습니다. 간단한 애플리케이션으로 복사 중입니다."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "데스크탑 통합 도우미 복사 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "통합 도우미가 성공적으로 복사되었습니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "경고: integration_helper.py를 찾을 수 없습니다. 건너뜁니다."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1614,15 +1629,10 @@ msgstr "처리 중 아이콘..."
 msgid "Using detected icon: {}"
 msgstr "감지된 아이콘 사용: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "아이콘이 제공되지 않았습니다. 프로젝트의 기본값을 사용합니다."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "아이콘 검사 완료"
+msgid "No icon provided or found, generating a default one."
+msgstr "아이콘이 제공되지 않거나 발견되지 않아 기본 아이콘을 생성하고 있습니다."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

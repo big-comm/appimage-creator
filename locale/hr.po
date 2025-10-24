@@ -1574,6 +1574,21 @@ msgstr "Kopiranje strukturiranog projekta iz: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "Nije pronađen korijen projekta, kopiranje kao jednostavne aplikacije."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Kopiranje pomoćnika za integraciju radne površine..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Pomoćnik za integraciju uspješno je kopiran."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Upozorenje: integration_helper.py nije pronađen, preskočeno."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1614,15 +1629,10 @@ msgstr "Obrada ikone..."
 msgid "Using detected icon: {}"
 msgstr "Koristeći otkrivenu ikonu: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "Nema ikone, koristit će se zadana iz projekta"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Provjera ikone završena"
+msgid "No icon provided or found, generating a default one."
+msgstr "Nema ikone koja je pružena ili pronađena, generira se zadana."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

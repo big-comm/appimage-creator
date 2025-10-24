@@ -1574,6 +1574,21 @@ msgstr "Kopírování strukturovaného projektu z: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "Kořen projektu nebyl nalezen, kopíruji jako jednoduchou aplikaci."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Kopírování pomocníka pro integraci plochy..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Integrace pomocník byl úspěšně zkopírován."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Upozornění: integration_helper.py nebyl nalezen, přeskočeno."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1614,15 +1629,10 @@ msgstr "Zpracovávám ikonu..."
 msgid "Using detected icon: {}"
 msgstr "Používání detekované ikony: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "Žádná ikona nebyla poskytnuta, použije se výchozí z projektu."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Ikona kontrola dokončena"
+msgid "No icon provided or found, generating a default one."
+msgstr "Žádná ikona nebyla poskytnuta ani nalezena, generuji výchozí."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

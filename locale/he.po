@@ -1574,6 +1574,21 @@ msgstr "מעתיק פרויקט מובנה מ: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "שורש הפרויקט לא נמצא, מועתק כאפליקציה פשוטה."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "מעתיק עזר לשילוב שולחן עבודה..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "העוזר לשילוב הועתק בהצלחה."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "אזהרה: integration_helper.py לא נמצא, מדלגים."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1614,15 +1629,10 @@ msgstr "מכונת עיבוד..."
 msgid "Using detected icon: {}"
 msgstr "שימוש באייקון שזוהה: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "לא סופק אייקון, ייעשה שימוש בברירת המחדל מהפרויקט"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "סמל בדיקה הושלמה"
+msgid "No icon provided or found, generating a default one."
+msgstr "לא סופק או נמצא אייקון, מייצר אייקון ברירת מחדל."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

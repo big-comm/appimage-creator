@@ -1574,6 +1574,21 @@ msgstr "Kopierar strukturerat projekt från: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "Projektrot hittades inte, kopierar som enkel applikation."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Kopierar skrivbordsintegrationshjälp..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Integrationshjälpmedel kopierades framgångsrikt."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Varning: integration_helper.py hittades inte, hoppar över."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1614,15 +1629,10 @@ msgstr "Bearbetar ikon..."
 msgid "Using detected icon: {}"
 msgstr "Använder detekterad ikon: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "Ingen ikon angiven, kommer att använda standard från projektet"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Ikonkontroll slutförd"
+msgid "No icon provided or found, generating a default one."
+msgstr "Ingen ikon tillhandahållen eller hittad, genererar en standardikon."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

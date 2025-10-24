@@ -1574,6 +1574,21 @@ msgstr "構造化プロジェクトをコピーしています: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "プロジェクトルートが見つかりません。シンプルアプリケーションとしてコピーしています。"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "デスクトップ統合ヘルパーをコピー中..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "統合ヘルパーが正常にコピーされました。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "警告: integration_helper.py が見つかりません、スキップします。"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1614,15 +1629,10 @@ msgstr "処理中のアイコン..."
 msgid "Using detected icon: {}"
 msgstr "検出されたアイコンを使用しています: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "アイコンが提供されていないため、プロジェクトのデフォルトを使用します。"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "アイコンチェック完了"
+msgid "No icon provided or found, generating a default one."
+msgstr "アイコンが提供されていないか見つかりません。デフォルトのアイコンを生成しています。"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

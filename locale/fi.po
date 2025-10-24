@@ -1576,6 +1576,21 @@ msgstr "Kopioidaan jäsenneltyä projektia kohdasta: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "Projektin juurta ei löytynyt, kopioidaan yksinkertaisena sovelluksena."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Kopioidaan työpöytäintegraatioapuri..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Integraatioavustaja kopioitiin onnistuneesti."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Varoitus: integration_helper.py ei löytynyt, ohitetaan."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1616,15 +1631,10 @@ msgstr "Käsittelykuvake..."
 msgid "Using detected icon: {}"
 msgstr "Käytetään havaittua kuvaketta: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "Ei kuvaketta annettu, käytetään oletusta projektista."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Kuvake tarkistus valmis"
+msgid "No icon provided or found, generating a default one."
+msgstr "Ei kuvaketta annettu tai löytynyt, luodaan oletuskuvake."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

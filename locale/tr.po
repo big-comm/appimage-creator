@@ -1575,6 +1575,21 @@ msgstr "Yapılandırılmış projeyi kopyalıyor: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "Proje kökü bulunamadı, basit uygulama olarak kopyalanıyor."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Masaüstü entegrasyon yardımcı programı kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Entegrasyon yardımcı programı başarıyla kopyalandı."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Uyarı: integration_helper.py bulunamadı, atlanıyor."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1678,15 +1693,10 @@ msgstr "İşleniyor simgesi..."
 msgid "Using detected icon: {}"
 msgstr "Algılanan simge kullanılıyor: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "İkon sağlanmadı, projeden varsayılan kullanılacak."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Simge kontrolü tamamlandı"
+msgid "No icon provided or found, generating a default one."
+msgstr "Hiçbir simge sağlanmadı veya bulunamadı, varsayılan bir tane oluşturuluyor."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK

@@ -1574,6 +1574,21 @@ msgstr "Copierea proiectului structurat din: {}"
 msgid "Project root not found, copying as simple application."
 msgstr "Rădăcina proiectului nu a fost găsită, copiere ca aplicație simplă."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 400
+#: NEEDS WORK
+msgid "Copying desktop integration helper..."
+msgstr "Copiere asistent de integrare desktop..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+msgid "Integration helper copied successfully."
+msgstr "Asistent de integrare copiat cu succes."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+msgid "Warning: integration_helper.py not found, skipping."
+msgstr "Atenție: integration_helper.py nu a fost găsit, sărim peste."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 218
 #: NEEDS WORK
 msgid "Application files copied"
@@ -1614,15 +1629,10 @@ msgstr "Se procesează pictograma..."
 msgid "Using detected icon: {}"
 msgstr "Folosind iconița detectată: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 256
+# File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
-msgid "No icon provided, will use default from project"
-msgstr "Niciun icon nu a fost furnizat, se va folosi cel implicit din proiect."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 257
-#: NEEDS WORK
-msgid "Icon check complete"
-msgstr "Verificare iconi completă"
+msgid "No icon provided or found, generating a default one."
+msgstr "Niciun icon nu a fost furnizat sau găsit, generând unul implicit."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK
