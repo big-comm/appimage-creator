@@ -144,8 +144,8 @@ def main():
     appimage_path = sys.argv[2]
     desktop_filename = sys.argv[3]
     
-    # Only run on Wayland
-    if not os.environ.get("WAYLAND_DISPLAY"):
+    # Only run in graphical environment (X11 or Wayland)
+    if not (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY")):
         sys.exit(0)
     
     # Validate APPDIR environment variable
