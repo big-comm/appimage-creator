@@ -544,6 +544,42 @@ class AppImageBuilder:
             self.update_progress(50, _("Launcher and desktop files created"))
         except Exception as e:
             raise RuntimeError(_("Failed to create launcher files: {}").format(e))
+        
+    def copy_integration_helpers(self):
+        """Copy integration helper scripts to usr/bin/ inside AppImage"""
+        self.log(_("Copying integration helper scripts..."))
+        
+        try:
+            # Destination directory inside AppImage
+            bin_dir = self.appdir_path / "usr" / "bin"
+            bin_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Source directory (where this builder script is located)
+            # integration_helper.py should be in the project root
+            project_root = Path(__file__).parent.parent
+            
+            # Copy integration_helper.py
+            integration_helper_source = project_root / "integration_helper.py"
+            if integration_helper_source.exists():
+                integration_helper_dest = bin_dir / "integration_helper.py"
+                shutil.copy2(integration_helper_source, integration_helper_dest)
+                integration_helper_dest.chmod(0o755)
+                self.log(_("✓ Copied integration_helper.py"))
+            else:
+                self.log(_("Warning: integration_helper.py not found at {}").format(integration_helper_source))
+            
+            # Copy appimage-cleanup.py
+            cleanup_script_source = project_root / "appimage-cleanup.py"
+            if cleanup_script_source.exists():
+                cleanup_script_dest = bin_dir / "appimage-cleanup.py"
+                shutil.copy2(cleanup_script_source, cleanup_script_dest)
+                cleanup_script_dest.chmod(0o755)
+                self.log(_("✓ Copied appimage-cleanup.py"))
+            else:
+                self.log(_("Warning: appimage-cleanup.py not found at {}").format(cleanup_script_source))
+            
+        except Exception as e:
+            self.log(_("Warning: Failed to copy integration helpers: {}").format(e))
             
     def copy_dependencies(self):
         """Copy dependencies: Python virtualenv + external binaries"""
@@ -2690,6 +2726,11 @@ Type=Scalable
 
             # Create the custom AppRun and desktop files
             self.create_launcher_and_desktop_files()
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
+            
+            # Copy integration helper scripts
+            self.copy_integration_helpers()
             if self.cancel_requested:
                 raise RuntimeError(_("Build cancelled"))
             

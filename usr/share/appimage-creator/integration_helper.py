@@ -5,13 +5,219 @@
 AppImage Desktop Integration Helper - Silent Automatic Mode
 Silently integrates AppImage into system menu on first launch (Wayland only)
 Automatically updates desktop file if AppImage path changes
+Includes collaborative cleanup of orphaned integrations
+Optionally sets up systemd watcher for automatic cleanup
 """
 
 import os
 import sys
 import shutil
 import configparser
+import subprocess
 from pathlib import Path
+
+
+def cleanup_orphaned_integrations():
+    """
+    Collaborative cleanup: Check all integrated AppImages and remove orphaned ones.
+    This runs every time ANY AppImage is executed, cleaning up all orphans.
+    
+    Returns:
+        int: Number of orphaned integrations removed
+    """
+    marker_dir = Path.home() / ".local/share/appimage-integrations"
+    
+    if not marker_dir.exists():
+        return 0
+    
+    removed_count = 0
+    
+    for marker_file in marker_dir.glob("*.path"):
+        try:
+            # Read marker file (format: line 1 = appimage path, line 2 = desktop filename)
+            lines = marker_file.read_text().strip().split('\n')
+            appimage_path = lines[0]
+            desktop_filename = lines[1] if len(lines) > 1 else f"{marker_file.stem}.desktop"
+            
+            app_name = marker_file.stem
+            
+            # Check if AppImage still exists
+            if not Path(appimage_path).exists():
+                # Remove desktop file using the stored filename
+                desktop_file = Path.home() / ".local/share/applications" / desktop_filename
+                if desktop_file.exists():
+                    desktop_file.unlink()
+                    print(f"Removed orphaned desktop file: {desktop_filename}", file=sys.stderr)
+                
+                # Remove icon files (can be .svg, .png, .xpm, etc)
+                icon_dir = Path.home() / ".local/share/icons/hicolor/scalable/apps"
+                if icon_dir.exists():
+                    for icon in icon_dir.glob(f"{app_name}.*"):
+                        icon.unlink()
+                        print(f"Removed orphaned icon: {icon.name}", file=sys.stderr)
+                
+                # Remove marker file
+                marker_file.unlink()
+                removed_count += 1
+                
+        except Exception as e:
+            print(f"Error cleaning {marker_file}: {e}", file=sys.stderr)
+    
+    if removed_count > 0:
+        # Update desktop database
+        try:
+            subprocess.run(
+                ["update-desktop-database", str(Path.home() / ".local/share/applications")],
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=5
+            )
+        except Exception:
+            pass
+    
+    return removed_count
+
+
+def is_systemd_available():
+    """Check if systemd is available and running for the current user"""
+    try:
+        result = subprocess.run(
+            ["systemctl", "--user", "is-system-running"],
+            capture_output=True,
+            timeout=2
+        )
+        # 0 = running, 1 = degraded (still ok)
+        return result.returncode in [0, 1]
+    except Exception:
+        return False
+
+
+def setup_systemd_watcher():
+    """
+    Set up systemd timer for automatic cleanup of orphaned AppImage integrations.
+    Timer runs every 7 seconds to check for orphaned integrations.
+    This only needs to run once, but is safe to call multiple times.
+    
+    Returns:
+        bool: True if systemd was set up successfully, False otherwise
+    """
+    if not is_systemd_available():
+        return False
+    
+    try:
+        systemd_dir = Path.home() / ".config/systemd/user"
+        systemd_dir.mkdir(parents=True, exist_ok=True)
+        
+        service_file = systemd_dir / "appimage-cleaner.service"
+        timer_file = systemd_dir / "appimage-cleaner.timer"
+        
+        # Remove old path unit if it exists
+        old_path_file = systemd_dir / "appimage-cleaner.path"
+        if old_path_file.exists():
+            subprocess.run(
+                ["systemctl", "--user", "disable", "--now", "appimage-cleaner.path"],
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=5
+            )
+            old_path_file.unlink()
+        
+        # Check if already configured
+        if service_file.exists() and timer_file.exists():
+            # Already set up, just ensure timer is enabled
+            subprocess.run(
+                ["systemctl", "--user", "enable", "--now", "appimage-cleaner.timer"],
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=5
+            )
+            # Kickstart the timer if not running
+            subprocess.run(
+                ["systemctl", "--user", "start", "appimage-cleaner.service"],
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=5
+            )
+            return True
+        
+        # Create service file
+        service_content = """[Unit]
+Description=AppImage Integration Cleaner
+Documentation=https://github.com/AppImage/AppImageKit
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/appimage-cleanup.py
+
+[Install]
+WantedBy=default.target
+"""
+        service_file.write_text(service_content)
+        
+        # Create timer file (runs every 7 seconds)
+        timer_content = """[Unit]
+Description=Timer for AppImage Integration Cleanup
+
+[Timer]
+OnBootSec=7sec
+OnUnitInactiveSec=7sec
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+"""
+        timer_file.write_text(timer_content)
+        
+        # Copy cleanup script to ~/.local/bin/
+        bin_dir = Path.home() / ".local/bin"
+        bin_dir.mkdir(parents=True, exist_ok=True)
+        
+        cleanup_script_dest = bin_dir / "appimage-cleanup.py"
+        
+        # Get the cleanup script from the AppImage
+        appdir = os.environ.get("APPDIR")
+        if appdir:
+            cleanup_script_source = Path(appdir) / "usr/bin/appimage-cleanup.py"
+            if cleanup_script_source.exists():
+                shutil.copy2(cleanup_script_source, cleanup_script_dest)
+                cleanup_script_dest.chmod(0o755)
+        
+        # Reload systemd and enable timer
+        subprocess.run(
+            ["systemctl", "--user", "daemon-reload"],
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=5
+        )
+        
+        subprocess.run(
+            ["systemctl", "--user", "enable", "--now", "appimage-cleaner.timer"],
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=5
+        )
+        
+        # Run service once to kickstart the timer cycle
+        subprocess.run(
+            ["systemctl", "--user", "start", "appimage-cleaner.service"],
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=5
+        )
+        
+        print("Systemd timer configured successfully (runs every 7 seconds)", file=sys.stderr)
+        return True
+        
+    except Exception as e:
+        print(f"Failed to setup systemd timer: {e}", file=sys.stderr)
+        return False
 
 
 def integrate_appimage(app_name, appimage_path, desktop_file, icon_file, force_update=False):
@@ -119,23 +325,26 @@ def read_marker_file(marker_file):
     """
     try:
         if marker_file.exists():
-            return marker_file.read_text().strip()
+            lines = marker_file.read_text().strip().split('\n')
+            return lines[0]  # Return only the first line (appimage path)
     except Exception:
         pass
     return None
 
 
-def write_marker_file(marker_file, appimage_path):
-    """Write the current AppImage path to the marker file"""
+def write_marker_file(marker_file, appimage_path, desktop_filename):
+    """Write the current AppImage path and desktop filename to the marker file"""
     try:
         marker_file.parent.mkdir(parents=True, exist_ok=True)
-        marker_file.write_text(appimage_path)
+        # Format: line 1 = appimage path, line 2 = desktop filename
+        content = f"{appimage_path}\n{desktop_filename}"
+        marker_file.write_text(content)
     except Exception as e:
         print(f"Warning: Could not write marker file: {e}", file=sys.stderr)
 
 
 def main():
-    """Main entry point - silent automatic integration"""
+    """Main entry point - silent automatic integration with collaborative cleanup"""
     if len(sys.argv) != 4:
         # Invalid arguments, silently exit
         sys.exit(0)
@@ -193,7 +402,7 @@ def main():
         # Path changed, need to update
         force_update = True
     
-    # Perform integration
+    # Perform integration for THIS AppImage
     result = integrate_appimage(
         app_name,
         appimage_path,
@@ -204,7 +413,24 @@ def main():
     
     # Update marker file if integration was successful
     if result == 0:
-        write_marker_file(marker_file, appimage_path)
+        write_marker_file(marker_file, appimage_path, desktop_filename)
+    
+    # --- COLLABORATIVE CLEANUP ---
+    # Clean up orphaned integrations from OTHER AppImages
+    try:
+        removed_count = cleanup_orphaned_integrations()
+        if removed_count > 0:
+            print(f"Cleaned up {removed_count} orphaned AppImage integration(s)", file=sys.stderr)
+    except Exception as e:
+        print(f"Warning: Collaborative cleanup failed: {e}", file=sys.stderr)
+    
+    # --- SYSTEMD SETUP ---
+    # Try to set up systemd timer (only runs once, safe to call multiple times)
+    try:
+        if setup_systemd_watcher():
+            print("Systemd automatic cleanup timer enabled", file=sys.stderr)
+    except Exception as e:
+        print(f"Warning: Systemd setup failed: {e}", file=sys.stderr)
     
     sys.exit(0)
 
