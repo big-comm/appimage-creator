@@ -2212,6 +2212,8 @@ Type=Scalable
         Read the Icon= field from the .desktop file, rename icon files to match that name,
         create symlinks in the root, and ensure .desktop file uses the correct Icon= value.
         The .desktop filename is NOT changed - only icon files are renamed based on Icon= field.
+        
+        MINIMAL FIX: Prefer PNG over SVG for .DirIcon symlink (better AppImage icon quality)
         """
         try:
             # --- Clean up any pre-existing icon symlinks in the AppDir root ---
@@ -2245,7 +2247,7 @@ Type=Scalable
                 return
             
             # Find the main .desktop file
-            desktop_files_dir = self.appdir_path / "usr" / "share" / "applications"
+            desktop_files_dir = self.appdir_path / "usr/share/applications"
             if not desktop_files_dir.exists():
                 self.log("Warning: applications directory not found, cannot create icon symlinks.")
                 return
@@ -2298,20 +2300,33 @@ Type=Scalable
             
             self.log(f"Extracted icon name from .desktop file: {icon_basename}")
             
-            # Rename the icon file to match the Icon= field value
-            icon_extension = icon_file.suffix
-            new_icon_name = f"{icon_basename}{icon_extension}"
-            new_icon_path = icon_file.parent / new_icon_name
+            # === NEW: Check if PNG exists alongside the icon file ===
+            # If we found an SVG, check if there's a PNG version in the same directory
+            icon_file_for_symlink = icon_file
+            if icon_file.suffix.lower() == '.svg':
+                png_alternative = icon_file.parent / f"{icon_file.stem}.png"
+                if png_alternative.exists():
+                    self.log(f"Found PNG version alongside SVG: {png_alternative.name}")
+                    self.log(f"Using PNG for .DirIcon (better quality in file managers)")
+                    icon_file_for_symlink = png_alternative
+                else:
+                    self.log(f"No PNG found alongside SVG, using SVG for symlinks")
+            # === END OF NEW SECTION ===
             
-            if icon_file != new_icon_path:
-                self.log(f"Renaming icon file: {icon_file.name} -> {new_icon_name}")
-                icon_file.rename(new_icon_path)
-                icon_file = new_icon_path
+            # Rename the icon file to match the Icon= field value
+            icon_extension = icon_file_for_symlink.suffix
+            new_icon_name = f"{icon_basename}{icon_extension}"
+            new_icon_path = icon_file_for_symlink.parent / new_icon_name
+            
+            if icon_file_for_symlink != new_icon_path:
+                self.log(f"Renaming icon file: {icon_file_for_symlink.name} -> {new_icon_name}")
+                icon_file_for_symlink.rename(new_icon_path)
+                icon_file_for_symlink = new_icon_path
             else:
                 self.log(f"Icon file already has correct name: {new_icon_name}")
 
             # Create symlinks in the AppDir root
-            relative_icon_path = os.path.relpath(icon_file, self.appdir_path)
+            relative_icon_path = os.path.relpath(icon_file_for_symlink, self.appdir_path)
             
             # Create main icon symlink
             root_icon_symlink = self.appdir_path / new_icon_name
