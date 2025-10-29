@@ -163,8 +163,8 @@ WantedBy=default.target
 Description=Timer for AppImage Integration Cleanup
 
 [Timer]
-OnBootSec=7sec
-OnUnitInactiveSec=7sec
+OnBootSec=5sec
+OnUnitInactiveSec=5sec
 Persistent=true
 
 [Install]
