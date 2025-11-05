@@ -133,6 +133,14 @@ SYSTEM_DEPENDENCIES = {
         'typelibs': [], # MPV does not use GObject Introspection
         'detection_keyword': 'mpv',
         'essential': False
+    },
+    
+    'gspell': {
+    'name': 'GSpell (Spell Checker)',
+    'libs': ['libgspell-1.so*'],
+    'typelibs': ['GSpell-1.typelib'],
+    'detection_keyword': 'gspell', # Você pode usar isso para detecção automática no futuro
+    'essential': False
     }
 }
 
