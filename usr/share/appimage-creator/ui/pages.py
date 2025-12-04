@@ -22,16 +22,11 @@ class AppInfoPage:
         self.page.set_icon_name("application-x-executable-symbolic")
         
         # Widgets we need to access
-        self.output_row = None
-        self.deps_row = None
-        self.strip_row = None
-        self.build_button = None
-        self.environment_row = None
-        self.env_model = None
-        self.icon_theme_row = None
-        self.icon_theme_expander_row = None
-        self.papirus_radio = None
-        self.adwaita_radio = None
+        self.name_row = None
+        self.version_row = None
+        self.description_row = None
+        self.category_row = None # Re-added
+        self.terminal_row = None # Re-added
         
         self._build_page()
         
@@ -56,56 +51,7 @@ class AppInfoPage:
         
         self.page.add(basic_group)
         
-        # Authors group
-        authors_group = Adw.PreferencesGroup()
-        authors_group.set_title(_("Authors"))
-        authors_group.set_description(_("Add one or more authors/developers"))
-        
-        add_author_row = Adw.ActionRow()
-        add_author_row.set_title(_("Add Author"))
-        add_author_row.set_subtitle(_("Add a new author or developer"))
-        
-        self.add_author_button = Gtk.Button.new_from_icon_name("list-add-symbolic")
-        self.add_author_button.set_valign(Gtk.Align.CENTER)
-        self.add_author_button.set_tooltip_text(_("Add Author"))
-        add_author_row.add_suffix(self.add_author_button)
-        authors_group.add(add_author_row)
-        
-        self.authors_listbox = Gtk.ListBox()
-        self.authors_listbox.set_selection_mode(Gtk.SelectionMode.NONE)
-        self.authors_listbox.add_css_class("boxed-list")
-        authors_group.add(self.authors_listbox)
-        
-        self.authors_list = DynamicEntryList(self.authors_listbox, _("Author {}"))
-        self.authors_list.add_entry()
-        
-        self.page.add(authors_group)
-        
-        # Websites group
-        websites_group = Adw.PreferencesGroup()
-        websites_group.set_title(_("Websites"))
-        websites_group.set_description(_("Add project website, repository, or documentation links"))
-        
-        add_website_row = Adw.ActionRow()
-        add_website_row.set_title(_("Add Website"))
-        add_website_row.set_subtitle(_("Add project website or repository link"))
-        
-        self.add_website_button = Gtk.Button.new_from_icon_name("list-add-symbolic")
-        self.add_website_button.set_valign(Gtk.Align.CENTER)
-        self.add_website_button.set_tooltip_text(_("Add Website"))
-        add_website_row.add_suffix(self.add_website_button)
-        websites_group.add(add_website_row)
-        
-        self.websites_listbox = Gtk.ListBox()
-        self.websites_listbox.set_selection_mode(Gtk.SelectionMode.NONE)
-        self.websites_listbox.add_css_class("boxed-list")
-        websites_group.add(self.websites_listbox)
-        
-        self.websites_list = DynamicEntryList(self.websites_listbox, _("Website {}"), allow_empty=True)
-        
-        self.page.add(websites_group)
-        
-        # Categories group
+        # Categories group (RESTORED)
         cat_group = Adw.PreferencesGroup()
         cat_group.set_title(_("Categories"))
         
@@ -116,7 +62,7 @@ class AppInfoPage:
         for category in get_available_categories():
             category_model.append(category)
         self.category_row.set_model(category_model)
-        self.category_row.set_selected(12)  # Utility
+        self.category_row.set_selected(12)  # Utility (default)
         cat_group.add(self.category_row)
         
         self.terminal_row = Adw.SwitchRow()

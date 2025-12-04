@@ -284,10 +284,6 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             return  # Already connected, skip
         
         # App info page signals
-        self.app_info_page.add_author_button.connect("clicked", 
-            lambda btn: self.app_info_page.authors_list.add_entry())
-        self.app_info_page.add_website_button.connect("clicked", 
-            lambda btn: self.app_info_page.websites_list.add_entry())
         self.app_info_page.name_row.connect("changed", self._validate_inputs)
         
         # Files page signals
@@ -1070,12 +1066,9 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         if self.app_info.executable:
             self.app_info.executable_name = os.path.basename(self.app_info.executable)
         
-        # Authors and websites
-        self.app_info.authors = self.app_info_page.authors_list.get_values()
-        if not self.app_info.authors:
-            self.app_info.authors = ["Unknown"]
-            
-        self.app_info.websites = self.app_info_page.websites_list.get_values()
+        # Authors and websites are no longer collected from UI
+        self.app_info.authors = ["Unknown"]
+        self.app_info.websites = []
         
         # Categories
         categories = get_available_categories()
@@ -1087,6 +1080,8 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         selected = self.files_page.app_type_row.get_selected()
         self.app_info.app_type = types[selected]
         
+        # Other settings
+        self.app_info.terminal = self.app_info_page.terminal_row.get_active()        
         # Other settings
         self.app_info.terminal = self.app_info_page.terminal_row.get_active()
         self.app_info.additional_directories = self.files_page.directory_list.get_directories()
