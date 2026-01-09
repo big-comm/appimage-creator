@@ -49,6 +49,53 @@ Built-in automatic update checking provides end users with:
 - 🔄 One-click update and install
 - ⚙️ GitHub Releases API integration
 
+#### GitHub Token Configuration (Optional)
+
+The auto-update system uses the GitHub API to check for new releases. By default, GitHub limits unauthenticated requests to **60 per hour**. To increase this limit to **5,000 requests per hour**, you can configure a GitHub Personal Access Token.
+
+**Why use a token?**
+- Increases rate limit from 60 to 5,000 requests/hour
+- Prevents update check failures for users checking frequently
+- Token requires **NO permissions** (read-only access to public repositories only)
+
+**How to create a token:**
+1. Go to [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
+2. Click "Generate new token (classic)"
+3. Set a descriptive name (e.g., "AppImage Update Checker")
+4. **Do NOT select any scopes/permissions** (leave all checkboxes unchecked)
+5. Click "Generate token" and copy it
+
+**For AppImage Developers (embedding token in AppImage):**
+
+If you want to distribute your AppImages with token embedded for better user experience:
+
+1. Edit `usr/share/appimage-creator/updater/checker.py` line 18:
+   ```python
+   # Change from:
+   DEFAULT_GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", None)
+
+   # To (temporarily, before building):
+   DEFAULT_GITHUB_TOKEN = "ghp_your_token_here"
+   ```
+
+2. Build your AppImage with the embedded token
+
+3. **Before committing:** Revert back to the original line to avoid GitHub blocking your push
+
+**For End Users (using environment variable):**
+
+Users can also configure their own token system-wide:
+
+```bash
+# Add to your shell profile (~/.bashrc, ~/.zshrc, etc.)
+export GITHUB_TOKEN="ghp_your_token_here"
+
+# Or set temporarily
+GITHUB_TOKEN="ghp_your_token_here" ./your-app.AppImage
+```
+
+**Security Note:** The token should have **zero permissions** and only provides read-only access to public repositories. It's safe to use and share publicly.
+
 ***
 
 ## 🚀 Installation
