@@ -1,0 +1,203 @@
+#!/usr/bin/env bash
+# AppImage Update Monitor - Debug and test update checking system
+
+set -e
+
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+print_header() {
+    echo -e "\n${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${BLUE}  $1${NC}"
+    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+}
+
+print_success() {
+    echo -e "${GREEN}✓${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}⚠${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}✗${NC} $1"
+}
+
+print_info() {
+    echo -e "${BLUE}ℹ${NC} $1"
+}
+
+# Check marker directory
+print_header "Checking AppImage Integrations"
+
+MARKER_DIR="$HOME/.local/share/appimage-integrations"
+
+if [ ! -d "$MARKER_DIR" ]; then
+    print_error "Marker directory not found: $MARKER_DIR"
+    print_info "No AppImages are integrated yet"
+    exit 1
+fi
+
+print_success "Marker directory exists: $MARKER_DIR"
+
+# List integrated AppImages
+MARKER_FILES=$(find "$MARKER_DIR" -name "*.path" 2>/dev/null || true)
+
+if [ -z "$MARKER_FILES" ]; then
+    print_warning "No integrated AppImages found"
+    exit 0
+fi
+
+COUNT=$(echo "$MARKER_FILES" | wc -l)
+print_success "Found $COUNT integrated AppImage(s)"
+echo
+
+# Show details for each AppImage
+while IFS= read -r marker_file; do
+    app_name=$(basename "$marker_file" .path | sed 's/_/ /g')
+    print_header "AppImage: $app_name"
+
+    if [ ! -f "$marker_file" ]; then
+        print_error "Marker file not found: $marker_file"
+        continue
+    fi
+
+    # Read marker file
+    mapfile -t lines < "$marker_file"
+
+    if [ ${#lines[@]} -lt 5 ]; then
+        print_error "Invalid marker file format (expected 5 lines, got ${#lines[@]})"
+        continue
+    fi
+
+    appimage_path="${lines[0]}"
+    desktop_file="${lines[1]}"
+    update_url="${lines[2]}"
+    current_version="${lines[3]}"
+    filename_pattern="${lines[4]}"
+
+    # Display info
+    echo "  Path:      $appimage_path"
+
+    if [ -f "$appimage_path" ]; then
+        print_success "AppImage file exists"
+        file_size=$(du -h "$appimage_path" | cut -f1)
+        echo "  Size:      $file_size"
+    else
+        print_error "AppImage file not found!"
+    fi
+
+    echo "  Desktop:   $desktop_file"
+    echo "  Version:   $current_version"
+    echo "  Pattern:   $filename_pattern"
+    echo "  Update URL: $update_url"
+    echo
+
+    # Check if update URL is accessible
+    print_info "Testing GitHub API connection..."
+
+    if command -v curl &> /dev/null; then
+        response=$(curl -s -o /dev/null -w "%{http_code}" "$update_url" 2>/dev/null || echo "000")
+
+        if [ "$response" = "200" ]; then
+            print_success "API endpoint is accessible (HTTP $response)"
+
+            # Fetch latest version
+            latest_data=$(curl -s "$update_url" 2>/dev/null || echo "")
+
+            if [ -n "$latest_data" ]; then
+                latest_version=$(echo "$latest_data" | python3 -c "import sys, json; data=json.load(sys.stdin); print(data.get('tag_name', 'unknown'))" 2>/dev/null || echo "unknown")
+
+                if [ "$latest_version" != "unknown" ]; then
+                    echo "  Latest version: $latest_version"
+
+                    if [ "$latest_version" = "$current_version" ]; then
+                        print_success "Already on latest version"
+                    else
+                        print_warning "Update available: $current_version → $latest_version"
+                    fi
+                else
+                    print_warning "Could not parse version from API response"
+                fi
+            fi
+        elif [ "$response" = "404" ]; then
+            print_error "Repository not found (HTTP 404)"
+            print_info "Check if the repository URL is correct"
+        elif [ "$response" = "403" ]; then
+            print_error "API rate limit exceeded (HTTP 403)"
+            print_info "Wait a bit or configure a GitHub token"
+        else
+            print_error "API request failed (HTTP $response)"
+        fi
+    else
+        print_warning "curl not found, skipping API test"
+    fi
+
+    echo
+done <<< "$MARKER_FILES"
+
+# Check systemd timer
+print_header "Systemd Timer Status"
+
+if systemctl --user list-timers --all | grep -q "appimage-update-check.timer"; then
+    print_success "Timer is installed"
+
+    if systemctl --user is-active --quiet appimage-update-check.timer; then
+        print_success "Timer is active"
+
+        # Show next run time
+        next_run=$(systemctl --user list-timers | grep appimage-update-check.timer | awk '{print $1, $2, $3}')
+        echo "  Next run: $next_run"
+    else
+        print_warning "Timer is installed but not active"
+        print_info "Enable with: systemctl --user enable --now appimage-update-check.timer"
+    fi
+
+    # Show recent logs
+    echo
+    print_info "Recent logs (last 10 lines):"
+    journalctl --user -u appimage-update-check.service -n 10 --no-pager 2>/dev/null || print_warning "No logs available"
+else
+    print_warning "Timer is not installed"
+    print_info "The timer will be installed when you install/update the package"
+    echo
+    print_info "Manual test command:"
+    echo "  python3 /usr/share/appimage-creator/updater/check_updates.py"
+fi
+
+# Check last update check timestamp
+print_header "Last Check Status"
+
+last_check_file="$MARKER_DIR/.last_update_check"
+if [ -f "$last_check_file" ]; then
+    last_check_time=$(stat -c %Y "$last_check_file" 2>/dev/null || echo "0")
+    current_time=$(date +%s)
+    time_diff=$((current_time - last_check_time))
+
+    if [ "$time_diff" -lt 3600 ]; then
+        minutes=$((time_diff / 60))
+        print_success "Last check: $minutes minutes ago"
+    elif [ "$time_diff" -lt 86400 ]; then
+        hours=$((time_diff / 3600))
+        print_success "Last check: $hours hours ago"
+    else
+        days=$((time_diff / 86400))
+        print_warning "Last check: $days days ago"
+    fi
+else
+    print_info "No previous check recorded"
+fi
+
+# Offer manual test
+echo
+print_header "Manual Test"
+echo "To manually trigger an update check, run:"
+echo -e "${GREEN}  python3 /usr/share/appimage-creator/updater/check_updates.py${NC}"
+echo
+echo "To enable automatic checks (if not already enabled):"
+echo -e "${GREEN}  systemctl --user enable --now appimage-update-check.timer${NC}"
+echo

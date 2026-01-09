@@ -1081,11 +1081,13 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self.app_info.app_type = types[selected]
         
         # Other settings
-        self.app_info.terminal = self.app_info_page.terminal_row.get_active()        
-        # Other settings
         self.app_info.terminal = self.app_info_page.terminal_row.get_active()
         self.app_info.additional_directories = self.files_page.directory_list.get_directories()
         self.app_info.structure_analysis = self.structure_analysis
+
+        # Auto-update settings
+        self.app_info.update_url = self.app_info_page.update_url_row.get_text().strip()
+        self.app_info.update_pattern = self.app_info_page.update_pattern_row.get_text().strip()
 
         # Selected dependencies are already stored in app_info from _sync_from_preferences()
         # No need to access widgets here - data is already in the model

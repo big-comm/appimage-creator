@@ -1,0 +1,19 @@
+[Unit]
+Description=Check for AppImage updates
+Documentation=https://github.com/BigCommunity/appimage-creator
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/share/appimage-creator/updater/check_updates.py
+StandardOutput=journal
+StandardError=journal
+
+# Prevent running multiple instances
+TimeoutStartSec=300
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target

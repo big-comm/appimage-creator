@@ -92,7 +92,6 @@ def is_systemd_available():
     except Exception:
         return False
 
-
 def setup_systemd_watcher():
     """
     Set up systemd timer for automatic cleanup of orphaned AppImage integrations.
@@ -123,7 +122,62 @@ def setup_systemd_watcher():
                 timeout=5
             )
             old_path_file.unlink()
-        
+
+        # ALWAYS update cleanup script and updater module (even if systemd already configured)
+        # This ensures the latest version is always used
+        bin_dir = Path.home() / ".local/bin"
+        bin_dir.mkdir(parents=True, exist_ok=True)
+
+        cleanup_script_dest = bin_dir / "appimage-cleanup.py"
+
+        # Get the cleanup script and updater from the AppImage
+        appdir = os.environ.get("APPDIR")
+        if appdir:
+            # Update cleanup script
+            cleanup_script_source = Path(appdir) / "usr/bin/appimage-cleanup.py"
+            if cleanup_script_source.exists():
+                shutil.copy2(cleanup_script_source, cleanup_script_dest)
+                cleanup_script_dest.chmod(0o755)
+
+            # Update updater module
+            updater_source = Path(appdir) / "usr/bin/updater"
+            updater_dest = bin_dir / "updater"
+            if updater_source.exists() and updater_source.is_dir():
+                # Remove old updater module if exists
+                if updater_dest.exists():
+                    shutil.rmtree(updater_dest)
+                # Copy new updater module
+                shutil.copytree(updater_source, updater_dest)
+            elif updater_source.parent.exists():
+                # Try alternative location (for backward compatibility)
+                alt_updater_source = Path(appdir) / "usr/lib/appimage-updater"
+                if alt_updater_source.exists() and alt_updater_source.is_dir():
+                    if updater_dest.exists():
+                        shutil.rmtree(updater_dest)
+                    updater_dest.mkdir(parents=True, exist_ok=True)
+                    # Copy Python files
+                    for py_file in alt_updater_source.glob("*.py"):
+                        shutil.copy2(py_file, updater_dest / py_file.name)
+
+            # Copy updater icon and .desktop file (for dock/taskbar integration)
+            try:
+                # Copy updater icon
+                updater_icon_source = Path(appdir) / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg"
+                if updater_icon_source.exists():
+                    icons_dir = Path.home() / ".local/share/icons/hicolor/scalable/apps"
+                    icons_dir.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(updater_icon_source, icons_dir / "appimage-update.svg")
+
+                # Copy updater .desktop file (NoDisplay=true, for taskbar icon only)
+                updater_desktop_source = Path(appdir) / "usr/share/applications/org.appimage.updater.desktop"
+                if updater_desktop_source.exists():
+                    apps_dir = Path.home() / ".local/share/applications"
+                    apps_dir.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(updater_desktop_source, apps_dir / "org.appimage.updater.desktop")
+            except Exception:
+                # Silently ignore if updater icon/desktop copy fails
+                pass
+
         # Check if already configured
         if service_file.exists() and timer_file.exists():
             # Already set up, just ensure timer is enabled
@@ -158,7 +212,7 @@ WantedBy=default.target
 """
         service_file.write_text(service_content)
         
-        # Create timer file (runs every 7 seconds)
+        # Create timer file (runs every 5 seconds)
         timer_content = """[Unit]
 Description=Timer for AppImage Integration Cleanup
 
@@ -171,21 +225,7 @@ Persistent=true
 WantedBy=timers.target
 """
         timer_file.write_text(timer_content)
-        
-        # Copy cleanup script to ~/.local/bin/
-        bin_dir = Path.home() / ".local/bin"
-        bin_dir.mkdir(parents=True, exist_ok=True)
-        
-        cleanup_script_dest = bin_dir / "appimage-cleanup.py"
-        
-        # Get the cleanup script from the AppImage
-        appdir = os.environ.get("APPDIR")
-        if appdir:
-            cleanup_script_source = Path(appdir) / "usr/bin/appimage-cleanup.py"
-            if cleanup_script_source.exists():
-                shutil.copy2(cleanup_script_source, cleanup_script_dest)
-                cleanup_script_dest.chmod(0o755)
-        
+
         # Reload systemd and enable timer
         subprocess.run(
             ["systemctl", "--user", "daemon-reload"],
@@ -212,13 +252,12 @@ WantedBy=timers.target
             timeout=5
         )
         
-        print("Systemd timer configured successfully (runs every 7 seconds)", file=sys.stderr)
+        print("Systemd timer configured successfully (runs every 5 seconds)", file=sys.stderr)
         return True
         
     except Exception as e:
         print(f"Failed to setup systemd timer: {e}", file=sys.stderr)
         return False
-
 
 def integrate_appimage(app_name, appimage_path, desktop_file, icon_file, force_update=False):
     """
@@ -315,43 +354,49 @@ def integrate_appimage(app_name, appimage_path, desktop_file, icon_file, force_u
         print(f"Integration error: {e}", file=sys.stderr)
         return 2  # Error
 
-
 def read_marker_file(marker_file):
     """
-    Read the marker file to get the last known AppImage path
-    
+    Read the marker file to get the last known AppImage path and version
+
     Returns:
-        str: Last known path, or None if marker doesn't exist
+        tuple: (path, version) or (None, None) if marker doesn't exist
     """
     try:
         if marker_file.exists():
             lines = marker_file.read_text().strip().split('\n')
-            return lines[0]  # Return only the first line (appimage path)
+            path = lines[0] if len(lines) > 0 else None
+            version = lines[3] if len(lines) > 3 else None
+            return (path, version)
     except Exception:
         pass
-    return None
+    return (None, None)
 
-
-def write_marker_file(marker_file, appimage_path, desktop_filename):
-    """Write the current AppImage path and desktop filename to the marker file"""
+def write_marker_file(marker_file, appimage_path, desktop_filename,
+                      update_url="", version="", update_pattern=""):
+    """Write the current AppImage path and metadata to the marker file"""
     try:
         marker_file.parent.mkdir(parents=True, exist_ok=True)
         # Format: line 1 = appimage path, line 2 = desktop filename
-        content = f"{appimage_path}\n{desktop_filename}"
+        # line 3 = update URL, line 4 = version, line 5 = update pattern
+        content = f"{appimage_path}\n{desktop_filename}\n{update_url}\n{version}\n{update_pattern}"
         marker_file.write_text(content)
     except Exception as e:
         print(f"Warning: Could not write marker file: {e}", file=sys.stderr)
 
-
 def main():
     """Main entry point - silent automatic integration with collaborative cleanup"""
-    if len(sys.argv) != 4:
+    if len(sys.argv) < 4:
         # Invalid arguments, silently exit
         sys.exit(0)
-    
+
     app_name = sys.argv[1]
     appimage_path = sys.argv[2]
     desktop_filename = sys.argv[3]
+
+    # Optional update metadata (passed by newer AppImages)
+    update_url = sys.argv[4] if len(sys.argv) > 4 else ""
+    version = sys.argv[5] if len(sys.argv) > 5 else ""
+    update_pattern = sys.argv[6] if len(sys.argv) > 6 else ""
     
     # Only run in graphical environment (X11 or Wayland)
     if not (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY")):
@@ -390,30 +435,42 @@ def main():
     # Check marker file to determine if integration is needed
     marker_dir = Path.home() / ".local/share/appimage-integrations"
     marker_file = marker_dir / f"{app_name.replace(' ', '_')}.path"
-    
-    last_known_path = read_marker_file(marker_file)
-    
+
+    last_known_path, last_known_version = read_marker_file(marker_file)
+
     # Determine if we need to integrate/update
     force_update = False
+    version_only_update = False
+
     if last_known_path is None:
         # First time integration
         force_update = True
     elif last_known_path != appimage_path:
         # Path changed, need to update
         force_update = True
-    
-    # Perform integration for THIS AppImage
-    result = integrate_appimage(
-        app_name,
-        appimage_path,
-        desktop_file_path,
-        icon_file,
-        force_update=force_update
-    )
-    
-    # Update marker file if integration was successful
-    if result == 0:
-        write_marker_file(marker_file, appimage_path, desktop_filename)
+    elif last_known_version != version and version:
+        # Only version changed, just update marker file
+        version_only_update = True
+
+    # If only version changed, just update the marker file
+    if version_only_update and not force_update:
+        write_marker_file(marker_file, appimage_path, desktop_filename,
+                         update_url, version, update_pattern)
+        result = 0  # Success
+    else:
+        # Perform integration for THIS AppImage
+        result = integrate_appimage(
+            app_name,
+            appimage_path,
+            desktop_file_path,
+            icon_file,
+            force_update=force_update
+        )
+
+        # Update marker file if integration was successful
+        if result == 0:
+            write_marker_file(marker_file, appimage_path, desktop_filename,
+                             update_url, version, update_pattern)
     
     # --- COLLABORATIVE CLEANUP ---
     # Clean up orphaned integrations from OTHER AppImages

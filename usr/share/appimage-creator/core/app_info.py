@@ -50,6 +50,10 @@ class AppInfo:
     # Icon theme options
     include_icon_theme: bool = False
     icon_theme_choice: str = "papirus"  # Options: "papirus", "adwaita", "none"
+
+    # Auto-update options
+    update_url: str = ""
+    update_pattern: str = ""  # Pattern to match AppImage filename in releases
     
     # Compatibility properties
     @property
@@ -92,4 +96,6 @@ class AppInfo:
             'build_environment': self.build_environment,
             'include_icon_theme': self.include_icon_theme,
             'icon_theme_choice': self.icon_theme_choice,
+            'update_url': self.update_url,
+            'update_pattern': self.update_pattern,
         }

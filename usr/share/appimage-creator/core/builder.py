@@ -577,7 +577,118 @@ class AppImageBuilder:
                 self.log(_("✓ Copied appimage-cleanup.py"))
             else:
                 self.log(_("Warning: appimage-cleanup.py not found at {}").format(cleanup_script_source))
-            
+
+            # Copy updater module (for auto-update feature)
+            updater_dir_source = project_root / "updater"
+            if updater_dir_source.exists() and updater_dir_source.is_dir():
+                # Create usr/bin/updater directory (will be copied to ~/.local/bin/updater by integration_helper)
+                updater_dest_dir = bin_dir / "updater"
+                updater_dest_dir.mkdir(parents=True, exist_ok=True)
+
+                # Copy all Python files from updater module
+                for py_file in updater_dir_source.glob("*.py"):
+                    dest_file = updater_dest_dir / py_file.name
+                    shutil.copy2(py_file, dest_file)
+
+                # Copy updater translations
+                locale_source = updater_dir_source / "locale"
+                if locale_source.exists():
+                    locale_dest = self.appdir_path / "usr" / "share" / "locale"
+                    locale_dest.mkdir(parents=True, exist_ok=True)
+
+                    # Copy only .mo files for each language
+                    for lang_dir in locale_source.glob("*/LC_MESSAGES"):
+                        lang_code = lang_dir.parent.name
+                        dest_lang_dir = locale_dest / lang_code / "LC_MESSAGES"
+                        dest_lang_dir.mkdir(parents=True, exist_ok=True)
+
+                        for mo_file in lang_dir.glob("*.mo"):
+                            dest_mo = dest_lang_dir / mo_file.name
+                            shutil.copy2(mo_file, dest_mo)
+
+                self.log(_("✓ Copied updater module"))
+
+                # Copy updater icon and desktop file
+                try:
+                    # Try multiple possible locations for the updater files
+                    # This handles different installation scenarios (dev, system, AppImage)
+
+                    possible_roots = [
+                        # Development (running from git repo)
+                        project_root.parent.parent,
+                        # System installation
+                        Path("/usr"),
+                        # Running from AppImage (APPDIR)
+                        Path(os.environ.get('APPDIR', '/')),
+                        # Current working directory as fallback
+                        Path.cwd(),
+                    ]
+
+                    updater_icon_copied = False
+                    updater_desktop_copied = False
+
+                    for root in possible_roots:
+                        # Try to find and copy updater icon
+                        if not updater_icon_copied:
+                            updater_icon_source = root / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg"
+                            if updater_icon_source.exists():
+                                icons_dest_dir = self.appdir_path / "usr" / "share" / "icons" / "hicolor" / "scalable" / "apps"
+                                icons_dest_dir.mkdir(parents=True, exist_ok=True)
+                                shutil.copy2(updater_icon_source, icons_dest_dir / "appimage-update.svg")
+                                self.log(_("✓ Copied updater icon from {}").format(updater_icon_source))
+                                updater_icon_copied = True
+
+                        # Try to find and copy updater .desktop
+                        if not updater_desktop_copied:
+                            updater_desktop_source = root / "usr/share/applications/org.appimage.updater.desktop"
+                            if updater_desktop_source.exists():
+                                desktop_dest_dir = self.appdir_path / "usr" / "share" / "applications"
+                                desktop_dest_dir.mkdir(parents=True, exist_ok=True)
+                                shutil.copy2(updater_desktop_source, desktop_dest_dir / "org.appimage.updater.desktop")
+                                self.log(_("✓ Copied updater .desktop from {}").format(updater_desktop_source))
+                                updater_desktop_copied = True
+
+                        # If both found, we're done
+                        if updater_icon_copied and updater_desktop_copied:
+                            break
+
+                    # Warn if files were not found
+                    if not updater_icon_copied:
+                        self.log(_("Warning: Updater icon (appimage-update.svg) not found in any location"))
+                    if not updater_desktop_copied:
+                        self.log(_("Warning: Updater .desktop (org.appimage.updater.desktop) not found in any location"))
+
+                    # Create symlink for updater icon in AppDir root (required by appimagetool)
+                    if updater_icon_copied:
+                        # Define icons_dest_dir explicitly to avoid scope issues
+                        icons_dest_dir = self.appdir_path / "usr" / "share" / "icons" / "hicolor" / "scalable" / "apps"
+                        updater_icon_in_appdir = icons_dest_dir / "appimage-update.svg"
+
+                        self.log(f"[DEBUG] Checking for updater icon at: {updater_icon_in_appdir}")
+                        self.log(f"[DEBUG] Icon exists: {updater_icon_in_appdir.exists()}")
+
+                        if updater_icon_in_appdir.exists():
+                            relative_updater_icon = os.path.relpath(updater_icon_in_appdir, self.appdir_path)
+                            updater_icon_symlink = self.appdir_path / "appimage-update.svg"
+
+                            self.log(f"[DEBUG] Creating symlink: {updater_icon_symlink} -> {relative_updater_icon}")
+
+                            # Remove old symlink if exists
+                            if updater_icon_symlink.exists() or updater_icon_symlink.is_symlink():
+                                updater_icon_symlink.unlink()
+                                self.log(f"[DEBUG] Removed old symlink")
+
+                            updater_icon_symlink.symlink_to(relative_updater_icon)
+                            self.log(_("✓ Created updater icon symlink in AppDir root"))
+                        else:
+                            self.log(f"[DEBUG] Updater icon not found at expected location: {updater_icon_in_appdir}")
+
+                except Exception as e:
+                    self.log(_("Warning: Failed to copy updater icon/desktop: {}").format(e))
+
+            else:
+                self.log(_("Info: Updater module not found (auto-update will not be available)"))
+
         except Exception as e:
             self.log(_("Warning: Failed to copy integration helpers: {}").format(e))
             
@@ -2217,12 +2328,17 @@ Type=Scalable
         """
         try:
             # --- Clean up any pre-existing icon symlinks in the AppDir root ---
+            # But preserve updater icon symlink
             self.log("Cleaning up existing icon symlinks in AppDir root...")
             root_path = self.appdir_path
             for item in root_path.iterdir():
                 if item.is_symlink() and item.suffix.lower() in ['.svg', '.png', '.xpm']:
-                    self.log(f"Removing old symlink: {item.name}")
-                    item.unlink()
+                    # Don't delete updater icon symlink
+                    if 'appimage-update' not in item.name.lower():
+                        self.log(f"Removing old symlink: {item.name}")
+                        item.unlink()
+                    else:
+                        self.log(f"Preserving updater icon symlink: {item.name}")
             dir_icon_path = root_path / ".DirIcon"
             if dir_icon_path.is_symlink():
                 self.log("Removing old .DirIcon symlink")
@@ -2235,9 +2351,12 @@ Type=Scalable
                 return
             
             # Find the icon file (SVG preferred, then PNG, then XPM)
+            # Exclude updater icon (appimage-update.*) from the search
             icon_file = None
             for ext in ['.svg', '.png', '.xpm']:
                 found_icons = list(icons_dir.rglob(f"*{ext}"))
+                # Filter out updater icon
+                found_icons = [icon for icon in found_icons if 'appimage-update' not in icon.name.lower()]
                 if found_icons:
                     icon_file = found_icons[0]
                     break
@@ -2611,6 +2730,17 @@ Type=Scalable
                 error_msg = result.stderr or result.stdout or _("Unknown error")
                 self.log(f"appimagetool stdout:\n{result.stdout}")
                 self.log(f"appimagetool stderr:\n{result.stderr}")
+
+                # DEBUG: Pause before cleanup to allow inspection
+                self.log("=" * 60)
+                self.log("🔍 DEBUG MODE: Build failed - AppDir preserved for inspection")
+                self.log(f"AppDir location: {self.appdir_path}")
+                self.log("=" * 60)
+                self.log("Run inspection script:")
+                self.log("  ./inspect_failed_build.sh")
+                self.log("=" * 60)
+                input("⏸️  Press ENTER to continue and cleanup temp files...")
+
                 raise RuntimeError(_("Build failed: {}").format(error_msg))
                 
         except subprocess.TimeoutExpired:

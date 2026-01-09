@@ -11,6 +11,11 @@ import os
 import sys
 import subprocess
 from pathlib import Path
+import time
+
+# For update checking
+UPDATE_CHECK_INTERVAL = 60  # Check for updates every minute (in seconds) - DEBUG MODE
+LAST_CHECK_FILE = Path.home() / ".local/share/appimage-integrations/.last_update_check"
 
 
 def cleanup_orphaned_integrations():
@@ -96,8 +101,9 @@ def cleanup_orphaned_integrations():
     
     # Auto-disable systemd watcher if no integrations remain
     if checked_count == removed_count and removed_count > 0:
-        print("\nAll integrations removed. Disabling systemd watcher...")
+        print("\nAll integrations removed. Cleaning up update system...")
         try:
+            # Disable and remove systemd timer
             subprocess.run(
                 ["systemctl", "--user", "disable", "--now", "appimage-cleaner.timer"],
                 check=False,
@@ -106,10 +112,120 @@ def cleanup_orphaned_integrations():
                 timeout=5
             )
             print("✓ Systemd watcher disabled")
-        except Exception:
-            pass
+
+            # Remove systemd files
+            systemd_dir = Path.home() / ".config/systemd/user"
+            timer_file = systemd_dir / "appimage-cleaner.timer"
+            service_file = systemd_dir / "appimage-cleaner.service"
+
+            if timer_file.exists():
+                timer_file.unlink()
+                print("✓ Removed systemd timer file")
+            if service_file.exists():
+                service_file.unlink()
+                print("✓ Removed systemd service file")
+
+            # Reload systemd
+            subprocess.run(
+                ["systemctl", "--user", "daemon-reload"],
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=5
+            )
+
+            # Remove updater module
+            bin_dir = Path.home() / ".local/bin"
+            updater_dir = bin_dir / "updater"
+            if updater_dir.exists():
+                import shutil
+                shutil.rmtree(updater_dir)
+                print("✓ Removed updater module")
+
+            # Remove cleanup script (this script itself)
+            cleanup_script = bin_dir / "appimage-cleanup.py"
+            if cleanup_script.exists():
+                cleanup_script.unlink()
+                print("✓ Removed cleanup script")
+
+            print("\n✓ All AppImage update system files removed")
+
+        except Exception as e:
+            print(f"Warning: Cleanup failed: {e}", file=sys.stderr)
     
     return removed_count
+
+
+def should_check_for_updates():
+    """Check if it's time to check for updates"""
+    try:
+        if not LAST_CHECK_FILE.exists():
+            return True
+
+        last_check = LAST_CHECK_FILE.stat().st_mtime
+        current_time = time.time()
+
+        return (current_time - last_check) >= UPDATE_CHECK_INTERVAL
+
+    except Exception:
+        return True
+
+
+def check_for_updates():
+    """Check for AppImage updates"""
+    try:
+        # DEBUG: Print environment info
+        display = os.environ.get("DISPLAY")
+        wayland = os.environ.get("WAYLAND_DISPLAY")
+        print(f"[DEBUG] DISPLAY={display}, WAYLAND_DISPLAY={wayland}", file=sys.stderr)
+
+        # Only check if we're in a graphical environment
+        if not (display or wayland):
+            print("[DEBUG] No graphical environment detected, skipping update check", file=sys.stderr)
+            return
+
+        print(f"[DEBUG] Checking if should check for updates...", file=sys.stderr)
+        if not should_check_for_updates():
+            print(f"[DEBUG] Not time to check yet (interval: {UPDATE_CHECK_INTERVAL}s)", file=sys.stderr)
+            return
+
+        print("Checking for AppImage updates...")
+
+        # Try to import updater module
+        # This will work if running from an AppImage with updater embedded
+        sys.path.insert(0, str(Path.home() / ".local/bin"))
+
+        try:
+            # Check if updater module exists
+            marker_dir = Path.home() / ".local/share/appimage-integrations"
+
+            if not marker_dir.exists():
+                print("[DEBUG] Marker dir doesn't exist", file=sys.stderr)
+                return
+
+            # Import check function
+            print("[DEBUG] Attempting to import updater module...", file=sys.stderr)
+            from updater.check_updates import check_all_appimages
+
+            print("[DEBUG] Running check_all_appimages()...", file=sys.stderr)
+            # Run update check
+            check_all_appimages()
+
+            # Update last check time
+            LAST_CHECK_FILE.parent.mkdir(parents=True, exist_ok=True)
+            LAST_CHECK_FILE.touch()
+
+            print("✓ Update check complete")
+
+        except ImportError as e:
+            # Updater module not available
+            print(f"[DEBUG] ImportError: {e}", file=sys.stderr)
+            pass
+
+    except Exception as e:
+        print(f"Update check failed: {e}", file=sys.stderr)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
 
 
 def main():
@@ -117,17 +233,21 @@ def main():
     print("=" * 60)
     print("AppImage Integration Cleanup")
     print("=" * 60)
-    
+
     try:
+        # Clean up orphaned integrations
         removed = cleanup_orphaned_integrations()
-        
+
         if removed == 0:
             print("\n✓ All integrations are valid, nothing to clean up")
-            sys.exit(0)
         else:
             print(f"\n✓ Cleanup complete: {removed} orphaned integration(s) removed")
-            sys.exit(0)
-            
+
+        # Check for updates (if it's time)
+        check_for_updates()
+
+        sys.exit(0)
+
     except Exception as e:
         print(f"\n✗ Cleanup failed: {e}", file=sys.stderr)
         sys.exit(1)

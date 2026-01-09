@@ -168,5 +168,32 @@ cython_debug/
 # Temporary home directory
 _temp_home/
 
-# Gemini Context
+# AI Assistant Context Files
 GEMINI.md
+CLAUDE.md
+.claude/
+
+# GitHub token (security sensitive)
+github_token
+**/github_token
+
+# Test and debug files
+test_*.py
+test_*.sh
+debug_*.py
+debug_*.sh
+inspect_*.sh
+cleanup_*.sh
+**/test_*.py
+**/debug_*.py
+
+# Build artifacts
+*.AppImage
+*.AppDir/
+squashfs-root/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo

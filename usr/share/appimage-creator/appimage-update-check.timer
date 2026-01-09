@@ -1,0 +1,14 @@
+[Unit]
+Description=Check for AppImage updates every hour
+Documentation=https://github.com/BigCommunity/appimage-creator
+
+[Timer]
+# Check for updates every hour
+OnBootSec=5min
+OnUnitActiveSec=1h
+
+# Run even if laptop is on battery
+Persistent=true
+
+[Install]
+WantedBy=timers.target

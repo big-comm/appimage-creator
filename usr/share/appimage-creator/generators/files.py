@@ -162,7 +162,8 @@ if [ -n "$APPIMAGE" ] && [ -f "$HERE/usr/bin/integration_helper.py" ]; then
     DESKTOP_FILE_NAME="{main_desktop_filename}"
     if [ -n "$DESKTOP_FILE_NAME" ]; then
         # Now we can just call 'python3' because the PATH is correctly set
-        python3 "$HERE/usr/bin/integration_helper.py" "{app_info['name']}" "$APPIMAGE" "$DESKTOP_FILE_NAME"
+        # Pass update metadata if available
+        python3 "$HERE/usr/bin/integration_helper.py" "{app_info['name']}" "$APPIMAGE" "$DESKTOP_FILE_NAME" "{app_info.get('update_url', '')}" "{app_info.get('version', '')}" "{app_info.get('update_pattern', '')}"
     fi
 fi
 # --- End of Integration Helper ---

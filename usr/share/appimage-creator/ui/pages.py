@@ -27,6 +27,8 @@ class AppInfoPage:
         self.description_row = None
         self.category_row = None # Re-added
         self.terminal_row = None # Re-added
+        self.update_url_row = None
+        self.update_pattern_row = None
         
         self._build_page()
         
@@ -69,8 +71,93 @@ class AppInfoPage:
         self.terminal_row.set_title(_("Requires Terminal"))
         self.terminal_row.set_subtitle(_("Check if your application needs to run in a terminal"))
         cat_group.add(self.terminal_row)
-        
+
         self.page.add(cat_group)
+
+        # Auto-update group
+        update_group = Adw.PreferencesGroup()
+        update_group.set_title(_("Auto-Update (Optional)"))
+        update_group.set_description(_("Enable automatic update checking for this AppImage"))
+
+        self.update_url_row = Adw.EntryRow()
+        self.update_url_row.set_title(_("Update URL"))
+        self.update_url_row.set_text("")
+        # Set placeholder text showing the template
+        self.update_url_row.props.text = ""
+        if hasattr(self.update_url_row, 'set_placeholder_text'):
+            # GTK 4.14+
+            self.update_url_row.set_placeholder_text("https://api.github.com/repos/OWNER/REPO/releases/latest")
+
+        # Add "Paste Template" button (fills with GitHub API template)
+        use_template_button = Gtk.Button()
+        use_template_button.set_icon_name("edit-paste-symbolic")
+        use_template_button.set_valign(Gtk.Align.CENTER)
+        use_template_button.set_tooltip_text(_("Paste GitHub API template"))
+        use_template_button.add_css_class("flat")
+        use_template_button.connect("clicked", self._on_use_github_template)
+        self.update_url_row.add_suffix(use_template_button)
+
+        update_group.add(self.update_url_row)
+
+        # Add expander with help text
+        help_expander = Adw.ExpanderRow()
+        help_expander.set_title(_("How to configure auto-updates"))
+        help_expander.set_subtitle(_("Click to see examples"))
+
+        help_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        help_box.set_margin_start(12)
+        help_box.set_margin_end(12)
+        help_box.set_margin_top(6)
+        help_box.set_margin_bottom(6)
+
+        help_text = Gtk.Label()
+        help_text.set_markup(
+            _("<b>GitHub Releases (recommended):</b>\n"
+              "Click the button next to Update URL to fill with template, then edit OWNER/REPO\n\n"
+              "<b>Example:</b>\n"
+              "https://api.github.com/repos/biglinux/big-video-converter/releases/latest\n\n"
+              "<b>Filename Pattern:</b>\n"
+              "Used to identify which file to download from the release.\n"
+              "The asterisk (*) matches any text.\n\n"
+              "<b>Pattern Examples:</b>\n"
+              "• myapp-*-x86_64.AppImage  → matches: myapp-v1.2.3-x86_64.AppImage\n"
+              "• *-gui-*.AppImage  → matches: converter-gui-1.0.AppImage\n"
+              "• calculator-*.AppImage  → matches: calculator-2.5-linux.AppImage")
+        )
+        help_text.set_wrap(True)
+        help_text.set_xalign(0)
+        help_box.append(help_text)
+
+        help_expander.add_row(help_box)
+        update_group.add(help_expander)
+
+        self.update_pattern_row = Adw.EntryRow()
+        self.update_pattern_row.set_title(_("Filename Pattern"))
+        self.update_pattern_row.set_text("*-x86_64.AppImage")
+        update_group.add(self.update_pattern_row)
+
+        self.page.add(update_group)
+
+    def _on_use_github_template(self, button):
+        """Fill the Update URL field with GitHub API template"""
+        template = "https://api.github.com/repos/OWNER/REPO/releases/latest"
+
+        # Set the text in the entry
+        self.update_url_row.set_text(template)
+
+        # Focus the field and select "OWNER/REPO" for easy editing
+        # Position cursor at the start of OWNER
+        self.update_url_row.grab_focus()
+
+        # Try to select just the OWNER/REPO part
+        # Calculate positions: "https://api.github.com/repos/" = 30 chars
+        # "OWNER/REPO" starts at position 30
+        start_pos = 30
+        end_pos = start_pos + len("OWNER/REPO")
+
+        # Select the text for easy replacement
+        # Note: GTK4 EntryRow might not support select_region directly
+        # but the user can easily see and edit OWNER/REPO
 
 
 class FilesPage:
