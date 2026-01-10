@@ -23,35 +23,39 @@ except ImportError:
     from downloader import AppImageDownloader
 
 
-# Translation support (same approach as big-video-converter for better compatibility)
+# Translation support (same approach as tac-writer)
 import gettext
 import os
-from pathlib import Path
 
-try:
-    # Default to system locale directory
-    locale_dir = "/usr/share/locale"
+# Determine locale directory (works in AppImage and system install)
+locale_dir = '/usr/share/locale'  # Default for system install
 
-    # Get script directory
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+# Check if we're in an AppImage
+if 'APPIMAGE' in os.environ or 'APPDIR' in os.environ:
+    # Running from AppImage
+    # update_window.py is in: usr/bin/updater/update_window.py
+    # We need to get to: usr/share/locale
+    script_dir = os.path.dirname(os.path.abspath(__file__))  # usr/bin/updater
+    bin_dir = os.path.dirname(script_dir)                    # usr/bin
+    usr_dir = os.path.dirname(bin_dir)                       # usr
+    share_dir = os.path.join(usr_dir, 'share')               # usr/share
+    appimage_locale = os.path.join(share_dir, 'locale')      # usr/share/locale
 
-    # Check if running from AppImage (locale in usr/share/locale relative to script)
-    appimage_locale = os.path.join(os.path.dirname(os.path.dirname(script_dir)), "locale")
     if os.path.isdir(appimage_locale):
         locale_dir = appimage_locale
-
-    # Check if running from development (locale in updater/locale)
-    dev_locale = os.path.join(script_dir, "locale")
+else:
+    # Running from development - check local updater/locale
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    dev_locale = os.path.join(script_dir, 'locale')
     if os.path.isdir(dev_locale):
         locale_dir = dev_locale
 
-    # Bind text domain
-    gettext.bindtextdomain("appimage-updater", locale_dir)
-    gettext.textdomain("appimage-updater")
-    _ = gettext.gettext
-except Exception as e:
-    # Fallback: no translation
-    _ = lambda x: x
+# Configure the translation text domain for appimage-updater
+gettext.bindtextdomain("appimage-updater", locale_dir)
+gettext.textdomain("appimage-updater")
+
+# Export _ directly as the translation function
+_ = gettext.gettext
 
 
 def markdown_to_pango(text: str) -> str:
