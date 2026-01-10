@@ -29,9 +29,32 @@ class AppInfoPage:
         self.terminal_row = None # Re-added
         self.update_url_row = None
         self.update_pattern_row = None
-        
+
         self._build_page()
-        
+
+    def update_pattern_from_name(self, app_name: str):
+        """
+        Update the filename pattern based on app name.
+        Converts "Big Video Converter" -> "big-video-converter-*-x86_64.AppImage"
+        Only updates if pattern is empty or the default generic one.
+        """
+        if not app_name or not self.update_pattern_row:
+            return
+
+        # Convert app name to filename-safe format (lowercase, replace spaces with dashes)
+        safe_name = app_name.lower().replace(' ', '-')
+        # Remove any characters that are not alphanumeric, dash, or underscore
+        import re
+        safe_name = re.sub(r'[^a-z0-9\-_]', '', safe_name)
+
+        # Generate pattern: appname-*-x86_64.AppImage
+        if safe_name:
+            new_pattern = f"{safe_name}-*-x86_64.AppImage"
+            # Only update if the current pattern is the default generic one or empty
+            current_pattern = self.update_pattern_row.get_text().strip()
+            if not current_pattern or current_pattern == "*-x86_64.AppImage":
+                self.update_pattern_row.set_text(new_pattern)
+
     def _build_page(self):
         """Build the page UI"""
         # Basic info group

@@ -285,7 +285,8 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
         # App info page signals
         self.app_info_page.name_row.connect("changed", self._validate_inputs)
-        
+        self.app_info_page.name_row.connect("changed", self._on_name_changed)
+
         # Files page signals
         self.files_page.executable_button.connect("clicked", self._on_choose_executable)
         self.files_page.icon_button.connect("clicked", self._on_choose_icon)
@@ -567,7 +568,13 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
         if name:
             self.name_row.remove_css_class("error")
-        
+
+    def _on_name_changed(self, entry):
+        """Update filename pattern when app name changes"""
+        app_name = entry.get_text().strip()
+        if self.app_info_page:
+            self.app_info_page.update_pattern_from_name(app_name)
+
     def _on_preferences_closed(self, window):
         """Handle preferences window close"""
         self._sync_from_preferences()

@@ -23,14 +23,34 @@ except ImportError:
     from downloader import AppImageDownloader
 
 
-# Translation support
+# Translation support (same approach as big-video-converter for better compatibility)
+import gettext
+import os
+from pathlib import Path
+
 try:
-    from gettext import translation
-    import os
-    localedir = os.environ.get('APPDIR', '/') + '/usr/share/locale'
-    t = translation('appimage-updater', localedir=localedir, fallback=True)
-    _ = t.gettext
-except:
+    # Default to system locale directory
+    locale_dir = "/usr/share/locale"
+
+    # Get script directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Check if running from AppImage (locale in usr/share/locale relative to script)
+    appimage_locale = os.path.join(os.path.dirname(os.path.dirname(script_dir)), "locale")
+    if os.path.isdir(appimage_locale):
+        locale_dir = appimage_locale
+
+    # Check if running from development (locale in updater/locale)
+    dev_locale = os.path.join(script_dir, "locale")
+    if os.path.isdir(dev_locale):
+        locale_dir = dev_locale
+
+    # Bind text domain
+    gettext.bindtextdomain("appimage-updater", locale_dir)
+    gettext.textdomain("appimage-updater")
+    _ = gettext.gettext
+except Exception as e:
+    # Fallback: no translation
     _ = lambda x: x
 
 

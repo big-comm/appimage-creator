@@ -614,7 +614,9 @@ class AppImageBuilder:
                     # This handles different installation scenarios (dev, system, AppImage)
 
                     possible_roots = [
-                        # Development (running from git repo)
+                        # Project root (usr/share/appimage-creator)
+                        project_root,
+                        # Development (running from git repo root)
                         project_root.parent.parent,
                         # System installation
                         Path("/usr"),
