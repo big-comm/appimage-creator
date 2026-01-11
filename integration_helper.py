@@ -190,11 +190,11 @@ def setup_systemd_watcher():
                     shutil.copy2(updater_icon_source, icons_dir / "appimage-update.svg")
 
                 # Copy updater .desktop file (NoDisplay=true, for taskbar icon only)
-                updater_desktop_source = Path(appdir) / "usr/share/applications/org.bigcommunity.appimage.updater.desktop"
+                updater_desktop_source = Path(appdir) / "usr/share/applications/org.appimage.updater.desktop"
                 if updater_desktop_source.exists():
                     apps_dir = Path.home() / ".local/share/applications"
                     apps_dir.mkdir(parents=True, exist_ok=True)
-                    shutil.copy2(updater_desktop_source, apps_dir / "org.bigcommunity.appimage.updater.desktop")
+                    shutil.copy2(updater_desktop_source, apps_dir / "org.appimage.updater.desktop")
             except Exception:
                 # Silently ignore if updater icon/desktop copy fails
                 pass

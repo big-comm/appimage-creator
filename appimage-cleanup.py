@@ -161,20 +161,6 @@ def cleanup_orphaned_integrations():
             except Exception:
                 pass
 
-            # Remove updater .desktop file and icon
-            try:
-                updater_desktop = Path.home() / ".local/share/applications/org.bigcommunity.appimage.updater.desktop"
-                if updater_desktop.exists():
-                    updater_desktop.unlink()
-                    print("✓ Removed updater .desktop file")
-                
-                updater_icon = Path.home() / ".local/share/icons/hicolor/scalable/apps/appimage-update.svg"
-                if updater_icon.exists():
-                    updater_icon.unlink()
-                    print("✓ Removed updater icon")
-            except Exception:
-                pass
-
             # Remove cleanup script (this script itself)
             cleanup_script = bin_dir / "appimage-cleanup.py"
             if cleanup_script.exists():

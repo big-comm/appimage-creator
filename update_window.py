@@ -8,6 +8,17 @@ GTK4/Libadwaita Update Notification Window
 import os
 import locale
 
+# DEBUG LOGGING
+try:
+    from updater import logger
+    logger.log_info()
+except ImportError:
+    try:
+        import logger
+        logger.log_info()
+    except Exception as e:
+        print(f'Logger failed: {e}')
+
 # Fix for systemd/cron environments where LANG might be missing
 if os.environ.get('LANG', 'C') == 'C' or not os.environ.get('LANG'):
     try:

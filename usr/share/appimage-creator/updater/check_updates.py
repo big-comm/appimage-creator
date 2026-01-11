@@ -6,6 +6,31 @@ Called periodically by systemd timer
 """
 
 import os
+import locale
+
+# Fix for systemd/cron environments where LANG might be missing
+if os.environ.get('LANG', 'C') == 'C' or not os.environ.get('LANG'):
+    try:
+        # Try to read system-wide locale configuration
+        locale_conf = '/etc/locale.conf'
+        if os.path.isfile(locale_conf):
+            with open(locale_conf, 'r') as f:
+                for line in f:
+                    if line.strip().startswith('LANG='):
+                        lang_val = line.strip().split('=')[1].strip('"').strip("'")
+                        if lang_val:
+                            os.environ['LANG'] = lang_val
+                            os.environ['LC_ALL'] = lang_val
+                            # GTK uses LANGUAGE priority, this is CRITICAL
+                            os.environ['LANGUAGE'] = lang_val.split('.')[0]
+                        break
+    except Exception:
+        pass
+
+try:
+    locale.setlocale(locale.LC_ALL, '')
+except:
+    pass
 import sys
 import time
 from pathlib import Path
