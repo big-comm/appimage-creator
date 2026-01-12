@@ -22,6 +22,8 @@ from utils.file_ops import scan_directory_structure
 from validators.validators import ValidationError
 from utils.i18n import _
 
+# Application version - single source of truth
+APP_VERSION = "1.0.1"
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
     """Main application window"""
@@ -52,8 +54,8 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         
         # Setup
         self.set_title(_("AppImage Creator"))
-        self.set_default_size(820, 755)
-        self.set_size_request(700, 500)
+        self.set_default_size(820, 550)
+        self.set_size_request(700, 450)
         self.set_resizable(True)
         
         self._setup_ui()
@@ -84,11 +86,22 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         header_bar = Adw.HeaderBar()
         main_box.append(header_bar)
         
-        # Preferences button in header
-        prefs_button = Gtk.Button.new_from_icon_name("preferences-system-symbolic")
-        prefs_button.set_tooltip_text(_("Advanced Settings"))
-        prefs_button.connect("clicked", self._on_preferences_clicked)
-        header_bar.pack_end(prefs_button)
+        # Hamburger menu button
+        menu_button = Gtk.MenuButton()
+        menu_button.set_icon_name("open-menu-symbolic")
+        menu_button.set_tooltip_text(_("Menu"))
+        
+        # Create popover menu
+        menu = Gio.Menu()
+        menu.append(_("Settings"), "win.preferences")
+        menu.append(_("About"), "win.about")
+        
+        popover = Gtk.PopoverMenu.new_from_model(menu)
+        menu_button.set_popover(popover)
+        header_bar.pack_end(menu_button)
+        
+        # Setup actions for menu
+        self._setup_actions()
         
         # Main content
         scrolled = Gtk.ScrolledWindow()
@@ -104,12 +117,10 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         content_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=24)
         content_box.set_margin_start(20)
         content_box.set_margin_end(20)
+        content_box.set_margin_top(24)
         clamp.set_child(content_box)
         
-        # Welcome card
-        self._create_welcome_card(content_box)
-        
-        # Quick setup card
+        # Quick setup card (welcome card removed for cleaner interface)
         self._create_quick_setup_card(content_box)
 
     def _connect_signals(self):
@@ -117,42 +128,8 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self.name_row.connect("changed", self._validate_inputs)
         self._connect_preferences_signals()
         
-    def _create_welcome_card(self, parent):
-        """Create welcome card"""
-        welcome_container = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
-        welcome_container.add_css_class("card")
-        welcome_container.set_margin_top(10)
-        welcome_container.set_margin_bottom(16)
-        welcome_container.set_margin_start(32)
-        welcome_container.set_margin_end(32)
         
-        icon_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        icon_box.set_halign(Gtk.Align.CENTER)
-        icon_box.set_margin_top(5)
-        
-        app_icon = Gtk.Image.new_from_icon_name("appimage-creator")
-        app_icon.set_pixel_size(64)
-        app_icon.add_css_class("accent")
-        icon_box.append(app_icon)
-        welcome_container.append(icon_box)
-        
-        title = Gtk.Label(label=_("AppImage Creator"))
-        title.add_css_class("title-1")
-        title.set_margin_top(8)
-        title.set_halign(Gtk.Align.CENTER)
-        welcome_container.append(title)
-        
-        desc = Gtk.Label()
-        desc.set_markup(_("Create distributable AppImages from any Linux application.\n<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"))
-        desc.set_justify(Gtk.Justification.CENTER)
-        desc.set_halign(Gtk.Align.CENTER)
-        desc.add_css_class("body")
-        desc.set_margin_top(4)
-        desc.set_margin_bottom(16)
-        welcome_container.append(desc)
-        
-        parent.append(welcome_container)
-        
+
     def _create_quick_setup_card(self, parent):
         """Create quick setup card"""
         # Main group
@@ -234,8 +211,40 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         """Setup callbacks for the builder"""
         self.builder.set_progress_callback(self._on_build_progress)
         self.builder.set_log_callback(self._on_build_log)
+    
+    def _setup_actions(self):
+        """Setup actions for the hamburger menu"""
+        # Preferences action
+        preferences_action = Gio.SimpleAction.new("preferences", None)
+        preferences_action.connect("activate", self._on_preferences_clicked)
+        self.add_action(preferences_action)
         
-    def _on_preferences_clicked(self, button):
+        # About action
+        about_action = Gio.SimpleAction.new("about", None)
+        about_action.connect("activate", self._on_about_clicked)
+        self.add_action(about_action)
+    
+    def _on_about_clicked(self, action, param):
+        """Show about dialog"""
+        about = Adw.AboutWindow(
+            transient_for=self,
+            application_name=_("AppImage Creator"),
+            application_icon="appimage-creator",
+            version=APP_VERSION,
+            developer_name="BigCommunity",
+            copyright="© 2024 BigCommunity",
+            license_type=Gtk.License.GPL_3_0,
+            comments=_("Create distributable AppImages from any Linux application.\n"
+                      "Supports Python, Qt, GTK, Java, and binary applications."),
+            website="https://github.com/BigCommunity/appimage-creator",
+            issue_url="https://github.com/BigCommunity/appimage-creator/issues",
+            developers=[
+                "BigCommunity Team"
+            ],
+        )
+        about.present()
+        
+    def _on_preferences_clicked(self, *args):
         """Show preferences window"""
         if self.preferences_window and self.preferences_window.is_visible():
             self.preferences_window.present()
@@ -942,35 +951,13 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         dialog.destroy()
         
     def _update_structure_preview(self):
-        """Update structure preview"""
+        """Update structure preview visibility"""
         if not self.app_info.executable:
             self.files_page.preview_group.set_visible(False)
             return
             
+        # Just show the button group - detailed view is shown on click
         self.files_page.preview_group.set_visible(True)
-        
-        app_name = sanitize_filename(self.name_row.get_text() or "MyApp")
-        preview_lines = [
-            _("AppImage Overview:"),
-            _("   App: {}").format(app_name),
-            _("   Type: {}").format(self._get_current_app_type()),
-        ]
-        
-        dirs = self.files_page.directory_list.get_directories()
-        if dirs:
-            preview_lines.append(_("   Additional Dirs: {}").format(len(dirs)))
-            
-        if self.structure_analysis:
-            detected = self.structure_analysis.get('detected_files', {})
-            total = sum(len(files) for files in detected.values())
-            if total > 0:
-                preview_lines.append(_("   Auto-detected: {} files").format(total))
-        
-        preview_lines.append("")
-        preview_lines.append(_("Click 'View Full Structure' for details"))
-        
-        buffer = self.files_page.preview_text.get_buffer()
-        buffer.set_text("\n".join(preview_lines))
         
     def _get_current_app_type(self):
         """Get current app type as string"""
@@ -989,11 +976,14 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                             structure_text)
         
     def _generate_detailed_structure(self):
-        """Generate detailed structure text"""
-        lines = [_("AppImage Structure - Detailed View"), "=" * 50, ""]
+        """Generate detailed structure text with all detected files"""
+        from pathlib import Path
+        
+        lines = [_("AppImage Structure - Detailed View"), "=" * 60, ""]
         
         app_name = sanitize_filename(self.name_row.get_text() or "MyApp")
         
+        # Basic structure
         lines.append(_("[AppImage Root]"))
         lines.append(_("├── AppRun (main launcher)"))
         lines.append(f"├── {app_name}.desktop")
@@ -1003,19 +993,99 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         lines.append(f"    │   └── {app_name} (launcher)")
         lines.append(_("    ├── lib/"))
         lines.append(_("    └── share/"))
-        lines.append(f"        ├── {app_name}/")
+        lines.append(f"        └── {app_name}/")
         
+        # Main executable
         if self.app_info.executable:
             main_file = os.path.basename(self.app_info.executable)
-            lines.append(f"        │   └── {main_file}")
+            lines.append(f"            ├── {main_file} (main executable)")
+        
+        # Get project root from structure analysis
+        project_root = None
+        if self.structure_analysis:
+            project_root = self.structure_analysis.get('project_root')
+        
+        # Scan project_root for all files
+        if project_root and os.path.isdir(project_root):
+            root_path = Path(project_root)
+            
+            # Find Python files
+            python_files = list(root_path.rglob("*.py"))
+            if python_files:
+                lines.append("")
+                lines.append(_("            [Python Files]"))
+                for f in python_files[:30]:
+                    rel_path = f.relative_to(root_path) if f.is_relative_to(root_path) else f.name
+                    lines.append(f"            ├── {rel_path}")
+                if len(python_files) > 30:
+                    lines.append(f"            └── ... and {len(python_files) - 30} more")
+            
+            # Find shell scripts
+            shell_files = list(root_path.rglob("*.sh"))
+            if shell_files:
+                lines.append("")
+                lines.append(_("            [Shell Scripts]"))
+                for f in shell_files[:10]:
+                    rel_path = f.relative_to(root_path) if f.is_relative_to(root_path) else f.name
+                    lines.append(f"            ├── {rel_path}")
+                if len(shell_files) > 10:
+                    lines.append(f"            └── ... and {len(shell_files) - 10} more")
+            
+            # Find UI files
+            ui_files = list(root_path.rglob("*.ui")) + list(root_path.rglob("*.glade"))
+            if ui_files:
+                lines.append("")
+                lines.append(_("            [UI Files]"))
+                for f in ui_files[:10]:
+                    rel_path = f.relative_to(root_path) if f.is_relative_to(root_path) else f.name
+                    lines.append(f"            ├── {rel_path}")
+                if len(ui_files) > 10:
+                    lines.append(f"            └── ... and {len(ui_files) - 10} more")
+            
+            # Find CSS files
+            css_files = list(root_path.rglob("*.css"))
+            if css_files:
+                lines.append("")
+                lines.append(_("            [CSS Files]"))
+                for f in css_files[:10]:
+                    rel_path = f.relative_to(root_path) if f.is_relative_to(root_path) else f.name
+                    lines.append(f"            ├── {rel_path}")
+        
+        # Show detected files from structure analysis (using correct keys)
+        if self.structure_analysis:
+            detected = self.structure_analysis.get('detected_files', {})
+            
+            # Icons (correct key)
+            if detected.get('icons'):
+                lines.append("")
+                lines.append(_("            [Icon Files]"))
+                for f in detected['icons'][:15]:
+                    lines.append(f"            ├── {os.path.basename(f)}")
+                if len(detected['icons']) > 15:
+                    lines.append(f"            └── ... and {len(detected['icons']) - 15} more")
+            
+            # Locale dirs (correct key)
+            if detected.get('locale_dirs'):
+                lines.append("")
+                lines.append(_("            [Locale Directories]"))
+                for f in detected['locale_dirs']:
+                    lines.append(f"            ├── {os.path.basename(f)}/")
+            
+            # Desktop files (correct key)
+            if detected.get('desktop_files'):
+                lines.append("")
+                lines.append(_("            [Desktop Files]"))
+                for f in detected['desktop_files']:
+                    lines.append(f"            ├── {os.path.basename(f)}")
         
         # Additional directories
         dirs = self.files_page.directory_list.get_directories()
         if dirs:
-            lines.append("        │")
+            lines.append("")
+            lines.append(_("[Additional Directories]"))
             for i, directory in enumerate(dirs):
                 is_last = i == len(dirs) - 1
-                prefix = "        └── " if is_last else "        ├── "
+                prefix = "└── " if is_last else "├── "
                 
                 try:
                     structure = scan_directory_structure(directory)
@@ -1023,20 +1093,53 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                     file_count = len(structure.get('files', []))
                     total_size = structure.get('total_size', 0)
                     lines.append(f"{prefix}{dir_name}/ ({file_count} files, {format_size(total_size)})")
+                    
+                    # Show first 10 files from each directory
+                    files = structure.get('files', [])[:10]
+                    for j, file_info in enumerate(files):
+                        file_prefix = "    └── " if j == len(files) - 1 else "    ├── "
+                        lines.append(f"{file_prefix}{file_info['name']}")
+                    if len(structure.get('files', [])) > 10:
+                        lines.append(f"    └── ... and {len(structure.get('files', [])) - 10} more files")
+                        
                 except Exception as e:
                     dir_name = os.path.basename(directory)
-                    lines.append(f"{prefix}{dir_name}/ (error: {e})")
+                    lines.append(f"{prefix}{dir_name}/ (error reading: {e})")
         
+        # Summary section
         lines.append("")
-        lines.append(_("Summary:"))
-        lines.append("-" * 30)
-        lines.append(_("Application Type: {}").format(self._get_current_app_type()))
-        lines.append(_("Additional Directories: {}").format(len(dirs)))
+        lines.append("=" * 60)
+        lines.append(_("SUMMARY"))
+        lines.append("=" * 60)
+        lines.append(f"  {_('Application Name')}: {app_name}")
+        lines.append(f"  {_('Application Type')}: {self._get_current_app_type()}")
+        lines.append(f"  {_('Project Root')}: {project_root or _('Not detected')}")
+        lines.append(f"  {_('Additional Directories')}: {len(dirs)}")
         
-        if self.structure_analysis:
-            detected = self.structure_analysis.get('detected_files', {})
-            total = sum(len(files) for files in detected.values())
-            lines.append(_("Auto-detected Files: {}").format(total))
+        # Count all files
+        if project_root and os.path.isdir(project_root):
+            root_path = Path(project_root)
+            total_py = len(list(root_path.rglob("*.py")))
+            total_sh = len(list(root_path.rglob("*.sh")))
+            total_ui = len(list(root_path.rglob("*.ui"))) + len(list(root_path.rglob("*.glade")))
+            
+            lines.append("")
+            lines.append(_("  File Breakdown:"))
+            if total_py:
+                lines.append(f"    • Python: {total_py}")
+            if total_sh:
+                lines.append(f"    • Shell: {total_sh}")
+            if total_ui:
+                lines.append(f"    • UI: {total_ui}")
+            
+            if self.structure_analysis:
+                detected = self.structure_analysis.get('detected_files', {})
+                if detected.get('icons'):
+                    lines.append(f"    • Icons: {len(detected['icons'])}")
+                if detected.get('locale_dirs'):
+                    lines.append(f"    • Locale Dirs: {len(detected['locale_dirs'])}")
+                if detected.get('desktop_files'):
+                    lines.append(f"    • Desktop: {len(detected['desktop_files'])}")
         
         return "\n".join(lines)
         

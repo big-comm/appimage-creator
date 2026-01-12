@@ -168,7 +168,8 @@ def show_structure_viewer(parent, title, structure_text):
     window.set_transient_for(parent)
     window.set_modal(True)
     window.set_title(title)
-    window.set_default_size(600, 500)
+    window.set_default_size(800, 600)
+    window.set_size_request(500, 400)
     
     # Header
     header_bar = Adw.HeaderBar()

@@ -144,6 +144,9 @@ class ProgressDialog(Adw.Window):
         self.set_transient_for(parent)
         self.set_resizable(False)
 
+        # Set window icon to match main update window
+        self._set_window_icon()
+
         # Prevent closing during download
         self.can_close = False
 
@@ -151,6 +154,30 @@ class ProgressDialog(Adw.Window):
         self.new_version = new_version
 
         self._build_ui()
+
+    def _set_window_icon(self):
+        """Set window icon from installed location or fallback"""
+        import os
+        
+        icon_paths = [
+            # User local (installed by updater)
+            Path.home() / ".local/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            # Development/source
+            Path(__file__).parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            Path(__file__).parent.parent.parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            # System install
+            Path("/usr/share/icons/hicolor/scalable/apps/appimage-update.svg"),
+            # AppImage environment
+            Path(os.environ.get('APPDIR', '/nonexistent')) / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+        ]
+
+        for icon_path in icon_paths:
+            if icon_path.exists():
+                self.set_icon_name("appimage-update")
+                return
+
+        # Fallback to symbolic icon
+        self.set_icon_name("software-update-available-symbolic")
 
     def _build_ui(self):
         """Build the progress dialog UI"""
@@ -381,40 +408,46 @@ class UpdateWindow(Adw.ApplicationWindow):
         content.set_margin_bottom(24)
         scrolled.set_child(content)
 
-        # Icon (centered) - use custom update icon
+        # Icon (centered) - use custom appimage-update.svg icon
         icon = Gtk.Image()
+        icon.set_pixel_size(64)
+        icon.set_halign(Gtk.Align.CENTER)
 
-        # Try to use custom appimage-update icon, fallback to symbolic
-        try:
-            import os
-            icon_paths = [
-                # Development/source
-                Path(__file__).parent.parent.parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
-                # System install
-                Path("/usr/share/icons/hicolor/scalable/apps/appimage-update.svg"),
-                # AppImage
-                Path(os.environ.get('APPDIR', '')) / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
-            ]
+        # Try to use custom appimage-update icon from various locations
+        import os
+        icon_paths = [
+            # User local (installed by updater)
+            Path.home() / ".local/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            # Development/source - relative to this script
+            Path(__file__).parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            # Development - full project path
+            Path(__file__).parent.parent.parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            # System install
+            Path("/usr/share/icons/hicolor/scalable/apps/appimage-update.svg"),
+            # AppImage environment
+            Path(os.environ.get('APPDIR', '/nonexistent')) / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+        ]
 
-            icon_found = False
-            for icon_path in icon_paths:
-                if icon_path.exists():
-                    # Load from file for custom SVG
+        icon_loaded = False
+        for icon_path in icon_paths:
+            if icon_path.exists():
+                try:
+                    # Use GdkPixbuf for reliable SVG loading
                     from gi.repository import GdkPixbuf
                     pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
                         str(icon_path), 64, 64, True
                     )
                     icon.set_from_pixbuf(pixbuf)
-                    icon_found = True
+                    icon_loaded = True
                     break
+                except Exception as e:
+                    print(f"Failed to load icon from {icon_path}: {e}")
+                    continue
 
-            if not icon_found:
-                icon.set_from_icon_name("software-update-available-symbolic")
-        except Exception:
+        if not icon_loaded:
+            # Fallback to symbolic icon
             icon.set_from_icon_name("software-update-available-symbolic")
 
-        icon.set_pixel_size(64)
-        icon.set_halign(Gtk.Align.CENTER)
         content.append(icon)
 
         # Title (centered)

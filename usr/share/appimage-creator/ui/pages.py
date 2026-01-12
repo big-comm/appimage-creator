@@ -29,6 +29,8 @@ class AppInfoPage:
         self.terminal_row = None # Re-added
         self.update_url_row = None
         self.update_pattern_row = None
+        self.update_interval_row = None
+        self.custom_interval_row = None
 
         self._build_page()
 
@@ -102,27 +104,7 @@ class AppInfoPage:
         update_group.set_title(_("Auto-Update (Optional)"))
         update_group.set_description(_("Enable automatic update checking for this AppImage"))
 
-        self.update_url_row = Adw.EntryRow()
-        self.update_url_row.set_title(_("Update URL"))
-        self.update_url_row.set_text("")
-        # Set placeholder text showing the template
-        self.update_url_row.props.text = ""
-        if hasattr(self.update_url_row, 'set_placeholder_text'):
-            # GTK 4.14+
-            self.update_url_row.set_placeholder_text("https://api.github.com/repos/OWNER/REPO/releases/latest")
-
-        # Add "Paste Template" button (fills with GitHub API template)
-        use_template_button = Gtk.Button()
-        use_template_button.set_icon_name("edit-paste-symbolic")
-        use_template_button.set_valign(Gtk.Align.CENTER)
-        use_template_button.set_tooltip_text(_("Paste GitHub API template"))
-        use_template_button.add_css_class("flat")
-        use_template_button.connect("clicked", self._on_use_github_template)
-        self.update_url_row.add_suffix(use_template_button)
-
-        update_group.add(self.update_url_row)
-
-        # Add expander with help text
+        # Add expander with help text FIRST
         help_expander = Adw.ExpanderRow()
         help_expander.set_title(_("How to configure auto-updates"))
         help_expander.set_subtitle(_("Click to see examples"))
@@ -154,12 +136,63 @@ class AppInfoPage:
         help_expander.add_row(help_box)
         update_group.add(help_expander)
 
+        # Update URL field SECOND
+        self.update_url_row = Adw.EntryRow()
+        self.update_url_row.set_title(_("Update URL"))
+        self.update_url_row.set_text("")
+        # Set placeholder text showing the template
+        self.update_url_row.props.text = ""
+        if hasattr(self.update_url_row, 'set_placeholder_text'):
+            # GTK 4.14+
+            self.update_url_row.set_placeholder_text("https://api.github.com/repos/OWNER/REPO/releases/latest")
+
+        # Add "Paste Template" button (fills with GitHub API template)
+        use_template_button = Gtk.Button()
+        use_template_button.set_icon_name("edit-paste-symbolic")
+        use_template_button.set_valign(Gtk.Align.CENTER)
+        use_template_button.set_tooltip_text(_("Paste GitHub API template"))
+        use_template_button.add_css_class("flat")
+        use_template_button.connect("clicked", self._on_use_github_template)
+        self.update_url_row.add_suffix(use_template_button)
+
+        update_group.add(self.update_url_row)
+
+        # Filename pattern field THIRD
         self.update_pattern_row = Adw.EntryRow()
         self.update_pattern_row.set_title(_("Filename Pattern"))
         self.update_pattern_row.set_text("*-x86_64.AppImage")
         update_group.add(self.update_pattern_row)
 
+        # Update check interval field FOURTH (new)
+        self.update_interval_row = Adw.ComboRow()
+        self.update_interval_row.set_title(_("Check Interval"))
+        self.update_interval_row.set_subtitle(_("How often to check for updates"))
+        
+        interval_model = Gtk.StringList()
+        intervals = [_("Every hour"), _("Every 12 hours"), _("Every 24 hours (recommended)"), _("Custom")]
+        for interval in intervals:
+            interval_model.append(interval)
+        self.update_interval_row.set_model(interval_model)
+        self.update_interval_row.set_selected(2)  # Default: 24 hours
+        self.update_interval_row.connect("notify::selected", self._on_interval_changed)
+        update_group.add(self.update_interval_row)
+
+        # Custom interval input (hidden by default)
+        self.custom_interval_row = Adw.SpinRow.new_with_range(1, 1440, 1)  # 1 min to 24 hours
+        self.custom_interval_row.set_title(_("Custom Interval (minutes)"))
+        self.custom_interval_row.set_subtitle(_("Minimum: 1 minute, Maximum: 1440 minutes (24h)"))
+        self.custom_interval_row.set_value(60)  # Default: 60 minutes
+        self.custom_interval_row.set_visible(False)
+        update_group.add(self.custom_interval_row)
+
         self.page.add(update_group)
+
+    def _on_interval_changed(self, combo_row, param):
+        """Show/hide custom interval input based on selection"""
+        selected = combo_row.get_selected()
+        # Index 3 = Custom
+        self.custom_interval_row.set_visible(selected == 3)
+
 
     def _on_use_github_template(self, button):
         """Fill the Update URL field with GitHub API template"""
@@ -319,33 +352,27 @@ class FilesPage:
         
         self.page.add(resources_group)
         
-        # Preview group
+        # Preview group - minimalist: only show button to view full structure
         self.preview_group = Adw.PreferencesGroup()
         self.preview_group.set_title(_("Structure Preview"))
-        self.preview_group.set_description(_("Preview of what will be included in the AppImage"))
+        self.preview_group.set_description(_("View the complete structure that will be included in the AppImage"))
         self.preview_group.set_visible(False)
         
-        preview_header = Adw.ActionRow()
-        preview_header.set_title(_("Quick Preview"))
-        preview_header.set_subtitle(_("See basic structure overview"))
+        preview_row = Adw.ActionRow()
+        preview_row.set_title(_("AppImage Structure"))
+        preview_row.set_subtitle(_("View all files and directories that will be packaged"))
         
         self.full_structure_button = Gtk.Button(label=_("View Full Structure"))
         self.full_structure_button.set_valign(Gtk.Align.CENTER)
-        preview_header.add_suffix(self.full_structure_button)
-        self.preview_group.add(preview_header)
+        self.full_structure_button.add_css_class("suggested-action")
+        preview_row.add_suffix(self.full_structure_button)
+        self.preview_group.add(preview_row)
         
-        preview_scroll = Gtk.ScrolledWindow()
-        preview_scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        preview_scroll.set_max_content_height(100)
+        # Keep preview_text as None since some code may reference it
+        self.preview_text = None
         
-        self.preview_text = Gtk.TextView()
-        self.preview_text.set_editable(False)
-        self.preview_text.set_cursor_visible(False)
-        self.preview_text.add_css_class("monospace")
-        preview_scroll.set_child(self.preview_text)
-        
-        self.preview_group.add(preview_scroll)
         self.page.add(self.preview_group)
+
 
 
 class BuildPage:
