@@ -98,6 +98,42 @@ class UpdateChecker:
             print(f"Update check failed: {e}")
             return None
 
+
+    def _extract_version_from_tag(self, tag_name: str) -> str:
+        """
+        Extract version from tag using the filename pattern.
+        
+        Example:
+            Pattern: "app-*-x86_64.AppImage"
+            Tag: "app-1.2.3-x86_64" or "v1.2.3"
+            Returns: "1.2.3"
+        """
+        import re
+        
+        # Remove 'v' prefix if present
+        tag = tag_name.lstrip('v')
+        
+        # Remove .AppImage suffix from pattern for matching with tag
+        pattern_base = self.filename_pattern.replace('.AppImage', '')
+        
+        # Convert glob pattern to regex: replace * with (.+)
+        # Escape other special regex chars first
+        regex_pattern = re.escape(pattern_base).replace(r'\*', '(.+)')
+        
+        # Try to match the tag against the pattern
+        match = re.match(f'^{regex_pattern}$', tag)
+        if match:
+            return match.group(1)
+        
+        # Fallback: if tag doesn't match pattern, try to extract version-like substring
+        # Look for patterns like: 26.01.12-2122, 1.2.3, v1.0
+        version_match = re.search(r'(\d+\.\d+[\.\d\-]*)', tag)
+        if version_match:
+            return version_match.group(1)
+        
+        # Last resort: return tag as-is
+        return tag
+
     def _check_github_releases(self) -> Optional[UpdateInfo]:
         """Check GitHub releases API"""
         try:
@@ -112,9 +148,9 @@ class UpdateChecker:
             with urllib.request.urlopen(req, timeout=10) as response:
                 data = json.loads(response.read().decode('utf-8'))
 
-            # Extract version from tag_name
+            # Extract version from tag_name using smart extraction
             tag_name = data.get('tag_name', '')
-            version = tag_name.lstrip('v')  # Remove 'v' prefix if present
+            version = self._extract_version_from_tag(tag_name)
 
             # Check if version is newer
             if not self._is_newer_version(version):

@@ -23,7 +23,7 @@ from validators.validators import ValidationError
 from utils.i18n import _
 
 # Application version - single source of truth
-APP_VERSION = "1.0.2"
+APP_VERSION = "1.0.3"
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
     """Main application window"""
@@ -1446,16 +1446,10 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         if error:
             show_error_dialog(self, _("Build Failed"), str(error))
         elif result:
-            def on_response(dialog, response):
-                if response == "open":
-                    try:
-                        Gio.app_info_launch_default_for_uri(f"file://{Path.cwd()}", None)
-                    except:
-                        pass
-                        
+            # Use enhanced success dialog with appimage_path
             show_success_dialog(self, _("Build Complete"), 
-                            _("AppImage created successfully:\n{}").format(result),
-                            on_response)
+                            _("AppImage created successfully:\\n{}").format(result),
+                            appimage_path=result)
         else:
             show_info_dialog(self, _("Build Cancelled"), _("Build was cancelled"))
             

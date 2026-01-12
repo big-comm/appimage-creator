@@ -80,8 +80,157 @@ def show_error_dialog(parent, title, message):
     dialog.present()
 
 
-def show_success_dialog(parent, title, message, on_response=None):
+class BuildSuccessDialog(Adw.Window):
+    """Enhanced success dialog for build completion with better UX"""
+    
+    def __init__(self, parent, app_name: str, appimage_path: str, on_response=None):
+        super().__init__()
+        
+        self.set_transient_for(parent)
+        self.set_modal(True)
+        self.set_title(_("Build Complete"))
+        self.set_default_size(420, 350)
+        self.set_resizable(False)
+        
+        self.appimage_path = appimage_path
+        self.on_response = on_response
+        
+        self._build_ui(app_name, appimage_path)
+    
+    def _build_ui(self, app_name: str, appimage_path: str):
+        """Build the dialog UI"""
+        # Main container
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.set_content(main_box)
+        
+        # Header bar (minimal)
+        header = Adw.HeaderBar()
+        header.set_show_end_title_buttons(True)
+        header.set_show_start_title_buttons(False)
+        main_box.append(header)
+        
+        # Content box
+        content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16)
+        content.set_margin_start(32)
+        content.set_margin_end(32)
+        content.set_margin_top(24)
+        content.set_margin_bottom(32)
+        content.set_valign(Gtk.Align.CENTER)
+        content.set_vexpand(True)
+        main_box.append(content)
+        
+        # Success icon (green checkmark)
+        icon = Gtk.Image()
+        icon.set_from_icon_name("emblem-ok-symbolic")
+        icon.set_pixel_size(72)
+        icon.set_halign(Gtk.Align.CENTER)
+        
+        # Apply green color to success icon
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_data(b"""
+            .success-icon {
+                color: #26a269;
+            }
+        """)
+        icon.get_style_context().add_provider(
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+        icon.add_css_class("success-icon")
+        content.append(icon)
+        
+        # Title
+        title_label = Gtk.Label()
+        title_label.set_markup(f"<span size='x-large' weight='bold'>{_('Build Complete')}</span>")
+        title_label.set_halign(Gtk.Align.CENTER)
+        title_label.set_margin_top(8)
+        content.append(title_label)
+        
+        # Subtitle with app name
+        subtitle = Gtk.Label()
+        subtitle.set_text(_("AppImage created successfully:"))
+        subtitle.add_css_class("dim-label")
+        subtitle.set_halign(Gtk.Align.CENTER)
+        content.append(subtitle)
+        
+        # AppImage filename in a styled box
+        filename = os.path.basename(appimage_path)
+        filename_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        filename_box.set_halign(Gtk.Align.CENTER)
+        filename_box.add_css_class("card")
+        filename_box.set_margin_top(8)
+        
+        # Add padding inside the box
+        filename_label = Gtk.Label()
+        filename_label.set_markup(f"<b>{filename}</b>")
+        filename_label.set_wrap(True)
+        filename_label.set_max_width_chars(35)
+        filename_label.set_margin_start(12)
+        filename_label.set_margin_end(12)
+        filename_label.set_margin_top(8)
+        filename_label.set_margin_bottom(8)
+        filename_box.append(filename_label)
+        
+        content.append(filename_box)
+        
+        # Button box
+        button_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        button_box.set_margin_top(24)
+        button_box.set_halign(Gtk.Align.CENTER)
+        content.append(button_box)
+        
+        # Primary button - Open Folder
+        open_button = Gtk.Button()
+        open_button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        open_button_box.set_halign(Gtk.Align.CENTER)
+        
+        folder_icon = Gtk.Image.new_from_icon_name("folder-open-symbolic")
+        open_button_box.append(folder_icon)
+        open_button_box.append(Gtk.Label(label=_("Open Folder")))
+        
+        open_button.set_child(open_button_box)
+        open_button.add_css_class("suggested-action")
+        open_button.add_css_class("pill")
+        open_button.set_size_request(180, -1)
+        open_button.connect("clicked", self._on_open_folder)
+        button_box.append(open_button)
+        
+        # Secondary button - Close
+        close_button = Gtk.Button(label=_("Close"))
+        close_button.add_css_class("pill")
+        close_button.set_size_request(180, -1)
+        close_button.connect("clicked", self._on_close)
+        button_box.append(close_button)
+    
+    def _on_open_folder(self, button):
+        """Open the folder containing the AppImage"""
+        try:
+            folder_path = os.path.dirname(self.appimage_path)
+            subprocess.Popen(["xdg-open", folder_path])
+        except Exception as e:
+            print(f"Error opening folder: {e}")
+        
+        if self.on_response:
+            self.on_response(self, "open")
+        self.close()
+    
+    def _on_close(self, button):
+        """Close the dialog"""
+        if self.on_response:
+            self.on_response(self, "ok")
+        self.close()
+
+
+def show_success_dialog(parent, title, message, on_response=None, appimage_path=None):
     """Show success dialog with optional open folder button"""
+    # Use enhanced dialog if appimage_path is provided
+    if appimage_path:
+        app_name = os.path.basename(appimage_path).replace('.AppImage', '')
+        dialog = BuildSuccessDialog(parent, app_name, appimage_path, on_response)
+        dialog.present()
+        return
+    
+    # Fallback to simple dialog
     dialog = Adw.MessageDialog(transient_for=parent)
     dialog.set_heading(title)
     dialog.set_body(message)
