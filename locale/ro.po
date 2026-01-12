@@ -556,16 +556,6 @@ msgstr "Actualizare automată (Opțional)"
 msgid "Enable automatic update checking for this AppImage"
 msgstr "Activare verificarea automată a actualizărilor pentru acest AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 106
-#: NEEDS WORK
-msgid "Update URL"
-msgstr "URL de actualizare"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 118
-#: NEEDS WORK
-msgid "Paste GitHub API template"
-msgstr "Lipește șablonul API GitHub"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 127
 #: NEEDS WORK
 msgid "How to configure auto-updates"
@@ -610,10 +600,60 @@ msgstr ""
 "• *-gui-*.AppImage  → se potrivește: converter-gui-1.0.AppImage\n"
 "• calculator-*.AppImage  → se potrivește: calculator-2.5-linux.AppImage"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 106
+#: NEEDS WORK
+msgid "Update URL"
+msgstr "URL de actualizare"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 118
+#: NEEDS WORK
+msgid "Paste GitHub API template"
+msgstr "Lipește șablonul API GitHub"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 158
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Model de nume de fișier"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+#: NEEDS WORK
+msgid "Check Interval"
+msgstr "Interval de verificare"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "How often to check for updates"
+msgstr "Cât de des să verifici actualizările"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every hour"
+msgstr "Fiecare oră"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 12 hours"
+msgstr "Fiecare 12 ore"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 24 hours (recommended)"
+msgstr "Fiecare 24 de ore (recomandat)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Custom"
+msgstr "Personalizat"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Custom Interval (minutes)"
+msgstr "Interval personalizat (minute)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 183
+#: NEEDS WORK
+msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
+msgstr "Minim: 1 minut, Maxim: 1440 minute (24h)"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
@@ -806,20 +846,20 @@ msgstr "Alegeți pictograma"
 msgid "Structure Preview"
 msgstr "Previzualizare structură"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
+# File: usr/share/appimage-creator/ui/pages.py, line: 358
 #: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "Previzualizare a ceea ce va fi inclus în AppImage"
+msgid "View the complete structure that will be included in the AppImage"
+msgstr "Vizualizați structura completă care va fi inclusă în AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
+# File: usr/share/appimage-creator/ui/pages.py, line: 362
 #: NEEDS WORK
-msgid "Quick Preview"
-msgstr "Previzualizare rapidă"
+msgid "AppImage Structure"
+msgstr "Structura AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
+# File: usr/share/appimage-creator/ui/pages.py, line: 363
 #: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "Vezi o prezentare generală a structurii de bază"
+msgid "View all files and directories that will be packaged"
+msgstr "Vizualizați toate fișierele și directoarele care vor fi ambalate"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 273
 #: NEEDS WORK
@@ -1037,20 +1077,20 @@ msgstr "Configurare"
 msgid "AppImage Creator"
 msgstr "Creator AppImage"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 214
+# File: usr/share/appimage-creator/ui/window.py, line: 92
 #: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "Setări Avansate"
+msgid "Menu"
+msgstr "Meniu"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 138
+# File: usr/share/appimage-creator/ui/window.py, line: 96
 #: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"Creează AppImages distribuite din orice aplicație Linux.  \n"
-"<span size='large'>Suportă Python, Qt, GTK, Java și aplicații binare.</span>"
+msgid "Settings"
+msgstr "Setări"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 97
+#: NEEDS WORK
+msgid "About"
+msgstr "Despre"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 152
 #: NEEDS WORK
@@ -1082,6 +1122,12 @@ msgstr "Configurare completă pentru a activa crearea AppImage"
 msgid "Generate your distributable AppImage file"
 msgstr "Generați fișierul dvs. AppImage distribuit."
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 214
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "Setări Avansate"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 215
 #: NEEDS WORK
 msgid "Configure authors, categories, and build options"
@@ -1091,6 +1137,15 @@ msgstr "Configurează autori, categorii și opțiuni de compilare"
 #: NEEDS WORK
 msgid "Open Settings"
 msgstr "Deschide Setările"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 237
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"Supports Python, Qt, GTK, Java, and binary applications."
+msgstr ""
+"Creează AppImages distribuite din orice aplicație Linux.  \n"
+"Suportă Python, Qt, GTK, Java și aplicații binare."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 235
 #: NEEDS WORK
@@ -1300,40 +1355,6 @@ msgstr "Fișiere Desktop"
 msgid "Choose Desktop File"
 msgstr "Alege fișierul de pe desktop"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 721
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "Prezentare AppImage:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 722
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "Aplicație: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 723
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "Tip: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 728
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "Directoare suplimentare: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 734
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "Detectate automat: {} fișiere"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 737
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "Faceți clic pe 'Vizualizați Structura Completă' pentru detalii"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 755
 #: NEEDS WORK
 msgid "AppImage Structure - Full View"
@@ -1374,28 +1395,65 @@ msgstr "├── bibliotecă/"
 msgid "    └── share/"
 msgstr "└── partaja/"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 798
+# File: usr/share/appimage-creator/ui/window.py, line: 1016
 #: NEEDS WORK
-msgid "Summary:"
-msgstr "Rezumat:"
+msgid "            [Python Files]"
+msgstr "[Fisiere Python]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 800
+# File: usr/share/appimage-creator/ui/window.py, line: 1027
 #: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "Tip aplicație: {}"
+msgid "            [Shell Scripts]"
+msgstr "[Scripturi Shell]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 801
+# File: usr/share/appimage-creator/ui/window.py, line: 1038
 #: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "Directoare suplimentare: {}"
+msgid "            [UI Files]"
+msgstr "[Fisiere UI]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 806
+# File: usr/share/appimage-creator/ui/window.py, line: 1049
 #: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "Fișiere detectate automat: {}"
+msgid "            [CSS Files]"
+msgstr "[Fișiere CSS]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1061
+#: NEEDS WORK
+msgid "            [Icon Files]"
+msgstr "[Fisiere Icon]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1070
+#: NEEDS WORK
+msgid "            [Locale Directories]"
+msgstr "[Directoare Locale]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1077
+#: NEEDS WORK
+msgid "            [Desktop Files]"
+msgstr "[Fisiere Desktop]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[Directoare suplimentare]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "SUMAR"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "Rădăcina Proiectului"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Not detected"
+msgstr "Nedetectat"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "Descompunerea fișierului:"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 817
 #: NEEDS WORK

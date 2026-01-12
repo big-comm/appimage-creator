@@ -556,16 +556,6 @@ msgstr "Actualización automática (Opcional)"
 msgid "Enable automatic update checking for this AppImage"
 msgstr "Habilitar la verificación automática de actualizaciones para este AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 106
-#: NEEDS WORK
-msgid "Update URL"
-msgstr "URL de actualización"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 118
-#: NEEDS WORK
-msgid "Paste GitHub API template"
-msgstr "Pegar plantilla de API de GitHub"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 127
 #: NEEDS WORK
 msgid "How to configure auto-updates"
@@ -610,10 +600,60 @@ msgstr ""
 "• *-gui-*.AppImage  → coincide: converter-gui-1.0.AppImage\n"
 "• calculator-*.AppImage  → coincide: calculator-2.5-linux.AppImage"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 106
+#: NEEDS WORK
+msgid "Update URL"
+msgstr "URL de actualización"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 118
+#: NEEDS WORK
+msgid "Paste GitHub API template"
+msgstr "Pegar plantilla de API de GitHub"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 158
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Patrón de nombre de archivo"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+#: NEEDS WORK
+msgid "Check Interval"
+msgstr "Intervalo de verificación"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "How often to check for updates"
+msgstr "Con qué frecuencia buscar actualizaciones"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every hour"
+msgstr "Cada hora"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 12 hours"
+msgstr "Cada 12 horas"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 24 hours (recommended)"
+msgstr "Cada 24 horas (recomendado)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Custom"
+msgstr "Personalizado"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Custom Interval (minutes)"
+msgstr "Intervalo Personalizado (minutos)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 183
+#: NEEDS WORK
+msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
+msgstr "Mínimo: 1 minuto, Máximo: 1440 minutos (24h)"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
@@ -806,20 +846,20 @@ msgstr "Elegir ícono"
 msgid "Structure Preview"
 msgstr "Vista de Estructura"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
+# File: usr/share/appimage-creator/ui/pages.py, line: 358
 #: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "Vista previa de lo que se incluirá en el AppImage"
+msgid "View the complete structure that will be included in the AppImage"
+msgstr "Ver la estructura completa que se incluirá en el AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
+# File: usr/share/appimage-creator/ui/pages.py, line: 362
 #: NEEDS WORK
-msgid "Quick Preview"
-msgstr "Vista Rápida"
+msgid "AppImage Structure"
+msgstr "Estructura de AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
+# File: usr/share/appimage-creator/ui/pages.py, line: 363
 #: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "Ver vista general de la estructura básica"
+msgid "View all files and directories that will be packaged"
+msgstr "Ver todos los archivos y directorios que se empaquetarán"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 273
 #: NEEDS WORK
@@ -1037,20 +1077,20 @@ msgstr "Configuración"
 msgid "AppImage Creator"
 msgstr "Creador de AppImage"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 214
+# File: usr/share/appimage-creator/ui/window.py, line: 92
 #: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "Configuración avanzada"
+msgid "Menu"
+msgstr "Menú"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 138
+# File: usr/share/appimage-creator/ui/window.py, line: 96
 #: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"Crea AppImages distribuibles a partir de cualquier aplicación de Linux.  \n"
-"<span size='large'>Soporta Python, Qt, GTK, Java y aplicaciones binarias.</span>"
+msgid "Settings"
+msgstr "Configuración"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 97
+#: NEEDS WORK
+msgid "About"
+msgstr "Acerca de"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 152
 #: NEEDS WORK
@@ -1082,6 +1122,12 @@ msgstr "Configuración completa para habilitar la creación de AppImage"
 msgid "Generate your distributable AppImage file"
 msgstr "Genera tu archivo AppImage distribuible"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 214
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "Configuración avanzada"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 215
 #: NEEDS WORK
 msgid "Configure authors, categories, and build options"
@@ -1091,6 +1137,15 @@ msgstr "Configurar autores, categorías y opciones de compilación"
 #: NEEDS WORK
 msgid "Open Settings"
 msgstr "Abrir Configuración"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 237
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"Supports Python, Qt, GTK, Java, and binary applications."
+msgstr ""
+"Crea AppImages distribuidos a partir de cualquier aplicación de Linux.  \n"
+"Soporta Python, Qt, GTK, Java y aplicaciones binarias."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 235
 #: NEEDS WORK
@@ -1300,40 +1355,6 @@ msgstr "Archivos de Escritorio"
 msgid "Choose Desktop File"
 msgstr "Elegir archivo de escritorio"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 721
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "Descripción general de AppImage:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 722
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "Aplicación: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 723
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "Tipo: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 728
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "Directorios adicionales: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 734
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "Detectados automáticamente: {} archivos"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 737
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "Haga clic en 'Ver Estructura Completa' para más detalles."
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 755
 #: NEEDS WORK
 msgid "AppImage Structure - Full View"
@@ -1374,28 +1395,65 @@ msgstr "├── lib/"
 msgid "    └── share/"
 msgstr "└── compartir/"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 798
+# File: usr/share/appimage-creator/ui/window.py, line: 1016
 #: NEEDS WORK
-msgid "Summary:"
-msgstr "Resumen:"
+msgid "            [Python Files]"
+msgstr "[Archivos de Python]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 800
+# File: usr/share/appimage-creator/ui/window.py, line: 1027
 #: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "Tipo de aplicación: {}"
+msgid "            [Shell Scripts]"
+msgstr "[Scripts de Shell]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 801
+# File: usr/share/appimage-creator/ui/window.py, line: 1038
 #: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "Directorios adicionales: {}"
+msgid "            [UI Files]"
+msgstr "[Archivos de UI]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 806
+# File: usr/share/appimage-creator/ui/window.py, line: 1049
 #: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "Archivos detectados automáticamente: {}"
+msgid "            [CSS Files]"
+msgstr "[Archivos CSS]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1061
+#: NEEDS WORK
+msgid "            [Icon Files]"
+msgstr "[Archivos de iconos]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1070
+#: NEEDS WORK
+msgid "            [Locale Directories]"
+msgstr "[Directorios de Localización]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1077
+#: NEEDS WORK
+msgid "            [Desktop Files]"
+msgstr "[Archivos de Escritorio]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[Directorios Adicionales]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "RESUMEN"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "Raíz del Proyecto"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Not detected"
+msgstr "No detectado"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "Desglose de archivos:"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 817
 #: NEEDS WORK

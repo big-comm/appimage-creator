@@ -556,16 +556,6 @@ msgstr "자동 업데이트 (선택 사항)"
 msgid "Enable automatic update checking for this AppImage"
 msgstr "이 AppImage에 대한 자동 업데이트 확인 활성화"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 106
-#: NEEDS WORK
-msgid "Update URL"
-msgstr "업데이트 URL"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 118
-#: NEEDS WORK
-msgid "Paste GitHub API template"
-msgstr "GitHub API 템플릿 붙여넣기"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 127
 #: NEEDS WORK
 msgid "How to configure auto-updates"
@@ -609,10 +599,60 @@ msgstr ""
 "• *-gui-*.AppImage  → 일치: converter-gui-1.0.AppImage\n"
 "• calculator-*.AppImage  → 일치: calculator-2.5-linux.AppImage"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 106
+#: NEEDS WORK
+msgid "Update URL"
+msgstr "업데이트 URL"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 118
+#: NEEDS WORK
+msgid "Paste GitHub API template"
+msgstr "GitHub API 템플릿 붙여넣기"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 158
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "파일 이름 패턴"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+#: NEEDS WORK
+msgid "Check Interval"
+msgstr "검사 간격"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "How often to check for updates"
+msgstr "업데이트를 얼마나 자주 확인할지"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every hour"
+msgstr "매시간"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 12 hours"
+msgstr "12시간마다"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 24 hours (recommended)"
+msgstr "매 24시간(권장)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Custom"
+msgstr "사용자 정의"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Custom Interval (minutes)"
+msgstr "사용자 정의 간격 (분)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 183
+#: NEEDS WORK
+msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
+msgstr "최소: 1분, 최대: 1440분 (24시간)"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
@@ -805,20 +845,20 @@ msgstr "아이콘 선택"
 msgid "Structure Preview"
 msgstr "구조 미리보기"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
+# File: usr/share/appimage-creator/ui/pages.py, line: 358
 #: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "AppImage에 포함될 내용 미리보기"
+msgid "View the complete structure that will be included in the AppImage"
+msgstr "AppImage에 포함될 전체 구조 보기"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
+# File: usr/share/appimage-creator/ui/pages.py, line: 362
 #: NEEDS WORK
-msgid "Quick Preview"
-msgstr "빠른 미리보기"
+msgid "AppImage Structure"
+msgstr "앱이미지 구조"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
+# File: usr/share/appimage-creator/ui/pages.py, line: 363
 #: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "기본 구조 개요 보기"
+msgid "View all files and directories that will be packaged"
+msgstr "패키징될 모든 파일 및 디렉토리 보기"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 273
 #: NEEDS WORK
@@ -1036,20 +1076,20 @@ msgstr "설치"
 msgid "AppImage Creator"
 msgstr "앱이미지 생성기"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 214
+# File: usr/share/appimage-creator/ui/window.py, line: 92
 #: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "고급 설정"
+msgid "Menu"
+msgstr "메뉴"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 138
+# File: usr/share/appimage-creator/ui/window.py, line: 96
 #: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"어떤 리눅스 애플리케이션에서든 배포 가능한 AppImage를 생성합니다.  \n"
-"<span size='large'>Python, Qt, GTK, Java 및 바이너리 애플리케이션을 지원합니다.</span>"
+msgid "Settings"
+msgstr "설정"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 97
+#: NEEDS WORK
+msgid "About"
+msgstr "정보"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 152
 #: NEEDS WORK
@@ -1081,6 +1121,12 @@ msgstr "AppImage 생성을 위한 전체 설정 완료"
 msgid "Generate your distributable AppImage file"
 msgstr "배포 가능한 AppImage 파일을 생성하세요"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 214
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "고급 설정"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 215
 #: NEEDS WORK
 msgid "Configure authors, categories, and build options"
@@ -1090,6 +1136,15 @@ msgstr "저자, 카테고리 및 빌드 옵션 구성"
 #: NEEDS WORK
 msgid "Open Settings"
 msgstr "설정 열기"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 237
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"Supports Python, Qt, GTK, Java, and binary applications."
+msgstr ""
+"모든 리눅스 애플리케이션에서 배포 가능한 AppImage를 생성합니다.  \n"
+"Python, Qt, GTK, Java 및 바이너리 애플리케이션을 지원합니다."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 235
 #: NEEDS WORK
@@ -1299,40 +1354,6 @@ msgstr "바탕화면 파일"
 msgid "Choose Desktop File"
 msgstr "바탕 화면 파일 선택"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 721
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "AppImage 개요:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 722
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "앱: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 723
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "유형: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 728
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "추가 디렉토리: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 734
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "자동 감지됨: {} 파일"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 737
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "'전체 구조 보기'를 클릭하여 자세한 내용을 확인하세요."
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 755
 #: NEEDS WORK
 msgid "AppImage Structure - Full View"
@@ -1373,28 +1394,65 @@ msgstr "├── 라이브러리/"
 msgid "    └── share/"
 msgstr "└── 공유/"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 798
+# File: usr/share/appimage-creator/ui/window.py, line: 1016
 #: NEEDS WORK
-msgid "Summary:"
-msgstr "요약:"
+msgid "            [Python Files]"
+msgstr "[파이썬 파일]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 800
+# File: usr/share/appimage-creator/ui/window.py, line: 1027
 #: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "응용 프로그램 유형: {}"
+msgid "            [Shell Scripts]"
+msgstr "[셸 스크립트]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 801
+# File: usr/share/appimage-creator/ui/window.py, line: 1038
 #: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "추가 디렉토리: {}"
+msgid "            [UI Files]"
+msgstr "[UI 파일]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 806
+# File: usr/share/appimage-creator/ui/window.py, line: 1049
 #: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "자동 감지된 파일: {}"
+msgid "            [CSS Files]"
+msgstr "[CSS 파일]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1061
+#: NEEDS WORK
+msgid "            [Icon Files]"
+msgstr "[아이콘 파일]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1070
+#: NEEDS WORK
+msgid "            [Locale Directories]"
+msgstr "[로케일 디렉토리]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1077
+#: NEEDS WORK
+msgid "            [Desktop Files]"
+msgstr "[바탕 화면 파일]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[추가 디렉토리]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "요약"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "프로젝트 루트"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Not detected"
+msgstr "감지되지 않음"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "파일 분해:"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 817
 #: NEEDS WORK

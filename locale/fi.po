@@ -556,16 +556,6 @@ msgstr "Automaattinen päivitys (valinnainen)"
 msgid "Enable automatic update checking for this AppImage"
 msgstr "Ota käyttöön automaattinen päivitysten tarkistus tälle AppImagelle"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 106
-#: NEEDS WORK
-msgid "Update URL"
-msgstr "Päivitys-URL"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 118
-#: NEEDS WORK
-msgid "Paste GitHub API template"
-msgstr "Liitä GitHub API -malli"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 127
 #: NEEDS WORK
 msgid "How to configure auto-updates"
@@ -610,10 +600,60 @@ msgstr ""
 "• *-gui-*.AppImage  → vastaa: converter-gui-1.0.AppImage\n"
 "• calculator-*.AppImage  → vastaa: calculator-2.5-linux.AppImage"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 106
+#: NEEDS WORK
+msgid "Update URL"
+msgstr "Päivitys-URL"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 118
+#: NEEDS WORK
+msgid "Paste GitHub API template"
+msgstr "Liitä GitHub API -malli"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 158
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Tiedostonimi Malli"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+#: NEEDS WORK
+msgid "Check Interval"
+msgstr "Tarkistusväli"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "How often to check for updates"
+msgstr "Kuinka usein tarkistaa päivitykset"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every hour"
+msgstr "Joka tunti"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 12 hours"
+msgstr "Joka 12. tunti"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 24 hours (recommended)"
+msgstr "Joka 24. tunti (suositeltavaa)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Custom"
+msgstr "Mukautettu"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Custom Interval (minutes)"
+msgstr "Mukautettu aikaväli (minuutit)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 183
+#: NEEDS WORK
+msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
+msgstr "Vähintään: 1 minuutti, Enintään: 1440 minuuttia (24h)"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
@@ -806,20 +846,20 @@ msgstr "Valitse kuvake"
 msgid "Structure Preview"
 msgstr "Rakenne Esikatselu"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
+# File: usr/share/appimage-creator/ui/pages.py, line: 358
 #: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "Esikatselu siitä, mitä AppImageen sisältyy"
+msgid "View the complete structure that will be included in the AppImage"
+msgstr "Näytä täydellinen rakenne, joka sisältyy AppImageen."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
+# File: usr/share/appimage-creator/ui/pages.py, line: 362
 #: NEEDS WORK
-msgid "Quick Preview"
-msgstr "Nopea esikatselu"
+msgid "AppImage Structure"
+msgstr "AppImage-rakenne"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
+# File: usr/share/appimage-creator/ui/pages.py, line: 363
 #: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "Näe perusrakenteen yleiskatsaus"
+msgid "View all files and directories that will be packaged"
+msgstr "Näytä kaikki tiedostot ja hakemistot, jotka pakataan."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 273
 #: NEEDS WORK
@@ -1037,20 +1077,20 @@ msgstr "Asennus"
 msgid "AppImage Creator"
 msgstr "AppImage-luonti"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 214
+# File: usr/share/appimage-creator/ui/window.py, line: 92
 #: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "Lisäasetukset"
+msgid "Menu"
+msgstr "Valikko"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 138
+# File: usr/share/appimage-creator/ui/window.py, line: 96
 #: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"Luo jakelukelpoisia AppImageja mistä tahansa Linux-sovelluksesta.  \n"
-"<span size='large'>Tukee Pythonia, Qt:tä, GTK:ta, Javaa ja binäärisovelluksia.</span>"
+msgid "Settings"
+msgstr "Asetukset"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 97
+#: NEEDS WORK
+msgid "About"
+msgstr "Tietoja"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 152
 #: NEEDS WORK
@@ -1082,6 +1122,12 @@ msgstr "Täydellinen asennus AppImage-luomisen mahdollistamiseksi"
 msgid "Generate your distributable AppImage file"
 msgstr "Luo jakelukelpoinen AppImage-tiedostosi"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 214
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "Lisäasetukset"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 215
 #: NEEDS WORK
 msgid "Configure authors, categories, and build options"
@@ -1091,6 +1137,15 @@ msgstr "Määritä kirjoittajat, kategoriat ja rakennusvaihtoehdot"
 #: NEEDS WORK
 msgid "Open Settings"
 msgstr "Avaa asetukset"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 237
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"Supports Python, Qt, GTK, Java, and binary applications."
+msgstr ""
+"Luo jakelukelpoisia AppImageja mistä tahansa Linux-sovelluksesta. Tukee Pythonia, Qt:tä, GTK:ta, "
+"Javaa ja binääri-sovelluksia."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 235
 #: NEEDS WORK
@@ -1300,40 +1355,6 @@ msgstr "Työpöydän tiedostot"
 msgid "Choose Desktop File"
 msgstr "Valitse työpöytätiedosto"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 721
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "AppImage Yhteenveto:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 722
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "Sovellus: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 723
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "Tyyppi: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 728
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "Lisähakemistot: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 734
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "Automaattisesti havaittu: {} tiedostoa"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 737
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "Napsauta 'Näytä koko rakenne' saadaksesi lisätietoja"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 755
 #: NEEDS WORK
 msgid "AppImage Structure - Full View"
@@ -1374,28 +1395,65 @@ msgstr "├── kirjasto/"
 msgid "    └── share/"
 msgstr "└── jakaa/"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 798
+# File: usr/share/appimage-creator/ui/window.py, line: 1016
 #: NEEDS WORK
-msgid "Summary:"
-msgstr "Yhteenveto:"
+msgid "            [Python Files]"
+msgstr "[Python-tiedostot]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 800
+# File: usr/share/appimage-creator/ui/window.py, line: 1027
 #: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "Sovellustyyppi: {}"
+msgid "            [Shell Scripts]"
+msgstr "[Shell-skriptit]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 801
+# File: usr/share/appimage-creator/ui/window.py, line: 1038
 #: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "Lisähakemistot: {}"
+msgid "            [UI Files]"
+msgstr "[UI-tiedostot]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 806
+# File: usr/share/appimage-creator/ui/window.py, line: 1049
 #: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "Automaattisesti havaittuja tiedostoja: {}"
+msgid "            [CSS Files]"
+msgstr "[CSS-tiedostot]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1061
+#: NEEDS WORK
+msgid "            [Icon Files]"
+msgstr "[Ikonitiedostot]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1070
+#: NEEDS WORK
+msgid "            [Locale Directories]"
+msgstr "[Paikallishakemistot]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1077
+#: NEEDS WORK
+msgid "            [Desktop Files]"
+msgstr "[Työpöydän tiedostot]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[Lisähakemistot]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "YHTEENVETO"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "Projektin juurihakemisto"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Not detected"
+msgstr "Ei havaittu"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "Tiedoston erittely:"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 817
 #: NEEDS WORK

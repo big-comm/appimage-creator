@@ -556,16 +556,6 @@ msgstr "Otomatik Güncelleme (İsteğe Bağlı)"
 msgid "Enable automatic update checking for this AppImage"
 msgstr "Bu AppImage için otomatik güncelleme kontrolünü etkinleştir"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 106
-#: NEEDS WORK
-msgid "Update URL"
-msgstr "Güncelleme URL'si"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 118
-#: NEEDS WORK
-msgid "Paste GitHub API template"
-msgstr "GitHub API şablonunu yapıştırın"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 127
 #: NEEDS WORK
 msgid "How to configure auto-updates"
@@ -610,10 +600,60 @@ msgstr ""
 "• *-gui-*.AppImage  → eşleşir: converter-gui-1.0.AppImage\n"
 "• calculator-*.AppImage  → eşleşir: calculator-2.5-linux.AppImage"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 106
+#: NEEDS WORK
+msgid "Update URL"
+msgstr "Güncelleme URL'si"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 118
+#: NEEDS WORK
+msgid "Paste GitHub API template"
+msgstr "GitHub API şablonunu yapıştırın"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 158
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Dosya Adı Deseni"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+#: NEEDS WORK
+msgid "Check Interval"
+msgstr "Kontrol Aralığı"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "How often to check for updates"
+msgstr "Güncellemeleri ne sıklıkla kontrol etmeliyim"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every hour"
+msgstr "Her saat"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 12 hours"
+msgstr "Her 12 saatte"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 24 hours (recommended)"
+msgstr "Her 24 saatte bir (önerilir)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Custom"
+msgstr "Özel"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Custom Interval (minutes)"
+msgstr "Özel Aralık (dakika)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 183
+#: NEEDS WORK
+msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
+msgstr "Minimum: 1 dakika, Maksimum: 1440 dakika (24s)"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
@@ -806,20 +846,20 @@ msgstr "Simge Seçin"
 msgid "Structure Preview"
 msgstr "Yapı Önizlemesi"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
+# File: usr/share/appimage-creator/ui/pages.py, line: 358
 #: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "AppImage'de yer alacakların önizlemesi"
+msgid "View the complete structure that will be included in the AppImage"
+msgstr "AppImage'e dahil edilecek tam yapıyı görüntüle"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
+# File: usr/share/appimage-creator/ui/pages.py, line: 362
 #: NEEDS WORK
-msgid "Quick Preview"
-msgstr "Hızlı Önizleme"
+msgid "AppImage Structure"
+msgstr "AppImage Yapısı"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
+# File: usr/share/appimage-creator/ui/pages.py, line: 363
 #: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "Temel yapı genel görünümünü görüntüle"
+msgid "View all files and directories that will be packaged"
+msgstr "Paketlenecek tüm dosyaları ve dizinleri görüntüle"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 273
 #: NEEDS WORK
@@ -1037,20 +1077,20 @@ msgstr "Kurulum"
 msgid "AppImage Creator"
 msgstr "AppImage Oluşturucu"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 214
+# File: usr/share/appimage-creator/ui/window.py, line: 92
 #: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "Gelişmiş Ayarlar"
+msgid "Menu"
+msgstr "Menü"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 138
+# File: usr/share/appimage-creator/ui/window.py, line: 96
 #: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"Herhangi bir Linux uygulamasından dağıtılabilir AppImage'lar oluşturun.  \n"
-"<span size='large'>Python, Qt, GTK, Java ve ikili uygulamaları destekler.</span>"
+msgid "Settings"
+msgstr "Ayarlar"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 97
+#: NEEDS WORK
+msgid "About"
+msgstr "Hakkında"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 152
 #: NEEDS WORK
@@ -1082,6 +1122,12 @@ msgstr "AppImage oluşturmayı etkinleştirmek için tam kurulumu tamamlayın"
 msgid "Generate your distributable AppImage file"
 msgstr "Dağıtılabilir AppImage dosyanızı oluşturun"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 214
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "Gelişmiş Ayarlar"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 215
 #: NEEDS WORK
 msgid "Configure authors, categories, and build options"
@@ -1091,6 +1137,15 @@ msgstr "Yazarları, kategorileri ve derleme seçeneklerini yapılandırın"
 #: NEEDS WORK
 msgid "Open Settings"
 msgstr "Ayarları Aç"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 237
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"Supports Python, Qt, GTK, Java, and binary applications."
+msgstr ""
+"Herhangi bir Linux uygulamasından dağıtılabilir AppImage'ler oluşturun. Python, Qt, GTK, Java ve "
+"ikili uygulamaları destekler."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 235
 #: NEEDS WORK
@@ -1300,40 +1355,6 @@ msgstr "Masaüstü Dosyaları"
 msgid "Choose Desktop File"
 msgstr "Masaüstü Dosyasını Seçin"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 721
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "AppImage Genel Bakış:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 722
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "Uygulama: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 723
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "Tür: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 728
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "Ek Dizinler: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 734
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "Otomatik algılandı: {} dosya"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 737
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "'Ayrıntılar için 'Tam Yapıyı Görüntüle'ye tıklayın'"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 755
 #: NEEDS WORK
 msgid "AppImage Structure - Full View"
@@ -1374,28 +1395,65 @@ msgstr "├── kütüphane/"
 msgid "    └── share/"
 msgstr "└── paylaş/"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 798
+# File: usr/share/appimage-creator/ui/window.py, line: 1016
 #: NEEDS WORK
-msgid "Summary:"
-msgstr "Özet:"
+msgid "            [Python Files]"
+msgstr "[Python Dosyaları]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 800
+# File: usr/share/appimage-creator/ui/window.py, line: 1027
 #: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "Uygulama Türü: {}"
+msgid "            [Shell Scripts]"
+msgstr "[Shell Betikleri]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 801
+# File: usr/share/appimage-creator/ui/window.py, line: 1038
 #: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "Ekstra Dizinler: {}"
+msgid "            [UI Files]"
+msgstr "[UI Dosyaları]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 806
+# File: usr/share/appimage-creator/ui/window.py, line: 1049
 #: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "Otomatik Algılanan Dosyalar: {}"
+msgid "            [CSS Files]"
+msgstr "[CSS Dosyaları]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1061
+#: NEEDS WORK
+msgid "            [Icon Files]"
+msgstr "[Simge Dosyaları]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1070
+#: NEEDS WORK
+msgid "            [Locale Directories]"
+msgstr "[Yerel Dizinler]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1077
+#: NEEDS WORK
+msgid "            [Desktop Files]"
+msgstr "[ masaüstü dosyaları ]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[Ekstra Dizinler]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "ÖZET"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "Proje Kökü"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Not detected"
+msgstr "Algılandı değil"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "Dosya Ayrımı:"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 817
 #: NEEDS WORK

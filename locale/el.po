@@ -556,16 +556,6 @@ msgstr "Αυτόματη Ενημέρωση (Προαιρετική)"
 msgid "Enable automatic update checking for this AppImage"
 msgstr "Ενεργοποιήστε τον αυτόματο έλεγχο ενημερώσεων για αυτό το AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 106
-#: NEEDS WORK
-msgid "Update URL"
-msgstr "Διεύθυνση URL Ενημέρωσης"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 118
-#: NEEDS WORK
-msgid "Paste GitHub API template"
-msgstr "Επικόλληση προτύπου GitHub API"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 127
 #: NEEDS WORK
 msgid "How to configure auto-updates"
@@ -610,10 +600,60 @@ msgstr ""
 "• *-gui-*.AppImage  → ταιριάζει: converter-gui-1.0.AppImage\n"
 "• calculator-*.AppImage  → ταιριάζει: calculator-2.5-linux.AppImage"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 106
+#: NEEDS WORK
+msgid "Update URL"
+msgstr "Διεύθυνση URL Ενημέρωσης"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 118
+#: NEEDS WORK
+msgid "Paste GitHub API template"
+msgstr "Επικόλληση προτύπου GitHub API"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 158
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Μοτίβο Ονόματος Αρχείου"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+#: NEEDS WORK
+msgid "Check Interval"
+msgstr "Διάστημα Ελέγχου"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "How often to check for updates"
+msgstr "Πόσο συχνά να ελέγχετε για ενημερώσεις"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every hour"
+msgstr "Κάθε ώρα"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 12 hours"
+msgstr "Κάθε 12 ώρες"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 24 hours (recommended)"
+msgstr "Κάθε 24 ώρες (συνιστάται)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Custom"
+msgstr "Προσαρμοσμένο"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Custom Interval (minutes)"
+msgstr "Προσαρμοσμένο Διάστημα (λεπτά)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 183
+#: NEEDS WORK
+msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
+msgstr "Ελάχιστο: 1 λεπτό, Μέγιστο: 1440 λεπτά (24 ώρες)"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
@@ -806,20 +846,20 @@ msgstr "Επιλέξτε Εικονίδιο"
 msgid "Structure Preview"
 msgstr "Προεπισκόπηση Δομής"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
+# File: usr/share/appimage-creator/ui/pages.py, line: 358
 #: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "Προεπισκόπηση του τι θα περιλαμβάνεται στο AppImage"
+msgid "View the complete structure that will be included in the AppImage"
+msgstr "Δείτε τη συνολική δομή που θα περιληφθεί στο AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
+# File: usr/share/appimage-creator/ui/pages.py, line: 362
 #: NEEDS WORK
-msgid "Quick Preview"
-msgstr "Γρήγορη Προεπισκόπηση"
+msgid "AppImage Structure"
+msgstr "Δομή AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
+# File: usr/share/appimage-creator/ui/pages.py, line: 363
 #: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "Δείτε την επισκόπηση της βασικής δομής"
+msgid "View all files and directories that will be packaged"
+msgstr "Δείτε όλα τα αρχεία και τους καταλόγους που θα συσκευαστούν"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 273
 #: NEEDS WORK
@@ -1037,20 +1077,20 @@ msgstr "Ρύθμιση"
 msgid "AppImage Creator"
 msgstr "Δημιουργός AppImage"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 214
+# File: usr/share/appimage-creator/ui/window.py, line: 92
 #: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "Προηγμένες Ρυθμίσεις"
+msgid "Menu"
+msgstr "Μενού"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 138
+# File: usr/share/appimage-creator/ui/window.py, line: 96
 #: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"Δημιουργήστε διανεμόμενα AppImages από οποιαδήποτε εφαρμογή Linux.  \n"
-"<span size='large'>Υποστηρίζει Python, Qt, GTK, Java και δυαδικές εφαρμογές.</span>"
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 97
+#: NEEDS WORK
+msgid "About"
+msgstr "Σχετικά"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 152
 #: NEEDS WORK
@@ -1082,6 +1122,12 @@ msgstr "Ολοκληρώστε τη ρύθμιση για να επιτρέψε�
 msgid "Generate your distributable AppImage file"
 msgstr "Δημιουργήστε το διανεμόμενο αρχείο AppImage σας"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 214
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "Προηγμένες Ρυθμίσεις"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 215
 #: NEEDS WORK
 msgid "Configure authors, categories, and build options"
@@ -1091,6 +1137,15 @@ msgstr "Ρυθμίστε συγγραφείς, κατηγορίες και επ�
 #: NEEDS WORK
 msgid "Open Settings"
 msgstr "Άνοιγμα Ρυθμίσεων"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 237
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"Supports Python, Qt, GTK, Java, and binary applications."
+msgstr ""
+"Δημιουργήστε διανεμόμενα AppImages από οποιαδήποτε εφαρμογή Linux. Υποστηρίζει Python, Qt, GTK, "
+"Java και δυαδικές εφαρμογές."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 235
 #: NEEDS WORK
@@ -1300,40 +1355,6 @@ msgstr "Αρχεία Επιφάνειας Εργασίας"
 msgid "Choose Desktop File"
 msgstr "Επιλέξτε Αρχείο Επιφάνειας Εργασίας"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 721
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "Επισκόπηση AppImage:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 722
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "Εφαρμογή: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 723
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "Τύπος: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 728
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "Επιπλέον Κατάλογοι: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 734
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "Αυτόματη ανίχνευση: {} αρχεία"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 737
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "Κάντε κλικ στο 'Προβολή Πλήρους Δομής' για λεπτομέρειες"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 755
 #: NEEDS WORK
 msgid "AppImage Structure - Full View"
@@ -1374,28 +1395,65 @@ msgstr "├── βιβλιοθήκη/"
 msgid "    └── share/"
 msgstr "└── κοινή χρήση/"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 798
+# File: usr/share/appimage-creator/ui/window.py, line: 1016
 #: NEEDS WORK
-msgid "Summary:"
-msgstr "Περίληψη:"
+msgid "            [Python Files]"
+msgstr "[Αρχεία Python]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 800
+# File: usr/share/appimage-creator/ui/window.py, line: 1027
 #: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "Τύπος Εφαρμογής: {}"
+msgid "            [Shell Scripts]"
+msgstr "[Σενάρια Κέλυφους]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 801
+# File: usr/share/appimage-creator/ui/window.py, line: 1038
 #: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "Επιπλέον Κατάλογοι: {}"
+msgid "            [UI Files]"
+msgstr "[Αρχεία Διεπαφής]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 806
+# File: usr/share/appimage-creator/ui/window.py, line: 1049
 #: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "Αυτόματα ανιχνευμένα αρχεία: {}"
+msgid "            [CSS Files]"
+msgstr "[Αρχεία CSS]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1061
+#: NEEDS WORK
+msgid "            [Icon Files]"
+msgstr "[Αρχεία Εικονιδίων]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1070
+#: NEEDS WORK
+msgid "            [Locale Directories]"
+msgstr "[Καταλόγοι Τοπικών Ρυθμίσεων]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1077
+#: NEEDS WORK
+msgid "            [Desktop Files]"
+msgstr "[Αρχεία Επιφάνειας Εργασίας]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[Επιπλέον Κατάλογοι]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "ΣΥΝΟΨΗ"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "Ρίζα Έργου"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Not detected"
+msgstr "Δεν ανιχνεύθηκε"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "Ανάλυση Αρχείου:"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 817
 #: NEEDS WORK

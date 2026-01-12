@@ -556,16 +556,6 @@ msgstr "Автооновлення (необов'язково)"
 msgid "Enable automatic update checking for this AppImage"
 msgstr "Увімкнути автоматичну перевірку оновлень для цього AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 106
-#: NEEDS WORK
-msgid "Update URL"
-msgstr "Оновити URL"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 118
-#: NEEDS WORK
-msgid "Paste GitHub API template"
-msgstr "Вставити шаблон GitHub API"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 127
 #: NEEDS WORK
 msgid "How to configure auto-updates"
@@ -609,10 +599,60 @@ msgstr ""
 "• *-gui-*.AppImage  → matches: converter-gui-1.0.AppImage\n"
 "• calculator-*.AppImage  → matches: calculator-2.5-linux.AppImage"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 106
+#: NEEDS WORK
+msgid "Update URL"
+msgstr "Оновити URL"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 118
+#: NEEDS WORK
+msgid "Paste GitHub API template"
+msgstr "Вставити шаблон GitHub API"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 158
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Шаблон імені файлу"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+#: NEEDS WORK
+msgid "Check Interval"
+msgstr "Перевірка інтервалу"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "How often to check for updates"
+msgstr "Як часто перевіряти наявність оновлень"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every hour"
+msgstr "Кожну годину"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 12 hours"
+msgstr "Кожні 12 годин"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 24 hours (recommended)"
+msgstr "Кожні 24 години (рекомендується)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Custom"
+msgstr "Користувацький"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Custom Interval (minutes)"
+msgstr "Користувацький інтервал (хвилини)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 183
+#: NEEDS WORK
+msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
+msgstr "Мінімум: 1 хвилина, Максимум: 1440 хвилин (24 год)"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
@@ -805,20 +845,20 @@ msgstr "Виберіть значок"
 msgid "Structure Preview"
 msgstr "Попередній перегляд структури"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
+# File: usr/share/appimage-creator/ui/pages.py, line: 358
 #: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "Vorschau auf das, was im AppImage enthalten sein wird"
+msgid "View the complete structure that will be included in the AppImage"
+msgstr "Перегляньте повну структуру, яка буде включена в AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
+# File: usr/share/appimage-creator/ui/pages.py, line: 362
 #: NEEDS WORK
-msgid "Quick Preview"
-msgstr "Швидкий перегляд"
+msgid "AppImage Structure"
+msgstr "Структура AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
+# File: usr/share/appimage-creator/ui/pages.py, line: 363
 #: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "Переглянути основну структуру"
+msgid "View all files and directories that will be packaged"
+msgstr "View all files and directories that will be packaged"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 273
 #: NEEDS WORK
@@ -1036,20 +1076,20 @@ msgstr "Настроювання"
 msgid "AppImage Creator"
 msgstr "AppImage Creator"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 215
+# File: usr/share/appimage-creator/ui/window.py, line: 92
 #: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "Розширені налаштування"
+msgid "Menu"
+msgstr "Menu"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 139
+# File: usr/share/appimage-creator/ui/window.py, line: 96
 #: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"Створіть розповсюджувані AppImage з будь-якого Linux-додатку.\n"
-"<span size='large'>Підтримує Python, Qt, GTK, Java та бінарні додатки.</span>"
+msgid "Settings"
+msgstr "Налаштування"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 97
+#: NEEDS WORK
+msgid "About"
+msgstr "Про програму"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 153
 #: NEEDS WORK
@@ -1081,6 +1121,12 @@ msgstr "Завершіть налаштування для активації с
 msgid "Generate your distributable AppImage file"
 msgstr "Згенеруйте свій розповсюджуваний файл AppImage"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 215
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "Розширені налаштування"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 216
 #: NEEDS WORK
 msgid "Configure authors, categories, and build options"
@@ -1090,6 +1136,15 @@ msgstr "Налаштувати авторів, категорії та пара�
 #: NEEDS WORK
 msgid "Open Settings"
 msgstr "Відкрити налаштування"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 237
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"Supports Python, Qt, GTK, Java, and binary applications."
+msgstr ""
+"Сreate distributable AppImages from any Linux application.  \n"
+"Supports Python, Qt, GTK, Java, and binary applications."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 236
 #: NEEDS WORK
@@ -1299,40 +1354,6 @@ msgstr "Рабочий стіл Файли"
 msgid "Choose Desktop File"
 msgstr "Виберіть файл на робочому столі"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 822
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "Огляд AppImage:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 823
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "Додаток: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 824
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "Тип: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 829
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "Додаткові каталоги: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 835
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "Автоматично виявлено: {} файлів"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 838
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "Натисніть 'Переглянути повну структуру' для деталей"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 856
 #: NEEDS WORK
 msgid "AppImage Structure - Full View"
@@ -1373,28 +1394,65 @@ msgstr "├── lib/"
 msgid "    └── share/"
 msgstr "└── compartir/"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 899
+# File: usr/share/appimage-creator/ui/window.py, line: 1016
 #: NEEDS WORK
-msgid "Summary:"
-msgstr "Резюме:"
+msgid "            [Python Files]"
+msgstr "[Python файли]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 901
+# File: usr/share/appimage-creator/ui/window.py, line: 1027
 #: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "Тип програми: {}"
+msgid "            [Shell Scripts]"
+msgstr "[Shell Scripts]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 902
+# File: usr/share/appimage-creator/ui/window.py, line: 1038
 #: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "Додаткові каталоги: {}"
+msgid "            [UI Files]"
+msgstr "[UI Файли]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 907
+# File: usr/share/appimage-creator/ui/window.py, line: 1049
 #: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "Автоматично виявлені файли: {}"
+msgid "            [CSS Files]"
+msgstr "[CSS Файли]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1061
+#: NEEDS WORK
+msgid "            [Icon Files]"
+msgstr "[Іконки файлів]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1070
+#: NEEDS WORK
+msgid "            [Locale Directories]"
+msgstr "[Каталоги локалей]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1077
+#: NEEDS WORK
+msgid "            [Desktop Files]"
+msgstr "[Desktop Files]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[Додаткові каталоги]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "РЕЗЮМЕ"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "Корінь проєкту"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Not detected"
+msgstr "Не виявлено"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "Файл Розподіл:"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 918
 #: NEEDS WORK

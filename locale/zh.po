@@ -556,16 +556,6 @@ msgstr "自动更新（可选）"
 msgid "Enable automatic update checking for this AppImage"
 msgstr "启用此 AppImage 的自动更新检查"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 106
-#: NEEDS WORK
-msgid "Update URL"
-msgstr "更新网址"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 118
-#: NEEDS WORK
-msgid "Paste GitHub API template"
-msgstr "粘贴 GitHub API 模板"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 127
 #: NEEDS WORK
 msgid "How to configure auto-updates"
@@ -609,10 +599,60 @@ msgstr ""
 "• *-gui-*.AppImage  → 匹配：converter-gui-1.0.AppImage\n"
 "• calculator-*.AppImage  → 匹配：calculator-2.5-linux.AppImage"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 106
+#: NEEDS WORK
+msgid "Update URL"
+msgstr "更新网址"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 118
+#: NEEDS WORK
+msgid "Paste GitHub API template"
+msgstr "粘贴 GitHub API 模板"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 158
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "文件名模式"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+#: NEEDS WORK
+msgid "Check Interval"
+msgstr "检查间隔"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "How often to check for updates"
+msgstr "检查更新的频率"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every hour"
+msgstr "每小时"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 12 hours"
+msgstr "每12小时"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 24 hours (recommended)"
+msgstr "每24小时（推荐）"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Custom"
+msgstr "自定义"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Custom Interval (minutes)"
+msgstr "自定义间隔（分钟）"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 183
+#: NEEDS WORK
+msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
+msgstr "最小值：1分钟，最大值：1440分钟（24小时）"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 135
 #: NEEDS WORK
@@ -805,20 +845,20 @@ msgstr "选择图标"
 msgid "Structure Preview"
 msgstr "结构预览"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 266
+# File: usr/share/appimage-creator/ui/pages.py, line: 358
 #: NEEDS WORK
-msgid "Preview of what will be included in the AppImage"
-msgstr "AppImage中将包含的内容预览"
+msgid "View the complete structure that will be included in the AppImage"
+msgstr "查看将包含在 AppImage 中的完整结构"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 270
+# File: usr/share/appimage-creator/ui/pages.py, line: 362
 #: NEEDS WORK
-msgid "Quick Preview"
-msgstr "快速预览"
+msgid "AppImage Structure"
+msgstr "AppImage 结构"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 271
+# File: usr/share/appimage-creator/ui/pages.py, line: 363
 #: NEEDS WORK
-msgid "See basic structure overview"
-msgstr "查看基本结构概述"
+msgid "View all files and directories that will be packaged"
+msgstr "查看所有将被打包的文件和目录"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 273
 #: NEEDS WORK
@@ -1036,20 +1076,20 @@ msgstr "设置"
 msgid "AppImage Creator"
 msgstr "AppImage 创建器"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 215
+# File: usr/share/appimage-creator/ui/window.py, line: 92
 #: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "高级设置"
+msgid "Menu"
+msgstr "菜单"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 139
+# File: usr/share/appimage-creator/ui/window.py, line: 96
 #: NEEDS WORK
-msgid ""
-"Create distributable AppImages from any Linux application.\n"
-"<span size='large'>Supports Python, Qt, GTK, Java, and binary applications.</span>"
-msgstr ""
-"从任何Linux应用程序创建可分发的AppImages。  \n"
-"<span size='large'>支持Python、Qt、GTK、Java和二进制应用程序。</span>"
+msgid "Settings"
+msgstr "设置"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 97
+#: NEEDS WORK
+msgid "About"
+msgstr "关于"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 153
 #: NEEDS WORK
@@ -1081,6 +1121,12 @@ msgstr "完成设置以启用 AppImage 创建"
 msgid "Generate your distributable AppImage file"
 msgstr "生成您的可分发 AppImage 文件"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 82
+# File: usr/share/appimage-creator/ui/window.py, line: 215
+#: NEEDS WORK
+msgid "Advanced Settings"
+msgstr "高级设置"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 216
 #: NEEDS WORK
 msgid "Configure authors, categories, and build options"
@@ -1090,6 +1136,15 @@ msgstr "配置作者、类别和构建选项"
 #: NEEDS WORK
 msgid "Open Settings"
 msgstr "打开设置"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 237
+#: NEEDS WORK
+msgid ""
+"Create distributable AppImages from any Linux application.\n"
+"Supports Python, Qt, GTK, Java, and binary applications."
+msgstr ""
+"从任何Linux应用程序创建可分发的AppImages。  \n"
+"支持Python、Qt、GTK、Java和二进制应用程序。"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 236
 #: NEEDS WORK
@@ -1299,40 +1354,6 @@ msgstr "桌面文件"
 msgid "Choose Desktop File"
 msgstr "选择桌面文件"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 822
-#: NEEDS WORK
-msgid "AppImage Overview:"
-msgstr "AppImage 概述："
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 823
-#: NEEDS WORK
-#, python-brace-format
-msgid "   App: {}"
-msgstr "应用程序: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 824
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Type: {}"
-msgstr "类型：{}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 829
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Additional Dirs: {}"
-msgstr "附加目录：{}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 835
-#: NEEDS WORK
-#, python-brace-format
-msgid "   Auto-detected: {} files"
-msgstr "自动检测到：{} 个文件"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 838
-#: NEEDS WORK
-msgid "Click 'View Full Structure' for details"
-msgstr "点击“查看完整结构”以获取详细信息"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 856
 #: NEEDS WORK
 msgid "AppImage Structure - Full View"
@@ -1373,28 +1394,65 @@ msgstr "├── 库/"
 msgid "    └── share/"
 msgstr "└── 分享/"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 899
+# File: usr/share/appimage-creator/ui/window.py, line: 1016
 #: NEEDS WORK
-msgid "Summary:"
-msgstr "摘要："
+msgid "            [Python Files]"
+msgstr "[Python 文件]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 901
+# File: usr/share/appimage-creator/ui/window.py, line: 1027
 #: NEEDS WORK
-#, python-brace-format
-msgid "Application Type: {}"
-msgstr "应用类型：{}"
+msgid "            [Shell Scripts]"
+msgstr "[Shell 脚本]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 902
+# File: usr/share/appimage-creator/ui/window.py, line: 1038
 #: NEEDS WORK
-#, python-brace-format
-msgid "Additional Directories: {}"
-msgstr "附加目录：{}"
+msgid "            [UI Files]"
+msgstr "[用户界面文件]"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 907
+# File: usr/share/appimage-creator/ui/window.py, line: 1049
 #: NEEDS WORK
-#, python-brace-format
-msgid "Auto-detected Files: {}"
-msgstr "自动检测到的文件：{}"
+msgid "            [CSS Files]"
+msgstr "[CSS 文件]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1061
+#: NEEDS WORK
+msgid "            [Icon Files]"
+msgstr "[图标文件]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1070
+#: NEEDS WORK
+msgid "            [Locale Directories]"
+msgstr "[区域目录]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1077
+#: NEEDS WORK
+msgid "            [Desktop Files]"
+msgstr "[桌面文件]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[附加目录]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "摘要"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "项目根目录"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Not detected"
+msgstr "未检测到"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "文件分解："
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 918
 #: NEEDS WORK
