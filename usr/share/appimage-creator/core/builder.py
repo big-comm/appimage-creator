@@ -642,11 +642,11 @@ class AppImageBuilder:
 
                         # Try to find and copy updater .desktop
                         if not updater_desktop_copied:
-                            updater_desktop_source = root / "usr/share/applications/org.appimage.updater.desktop"
+                            updater_desktop_source = root / "usr/share/applications/org.bigcommunity.appimage.updater.desktop"
                             if updater_desktop_source.exists():
                                 desktop_dest_dir = self.appdir_path / "usr" / "share" / "applications"
                                 desktop_dest_dir.mkdir(parents=True, exist_ok=True)
-                                shutil.copy2(updater_desktop_source, desktop_dest_dir / "org.appimage.updater.desktop")
+                                shutil.copy2(updater_desktop_source, desktop_dest_dir / "org.bigcommunity.appimage.updater.desktop")
                                 self.log(_("✓ Copied updater .desktop from {}").format(updater_desktop_source))
                                 updater_desktop_copied = True
 
@@ -658,7 +658,7 @@ class AppImageBuilder:
                     if not updater_icon_copied:
                         self.log(_("Warning: Updater icon (appimage-update.svg) not found in any location"))
                     if not updater_desktop_copied:
-                        self.log(_("Warning: Updater .desktop (org.appimage.updater.desktop) not found in any location"))
+                        self.log(_("Warning: Updater .desktop (org.bigcommunity.appimage.updater.desktop) not found in any location"))
 
                     # Create symlink for updater icon in AppDir root (required by appimagetool)
                     if updater_icon_copied:

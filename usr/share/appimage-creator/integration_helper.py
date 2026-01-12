@@ -184,20 +184,47 @@ def setup_systemd_watcher():
             try:
                 # Copy updater icon
                 updater_icon_source = Path(appdir) / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg"
+                target_icon_path = None
+                
                 if updater_icon_source.exists():
                     icons_dir = Path.home() / ".local/share/icons/hicolor/scalable/apps"
                     icons_dir.mkdir(parents=True, exist_ok=True)
-                    shutil.copy2(updater_icon_source, icons_dir / "appimage-update.svg")
+                    target_icon_path = icons_dir / "appimage-update.svg"
+                    shutil.copy2(updater_icon_source, target_icon_path)
 
-                # Copy updater .desktop file (NoDisplay=true, for taskbar icon only)
+                # Copy and patch updater .desktop file
                 updater_desktop_source = Path(appdir) / "usr/share/applications/org.bigcommunity.appimage.updater.desktop"
                 if updater_desktop_source.exists():
                     apps_dir = Path.home() / ".local/share/applications"
                     apps_dir.mkdir(parents=True, exist_ok=True)
-                    shutil.copy2(updater_desktop_source, apps_dir / "org.bigcommunity.appimage.updater.desktop")
-            except Exception:
+                    target_desktop_path = apps_dir / "org.bigcommunity.appimage.updater.desktop"
+                    
+                    # Read and patch content
+                    content = updater_desktop_source.read_text()
+                    import re
+                    
+                    # Patch Icon path if icon was installed
+                    if target_icon_path:
+                        content = re.sub(
+                            r'^Icon=.*$',
+                            f'Icon={str(target_icon_path)}',
+                            content,
+                            flags=re.MULTILINE
+                        )
+                    
+                    # Patch Exec path to point to the installed checker script
+                    checker_script = Path.home() / ".local/bin/updater/check_updates.py"
+                    content = re.sub(
+                        r'^Exec=.*$',
+                        f'Exec=python3 "{str(checker_script)}"',
+                        content,
+                        flags=re.MULTILINE
+                    )
+                    
+                    target_desktop_path.write_text(content)
+            except Exception as e:
                 # Silently ignore if updater icon/desktop copy fails
-                pass
+                print(f"Warning: Failed to install updater desktop file: {e}", file=sys.stderr)
 
         # Check if already configured
         if service_file.exists() and timer_file.exists():

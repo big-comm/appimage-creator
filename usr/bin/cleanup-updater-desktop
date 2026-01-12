@@ -1,22 +1,10 @@
-#!/usr/bin/env bash
-# Cleanup old updater .desktop file from previous versions
-
-DESKTOP_FILE="$HOME/.local/share/applications/org.appimage.updater.desktop"
-ICON_FILE="$HOME/.local/share/icons/hicolor/scalable/apps/appimage-update.svg"
+#!/bin/bash
+# Remove updater desktop file if it exists
+DESKTOP_FILE="$HOME/.local/share/applications/org.bigcommunity.appimage.updater.desktop"
 
 if [ -f "$DESKTOP_FILE" ]; then
-    rm -f "$DESKTOP_FILE"
-    echo "Removed old updater .desktop file"
+    rm "$DESKTOP_FILE"
+    echo "Removed $DESKTOP_FILE"
+else
+    echo "File not found: $DESKTOP_FILE"
 fi
-
-if [ -f "$ICON_FILE" ]; then
-    rm -f "$ICON_FILE"
-    echo "Removed old updater icon"
-fi
-
-# Update desktop database
-if command -v update-desktop-database &> /dev/null; then
-    update-desktop-database "$HOME/.local/share/applications" 2>/dev/null
-fi
-
-echo "Cleanup complete"
