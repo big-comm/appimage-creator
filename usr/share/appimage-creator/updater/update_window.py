@@ -42,6 +42,11 @@ import threading
 import subprocess
 import shutil
 
+# Set program name to associate with appimage-update icon in dock/taskbar
+# This MUST be set before any GTK windows are created
+GLib.set_prgname("appimage-update")
+GLib.set_application_name("AppImage Updater")
+
 try:
     from updater.checker import UpdateInfo
     from updater.downloader import AppImageDownloader
