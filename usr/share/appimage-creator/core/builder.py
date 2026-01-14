@@ -446,7 +446,16 @@ class AppImageBuilder:
                 detected_icons = self.app_info['structure_analysis']['detected_files'].get('icons', [])
                 if detected_icons:
                     svg_icons = [i for i in detected_icons if i.endswith('.svg')]
-                    icon_path = svg_icons[0] if svg_icons else detected_icons[0]
+                    
+                    # Prioritize icons that match the canonical basename
+                    matching_icons = [i for i in svg_icons if canonical_basename in os.path.basename(i).lower()]
+                    if matching_icons:
+                        icon_path = matching_icons[0]
+                    elif svg_icons:
+                        icon_path = svg_icons[0]
+                    else:
+                        icon_path = detected_icons[0]
+                    
                     self.log(_("Using detected icon: {}").format(icon_path))
 
             # Define the destination for the icon
@@ -2352,21 +2361,69 @@ Type=Scalable
                 self.log("No icons directory found, skipping icon symlinks.")
                 return
             
+            # First, try to get the expected icon name from the .desktop file
+            # Exclude updater and vainfo (created by linuxdeploy) desktop files
+            expected_icon_name = None
+            desktop_files_dir = self.appdir_path / "usr/share/applications"
+            if desktop_files_dir.exists():
+                for desktop_file in desktop_files_dir.glob("*.desktop"):
+                    # Skip updater and vainfo desktop files
+                    fname_lower = desktop_file.name.lower()
+                    if 'updater' in fname_lower or 'vainfo' in fname_lower:
+                        continue
+                    try:
+                        content = desktop_file.read_text()
+                        import re
+                        match = re.search(r'^Icon=(.+)$', content, re.MULTILINE)
+                        if match:
+                            expected_icon_name = match.group(1).strip()
+                            self.log(f"[DEBUG] Expected icon from .desktop ({desktop_file.name}): {expected_icon_name}")
+                            break
+                    except:
+                        pass
+            
             # Find the icon file (SVG preferred, then PNG, then XPM)
             # Exclude updater icon (appimage-update.*) from the search
             icon_file = None
+            all_found_icons = []
+            
             for ext in ['.svg', '.png', '.xpm']:
                 found_icons = list(icons_dir.rglob(f"*{ext}"))
                 # Filter out updater icon
                 found_icons = [icon for icon in found_icons if 'appimage-update' not in icon.name.lower()]
-                if found_icons:
-                    icon_file = found_icons[0]
-                    break
+                all_found_icons.extend(found_icons)
+            
+            self.log(f"[DEBUG] All found icons (excluding updater): {[i.name for i in all_found_icons]}")
+            
+            if all_found_icons:
+                # Prioritize icon matching expected_icon_name
+                if expected_icon_name:
+                    matching = [i for i in all_found_icons if i.stem.lower() == expected_icon_name.lower()]
+                    if matching:
+                        icon_file = matching[0]
+                        self.log(f"[DEBUG] Using matching icon: {icon_file.name}")
+                    else:
+                        # Try partial match
+                        partial_match = [i for i in all_found_icons if expected_icon_name.lower() in i.stem.lower()]
+                        if partial_match:
+                            icon_file = partial_match[0]
+                            self.log(f"[DEBUG] Using partial matching icon: {icon_file.name}")
+                
+                # Fallback to first SVG, then PNG, then XPM
+                if not icon_file:
+                    for ext in ['.svg', '.png', '.xpm']:
+                        ext_icons = [i for i in all_found_icons if i.suffix.lower() == ext]
+                        if ext_icons:
+                            icon_file = ext_icons[0]
+                            self.log(f"[DEBUG] Using first {ext} icon: {icon_file.name}")
+                            break
             
             if not icon_file:
                 self.log("No icon file found in usr/share/icons to create symlinks for.")
                 return
             
+            self.log(f"Selected icon for symlinks: {icon_file}")
+
             # Find the main .desktop file
             desktop_files_dir = self.appdir_path / "usr/share/applications"
             if not desktop_files_dir.exists():
@@ -2377,6 +2434,11 @@ Type=Scalable
             structure_analysis = self.app_info.get('structure_analysis', {})
             detected_desktops = structure_analysis.get('detected_files', {}).get('desktop_files', [])
             
+            # Filter out updater and vainfo desktop files from analysis
+            detected_desktops = [d for d in detected_desktops 
+                                 if 'updater' not in Path(d).name.lower() 
+                                 and 'vainfo' not in Path(d).name.lower()]
+            
             # Try to find the desktop file from structure analysis
             if detected_desktops:
                 original_desktop_filename = Path(detected_desktops[0]).name
@@ -2385,11 +2447,13 @@ Type=Scalable
                     main_desktop_file = candidate_path
                     self.log(f"Found main desktop file via analysis: {original_desktop_filename}")
 
-            # Fallback: search for any .desktop file
+            # Fallback: search for any .desktop file (excluding updater and vainfo)
             if not main_desktop_file:
-                all_desktop_files = list(desktop_files_dir.glob("*.desktop"))
+                all_desktop_files = [f for f in desktop_files_dir.glob("*.desktop")
+                                    if 'updater' not in f.name.lower() 
+                                    and 'vainfo' not in f.name.lower()]
                 if not all_desktop_files:
-                    self.log("Warning: No .desktop file found after fallback search.")
+                    self.log("Warning: No main .desktop file found after fallback search.")
                     return
                 
                 app_exec_name = self.app_info.get('executable_name', '').replace('-gui', '')
@@ -2398,8 +2462,7 @@ Type=Scalable
                 if preferred_file:
                     main_desktop_file = preferred_file
                 else:
-                    fallback_file = next((f for f in all_desktop_files if 'vainfo' not in f.name), all_desktop_files[0])
-                    main_desktop_file = fallback_file
+                    main_desktop_file = all_desktop_files[0]
                 
                 self.log(f"Warning: Using fallback to find main desktop file: {main_desktop_file.name}")
 

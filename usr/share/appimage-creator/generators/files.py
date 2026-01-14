@@ -117,8 +117,12 @@ def create_apprun_script(app_info):
     py_version = app_info.get('python_version', f"{sys.version_info.major}.{sys.version_info.minor}")
     
     # The source of truth is the name of the original detected .desktop file
+    # Filter out updater and vainfo desktop files
     structure_analysis = app_info.get('structure_analysis', {})
     detected_desktops = structure_analysis.get('detected_files', {}).get('desktop_files', [])
+    detected_desktops = [d for d in detected_desktops 
+                         if 'updater' not in Path(d).name.lower() 
+                         and 'vainfo' not in Path(d).name.lower()]
     main_desktop_filename = ""
     if detected_desktops:
         main_desktop_filename = Path(detected_desktops[0]).name

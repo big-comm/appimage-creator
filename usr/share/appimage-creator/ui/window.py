@@ -23,7 +23,7 @@ from validators.validators import ValidationError
 from utils.i18n import _
 
 # Application version - single source of truth
-APP_VERSION = "1.0.3"
+APP_VERSION = "1.0.4"
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
     """Main application window"""
@@ -232,14 +232,14 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             application_icon="appimage-creator",
             version=APP_VERSION,
             developer_name="BigCommunity",
-            copyright="© 2024 BigCommunity",
+            copyright="© 2026 BigCommunity",
             license_type=Gtk.License.GPL_3_0,
             comments=_("Create distributable AppImages from any Linux application.\n"
                       "Supports Python, Qt, GTK, Java, and binary applications."),
-            website="https://github.com/BigCommunity/appimage-creator",
-            issue_url="https://github.com/BigCommunity/appimage-creator/issues",
+            website="https://github.com/big-comm/appimage-creator",
+            issue_url="https://github.com/big-comm/appimage-creator/issues",
             developers=[
-                "BigCommunity Team"
+                "BigCommunity"
             ],
         )
         about.present()
