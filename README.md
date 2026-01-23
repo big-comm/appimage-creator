@@ -96,6 +96,25 @@ GITHUB_TOKEN="ghp_your_token_here" ./your-app.AppImage
 
 **Security Note:** The token should have **zero permissions** and only provides read-only access to public repositories. It's safe to use and share publicly.
 
+#### Custom Server Configuration (Generic JSON)
+
+You can also host your own update information file on any server. The system supports a generic JSON format.
+
+**1. Create a JSON file (e.g., `update.json`):**
+```json
+{
+    "version": "1.2.3",
+    "download_url": "https://your-server.com/downloads/myapp-1.2.3-x86_64.AppImage",
+    "release_notes": "## New Features\n- Added generic JSON support\n- Improved UI"
+}
+```
+
+**2. Configure in AppImage Creator:**
+- **Update URL:** `https://your-server.com/update.json`
+- **Filename Pattern:** `myapp-*-x86_64.AppImage` (matches the file name on the server)
+
+The system automatically detects if the URL is from GitHub or a generic JSON file.
+
 ***
 
 ## 🚀 Installation
@@ -281,10 +300,16 @@ appimage-creator/
 ### Auto-Update Configuration
 
 **For Developers:**
-Configure update checking in your AppImage during build:
 
+**Option 1: GitHub Releases**
 ```yaml
 Update URL: https://api.github.com/repos/OWNER/REPO/releases/latest
+Filename Pattern: myapp-*-x86_64.AppImage
+```
+
+**Option 2: Custom Server (Generic JSON)**
+```yaml
+Update URL: https://your-server.com/update.json
 Filename Pattern: myapp-*-x86_64.AppImage
 ```
 
