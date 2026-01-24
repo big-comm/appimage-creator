@@ -23,7 +23,7 @@ from validators.validators import ValidationError
 from utils.i18n import _
 
 # Application version - single source of truth
-APP_VERSION = "1.0.4"
+APP_VERSION = "1.0.6"
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
     """Main application window"""
