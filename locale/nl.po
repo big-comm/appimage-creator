@@ -117,6 +117,61 @@ msgstr "Voorbereiden..."
 msgid "Cancel Build"
 msgstr "Annuleer bouwen"
 # 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
+#: NEEDS WORK
+msgid "Dependency Warnings"
+msgstr "Afhankelijkheidswaarschuwingen"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
+#: NEEDS WORK
+msgid "AppImage Created with Warnings"
+msgstr "AppImage gemaakt met waarschuwingen"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
+#: NEEDS WORK
+msgid ""
+"The AppImage was created successfully, but some library dependencies could not be resolved. The "
+"application may not work correctly on some systems."
+msgstr ""
+"De AppImage is succesvol aangemaakt, maar sommige bibliotheekafhankelijkheden konden niet worden "
+"opgelost. De applicatie werkt mogelijk niet correct op sommige systemen."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
+#: NEEDS WORK
+msgid "Missing Libraries"
+msgstr "Ontbrekende Bibliotheken"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
+#: NEEDS WORK
+msgid "How to fix:"
+msgstr "Hoe op te lossen:"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
+#: NEEDS WORK
+msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
+msgstr "• Probeer te bouwen met een andere container (bijv. Ubuntu 22.04 in plaats van 24.04)"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
+#: NEEDS WORK
+msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
+msgstr "• Voeg de ontbrekende bibliotheken toe aan de sectie 'Aanvullende bibliotheken' voordat je bouwt"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
+#: NEEDS WORK
+msgid "• Install the required -dev packages in the build container"
+msgstr "• Installeer de vereiste -dev-pakketten in de buildcontainer"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
+#: NEEDS WORK
+msgid "Close"
+msgstr "Sluiten"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
+#: NEEDS WORK
+msgid "Open Folder"
+msgstr "Map Bestand"
+# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 74
@@ -136,17 +191,6 @@ msgstr "Bouw Voltooid"
 #: NEEDS WORK
 msgid "AppImage created successfully:"
 msgstr "AppImage succesvol aangemaakt:"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
-#: NEEDS WORK
-msgid "Open Folder"
-msgstr "Map Bestand"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
-#: NEEDS WORK
-msgid "Close"
-msgstr "Sluiten"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -201,6 +245,16 @@ msgstr "Kon het bestand niet lezen: {}"
 #: NEEDS WORK
 msgid "Starting..."
 msgstr "Bezig..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
+#: NEEDS WORK
+msgid "Cancelling..."
+msgstr "Annuleren..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
+#: NEEDS WORK
+msgid "Cancelled."
+msgstr "Geannuleerd."
 # 
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 292
 #: NEEDS WORK
@@ -310,171 +364,133 @@ msgstr "Verwijderen"
 msgid "{}: {}"
 msgstr "{}: {}"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 21
+# File: usr/share/appimage-creator/ui/pages.py, line: 76
 #: NEEDS WORK
-msgid "App"
-msgstr "App"
+msgid "Welcome"
+msgstr "Welkom"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 39
+# File: usr/share/appimage-creator/ui/pages.py, line: 97
 #: NEEDS WORK
-msgid "Basic Information"
-msgstr "Basisinformatie"
+msgid "Create distributable AppImages from any Linux application"
+msgstr "Maak distribueerbare AppImages van elke Linux-toepassing"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 42
-# File: usr/share/appimage-creator/ui/window.py, line: 159
+# File: usr/share/appimage-creator/ui/pages.py, line: 108
 #: NEEDS WORK
-msgid "Application Name"
-msgstr "Toepassingsnaam"
+msgid "System Requirements"
+msgstr "Systeemvereisten"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 46
+# File: usr/share/appimage-creator/ui/pages.py, line: 112
+# File: usr/share/appimage-creator/ui/pages.py, line: 117
 #: NEEDS WORK
-msgid "Version"
-msgstr "Versie"
+msgid "Checking…"
+msgstr "Controleren…"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 51
+# File: usr/share/appimage-creator/ui/pages.py, line: 116
 #: NEEDS WORK
-msgid "Description"
-msgstr "Beschrijving"
+msgid "Container Runtime"
+msgstr "Container Runtime"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 107
+# File: usr/share/appimage-creator/ui/pages.py, line: 124
 #: NEEDS WORK
-msgid "Categories"
-msgstr "Categorieën"
+msgid "Build Environments"
+msgstr "Bouwomgevingen"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 110
+# File: usr/share/appimage-creator/ui/pages.py, line: 126
 #: NEEDS WORK
-msgid "Primary Category"
-msgstr "Primaire Categorie"
+msgid "Manage containers for cross-distribution builds"
+msgstr "Beheer containers voor cross-distributie builds"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 120
+# File: usr/share/appimage-creator/ui/pages.py, line: 130
 #: NEEDS WORK
-msgid "Requires Terminal"
-msgstr "Vereist Terminal"
+msgid "Available Containers"
+msgstr "Beschikbare containers"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 121
+# File: usr/share/appimage-creator/ui/pages.py, line: 131
 #: NEEDS WORK
-msgid "Check if your application needs to run in a terminal"
-msgstr "Controleer of uw applicatie in een terminal moet draaien"
+msgid "Click to manage build containers"
+msgstr "Klik om buildcontainers te beheren"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 102
+# File: usr/share/appimage-creator/ui/pages.py, line: 149
+# File: usr/share/appimage-creator/ui/pages.py, line: 152
+# File: usr/share/appimage-creator/ui/pages.py, line: 389
+# File: usr/share/appimage-creator/ui/pages.py, line: 392
+# File: usr/share/appimage-creator/ui/pages.py, line: 663
+# File: usr/share/appimage-creator/ui/pages.py, line: 666
 #: NEEDS WORK
-msgid "Auto-Update (Optional)"
-msgstr "Automatische update (optioneel)"
+msgid "Continue"
+msgstr "Doorgaan"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 103
+# File: usr/share/appimage-creator/ui/pages.py, line: 150
 #: NEEDS WORK
-msgid "Enable automatic update checking for this AppImage"
-msgstr "Schakel automatische updatecontrole in voor deze AppImage"
+msgid "Configure your AppImage"
+msgstr "Configure uw AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 127
+# File: usr/share/appimage-creator/ui/pages.py, line: 174
 #: NEEDS WORK
-msgid "How to configure auto-updates"
-msgstr "Hoe auto-updates te configureren"
+msgid "Not installed"
+msgstr "Niet geïnstalleerd"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 128
+# File: usr/share/appimage-creator/ui/pages.py, line: 177
+# File: usr/share/appimage-creator/ui/pages.py, line: 186
 #: NEEDS WORK
-msgid "Click to see examples"
-msgstr "Klik om voorbeelden te bekijken"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 138
-#: NEEDS WORK
-msgid ""
-"<b>GitHub Releases (recommended):</b>\n"
-"Click the button next to Update URL to fill with template, then edit OWNER/REPO\n"
-"\n"
-"<b>Example:</b>\n"
-"https://api.github.com/repos/biglinux/big-video-converter/releases/latest\n"
-"\n"
-"<b>Filename Pattern:</b>\n"
-"Used to identify which file to download from the release.\n"
-"The asterisk (*) matches any text.\n"
-"\n"
-"<b>Pattern Examples:</b>\n"
-"• myapp-*-x86_64.AppImage  → matches: myapp-v1.2.3-x86_64.AppImage\n"
-"• *-gui-*.AppImage  → matches: converter-gui-1.0.AppImage\n"
-"• calculator-*.AppImage  → matches: calculator-2.5-linux.AppImage"
-msgstr ""
-"<b>GitHub Releases (aanbevolen):</b>\n"
-"Klik op de knop naast Update URL om in te vullen met sjabloon, bewerk vervolgens OWNER/REPO\n"
-"\n"
-"<b>Voorbeeld:</b>\n"
-"https://api.github.com/repos/biglinux/big-video-converter/releases/latest\n"
-"\n"
-"<b>Bestandsnaam Patroon:</b>\n"
-"Gebruikt om te identificeren welk bestand gedownload moet worden van de release.\n"
-"De asterisk (*) komt overeen met elke tekst.\n"
-"\n"
-"<b>Patroon Voorbeelden:</b>\n"
-"• myapp-*-x86_64.AppImage  → komt overeen met: myapp-v1.2.3-x86_64.AppImage\n"
-"• *-gui-*.AppImage  → komt overeen met: converter-gui-1.0.AppImage\n"
-"• calculator-*.AppImage  → komt overeen met: calculator-2.5-linux.AppImage"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 106
-#: NEEDS WORK
-msgid "Update URL"
-msgstr "Update-URL"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 118
-#: NEEDS WORK
-msgid "Paste GitHub API template"
-msgstr "Plak GitHub API-sjabloon"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 158
-#: NEEDS WORK
-msgid "Filename Pattern"
-msgstr "Bestandsnaampatroon"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 168
-#: NEEDS WORK
-msgid "Check Interval"
-msgstr "Controle-interval"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 169
-#: NEEDS WORK
-msgid "How often to check for updates"
-msgstr "Hoe vaak controleren op updates"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 172
-#: NEEDS WORK
-msgid "Every hour"
-msgstr "Elke uur"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 172
-#: NEEDS WORK
-msgid "Every 12 hours"
-msgstr "Elke 12 uur"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 172
-#: NEEDS WORK
-msgid "Every 24 hours (recommended)"
-msgstr "Elke 24 uur (aanbevolen)"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 172
-#: NEEDS WORK
-msgid "Custom"
-msgstr "Aangepast"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 182
-#: NEEDS WORK
-msgid "Custom Interval (minutes)"
-msgstr "Aangepaste Interval (minuten)"
+msgid "Ready"
+msgstr "Klaar"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 183
 #: NEEDS WORK
-msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
-msgstr "Minimum: 1 minuut, Maximum: 1440 minuten (24u)"
+#, python-brace-format
+msgid "Not installed ({})"
+msgstr "Niet geïnstalleerd ({})"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 135
+# File: usr/share/appimage-creator/ui/pages.py, line: 196
 #: NEEDS WORK
-msgid "Files"
-msgstr "Bestanden"
+msgid "Missing Components"
+msgstr "Ontbrekende Componenten"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 153
+# File: usr/share/appimage-creator/ui/pages.py, line: 198
 #: NEEDS WORK
-msgid "Application Files"
-msgstr "Toepassingsbestanden"
+msgid "Install required packages to enable container builds"
+msgstr "Installeer vereiste pakketten om containerbuilds mogelijk te maken"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 234
+# File: usr/share/appimage-creator/ui/pages.py, line: 237
+# File: usr/share/appimage-creator/ui/pages.py, line: 963
+# File: usr/share/appimage-creator/ui/pages.py, line: 965
+#: NEEDS WORK
+msgid "Recommended"
+msgstr "Aanbevolen"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 238
+# File: usr/share/appimage-creator/ui/pages.py, line: 966
+#: NEEDS WORK
+msgid "★ Recommended"
+msgstr "★ Aanbevolen"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 493
+#: NEEDS WORK
+msgid "Setup"
+msgstr "Instelling"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 285
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} of {} containers ready"
+msgstr "{} van {} containers gereed"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 299
+#: NEEDS WORK
+msgid "Application"
+msgstr "Toepassing"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 307
+#: NEEDS WORK
+msgid "Application Setup"
+msgstr "Applicatie-installatie"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 309
+#: NEEDS WORK
+msgid "Define the essential information for your AppImage"
+msgstr "Definieer de essentiële informatie voor uw AppImage"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -492,6 +508,11 @@ msgstr "Hoofduitvoerbaar bestand"
 msgid "Select the main application file"
 msgstr "Selecteer het hoofdtoepassingsbestand"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 318
+#: NEEDS WORK
+msgid "The main binary or script that starts your application"
+msgstr "De belangrijkste binaire of script die je applicatie start"
+# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 159
@@ -500,6 +521,46 @@ msgstr "Selecteer het hoofdtoepassingsbestand"
 #: NEEDS WORK
 msgid "Choose File"
 msgstr "Kies Bestand"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 42
+# File: usr/share/appimage-creator/ui/window.py, line: 159
+#: NEEDS WORK
+msgid "Application Name"
+msgstr "Toepassingsnaam"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 330
+#: NEEDS WORK
+msgid "Letters, numbers, spaces, hyphens, underscores and dots only"
+msgstr "Letters, cijfers, spaties, koppeltekens, onderstrepingen en punten alleen"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 253
+# File: usr/share/appimage-creator/ui/window.py, line: 175
+#: NEEDS WORK
+msgid "Application Icon"
+msgstr "Toepassingspictogram"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 337
+#: NEEDS WORK
+msgid "Optional – PNG, SVG or other image"
+msgstr "Optioneel – PNG, SVG of een andere afbeelding"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 340
+#: NEEDS WORK
+msgid "A 256×256 or larger PNG/SVG icon is recommended"
+msgstr "Een PNG/SVG-pictogram van 256×256 of groter wordt aanbevolen"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 256
+# File: usr/share/appimage-creator/ui/window.py, line: 178
+# File: usr/share/appimage-creator/ui/window.py, line: 579
+#: NEEDS WORK
+msgid "Choose Icon"
+msgstr "Kies Pictogram"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 165
 #: NEEDS WORK
@@ -510,6 +571,11 @@ msgstr "Toepassingstype"
 #: NEEDS WORK
 msgid "Auto-detected from executable"
 msgstr "Automatisch gedetecteerd vanuit uitvoerbaar bestand"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 353
+#: NEEDS WORK
+msgid "Determines how the launcher script is generated"
+msgstr "Bepaalt hoe het opstartscript wordt gegenereerd"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 169
 #: NEEDS WORK
@@ -550,6 +616,71 @@ msgstr "GTK"
 #: NEEDS WORK
 msgid "Electron"
 msgstr "Electron"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 440
+#: NEEDS WORK
+msgid "Getting Started"
+msgstr "Aan de slag"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 441
+#: NEEDS WORK
+msgid "Enter name and select executable"
+msgstr "Voer naam in en selecteer uitvoerbaar bestand"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 390
+#: NEEDS WORK
+msgid "Configure files and details"
+msgstr "Configureer bestanden en details"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 413
+#: NEEDS WORK
+msgid "Configuration"
+msgstr "Configuratie"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 421
+#: NEEDS WORK
+msgid "Application Details"
+msgstr "Toepassingsdetails"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 46
+#: NEEDS WORK
+msgid "Version"
+msgstr "Versie"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 427
+#: NEEDS WORK
+msgid "Semantic version: digits separated by dots (e.g. 1.2.3)"
+msgstr "Semantische versie: cijfers gescheiden door punten (bijv. 1.2.3)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 51
+#: NEEDS WORK
+msgid "Description"
+msgstr "Beschrijving"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 434
+#: NEEDS WORK
+msgid "A short one-line description shown in application menus"
+msgstr "Een korte éénregelige beschrijving die in applicatiemenu's wordt weergegeven"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 110
+#: NEEDS WORK
+msgid "Primary Category"
+msgstr "Primaire Categorie"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 120
+#: NEEDS WORK
+msgid "Requires Terminal"
+msgstr "Vereist Terminal"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 121
+#: NEEDS WORK
+msgid "Check if your application needs to run in a terminal"
+msgstr "Controleer of uw applicatie in een terminal moet draaien"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 453
+#: NEEDS WORK
+msgid "Enable for CLI tools; the desktop will open a terminal first"
+msgstr "Inschakelen voor CLI-tools; het bureaublad opent eerst een terminal"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 181
 #: NEEDS WORK
@@ -625,33 +756,6 @@ msgstr "Aangepast bureaubladbestand"
 msgid "Or select a different .desktop file"
 msgstr "Of selecteer een ander .desktop-bestand"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 250
-#: NEEDS WORK
-msgid "Resources"
-msgstr "Hulpmiddelen"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 253
-# File: usr/share/appimage-creator/ui/window.py, line: 175
-#: NEEDS WORK
-msgid "Application Icon"
-msgstr "Toepassingspictogram"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 254
-#: NEEDS WORK
-msgid "PNG, SVG, or other image format"
-msgstr "PNG, SVG of ander afbeeldingsformaat"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 256
-# File: usr/share/appimage-creator/ui/window.py, line: 178
-# File: usr/share/appimage-creator/ui/window.py, line: 579
-#: NEEDS WORK
-msgid "Choose Icon"
-msgstr "Kies Pictogram"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 265
 #: NEEDS WORK
 msgid "Structure Preview"
@@ -677,6 +781,129 @@ msgstr "Bekijk alle bestanden en mappen die verpakt zullen worden"
 msgid "View Full Structure"
 msgstr "Bekijk Volledige Structuur"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 102
+#: NEEDS WORK
+msgid "Auto-Update (Optional)"
+msgstr "Automatische update (optioneel)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 103
+#: NEEDS WORK
+msgid "Enable automatic update checking for this AppImage"
+msgstr "Schakel automatische updatecontrole in voor deze AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 127
+#: NEEDS WORK
+msgid "How to configure auto-updates"
+msgstr "Hoe auto-updates te configureren"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 128
+#: NEEDS WORK
+msgid "Click to see examples"
+msgstr "Klik om voorbeelden te bekijken"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 138
+#: NEEDS WORK
+msgid ""
+"<b>GitHub Releases (recommended):</b>\n"
+"Click the button next to Update URL to fill with template, then edit OWNER/REPO\n"
+"\n"
+"<b>Example:</b>\n"
+"https://api.github.com/repos/biglinux/big-video-converter/releases/latest\n"
+"\n"
+"<b>Filename Pattern:</b>\n"
+"Used to identify which file to download from the release.\n"
+"The asterisk (*) matches any text.\n"
+"\n"
+"<b>Pattern Examples:</b>\n"
+"• myapp-*-x86_64.AppImage  → matches: myapp-v1.2.3-x86_64.AppImage\n"
+"• *-gui-*.AppImage  → matches: converter-gui-1.0.AppImage\n"
+"• calculator-*.AppImage  → matches: calculator-2.5-linux.AppImage"
+msgstr ""
+"<b>GitHub Releases (aanbevolen):</b>\n"
+"Klik op de knop naast Update URL om in te vullen met sjabloon, bewerk vervolgens OWNER/REPO\n"
+"\n"
+"<b>Voorbeeld:</b>\n"
+"https://api.github.com/repos/biglinux/big-video-converter/releases/latest\n"
+"\n"
+"<b>Bestandsnaam Patroon:</b>\n"
+"Gebruikt om te identificeren welk bestand gedownload moet worden van de release.\n"
+"De asterisk (*) komt overeen met elke tekst.\n"
+"\n"
+"<b>Patroon Voorbeelden:</b>\n"
+"• myapp-*-x86_64.AppImage  → komt overeen met: myapp-v1.2.3-x86_64.AppImage\n"
+"• *-gui-*.AppImage  → komt overeen met: converter-gui-1.0.AppImage\n"
+"• calculator-*.AppImage  → komt overeen met: calculator-2.5-linux.AppImage"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 106
+#: NEEDS WORK
+msgid "Update URL"
+msgstr "Update-URL"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 608
+#: NEEDS WORK
+msgid "GitHub Releases API URL (must start with https://)"
+msgstr "GitHub Releases API-URL (moet beginnen met https://)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 118
+#: NEEDS WORK
+msgid "Paste GitHub API template"
+msgstr "Plak GitHub API-sjabloon"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 158
+#: NEEDS WORK
+msgid "Filename Pattern"
+msgstr "Bestandsnaampatroon"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 625
+#: NEEDS WORK
+msgid "Glob pattern to match the AppImage filename in releases"
+msgstr "Glob-patroon om de AppImage-bestandsnaam in releases te matchen"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 168
+#: NEEDS WORK
+msgid "Check Interval"
+msgstr "Controle-interval"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 169
+#: NEEDS WORK
+msgid "How often to check for updates"
+msgstr "Hoe vaak controleren op updates"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every hour"
+msgstr "Elke uur"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 12 hours"
+msgstr "Elke 12 uur"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Every 24 hours (recommended)"
+msgstr "Elke 24 uur (aanbevolen)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 172
+#: NEEDS WORK
+msgid "Custom"
+msgstr "Aangepast"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 182
+#: NEEDS WORK
+msgid "Custom Interval (minutes)"
+msgstr "Aangepaste Interval (minuten)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 183
+#: NEEDS WORK
+msgid "Minimum: 1 minute, Maximum: 1440 minutes (24h)"
+msgstr "Minimum: 1 minuut, Maximum: 1440 minuten (24u)"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 664
+#: NEEDS WORK
+msgid "Review build settings"
+msgstr "Bouwinstellingen bekijken"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 300
 #: NEEDS WORK
 msgid "Build"
@@ -691,6 +918,11 @@ msgstr "Uitvoereinstellungen"
 #: NEEDS WORK
 msgid "Output Directory"
 msgstr "Uitvoermap"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 721
+#: NEEDS WORK
+msgid "Directory where the final .AppImage file will be saved"
+msgstr "Map waar het uiteindelijke .AppImage-bestand zal worden opgeslagen"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 320
 #: NEEDS WORK
@@ -714,6 +946,11 @@ msgstr "Kies waar je de AppImage wilt bouwen"
 msgid "Select container or use local system"
 msgstr "Selecteer container of gebruik lokaal systeem"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 740
+#: NEEDS WORK
+msgid "Use a Distrobox container for maximum compatibility"
+msgstr "Gebruik een Distrobox-container voor maximale compatibiliteit"
+# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 337
@@ -722,10 +959,20 @@ msgstr "Selecteer container of gebruik lokaal systeem"
 msgid "Local System (Current Python)"
 msgstr "Lokaal Systeem (Huidige Python)"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 346
+# File: usr/share/appimage-creator/ui/pages.py, line: 751
 #: NEEDS WORK
-msgid "Advanced Options"
-msgstr "Geavanceerde opties"
+msgid "Manage Build Environments"
+msgstr "Beheer Bouwomgevingen"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 752
+#: NEEDS WORK
+msgid "Setup or remove build containers"
+msgstr "Installeer of verwijder build-containers"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 769
+#: NEEDS WORK
+msgid "Dependencies"
+msgstr "Afhankelijkheden"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 349
 #: NEEDS WORK
@@ -737,6 +984,11 @@ msgstr "Inclusief afhankelijkheden"
 msgid "Automatically include system dependencies"
 msgstr "Automatisch systeemafhankelijkheden opnemen"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 776
+#: NEEDS WORK
+msgid "Bundle shared libraries so the AppImage works on other systems"
+msgstr "Bundel gedeelde bibliotheken zodat de AppImage op andere systemen werkt"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 356
 #: NEEDS WORK
 msgid "System Dependencies"
@@ -747,6 +999,11 @@ msgstr "Systeemafhankelijkheden"
 msgid "Select which system libraries to bundle"
 msgstr "Selecteer welke systeembibliotheken moeten worden gebundeld"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 797
+#: NEEDS WORK
+msgid "Icon Theme"
+msgstr "Pictogramthema"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 371
 #: NEEDS WORK
 msgid "Include Icon Theme"
@@ -756,6 +1013,11 @@ msgstr "Inclusief pictogramthema"
 #: NEEDS WORK
 msgid "Bundle icons for consistent UI across systems"
 msgstr "Bundel pictogrammen voor een consistente gebruikersinterface op verschillende systemen"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 806
+#: NEEDS WORK
+msgid "Without a bundled theme, some icons may be missing on other desktops"
+msgstr "Zonder een gebundeld thema kunnen sommige pictogrammen ontbreken op andere bureaubladen."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 378
 #: NEEDS WORK
@@ -787,6 +1049,11 @@ msgstr "Adwaita"
 msgid "GNOME default icons (~2.6MB)"
 msgstr "GNOME standaardpictogrammen (~2.6MB)"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 346
+#: NEEDS WORK
+msgid "Advanced Options"
+msgstr "Geavanceerde opties"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
 msgid "Strip Debug Symbols"
@@ -797,25 +1064,34 @@ msgstr "Verwijder debug-symbolen"
 msgid "Reduce file size by removing debug information"
 msgstr "Verklein bestandsgrootte door debuginformatie te verwijderen"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 364
+# File: usr/share/appimage-creator/ui/pages.py, line: 849
 #: NEEDS WORK
-msgid "Build AppImage"
-msgstr "AppImage bouwen"
+msgid "Reduces AppImage size but makes debugging harder"
+msgstr "Vermindert de AppImage-grootte, maar maakt debuggen moeilijker."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 365
+# File: usr/share/appimage-creator/ui/pages.py, line: 857
 #: NEEDS WORK
-msgid "Create your AppImage with current settings"
-msgstr "Maak je AppImage met de huidige instellingen"
+msgid "Additional Libraries"
+msgstr "Aanvullende Bibliotheken"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 368
+# File: usr/share/appimage-creator/ui/pages.py, line: 860
 #: NEEDS WORK
-msgid "Generate AppImage"
-msgstr "Genereer AppImage"
+msgid ""
+"Specify extra shared libraries to bundle in the AppImage. Use library file patterns like "
+"'libcurl.so*' or 'libssl.so.3'."
+msgstr ""
+"Geef extra gedeelde bibliotheken op om in de AppImage te bundelen. Gebruik "
+"bibliotheekbestandspatronen zoals 'libcurl.so*' of 'libssl.so.3'."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 369
+# File: usr/share/appimage-creator/ui/pages.py, line: 866
 #: NEEDS WORK
-msgid "Create AppImage with configured settings"
-msgstr "Maak AppImage met geconfigureerde instellingen"
+msgid "Add Library Pattern"
+msgstr "Bibliotheekpatroon toevoegen"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 872
+#: NEEDS WORK
+msgid "Add library"
+msgstr "Bibliotheek toevoegen"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -826,61 +1102,10 @@ msgstr "Maak AppImage met geconfigureerde instellingen"
 msgid "Create AppImage"
 msgstr "Maak AppImage"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
+# File: usr/share/appimage-creator/ui/window.py, line: 202
 #: NEEDS WORK
-msgid "Environment"
-msgstr "Omgeving"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 404
-#: NEEDS WORK
-msgid "Host System Status"
-msgstr "Host systeemstatus"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 405
-#: NEEDS WORK
-msgid "Required tools for creating compatible AppImages"
-msgstr "Vereiste tools voor het maken van compatibele AppImages"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 409
-#: NEEDS WORK
-msgid "Checking host system..."
-msgstr "Controleer hostsysteem..."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 414
-#: NEEDS WORK
-msgid "Available Build Environments"
-msgstr "Beschikbare Buildomgevingen"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 415
-#: NEEDS WORK
-msgid "Select an environment to build your AppImage for maximum compatibility"
-msgstr "Selecteer een omgeving om uw AppImage te bouwen voor maximale compatibiliteit"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 438
-#: NEEDS WORK
-msgid "Host is Ready"
-msgstr "Host is Gereed"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 439
-#: NEEDS WORK
-msgid "Distrobox and a container runtime are installed."
-msgstr "Distrobox en een container-runtime zijn geïnstalleerd."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 455
-#: NEEDS WORK
-msgid "Host Setup Required"
-msgstr "Hostconfiguratie Vereist"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 456
-#: NEEDS WORK
-#, python-brace-format
-msgid "Missing: {}"
-msgstr "Ontbrekend: {}"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 493
-#: NEEDS WORK
-msgid "Setup"
-msgstr "Instelling"
+msgid "Generate your distributable AppImage file"
+msgstr "Genereer uw distribueerbare AppImage-bestand"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 48
 # File: usr/share/appimage-creator/ui/window.py, line: 131
@@ -893,61 +1118,10 @@ msgstr "AppImage Creator"
 msgid "Menu"
 msgstr "Menu"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 96
-#: NEEDS WORK
-msgid "Settings"
-msgstr "Instellingen"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 97
 #: NEEDS WORK
 msgid "About"
 msgstr "Over"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 152
-#: NEEDS WORK
-msgid "Quick Setup"
-msgstr "Snelle Setup"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 153
-#: NEEDS WORK
-msgid "Get started quickly with basic information"
-msgstr "Begin snel met basisinformatie"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 176
-#: NEEDS WORK
-msgid "Optional: Choose an icon for your application"
-msgstr "Optioneel: Kies een pictogram voor uw applicatie"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 186
-#: NEEDS WORK
-msgid "Configuration Status"
-msgstr "Configuratiestatus"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 187
-#: NEEDS WORK
-msgid "Complete setup to enable AppImage creation"
-msgstr "Voltooi de setup om AppImage-creatie mogelijk te maken"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 202
-#: NEEDS WORK
-msgid "Generate your distributable AppImage file"
-msgstr "Genereer uw distribueerbare AppImage-bestand"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 82
-# File: usr/share/appimage-creator/ui/window.py, line: 214
-#: NEEDS WORK
-msgid "Advanced Settings"
-msgstr "Geavanceerde instellingen"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 215
-#: NEEDS WORK
-msgid "Configure authors, categories, and build options"
-msgstr "Configureer auteurs, categorieën en bouwopties"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 217
-#: NEEDS WORK
-msgid "Open Settings"
-msgstr "Open Instellingen"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 237
 #: NEEDS WORK
@@ -958,10 +1132,40 @@ msgstr ""
 "Maak distribueerbare AppImages van elke Linux-toepassing. Ondersteunt Python, Qt, GTK, Java en "
 "binaire toepassingen."
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 235
+# File: usr/share/appimage-creator/ui/window.py, line: 427
 #: NEEDS WORK
-msgid "AppImage Creator Settings"
-msgstr "AppImage Creator Instellingen"
+msgid "Ready to Build"
+msgstr "Klaar om te bouwen"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 428
+#: NEEDS WORK
+msgid "All requirements met"
+msgstr "Alle vereisten voldaan"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 431
+#: NEEDS WORK
+msgid "Almost Ready!"
+msgstr "Bijna Gereed!"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 432
+#: NEEDS WORK
+msgid "Please enter an Application Name"
+msgstr "Voer alstublieft een toepassingsnaam in"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 436
+#: NEEDS WORK
+msgid "Select Executable"
+msgstr "Selecteer uitvoerbaar bestand"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 437
+#: NEEDS WORK
+msgid "Please choose the main executable file"
+msgstr "Selecteer het hoofd uitvoerbare bestand"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 615
+#: NEEDS WORK
+msgid "Essential for this application type"
+msgstr "Essentieel voor dit type applicatie"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 325
 #: NEEDS WORK
@@ -989,11 +1193,6 @@ msgstr ""
 msgid "Do you want to continue?"
 msgstr "Wilt u doorgaan?"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 381
-#: NEEDS WORK
-msgid "Cancelar"
-msgstr "Annuleren"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 386
 #: NEEDS WORK
 msgid "Setup Environment"
@@ -1009,10 +1208,16 @@ msgstr "Omgeving Instellen"
 msgid "Creating container..."
 msgstr "Container aanmaken..."
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 318
+# File: usr/share/appimage-creator/ui/window.py, line: 515
+# File: usr/share/appimage-creator/ui/window.py, line: 528
 #: NEEDS WORK
-msgid "Installing dependencies..."
-msgstr "Afhankelijkheden installeren..."
+msgid "Setup cancelled by user."
+msgstr "Installatie geannuleerd door gebruiker."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 521
+#: NEEDS WORK
+msgid "Installing dependencies (this may take a while)..."
+msgstr "Afhankelijkheden installeren (dit kan even duren)..."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 324
 # File: usr/share/appimage-creator/ui/window.py, line: 372
@@ -1070,51 +1275,6 @@ msgstr ""
 "\n"
 "Herstart de applicatie om de nieuwe functies te gebruiken."
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 427
-#: NEEDS WORK
-msgid "Ready to Build"
-msgstr "Klaar om te bouwen"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 428
-#: NEEDS WORK
-msgid "All requirements met"
-msgstr "Alle vereisten voldaan"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 431
-#: NEEDS WORK
-msgid "Almost Ready!"
-msgstr "Bijna Gereed!"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 432
-#: NEEDS WORK
-msgid "Please enter an Application Name"
-msgstr "Voer alstublieft een toepassingsnaam in"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 436
-#: NEEDS WORK
-msgid "Select Executable"
-msgstr "Selecteer uitvoerbaar bestand"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 437
-#: NEEDS WORK
-msgid "Please choose the main executable file"
-msgstr "Selecteer het hoofd uitvoerbare bestand"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 440
-#: NEEDS WORK
-msgid "Getting Started"
-msgstr "Aan de slag"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 441
-#: NEEDS WORK
-msgid "Enter name and select executable"
-msgstr "Voer naam in en selecteer uitvoerbaar bestand"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 615
-#: NEEDS WORK
-msgid "Essential for this application type"
-msgstr "Essentieel voor dit type applicatie"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
 msgid "Executable Files"
@@ -1169,121 +1329,6 @@ msgstr "Kies bureaubladbestand"
 msgid "AppImage Structure - Full View"
 msgstr "AppImage-structuur - Volledig overzicht"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 760
-#: NEEDS WORK
-msgid "AppImage Structure - Detailed View"
-msgstr "AppImage-structuur - Gedetailleerd overzicht"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 764
-#: NEEDS WORK
-msgid "[AppImage Root]"
-msgstr "[AppImage Root]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 765
-#: NEEDS WORK
-msgid "├── AppRun (main launcher)"
-msgstr "├── AppRun (hoofdlauncher)"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 768
-#: NEEDS WORK
-msgid "└── usr/"
-msgstr "└── usr/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 769
-#: NEEDS WORK
-msgid "    ├── bin/"
-msgstr "├── bin/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 771
-#: NEEDS WORK
-msgid "    ├── lib/"
-msgstr "├── lib/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 772
-#: NEEDS WORK
-msgid "    └── share/"
-msgstr "└── delen/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1016
-#: NEEDS WORK
-msgid "            [Python Files]"
-msgstr "[Python-bestanden]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1027
-#: NEEDS WORK
-msgid "            [Shell Scripts]"
-msgstr "[Shell-scripts]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1038
-#: NEEDS WORK
-msgid "            [UI Files]"
-msgstr "[UI-bestanden]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1049
-#: NEEDS WORK
-msgid "            [CSS Files]"
-msgstr "[CSS-bestanden]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1061
-#: NEEDS WORK
-msgid "            [Icon Files]"
-msgstr "[Iconbestanden]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1070
-#: NEEDS WORK
-msgid "            [Locale Directories]"
-msgstr "[Locale Mappen]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1077
-#: NEEDS WORK
-msgid "            [Desktop Files]"
-msgstr "[Desktopbestanden]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1085
-#: NEEDS WORK
-msgid "[Additional Directories]"
-msgstr "[Extra Mappen]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1112
-#: NEEDS WORK
-msgid "SUMMARY"
-msgstr "SAMENVATTING"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1116
-#: NEEDS WORK
-msgid "Project Root"
-msgstr "Project Root"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1116
-#: NEEDS WORK
-msgid "Not detected"
-msgstr "Niet gedetecteerd"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1127
-#: NEEDS WORK
-msgid "  File Breakdown:"
-msgstr "Bestandsoverzicht:"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 817
-#: NEEDS WORK
-msgid "Tip"
-msgstr "Tip"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 818
-#: NEEDS WORK
-msgid "Enter an Application Name above to continue"
-msgstr "Voer hierboven een toepassingsnaam in om door te gaan"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 820
-#: NEEDS WORK
-msgid "Ready!"
-msgstr "Klaar!"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 821
-#: NEEDS WORK
-msgid "Ready to create AppImage! Click 'Create AppImage' when ready."
-msgstr "Klaar om AppImage te maken! Klik op 'Maak AppImage' wanneer je er klaar voor bent."
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 895
 #: NEEDS WORK
 msgid "Validation Error"
@@ -1330,21 +1375,310 @@ msgstr "Bouw Geannuleerd"
 msgid "Build was cancelled"
 msgstr "Build is geannuleerd"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 1156
+#: NEEDS WORK
+msgid ""
+"The appimagetool utility could not be found or downloaded.\n"
+"\n"
+"Suggestion: Check your internet connection and try again."
+msgstr ""
+"De appimagetool-hulpprogramma kon niet worden gevonden of gedownload.\n"
+"\n"
+"Suggestie: Controleer uw internetverbinding en probeer het opnieuw."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1163
+#: NEEDS WORK
+msgid ""
+"Could not set up appimagetool.\n"
+"\n"
+"Suggestion: Check your internet connection and available disk space."
+msgstr ""
+"Kon appimagetool niet instellen.\n"
+"\n"
+"Suggestie: Controleer uw internetverbinding en beschikbare schijfruimte."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1171
+#: NEEDS WORK
+msgid ""
+"The build process took too long and was stopped.\n"
+"\n"
+"Suggestion: Try building again. If the problem persists, check if the build environment is "
+"responsive."
+msgstr ""
+"Het buildproces duurde te lang en werd gestopt.\n"
+"\n"
+"Suggestie: Probeer opnieuw te bouwen. Als het probleem aanhoudt, controleer dan of de buildomgeving "
+"responsief is."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1178
+#: NEEDS WORK
+msgid "The build was cancelled by the user."
+msgstr "De build is geannuleerd door de gebruiker."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1183
+#: NEEDS WORK
+msgid ""
+"Distrobox is not installed on your system.\n"
+"\n"
+"Suggestion: Install distrobox from your package manager."
+msgstr ""
+"Distrobox is niet geïnstalleerd op uw systeem.\n"
+"\n"
+"Suggestie: Installeer distrobox via uw pakketbeheerder."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1190
+#: NEEDS WORK
+msgid ""
+"Your system is not configured for Distrobox containers.\n"
+"\n"
+"Suggestion: Make sure Docker or Podman is installed and running."
+msgstr ""
+"Uw systeem is niet geconfigureerd voor Distrobox-containers.\n"
+"\n"
+"Suggestie: Zorg ervoor dat Docker of Podman is geïnstalleerd en actief is."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1198
+#: NEEDS WORK
+msgid ""
+"Could not create the build directory.\n"
+"\n"
+"Suggestion: Check disk space and write permissions."
+msgstr ""
+"Kon de buildmap niet maken.\n"
+"\n"
+"Suggestie: Controleer de schijfruimte en schrijfrechten."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1205
+#: NEEDS WORK
+msgid ""
+"Could not copy application files to the build directory.\n"
+"\n"
+"Suggestion: Ensure the source files still exist and you have read permissions."
+msgstr ""
+"Kon de applicatiebestanden niet naar de buildmap kopiëren.\n"
+"\n"
+"Suggestie: Zorg ervoor dat de bronbestanden nog bestaan en dat je leesrechten hebt."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1213
+#: NEEDS WORK
+msgid ""
+"Python environment setup took too long.\n"
+"\n"
+"Suggestion: Check your internet connection (pip may be downloading packages)."
+msgstr ""
+"De installatie van de Python-omgeving heeft te lang geduurd.\n"
+"\n"
+"Suggestie: Controleer uw internetverbinding (pip kan pakketten aan het downloaden zijn)."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1221
+#: NEEDS WORK
+msgid ""
+"Python standard library could not be found in the build container.\n"
+"\n"
+"Suggestion: Try removing and recreating the build environment."
+msgstr ""
+"De Python-standaardbibliotheek kon niet worden gevonden in de buildcontainer.\n"
+"\n"
+"Suggestie: Probeer de buildomgeving te verwijderen en opnieuw te maken."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1229
+#: NEEDS WORK
+msgid ""
+"Not enough disk space to complete the build.\n"
+"\n"
+"Suggestion: Free up disk space and try again."
+msgstr ""
+"Niet genoeg schijfruimte om de build te voltooien.\n"
+"\n"
+"Suggestie: Maak schijfruimte vrij en probeer het opnieuw."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1236
+#: NEEDS WORK
+msgid ""
+"A file permission error occurred during the build.\n"
+"\n"
+"Suggestion: Check that you have the necessary permissions for all files."
+msgstr ""
+"Er is een fout opgetreden met de bestandsmachtigingen tijdens de build.\n"
+"\n"
+"Suggestie: Controleer of je de benodigde machtigingen voor alle bestanden hebt."
+# 
 # File: usr/share/appimage-creator/ui/app.py, line: 75
 #: NEEDS WORK
 #, python-brace-format
 msgid "Warning: Could not load custom CSS: {}"
 msgstr "Waarschuwing: Kon aangepaste CSS niet laden: {}"
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
 #: NEEDS WORK
-msgid "Optimized for Linux Mint users - based on Ubuntu 24.04 LTS."
-msgstr "Geoptimaliseerd voor Linux Mint-gebruikers - gebaseerd op Ubuntu 24.04 LTS."
+#, python-brace-format
+msgid "Including user-specified extra libraries: {}"
+msgstr "Inclusief door de gebruiker opgegeven extra bibliotheken: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying standard system libraries: {}"
+msgstr "Kopiëren van standaard systeembibliotheken: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Kopiëren van conflicterende systeembibliotheken naar fallback-map: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Script aan het genereren om bibliotheken naar {} te kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
+#: NEEDS WORK
+msgid "Executing library copy script..."
+msgstr "Voer bibliotheek kopieerscript uit..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1039
+#: NEEDS WORK
+msgid "Warning: Library copy script finished with errors."
+msgstr "Waarschuwing: Bibliotheek kopieerscript is beëindigd met fouten."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1041
+#: NEEDS WORK
+msgid "Library copy script finished successfully."
+msgstr "Bibliotheek kopieerscript succesvol voltooid."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
+#: NEEDS WORK
+msgid "No typelibs selected for inclusion."
+msgstr "Geen typelibs geselecteerd voor opname."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying selected typelibs: {}"
+msgstr "Typelibs kopiëren: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
+#: NEEDS WORK
+msgid "Generating script to copy typelibs..."
+msgstr "Script aan het genereren om typelibs te kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
+#: NEEDS WORK
+msgid "Executing typelib copy script..."
+msgstr "Typelib-kopie-script wordt uitgevoerd..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
+#: NEEDS WORK
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "Waarschuwing: Sommige typelibs zijn mogelijk niet gekopieerd."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
+#: NEEDS WORK
+msgid "Typelib copy complete"
+msgstr "Typelib-kopie voltooid"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Essentiële GStreamer-plug-ins kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "Gedetecteerde video-afspeelvereisten"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "GStreamer-plug-ins kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer-plugin kopiëren voltooid"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Adwaita-symbolische pictogrammen kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Symbolische pictogrammen al aanwezig"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
+#: NEEDS WORK
+msgid "Copying symbolic icons from container..."
+msgstr "Symbolische pictogrammen kopiëren vanuit container..."
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
+#: NEEDS WORK
+msgid "Copying symbolic icons from host system..."
+msgstr "Symbolische pictogrammen van het hostsysteem kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Adwaita symbolic icons not found at {}"
+msgstr "Waarschuwing: Adwaita symbolische pictogrammen niet gevonden op {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Waarschuwing: Kopiëren van symbolische pictogrammen mislukt"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Aangepaste index.theme maken voor Adwaita symbolische pictogrammen..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Symbolische pictogrammen succesvol gekopieerd"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "Kopiëren van Papirus-symbolische pictogrammen..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Papirus symbolische pictogrammen al aanwezig"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Kopiëren van Papirus- en Papirus-Dark-symbolische pictogrammen..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "Voer het kopieerscript voor Papirus-iconen uit..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Waarschuwing: Papirus-pictogrammen niet beschikbaar, terugvallen op Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Aangepaste index.theme maken voor Papirus symbolische pictogrammen..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Papirus symbolische pictogrammen succesvol gekopieerd"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Latest Ubuntu LTS with newest packages."
-msgstr "Laatste Ubuntu LTS met de nieuwste pakketten."
+msgid "Recommended - Latest Ubuntu LTS with newest packages."
+msgstr "Aanbevolen - Laatste Ubuntu LTS met de nieuwste pakketten."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 31
 #: NEEDS WORK
@@ -1366,20 +1700,10 @@ msgstr "Laatste Debian stabiel - zeer betrouwbaar."
 msgid "Previous Debian stable - proven stability."
 msgstr "Vorige Debian-stable - bewezen stabiliteit."
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 73
-#: NEEDS WORK
-msgid "Older Debian for maximum compatibility."
-msgstr "Oudere Debian voor maximale compatibiliteit."
-# 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 95
 #: NEEDS WORK
 msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
 msgstr "Laatste Fedora met geavanceerde pakketten en GTK4/VTE-ondersteuning."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
-#: NEEDS WORK
-msgid "Stable Fedora release."
-msgstr "Stabiele Fedora-release."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 105
 #: NEEDS WORK
@@ -1402,6 +1726,14 @@ msgstr "Omgeving '{}' bestaat al."
 #, python-brace-format
 msgid "Creating environment '{}'... This may take a while."
 msgstr "Omgeving '{}' aanmaken... Dit kan even duren."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 392
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 431
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 451
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 576
+#: NEEDS WORK
+msgid "Cancelled by user."
+msgstr "Geannuleerd door gebruiker."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 295
 #: NEEDS WORK
@@ -1893,226 +2225,21 @@ msgstr "Afhankelijkheden succesvol geïnstalleerd."
 msgid "Dependencies processed"
 msgstr "Afhankelijkheden verwerkt"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 356
+# File: usr/share/appimage-creator/core/builder.py, line: 775
 #: NEEDS WORK
-msgid "Setting up Python environment..."
-msgstr "Python-omgeving aan het instellen..."
+msgid "Running recursive library dependency resolution..."
+msgstr "Voer recursieve bibliotheekafhankelijkheidsresolutie uit..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 370
+# File: usr/share/appimage-creator/core/builder.py, line: 776
 #: NEEDS WORK
-msgid "Warning: requirements.txt not found. Using default packages."
-msgstr "Waarschuwing: requirements.txt niet gevonden. Standaardpakketten worden gebruikt."
+msgid "Resolving library dependencies..."
+msgstr "Afhandelen van bibliotheekafhankelijkheden..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 379
-#: NEEDS WORK
-msgid "Creating Python virtualenv..."
-msgstr "Een Python-virtualenv aanmaken..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 382
+# File: usr/share/appimage-creator/core/builder.py, line: 786
 #: NEEDS WORK
 #, python-brace-format
-msgid "Creating isolated virtualenv at: {}"
-msgstr "Een geïsoleerde virtualenv aanmaken op: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 390
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to create virtualenv: {}"
-msgstr "Kon niet virtuele omgeving aanmaken: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 392
-#: NEEDS WORK
-msgid "Virtualenv created successfully."
-msgstr "Virtualenv succesvol aangemaakt."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 395
-#: NEEDS WORK
-msgid "Copying Python standard library to venv..."
-msgstr "Python-standaardbibliotheek naar venv kopiëren..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 396
-#: NEEDS WORK
-msgid "Copying Python stdlib..."
-msgstr "Kopiëren van de Python-stdlib..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 410
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not detect Python version in container. Falling back to host version: {}"
-msgstr "Waarschuwing: Kon de Python-versie in de container niet detecteren. Terugvallen op hostversie: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 426
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copying stdlib from {} to {}"
-msgstr "De standaardbibliotheek kopiëren van {} naar {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 450
-#: NEEDS WORK
-msgid "Failed to copy stdlib from container"
-msgstr "Kon niet de stdlib van de container kopiëren"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 454
-#: NEEDS WORK
-#, python-brace-format
-msgid "Could not find stdlib at: {}"
-msgstr "Kon de stdlib niet vinden op: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 463
-#: NEEDS WORK
-#, python-brace-format
-msgid "Skipping system packages: {}"
-msgstr "Systeempakketten overslaan: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 475
-#: NEEDS WORK
-msgid "encodings module not found after stdlib copy"
-msgstr "encodings-module niet gevonden na stdlib-kopie"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 477
-#: NEEDS WORK
-msgid "Python stdlib copied successfully"
-msgstr "Python stdlib succesvol gekopieerd"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 480
-#: NEEDS WORK
-msgid "Cleaning up copied stdlib..."
-msgstr "Opruimen van gekopieerde stdlib..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 497
-#: NEEDS WORK
-msgid "Stdlib cleanup complete."
-msgstr "Stdlib opruiming voltooid."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 559
-#: NEEDS WORK
-#, python-brace-format
-msgid "Error copying Python stdlib: {}"
-msgstr "Fout bij het kopiëren van de Python-stdlib: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 560
-#: NEEDS WORK
-msgid "Python stdlib required for AppImage"
-msgstr "Python-stdlib vereist voor AppImage"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 574
-#: NEEDS WORK
-msgid "Copying Python shared libraries..."
-msgstr "Python gedeelde bibliotheken kopiëren..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 603
-#: NEEDS WORK
-msgid "Python shared libraries copied"
-msgstr "Python gedeelde bibliotheken gekopieerd"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 563
-#: NEEDS WORK
-msgid "Installing Python packages..."
-msgstr "Python-pakketten installeren..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 568
-#: NEEDS WORK
-#, python-brace-format
-msgid "Installing packages: {}"
-msgstr "Pakketten installeren: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 584
-#: NEEDS WORK
-#, python-brace-format
-msgid "Installing {}..."
-msgstr "Installeren {}..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 590
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Failed to install {}: {}"
-msgstr "Waarschuwing: Installatie van {} is mislukt: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 593
-#: NEEDS WORK
-msgid "Attempting fallback: using system PyGObject bindings"
-msgstr "Proberen om terug te vallen: systeem PyGObject-bindings gebruiken"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 596
-#: NEEDS WORK
-#, python-brace-format
-msgid "Successfully installed {}"
-msgstr "Succesvol geïnstalleerd {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 706
-#: NEEDS WORK
-msgid "Python packages installed"
-msgstr "Geïnstalleerde Python-pakketten"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 500
-#: NEEDS WORK
-msgid "Performing aggressive cleanup for size optimization..."
-msgstr "Uitvoeren van agressieve opschoning voor grootte-optimalisatie..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 523
-# File: usr/share/appimage-creator/core/builder.py, line: 538
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed: {}"
-msgstr "Verwijderd: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 543
-#: NEEDS WORK
-msgid "Removing bytecode cache files..."
-msgstr "Verwijderen van bytecode-cachebestanden..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 555
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Removed {} __pycache__ dirs and {} .pyc files"
-msgstr "Verwijderde {} __pycache__ mappen en {} .pyc bestanden"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 556
-#: NEEDS WORK
-msgid "Aggressive cleanup complete."
-msgstr "Aggressieve opschoning voltooid."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 598
-#: NEEDS WORK
-msgid "Python environment ready"
-msgstr "Python-omgeving gereed"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 601
-#: NEEDS WORK
-msgid "Python setup timed out"
-msgstr "Python-installatie is verlopen"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 603
-#: NEEDS WORK
-#, python-brace-format
-msgid "Python setup failed: {}"
-msgstr "Python-installatie mislukt: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 611
-#: NEEDS WORK
-msgid "Copying system gi module to virtualenv..."
-msgstr "Systeem gi-module naar virtualenv kopiëren..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 639
-#: NEEDS WORK
-msgid "Error: System gi module not found"
-msgstr "Fout: Systeem gi-module niet gevonden"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 701
-#: NEEDS WORK
-msgid "System PyGObject copied successfully"
-msgstr "Systeem PyGObject succesvol gekopieerd"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 704
-#: NEEDS WORK
-msgid "Failed to copy system PyGObject"
-msgstr "Kon niet kopiëren van systeem PyGObject"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 708
-#: NEEDS WORK
-#, python-brace-format
-msgid "Error using system PyGObject: {}"
-msgstr "Fout bij het gebruik van systeem PyGObject: {}"
+msgid "Warning: {} libraries could not be resolved: {}"
+msgstr "Waarschuwing: {} bibliotheken konden niet worden opgelost: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 716
 #: NEEDS WORK
@@ -2248,270 +2375,37 @@ msgstr ""
 "Foutdetails:\n"
 "{err}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 827
+# File: usr/share/appimage-creator/core/builder.py, line: 1235
 #: NEEDS WORK
-msgid "Processing external binaries with linuxdeploy..."
-msgstr "Externe binaire bestanden verwerken met linuxdeploy..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 830
-#: NEEDS WORK
-msgid "Warning: linuxdeploy not available, skipping binary bundling"
-msgstr "Waarschuwing: linuxdeploy niet beschikbaar, overslaan van binaire bundeling"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 841
-#: NEEDS WORK
-#, python-brace-format
-msgid "Backed up original wrapper: {}"
-msgstr "Originele wrapper geback-upt: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 855
-#: NEEDS WORK
-msgid "Backed up custom AppRun"
-msgstr "Gemaakt een back-up van aangepaste AppRun"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 861
-#: NEEDS WORK
-msgid "Warning: No .desktop file found, skipping linuxdeploy"
-msgstr "Waarschuwing: Geen .desktop-bestand gevonden, linuxdeploy wordt overgeslagen"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1304
-#: NEEDS WORK
-#, python-brace-format
-msgid "Skipping copy of '{}' executable, as it is treated as a library provider."
-msgstr ""
-"Overslaan van kopie van '{}' uitvoerbaar bestand, aangezien het wordt behandeld als een "
-"bibliotheekleverancier."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 891
-#: NEEDS WORK
-#, python-brace-format
-msgid "Will bundle: {}"
-msgstr "Zal bundelen: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1243
-#: NEEDS WORK
-msgid "No external binaries or plugins to process with linuxdeploy."
-msgstr "Geen externe binaire bestanden of plugins om te verwerken met linuxdeploy."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 902
-#: NEEDS WORK
-msgid "Running linuxdeploy..."
-msgstr "Linuxdeploy wordt uitgevoerd..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 903
-#: NEEDS WORK
-msgid "Bundling binary dependencies..."
-msgstr "Bundelen van binaire afhankelijkheden..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 906
-#: NEEDS WORK
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "Opmerking: linuxdeploy draait lokaal maar heeft toegang tot containerbestanden"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 920
-#: NEEDS WORK
-msgid "Warning: linuxdeploy had issues but continuing..."
-msgstr "Waarschuwing: linuxdeploy had problemen maar gaat door..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 922
-#: NEEDS WORK
-msgid "External binaries bundled successfully"
-msgstr "Externe binaire bestanden succesvol gebundeld"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 932
-#: NEEDS WORK
-msgid "Restored custom AppRun"
-msgstr "Herstelde aangepaste AppRun"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 942
-#: NEEDS WORK
-#, python-brace-format
-msgid "Restored original wrapper: {}"
-msgstr "Herstelde originele wrapper: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1370
-#: NEEDS WORK
-msgid "Generating icon cache inside AppDir..."
-msgstr "Iconcache aanmaken in AppDir..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1383
-#: NEEDS WORK
-msgid "Successfully generated icon-theme.cache."
-msgstr "Icon-theme.cache succesvol gegenereerd."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1385
-#: NEEDS WORK
-msgid "Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
-msgstr ""
-"Waarschuwing: Het is niet gelukt om icon-theme.cache te genereren. Iconen worden mogelijk niet "
-"weergegeven in menu's."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1388
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not run gtk-update-icon-cache: {}"
-msgstr "Waarschuwing: Kon gtk-update-icon-cache niet uitvoeren: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 945
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Binary bundling failed: {}"
-msgstr "Waarschuwing: Binaire bundeling mislukt: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1323
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copying standard system libraries: {}"
-msgstr "Kopiëren van standaard systeembibliotheken: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1327
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copying conflicting system libraries to fallback dir: {}"
-msgstr "Kopiëren van conflicterende systeembibliotheken naar fallback-map: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1344
-#: NEEDS WORK
-#, python-brace-format
-msgid "Generating script to copy libraries to {}..."
-msgstr "Script aan het genereren om bibliotheken naar {} te kopiëren..."
+msgid "Setting up appimagetool..."
+msgstr "Appimagetool aan het instellen..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1241
 #: NEEDS WORK
-msgid "Executing library copy script..."
-msgstr "Voer bibliotheek kopieerscript uit..."
+#, python-brace-format
+msgid "Found appimagetool: {}"
+msgstr "Gevonden appimagetool: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1039
+# File: usr/share/appimage-creator/core/builder.py, line: 1251
 #: NEEDS WORK
-msgid "Warning: Library copy script finished with errors."
-msgstr "Waarschuwing: Bibliotheek kopieerscript is beëindigd met fouten."
+msgid "Downloading appimagetool..."
+msgstr "Appimagetool downloaden..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1041
+# File: usr/share/appimage-creator/core/builder.py, line: 1254
 #: NEEDS WORK
-msgid "Library copy script finished successfully."
-msgstr "Bibliotheek kopieerscript succesvol voltooid."
+msgid "Downloading appimagetool"
+msgstr "appimagetool downloaden"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1273
+# File: usr/share/appimage-creator/core/builder.py, line: 1177
 #: NEEDS WORK
-msgid "No typelibs selected for inclusion."
-msgstr "Geen typelibs geselecteerd voor opname."
+msgid "⚠ SHA256 checksum mismatch for appimagetool!"
+msgstr "⚠ SHA256 controlegetal komt niet overeen voor appimagetool!"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1276
+# File: usr/share/appimage-creator/core/builder.py, line: 1263
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected typelibs: {}"
-msgstr "Typelibs kopiëren: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1284
-#: NEEDS WORK
-msgid "Generating script to copy typelibs..."
-msgstr "Script aan het genereren om typelibs te kopiëren..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1318
-#: NEEDS WORK
-msgid "Executing typelib copy script..."
-msgstr "Typelib-kopie-script wordt uitgevoerd..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1286
-#: NEEDS WORK
-msgid "Warning: Some typelibs may not have been copied"
-msgstr "Waarschuwing: Sommige typelibs zijn mogelijk niet gekopieerd."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1288
-#: NEEDS WORK
-msgid "Typelib copy complete"
-msgstr "Typelib-kopie voltooid"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1467
-#: NEEDS WORK
-msgid "Copying essential GStreamer plugins..."
-msgstr "Essentiële GStreamer-plug-ins kopiëren..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1530
-#: NEEDS WORK
-msgid "Detected video playback requirements"
-msgstr "Gedetecteerde video-afspeelvereisten"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1579
-#: NEEDS WORK
-msgid "Copying GStreamer plugins..."
-msgstr "GStreamer-plug-ins kopiëren..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1588
-#: NEEDS WORK
-msgid "GStreamer plugin copying complete"
-msgstr "GStreamer-plugin kopiëren voltooid"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1385
-#: NEEDS WORK
-msgid "Copying Adwaita symbolic icons..."
-msgstr "Adwaita-symbolische pictogrammen kopiëren..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1394
-#: NEEDS WORK
-msgid "Symbolic icons already present"
-msgstr "Symbolische pictogrammen al aanwezig"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1405
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copying symbolic icons from {}..."
-msgstr "Symbolische pictogrammen kopiëren van {}..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1434
-#: NEEDS WORK
-msgid "Executing symbolic icons copy script..."
-msgstr "Voer script voor het kopiëren van symbolische pictogrammen uit..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1442
-#: NEEDS WORK
-msgid "Warning: Failed to copy symbolic icons"
-msgstr "Waarschuwing: Kopiëren van symbolische pictogrammen mislukt"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1656
-#: NEEDS WORK
-msgid "Creating custom index.theme for Adwaita symbolic icons..."
-msgstr "Aangepaste index.theme maken voor Adwaita symbolische pictogrammen..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1444
-#: NEEDS WORK
-msgid "Symbolic icons copied successfully"
-msgstr "Symbolische pictogrammen succesvol gekopieerd"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1477
-#: NEEDS WORK
-msgid "Copying Papirus symbolic icons..."
-msgstr "Kopiëren van Papirus-symbolische pictogrammen..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1501
-#: NEEDS WORK
-msgid "Papirus symbolic icons already present"
-msgstr "Papirus symbolische pictogrammen al aanwezig"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1510
-#: NEEDS WORK
-msgid "Copying Papirus and Papirus-Dark symbolic icons..."
-msgstr "Kopiëren van Papirus- en Papirus-Dark-symbolische pictogrammen..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1584
-#: NEEDS WORK
-msgid "Executing Papirus icons copy script..."
-msgstr "Voer het kopieerscript voor Papirus-iconen uit..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1594
-#: NEEDS WORK
-msgid "Warning: Papirus icons not available, falling back to Adwaita"
-msgstr "Waarschuwing: Papirus-pictogrammen niet beschikbaar, terugvallen op Adwaita"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1882
-#: NEEDS WORK
-msgid "Creating custom index.theme for Papirus symbolic icons..."
-msgstr "Aangepaste index.theme maken voor Papirus symbolische pictogrammen..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1597
-#: NEEDS WORK
-msgid "Papirus symbolic icons copied successfully"
-msgstr "Papirus symbolische pictogrammen succesvol gekopieerd"
+msgid "Failed to setup appimagetool: {}"
+msgstr "Mislukt om appimagetool in te stellen: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1045
 #: NEEDS WORK
@@ -2534,115 +2428,16 @@ msgstr "Bezig met het downloaden van linuxdeploy..."
 msgid "Downloading linuxdeploy"
 msgstr "Aan het downloaden van linuxdeploy"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1221
+#: NEEDS WORK
+msgid "⚠ SHA256 checksum mismatch for linuxdeploy!"
+msgstr "⚠ SHA256 controlegetal komt niet overeen voor linuxdeploy!"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1076
 #: NEEDS WORK
 #, python-brace-format
 msgid "Failed to setup linuxdeploy: {}"
 msgstr "Mislukt om linuxdeploy in te stellen: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 2081
-#: NEEDS WORK
-msgid "Warning: Could not determine source path for binary detection."
-msgstr "Waarschuwing: Kon de brondirectory voor binaire detectie niet bepalen."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 2084
-#: NEEDS WORK
-#, python-brace-format
-msgid "Scanning for binary dependencies in: {}"
-msgstr "Scannen op binaire afhankelijkheden in: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 2104
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Detected dependency on binary: {}"
-msgstr "Gedetecteerde afhankelijkheid van binaire: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1131
-#: NEEDS WORK
-#, python-brace-format
-msgid "Detected binary dependencies: {}"
-msgstr "Gedetecteerde binaire afhankelijkheden: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1144
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied binary: {}"
-msgstr "Gekopieerde binaire: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1151
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Failed to copy {}: {}"
-msgstr "Waarschuwing: Kopiëren van {} is mislukt: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1154
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: {} not found in system"
-msgstr "Waarschuwing: {} niet gevonden in het systeem"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1157
-#: NEEDS WORK
-#, python-brace-format
-msgid "Missing binaries (app may not work): {}"
-msgstr "Ontbrekende binaire bestanden (app werkt mogelijk niet): {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1159
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copied {} external binaries"
-msgstr "Gekopieerde {} externe binaire bestanden"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1195
-#: NEEDS WORK
-#, python-brace-format
-msgid "Fixed absolute path in: {}"
-msgstr "Vast pad in: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1202
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not fix script {}: {}"
-msgstr "Waarschuwing: Kon script {} niet repareren: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1226
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Copied lib: {}"
-msgstr "Gekopieerde lib: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1231
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Could not analyze dependencies for {}: {}"
-msgstr "Waarschuwing: Kon afhankelijkheden voor {} niet analyseren: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1235
-#: NEEDS WORK
-msgid "Setting up appimagetool..."
-msgstr "Appimagetool aan het instellen..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1241
-#: NEEDS WORK
-#, python-brace-format
-msgid "Found appimagetool: {}"
-msgstr "Gevonden appimagetool: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1251
-#: NEEDS WORK
-msgid "Downloading appimagetool..."
-msgstr "Appimagetool downloaden..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1254
-#: NEEDS WORK
-msgid "Downloading appimagetool"
-msgstr "appimagetool downloaden"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1263
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to setup appimagetool: {}"
-msgstr "Mislukt om appimagetool in te stellen: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1268
 # File: usr/share/appimage-creator/core/builder.py, line: 1432
@@ -2787,6 +2582,18 @@ msgstr "Waarschuwing: Kon container Python niet detecteren, gebruik builder Pyth
 msgid "Failed to setup appimagetool"
 msgstr "Configureren van appimagetool is mislukt"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1466
+#: NEEDS WORK
+msgid "Validating AppDir..."
+msgstr "AppDir valideren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1476
+#: NEEDS WORK
+msgid "Warning: Some library dependencies are unresolved. The AppImage may not work on all systems."
+msgstr ""
+"Waarschuwing: Sommige bibliotheekafhankelijkheden zijn niet opgelost. De AppImage werkt mogelijk "
+"niet op alle systemen."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1435
 #: NEEDS WORK
 msgid "Build complete!"
@@ -2802,6 +2609,560 @@ msgstr "✗ Build mislukt: {}"
 #: NEEDS WORK
 msgid "Build already in progress"
 msgstr "Bouw al in uitvoering"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 760
+#: NEEDS WORK
+msgid "AppImage Structure - Detailed View"
+msgstr "AppImage-structuur - Gedetailleerd overzicht"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 764
+#: NEEDS WORK
+msgid "[AppImage Root]"
+msgstr "[AppImage Root]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 765
+#: NEEDS WORK
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun (hoofdlauncher)"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 768
+#: NEEDS WORK
+msgid "└── usr/"
+msgstr "└── usr/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 769
+#: NEEDS WORK
+msgid "    ├── bin/"
+msgstr "├── bin/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 771
+#: NEEDS WORK
+msgid "    ├── lib/"
+msgstr "├── lib/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 772
+#: NEEDS WORK
+msgid "    └── share/"
+msgstr "└── delen/"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
+#: NEEDS WORK
+msgid "Python Files"
+msgstr "Python-bestanden"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
+#: NEEDS WORK
+msgid "Shell Scripts"
+msgstr "Shell-scripts"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
+#: NEEDS WORK
+msgid "UI Files"
+msgstr "UI-bestanden"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
+#: NEEDS WORK
+msgid "CSS Files"
+msgstr "CSS-bestanden"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
+#: NEEDS WORK
+msgid "Icon Files"
+msgstr "Pictogrambestanden"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
+#: NEEDS WORK
+msgid "Locale Directories"
+msgstr "Locale-mappen"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[Extra Mappen]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "SAMENVATTING"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "Project Root"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Not detected"
+msgstr "Niet gedetecteerd"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "Bestandsoverzicht:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 827
+#: NEEDS WORK
+msgid "Processing external binaries with linuxdeploy..."
+msgstr "Externe binaire bestanden verwerken met linuxdeploy..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 830
+#: NEEDS WORK
+msgid "Warning: linuxdeploy not available, skipping binary bundling"
+msgstr "Waarschuwing: linuxdeploy niet beschikbaar, overslaan van binaire bundeling"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 841
+#: NEEDS WORK
+#, python-brace-format
+msgid "Backed up original wrapper: {}"
+msgstr "Originele wrapper geback-upt: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 855
+#: NEEDS WORK
+msgid "Backed up custom AppRun"
+msgstr "Gemaakt een back-up van aangepaste AppRun"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 861
+#: NEEDS WORK
+msgid "Warning: No .desktop file found, skipping linuxdeploy"
+msgstr "Waarschuwing: Geen .desktop-bestand gevonden, linuxdeploy wordt overgeslagen"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1304
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping copy of '{}' executable, as it is treated as a library provider."
+msgstr ""
+"Overslaan van kopie van '{}' uitvoerbaar bestand, aangezien het wordt behandeld als een "
+"bibliotheekleverancier."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 891
+#: NEEDS WORK
+#, python-brace-format
+msgid "Will bundle: {}"
+msgstr "Zal bundelen: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
+#: NEEDS WORK
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Geen externe binaire bestanden of plugins om te verwerken met linuxdeploy."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 902
+#: NEEDS WORK
+msgid "Running linuxdeploy..."
+msgstr "Linuxdeploy wordt uitgevoerd..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 903
+#: NEEDS WORK
+msgid "Bundling binary dependencies..."
+msgstr "Bundelen van binaire afhankelijkheden..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 906
+#: NEEDS WORK
+msgid "Note: linuxdeploy runs locally but accesses container files"
+msgstr "Opmerking: linuxdeploy draait lokaal maar heeft toegang tot containerbestanden"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 920
+#: NEEDS WORK
+msgid "Warning: linuxdeploy had issues but continuing..."
+msgstr "Waarschuwing: linuxdeploy had problemen maar gaat door..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 922
+#: NEEDS WORK
+msgid "External binaries bundled successfully"
+msgstr "Externe binaire bestanden succesvol gebundeld"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 932
+#: NEEDS WORK
+msgid "Restored custom AppRun"
+msgstr "Herstelde aangepaste AppRun"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 942
+#: NEEDS WORK
+#, python-brace-format
+msgid "Restored original wrapper: {}"
+msgstr "Herstelde originele wrapper: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1370
+#: NEEDS WORK
+msgid "Generating icon cache inside AppDir..."
+msgstr "Iconcache aanmaken in AppDir..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1383
+#: NEEDS WORK
+msgid "Successfully generated icon-theme.cache."
+msgstr "Icon-theme.cache succesvol gegenereerd."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
+msgstr ""
+"Waarschuwing: Het is niet gelukt om icon-theme.cache te genereren. Iconen worden mogelijk niet "
+"weergegeven in menu's."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1388
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not run gtk-update-icon-cache: {}"
+msgstr "Waarschuwing: Kon gtk-update-icon-cache niet uitvoeren: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 945
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Binary bundling failed: {}"
+msgstr "Waarschuwing: Binaire bundeling mislukt: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Waarschuwing: Kon de brondirectory voor binaire detectie niet bepalen."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Scannen op binaire afhankelijkheden in: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Gedetecteerde afhankelijkheid van binaire: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 356
+#: NEEDS WORK
+msgid "Setting up Python environment..."
+msgstr "Python-omgeving aan het instellen..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 370
+#: NEEDS WORK
+msgid "Warning: requirements.txt not found. Using default packages."
+msgstr "Waarschuwing: requirements.txt niet gevonden. Standaardpakketten worden gebruikt."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 379
+#: NEEDS WORK
+msgid "Creating Python virtualenv..."
+msgstr "Een Python-virtualenv aanmaken..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 382
+#: NEEDS WORK
+#, python-brace-format
+msgid "Creating isolated virtualenv at: {}"
+msgstr "Een geïsoleerde virtualenv aanmaken op: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 390
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to create virtualenv: {}"
+msgstr "Kon niet virtuele omgeving aanmaken: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 392
+#: NEEDS WORK
+msgid "Virtualenv created successfully."
+msgstr "Virtualenv succesvol aangemaakt."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 395
+#: NEEDS WORK
+msgid "Copying Python standard library to venv..."
+msgstr "Python-standaardbibliotheek naar venv kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 396
+#: NEEDS WORK
+msgid "Copying Python stdlib..."
+msgstr "Kopiëren van de Python-stdlib..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 598
+#: NEEDS WORK
+msgid "Python environment ready"
+msgstr "Python-omgeving gereed"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 601
+#: NEEDS WORK
+msgid "Python setup timed out"
+msgstr "Python-installatie is verlopen"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 603
+#: NEEDS WORK
+#, python-brace-format
+msgid "Python setup failed: {}"
+msgstr "Python-installatie mislukt: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 410
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not detect Python version in container. Falling back to host version: {}"
+msgstr "Waarschuwing: Kon de Python-versie in de container niet detecteren. Terugvallen op hostversie: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 426
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying stdlib from {} to {}"
+msgstr "De standaardbibliotheek kopiëren van {} naar {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 450
+#: NEEDS WORK
+msgid "Failed to copy stdlib from container"
+msgstr "Kon niet de stdlib van de container kopiëren"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 454
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not find stdlib at: {}"
+msgstr "Kon de stdlib niet vinden op: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 463
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping system packages: {}"
+msgstr "Systeempakketten overslaan: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 475
+#: NEEDS WORK
+msgid "encodings module not found after stdlib copy"
+msgstr "encodings-module niet gevonden na stdlib-kopie"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 477
+#: NEEDS WORK
+msgid "Python stdlib copied successfully"
+msgstr "Python stdlib succesvol gekopieerd"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 480
+#: NEEDS WORK
+msgid "Cleaning up copied stdlib..."
+msgstr "Opruimen van gekopieerde stdlib..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 497
+#: NEEDS WORK
+msgid "Stdlib cleanup complete."
+msgstr "Stdlib opruiming voltooid."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 559
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error copying Python stdlib: {}"
+msgstr "Fout bij het kopiëren van de Python-stdlib: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 560
+#: NEEDS WORK
+msgid "Python stdlib required for AppImage"
+msgstr "Python-stdlib vereist voor AppImage"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 574
+#: NEEDS WORK
+msgid "Copying Python shared libraries..."
+msgstr "Python gedeelde bibliotheken kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 603
+#: NEEDS WORK
+msgid "Python shared libraries copied"
+msgstr "Python gedeelde bibliotheken gekopieerd"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 563
+#: NEEDS WORK
+msgid "Installing Python packages..."
+msgstr "Python-pakketten installeren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 568
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing packages: {}"
+msgstr "Pakketten installeren: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 584
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing {}..."
+msgstr "Installeren {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 590
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Failed to install {}: {}"
+msgstr "Waarschuwing: Installatie van {} is mislukt: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 593
+#: NEEDS WORK
+msgid "Attempting fallback: using system PyGObject bindings"
+msgstr "Proberen om terug te vallen: systeem PyGObject-bindings gebruiken"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 596
+#: NEEDS WORK
+#, python-brace-format
+msgid "Successfully installed {}"
+msgstr "Succesvol geïnstalleerd {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 706
+#: NEEDS WORK
+msgid "Python packages installed"
+msgstr "Geïnstalleerde Python-pakketten"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 500
+#: NEEDS WORK
+msgid "Performing aggressive cleanup for size optimization..."
+msgstr "Uitvoeren van agressieve opschoning voor grootte-optimalisatie..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 523
+# File: usr/share/appimage-creator/core/builder.py, line: 538
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed: {}"
+msgstr "Verwijderd: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 543
+#: NEEDS WORK
+msgid "Removing bytecode cache files..."
+msgstr "Verwijderen van bytecode-cachebestanden..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 555
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Removed {} __pycache__ dirs and {} .pyc files"
+msgstr "Verwijderde {} __pycache__ mappen en {} .pyc bestanden"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 556
+#: NEEDS WORK
+msgid "Aggressive cleanup complete."
+msgstr "Aggressieve opschoning voltooid."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 611
+#: NEEDS WORK
+msgid "Copying system gi module to virtualenv..."
+msgstr "Systeem gi-module naar virtualenv kopiëren..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 639
+#: NEEDS WORK
+msgid "Error: System gi module not found"
+msgstr "Fout: Systeem gi-module niet gevonden"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 701
+#: NEEDS WORK
+msgid "System PyGObject copied successfully"
+msgstr "Systeem PyGObject succesvol gekopieerd"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 704
+#: NEEDS WORK
+msgid "Failed to copy system PyGObject"
+msgstr "Kon niet kopiëren van systeem PyGObject"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 708
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error using system PyGObject: {}"
+msgstr "Fout bij het gebruik van systeem PyGObject: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
+#: NEEDS WORK
+msgid "Starting recursive dependency resolution..."
+msgstr "Starten van recursieve afhankelijkheidsresolutie..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Resolution iteration {}/{}..."
+msgstr "Resolutie-iteratie {}/{}..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Found {} ELF files to scan"
+msgstr "Gevonden {} ELF-bestanden om te scannen"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
+#: NEEDS WORK
+msgid "  No missing libraries found — resolution complete"
+msgstr "Geen ontbrekende bibliotheken gevonden — oplossing voltooid"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Found {} missing libraries: {}"
+msgstr "Gevonden {} ontbrekende bibliotheken: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
+#: NEEDS WORK
+#, python-brace-format
+msgid "    Copied: {}"
+msgstr "Gekopieerd: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
+#: NEEDS WORK
+#, python-brace-format
+msgid "    Failed to copy: {}"
+msgstr "Kopiëren mislukt: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
+#: NEEDS WORK
+#, python-brace-format
+msgid "    Not found in system: {}"
+msgstr "Niet gevonden in het systeem: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
+#: NEEDS WORK
+msgid "  No new libraries could be copied — stopping"
+msgstr "Er konden geen nieuwe bibliotheken worden gekopieerd — stoppen"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Copied {} libraries this iteration"
+msgstr "Gekopieerde {} bibliotheken deze iteratie"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
+#: NEEDS WORK
+#, python-brace-format
+msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
+msgstr "Afhankelijkheidsresolutie voltooid: {} gekopieerd, {} nog ontbrekend ({} iteraties)"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
+#: NEEDS WORK
+msgid "Validating library dependencies..."
+msgstr "Bibliotheekafhankelijkheden valideren..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
+#: NEEDS WORK
+msgid "Library validation FAILED:"
+msgstr "Bibliotheekvalidatie Mislukt:"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
+#: NEEDS WORK
+msgid "Library validation passed — all dependencies resolved"
+msgstr "Bibliotheekvalidatie geslaagd — alle afhankelijkheden opgelost"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
+#: NEEDS WORK
+#, python-brace-format
+msgid "Validating Python imports for module: {}"
+msgstr "Python-imports valideren voor module: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
+#: NEEDS WORK
+msgid "Python import validation passed"
+msgstr "Python import validatie geslaagd"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
+#: NEEDS WORK
+#, python-brace-format
+msgid "Python import validation FAILED: {}"
+msgstr "Python importvalidatie Mislukt: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
+#: NEEDS WORK
+#, python-brace-format
+msgid "Python import validation error: {}"
+msgstr "Python import validatiefout: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
+#: NEEDS WORK
+msgid "Running pre-packaging validation..."
+msgstr "Voer validatie vóór verpakking uit..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
+#: NEEDS WORK
+msgid "Pre-packaging validation PASSED"
+msgstr "Voorafgaande validatie goedgekeurd"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
+#: NEEDS WORK
+msgid "Pre-packaging validation FAILED — check warnings above"
+msgstr "Pre-packaging validatie Mislukt — controleer de waarschuwingen hierboven"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
