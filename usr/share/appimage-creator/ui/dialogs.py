@@ -1,40 +1,37 @@
-"""
-Dialog windows for the AppImage Creator UI
-"""
+from __future__ import annotations
 
 import os
 import gi
-gi.require_version('Gtk', '4.0')
-gi.require_version('Adw', '1')
-gi.require_version('Vte', '3.91')
+
+gi.require_version("Gtk", "4.0")
+gi.require_version("Adw", "1")
+gi.require_version("Vte", "3.91")
 
 from gi.repository import Gtk, Adw, Gio, Vte, GLib, Pango
-from pathlib import Path
 import subprocess
+from typing import Callable, TYPE_CHECKING
 from utils.i18n import _
+
+if TYPE_CHECKING:
+    from core.settings import SettingsManager
 
 
 class BuildProgressDialog(Adw.Window):
     """Modal dialog showing build progress"""
-    
+
     def __init__(self, parent):
         super().__init__()
-        print(f"[DIALOG] BuildProgressDialog.__init__ chamado - ID: {id(self)}")
         self.set_transient_for(parent)
         self.set_modal(True)
         self.set_title(_("Building AppImage"))
         self.set_default_size(500, 200)
         self.set_resizable(False)
         self.set_deletable(False)
-        
+
         # Layout
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.set_content(main_box)
-        
-        # Header
-        header_bar = Adw.HeaderBar()
-        main_box.append(header_bar)
-        
+
         # Content
         content_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=24)
         content_box.set_margin_top(24)
@@ -42,35 +39,187 @@ class BuildProgressDialog(Adw.Window):
         content_box.set_margin_start(24)
         content_box.set_margin_end(24)
         main_box.append(content_box)
-        
+
         # Progress label
         self.progress_label = Gtk.Label(label=_("Preparing..."))
         self.progress_label.set_halign(Gtk.Align.START)
         self.progress_label.add_css_class("title-4")
         content_box.append(self.progress_label)
-        
+
         # Progress bar
         self.progress_bar = Gtk.ProgressBar()
         self.progress_bar.set_margin_top(12)
         content_box.append(self.progress_bar)
-        
+
         # Cancel button
         self.cancel_button = Gtk.Button(label=_("Cancel Build"))
         self.cancel_button.add_css_class("destructive-action")
         self.cancel_button.set_halign(Gtk.Align.CENTER)
         self.cancel_button.set_margin_top(24)
         content_box.append(self.cancel_button)
-        
-    def update_progress(self, percentage, message):
+
+    def update_progress(self, percentage: int, message: str) -> None:
         """Update progress bar and message"""
         self.progress_bar.set_fraction(percentage / 100.0)
         self.progress_label.set_text(message)
-        
+
     def __del__(self):
-        print(f"[DIALOG] BuildProgressDialog.__del__ chamado - objeto sendo destruído - ID: {id(self)}")
+        pass
 
 
-def show_error_dialog(parent, title, message):
+class ValidationWarningDialog(Adw.Window):
+    """Dialog showing library validation warnings after a build."""
+
+    def __init__(self, parent, validation_result: dict, appimage_path: str):
+        super().__init__()
+
+        self.set_transient_for(parent)
+        self.set_modal(True)
+        self.set_title(_("Dependency Warnings"))
+        self.set_default_size(550, 450)
+        self.set_resizable(True)
+
+        self._build_ui(validation_result, appimage_path)
+
+    def _build_ui(self, validation_result: dict, appimage_path: str):
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.set_content(main_box)
+
+        header = Adw.HeaderBar()
+        main_box.append(header)
+
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_vexpand(True)
+        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        main_box.append(scroll)
+
+        content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16)
+        content.set_margin_start(24)
+        content.set_margin_end(24)
+        content.set_margin_top(24)
+        content.set_margin_bottom(24)
+        scroll.set_child(content)
+
+        # Warning icon + title
+        icon = Gtk.Image()
+        icon.set_from_icon_name("dialog-warning-symbolic")
+        icon.set_pixel_size(48)
+        icon.set_halign(Gtk.Align.CENTER)
+        content.append(icon)
+
+        title_label = Gtk.Label()
+        title_label.set_markup(
+            "<span size='large' weight='bold'>"
+            + _("AppImage Created with Warnings")
+            + "</span>"
+        )
+        title_label.set_halign(Gtk.Align.CENTER)
+        content.append(title_label)
+
+        desc_label = Gtk.Label()
+        desc_label.set_text(
+            _(
+                "The AppImage was created successfully, but some library "
+                "dependencies could not be resolved. The application may "
+                "not work correctly on some systems."
+            )
+        )
+        desc_label.set_wrap(True)
+        desc_label.set_halign(Gtk.Align.START)
+        desc_label.add_css_class("dim-label")
+        content.append(desc_label)
+
+        # Missing libraries list
+        missing = validation_result.get("missing", [])
+        if missing:
+            libs_frame = Gtk.Frame()
+            libs_frame.set_label(_("Missing Libraries"))
+            content.append(libs_frame)
+
+            libs_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
+            libs_box.set_margin_start(12)
+            libs_box.set_margin_end(12)
+            libs_box.set_margin_top(8)
+            libs_box.set_margin_bottom(8)
+            libs_frame.set_child(libs_box)
+
+            for elf_file, missing_libs in missing:
+                row_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+                row_box.set_margin_bottom(8)
+                libs_box.append(row_box)
+
+                file_label = Gtk.Label()
+                file_label.set_markup(f"<b>{GLib.markup_escape_text(elf_file)}</b>")
+                file_label.set_halign(Gtk.Align.START)
+                file_label.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+                row_box.append(file_label)
+
+                for lib in missing_libs:
+                    lib_label = Gtk.Label()
+                    lib_label.set_text(f"  \u2192 {lib}")
+                    lib_label.set_halign(Gtk.Align.START)
+                    lib_label.add_css_class("error")
+                    row_box.append(lib_label)
+
+        # Suggestion box
+        suggestion = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+        suggestion.set_margin_top(8)
+        content.append(suggestion)
+
+        hint_label = Gtk.Label()
+        hint_label.set_markup("<b>" + _("How to fix:") + "</b>")
+        hint_label.set_halign(Gtk.Align.START)
+        suggestion.append(hint_label)
+
+        tips = [
+            _(
+                "\u2022 Try building with a different container "
+                "(e.g., Ubuntu 22.04 instead of 24.04)"
+            ),
+            _(
+                "\u2022 Add the missing libraries to the "
+                "'Additional Libraries' section before building"
+            ),
+            _("\u2022 Install the required -dev packages in the build container"),
+        ]
+        for tip in tips:
+            tip_label = Gtk.Label()
+            tip_label.set_text(tip)
+            tip_label.set_halign(Gtk.Align.START)
+            tip_label.set_wrap(True)
+            suggestion.append(tip_label)
+
+        # Buttons
+        btn_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
+        btn_box.set_halign(Gtk.Align.CENTER)
+        btn_box.set_margin_top(16)
+        btn_box.set_margin_bottom(8)
+        content.append(btn_box)
+
+        close_btn = Gtk.Button(label=_("Close"))
+        close_btn.add_css_class("pill")
+        close_btn.connect("clicked", lambda b: self.destroy())
+        btn_box.append(close_btn)
+
+        if appimage_path:
+            open_btn = Gtk.Button(label=_("Open Folder"))
+            open_btn.add_css_class("pill")
+            open_btn.add_css_class("suggested-action")
+            open_btn.connect("clicked", self._on_open_folder, appimage_path)
+            btn_box.append(open_btn)
+
+    def _on_open_folder(self, _button, appimage_path: str):
+        folder = os.path.dirname(appimage_path)
+        try:
+            launcher = Gio.AppInfo.get_default_for_type("inode/directory", True)
+            if launcher:
+                launcher.launch_uris([f"file://{folder}"], None)
+        except Exception:
+            subprocess.Popen(["xdg-open", folder])
+        self.destroy()
+
+
+def show_error_dialog(parent: Gtk.Window, title: str, message: str) -> None:
     """Show error dialog"""
     dialog = Adw.MessageDialog(transient_for=parent)
     dialog.set_heading(title)
@@ -82,33 +231,27 @@ def show_error_dialog(parent, title, message):
 
 class BuildSuccessDialog(Adw.Window):
     """Enhanced success dialog for build completion with better UX"""
-    
+
     def __init__(self, parent, app_name: str, appimage_path: str, on_response=None):
         super().__init__()
-        
+
         self.set_transient_for(parent)
         self.set_modal(True)
         self.set_title(_("Build Complete"))
         self.set_default_size(420, 350)
         self.set_resizable(False)
-        
+
         self.appimage_path = appimage_path
         self.on_response = on_response
-        
+
         self._build_ui(app_name, appimage_path)
-    
+
     def _build_ui(self, app_name: str, appimage_path: str):
         """Build the dialog UI"""
         # Main container
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.set_content(main_box)
-        
-        # Header bar (minimal)
-        header = Adw.HeaderBar()
-        header.set_show_end_title_buttons(True)
-        header.set_show_start_title_buttons(False)
-        main_box.append(header)
-        
+
         # Content box
         content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16)
         content.set_margin_start(32)
@@ -118,13 +261,13 @@ class BuildSuccessDialog(Adw.Window):
         content.set_valign(Gtk.Align.CENTER)
         content.set_vexpand(True)
         main_box.append(content)
-        
+
         # Success icon (green checkmark)
         icon = Gtk.Image()
         icon.set_from_icon_name("emblem-ok-symbolic")
         icon.set_pixel_size(72)
         icon.set_halign(Gtk.Align.CENTER)
-        
+
         # Apply green color to success icon
         css_provider = Gtk.CssProvider()
         css_provider.load_from_data(b"""
@@ -133,33 +276,34 @@ class BuildSuccessDialog(Adw.Window):
             }
         """)
         icon.get_style_context().add_provider(
-            css_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
         icon.add_css_class("success-icon")
         content.append(icon)
-        
+
         # Title
         title_label = Gtk.Label()
-        title_label.set_markup(f"<span size='x-large' weight='bold'>{_('Build Complete')}</span>")
+        title_label.set_markup(
+            f"<span size='x-large' weight='bold'>{_('Build Complete')}</span>"
+        )
         title_label.set_halign(Gtk.Align.CENTER)
         title_label.set_margin_top(8)
         content.append(title_label)
-        
+
         # Subtitle with app name
         subtitle = Gtk.Label()
         subtitle.set_text(_("AppImage created successfully:"))
         subtitle.add_css_class("dim-label")
         subtitle.set_halign(Gtk.Align.CENTER)
         content.append(subtitle)
-        
+
         # AppImage filename in a styled box
         filename = os.path.basename(appimage_path)
         filename_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
         filename_box.set_halign(Gtk.Align.CENTER)
         filename_box.add_css_class("card")
         filename_box.set_margin_top(8)
-        
+
         # Add padding inside the box
         filename_label = Gtk.Label()
         filename_label.set_markup(f"<b>{filename}</b>")
@@ -170,38 +314,38 @@ class BuildSuccessDialog(Adw.Window):
         filename_label.set_margin_top(8)
         filename_label.set_margin_bottom(8)
         filename_box.append(filename_label)
-        
+
         content.append(filename_box)
-        
+
         # Button box
         button_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         button_box.set_margin_top(24)
         button_box.set_halign(Gtk.Align.CENTER)
         content.append(button_box)
-        
+
         # Primary button - Open Folder
         open_button = Gtk.Button()
         open_button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
         open_button_box.set_halign(Gtk.Align.CENTER)
-        
+
         folder_icon = Gtk.Image.new_from_icon_name("folder-open-symbolic")
         open_button_box.append(folder_icon)
         open_button_box.append(Gtk.Label(label=_("Open Folder")))
-        
+
         open_button.set_child(open_button_box)
         open_button.add_css_class("suggested-action")
         open_button.add_css_class("pill")
         open_button.set_size_request(180, -1)
         open_button.connect("clicked", self._on_open_folder)
         button_box.append(open_button)
-        
+
         # Secondary button - Close
         close_button = Gtk.Button(label=_("Close"))
         close_button.add_css_class("pill")
         close_button.set_size_request(180, -1)
         close_button.connect("clicked", self._on_close)
         button_box.append(close_button)
-    
+
     def _on_open_folder(self, button):
         """Open the folder containing the AppImage"""
         try:
@@ -209,11 +353,11 @@ class BuildSuccessDialog(Adw.Window):
             subprocess.Popen(["xdg-open", folder_path])
         except Exception as e:
             print(f"Error opening folder: {e}")
-        
+
         if self.on_response:
             self.on_response(self, "open")
         self.close()
-    
+
     def _on_close(self, button):
         """Close the dialog"""
         if self.on_response:
@@ -221,15 +365,21 @@ class BuildSuccessDialog(Adw.Window):
         self.close()
 
 
-def show_success_dialog(parent, title, message, on_response=None, appimage_path=None):
+def show_success_dialog(
+    parent: Gtk.Window,
+    title: str,
+    message: str,
+    on_response: Callable | None = None,
+    appimage_path: str | None = None,
+) -> None:
     """Show success dialog with optional open folder button"""
     # Use enhanced dialog if appimage_path is provided
     if appimage_path:
-        app_name = os.path.basename(appimage_path).replace('.AppImage', '')
+        app_name = os.path.basename(appimage_path).replace(".AppImage", "")
         dialog = BuildSuccessDialog(parent, app_name, appimage_path, on_response)
         dialog.present()
         return
-    
+
     # Fallback to simple dialog
     dialog = Adw.MessageDialog(transient_for=parent)
     dialog.set_heading(title)
@@ -237,14 +387,14 @@ def show_success_dialog(parent, title, message, on_response=None, appimage_path=
     dialog.add_response("ok", _("OK"))
     dialog.add_response("open", _("Open Folder"))
     dialog.set_default_response("ok")
-    
+
     if on_response:
         dialog.connect("response", on_response)
-    
+
     dialog.present()
 
 
-def show_info_dialog(parent, title, message):
+def show_info_dialog(parent: Gtk.Window, title: str, message: str) -> None:
     """Show info dialog"""
     dialog = Adw.MessageDialog(transient_for=parent)
     dialog.set_heading(title)
@@ -254,21 +404,25 @@ def show_info_dialog(parent, title, message):
     dialog.present()
 
 
-def create_file_chooser(parent, title, action, filters=None, on_response=None, settings_manager=None):
+def create_file_chooser(
+    parent: Gtk.Window,
+    title: str,
+    action: Gtk.FileChooserAction,
+    filters: dict[str, list[str]] | None = None,
+    on_response: Callable | None = None,
+    settings_manager: SettingsManager | None = None,
+) -> Gtk.FileChooserDialog:
     """Create and show file chooser dialog"""
     dialog = Gtk.FileChooserDialog(
-        title=title,
-        transient_for=parent,
-        action=action,
-        modal=True
+        title=title, transient_for=parent, action=action, modal=True
     )
-    
+
     # Set initial directory from settings
     if settings_manager:
-        last_path = settings_manager.get('last-chooser-directory')
+        last_path = settings_manager.get("last-chooser-directory")
         if last_path and os.path.exists(last_path):
             dialog.set_current_folder(Gio.File.new_for_path(last_path))
-    
+
     dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
     if action == Gtk.FileChooserAction.OPEN:
         dialog.add_button(_("Open"), Gtk.ResponseType.OK)
@@ -276,9 +430,9 @@ def create_file_chooser(parent, title, action, filters=None, on_response=None, s
         dialog.add_button(_("Select"), Gtk.ResponseType.OK)
     else:
         dialog.add_button(_("Save"), Gtk.ResponseType.OK)
-    
+
     dialog.set_default_response(Gtk.ResponseType.OK)
-    
+
     # Add filters
     if filters:
         for filter_name, patterns in filters.items():
@@ -287,7 +441,7 @@ def create_file_chooser(parent, title, action, filters=None, on_response=None, s
             for pattern in patterns:
                 file_filter.add_pattern(pattern)
             dialog.add_filter(file_filter)
-    
+
     def on_response_wrapper(dlg, response):
         # Save last used directory
         if settings_manager and response == Gtk.ResponseType.OK:
@@ -297,21 +451,21 @@ def create_file_chooser(parent, title, action, filters=None, on_response=None, s
                     path = file.get_path()
                 else:
                     path = file.get_parent().get_path()
-                
+
                 if path:
-                    settings_manager.set('last-chooser-directory', path)
-        
+                    settings_manager.set("last-chooser-directory", path)
+
         # Call original callback
         if on_response:
             on_response(dlg, response)
-    
+
     dialog.connect("response", on_response_wrapper)
-    
+
     dialog.present()
     return dialog
 
 
-def show_structure_viewer(parent, title, structure_text):
+def show_structure_viewer(parent: Gtk.Window, title: str, structure_text: str) -> None:
     """Show structure viewer window"""
     window = Adw.Window()
     window.set_transient_for(parent)
@@ -319,19 +473,19 @@ def show_structure_viewer(parent, title, structure_text):
     window.set_title(title)
     window.set_default_size(800, 600)
     window.set_size_request(500, 400)
-    
+
     # Header
     header_bar = Adw.HeaderBar()
-    
+
     # Main box
     main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     main_box.append(header_bar)
-    
+
     # Scrolled window
     scrolled = Gtk.ScrolledWindow()
     scrolled.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
     scrolled.set_vexpand(True)
-    
+
     # Text view
     text_view = Gtk.TextView()
     text_view.set_editable(False)
@@ -341,38 +495,38 @@ def show_structure_viewer(parent, title, structure_text):
     text_view.set_margin_bottom(12)
     text_view.set_margin_start(12)
     text_view.set_margin_end(12)
-    
+
     buffer = text_view.get_buffer()
     buffer.set_text(structure_text)
-    
+
     scrolled.set_child(text_view)
     main_box.append(scrolled)
-    
+
     # Copy button
     copy_button = Gtk.Button.new_from_icon_name("edit-copy-symbolic")
     copy_button.set_tooltip_text(_("Copy to clipboard"))
-    
+
     def on_copy(btn):
         clipboard = window.get_display().get_clipboard()
         clipboard.set(structure_text)
-    
+
     copy_button.connect("clicked", on_copy)
     header_bar.pack_end(copy_button)
-    
+
     window.set_content(main_box)
     window.present()
 
 
-def show_desktop_file_viewer(parent, desktop_file_path):
+def show_desktop_file_viewer(parent: Gtk.Window, desktop_file_path: str) -> None:
     """Show desktop file content viewer"""
     try:
-        with open(desktop_file_path, 'r', encoding='utf-8') as f:
+        with open(desktop_file_path, "r", encoding="utf-8") as f:
             content = f.read()
         show_structure_viewer(parent, _("Desktop File Content"), content)
     except Exception as e:
         show_error_dialog(parent, _("Error"), _("Failed to read file: {}").format(e))
-        
-        
+
+
 class LogProgressDialog(Adw.Window):
     """Modal dialog showing progress for a long-running task with live logs."""
 
@@ -384,12 +538,25 @@ class LogProgressDialog(Adw.Window):
         self.set_default_size(700, 450)
         self.set_resizable(True)
         self.set_deletable(False)
+        self._cancelled = False
 
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.set_content(main_box)
 
         header_bar = Adw.HeaderBar()
+        header_bar.set_show_title(True)
+        header_bar.set_decoration_layout("")
         main_box.append(header_bar)
+
+        self.cancel_button = Gtk.Button(label=_("Cancel"))
+        self.cancel_button.add_css_class("destructive-action")
+        self.cancel_button.connect("clicked", self._on_cancel_clicked)
+        header_bar.pack_start(self.cancel_button)
+
+        self.close_button = Gtk.Button(label=_("Close"))
+        self.close_button.set_sensitive(False)
+        self.close_button.connect("clicked", lambda btn: self.destroy())
+        header_bar.pack_end(self.close_button)
 
         content_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
         content_box.set_margin_top(12)
@@ -418,35 +585,44 @@ class LogProgressDialog(Adw.Window):
         self.terminal.set_scroll_on_output(True)
         self.terminal.set_scroll_on_keystroke(False)
         self.terminal.set_mouse_autohide(True)
-        
+
         # Set terminal font
         font_desc = Pango.FontDescription.from_string("Monospace 10")
         self.terminal.set_font(font_desc)
-        
+
         scrolled_window.set_child(self.terminal)
 
-        self.close_button = Gtk.Button(label=_("Close"))
-        self.close_button.set_sensitive(False)
-        self.close_button.connect("clicked", lambda btn: self.destroy())
-        header_bar.pack_start(self.close_button)
+    def _on_cancel_clicked(self, _button):
+        """Mark the task as cancelled."""
+        self._cancelled = True
+        self.cancel_button.set_sensitive(False)
+        self.set_status(_("Cancelling..."))
 
-    def add_log(self, message):
+    @property
+    def cancelled(self) -> bool:
+        """Check if the user requested cancellation."""
+        return self._cancelled
+
+    def add_log(self, message: str) -> None:
         """Append a message to the terminal."""
-        self.terminal.feed((message + "\r\n").encode('utf-8'))
+        self.terminal.feed((message + "\r\n").encode("utf-8"))
 
-    def set_status(self, status_text):
+    def set_status(self, status_text: str) -> None:
         """Update the status label."""
         self.status_label.set_text(status_text)
 
-    def finish(self, success=True):
+    def finish(self, success: bool = True) -> None:
         """Mark the task as finished."""
         self.spinner.stop()
+        self.cancel_button.set_visible(False)
         self.close_button.set_sensitive(True)
-        if success:
+        if self._cancelled:
+            self.set_status(_("Cancelled."))
+        elif success:
             self.set_status(_("Completed successfully!"))
         else:
             self.set_status(_("Finished with errors."))
-            
+
 
 class InstallPackagesDialog(Adw.Window):
     """Dialog for installing system packages with VTE terminal."""
@@ -458,12 +634,12 @@ class InstallPackagesDialog(Adw.Window):
         self.set_title(_("Install Required Packages"))
         self.set_default_size(700, 500)
         self.set_resizable(True)
-        
+
         self.packages_info = packages_info
         self.installation_complete = False
         self.installation_success = False
         self.current_command_is_pre = False
-        
+
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.set_content(main_box)
 
@@ -487,14 +663,14 @@ class InstallPackagesDialog(Adw.Window):
         # Packages to install
         packages_row = Adw.ActionRow()
         packages_row.set_title(_("Packages to Install"))
-        packages_list = ", ".join(packages_info['packages'])
+        packages_list = ", ".join(packages_info["packages"])
         packages_row.set_subtitle(packages_list)
         info_group.add(packages_row)
 
         # Command that will be executed
         command_row = Adw.ActionRow()
         command_row.set_title(_("Command"))
-        command_row.set_subtitle(packages_info['display'])
+        command_row.set_subtitle(packages_info["display"])
         info_group.add(command_row)
 
         # Warning message
@@ -503,21 +679,25 @@ class InstallPackagesDialog(Adw.Window):
         warning_box.add_css_class("card")
         warning_box.set_margin_start(12)
         warning_box.set_margin_end(12)
-        
+
         warning_icon = Gtk.Image.new_from_icon_name("dialog-warning-symbolic")
         warning_icon.set_margin_top(12)
         warning_icon.set_margin_bottom(12)
         warning_icon.set_margin_start(12)
         warning_box.append(warning_icon)
-        
+
         warning_label = Gtk.Label()
-        warning_label.set_markup(_("<b>Administrator privileges required</b>\nYou will be asked for your password to install system packages."))
+        warning_label.set_markup(
+            _(
+                "<b>Administrator privileges required</b>\nYou will be asked for your password to install system packages."
+            )
+        )
         warning_label.set_halign(Gtk.Align.START)
         warning_label.set_margin_top(12)
         warning_label.set_margin_bottom(12)
         warning_label.set_margin_end(12)
         warning_box.append(warning_label)
-        
+
         content_box.append(warning_box)
 
         # Terminal section
@@ -531,19 +711,19 @@ class InstallPackagesDialog(Adw.Window):
         scrolled.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         scrolled.set_vexpand(True)
         scrolled.set_min_content_height(250)
-        
+
         self.terminal = Vte.Terminal()
         self.terminal.set_scroll_on_output(True)
         self.terminal.set_scroll_on_keystroke(True)
         self.terminal.set_mouse_autohide(True)
-        
+
         # Set terminal font
         font_desc = Pango.FontDescription.from_string("Monospace 10")
         self.terminal.set_font(font_desc)
-        
+
         # Connect to child-exited signal
         self.terminal.connect("child-exited", self._on_child_exited)
-        
+
         scrolled.set_child(self.terminal)
         terminal_group.add(scrolled)
 
@@ -576,21 +756,21 @@ class InstallPackagesDialog(Adw.Window):
         """Handle install button click and start installation."""
         self.install_button.set_sensitive(False)
         self.cancel_button.set_sensitive(False)
-        
+
         self._write_to_terminal(_("Starting installation...\n\n"))
-        
+
         # Run pre-command if exists (like apt-get update)
-        if 'pre_command' in self.packages_info:
-            self._run_command(self.packages_info['pre_command'], is_pre_command=True)
+        if "pre_command" in self.packages_info:
+            self._run_command(self.packages_info["pre_command"], is_pre_command=True)
         else:
             self._run_main_command()
 
     def _run_command(self, command, is_pre_command=False):
         """Run a command in the VTE terminal."""
         self.current_command_is_pre = is_pre_command
-        command_str = ' '.join(command)
+        command_str = " ".join(command)
         self._write_to_terminal(f"$ {command_str}\n")
-        
+
         try:
             # Spawn the command in the terminal
             self.terminal.spawn_async(
@@ -601,10 +781,10 @@ class InstallPackagesDialog(Adw.Window):
                 GLib.SpawnFlags.DEFAULT,  # Changed from DO_NOT_REAP_CHILD
                 None,  # child_setup
                 None,  # child_setup_data
-                -1,    # timeout
+                -1,  # timeout
                 None,  # cancellable
                 None,  # callback (we use child-exited signal instead)
-                None   # user_data
+                None,  # user_data
             )
         except Exception as e:
             self._write_to_terminal(f"\n{_('Error running command')}: {str(e)}\n")
@@ -613,51 +793,59 @@ class InstallPackagesDialog(Adw.Window):
     def _on_child_exited(self, terminal, exit_status):
         """Called when the spawned command exits."""
         self._write_to_terminal("\n")
-        
+
         if exit_status == 0:
             if self.current_command_is_pre:
-                self._write_to_terminal(f"{_('Pre-command completed successfully.')}\n\n")
+                self._write_to_terminal(
+                    f"{_('Pre-command completed successfully.')}\n\n"
+                )
                 # Run main command
                 self._run_main_command()
             else:
-                self._write_to_terminal(f"{_('Installation completed successfully!')}\n")
+                self._write_to_terminal(
+                    f"{_('Installation completed successfully!')}\n"
+                )
                 self._finish_installation(True)
         else:
-            self._write_to_terminal(f"{_('Command failed with exit code')}: {exit_status}\n")
+            self._write_to_terminal(
+                f"{_('Command failed with exit code')}: {exit_status}\n"
+            )
             self._finish_installation(False)
 
     def _run_main_command(self):
         """Run the main installation command."""
-        self._run_command(self.packages_info['command'], is_pre_command=False)
+        self._run_command(self.packages_info["command"], is_pre_command=False)
 
     def _write_to_terminal(self, text):
         """Write text to terminal."""
-        self.terminal.feed(text.encode('utf-8'))
+        self.terminal.feed(text.encode("utf-8"))
 
     def _finish_installation(self, success):
         """Finish installation process."""
         self.installation_complete = True
         self.installation_success = success
-        
+
         if success:
             self._write_to_terminal("\n")
             self._write_to_terminal("=" * 50 + "\n")
             self._write_to_terminal(_("Installation completed successfully!") + "\n")
             self._write_to_terminal("=" * 50 + "\n")
-            
+
             # Close dialog automatically after success
             GLib.timeout_add(500, lambda: self.close())
         else:
             self._write_to_terminal("\n")
             self._write_to_terminal("=" * 50 + "\n")
             self._write_to_terminal(_("Installation failed.") + "\n")
-            self._write_to_terminal(_("Please check the errors above and try again.") + "\n")
+            self._write_to_terminal(
+                _("Please check the errors above and try again.") + "\n"
+            )
             self._write_to_terminal("=" * 50 + "\n")
-            
+
             self.install_button.set_visible(False)
             self.cancel_button.set_visible(False)
             self.close_button.set_visible(True)
 
-    def get_result(self):
+    def get_result(self) -> bool:
         """Get installation result."""
         return self.installation_success

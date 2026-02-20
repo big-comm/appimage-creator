@@ -4,7 +4,6 @@
 AppImage downloader and installer
 """
 
-import os
 import urllib.request
 import urllib.error
 import tempfile
@@ -35,11 +34,12 @@ class AppImageDownloader:
     """Downloads and installs AppImage updates"""
 
     @staticmethod
-    def download_update(download_url: str,
-                       progress_callback: Optional[Callable[[int, int], None]] = None,
-                       target_filename: Optional[str] = None,
-                       target_directory: Optional[Path] = None
-                       ) -> Optional[Path]:
+    def download_update(
+        download_url: str,
+        progress_callback: Optional[Callable[[int, int], None]] = None,
+        target_filename: Optional[str] = None,
+        target_directory: Optional[Path] = None,
+    ) -> Optional[Path]:
         """
         Download new AppImage to specified location
 
@@ -57,7 +57,7 @@ class AppImageDownloader:
             if target_filename:
                 filename = target_filename
             else:
-                filename = download_url.split('/')[-1]
+                filename = download_url.split("/")[-1]
 
             # Determine target directory
             if target_directory:
@@ -71,9 +71,7 @@ class AppImageDownloader:
             # Download
             progress = DownloadProgress(progress_callback)
             urllib.request.urlretrieve(
-                download_url,
-                str(target_file),
-                reporthook=progress.update
+                download_url, str(target_file), reporthook=progress.update
             )
 
             # Make executable
@@ -161,7 +159,7 @@ class AppImageDownloader:
             if backup_path and backup_path.exists() and not old_path.exists():
                 try:
                     shutil.move(str(backup_path), str(old_path))
-                except:
+                except Exception:
                     pass
 
             return False
@@ -202,10 +200,10 @@ class AppImageDownloader:
             if backup_path.exists():
                 try:
                     backup_path.unlink()
-                except:
+                except Exception:
                     pass  # Not critical if cleanup fails
 
-            print(f"Update completed successfully!")
+            print("Update completed successfully!")
             return True
 
         except Exception as e:
@@ -216,7 +214,7 @@ class AppImageDownloader:
             if backup_path.exists() and not appimage_path.exists():
                 try:
                     shutil.move(str(backup_path), str(appimage_path))
-                except:
+                except Exception:
                     pass
 
             return False
@@ -234,12 +232,12 @@ class AppImageDownloader:
             if not marker_file.exists():
                 return
 
-            lines = marker_file.read_text().strip().split('\n')
+            lines = marker_file.read_text().strip().split("\n")
 
             # Update version (line 4)
             if len(lines) >= 4:
                 lines[3] = new_version
-                marker_file.write_text('\n'.join(lines))
+                marker_file.write_text("\n".join(lines))
 
         except Exception as e:
             print(f"Failed to update marker file: {e}")

@@ -2,46 +2,55 @@
 Desktop file, launcher script, and AppRun generation
 """
 
+from __future__ import annotations
+
 import os
 import sys
 import stat
 from pathlib import Path
+from typing import TYPE_CHECKING
+
 from utils.i18n import _
 
+if TYPE_CHECKING:
+    from core.app_info import AppInfo
+    from templates.base import AppTemplate
 
-def generate_desktop_file(app_info):
+
+def generate_desktop_file(app_info: AppInfo) -> str:
     """Generate .desktop file content"""
+
     def escape_value(value):
         if not value:
             return ""
-        value = str(value).replace('\\', '\\\\')
-        value = value.replace('\n', '\\n')
-        value = value.replace('\r', '\\r')
-        value = value.replace('\t', '\\t')
+        value = str(value).replace("\\", "\\\\")
+        value = value.replace("\n", "\\n")
+        value = value.replace("\r", "\\r")
+        value = value.replace("\t", "\\t")
         return value
-    
-    app_name = escape_value(app_info.get('name', 'Application'))
-    description = escape_value(app_info.get('description', app_name))
-    
+
+    app_name = escape_value(app_info.name or "Application")
+    description = escape_value(app_info.description or app_name)
+
     # The real executable name (e.g., big-video-converter-gui)
-    real_executable_name = escape_value(app_info.get('executable_name', 'app'))
-    
+    real_executable_name = escape_value(app_info.executable_name or "app")
+
     # The canonical base name, derived from the App Name, used for consistency.
     # This will be used for the .desktop filename, Icon=, and StartupWMClass=.
     # e.g., "Big Video Converter" -> "big-video-converter"
-    canonical_basename = app_info.get('name', 'app').lower().replace(' ', '-')
+    canonical_basename = (app_info.name or "app").lower().replace(" ", "-")
 
-    app_type = app_info.get('app_type', 'binary')
+    app_type = app_info.app_type or "binary"
     exec_prefix = ""
-    if app_type in ['gtk', 'python', 'python_wrapper']:
+    if app_type in ["gtk", "python", "python_wrapper"]:
         exec_prefix = "env GDK_BACKEND=x11 UBUNTU_MENUPROXY=0 "
 
-    categories = app_info.get('categories', ['Utility'])
+    categories = app_info.categories
     if not categories:
-        categories = ['Utility']
-    categories_str = ';'.join(categories) + ';'
-    
-    desktop_content = f'''[Desktop Entry]
+        categories = ["Utility"]
+    categories_str = ";".join(categories) + ";"
+
+    desktop_content = f"""[Desktop Entry]
 Version=1.0
 Type=Application
 Name={app_name}
@@ -51,84 +60,97 @@ Icon={canonical_basename}
 Categories={categories_str}
 StartupNotify=true
 StartupWMClass={canonical_basename}
-Terminal={str(app_info.get('terminal', False)).lower()}
-'''
+Terminal={str(app_info.terminal).lower()}
+"""
 
-    website = app_info.get('website', '').strip()
-    if website and website.startswith(('http://', 'https://')):
+    website = (app_info.website or "").strip()
+    if website and website.startswith(("http://", "https://")):
         desktop_content += f"X-Website={escape_value(website)}\n"
-    
-    keywords = app_info.get('keywords', [])
+
+    keywords = app_info.keywords
     if keywords and isinstance(keywords, list):
-        keywords_str = ';'.join([escape_value(k) for k in keywords if k]) + ';'
-        if keywords_str != ';':
+        keywords_str = ";".join([escape_value(k) for k in keywords if k]) + ";"
+        if keywords_str != ";":
             desktop_content += f"Keywords={keywords_str}\n"
-    
-    mime_types = app_info.get('mime_types', [])
+
+    mime_types = app_info.mime_types
     if mime_types and isinstance(mime_types, list):
-        mime_str = ';'.join([escape_value(m) for m in mime_types if m]) + ';'
-        if mime_str != ';':
+        mime_str = ";".join([escape_value(m) for m in mime_types if m]) + ";"
+        if mime_str != ";":
             desktop_content += f"MimeType={mime_str}\n"
-    
+
     return desktop_content
 
 
-def create_desktop_file(appdir_path, app_info):
+def create_desktop_file(appdir_path: str | os.PathLike, app_info: AppInfo) -> Path:
     """Create .desktop file in AppDir"""
     from validators.validators import validate_desktop_content
-    
+
     desktop_content = generate_desktop_file(app_info)
-    
+
     if not validate_desktop_content(desktop_content):
         print(_("Warning: Desktop file may have validation issues"))
-    
+
     # Save to usr/share/applications
-    desktop_path = appdir_path / "usr" / "share" / "applications" / f"{app_info['executable_name']}.desktop"
+    desktop_path = (
+        appdir_path
+        / "usr"
+        / "share"
+        / "applications"
+        / f"{app_info.executable_name}.desktop"
+    )
     desktop_path.parent.mkdir(parents=True, exist_ok=True)
-    
-    with open(desktop_path, 'w', encoding='utf-8') as f:
+
+    with open(desktop_path, "w", encoding="utf-8") as f:
         f.write(desktop_content)
-    
+
     # Copy to AppDir root
-    root_desktop_path = appdir_path / f"{app_info['executable_name']}.desktop"
-    with open(root_desktop_path, 'w', encoding='utf-8') as f:
+    root_desktop_path = appdir_path / f"{app_info.executable_name}.desktop"
+    with open(root_desktop_path, "w", encoding="utf-8") as f:
         f.write(desktop_content)
-    
+
     if not root_desktop_path.exists():
         raise RuntimeError(_("Failed to create desktop file"))
-    
+
     return desktop_path
 
 
-def create_apprun_script(app_info):
+def create_apprun_script(app_info: AppInfo) -> str:
     """Create AppRun script content"""
-    
-    executable = app_info.get('apprun_executable')
-    argument = app_info.get('apprun_argument')
-    
+
+    executable = app_info.apprun_executable
+    argument = app_info.apprun_argument
+
     if not executable:
-        executable = f"usr/bin/{app_info.get('executable_name', 'app')}"
+        executable = f"usr/bin/{app_info.executable_name or 'app'}"
 
     if argument:
         exec_line = f'exec "${{HERE}}/{executable}" "${{HERE}}/{argument}" "$@"'
     else:
         exec_line = f'exec "${{HERE}}/{executable}" "$@"'
 
-    py_version = app_info.get('python_version', f"{sys.version_info.major}.{sys.version_info.minor}")
-    
+    py_version = (
+        app_info.python_version or f"{sys.version_info.major}.{sys.version_info.minor}"
+    )
+
     # The source of truth is the name of the original detected .desktop file
     # Filter out updater and vainfo desktop files
-    structure_analysis = app_info.get('structure_analysis', {})
-    detected_desktops = structure_analysis.get('detected_files', {}).get('desktop_files', [])
-    detected_desktops = [d for d in detected_desktops 
-                         if 'updater' not in Path(d).name.lower() 
-                         and 'vainfo' not in Path(d).name.lower()]
+    structure_analysis = app_info.structure_analysis or {}
+    detected_desktops = structure_analysis.get("detected_files", {}).get(
+        "desktop_files", []
+    )
+    detected_desktops = [
+        d
+        for d in detected_desktops
+        if "updater" not in Path(d).name.lower()
+        and "vainfo" not in Path(d).name.lower()
+    ]
     main_desktop_filename = ""
     if detected_desktops:
         main_desktop_filename = Path(detected_desktops[0]).name
-    
+
     return f'''#!/bin/bash
-# AppRun for {app_info['name']}
+# AppRun for {app_info.name}
 
 HERE="$(dirname "$(readlink -f "${{0}}")")"
 
@@ -167,7 +189,7 @@ if [ -n "$APPIMAGE" ] && [ -f "$HERE/usr/bin/integration_helper.py" ]; then
     if [ -n "$DESKTOP_FILE_NAME" ]; then
         # Now we can just call 'python3' because the PATH is correctly set
         # Pass update metadata if available
-        python3 "$HERE/usr/bin/integration_helper.py" "{app_info['name']}" "$APPIMAGE" "$DESKTOP_FILE_NAME" "{app_info.get('update_url', '')}" "{app_info.get('version', '')}" "{app_info.get('update_pattern', '')}"
+        python3 "$HERE/usr/bin/integration_helper.py" "{app_info.name}" "$APPIMAGE" "$DESKTOP_FILE_NAME" "{app_info.update_url}" "{app_info.version}" "{app_info.update_pattern}"
     fi
 fi
 # --- End of Integration Helper ---
@@ -208,69 +230,76 @@ export TEXTDOMAINDIR="${{HERE}}/usr/share/locale"
 '''
 
 
-def create_apprun_file(appdir_path, app_info):
+def create_apprun_file(appdir_path: str | os.PathLike, app_info: AppInfo) -> Path:
     """Create AppRun file in AppDir"""
     apprun_content = create_apprun_script(app_info)
     apprun_path = appdir_path / "AppRun"
-    
-    with open(apprun_path, 'w', encoding='utf-8') as f:
+
+    with open(apprun_path, "w", encoding="utf-8") as f:
         f.write(apprun_content)
-    
+
     # Make AppRun executable
     apprun_path.chmod(apprun_path.stat().st_mode | stat.S_IEXEC)
-    
+
     return apprun_path
 
 
-def create_launcher_script_file(appdir_path, app_info, template):
+def create_launcher_script_file(
+    appdir_path: str | os.PathLike, app_info: AppInfo, template: "AppTemplate"
+) -> Path:
     """Create launcher script file in AppDir"""
     script_content = template.get_launcher_script()
-    script_path = appdir_path / "usr" / "bin" / app_info['executable_name']
-    
+    script_path = appdir_path / "usr" / "bin" / app_info.executable_name
+
     script_path.parent.mkdir(parents=True, exist_ok=True)
-    
-    with open(script_path, 'w', encoding='utf-8') as f:
+
+    with open(script_path, "w", encoding="utf-8") as f:
         f.write(script_content)
-    
+
     # Make script executable
     script_path.chmod(script_path.stat().st_mode | stat.S_IEXEC)
-    
+
     return script_path
 
 
-def adapt_existing_desktop_file(source_desktop_file, appdir_path, app_info, new_exec=None):
+def adapt_existing_desktop_file(
+    source_desktop_file: str,
+    appdir_path: str | os.PathLike,
+    app_info: AppInfo,
+    new_exec: str | None = None,
+) -> Path | None:
     """Copy and adapt existing desktop file without renaming it or changing icon"""
     try:
-        with open(source_desktop_file, 'r', encoding='utf-8') as f:
+        with open(source_desktop_file, "r", encoding="utf-8") as f:
             content = f.read()
-        
-        lines = content.split('\n')
+
+        lines = content.split("\n")
         modified_lines = []
-        
+
         for line in lines:
             # Keep Exec= and Icon= unchanged
             modified_lines.append(line)
-        
+
         # Ensure Version field exists
-        if not any(line.strip().startswith('Version=') for line in modified_lines):
+        if not any(line.strip().startswith("Version=") for line in modified_lines):
             for i, line in enumerate(modified_lines):
-                if line.strip() == '[Desktop Entry]':
-                    modified_lines.insert(i + 1, 'Version=1.0')
+                if line.strip() == "[Desktop Entry]":
+                    modified_lines.insert(i + 1, "Version=1.0")
                     break
-        
-        modified_content = '\n'.join(modified_lines)
-        
+
+        modified_content = "\n".join(modified_lines)
+
         # Overwrite with modified content
-        with open(source_desktop_file, 'w', encoding='utf-8') as f:
+        with open(source_desktop_file, "w", encoding="utf-8") as f:
             f.write(modified_content)
-        
+
         # Copy to AppDir root, keeping original name
         root_desktop_path = appdir_path / Path(source_desktop_file).name
-        with open(root_desktop_path, 'w', encoding='utf-8') as f:
+        with open(root_desktop_path, "w", encoding="utf-8") as f:
             f.write(modified_content)
-        
+
         return True
-        
+
     except Exception as e:
         print(_("Warning: Failed to adapt existing desktop file: {}").format(e))
         return False

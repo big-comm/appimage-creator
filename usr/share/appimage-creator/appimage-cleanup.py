@@ -22,40 +22,44 @@ def cleanup_orphaned_integrations():
     """
     Check all integrated AppImages and remove orphaned ones.
     An integration is considered orphaned if the AppImage file no longer exists.
-    
+
     Returns:
         int: Number of orphaned integrations removed
     """
     marker_dir = Path.home() / ".local/share/appimage-integrations"
-    
+
     if not marker_dir.exists():
         print("No AppImage integrations found")
         return 0
-    
+
     removed_count = 0
     checked_count = 0
-    
+
     for marker_file in marker_dir.glob("*.path"):
         checked_count += 1
         try:
             # Read marker file (format: line 1 = appimage path, line 2 = desktop filename)
-            lines = marker_file.read_text().strip().split('\n')
+            lines = marker_file.read_text().strip().split("\n")
             appimage_path = lines[0]
-            desktop_filename = lines[1] if len(lines) > 1 else f"{marker_file.stem}.desktop"
-            
+            desktop_filename = (
+                lines[1] if len(lines) > 1 else f"{marker_file.stem}.desktop"
+            )
+
             app_name = marker_file.stem
-            
+
             # Check if AppImage still exists
             if not Path(appimage_path).exists():
                 print(f"Cleaning orphaned integration: {app_name}")
                 print(f"  Missing AppImage: {appimage_path}")
-                
+
                 # Remove desktop file using the stored filename
-                desktop_file = Path.home() / ".local/share/applications" / desktop_filename
+                desktop_file = (
+                    Path.home() / ".local/share/applications" / desktop_filename
+                )
                 if desktop_file.exists():
                     desktop_file.unlink()
                     print(f"  ✓ Removed desktop file: {desktop_filename}")
-                
+
                 # Remove icon files (can be .svg, .png, .xpm, etc)
                 icon_dir = Path.home() / ".local/share/icons/hicolor/scalable/apps"
                 if icon_dir.exists():
@@ -64,41 +68,46 @@ def cleanup_orphaned_integrations():
                         icon.unlink()
                         icon_count += 1
                     # Also try to remove icons matching desktop file base name
-                    desktop_base = desktop_filename.replace('.desktop', '')
+                    desktop_base = desktop_filename.replace(".desktop", "")
                     for icon in icon_dir.glob(f"{desktop_base}.*"):
                         icon.unlink()
                         icon_count += 1
                     if icon_count > 0:
                         print(f"  ✓ Removed {icon_count} icon(s)")
-                
+
                 # Remove marker file
                 marker_file.unlink()
-                print(f"  ✓ Removed marker file")
-                
+                print("  ✓ Removed marker file")
+
                 removed_count += 1
             else:
                 print(f"Valid integration: {app_name}")
-                
+
         except Exception as e:
             print(f"Error processing {marker_file}: {e}", file=sys.stderr)
-    
-    print(f"\nChecked {checked_count} integration(s), removed {removed_count} orphaned integration(s)")
-    
+
+    print(
+        f"\nChecked {checked_count} integration(s), removed {removed_count} orphaned integration(s)"
+    )
+
     if removed_count > 0:
         # Update desktop database
         try:
             print("Updating desktop database...")
             subprocess.run(
-                ["update-desktop-database", str(Path.home() / ".local/share/applications")],
+                [
+                    "update-desktop-database",
+                    str(Path.home() / ".local/share/applications"),
+                ],
                 check=False,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
-                timeout=5
+                timeout=5,
             )
             print("✓ Desktop database updated")
         except Exception as e:
             print(f"Warning: Failed to update desktop database: {e}", file=sys.stderr)
-    
+
     # Auto-disable systemd watcher if no integrations remain
     if checked_count == removed_count and removed_count > 0:
         print("\nAll integrations removed. Cleaning up update system...")
@@ -109,7 +118,7 @@ def cleanup_orphaned_integrations():
                 check=False,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
-                timeout=5
+                timeout=5,
             )
             print("✓ Systemd watcher disabled")
 
@@ -131,7 +140,7 @@ def cleanup_orphaned_integrations():
                 check=False,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
-                timeout=5
+                timeout=5,
             )
 
             # Remove updater module
@@ -139,6 +148,7 @@ def cleanup_orphaned_integrations():
             updater_dir = bin_dir / "updater"
             if updater_dir.exists():
                 import shutil
+
                 shutil.rmtree(updater_dir)
                 print("✓ Removed updater module")
 
@@ -147,15 +157,17 @@ def cleanup_orphaned_integrations():
                 user_locale_dir = Path.home() / ".local/share/locale"
                 if user_locale_dir.exists():
                     removed_mo_count = 0
-                    for mo_file in user_locale_dir.glob("*/LC_MESSAGES/appimage-updater.mo"):
+                    for mo_file in user_locale_dir.glob(
+                        "*/LC_MESSAGES/appimage-updater.mo"
+                    ):
                         mo_file.unlink()
                         removed_mo_count += 1
                         # Try to remove empty parent directories
                         try:
-                            mo_file.parent.rmdir() # LC_MESSAGES
-                            mo_file.parent.parent.rmdir() # lang dir
+                            mo_file.parent.rmdir()  # LC_MESSAGES
+                            mo_file.parent.parent.rmdir()  # lang dir
                         except OSError:
-                            pass # Directory not empty
+                            pass  # Directory not empty
                     if removed_mo_count > 0:
                         print(f"✓ Removed {removed_mo_count} translation files")
             except Exception:
@@ -163,12 +175,18 @@ def cleanup_orphaned_integrations():
 
             # Remove updater .desktop file and icon
             try:
-                updater_desktop = Path.home() / ".local/share/applications/org.bigcommunity.appimage.updater.desktop"
+                updater_desktop = (
+                    Path.home()
+                    / ".local/share/applications/org.bigcommunity.appimage.updater.desktop"
+                )
                 if updater_desktop.exists():
                     updater_desktop.unlink()
                     print("✓ Removed updater .desktop file")
-                
-                updater_icon = Path.home() / ".local/share/icons/hicolor/scalable/apps/appimage-update.svg"
+
+                updater_icon = (
+                    Path.home()
+                    / ".local/share/icons/hicolor/scalable/apps/appimage-update.svg"
+                )
                 if updater_icon.exists():
                     updater_icon.unlink()
                     print("✓ Removed updater icon")
@@ -185,7 +203,7 @@ def cleanup_orphaned_integrations():
 
         except Exception as e:
             print(f"Warning: Cleanup failed: {e}", file=sys.stderr)
-    
+
     return removed_count
 
 
@@ -214,12 +232,18 @@ def check_for_updates():
 
         # Only check if we're in a graphical environment
         if not (display or wayland):
-            print("[DEBUG] No graphical environment detected, skipping update check", file=sys.stderr)
+            print(
+                "[DEBUG] No graphical environment detected, skipping update check",
+                file=sys.stderr,
+            )
             return
 
-        print(f"[DEBUG] Checking if should check for updates...", file=sys.stderr)
+        print("[DEBUG] Checking if should check for updates...", file=sys.stderr)
         if not should_check_for_updates():
-            print(f"[DEBUG] Not time to check yet (interval: {UPDATE_CHECK_INTERVAL}s)", file=sys.stderr)
+            print(
+                f"[DEBUG] Not time to check yet (interval: {UPDATE_CHECK_INTERVAL}s)",
+                file=sys.stderr,
+            )
             return
 
         print("Checking for AppImage updates...")
@@ -258,6 +282,7 @@ def check_for_updates():
     except Exception as e:
         print(f"Update check failed: {e}", file=sys.stderr)
         import traceback
+
         traceback.print_exc(file=sys.stderr)
 
 

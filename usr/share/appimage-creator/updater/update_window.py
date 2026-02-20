@@ -9,34 +9,35 @@ import os
 import locale
 
 # Fix for systemd/cron environments where LANG might be missing
-if os.environ.get('LANG', 'C') == 'C' or not os.environ.get('LANG'):
+if os.environ.get("LANG", "C") == "C" or not os.environ.get("LANG"):
     try:
         # Try to read system-wide locale configuration
-        locale_conf = '/etc/locale.conf'
+        locale_conf = "/etc/locale.conf"
         if os.path.isfile(locale_conf):
-            with open(locale_conf, 'r') as f:
+            with open(locale_conf, "r") as f:
                 for line in f:
-                    if line.strip().startswith('LANG='):
-                        lang_val = line.strip().split('=')[1].strip('"').strip("'")
+                    if line.strip().startswith("LANG="):
+                        lang_val = line.strip().split("=")[1].strip('"').strip("'")
                         if lang_val:
-                            os.environ['LANG'] = lang_val
-                            os.environ['LC_ALL'] = lang_val
+                            os.environ["LANG"] = lang_val
+                            os.environ["LC_ALL"] = lang_val
                             # GTK uses LANGUAGE priority, this is CRITICAL
-                            os.environ['LANGUAGE'] = lang_val.split('.')[0]
+                            os.environ["LANGUAGE"] = lang_val.split(".")[0]
                         break
     except Exception:
         pass
 
 try:
-    locale.setlocale(locale.LC_ALL, '')
-except:
+    locale.setlocale(locale.LC_ALL, "")
+except Exception:
     pass
 
 import gi
-gi.require_version('Gtk', '4.0')
-gi.require_version('Adw', '1')
 
-from gi.repository import Gtk, Adw, GLib, Gdk
+gi.require_version("Gtk", "4.0")
+gi.require_version("Adw", "1")
+
+from gi.repository import Gtk, Adw, GLib
 from pathlib import Path
 import threading
 import subprocess
@@ -52,48 +53,48 @@ try:
     from updater.downloader import AppImageDownloader
 except ImportError:
     # When running as standalone (from AppImage)
-    from checker import UpdateInfo
-    from downloader import AppImageDownloader
+    from checker import UpdateInfo  # type: ignore[no-redef]
+    from downloader import AppImageDownloader  # type: ignore[no-redef]
 
 
 # Translation support (same approach as tac-writer)
 import gettext
 
 # Determine locale directory (works in AppImage and system install)
-locale_dir = '/usr/share/locale'  # Default fallback
+locale_dir = "/usr/share/locale"  # Default fallback
 
 # Check if we're in an AppImage
-if 'APPDIR' in os.environ:
+if "APPDIR" in os.environ:
     # Running from AppImage - use APPDIR environment variable
-    appdir = os.environ['APPDIR']
-    appimage_locale = os.path.join(appdir, 'usr/share/locale')
+    appdir = os.environ["APPDIR"]
+    appimage_locale = os.path.join(appdir, "usr/share/locale")
 
     if os.path.isdir(appimage_locale):
         locale_dir = appimage_locale
 else:
     # Check user local share (highest priority for installed updater)
-    user_locale = os.path.expanduser('~/.local/share/locale')
+    user_locale = os.path.expanduser("~/.local/share/locale")
     if os.path.isdir(user_locale):
         locale_dir = user_locale
-    
+
     # Fallback: try to locate from script location (development)
-    elif 'APPIMAGE' in os.environ:
+    elif "APPIMAGE" in os.environ:
         # Fallback: try to locate from script location
         script_dir = os.path.dirname(os.path.abspath(__file__))
         # Navigate from updater to usr/share/locale
         # Possible locations: usr/bin/updater or usr/share/appimage-creator/updater
         parts = script_dir.split(os.sep)
-        if 'usr' in parts:
-            usr_index = len(parts) - 1 - parts[::-1].index('usr')
-            usr_dir = os.sep.join(parts[:usr_index+1])
-            appimage_locale = os.path.join(usr_dir, 'share', 'locale')
+        if "usr" in parts:
+            usr_index = len(parts) - 1 - parts[::-1].index("usr")
+            usr_dir = os.sep.join(parts[: usr_index + 1])
+            appimage_locale = os.path.join(usr_dir, "share", "locale")
 
             if os.path.isdir(appimage_locale):
                 locale_dir = appimage_locale
     else:
         # Running from development - check local updater/locale
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        dev_locale = os.path.join(script_dir, 'locale')
+        dev_locale = os.path.join(script_dir, "locale")
         if os.path.isdir(dev_locale):
             locale_dir = dev_locale
 
@@ -113,18 +114,18 @@ def markdown_to_pango(text: str) -> str:
     import re
 
     # Escape special characters first
-    text = text.replace('&', '&amp;')
-    text = text.replace('<', '&lt;')
-    text = text.replace('>', '&gt;')
+    text = text.replace("&", "&amp;")
+    text = text.replace("<", "&lt;")
+    text = text.replace(">", "&gt;")
 
     # Convert **bold**
-    text = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', text)
+    text = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", text)
 
     # Convert *italic* (but not **bold** which was already converted)
-    text = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'<i>\1</i>', text)
+    text = re.sub(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", r"<i>\1</i>", text)
 
     # Convert [link text](url) to clickable links
-    text = re.sub(r'\[(.+?)\]\((.+?)\)', r'<a href="\2">\1</a>', text)
+    text = re.sub(r"\[(.+?)\]\((.+?)\)", r'<a href="\2">\1</a>', text)
 
     return text
 
@@ -163,17 +164,21 @@ class ProgressDialog(Adw.Window):
     def _set_window_icon(self):
         """Set window icon from installed location or fallback"""
         import os
-        
+
         icon_paths = [
             # User local (installed by updater)
-            Path.home() / ".local/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            Path.home()
+            / ".local/share/icons/hicolor/scalable/apps/appimage-update.svg",
             # Development/source
-            Path(__file__).parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
-            Path(__file__).parent.parent.parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            Path(__file__).parent.parent
+            / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            Path(__file__).parent.parent.parent.parent
+            / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
             # System install
             Path("/usr/share/icons/hicolor/scalable/apps/appimage-update.svg"),
             # AppImage environment
-            Path(os.environ.get('APPDIR', '/nonexistent')) / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            Path(os.environ.get("APPDIR", "/nonexistent"))
+            / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
         ]
 
         for icon_path in icon_paths:
@@ -277,13 +282,14 @@ class ProgressDialog(Adw.Window):
             }
         """)
         self.status_icon.get_style_context().add_provider(
-            css_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
         self.status_icon.add_css_class("success-icon")
 
         self.status_label.set_text(_("Update completed!"))
-        self.version_label.set_text(_("Version {} installed successfully").format(self.new_version))
+        self.version_label.set_text(
+            _("Version {} installed successfully").format(self.new_version)
+        )
         self.progress_bar.set_visible(False)
         self.progress_text.set_visible(False)
         self.done_button.set_visible(True)
@@ -303,8 +309,7 @@ class ProgressDialog(Adw.Window):
             }
         """)
         self.status_icon.get_style_context().add_provider(
-            css_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
         self.status_icon.add_css_class("error-icon")
 
@@ -328,9 +333,15 @@ class ProgressDialog(Adw.Window):
 class UpdateWindow(Adw.ApplicationWindow):
     """Update notification and installer window"""
 
-    def __init__(self, app_name: str, update_info: UpdateInfo,
-                 current_version: str, appimage_path: Path,
-                 marker_file: Path, filename_pattern: str):
+    def __init__(
+        self,
+        app_name: str,
+        update_info: UpdateInfo,
+        current_version: str,
+        appimage_path: Path,
+        marker_file: Path,
+        filename_pattern: str,
+    ):
         """
         Initialize update window
 
@@ -370,11 +381,13 @@ class UpdateWindow(Adw.ApplicationWindow):
             # Try multiple locations for the icon
             icon_paths = [
                 # If running from source/development
-                Path(__file__).parent.parent.parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+                Path(__file__).parent.parent.parent.parent
+                / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
                 # If installed system-wide
                 Path("/usr/share/icons/hicolor/scalable/apps/appimage-update.svg"),
                 # If running from AppImage
-                Path(os.environ.get('APPDIR', '')) / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+                Path(os.environ.get("APPDIR", ""))
+                / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
             ]
 
             for icon_path in icon_paths:
@@ -420,17 +433,22 @@ class UpdateWindow(Adw.ApplicationWindow):
 
         # Try to use custom appimage-update icon from various locations
         import os
+
         icon_paths = [
             # User local (installed by updater)
-            Path.home() / ".local/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            Path.home()
+            / ".local/share/icons/hicolor/scalable/apps/appimage-update.svg",
             # Development/source - relative to this script
-            Path(__file__).parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            Path(__file__).parent.parent
+            / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
             # Development - full project path
-            Path(__file__).parent.parent.parent.parent / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            Path(__file__).parent.parent.parent.parent
+            / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
             # System install
             Path("/usr/share/icons/hicolor/scalable/apps/appimage-update.svg"),
             # AppImage environment
-            Path(os.environ.get('APPDIR', '/nonexistent')) / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
+            Path(os.environ.get("APPDIR", "/nonexistent"))
+            / "usr/share/icons/hicolor/scalable/apps/appimage-update.svg",
         ]
 
         icon_loaded = False
@@ -439,6 +457,7 @@ class UpdateWindow(Adw.ApplicationWindow):
                 try:
                     # Use GdkPixbuf for reliable SVG loading
                     from gi.repository import GdkPixbuf
+
                     pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
                         str(icon_path), 64, 64, True
                     )
@@ -457,14 +476,18 @@ class UpdateWindow(Adw.ApplicationWindow):
 
         # Title (centered)
         title = Gtk.Label()
-        title.set_markup(f"<span size='x-large' weight='bold'>{_('Update Available')}</span>")
+        title.set_markup(
+            f"<span size='x-large' weight='bold'>{_('Update Available')}</span>"
+        )
         title.set_halign(Gtk.Align.CENTER)
         title.set_margin_top(12)
         content.append(title)
 
         # Description (centered)
         description = Gtk.Label()
-        description.set_text(_("A new version of {} is available").format(self.app_name))
+        description.set_text(
+            _("A new version of {} is available").format(self.app_name)
+        )
         description.add_css_class("dim-label")
         description.set_halign(Gtk.Align.CENTER)
         description.set_margin_bottom(12)
@@ -575,11 +598,7 @@ class UpdateWindow(Adw.ApplicationWindow):
         self.hide()
 
         # Open progress dialog
-        progress_dialog = ProgressDialog(
-            self,
-            self.app_name,
-            self.update_info.version
-        )
+        progress_dialog = ProgressDialog(self, self.app_name, self.update_info.version)
 
         # Store reference to close main window after progress dialog closes
         progress_dialog.main_window = self
@@ -589,9 +608,7 @@ class UpdateWindow(Adw.ApplicationWindow):
 
         # Start download in background thread
         self.download_thread = threading.Thread(
-            target=self._download_and_install,
-            args=(progress_dialog,),
-            daemon=True
+            target=self._download_and_install, args=(progress_dialog,), daemon=True
         )
         self.download_thread.start()
 
@@ -604,15 +621,16 @@ class UpdateWindow(Adw.ApplicationWindow):
         """Download and install update (runs in background thread)"""
         try:
             # Calculate new filename from pattern
-            new_filename = self.filename_pattern.replace('*', self.update_info.version)
-            new_appimage_path = self.appimage_path.parent / new_filename
+            new_filename = self.filename_pattern.replace("*", self.update_info.version)
 
             # Download with new filename
             downloaded_file = AppImageDownloader.download_update(
                 self.update_info.download_url,
-                progress_callback=lambda d, t: self._on_download_progress(progress_dialog, d, t),
+                progress_callback=lambda d, t: self._on_download_progress(
+                    progress_dialog, d, t
+                ),
                 target_filename=new_filename,
-                target_directory=self.appimage_path.parent
+                target_directory=self.appimage_path.parent,
             )
 
             if not downloaded_file:
@@ -649,13 +667,17 @@ class UpdateWindow(Adw.ApplicationWindow):
         except Exception as e:
             GLib.idle_add(progress_dialog.show_error_state, str(e))
 
-    def _on_download_progress(self, progress_dialog: ProgressDialog, downloaded: int, total: int):
+    def _on_download_progress(
+        self, progress_dialog: ProgressDialog, downloaded: int, total: int
+    ):
         """Update progress bar (called from download thread)"""
         if total > 0:
             fraction = downloaded / total
             downloaded_mb = downloaded / 1024 / 1024
             total_mb = total / 1024 / 1024
-            GLib.idle_add(progress_dialog.update_progress, fraction, downloaded_mb, total_mb)
+            GLib.idle_add(
+                progress_dialog.update_progress, fraction, downloaded_mb, total_mb
+            )
 
     def _silent_reintegrate(self, new_appimage_path: Path) -> bool:
         """
@@ -672,7 +694,7 @@ class UpdateWindow(Adw.ApplicationWindow):
             if not self.marker_file.exists():
                 return False
 
-            lines = self.marker_file.read_text().strip().split('\n')
+            lines = self.marker_file.read_text().strip().split("\n")
             if len(lines) < 2:
                 return False
 
@@ -680,6 +702,7 @@ class UpdateWindow(Adw.ApplicationWindow):
 
             # Extract AppImage to get desktop and icon files
             import tempfile
+
             with tempfile.TemporaryDirectory() as tmpdir:
                 tmpdir_path = Path(tmpdir)
 
@@ -688,7 +711,7 @@ class UpdateWindow(Adw.ApplicationWindow):
                     [str(new_appimage_path), "--appimage-extract"],
                     cwd=tmpdir_path,
                     capture_output=True,
-                    timeout=60
+                    timeout=60,
                 )
 
                 if result.returncode != 0:
@@ -697,18 +720,21 @@ class UpdateWindow(Adw.ApplicationWindow):
                 squashfs_root = tmpdir_path / "squashfs-root"
 
                 # Find desktop file
-                desktop_file = squashfs_root / "usr/share/applications" / desktop_filename
+                desktop_file = (
+                    squashfs_root / "usr/share/applications" / desktop_filename
+                )
                 if not desktop_file.exists():
                     return False
 
                 # Find icon file
                 import configparser
+
                 config = configparser.ConfigParser()
                 config.read(desktop_file)
-                icon_name = config.get('Desktop Entry', 'Icon')
+                icon_name = config.get("Desktop Entry", "Icon")
 
                 icon_file = None
-                for ext in ['.svg', '.png', '.xpm']:
+                for ext in [".svg", ".png", ".xpm"]:
                     potential_icon = squashfs_root / f"{icon_name}{ext}"
                     if potential_icon.exists():
                         icon_file = potential_icon
@@ -732,20 +758,21 @@ class UpdateWindow(Adw.ApplicationWindow):
 
                 # Update desktop file with new Exec path
                 import re
+
                 desktop_content = desktop_file.read_text()
 
                 modified_content = re.sub(
-                    r'^Exec=.*$',
+                    r"^Exec=.*$",
                     f'Exec="{str(new_appimage_path)}" %F',
                     desktop_content,
-                    flags=re.MULTILINE
+                    flags=re.MULTILINE,
                 )
 
                 modified_content = re.sub(
-                    r'^Icon=.*$',
-                    f'Icon={str(target_icon_path)}',
+                    r"^Icon=.*$",
+                    f"Icon={str(target_icon_path)}",
                     modified_content,
-                    flags=re.MULTILINE
+                    flags=re.MULTILINE,
                 )
 
                 target_desktop_path.write_text(modified_content)
@@ -757,9 +784,9 @@ class UpdateWindow(Adw.ApplicationWindow):
                         check=False,
                         stdout=subprocess.DEVNULL,
                         stderr=subprocess.DEVNULL,
-                        timeout=5
+                        timeout=5,
                     )
-                except:
+                except Exception:
                     pass
 
                 return True
@@ -774,7 +801,7 @@ class UpdateWindow(Adw.ApplicationWindow):
             if not self.marker_file.exists():
                 return
 
-            lines = self.marker_file.read_text().strip().split('\n')
+            lines = self.marker_file.read_text().strip().split("\n")
 
             # Update path (line 1) and version (line 4)
             if len(lines) >= 1:
@@ -782,7 +809,7 @@ class UpdateWindow(Adw.ApplicationWindow):
             if len(lines) >= 4:
                 lines[3] = self.update_info.version
 
-            self.marker_file.write_text('\n'.join(lines))
+            self.marker_file.write_text("\n".join(lines))
 
         except Exception as e:
             print(f"Failed to update marker file: {e}")
@@ -791,10 +818,16 @@ class UpdateWindow(Adw.ApplicationWindow):
 class UpdateApp(Adw.Application):
     """Simple application to show update window"""
 
-    def __init__(self, app_name: str, update_info: UpdateInfo,
-                 current_version: str, appimage_path: Path,
-                 marker_file: Path, filename_pattern: str):
-        super().__init__(application_id='org.bigcommunity.appimage.updater')
+    def __init__(
+        self,
+        app_name: str,
+        update_info: UpdateInfo,
+        current_version: str,
+        appimage_path: Path,
+        marker_file: Path,
+        filename_pattern: str,
+    ):
+        super().__init__(application_id="org.bigcommunity.appimage.updater")
 
         self.app_name = app_name
         self.update_info = update_info
@@ -813,15 +846,20 @@ class UpdateApp(Adw.Application):
                 self.current_version,
                 self.appimage_path,
                 self.marker_file,
-                self.filename_pattern
+                self.filename_pattern,
             )
             window.set_application(self)
         window.present()
 
 
-def show_update_notification(app_name: str, update_info: UpdateInfo,
-                            current_version: str, appimage_path: Path,
-                            marker_file: Path, filename_pattern: str = ""):
+def show_update_notification(
+    app_name: str,
+    update_info: UpdateInfo,
+    current_version: str,
+    appimage_path: Path,
+    marker_file: Path,
+    filename_pattern: str = "",
+):
     """
     Show update notification window
 
@@ -841,6 +879,6 @@ def show_update_notification(app_name: str, update_info: UpdateInfo,
         current_version,
         appimage_path,
         marker_file,
-        filename_pattern
+        filename_pattern,
     )
     return app.run(sys.argv)
