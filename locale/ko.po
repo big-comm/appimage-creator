@@ -1075,14 +1075,16 @@ msgstr "추가 라이브러리"
 # File: usr/share/appimage-creator/ui/pages.py, line: 860
 #: NEEDS WORK
 msgid ""
-"Specify extra shared libraries to bundle in the AppImage. Use library file patterns like "
-"'libcurl.so*' or 'libssl.so.3'."
-msgstr "AppImage에 번들할 추가 공유 라이브러리를 지정하십시오. 'libcurl.so*' 또는 'libssl.so.3'와 같은 라이브러리 파일 패턴을 사용하십시오."
+"Specify extra .so library files to bundle. Use file name patterns (e.g. 'libcurl.so*', "
+"'libssl.so.3'). Do NOT use package names like 'libcurl-dev' — only .so file names."
+msgstr ""
+"추가 .so 라이브러리 파일을 번들로 지정하십시오. 파일 이름 패턴을 사용하십시오 (예: 'libcurl.so*', 'libssl.so.3'). 'libcurl-dev'와 같은 "
+"패키지 이름은 사용하지 마십시오 — 오직 .so 파일 이름만 사용하십시오."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 866
+# File: usr/share/appimage-creator/ui/pages.py, line: 867
 #: NEEDS WORK
-msgid "Add Library Pattern"
-msgstr "라이브러리 패턴 추가"
+msgid "e.g. libexample.so*"
+msgstr "e.g. libexample.so*"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 872
 #: NEEDS WORK
@@ -2821,10 +2823,22 @@ msgstr "바이너리에 대한 종속성이 감지되었습니다: {}"
 msgid "Setting up Python environment..."
 msgstr "파이썬 환경 설정 중..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 370
+# File: usr/share/appimage-creator/core/python_env.py, line: 81
 #: NEEDS WORK
-msgid "Warning: requirements.txt not found. Using default packages."
-msgstr "경고: requirements.txt를 찾을 수 없습니다. 기본 패키지를 사용합니다."
+#, python-brace-format
+msgid "Loaded {} packages from requirements.txt"
+msgstr "requirements.txt에서 {} 패키지가 로드되었습니다."
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 88
+#: NEEDS WORK
+msgid "No requirements.txt found. Auto-detecting dependencies from source code..."
+msgstr "requirements.txt를 찾을 수 없습니다. 소스 코드에서 종속성을 자동 감지하는 중..."
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 98
+#: NEEDS WORK
+#, python-brace-format
+msgid "Auto-detected pip packages: {}"
+msgstr "자동 감지된 pip 패키지: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 379
 #: NEEDS WORK

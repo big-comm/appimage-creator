@@ -1078,16 +1078,17 @@ msgstr "Bibliotecas Adicionais"
 # File: usr/share/appimage-creator/ui/pages.py, line: 860
 #: NEEDS WORK
 msgid ""
-"Specify extra shared libraries to bundle in the AppImage. Use library file patterns like "
-"'libcurl.so*' or 'libssl.so.3'."
+"Specify extra .so library files to bundle. Use file name patterns (e.g. 'libcurl.so*', "
+"'libssl.so.3'). Do NOT use package names like 'libcurl-dev' — only .so file names."
 msgstr ""
-"Especifique bibliotecas compartilhadas extras para incluir no AppImage. Use padrões de arquivos de "
-"biblioteca como 'libcurl.so*' ou 'libssl.so.3'."
+"Especifique arquivos de biblioteca .so extras para empacotar. Use padrões de nomes de arquivos (por "
+"exemplo, 'libcurl.so*', 'libssl.so.3'). NÃO use nomes de pacotes como 'libcurl-dev' — apenas nomes "
+"de arquivos .so."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 866
+# File: usr/share/appimage-creator/ui/pages.py, line: 867
 #: NEEDS WORK
-msgid "Add Library Pattern"
-msgstr "Adicionar Padrão de Biblioteca"
+msgid "e.g. libexample.so*"
+msgstr "libexample.so*"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 872
 #: NEEDS WORK
@@ -2831,10 +2832,24 @@ msgstr "Dependência detectada no binário: {}"
 msgid "Setting up Python environment..."
 msgstr "Configurando o ambiente Python..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 370
+# File: usr/share/appimage-creator/core/python_env.py, line: 81
 #: NEEDS WORK
-msgid "Warning: requirements.txt not found. Using default packages."
-msgstr "Aviso: requirements.txt não encontrado. Usando pacotes padrão."
+#, python-brace-format
+msgid "Loaded {} packages from requirements.txt"
+msgstr "Carregado {} pacotes do requirements.txt"
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 88
+#: NEEDS WORK
+msgid "No requirements.txt found. Auto-detecting dependencies from source code..."
+msgstr ""
+"Nenhum requirements.txt encontrado. Detectando automaticamente as dependências a partir do "
+"código-fonte..."
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 98
+#: NEEDS WORK
+#, python-brace-format
+msgid "Auto-detected pip packages: {}"
+msgstr "Pacotes pip detectados automaticamente: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 379
 #: NEEDS WORK

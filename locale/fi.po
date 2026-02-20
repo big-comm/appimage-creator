@@ -1078,16 +1078,16 @@ msgstr "Lisäkirjastot"
 # File: usr/share/appimage-creator/ui/pages.py, line: 860
 #: NEEDS WORK
 msgid ""
-"Specify extra shared libraries to bundle in the AppImage. Use library file patterns like "
-"'libcurl.so*' or 'libssl.so.3'."
+"Specify extra .so library files to bundle. Use file name patterns (e.g. 'libcurl.so*', "
+"'libssl.so.3'). Do NOT use package names like 'libcurl-dev' — only .so file names."
 msgstr ""
-"Määritä ylimääräiset jaetut kirjastot, jotka pakataan AppImageen. Käytä kirjastotiedostojen "
-"kuvioita, kuten 'libcurl.so*' tai 'libssl.so.3'."
+"Määritä lisä .so-kirjastotiedostot pakattavaksi. Käytä tiedostonimiä, kuten 'libcurl.so*', "
+"'libssl.so.3'. Älä käytä pakettinimiä, kuten 'libcurl-dev' — vain .so-tiedostojen nimet."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 866
+# File: usr/share/appimage-creator/ui/pages.py, line: 867
 #: NEEDS WORK
-msgid "Add Library Pattern"
-msgstr "Lisää kirjastomalli"
+msgid "e.g. libexample.so*"
+msgstr "libexample.so*"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 872
 #: NEEDS WORK
@@ -2832,10 +2832,22 @@ msgstr "Havaittu riippuvuus binääristä: {}"
 msgid "Setting up Python environment..."
 msgstr "Python-ympäristön määrittäminen..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 370
+# File: usr/share/appimage-creator/core/python_env.py, line: 81
 #: NEEDS WORK
-msgid "Warning: requirements.txt not found. Using default packages."
-msgstr "Varoitus: requirements.txt ei löytynyt. Käytetään oletuspaketteja."
+#, python-brace-format
+msgid "Loaded {} packages from requirements.txt"
+msgstr "Ladattu {} pakettia tiedostosta requirements.txt"
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 88
+#: NEEDS WORK
+msgid "No requirements.txt found. Auto-detecting dependencies from source code..."
+msgstr "Ei requirements.txt-tiedostoa löytynyt. Riippuvuuksien automaattinen havaitseminen lähdekoodista..."
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 98
+#: NEEDS WORK
+#, python-brace-format
+msgid "Auto-detected pip packages: {}"
+msgstr "Automaattisesti havaittuja pip-paketteja: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 379
 #: NEEDS WORK

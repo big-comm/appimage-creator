@@ -87,7 +87,7 @@ msgid   "Failed to create desktop file"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/generators/files.py, line: 304
+# File: usr/share/appimage-creator/generators/files.py, line: 309
 #, python-brace-format
 msgid   "Warning: Failed to adapt existing desktop file: {}"
 msgstr  ""
@@ -365,8 +365,8 @@ msgstr  ""
 # File: usr/share/appimage-creator/ui/widgets.py, line: 33
 # File: usr/share/appimage-creator/ui/widgets.py, line: 108
 # File: usr/share/appimage-creator/ui/pages.py, line: 250
-# File: usr/share/appimage-creator/ui/pages.py, line: 920
-# File: usr/share/appimage-creator/ui/pages.py, line: 977
+# File: usr/share/appimage-creator/ui/pages.py, line: 921
+# File: usr/share/appimage-creator/ui/pages.py, line: 978
 # File: usr/share/appimage-creator/ui/window.py, line: 553
 msgid   "Remove"
 msgstr  ""
@@ -468,20 +468,20 @@ msgstr  ""
 #
 # File: usr/share/appimage-creator/ui/pages.py, line: 234
 # File: usr/share/appimage-creator/ui/pages.py, line: 237
-# File: usr/share/appimage-creator/ui/pages.py, line: 963
-# File: usr/share/appimage-creator/ui/pages.py, line: 965
+# File: usr/share/appimage-creator/ui/pages.py, line: 964
+# File: usr/share/appimage-creator/ui/pages.py, line: 966
 msgid   "Recommended"
 msgstr  ""
 
 #
 # File: usr/share/appimage-creator/ui/pages.py, line: 238
-# File: usr/share/appimage-creator/ui/pages.py, line: 966
+# File: usr/share/appimage-creator/ui/pages.py, line: 967
 msgid   "★ Recommended"
 msgstr  ""
 
 #
 # File: usr/share/appimage-creator/ui/pages.py, line: 266
-# File: usr/share/appimage-creator/ui/pages.py, line: 990
+# File: usr/share/appimage-creator/ui/pages.py, line: 991
 msgid   "Setup"
 msgstr  ""
 
@@ -952,7 +952,7 @@ msgstr  ""
 
 #
 # File: usr/share/appimage-creator/ui/pages.py, line: 744
-# File: usr/share/appimage-creator/ui/pages.py, line: 1007
+# File: usr/share/appimage-creator/ui/pages.py, line: 1008
 msgid   "Local System (Current Python)"
 msgstr  ""
 
@@ -1073,28 +1073,29 @@ msgstr  ""
 
 #
 # File: usr/share/appimage-creator/ui/pages.py, line: 860
-msgid   "Specify extra shared libraries to bundle in the AppImage. Use "
-        "library file patterns like 'libcurl.so*' or 'libssl.so.3'."
+msgid   "Specify extra .so library files to bundle. Use file name patterns "
+        "(e.g. 'libcurl.so*', 'libssl.so.3'). Do NOT use package names like "
+        "'libcurl-dev' — only .so file names."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/ui/pages.py, line: 866
-msgid   "Add Library Pattern"
+# File: usr/share/appimage-creator/ui/pages.py, line: 867
+msgid   "e.g. libexample.so*"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/ui/pages.py, line: 872
+# File: usr/share/appimage-creator/ui/pages.py, line: 873
 msgid   "Add library"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/ui/pages.py, line: 890
-# File: usr/share/appimage-creator/ui/pages.py, line: 893
+# File: usr/share/appimage-creator/ui/pages.py, line: 891
+# File: usr/share/appimage-creator/ui/pages.py, line: 894
 msgid   "Create AppImage"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/ui/pages.py, line: 891
+# File: usr/share/appimage-creator/ui/pages.py, line: 892
 msgid   "Generate your distributable AppImage file"
 msgstr  ""
 
@@ -1472,144 +1473,144 @@ msgid   "Generating script to copy libraries to {}..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 131
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 132
 msgid   "Executing library copy script..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 142
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 143
 msgid   "Warning: Library copy script finished with errors."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 144
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 145
 msgid   "Library copy script finished successfully."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 165
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 166
 msgid   "No typelibs selected for inclusion."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 169
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 170
 #, python-brace-format
 msgid   "Copying selected typelibs: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 178
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 179
 msgid   "Generating script to copy typelibs..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 214
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 215
 msgid   "Executing typelib copy script..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 222
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 223
 msgid   "Warning: Some typelibs may not have been copied"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 224
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 225
 msgid   "Typelib copy complete"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 236
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 237
 msgid   "Copying essential GStreamer plugins..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 285
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 286
 msgid   "Detected video playback requirements"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 334
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 335
 msgid   "Copying GStreamer plugins..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 341
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 342
 msgid   "GStreamer plugin copying complete"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 395
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 396
 msgid   "Copying Adwaita symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 403
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 404
 msgid   "Symbolic icons already present"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 411
 msgid   "Copying symbolic icons from container..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 423
 msgid   "Copying symbolic icons from host system..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 431
 #, python-brace-format
 msgid   "Warning: Adwaita symbolic icons not found at {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 436
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 437
 msgid   "Warning: Failed to copy symbolic icons"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 438
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 439
 msgid   "Creating custom index.theme for Adwaita symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 535
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 536
 msgid   "Symbolic icons copied successfully"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 539
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 540
 msgid   "Copying Papirus symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 560
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 561
 msgid   "Papirus symbolic icons already present"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 568
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 569
 msgid   "Copying Papirus and Papirus-Dark symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 640
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 641
 msgid   "Executing Papirus icons copy script..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 649
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 650
 msgid   "Warning: Papirus icons not available, falling back to Adwaita"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 652
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 653
 msgid   "Creating custom index.theme for Papirus symbolic icons..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 742
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 743
 msgid   "Papirus symbolic icons copied successfully"
 msgstr  ""
 
@@ -2740,223 +2741,236 @@ msgid   "  Detected dependency on binary: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 26
+# File: usr/share/appimage-creator/core/python_env.py, line: 55
 msgid   "Setting up Python environment..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 53
-msgid   "Warning: requirements.txt not found. Using default packages."
+# File: usr/share/appimage-creator/core/python_env.py, line: 81
+#, python-brace-format
+msgid   "Loaded {} packages from requirements.txt"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 62
+# File: usr/share/appimage-creator/core/python_env.py, line: 88
+msgid   "No requirements.txt found. Auto-detecting dependencies from source "
+        "code..."
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/core/python_env.py, line: 98
+#, python-brace-format
+msgid   "Auto-detected pip packages: {}"
+msgstr  ""
+
+#
+# File: usr/share/appimage-creator/core/python_env.py, line: 108
 msgid   "Creating Python virtualenv..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 65
+# File: usr/share/appimage-creator/core/python_env.py, line: 111
 #, python-brace-format
 msgid   "Creating isolated virtualenv at: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 73
+# File: usr/share/appimage-creator/core/python_env.py, line: 119
 #, python-brace-format
 msgid   "Failed to create virtualenv: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 78
+# File: usr/share/appimage-creator/core/python_env.py, line: 124
 msgid   "Virtualenv created successfully."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 81
+# File: usr/share/appimage-creator/core/python_env.py, line: 127
 msgid   "Copying Python standard library to venv..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 82
+# File: usr/share/appimage-creator/core/python_env.py, line: 128
 msgid   "Copying Python stdlib..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 97
+# File: usr/share/appimage-creator/core/python_env.py, line: 143
 msgid   "Python environment ready"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 100
+# File: usr/share/appimage-creator/core/python_env.py, line: 146
 msgid   "Python setup timed out"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 102
+# File: usr/share/appimage-creator/core/python_env.py, line: 148
 #, python-brace-format
 msgid   "Python setup failed: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 127
+# File: usr/share/appimage-creator/core/python_env.py, line: 173
 #, python-brace-format
 msgid   "Warning: Could not detect Python version in container. Falling back "
         "to host version: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 152
+# File: usr/share/appimage-creator/core/python_env.py, line: 198
 #, python-brace-format
 msgid   "Copying stdlib from {} to {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 179
+# File: usr/share/appimage-creator/core/python_env.py, line: 225
 msgid   "Failed to copy stdlib from container"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 184
+# File: usr/share/appimage-creator/core/python_env.py, line: 230
 #, python-brace-format
 msgid   "Could not find stdlib at: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 195
+# File: usr/share/appimage-creator/core/python_env.py, line: 241
 #, python-brace-format
 msgid   "Skipping system packages: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 209
+# File: usr/share/appimage-creator/core/python_env.py, line: 255
 msgid   "encodings module not found after stdlib copy"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 212
+# File: usr/share/appimage-creator/core/python_env.py, line: 258
 msgid   "Python stdlib copied successfully"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 215
+# File: usr/share/appimage-creator/core/python_env.py, line: 261
 msgid   "Cleaning up copied stdlib..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 238
+# File: usr/share/appimage-creator/core/python_env.py, line: 284
 msgid   "Stdlib cleanup complete."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 241
+# File: usr/share/appimage-creator/core/python_env.py, line: 287
 #, python-brace-format
 msgid   "Error copying Python stdlib: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 242
+# File: usr/share/appimage-creator/core/python_env.py, line: 288
 msgid   "Python stdlib required for AppImage"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 248
+# File: usr/share/appimage-creator/core/python_env.py, line: 294
 msgid   "Copying Python shared libraries..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 291
+# File: usr/share/appimage-creator/core/python_env.py, line: 337
 msgid   "Python shared libraries copied"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 295
+# File: usr/share/appimage-creator/core/python_env.py, line: 341
 msgid   "Installing Python packages..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 302
+# File: usr/share/appimage-creator/core/python_env.py, line: 348
 #, python-brace-format
 msgid   "Installing packages: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 319
+# File: usr/share/appimage-creator/core/python_env.py, line: 365
 #, python-brace-format
 msgid   "Installing {}..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 331
+# File: usr/share/appimage-creator/core/python_env.py, line: 377
 #, python-brace-format
 msgid   "Warning: Failed to install {}: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 338
+# File: usr/share/appimage-creator/core/python_env.py, line: 384
 msgid   "Attempting fallback: using system PyGObject bindings"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 342
+# File: usr/share/appimage-creator/core/python_env.py, line: 388
 #, python-brace-format
 msgid   "Successfully installed {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 344
+# File: usr/share/appimage-creator/core/python_env.py, line: 390
 msgid   "Python packages installed"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 348
+# File: usr/share/appimage-creator/core/python_env.py, line: 394
 msgid   "Performing aggressive cleanup for size optimization..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 375
-# File: usr/share/appimage-creator/core/python_env.py, line: 388
+# File: usr/share/appimage-creator/core/python_env.py, line: 421
+# File: usr/share/appimage-creator/core/python_env.py, line: 434
 #, python-brace-format
 msgid   "  Removed: {}"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 393
+# File: usr/share/appimage-creator/core/python_env.py, line: 439
 msgid   "Removing bytecode cache files..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 406
+# File: usr/share/appimage-creator/core/python_env.py, line: 452
 #, python-brace-format
 msgid   "  Removed {} __pycache__ dirs and {} .pyc files"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 410
+# File: usr/share/appimage-creator/core/python_env.py, line: 456
 msgid   "Aggressive cleanup complete."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 415
+# File: usr/share/appimage-creator/core/python_env.py, line: 738
 msgid   "Copying system gi module to virtualenv..."
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 449
+# File: usr/share/appimage-creator/core/python_env.py, line: 772
 msgid   "Error: System gi module not found"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 529
+# File: usr/share/appimage-creator/core/python_env.py, line: 852
 msgid   "System PyGObject copied successfully"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 532
+# File: usr/share/appimage-creator/core/python_env.py, line: 855
 msgid   "Failed to copy system PyGObject"
 msgstr  ""
 
 #
-# File: usr/share/appimage-creator/core/python_env.py, line: 536
+# File: usr/share/appimage-creator/core/python_env.py, line: 859
 #, python-brace-format
 msgid   "Error using system PyGObject: {}"
 msgstr  ""

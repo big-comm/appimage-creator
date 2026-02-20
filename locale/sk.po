@@ -1077,16 +1077,17 @@ msgstr "Dodatočné knižnice"
 # File: usr/share/appimage-creator/ui/pages.py, line: 860
 #: NEEDS WORK
 msgid ""
-"Specify extra shared libraries to bundle in the AppImage. Use library file patterns like "
-"'libcurl.so*' or 'libssl.so.3'."
+"Specify extra .so library files to bundle. Use file name patterns (e.g. 'libcurl.so*', "
+"'libssl.so.3'). Do NOT use package names like 'libcurl-dev' — only .so file names."
 msgstr ""
-"Určte ďalšie zdieľané knižnice, ktoré sa majú zabaliť do AppImage. Použite vzory súborov knižníc "
-"ako 'libcurl.so*' alebo 'libssl.so.3'."
+"Špecifikujte ďalšie .so knižnicové súbory na zabalenie. Použite vzory názvov súborov (napr. "
+"'libcurl.so*', 'libssl.so.3'). NEMUSÍTE používať názvy balíkov ako 'libcurl-dev' — iba názvy "
+"súborov .so."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 866
+# File: usr/share/appimage-creator/ui/pages.py, line: 867
 #: NEEDS WORK
-msgid "Add Library Pattern"
-msgstr "Pridať vzor knižnice"
+msgid "e.g. libexample.so*"
+msgstr "e.g. libexample.so*"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 872
 #: NEEDS WORK
@@ -2830,10 +2831,22 @@ msgstr "Zistená závislosť na binárnom súbore: {}"
 msgid "Setting up Python environment..."
 msgstr "Nastavenie prostredia Python..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 370
+# File: usr/share/appimage-creator/core/python_env.py, line: 81
 #: NEEDS WORK
-msgid "Warning: requirements.txt not found. Using default packages."
-msgstr "Upozornenie: súbor requirements.txt nebol nájdený. Používajú sa predvolené balíky."
+#, python-brace-format
+msgid "Loaded {} packages from requirements.txt"
+msgstr "Načítané {} balíky z requirements.txt"
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 88
+#: NEEDS WORK
+msgid "No requirements.txt found. Auto-detecting dependencies from source code..."
+msgstr "Nebola nájdená žiadna requirements.txt. Automatické zistenie závislostí zo zdrojového kódu..."
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 98
+#: NEEDS WORK
+#, python-brace-format
+msgid "Auto-detected pip packages: {}"
+msgstr "Automaticky zistené pip balíky: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 379
 #: NEEDS WORK

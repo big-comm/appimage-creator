@@ -1077,16 +1077,16 @@ msgstr "Tilleggsbiblioteker"
 # File: usr/share/appimage-creator/ui/pages.py, line: 860
 #: NEEDS WORK
 msgid ""
-"Specify extra shared libraries to bundle in the AppImage. Use library file patterns like "
-"'libcurl.so*' or 'libssl.so.3'."
+"Specify extra .so library files to bundle. Use file name patterns (e.g. 'libcurl.so*', "
+"'libssl.so.3'). Do NOT use package names like 'libcurl-dev' — only .so file names."
 msgstr ""
-"Spesifiser ekstra delte biblioteker som skal pakkes inn i AppImage. Bruk biblioteksfilmønstre som "
-"'libcurl.so*' eller 'libssl.so.3'."
+"Spesifiser ekstra .so bibliotekfiler som skal pakkes. Bruk filnavnmønstre (f.eks. 'libcurl.so*', "
+"'libssl.so.3'). Bruk IKKE pakkenavn som 'libcurl-dev' — bare .so filnavn."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 866
+# File: usr/share/appimage-creator/ui/pages.py, line: 867
 #: NEEDS WORK
-msgid "Add Library Pattern"
-msgstr "Legg til bibliotekmal"
+msgid "e.g. libexample.so*"
+msgstr "e.g. libexample.so*"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 872
 #: NEEDS WORK
@@ -2825,10 +2825,22 @@ msgstr "Oppdaget avhengighet av binær: {}"
 msgid "Setting up Python environment..."
 msgstr "Setter opp Python-miljø..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 370
+# File: usr/share/appimage-creator/core/python_env.py, line: 81
 #: NEEDS WORK
-msgid "Warning: requirements.txt not found. Using default packages."
-msgstr "Advarsel: requirements.txt ikke funnet. Bruker standardpakker."
+#, python-brace-format
+msgid "Loaded {} packages from requirements.txt"
+msgstr "Ladet {} pakker fra requirements.txt"
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 88
+#: NEEDS WORK
+msgid "No requirements.txt found. Auto-detecting dependencies from source code..."
+msgstr "Ingen requirements.txt funnet. Automatisk oppdagelse av avhengigheter fra kildekode..."
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 98
+#: NEEDS WORK
+#, python-brace-format
+msgid "Auto-detected pip packages: {}"
+msgstr "Automatisk oppdagede pip-pakker: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 379
 #: NEEDS WORK

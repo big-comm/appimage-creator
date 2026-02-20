@@ -1075,14 +1075,14 @@ msgstr "附加库"
 # File: usr/share/appimage-creator/ui/pages.py, line: 860
 #: NEEDS WORK
 msgid ""
-"Specify extra shared libraries to bundle in the AppImage. Use library file patterns like "
-"'libcurl.so*' or 'libssl.so.3'."
-msgstr "指定要捆绑在 AppImage 中的额外共享库。使用库文件模式，例如 'libcurl.so*' 或 'libssl.so.3'。"
+"Specify extra .so library files to bundle. Use file name patterns (e.g. 'libcurl.so*', "
+"'libssl.so.3'). Do NOT use package names like 'libcurl-dev' — only .so file names."
+msgstr "指定要捆绑的额外 .so 库文件。使用文件名模式（例如 'libcurl.so*'，'libssl.so.3'）。请勿使用像 'libcurl-dev' 这样的包名——仅使用 .so 文件名。"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 866
+# File: usr/share/appimage-creator/ui/pages.py, line: 867
 #: NEEDS WORK
-msgid "Add Library Pattern"
-msgstr "添加库模式"
+msgid "e.g. libexample.so*"
+msgstr "e.g. libexample.so*"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 872
 #: NEEDS WORK
@@ -2821,10 +2821,22 @@ msgstr "检测到对二进制文件的依赖：{}"
 msgid "Setting up Python environment..."
 msgstr "正在设置 Python 环境..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 381
+# File: usr/share/appimage-creator/core/python_env.py, line: 81
 #: NEEDS WORK
-msgid "Warning: requirements.txt not found. Using default packages."
-msgstr "警告：未找到 requirements.txt。使用默认软件包。"
+#, python-brace-format
+msgid "Loaded {} packages from requirements.txt"
+msgstr "从 requirements.txt 加载了 {} 个软件包"
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 88
+#: NEEDS WORK
+msgid "No requirements.txt found. Auto-detecting dependencies from source code..."
+msgstr "未找到 requirements.txt。正在从源代码自动检测依赖项..."
+# 
+# File: usr/share/appimage-creator/core/python_env.py, line: 98
+#: NEEDS WORK
+#, python-brace-format
+msgid "Auto-detected pip packages: {}"
+msgstr "自动检测到的 pip 包：{}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 390
 #: NEEDS WORK
