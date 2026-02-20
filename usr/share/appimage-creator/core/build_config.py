@@ -11,7 +11,8 @@ SYSTEM_DEPENDENCIES = {
         "name": "GLib/GObject",
         "libs": [
             "libgmodule-2.0.so*",
-            "libgirepository-*.so*",
+            "libgirepository-1.0.so*",
+            "libgirepository-2.0.so*",
             "libpcre.so.3",
         ],
         "typelibs": [

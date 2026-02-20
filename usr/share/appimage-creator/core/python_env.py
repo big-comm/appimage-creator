@@ -6,6 +6,7 @@ and system PyGObject fallback.
 """
 
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -13,6 +14,34 @@ from pathlib import Path
 
 from utils.system import make_executable
 from utils.i18n import _
+
+# Mapping of Python import names to their pip package names
+# Only needed when the import name differs from the pip package name
+_IMPORT_TO_PIP: dict[str, str] = {
+    "PIL": "Pillow",
+    "cv2": "opencv-python",
+    "yaml": "PyYAML",
+    "bs4": "beautifulsoup4",
+    "sklearn": "scikit-learn",
+    "attr": "attrs",
+    "dateutil": "python-dateutil",
+    "dotenv": "python-dotenv",
+    "serial": "pyserial",
+    "usb": "pyusb",
+    "magic": "python-magic",
+    "gi": "PyGObject",
+    "cairo": "PyCairo",
+    "Crypto": "pycryptodome",
+    "jwt": "PyJWT",
+    "websocket": "websocket-client",
+    "socks": "PySocks",
+    "skimage": "scikit-image",
+    "wx": "wxPython",
+    "xdg": "pyxdg",
+    "usb1": "libusb1",
+    "cups": "pycups",
+    "gi.repository": "PyGObject",
+}
 
 
 class PythonEnvironmentSetup:
@@ -48,10 +77,27 @@ class PythonEnvironmentSetup:
                         if line:
                             user_packages.append(line)
                     packages_to_install.extend(user_packages)
+                self._b.log(
+                    _("Loaded {} packages from requirements.txt").format(
+                        len(user_packages)
+                    )
+                )
             else:
                 self._b.log(
-                    _("Warning: requirements.txt not found. Using default packages.")
+                    _(
+                        "No requirements.txt found. Auto-detecting dependencies from source code..."
+                    )
                 )
+
+            # Auto-detect pip dependencies from Python source files
+            detected = self._detect_pip_dependencies(
+                project_root_str or str(Path(self._b.app_info.executable).parent)
+            )
+            if detected:
+                self._b.log(
+                    _("Auto-detected pip packages: {}").format(", ".join(detected))
+                )
+                packages_to_install.extend(detected)
 
             # Remove duplicates and join
             requirements_content = "\n".join(list(set(packages_to_install)))
@@ -408,6 +454,283 @@ fi
             )
         )
         self._b.log(_("Aggressive cleanup complete."))
+
+    def _detect_pip_dependencies(self, project_root: str) -> list[str]:
+        """Scan Python source files to auto-detect third-party pip dependencies."""
+        root = Path(project_root)
+        if not root.exists():
+            return []
+
+        py_files = list(root.rglob("*.py"))
+        if not py_files:
+            return []
+
+        # Detect vendored directories (contain .dist-info siblings)
+        vendored_dirs: set[str] = set()
+        for dist_info in root.rglob("*.dist-info"):
+            # The vendored package dir shares the parent with .dist-info
+            pkg_name = dist_info.name.split("-")[0].lower()
+            for sibling in dist_info.parent.iterdir():
+                if sibling.is_dir() and sibling.name.lower() == pkg_name:
+                    vendored_dirs.add(sibling.as_posix())
+
+        # Collect ALL local module/package names at every level
+        local_modules: set[str] = set()
+        for d in root.iterdir():
+            if d.is_dir() and (d / "__init__.py").exists():
+                local_modules.add(d.name)
+                # Also add sub-modules (for intra-package imports like 'from checker import ...')
+                for sub in d.rglob("*.py"):
+                    local_modules.add(sub.stem)
+        for py_file in root.glob("*.py"):
+            local_modules.add(py_file.stem)
+
+        # Collect top-level import names (skip only vendored package files)
+        import_names: set[str] = set()
+        import_pattern = re.compile(r"^\s*(?:import|from)\s+([\w.]+)", re.MULTILINE)
+
+        for py_file in py_files[:100]:
+            # Skip files inside vendored directories
+            file_path = py_file.as_posix()
+            skip = any(file_path.startswith(vdir) for vdir in vendored_dirs)
+            if skip:
+                continue
+            try:
+                content = py_file.read_text(encoding="utf-8", errors="ignore")
+                for match in import_pattern.finditer(content):
+                    module = match.group(1).split(".")[0]
+                    if module:
+                        import_names.add(module)
+            except Exception:
+                continue
+
+        # Get stdlib module names
+        stdlib_modules: set[str] = set()
+        if hasattr(sys, "stdlib_module_names"):
+            stdlib_modules = sys.stdlib_module_names
+        else:
+            # Fallback for older Python
+            stdlib_modules = {
+                "abc",
+                "aifc",
+                "argparse",
+                "array",
+                "ast",
+                "asynchat",
+                "asyncio",
+                "asyncore",
+                "atexit",
+                "base64",
+                "bdb",
+                "binascii",
+                "binhex",
+                "bisect",
+                "builtins",
+                "bz2",
+                "calendar",
+                "cgi",
+                "cgitb",
+                "chunk",
+                "cmath",
+                "cmd",
+                "code",
+                "codecs",
+                "codeop",
+                "collections",
+                "colorsys",
+                "compileall",
+                "concurrent",
+                "configparser",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "cProfile",
+                "crypt",
+                "csv",
+                "ctypes",
+                "curses",
+                "dataclasses",
+                "datetime",
+                "dbm",
+                "decimal",
+                "difflib",
+                "dis",
+                "distutils",
+                "doctest",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "faulthandler",
+                "fcntl",
+                "filecmp",
+                "fileinput",
+                "fnmatch",
+                "fractions",
+                "ftplib",
+                "functools",
+                "gc",
+                "getopt",
+                "getpass",
+                "gettext",
+                "glob",
+                "grp",
+                "gzip",
+                "hashlib",
+                "heapq",
+                "hmac",
+                "html",
+                "http",
+                "idlelib",
+                "imaplib",
+                "imghdr",
+                "imp",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "lib2to3",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "mailbox",
+                "mailcap",
+                "marshal",
+                "math",
+                "mimetypes",
+                "mmap",
+                "modulefinder",
+                "multiprocessing",
+                "netrc",
+                "nis",
+                "nntplib",
+                "numbers",
+                "operator",
+                "optparse",
+                "os",
+                "ossaudiodev",
+                "pathlib",
+                "pdb",
+                "pickle",
+                "pickletools",
+                "pipes",
+                "pkgutil",
+                "platform",
+                "plistlib",
+                "poplib",
+                "posix",
+                "posixpath",
+                "pprint",
+                "profile",
+                "pstats",
+                "pty",
+                "pwd",
+                "py_compile",
+                "pyclbr",
+                "pydoc",
+                "queue",
+                "quopri",
+                "random",
+                "re",
+                "readline",
+                "reprlib",
+                "resource",
+                "rlcompleter",
+                "runpy",
+                "sched",
+                "secrets",
+                "select",
+                "selectors",
+                "shelve",
+                "shlex",
+                "shutil",
+                "signal",
+                "site",
+                "smtpd",
+                "smtplib",
+                "sndhdr",
+                "socket",
+                "socketserver",
+                "sqlite3",
+                "ssl",
+                "stat",
+                "statistics",
+                "string",
+                "stringprep",
+                "struct",
+                "subprocess",
+                "sunau",
+                "symtable",
+                "sys",
+                "sysconfig",
+                "syslog",
+                "tabnanny",
+                "tarfile",
+                "telnetlib",
+                "tempfile",
+                "termios",
+                "test",
+                "textwrap",
+                "threading",
+                "time",
+                "timeit",
+                "tkinter",
+                "token",
+                "tokenize",
+                "tomllib",
+                "trace",
+                "traceback",
+                "tracemalloc",
+                "tty",
+                "turtle",
+                "turtledemo",
+                "types",
+                "typing",
+                "unicodedata",
+                "unittest",
+                "urllib",
+                "uu",
+                "uuid",
+                "venv",
+                "warnings",
+                "wave",
+                "weakref",
+                "webbrowser",
+                "winreg",
+                "winsound",
+                "wsgiref",
+                "xdrlib",
+                "xml",
+                "xmlrpc",
+                "zipapp",
+                "zipfile",
+                "zipimport",
+                "zlib",
+                "zoneinfo",
+                "_thread",
+            }
+
+        # Filter: keep only third-party imports
+        third_party = import_names - stdlib_modules - local_modules
+        # Remove internal/private modules
+        third_party = {m for m in third_party if not m.startswith("_")}
+
+        # Map to pip package names
+        pip_packages: set[str] = set()
+        for module in third_party:
+            pip_name = _IMPORT_TO_PIP.get(module, module)
+            pip_packages.add(pip_name)
+
+        # Remove packages already in the default list
+        pip_packages.discard("PyGObject")
+        pip_packages.discard("PyCairo")
+
+        return sorted(pip_packages)
 
     def _use_system_pygobject(self, venv_path):
         """Fallback: Copy system PyGObject to venv when pip installation fails."""

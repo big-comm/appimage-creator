@@ -857,13 +857,14 @@ class BuildPage:
         self._extra_libs_group.set_title(_("Additional Libraries"))
         self._extra_libs_group.set_description(
             _(
-                "Specify extra shared libraries to bundle in the AppImage. "
-                "Use library file patterns like 'libcurl.so*' or 'libssl.so.3'."
+                "Specify extra .so library files to bundle. "
+                "Use file name patterns (e.g. 'libcurl.so*', 'libssl.so.3'). "
+                "Do NOT use package names like 'libcurl-dev' — only .so file names."
             )
         )
 
         self.extra_lib_entry = Adw.EntryRow()
-        self.extra_lib_entry.set_title(_("Add Library Pattern"))
+        self.extra_lib_entry.set_title(_("e.g. libexample.so*"))
         self.extra_lib_entry.set_show_apply_button(True)
         self.extra_lib_entry.connect("apply", self._on_add_extra_lib)
 

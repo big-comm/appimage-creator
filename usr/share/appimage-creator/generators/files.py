@@ -225,6 +225,11 @@ fi
 # Setup localization
 export TEXTDOMAINDIR="${{HERE}}/usr/share/locale"
 
+# Suppress harmless GTK warnings from stderr.
+# Bundled GTK4 may not support modern CSS syntax or settings from system themes.
+# These do not affect functionality; filter them and residual blank lines.
+exec 2> >(grep -v -e 'Theme parser error' -e 'Unknown key' -e '^[[:space:]]*$' >&2)
+
 # Execute the target application
 {exec_line}
 '''

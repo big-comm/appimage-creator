@@ -31,7 +31,7 @@ from validators.validators import ValidationError, validate_app_name, validate_v
 from utils.i18n import _
 
 # Application version – single source of truth
-APP_VERSION = "1.1.0"
+APP_VERSION = "1.1.1"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):

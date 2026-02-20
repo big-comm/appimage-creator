@@ -97,23 +97,24 @@ class LibraryBundler:
                 "for search_path in "
                 + " ".join(f'"{p}"' for p in system_lib_paths)
                 + "; do",
-                '    BASE_FILE=$(find "$search_path" -maxdepth 1 -name '
-                + f"'{pattern}'"
-                + " | sort | head -n 1)",
-                '    if [ -n "$BASE_FILE" ] && [ -e "$BASE_FILE" ]; then',
+                "    while IFS= read -r BASE_FILE; do",
+                '        [ -z "$BASE_FILE" ] && continue',
                 "        SONAME=$(readelf -d \"$BASE_FILE\" 2>/dev/null | grep '(SONAME)' | awk -F'[][]' '{print $2}')",
                 '        if [ -n "$SONAME" ]; then',
                 '            TARGET_FILE="$(dirname "$BASE_FILE")/$SONAME"',
                 "        else",
                 '            TARGET_FILE="$BASE_FILE"',
                 "        fi",
-                '        if [ -e "$TARGET_FILE" ]; then',
-                '            echo "Copying $(basename "$TARGET_FILE") from $search_path..."',
+                '        BASENAME=$(basename "$TARGET_FILE")',
+                '        if [ -e "$TARGET_FILE" ] && [ ! -e "$DEST_DIR/$BASENAME" ]; then',
+                '            echo "Copying $BASENAME from $search_path..."',
                 '            cp -vL "$TARGET_FILE" "$DEST_DIR/"',
                 "            FOUND=1",
-                "            break # Found it, stop searching other paths",
                 "        fi",
-                "    fi",
+                '    done < <(find "$search_path" -maxdepth 1 -name '
+                + f"'{pattern}'"
+                + " 2>/dev/null | sort)",
+                '    [ "$FOUND" -eq 1 ] && break',
                 "done",
                 "if [ $FOUND -eq 0 ]; then",
                 f"    echo '    -> {pattern} not found.'",
@@ -889,8 +890,15 @@ Type=Scalable
 
             # Extract the icon base name (without path or extension)
             icon_value = icon_match.group(1).strip()
-            # Remove any path components if present
-            icon_basename = Path(icon_value).stem
+            # Remove any path components but preserve the full icon name.
+            # Do NOT use Path.stem here — it strips suffixes like '.app'
+            # which are part of the icon name (e.g. 'org.example.app')
+            icon_basename = Path(icon_value).name
+            # Strip only actual image file extensions
+            for ext in (".svg", ".png", ".xpm", ".ico"):
+                if icon_basename.endswith(ext):
+                    icon_basename = icon_basename[: -len(ext)]
+                    break
 
             self._b.log(f"Extracted icon name from .desktop file: {icon_basename}")
 
