@@ -16,66 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #
-# File: usr/share/appimage-creator/validators/validators.py, line: 19
-msgid "Application name must be at least 2 characters long"
-msgstr "Application name must be at least 2 characters long"
+# File: usr/share/appimage-creator/generators/icons.py, line: 17
+msgid "Warning: PIL/Pillow not available, icon processing will be limited"
+msgstr "Warning: PIL/Pillow not available, icon processing will be limited"
 
 #
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 22
-# File: usr/share/appimage-creator/ui/window.py, line: 299
-msgid "Application name contains invalid characters"
-msgstr "Application name contains invalid characters"
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 30
-msgid "Version is required"
-msgstr "Version is required"
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 33
-msgid "Invalid version format"
-msgstr "Invalid version format"
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 41
-msgid "Executable file does not exist"
-msgstr "Executable file does not exist"
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 44
-msgid "File is not executable"
-msgstr "File is not executable"
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 55
-msgid "Error: Missing [Desktop Entry] section"
-msgstr "Error: Missing [Desktop Entry] section"
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 70
+# File: usr/share/appimage-creator/generators/icons.py, line: 85
 #, python-brace-format
-msgid "Error: Missing required keys: {}"
-msgstr "Error: Missing required keys: {}"
-
-#
-# File: usr/share/appimage-creator/validators/validators.py, line: 82
-#, python-brace-format
-msgid "Error: Empty value for required key: {}"
-msgstr "Error: Empty value for required key: {}"
-
-#
-# File: usr/share/appimage-creator/utils/file_ops.py, line: 80
-#, python-brace-format
-msgid "Failed to download {}: {}"
-msgstr "Failed to download {}: {}"
-
-#
-# File: usr/share/appimage-creator/utils/system.py, line: 104
-#, python-brace-format
-msgid "Failed to make file executable: {}"
-msgstr "Failed to make file executable: {}"
+msgid "Error processing icon: {}"
+msgstr "Error processing icon: {}"
 
 #
 # File: usr/share/appimage-creator/generators/files.py, line: 92
@@ -92,305 +41,6 @@ msgstr "Failed to create desktop file"
 #, python-brace-format
 msgid "Warning: Failed to adapt existing desktop file: {}"
 msgstr "Warning: Failed to adapt existing desktop file: {}"
-
-#
-# File: usr/share/appimage-creator/generators/icons.py, line: 17
-msgid "Warning: PIL/Pillow not available, icon processing will be limited"
-msgstr "Warning: PIL/Pillow not available, icon processing will be limited"
-
-#
-# File: usr/share/appimage-creator/generators/icons.py, line: 85
-#, python-brace-format
-msgid "Error processing icon: {}"
-msgstr "Error processing icon: {}"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 26
-msgid "Building AppImage"
-msgstr "Building AppImage"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 44
-msgid "Preparing..."
-msgstr "Preparing..."
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 55
-msgid "Cancel Build"
-msgstr "Cancel Build"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
-msgid "Dependency Warnings"
-msgstr "Dependency Warnings"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
-msgid "AppImage Created with Warnings"
-msgstr "AppImage Created with Warnings"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
-msgid ""
-"The AppImage was created successfully, but some library dependencies could "
-"not be resolved. The application may not work correctly on some systems."
-msgstr ""
-"The AppImage was created successfully, but some library dependencies could "
-"not be resolved. The application may not work correctly on some systems."
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
-msgid "Missing Libraries"
-msgstr "Missing Libraries"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
-msgid "How to fix:"
-msgstr "How to fix:"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
-msgid ""
-"• Try building with a different container (e.g., Ubuntu 22.04 instead of "
-"24.04)"
-msgstr ""
-"• Try building with a different container (e.g., Ubuntu 22.04 instead of "
-"24.04)"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
-msgid ""
-"• Add the missing libraries to the 'Additional Libraries' section before "
-"building"
-msgstr ""
-"• Add the missing libraries to the 'Additional Libraries' section before "
-"building"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
-msgid "• Install the required -dev packages in the build container"
-msgstr "• Install the required -dev packages in the build container"
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 343
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 556
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 745
-# File: usr/share/appimage-creator/updater/update_window.py, line: 320
-msgid "Close"
-msgstr "Close"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 205
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 333
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 388
-msgid "Open Folder"
-msgstr "Open Folder"
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 227
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 387
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
-# File: usr/share/appimage-creator/ui/window.py, line: 611
-msgid "OK"
-msgstr "OK"
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 240
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 287
-# File: usr/share/appimage-creator/ui/window.py, line: 1137
-msgid "Build Complete"
-msgstr "Build Complete"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 295
-msgid "AppImage created successfully:"
-msgstr "AppImage created successfully:"
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 426
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 551
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 736
-# File: usr/share/appimage-creator/ui/window.py, line: 478
-# File: usr/share/appimage-creator/ui/window.py, line: 552
-# File: usr/share/appimage-creator/ui/window.py, line: 1041
-msgid "Cancel"
-msgstr "Cancel"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 428
-msgid "Open"
-msgstr "Open"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 430
-msgid "Select"
-msgstr "Select"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 432
-msgid "Save"
-msgstr "Save"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 507
-msgid "Copy to clipboard"
-msgstr "Copy to clipboard"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 525
-msgid "Desktop File Content"
-msgstr "Desktop File Content"
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 527
-# File: usr/share/appimage-creator/ui/window.py, line: 956
-# File: usr/share/appimage-creator/ui/window.py, line: 1069
-msgid "Error"
-msgstr "Error"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 527
-#, python-brace-format
-msgid "Failed to read file: {}"
-msgstr "Failed to read file: {}"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 575
-msgid "Starting..."
-msgstr "Starting..."
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
-msgid "Cancelling..."
-msgstr "Cancelling..."
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
-msgid "Cancelled."
-msgstr "Cancelled."
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 622
-msgid "Completed successfully!"
-msgstr "Completed successfully!"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 624
-msgid "Finished with errors."
-msgstr "Finished with errors."
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 634
-# File: usr/share/appimage-creator/ui/pages.py, line: 192
-msgid "Install Required Packages"
-msgstr "Install Required Packages"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 660
-msgid "Installation Information"
-msgstr "Installation Information"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 665
-msgid "Packages to Install"
-msgstr "Packages to Install"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 672
-msgid "Command"
-msgstr "Command"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 692
-msgid ""
-"<b>Administrator privileges required</b>\n"
-"You will be asked for your password to install system packages."
-msgstr ""
-"<b>Administrator privileges required</b>\n"
-"You will be asked for your password to install system packages."
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 705
-msgid "Installation Output"
-msgstr "Installation Output"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 740
-msgid "Install"
-msgstr "Install"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 760
-msgid ""
-"Starting installation...\n"
-"\n"
-msgstr ""
-"Starting installation...\n"
-"\n"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 790
-msgid "Error running command"
-msgstr "Error running command"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 800
-msgid "Pre-command completed successfully."
-msgstr "Pre-command completed successfully."
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 806
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 831
-msgid "Installation completed successfully!"
-msgstr "Installation completed successfully!"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 811
-msgid "Command failed with exit code"
-msgstr "Command failed with exit code"
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 839
-msgid "Installation failed."
-msgstr "Installation failed."
-
-#
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 841
-msgid "Please check the errors above and try again."
-msgstr "Please check the errors above and try again."
-
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-#
-# File: usr/share/appimage-creator/ui/widgets.py, line: 33
-# File: usr/share/appimage-creator/ui/widgets.py, line: 108
-# File: usr/share/appimage-creator/ui/pages.py, line: 250
-# File: usr/share/appimage-creator/ui/pages.py, line: 921
-# File: usr/share/appimage-creator/ui/pages.py, line: 978
-# File: usr/share/appimage-creator/ui/window.py, line: 553
-msgid "Remove"
-msgstr "Remove"
-
-#
-# File: usr/share/appimage-creator/ui/widgets.py, line: 157
-#, python-brace-format
-msgid "{}: {}"
-msgstr "{}: {}"
 
 #
 # File: usr/share/appimage-creator/ui/pages.py, line: 76
@@ -471,6 +121,14 @@ msgid "Not installed ({})"
 msgstr "Not installed ({})"
 
 #
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 192
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 634
+msgid "Install Required Packages"
+msgstr "Install Required Packages"
+
+#
 # File: usr/share/appimage-creator/ui/pages.py, line: 196
 msgid "Missing Components"
 msgstr "Missing Components"
@@ -493,6 +151,20 @@ msgstr "Recommended"
 # File: usr/share/appimage-creator/ui/pages.py, line: 967
 msgid "★ Recommended"
 msgstr "★ Recommended"
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/pages.py, line: 250
+# File: usr/share/appimage-creator/ui/pages.py, line: 921
+# File: usr/share/appimage-creator/ui/pages.py, line: 978
+# File: usr/share/appimage-creator/ui/widgets.py, line: 33
+# File: usr/share/appimage-creator/ui/widgets.py, line: 108
+# File: usr/share/appimage-creator/ui/window.py, line: 553
+msgid "Remove"
+msgstr "Remove"
 
 #
 # File: usr/share/appimage-creator/ui/pages.py, line: 266
@@ -1134,6 +806,278 @@ msgid "Generate your distributable AppImage file"
 msgstr "Generate your distributable AppImage file"
 
 #
+# File: usr/share/appimage-creator/ui/widgets.py, line: 157
+#, python-brace-format
+msgid "{}: {}"
+msgstr "{}: {}"
+
+#
+# File: usr/share/appimage-creator/ui/app.py, line: 82
+#, python-brace-format
+msgid "Warning: Could not load custom CSS: {}"
+msgstr "Warning: Could not load custom CSS: {}"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 26
+msgid "Building AppImage"
+msgstr "Building AppImage"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 44
+msgid "Preparing..."
+msgstr "Preparing..."
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 55
+msgid "Cancel Build"
+msgstr "Cancel Build"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
+msgid "Dependency Warnings"
+msgstr "Dependency Warnings"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
+msgid "AppImage Created with Warnings"
+msgstr "AppImage Created with Warnings"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
+msgid ""
+"The AppImage was created successfully, but some library dependencies could "
+"not be resolved. The application may not work correctly on some systems."
+msgstr ""
+"The AppImage was created successfully, but some library dependencies could "
+"not be resolved. The application may not work correctly on some systems."
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
+msgid "Missing Libraries"
+msgstr "Missing Libraries"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
+msgid "How to fix:"
+msgstr "How to fix:"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
+msgid ""
+"• Try building with a different container (e.g., Ubuntu 22.04 instead of "
+"24.04)"
+msgstr ""
+"• Try building with a different container (e.g., Ubuntu 22.04 instead of "
+"24.04)"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
+msgid ""
+"• Add the missing libraries to the 'Additional Libraries' section before "
+"building"
+msgstr ""
+"• Add the missing libraries to the 'Additional Libraries' section before "
+"building"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
+msgid "• Install the required -dev packages in the build container"
+msgstr "• Install the required -dev packages in the build container"
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 343
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 556
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 745
+# File: usr/share/appimage-creator/updater/update_window.py, line: 320
+msgid "Close"
+msgstr "Close"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 205
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 333
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 388
+msgid "Open Folder"
+msgstr "Open Folder"
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 227
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 387
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
+# File: usr/share/appimage-creator/ui/window.py, line: 611
+msgid "OK"
+msgstr "OK"
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 240
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 287
+# File: usr/share/appimage-creator/ui/window.py, line: 1137
+msgid "Build Complete"
+msgstr "Build Complete"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 295
+msgid "AppImage created successfully:"
+msgstr "AppImage created successfully:"
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 426
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 551
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 736
+# File: usr/share/appimage-creator/ui/window.py, line: 478
+# File: usr/share/appimage-creator/ui/window.py, line: 552
+# File: usr/share/appimage-creator/ui/window.py, line: 1041
+msgid "Cancel"
+msgstr "Cancel"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 428
+msgid "Open"
+msgstr "Open"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 430
+msgid "Select"
+msgstr "Select"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 432
+msgid "Save"
+msgstr "Save"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 507
+msgid "Copy to clipboard"
+msgstr "Copy to clipboard"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 525
+msgid "Desktop File Content"
+msgstr "Desktop File Content"
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 527
+# File: usr/share/appimage-creator/ui/window.py, line: 956
+# File: usr/share/appimage-creator/ui/window.py, line: 1069
+msgid "Error"
+msgstr "Error"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 527
+#, python-brace-format
+msgid "Failed to read file: {}"
+msgstr "Failed to read file: {}"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 575
+msgid "Starting..."
+msgstr "Starting..."
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
+msgid "Cancelling..."
+msgstr "Cancelling..."
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
+msgid "Cancelled."
+msgstr "Cancelled."
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 622
+msgid "Completed successfully!"
+msgstr "Completed successfully!"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 624
+msgid "Finished with errors."
+msgstr "Finished with errors."
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 660
+msgid "Installation Information"
+msgstr "Installation Information"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 665
+msgid "Packages to Install"
+msgstr "Packages to Install"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 672
+msgid "Command"
+msgstr "Command"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 692
+msgid ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+msgstr ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 705
+msgid "Installation Output"
+msgstr "Installation Output"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 740
+msgid "Install"
+msgstr "Install"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 760
+msgid ""
+"Starting installation...\n"
+"\n"
+msgstr ""
+"Starting installation...\n"
+"\n"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 790
+msgid "Error running command"
+msgstr "Error running command"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 800
+msgid "Pre-command completed successfully."
+msgstr "Pre-command completed successfully."
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 806
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 831
+msgid "Installation completed successfully!"
+msgstr "Installation completed successfully!"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 811
+msgid "Command failed with exit code"
+msgstr "Command failed with exit code"
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 839
+msgid "Installation failed."
+msgstr "Installation failed."
+
+#
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 841
+msgid "Please check the errors above and try again."
+msgstr "Please check the errors above and try again."
+
+#
 # File: usr/share/appimage-creator/ui/window.py, line: 62
 # File: usr/share/appimage-creator/ui/window.py, line: 235
 msgid "AppImage Creator"
@@ -1178,6 +1122,14 @@ msgstr "Almost Ready!"
 # File: usr/share/appimage-creator/ui/window.py, line: 296
 msgid "Please enter an Application Name"
 msgstr "Please enter an Application Name"
+
+#
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+#
+# File: usr/share/appimage-creator/ui/window.py, line: 299
+# File: usr/share/appimage-creator/validators/validators.py, line: 22
+msgid "Application name contains invalid characters"
+msgstr "Application name contains invalid characters"
 
 #
 # File: usr/share/appimage-creator/ui/window.py, line: 301
@@ -1537,176 +1489,183 @@ msgstr ""
 "Suggestion: Check that you have the necessary permissions for all files."
 
 #
-# File: usr/share/appimage-creator/ui/app.py, line: 82
+# File: usr/share/appimage-creator/validators/validators.py, line: 19
+msgid "Application name must be at least 2 characters long"
+msgstr "Application name must be at least 2 characters long"
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 30
+msgid "Version is required"
+msgstr "Version is required"
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 33
+msgid "Invalid version format"
+msgstr "Invalid version format"
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 41
+msgid "Executable file does not exist"
+msgstr "Executable file does not exist"
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 44
+msgid "File is not executable"
+msgstr "File is not executable"
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 55
+msgid "Error: Missing [Desktop Entry] section"
+msgstr "Error: Missing [Desktop Entry] section"
+
+#
+# File: usr/share/appimage-creator/validators/validators.py, line: 70
 #, python-brace-format
-msgid "Warning: Could not load custom CSS: {}"
-msgstr "Warning: Could not load custom CSS: {}"
+msgid "Error: Missing required keys: {}"
+msgstr "Error: Missing required keys: {}"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
+# File: usr/share/appimage-creator/validators/validators.py, line: 82
 #, python-brace-format
-msgid "Including user-specified extra libraries: {}"
-msgstr "Including user-specified extra libraries: {}"
+msgid "Error: Empty value for required key: {}"
+msgstr "Error: Empty value for required key: {}"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 80
 #, python-brace-format
-msgid "Copying standard system libraries: {}"
-msgstr "Copying standard system libraries: {}"
+msgid "Failed to download {}: {}"
+msgstr "Failed to download {}: {}"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 72
+# File: usr/share/appimage-creator/utils/system.py, line: 104
 #, python-brace-format
-msgid "Copying conflicting system libraries to fallback dir: {}"
-msgstr "Copying conflicting system libraries to fallback dir: {}"
+msgid "Failed to make file executable: {}"
+msgstr "Failed to make file executable: {}"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 89
+# File: usr/share/appimage-creator/updater/update_window.py, line: 147
+msgid "Updating"
+msgstr "Updating"
+
+#
+# File: usr/share/appimage-creator/updater/update_window.py, line: 244
+msgid "Done"
+msgstr "Done"
+
+#
+# File: usr/share/appimage-creator/updater/update_window.py, line: 258
+msgid "Downloading update..."
+msgstr "Downloading update..."
+
+#
+# File: usr/share/appimage-creator/updater/update_window.py, line: 259
 #, python-brace-format
-msgid "Generating script to copy libraries to {}..."
-msgstr "Generating script to copy libraries to {}..."
+msgid "Version {}"
+msgstr "Version {}"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 132
-msgid "Executing library copy script..."
-msgstr "Executing library copy script..."
+# File: usr/share/appimage-creator/updater/update_window.py, line: 267
+msgid "Installing update..."
+msgstr "Installing update..."
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 143
-msgid "Warning: Library copy script finished with errors."
-msgstr "Warning: Library copy script finished with errors."
+# File: usr/share/appimage-creator/updater/update_window.py, line: 289
+msgid "Update completed!"
+msgstr "Update completed!"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 145
-msgid "Library copy script finished successfully."
-msgstr "Library copy script finished successfully."
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 166
-msgid "No typelibs selected for inclusion."
-msgstr "No typelibs selected for inclusion."
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 170
+# File: usr/share/appimage-creator/updater/update_window.py, line: 291
 #, python-brace-format
-msgid "Copying selected typelibs: {}"
-msgstr "Copying selected typelibs: {}"
+msgid "Version {} installed successfully"
+msgstr "Version {} installed successfully"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 179
-msgid "Generating script to copy typelibs..."
-msgstr "Generating script to copy typelibs..."
+# File: usr/share/appimage-creator/updater/update_window.py, line: 316
+msgid "Update failed"
+msgstr "Update failed"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 215
-msgid "Executing typelib copy script..."
-msgstr "Executing typelib copy script..."
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 223
-msgid "Warning: Some typelibs may not have been copied"
-msgstr "Warning: Some typelibs may not have been copied"
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 225
-msgid "Typelib copy complete"
-msgstr "Typelib copy complete"
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 237
-msgid "Copying essential GStreamer plugins..."
-msgstr "Copying essential GStreamer plugins..."
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 286
-msgid "Detected video playback requirements"
-msgstr "Detected video playback requirements"
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 335
-msgid "Copying GStreamer plugins..."
-msgstr "Copying GStreamer plugins..."
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 342
-msgid "GStreamer plugin copying complete"
-msgstr "GStreamer plugin copying complete"
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 396
-msgid "Copying Adwaita symbolic icons..."
-msgstr "Copying Adwaita symbolic icons..."
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 404
-msgid "Symbolic icons already present"
-msgstr "Symbolic icons already present"
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 411
-msgid "Copying symbolic icons from container..."
-msgstr "Copying symbolic icons from container..."
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 423
-msgid "Copying symbolic icons from host system..."
-msgstr "Copying symbolic icons from host system..."
-
-#
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 431
+# File: usr/share/appimage-creator/updater/update_window.py, line: 329
 #, python-brace-format
-msgid "Warning: Adwaita symbolic icons not found at {}"
-msgstr "Warning: Adwaita symbolic icons not found at {}"
+msgid "{:.1f} MB of {:.1f} MB"
+msgstr "{:.1f} MB of {:.1f} MB"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 437
-msgid "Warning: Failed to copy symbolic icons"
-msgstr "Warning: Failed to copy symbolic icons"
+# File: usr/share/appimage-creator/updater/update_window.py, line: 367
+# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+msgid "Update Available"
+msgstr "Update Available"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 439
-msgid "Creating custom index.theme for Adwaita symbolic icons..."
-msgstr "Creating custom index.theme for Adwaita symbolic icons..."
+# File: usr/share/appimage-creator/updater/update_window.py, line: 489
+#, python-brace-format
+msgid "A new version of {} is available"
+msgstr "A new version of {} is available"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 536
-msgid "Symbolic icons copied successfully"
-msgstr "Symbolic icons copied successfully"
+# File: usr/share/appimage-creator/updater/update_window.py, line: 498
+msgid "Version Information"
+msgstr "Version Information"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 540
-msgid "Copying Papirus symbolic icons..."
-msgstr "Copying Papirus symbolic icons..."
+# File: usr/share/appimage-creator/updater/update_window.py, line: 501
+msgid "Current Version"
+msgstr "Current Version"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 561
-msgid "Papirus symbolic icons already present"
-msgstr "Papirus symbolic icons already present"
+# File: usr/share/appimage-creator/updater/update_window.py, line: 506
+msgid "New Version"
+msgstr "New Version"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 569
-msgid "Copying Papirus and Papirus-Dark symbolic icons..."
-msgstr "Copying Papirus and Papirus-Dark symbolic icons..."
+# File: usr/share/appimage-creator/updater/update_window.py, line: 515
+msgid "What's New"
+msgstr "What's New"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 641
-msgid "Executing Papirus icons copy script..."
-msgstr "Executing Papirus icons copy script..."
+# File: usr/share/appimage-creator/updater/update_window.py, line: 519
+msgid "Release Notes"
+msgstr "Release Notes"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 650
-msgid "Warning: Papirus icons not available, falling back to Adwaita"
-msgstr "Warning: Papirus icons not available, falling back to Adwaita"
+# File: usr/share/appimage-creator/updater/update_window.py, line: 520
+msgid "Click to view changes"
+msgstr "Click to view changes"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 653
-msgid "Creating custom index.theme for Papirus symbolic icons..."
-msgstr "Creating custom index.theme for Papirus symbolic icons..."
+# File: usr/share/appimage-creator/updater/update_window.py, line: 541
+msgid "Options"
+msgstr "Options"
 
 #
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 743
-msgid "Papirus symbolic icons copied successfully"
-msgstr "Papirus symbolic icons copied successfully"
+# File: usr/share/appimage-creator/updater/update_window.py, line: 545
+msgid "Remove old version"
+msgstr "Remove old version"
+
+#
+# File: usr/share/appimage-creator/updater/update_window.py, line: 546
+msgid "Delete previous version after successful update"
+msgstr "Delete previous version after successful update"
+
+#
+# File: usr/share/appimage-creator/updater/update_window.py, line: 575
+msgid "Later"
+msgstr "Later"
+
+#
+# File: usr/share/appimage-creator/updater/update_window.py, line: 579
+msgid "Update"
+msgstr "Update"
+
+#
+# File: usr/share/appimage-creator/updater/update_window.py, line: 637
+msgid "Download failed"
+msgstr "Download failed"
+
+#
+# File: usr/share/appimage-creator/updater/update_window.py, line: 650
+msgid "Integration failed"
+msgstr "Integration failed"
 
 #
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
@@ -1916,6 +1875,299 @@ msgstr "Warning: Could not remove image automatically"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "An error occurred while removing the container: {}"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
+#, python-brace-format
+msgid "Including user-specified extra libraries: {}"
+msgstr "Including user-specified extra libraries: {}"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
+#, python-brace-format
+msgid "Copying standard system libraries: {}"
+msgstr "Copying standard system libraries: {}"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 72
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Copying conflicting system libraries to fallback dir: {}"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 89
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Generating script to copy libraries to {}..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 132
+msgid "Executing library copy script..."
+msgstr "Executing library copy script..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 143
+msgid "Warning: Library copy script finished with errors."
+msgstr "Warning: Library copy script finished with errors."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 145
+msgid "Library copy script finished successfully."
+msgstr "Library copy script finished successfully."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 166
+msgid "No typelibs selected for inclusion."
+msgstr "No typelibs selected for inclusion."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 170
+#, python-brace-format
+msgid "Copying selected typelibs: {}"
+msgstr "Copying selected typelibs: {}"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 179
+msgid "Generating script to copy typelibs..."
+msgstr "Generating script to copy typelibs..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 215
+msgid "Executing typelib copy script..."
+msgstr "Executing typelib copy script..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 223
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "Warning: Some typelibs may not have been copied"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 225
+msgid "Typelib copy complete"
+msgstr "Typelib copy complete"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 237
+msgid "Copying essential GStreamer plugins..."
+msgstr "Copying essential GStreamer plugins..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 286
+msgid "Detected video playback requirements"
+msgstr "Detected video playback requirements"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 335
+msgid "Copying GStreamer plugins..."
+msgstr "Copying GStreamer plugins..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 342
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer plugin copying complete"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 396
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Copying Adwaita symbolic icons..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 404
+msgid "Symbolic icons already present"
+msgstr "Symbolic icons already present"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 411
+msgid "Copying symbolic icons from container..."
+msgstr "Copying symbolic icons from container..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 423
+msgid "Copying symbolic icons from host system..."
+msgstr "Copying symbolic icons from host system..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 431
+#, python-brace-format
+msgid "Warning: Adwaita symbolic icons not found at {}"
+msgstr "Warning: Adwaita symbolic icons not found at {}"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 437
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Warning: Failed to copy symbolic icons"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 439
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Creating custom index.theme for Adwaita symbolic icons..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 536
+msgid "Symbolic icons copied successfully"
+msgstr "Symbolic icons copied successfully"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 540
+msgid "Copying Papirus symbolic icons..."
+msgstr "Copying Papirus symbolic icons..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 561
+msgid "Papirus symbolic icons already present"
+msgstr "Papirus symbolic icons already present"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 569
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Copying Papirus and Papirus-Dark symbolic icons..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 641
+msgid "Executing Papirus icons copy script..."
+msgstr "Executing Papirus icons copy script..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 650
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Warning: Papirus icons not available, falling back to Adwaita"
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 653
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Creating custom index.theme for Papirus symbolic icons..."
+
+#
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 743
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Papirus symbolic icons copied successfully"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 26
+msgid "Processing external binaries with linuxdeploy..."
+msgstr "Processing external binaries with linuxdeploy..."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 29
+msgid "Warning: linuxdeploy not available, skipping binary bundling"
+msgstr "Warning: linuxdeploy not available, skipping binary bundling"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 45
+#, python-brace-format
+msgid "Backed up original wrapper: {}"
+msgstr "Backed up original wrapper: {}"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 60
+msgid "Backed up custom AppRun"
+msgstr "Backed up custom AppRun"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 68
+msgid "Warning: No .desktop file found, skipping linuxdeploy"
+msgstr "Warning: No .desktop file found, skipping linuxdeploy"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 94
+#, python-brace-format
+msgid ""
+"Skipping copy of '{}' executable, as it is treated as a library provider."
+msgstr ""
+"Skipping copy of '{}' executable, as it is treated as a library provider."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 108
+#, python-brace-format
+msgid "Will bundle: {}"
+msgstr "Will bundle: {}"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 113
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "No external binaries or plugins to process with linuxdeploy."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 121
+msgid "Running linuxdeploy..."
+msgstr "Running linuxdeploy..."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 122
+msgid "Bundling binary dependencies..."
+msgstr "Bundling binary dependencies..."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 126
+msgid "Note: linuxdeploy runs locally but accesses container files"
+msgstr "Note: linuxdeploy runs locally but accesses container files"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 147
+msgid "Warning: linuxdeploy had issues but continuing..."
+msgstr "Warning: linuxdeploy had issues but continuing..."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 149
+msgid "External binaries bundled successfully"
+msgstr "External binaries bundled successfully"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 159
+msgid "Restored custom AppRun"
+msgstr "Restored custom AppRun"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 170
+#, python-brace-format
+msgid "Restored original wrapper: {}"
+msgstr "Restored original wrapper: {}"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 174
+msgid "Generating icon cache inside AppDir..."
+msgstr "Generating icon cache inside AppDir..."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 181
+msgid "Successfully generated icon-theme.cache."
+msgstr "Successfully generated icon-theme.cache."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 185
+msgid ""
+"Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
+msgstr ""
+"Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 191
+#, python-brace-format
+msgid "Warning: Could not run gtk-update-icon-cache: {}"
+msgstr "Warning: Could not run gtk-update-icon-cache: {}"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 197
+#, python-brace-format
+msgid "Warning: Binary bundling failed: {}"
+msgstr "Warning: Binary bundling failed: {}"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 217
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Warning: Could not determine source path for binary detection."
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 221
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Scanning for binary dependencies in: {}"
+
+#
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 243
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "  Detected dependency on binary: {}"
 
 #
 # File: usr/share/appimage-creator/core/builder.py, line: 69
@@ -2653,221 +2905,122 @@ msgid "Build already in progress"
 msgstr "Build already in progress"
 
 #
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 24
-msgid "AppImage Structure - Detailed View"
-msgstr "AppImage Structure - Detailed View"
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
+msgid "Starting recursive dependency resolution..."
+msgstr "Starting recursive dependency resolution..."
 
 #
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 26
-msgid "[AppImage Root]"
-msgstr "[AppImage Root]"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 27
-msgid "├── AppRun (main launcher)"
-msgstr "├── AppRun (main launcher)"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 30
-msgid "└── usr/"
-msgstr "└── usr/"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 31
-msgid "    ├── bin/"
-msgstr "    ├── bin/"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 33
-msgid "    ├── lib/"
-msgstr "    ├── lib/"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 34
-msgid "    └── share/"
-msgstr "    └── share/"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
-msgid "Python Files"
-msgstr "Python Files"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
-msgid "Shell Scripts"
-msgstr "Shell Scripts"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
-msgid "UI Files"
-msgstr "UI Files"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
-msgid "CSS Files"
-msgstr "CSS Files"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
-msgid "Icon Files"
-msgstr "Icon Files"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
-msgid "Locale Directories"
-msgstr "Locale Directories"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 89
-msgid "[Additional Directories]"
-msgstr "[Additional Directories]"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 111
-msgid "SUMMARY"
-msgstr "SUMMARY"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 115
-msgid "Project Root"
-msgstr "Project Root"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 115
-msgid "Not detected"
-msgstr "Not detected"
-
-#
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 127
-msgid "  File Breakdown:"
-msgstr "  File Breakdown:"
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 26
-msgid "Processing external binaries with linuxdeploy..."
-msgstr "Processing external binaries with linuxdeploy..."
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 29
-msgid "Warning: linuxdeploy not available, skipping binary bundling"
-msgstr "Warning: linuxdeploy not available, skipping binary bundling"
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 45
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
 #, python-brace-format
-msgid "Backed up original wrapper: {}"
-msgstr "Backed up original wrapper: {}"
+msgid "  Resolution iteration {}/{}..."
+msgstr "  Resolution iteration {}/{}..."
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 60
-msgid "Backed up custom AppRun"
-msgstr "Backed up custom AppRun"
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
+#, python-brace-format
+msgid "  Found {} ELF files to scan"
+msgstr "  Found {} ELF files to scan"
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 68
-msgid "Warning: No .desktop file found, skipping linuxdeploy"
-msgstr "Warning: No .desktop file found, skipping linuxdeploy"
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
+msgid "  No missing libraries found — resolution complete"
+msgstr "  No missing libraries found — resolution complete"
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 94
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
+#, python-brace-format
+msgid "  Found {} missing libraries: {}"
+msgstr "  Found {} missing libraries: {}"
+
+#
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
+#, python-brace-format
+msgid "    Copied: {}"
+msgstr "    Copied: {}"
+
+#
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
+#, python-brace-format
+msgid "    Failed to copy: {}"
+msgstr "    Failed to copy: {}"
+
+#
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
+#, python-brace-format
+msgid "    Not found in system: {}"
+msgstr "    Not found in system: {}"
+
+#
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
+msgid "  No new libraries could be copied — stopping"
+msgstr "  No new libraries could be copied — stopping"
+
+#
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
+#, python-brace-format
+msgid "  Copied {} libraries this iteration"
+msgstr "  Copied {} libraries this iteration"
+
+#
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
 #, python-brace-format
 msgid ""
-"Skipping copy of '{}' executable, as it is treated as a library provider."
+"Dependency resolution complete: {} copied, {} still missing ({} iterations)"
 msgstr ""
-"Skipping copy of '{}' executable, as it is treated as a library provider."
+"Dependency resolution complete: {} copied, {} still missing ({} iterations)"
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 108
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
+msgid "Validating library dependencies..."
+msgstr "Validating library dependencies..."
+
+#
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
+msgid "Library validation FAILED:"
+msgstr "Library validation FAILED:"
+
+#
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
+msgid "Library validation passed — all dependencies resolved"
+msgstr "Library validation passed — all dependencies resolved"
+
+#
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
 #, python-brace-format
-msgid "Will bundle: {}"
-msgstr "Will bundle: {}"
+msgid "Validating Python imports for module: {}"
+msgstr "Validating Python imports for module: {}"
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 113
-msgid "No external binaries or plugins to process with linuxdeploy."
-msgstr "No external binaries or plugins to process with linuxdeploy."
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
+msgid "Python import validation passed"
+msgstr "Python import validation passed"
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 121
-msgid "Running linuxdeploy..."
-msgstr "Running linuxdeploy..."
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 122
-msgid "Bundling binary dependencies..."
-msgstr "Bundling binary dependencies..."
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 126
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "Note: linuxdeploy runs locally but accesses container files"
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 147
-msgid "Warning: linuxdeploy had issues but continuing..."
-msgstr "Warning: linuxdeploy had issues but continuing..."
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 149
-msgid "External binaries bundled successfully"
-msgstr "External binaries bundled successfully"
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 159
-msgid "Restored custom AppRun"
-msgstr "Restored custom AppRun"
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 170
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
 #, python-brace-format
-msgid "Restored original wrapper: {}"
-msgstr "Restored original wrapper: {}"
+msgid "Python import validation FAILED: {}"
+msgstr "Python import validation FAILED: {}"
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 174
-msgid "Generating icon cache inside AppDir..."
-msgstr "Generating icon cache inside AppDir..."
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 181
-msgid "Successfully generated icon-theme.cache."
-msgstr "Successfully generated icon-theme.cache."
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 185
-msgid ""
-"Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
-msgstr ""
-"Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 191
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
 #, python-brace-format
-msgid "Warning: Could not run gtk-update-icon-cache: {}"
-msgstr "Warning: Could not run gtk-update-icon-cache: {}"
+msgid "Python import validation error: {}"
+msgstr "Python import validation error: {}"
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 197
-#, python-brace-format
-msgid "Warning: Binary bundling failed: {}"
-msgstr "Warning: Binary bundling failed: {}"
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
+msgid "Running pre-packaging validation..."
+msgstr "Running pre-packaging validation..."
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 217
-msgid "Warning: Could not determine source path for binary detection."
-msgstr "Warning: Could not determine source path for binary detection."
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
+msgid "Pre-packaging validation PASSED"
+msgstr "Pre-packaging validation PASSED"
 
 #
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 221
-#, python-brace-format
-msgid "Scanning for binary dependencies in: {}"
-msgstr "Scanning for binary dependencies in: {}"
-
-#
-# File: usr/share/appimage-creator/core/binary_bundler.py, line: 243
-#, python-brace-format
-msgid "  Detected dependency on binary: {}"
-msgstr "  Detected dependency on binary: {}"
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
+msgid "Pre-packaging validation FAILED — check warnings above"
+msgstr "Pre-packaging validation FAILED — check warnings above"
 
 #
 # File: usr/share/appimage-creator/core/python_env.py, line: 55
@@ -3109,244 +3262,91 @@ msgid "Error using system PyGObject: {}"
 msgstr "Error using system PyGObject: {}"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
-msgid "Starting recursive dependency resolution..."
-msgstr "Starting recursive dependency resolution..."
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 24
+msgid "AppImage Structure - Detailed View"
+msgstr "AppImage Structure - Detailed View"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
-#, python-brace-format
-msgid "  Resolution iteration {}/{}..."
-msgstr "  Resolution iteration {}/{}..."
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 26
+msgid "[AppImage Root]"
+msgstr "[AppImage Root]"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
-#, python-brace-format
-msgid "  Found {} ELF files to scan"
-msgstr "  Found {} ELF files to scan"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 27
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun (main launcher)"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
-msgid "  No missing libraries found — resolution complete"
-msgstr "  No missing libraries found — resolution complete"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 30
+msgid "└── usr/"
+msgstr "└── usr/"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
-#, python-brace-format
-msgid "  Found {} missing libraries: {}"
-msgstr "  Found {} missing libraries: {}"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 31
+msgid "    ├── bin/"
+msgstr "    ├── bin/"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
-#, python-brace-format
-msgid "    Copied: {}"
-msgstr "    Copied: {}"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 33
+msgid "    ├── lib/"
+msgstr "    ├── lib/"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
-#, python-brace-format
-msgid "    Failed to copy: {}"
-msgstr "    Failed to copy: {}"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 34
+msgid "    └── share/"
+msgstr "    └── share/"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
-#, python-brace-format
-msgid "    Not found in system: {}"
-msgstr "    Not found in system: {}"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
+msgid "Python Files"
+msgstr "Python Files"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
-msgid "  No new libraries could be copied — stopping"
-msgstr "  No new libraries could be copied — stopping"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
+msgid "Shell Scripts"
+msgstr "Shell Scripts"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
-#, python-brace-format
-msgid "  Copied {} libraries this iteration"
-msgstr "  Copied {} libraries this iteration"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
+msgid "UI Files"
+msgstr "UI Files"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
-#, python-brace-format
-msgid ""
-"Dependency resolution complete: {} copied, {} still missing ({} iterations)"
-msgstr ""
-"Dependency resolution complete: {} copied, {} still missing ({} iterations)"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
+msgid "CSS Files"
+msgstr "CSS Files"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
-msgid "Validating library dependencies..."
-msgstr "Validating library dependencies..."
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
+msgid "Icon Files"
+msgstr "Icon Files"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
-msgid "Library validation FAILED:"
-msgstr "Library validation FAILED:"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
+msgid "Locale Directories"
+msgstr "Locale Directories"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
-msgid "Library validation passed — all dependencies resolved"
-msgstr "Library validation passed — all dependencies resolved"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 89
+msgid "[Additional Directories]"
+msgstr "[Additional Directories]"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
-#, python-brace-format
-msgid "Validating Python imports for module: {}"
-msgstr "Validating Python imports for module: {}"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 111
+msgid "SUMMARY"
+msgstr "SUMMARY"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
-msgid "Python import validation passed"
-msgstr "Python import validation passed"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 115
+msgid "Project Root"
+msgstr "Project Root"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
-#, python-brace-format
-msgid "Python import validation FAILED: {}"
-msgstr "Python import validation FAILED: {}"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 115
+msgid "Not detected"
+msgstr "Not detected"
 
 #
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
-#, python-brace-format
-msgid "Python import validation error: {}"
-msgstr "Python import validation error: {}"
-
-#
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
-msgid "Running pre-packaging validation..."
-msgstr "Running pre-packaging validation..."
-
-#
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
-msgid "Pre-packaging validation PASSED"
-msgstr "Pre-packaging validation PASSED"
-
-#
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
-msgid "Pre-packaging validation FAILED — check warnings above"
-msgstr "Pre-packaging validation FAILED — check warnings above"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 147
-msgid "Updating"
-msgstr "Updating"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 244
-msgid "Done"
-msgstr "Done"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 258
-msgid "Downloading update..."
-msgstr "Downloading update..."
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 259
-#, python-brace-format
-msgid "Version {}"
-msgstr "Version {}"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 267
-msgid "Installing update..."
-msgstr "Installing update..."
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 289
-msgid "Update completed!"
-msgstr "Update completed!"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 291
-#, python-brace-format
-msgid "Version {} installed successfully"
-msgstr "Version {} installed successfully"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 316
-msgid "Update failed"
-msgstr "Update failed"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 329
-#, python-brace-format
-msgid "{:.1f} MB of {:.1f} MB"
-msgstr "{:.1f} MB of {:.1f} MB"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 367
-# File: usr/share/appimage-creator/updater/update_window.py, line: 480
-msgid "Update Available"
-msgstr "Update Available"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 489
-#, python-brace-format
-msgid "A new version of {} is available"
-msgstr "A new version of {} is available"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 498
-msgid "Version Information"
-msgstr "Version Information"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 501
-msgid "Current Version"
-msgstr "Current Version"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 506
-msgid "New Version"
-msgstr "New Version"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 515
-msgid "What's New"
-msgstr "What's New"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 519
-msgid "Release Notes"
-msgstr "Release Notes"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 520
-msgid "Click to view changes"
-msgstr "Click to view changes"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 541
-msgid "Options"
-msgstr "Options"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 545
-msgid "Remove old version"
-msgstr "Remove old version"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 546
-msgid "Delete previous version after successful update"
-msgstr "Delete previous version after successful update"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 575
-msgid "Later"
-msgstr "Later"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 579
-msgid "Update"
-msgstr "Update"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 637
-msgid "Download failed"
-msgstr "Download failed"
-
-#
-# File: usr/share/appimage-creator/updater/update_window.py, line: 650
-msgid "Integration failed"
-msgstr "Integration failed"
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 127
+msgid "  File Breakdown:"
+msgstr "  File Breakdown:"
