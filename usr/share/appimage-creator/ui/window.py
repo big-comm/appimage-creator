@@ -1,232 +1,236 @@
 """
-Main window for AppImage Creator - Refactored
+Main window for AppImage Creator – Wizard UI with Adw.NavigationView.
+
+Flow: Welcome → Application → Configuration → Build
 """
 
 import os
 import threading
-from pathlib import Path
 from gi.repository import Gtk, Adw, GLib, Gio
 
 from core.builder import AppImageBuilder
 from core.app_info import AppInfo
 from core.structure_analyzer import detect_application_structure
 from core.environment_manager import EnvironmentManager, SUPPORTED_ENVIRONMENTS
-from core.settings import SettingsManager
+from core.settings import LibraryProfileManager, SettingsManager
 from templates.app_templates import get_app_type_from_file, get_available_categories
-from ui.pages import AppInfoPage, FilesPage, BuildPage, EnvironmentPage
-from ui.dialogs import (BuildProgressDialog, LogProgressDialog, InstallPackagesDialog,
-                        show_error_dialog, show_success_dialog, show_info_dialog, 
-                        create_file_chooser, show_structure_viewer, show_desktop_file_viewer)
-from utils.system import sanitize_filename, format_size
-from utils.file_ops import scan_directory_structure
-from validators.validators import ValidationError
+from ui.pages import WelcomePage, ApplicationPage, ConfigurationPage, BuildPage
+from ui.dialogs import (
+    BuildProgressDialog,
+    LogProgressDialog,
+    InstallPackagesDialog,
+    ValidationWarningDialog,
+    show_error_dialog,
+    show_success_dialog,
+    show_info_dialog,
+    create_file_chooser,
+    show_structure_viewer,
+    show_desktop_file_viewer,
+)
+from validators.validators import ValidationError, validate_app_name, validate_version
 from utils.i18n import _
 
-# Application version - single source of truth
-APP_VERSION = "1.0.6"
+# Application version – single source of truth
+APP_VERSION = "1.1.1"
+
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
-    """Main application window"""
-    
+    """Main application window using a wizard (NavigationView) layout."""
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        
-        # Data
+
+        # Data model
         self.app_info = AppInfo()
         self.builder = AppImageBuilder()
         self.env_manager = EnvironmentManager()
         self.settings = SettingsManager()
+        self.lib_profiles = LibraryProfileManager()
         self.structure_analysis = None
         self.progress_dialog = None
-        self.preferences_window = None
-        self.dependency_switches = {}
+        self.dependency_switches: dict[str, Adw.SwitchRow] = {}
         self.build_in_progress = False
-
-        # Initialize default dependencies for new projects
-        # These will be updated when preferences are opened or executable is selected
         self.app_info.selected_dependencies = []
-        
-        # Create pages once
-        self.app_info_page = AppInfoPage()
-        self.files_page = FilesPage()
+
+        # Wizard pages (created once, reused across navigations)
+        self.welcome_page = WelcomePage()
+        self.app_page = ApplicationPage()
+        self.config_page = ConfigurationPage()
         self.build_page = BuildPage()
-        self.env_page = EnvironmentPage()
-        
-        # Setup
+
+        # Window properties
         self.set_title(_("AppImage Creator"))
-        self.set_default_size(820, 550)
-        self.set_size_request(700, 450)
+        w = self.settings.get("window-width") or 820
+        h = self.settings.get("window-height") or 720
+        self.set_default_size(w, h)
+        self.set_size_request(700, 550)
         self.set_resizable(True)
-        
+
         self._setup_ui()
+        self._setup_actions()
         self._setup_builder_callbacks()
         self._connect_signals()
         self._populate_dependency_switches()
-        
+
+        # Save window size on close
+        self.connect("close-request", self._on_close_request)
+
+        # Initial system check
+        self._refresh_system_status()
+
+    # ------------------------------------------------------------------
+    #  Window lifecycle
+    # ------------------------------------------------------------------
+
+    def _on_close_request(self, _window):
+        """Save window dimensions before closing."""
+        self.settings.set("window-width", self.get_width())
+        self.settings.set("window-height", self.get_height())
+        return False
+
+    # ------------------------------------------------------------------
+    #  Settings helpers
+    # ------------------------------------------------------------------
+
     def _get_last_chooser_path(self) -> str:
-        """Gets the last used path from JSON settings"""
-        return self.settings.get('last-chooser-directory')
+        return self.settings.get("last-chooser-directory")
 
     def _set_last_chooser_path(self, file: Gio.File, is_folder: bool):
-        """Sets the last used path in JSON settings from a Gio.File object"""
-        if is_folder:
-            path = file.get_path()
-        else:
-            path = file.get_parent().get_path()
-        
+        path = file.get_path() if is_folder else file.get_parent().get_path()
         if path:
-            self.settings.set('last-chooser-directory', path)
-        
+            self.settings.set("last-chooser-directory", path)
+
+    # ------------------------------------------------------------------
+    #  UI setup
+    # ------------------------------------------------------------------
+
     def _setup_ui(self):
-        """Setup the user interface"""
-        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.set_content(main_box)
-        
-        # Header bar
-        header_bar = Adw.HeaderBar()
-        main_box.append(header_bar)
-        
-        # Hamburger menu button
+        """Build the NavigationView-based wizard."""
+        self.nav_view = Adw.NavigationView()
+        self.set_content(self.nav_view)
+
+        # Hamburger menu on the Welcome page header
         menu_button = Gtk.MenuButton()
         menu_button.set_icon_name("open-menu-symbolic")
         menu_button.set_tooltip_text(_("Menu"))
-        
-        # Create popover menu
+
         menu = Gio.Menu()
-        menu.append(_("Settings"), "win.preferences")
         menu.append(_("About"), "win.about")
-        
-        popover = Gtk.PopoverMenu.new_from_model(menu)
-        menu_button.set_popover(popover)
-        header_bar.pack_end(menu_button)
-        
-        # Setup actions for menu
-        self._setup_actions()
-        
-        # Main content
-        scrolled = Gtk.ScrolledWindow()
-        scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        scrolled.set_vexpand(True)
-        main_box.append(scrolled)
-        
-        clamp = Adw.Clamp()
-        clamp.set_maximum_size(700)
-        clamp.set_tightening_threshold(600)
-        scrolled.set_child(clamp)
-        
-        content_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=24)
-        content_box.set_margin_start(20)
-        content_box.set_margin_end(20)
-        content_box.set_margin_top(24)
-        clamp.set_child(content_box)
-        
-        # Quick setup card (welcome card removed for cleaner interface)
-        self._create_quick_setup_card(content_box)
+        menu_button.set_popover(Gtk.PopoverMenu.new_from_model(menu))
 
-    def _connect_signals(self):
-        """Connect UI signals"""
-        self.name_row.connect("changed", self._validate_inputs)
-        self._connect_preferences_signals()
-        
-        
+        self.welcome_page.header.pack_end(menu_button)
 
-    def _create_quick_setup_card(self, parent):
-        """Create quick setup card"""
-        # Main group
-        group = Adw.PreferencesGroup()
-        group.set_title(_("Quick Setup"))
-        group.set_description(_("Get started quickly with basic information"))
-        group.set_margin_start(16)
-        group.set_margin_end(16)
-        
-        # App name
-        self.name_row = Adw.EntryRow()
-        self.name_row.set_title(_("Application Name"))
-        group.add(self.name_row)
-        
-        # Executable
-        self.executable_row = Adw.ActionRow()
-        self.executable_row.set_title(_("Main Executable"))
-        self.executable_row.set_subtitle(_("Select the main application file"))
-        
-        self.executable_button = Gtk.Button(label=_("Choose File"))
-        self.executable_button.set_valign(Gtk.Align.CENTER)
-        self.executable_button.connect("clicked", self._on_choose_executable)
-        self.executable_row.add_suffix(self.executable_button)
-        group.add(self.executable_row)
-        
-        # Icon
-        self.icon_row = Adw.ActionRow()
-        self.icon_row.set_title(_("Application Icon"))
-        self.icon_row.set_subtitle(_("Optional: Choose an icon for your application"))
-        
-        self.icon_button = Gtk.Button(label=_("Choose Icon"))
-        self.icon_button.set_valign(Gtk.Align.CENTER)
-        self.icon_button.connect("clicked", self._on_choose_icon)
-        self.icon_row.add_suffix(self.icon_button)
-        group.add(self.icon_row)
-        
-        # Status
-        self.status_row = Adw.ActionRow()
-        self.status_row.set_title(_("Configuration Status"))
-        self.status_row.set_subtitle(_("Complete setup to enable AppImage creation"))
-        self.status_row.set_visible(False)
-        group.add(self.status_row)
-        
-        parent.append(group)
-        
-        # Action buttons group
-        buttons_group = Adw.PreferencesGroup()
-        buttons_group.set_margin_top(24)
-        buttons_group.set_margin_start(16)
-        buttons_group.set_margin_end(16)
-        
-        # Build button
-        build_row = Adw.ActionRow()
-        build_row.set_title(_("Create AppImage"))
-        build_row.set_subtitle(_("Generate your distributable AppImage file"))
-        
-        self.build_button = Gtk.Button(label=_("Create AppImage"))
-        self.build_button.add_css_class("suggested-action")
-        self.build_button.set_valign(Gtk.Align.CENTER)
-        self.build_button.connect("clicked", self._on_build_clicked)
-        self.build_button.set_sensitive(False)
-        build_row.add_suffix(self.build_button)
-        buttons_group.add(build_row)
-        
-        # Advanced settings
-        advanced_row = Adw.ActionRow()
-        advanced_row.set_title(_("Advanced Settings"))
-        advanced_row.set_subtitle(_("Configure authors, categories, and build options"))
-        
-        advanced_button = Gtk.Button(label=_("Open Settings"))
-        advanced_button.set_valign(Gtk.Align.CENTER)
-        advanced_button.connect("clicked", self._on_preferences_clicked)
-        advanced_row.add_suffix(advanced_button)
-        buttons_group.add(advanced_row)
-        
-        parent.append(buttons_group)
-        
-    def _setup_builder_callbacks(self):
-        """Setup callbacks for the builder"""
-        self.builder.set_progress_callback(self._on_build_progress)
-        self.builder.set_log_callback(self._on_build_log)
-    
+        # Root page
+        self.nav_view.add(self.welcome_page.nav_page)
+
     def _setup_actions(self):
-        """Setup actions for the hamburger menu"""
-        # Preferences action
-        preferences_action = Gio.SimpleAction.new("preferences", None)
-        preferences_action.connect("activate", self._on_preferences_clicked)
-        self.add_action(preferences_action)
-        
-        # About action
         about_action = Gio.SimpleAction.new("about", None)
         about_action.connect("activate", self._on_about_clicked)
         self.add_action(about_action)
-    
-    def _on_about_clicked(self, action, param):
-        """Show about dialog"""
-        about = Adw.AboutWindow(
+
+    def _setup_builder_callbacks(self):
+        self.builder.set_progress_callback(self._on_build_progress)
+        self.builder.set_log_callback(self._on_build_log)
+
+    # ------------------------------------------------------------------
+    #  Signal wiring
+    # ------------------------------------------------------------------
+
+    def _connect_signals(self):
+        """Wire up all page signals."""
+
+        # -- Navigation --
+        self.welcome_page.continue_button.connect(
+            "clicked", lambda _: self.nav_view.push(self.app_page.nav_page)
+        )
+        self.app_page.continue_button.connect(
+            "clicked", lambda _: self.nav_view.push(self.config_page.nav_page)
+        )
+        self.config_page.continue_button.connect("clicked", self._on_continue_to_build)
+
+        # -- Application page --
+        self.app_page.executable_button.connect("clicked", self._on_choose_executable)
+        self.app_page.icon_button.connect("clicked", self._on_choose_icon)
+        self.app_page.name_row.connect("changed", self._validate_inputs)
+        self.app_page.name_row.connect("changed", self._on_name_changed)
+
+        # -- Configuration page --
+        self.config_page.version_row.connect("changed", self._validate_version_input)
+        self.config_page.update_url_row.connect(
+            "changed", self._validate_update_url_input
+        )
+        self.config_page.add_dir_button.connect("clicked", self._on_add_directory)
+        self.config_page.full_structure_button.connect(
+            "clicked", self._on_view_full_structure
+        )
+        self.config_page.view_desktop_button.connect(
+            "clicked", self._on_view_desktop_file
+        )
+        self.config_page.choose_desktop_button.connect(
+            "clicked", self._on_choose_desktop_file
+        )
+        self.config_page.use_existing_desktop_row.connect(
+            "notify::active", self._on_use_existing_desktop_changed
+        )
+
+        # -- Build page --
+        self.build_page.output_button.connect("clicked", self._on_choose_output_dir)
+        self.build_page.build_button.connect("clicked", self._on_build_clicked)
+        self.build_page.on_setup_clicked_callback = self._on_setup_environment_clicked
+        self.build_page.on_remove_clicked_callback = self._on_remove_environment_clicked
+        self.build_page.icon_theme_row.connect(
+            "notify::active", self._on_icon_theme_toggle
+        )
+        self.build_page.papirus_radio.connect("toggled", self._on_icon_theme_changed)
+        self.build_page.adwaita_radio.connect("toggled", self._on_icon_theme_changed)
+
+        # -- Welcome page environment management --
+        self.welcome_page.on_setup_clicked_callback = self._on_setup_environment_clicked
+        self.welcome_page.on_remove_clicked_callback = (
+            self._on_remove_environment_clicked
+        )
+
+    def _on_continue_to_build(self, _button):
+        """Validate configuration inputs and navigate to the Build page."""
+        # Validate version before proceeding
+        version = self.config_page.version_row.get_text().strip()
+        if version:
+            try:
+                validate_version(version)
+            except ValidationError:
+                self.config_page.version_row.add_css_class("error")
+                self.config_page.version_row.grab_focus()
+                return
+
+        # Validate update URL if provided
+        update_url = self.config_page.update_url_row.get_text().strip()
+        if update_url and (
+            not update_url.startswith("https://") or len(update_url) <= 12
+        ):
+            self.config_page.update_url_row.add_css_class("error")
+            self.config_page.update_url_row.grab_focus()
+            return
+
+        self.build_page.update_env_model(self.env_manager)
+        self.build_page.update_environments(self.env_manager)
+
+        # Restore previously selected build environment
+        if self.app_info.build_environment:
+            environments = self.env_manager.get_supported_environments()
+            ready_envs = [e for e in environments if e["status"] == "ready"]
+            for idx, env in enumerate(ready_envs):
+                if env["id"] == self.app_info.build_environment:
+                    self.build_page.environment_row.set_selected(idx + 1)
+                    break
+
+        self.nav_view.push(self.build_page.nav_page)
+
+    # ------------------------------------------------------------------
+    #  About
+    # ------------------------------------------------------------------
+
+    def _on_about_clicked(self, _action, _param):
+        Adw.AboutWindow(
             transient_for=self,
             application_name=_("AppImage Creator"),
             application_icon="appimage-creator",
@@ -234,155 +238,211 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             developer_name="BigCommunity",
             copyright="© 2026 BigCommunity",
             license_type=Gtk.License.GPL_3_0,
-            comments=_("Create distributable AppImages from any Linux application.\n"
-                      "Supports Python, Qt, GTK, Java, and binary applications."),
+            comments=_(
+                "Create distributable AppImages from any Linux application.\n"
+                "Supports Python, Qt, GTK, Java, and binary applications."
+            ),
             website="https://github.com/big-comm/appimage-creator",
             issue_url="https://github.com/big-comm/appimage-creator/issues",
-            developers=[
-                "BigCommunity"
-            ],
-        )
-        about.present()
-        
-    def _on_preferences_clicked(self, *args):
-        """Show preferences window"""
-        if self.preferences_window and self.preferences_window.is_visible():
-            self.preferences_window.present()
-            return
+            developers=["BigCommunity"],
+        ).present()
 
-        self.preferences_window = Adw.PreferencesWindow()
-        self.preferences_window.set_transient_for(self)
-        self.preferences_window.set_modal(True)
-        self.preferences_window.set_title(_("AppImage Creator Settings"))
-        self.preferences_window.set_default_size(750, 700)
-        
-        # Add existing pages (don't create new ones)
-        self.preferences_window.add(self.app_info_page.page)
-        self.preferences_window.add(self.files_page.page)
-        self.preferences_window.add(self.env_page.page)
-        self.preferences_window.add(self.build_page.page)
-        
-        # Connect signals after pages are created
-        self._connect_preferences_signals()
-        
-        # Connect close handler to sync data back
-        self.preferences_window.connect("close-request", self._on_preferences_closed)
-        
-        # Update data and show
-        self._sync_to_preferences()
-        self.env_page.update_status(self.env_manager)
-        self._update_build_environments_list()
-        
-        # Restore previously selected build environment
-        if self.app_info.build_environment:
-            environments = self.env_manager.get_supported_environments()
-            ready_envs = [env for env in environments if env['status'] == 'ready']
-            for idx, env in enumerate(ready_envs):
-                if env['id'] == self.app_info.build_environment:
-                    self.build_page.environment_row.set_selected(idx + 1)
-                    break
-        else:
-            self.build_page.environment_row.set_selected(0)
-        
-        self.preferences_window.present()
-        
-    def _connect_preferences_signals(self):
-        """Connect signals for preferences window pages"""
-        # Check if signals are already connected to avoid duplicate connections
-        if hasattr(self, '_preferences_signals_connected'):
-            return  # Already connected, skip
-        
-        # App info page signals
-        self.app_info_page.name_row.connect("changed", self._validate_inputs)
-        self.app_info_page.name_row.connect("changed", self._on_name_changed)
+    # ------------------------------------------------------------------
+    #  Icon theme
+    # ------------------------------------------------------------------
 
-        # Files page signals
-        self.files_page.executable_button.connect("clicked", self._on_choose_executable)
-        self.files_page.icon_button.connect("clicked", self._on_choose_icon)
-        self.files_page.add_dir_button.connect("clicked", self._on_add_directory)
-        self.files_page.full_structure_button.connect("clicked", self._on_view_full_structure)
-        self.files_page.view_desktop_button.connect("clicked", self._on_view_desktop_file)
-        self.files_page.choose_desktop_button.connect("clicked", self._on_choose_desktop_file)
-        self.files_page.use_existing_desktop_row.connect("notify::active", 
-            self._on_use_existing_desktop_changed)
-        
-        # Environment page signals
-        self.env_page.on_setup_clicked_callback = self._on_setup_environment_clicked
-        self.env_page.on_install_packages_callback = self._on_install_packages_clicked
-        self.env_page.on_remove_clicked_callback = self._on_remove_environment_clicked
-        
-        # Build page signals
-        self.build_page.output_button.connect("clicked", self._on_choose_output_dir)
-        self.build_page.build_button.connect("clicked", self._on_preferences_build_clicked)
-        
-        # Icon theme signals - ADICIONAR AQUI
-        self.build_page.icon_theme_row.connect("notify::active", self._on_icon_theme_toggle)
-        self.build_page.papirus_radio.connect("toggled", self._on_icon_theme_changed)
-        self.build_page.adwaita_radio.connect("toggled", self._on_icon_theme_changed)
-        
-        # Mark as connected to prevent duplicate connections
-        self._preferences_signals_connected = True
-        
-    def _on_icon_theme_toggle(self, switch_row, param):
-        """Handle icon theme switch toggle"""
-        is_active = switch_row.get_active()
-        self.app_info.include_icon_theme = is_active
-        self.build_page.icon_theme_expander_row.set_sensitive(is_active)
-    
-    def _on_icon_theme_changed(self, radio_button):
-        """Handle icon theme selection change"""
+    def _on_icon_theme_toggle(self, switch_row, _param):
+        self.app_info.include_icon_theme = switch_row.get_active()
+        self.build_page.icon_theme_expander_row.set_sensitive(switch_row.get_active())
+
+    def _on_icon_theme_changed(self, _radio):
         if self.build_page.papirus_radio.get_active():
             self.app_info.icon_theme_choice = "papirus"
         elif self.build_page.adwaita_radio.get_active():
             self.app_info.icon_theme_choice = "adwaita"
-        
+
+    # ------------------------------------------------------------------
+    #  Validation
+    # ------------------------------------------------------------------
+
+    def _validate_inputs(self, *_args):
+        name = self.app_page.name_row.get_text().strip()
+        exe = self.app_info.executable
+
+        # Validate name with proper validator
+        name_valid = False
+        if name:
+            try:
+                validate_app_name(name)
+                name_valid = True
+                self.app_page.name_row.remove_css_class("error")
+            except ValidationError:
+                self.app_page.name_row.add_css_class("error")
+        else:
+            self.app_page.name_row.remove_css_class("error")
+
+        exe_valid = exe is not None and os.path.exists(exe)
+        valid = name_valid and exe_valid
+
+        self.app_page.continue_button.set_sensitive(valid)
+        self.build_page.build_button.set_sensitive(valid)
+
+        row = self.app_page.status_row
+        if valid:
+            row.set_title(_("Ready to Build"))
+            row.set_subtitle(_("All requirements met"))
+        elif exe_valid and not name:
+            row.set_title(_("Almost Ready!"))
+            row.set_subtitle(_("Please enter an Application Name"))
+        elif exe_valid and name and not name_valid:
+            row.set_title(_("Almost Ready!"))
+            row.set_subtitle(_("Application name contains invalid characters"))
+        elif name_valid and not exe_valid:
+            row.set_title(_("Select Executable"))
+            row.set_subtitle(_("Please choose the main executable file"))
+        else:
+            row.set_title(_("Getting Started"))
+            row.set_subtitle(_("Enter name and select executable"))
+
+    def _validate_version_input(self, entry):
+        """Validate version field inline on every keystroke."""
+        text = entry.get_text().strip()
+        if not text:
+            entry.remove_css_class("error")
+            return
+        try:
+            validate_version(text)
+            entry.remove_css_class("error")
+        except ValidationError:
+            entry.add_css_class("error")
+
+    def _validate_update_url_input(self, entry):
+        """Validate update URL field inline on every keystroke."""
+        text = entry.get_text().strip()
+        if not text:
+            entry.remove_css_class("error")
+            return
+        if text.startswith("https://") and len(text) > 12:
+            entry.remove_css_class("error")
+        else:
+            entry.add_css_class("error")
+
+    def _on_name_changed(self, entry):
+        self.config_page.update_pattern_from_name(entry.get_text().strip())
+
+    # ------------------------------------------------------------------
+    #  Dependency switches
+    # ------------------------------------------------------------------
+
+    def _populate_dependency_switches(self):
+        from core.build_config import SYSTEM_DEPENDENCIES
+
+        while child := self.build_page.deps_list_box.get_first_child():
+            self.build_page.deps_list_box.remove(child)
+        self.dependency_switches.clear()
+
+        for key, data in SYSTEM_DEPENDENCIES.items():
+            sw = Adw.SwitchRow()
+            sw.set_title(data["name"])
+            sw.dependency_key = key  # type: ignore[attr-defined]
+            self.build_page.deps_list_box.append(sw)
+            self.dependency_switches[key] = sw
+
+        def on_deps_toggle(switch, _):
+            self.build_page.deps_expander_row.set_sensitive(switch.get_active())
+
+        self.build_page.deps_row.connect("notify::active", on_deps_toggle)
+        self.build_page.deps_expander_row.set_sensitive(
+            self.build_page.deps_row.get_active()
+        )
+
+    def _update_autodetected_dependencies(self):
+        from core.build_config import SYSTEM_DEPENDENCIES
+
+        for key, switch in self.dependency_switches.items():
+            if not SYSTEM_DEPENDENCIES[key].get("essential", False):
+                switch.set_active(False)
+
+        gui_deps = self.builder._detect_gui_dependencies(self.app_info)
+        if self.builder._detect_gi_usage(self.app_info):
+            gui_deps["gi"] = True
+
+        for dep_key, switch in self.dependency_switches.items():
+            dep_info = SYSTEM_DEPENDENCIES[dep_key]
+            keyword = dep_info.get("detection_keyword")
+            if keyword and gui_deps.get(keyword):
+                switch.set_active(True)
+                if dep_info.get("essential", False):
+                    switch.set_sensitive(False)
+                    switch.set_subtitle(_("Essential for this application type"))
+            elif dep_info.get("essential", False):
+                switch.set_sensitive(True)
+                switch.set_subtitle("")
+
+        self.app_info.selected_dependencies = [
+            k for k, s in self.dependency_switches.items() if s.get_active()
+        ]
+
+    # ------------------------------------------------------------------
+    #  Environment management
+    # ------------------------------------------------------------------
+
+    def _refresh_system_status(self):
+        """Update welcome-page system status, environments, and connect install button."""
+        self.welcome_page.update_system_status(self.env_manager)
+        self.welcome_page.update_environments(self.env_manager)
+        btn = self.welcome_page.install_button
+        if btn and not getattr(btn, "_handler_connected", False):
+            btn.connect(
+                "clicked",
+                lambda _: self._on_install_packages_clicked(self.env_manager),
+            )
+            btn._handler_connected = True  # type: ignore[attr-defined]
+
+    def _refresh_environments(self):
+        """Refresh both system status and build-page environment lists."""
+        self._refresh_system_status()
+        self.build_page.update_env_model(self.env_manager)
+        self.build_page.update_environments(self.env_manager)
+
     def _on_setup_environment_clicked(self, env_id: str):
-        """Handles the click on the 'Setup' button for an environment"""
-        env_spec = next((env for env in SUPPORTED_ENVIRONMENTS if env['id'] == env_id), None)
+        env_spec = next((e for e in SUPPORTED_ENVIRONMENTS if e["id"] == env_id), None)
         if not env_spec:
             return
-        
-        # Create custom confirmation dialog
+
         dialog = Adw.Window()
-        dialog.set_transient_for(self.preferences_window)
+        dialog.set_transient_for(self)
         dialog.set_modal(True)
         dialog.set_default_size(450, 400)
         dialog.set_resizable(False)
-        
+
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         dialog.set_content(main_box)
-        
-        # Header with title centered
-        header = Adw.HeaderBar()
-        header.set_show_end_title_buttons(False)
-        header.set_show_start_title_buttons(False)
-        main_box.append(header)
-        
-        # Title label
-        title_label = Gtk.Label(label=_("Setup Build Environment?"))
-        title_label.add_css_class("title-2")
-        header.set_title_widget(title_label)
-        
-        # Content box
+
         content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16)
         content.set_margin_top(24)
         content.set_margin_bottom(24)
         content.set_margin_start(24)
         content.set_margin_end(24)
         main_box.append(content)
-        
-        # Info text - left aligned
-        info_text = _("This will download and setup '{}'.\n\n"
-                    "This process may take 5-15 minutes depending on your internet connection.\n\n"
-                    "The following will be installed:").format(env_spec['name'])
-        
-        info_label = Gtk.Label(label=info_text)
+
+        title_label = Gtk.Label(label=_("Setup Build Environment?"))
+        title_label.add_css_class("title-2")
+        title_label.set_margin_bottom(8)
+        content.append(title_label)
+
+        info_label = Gtk.Label(
+            label=_(
+                "This will download and setup '{}'.\n\n"
+                "This process may take 5-15 minutes depending on your "
+                "internet connection.\n\nThe following will be installed:"
+            ).format(env_spec["name"])
+        )
         info_label.set_wrap(True)
-        info_label.set_xalign(0)  # Left align
+        info_label.set_xalign(0)
         info_label.set_justify(Gtk.Justification.LEFT)
         content.append(info_label)
-        
-        # Details in a card
+
         details_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         details_box.add_css_class("card")
         details_box.set_margin_start(12)
@@ -390,1067 +450,798 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         details_box.set_margin_top(8)
         details_box.set_margin_bottom(8)
         content.append(details_box)
-        
-        image_label = Gtk.Label(label=f"• Container image: {env_spec['image']}")
-        image_label.set_xalign(0)
-        image_label.set_margin_start(12)
-        image_label.set_margin_top(8)
-        details_box.append(image_label)
-        
-        deps_label = Gtk.Label(label=f"• Build dependencies: {len(env_spec['build_deps'])} packages")
-        deps_label.set_xalign(0)
-        deps_label.set_margin_start(12)
-        deps_label.set_margin_bottom(8)
-        details_box.append(deps_label)
-        
-        # Question
-        question_label = Gtk.Label(label=_("Do you want to continue?"))
-        question_label.set_xalign(0)
-        question_label.set_margin_top(8)
-        content.append(question_label)
-        
-        # Buttons side by side at the bottom
-        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-        button_box.set_halign(Gtk.Align.CENTER)
-        button_box.set_margin_top(16)
-        content.append(button_box)
-        
-        cancel_button = Gtk.Button(label=_("Cancelar"))
-        cancel_button.set_size_request(140, -1)
-        cancel_button.connect("clicked", lambda btn: dialog.close())
-        button_box.append(cancel_button)
-        
-        setup_button = Gtk.Button(label=_("Setup Environment"))
-        setup_button.set_size_request(180, -1)
-        setup_button.add_css_class("suggested-action")
-        button_box.append(setup_button)
-        
-        def on_setup_clicked(btn):
+
+        img_lbl = Gtk.Label(label=f"• Container image: {env_spec['image']}")
+        img_lbl.set_xalign(0)
+        img_lbl.set_margin_start(12)
+        img_lbl.set_margin_top(8)
+        details_box.append(img_lbl)
+
+        deps_lbl = Gtk.Label(
+            label=f"• Build dependencies: {len(env_spec['build_deps'])} packages"
+        )
+        deps_lbl.set_xalign(0)
+        deps_lbl.set_margin_start(12)
+        deps_lbl.set_margin_bottom(8)
+        details_box.append(deps_lbl)
+
+        q_lbl = Gtk.Label(label=_("Do you want to continue?"))
+        q_lbl.set_xalign(0)
+        q_lbl.set_margin_top(8)
+        content.append(q_lbl)
+
+        btn_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        btn_box.set_halign(Gtk.Align.CENTER)
+        btn_box.set_margin_top(16)
+        content.append(btn_box)
+
+        cancel_btn = Gtk.Button(label=_("Cancel"))
+        cancel_btn.set_size_request(140, -1)
+        cancel_btn.connect("clicked", lambda _: dialog.close())
+        btn_box.append(cancel_btn)
+
+        setup_btn = Gtk.Button(label=_("Setup Environment"))
+        setup_btn.set_size_request(180, -1)
+        setup_btn.add_css_class("suggested-action")
+        btn_box.append(setup_btn)
+
+        def on_setup(_btn):
             dialog.close()
-            progress_dialog = LogProgressDialog(self.preferences_window, _("Setting Up Environment"))
-            progress_dialog.present()
-            
-            thread = threading.Thread(
-                target=self._run_environment_setup, 
-                args=(env_id, progress_dialog), 
-                daemon=True
-            )
-            thread.start()
-        
-        setup_button.connect("clicked", on_setup_clicked)
-        
+            progress = LogProgressDialog(self, _("Setting Up Environment"))
+            progress.present()
+            threading.Thread(
+                target=self._run_environment_setup,
+                args=(env_id, progress),
+                daemon=True,
+            ).start()
+
+        setup_btn.connect("clicked", on_setup)
         dialog.present()
 
     def _run_environment_setup(self, env_id: str, dialog: LogProgressDialog):
-        """The actual setup logic that runs in a thread"""
+        def log(msg):
+            GLib.idle_add(dialog.add_log, msg)
+
+        def is_cancelled() -> bool:
+            return dialog.cancelled
+
         try:
-            def log_to_dialog(message):
-                GLib.idle_add(dialog.add_log, message)
-
             GLib.idle_add(dialog.set_status, _("Creating container..."))
-            self.env_manager.create_environment(env_id, log_callback=log_to_dialog)
+            self.env_manager.create_environment(
+                env_id, log_callback=log, cancel_check=is_cancelled
+            )
 
-            GLib.idle_add(dialog.set_status, _("Installing dependencies..."))
-            self.env_manager.setup_environment_dependencies(env_id, log_callback=log_to_dialog)
+            if dialog.cancelled:
+                GLib.idle_add(dialog.add_log, _("Setup cancelled by user."))
+                GLib.idle_add(dialog.finish, False)
+                return
+
+            GLib.idle_add(
+                dialog.set_status,
+                _("Installing dependencies (this may take a while)..."),
+            )
+            self.env_manager.setup_environment_dependencies(
+                env_id, log_callback=log, cancel_check=is_cancelled
+            )
+
+            if dialog.cancelled:
+                GLib.idle_add(dialog.add_log, _("Setup cancelled by user."))
+                GLib.idle_add(dialog.finish, False)
+                return
 
             GLib.idle_add(dialog.finish, True)
-
         except Exception as e:
-            error_message = _("Error: {}").format(e)
-            GLib.idle_add(dialog.add_log, error_message)
+            GLib.idle_add(dialog.add_log, _("Error: {}").format(e))
             GLib.idle_add(dialog.finish, False)
         finally:
-            GLib.idle_add(self.env_page.update_status, self.env_manager)
-            GLib.idle_add(self._update_build_environments_list)
-            
+            GLib.idle_add(self._refresh_environments)
+
     def _on_remove_environment_clicked(self, env_id: str):
-        """Handle remove environment button click"""
-        env_spec = next((env for env in SUPPORTED_ENVIRONMENTS if env['id'] == env_id), None)
+        env_spec = next((e for e in SUPPORTED_ENVIRONMENTS if e["id"] == env_id), None)
         if not env_spec:
             return
-        
-        # Confirmation dialog
-        dialog = Adw.MessageDialog(transient_for=self.preferences_window)
+
+        dialog = Adw.MessageDialog(transient_for=self)
         dialog.set_heading(_("Remove Environment?"))
-        dialog.set_body(_("Are you sure you want to remove '{}'?\nThis will delete the container and all its data.").format(env_spec['name']))
+        dialog.set_body(
+            _(
+                "Are you sure you want to remove '{}'?\n"
+                "This will delete the container and all its data."
+            ).format(env_spec["name"])
+        )
         dialog.add_response("cancel", _("Cancel"))
         dialog.add_response("remove", _("Remove"))
         dialog.set_response_appearance("remove", Adw.ResponseAppearance.DESTRUCTIVE)
         dialog.set_default_response("cancel")
-        
-        def on_response(dlg, response):
-            if response == "remove":
-                progress_dialog = LogProgressDialog(self.preferences_window, _("Removing Environment"))
-                progress_dialog.present()
-                
-                thread = threading.Thread(
+
+        def on_response(dlg, resp):
+            if resp == "remove":
+                progress = LogProgressDialog(self, _("Removing Environment"))
+                progress.present()
+                threading.Thread(
                     target=self._run_environment_removal,
-                    args=(env_id, progress_dialog),
-                    daemon=True
-                )
-                thread.start()
-        
+                    args=(env_id, progress),
+                    daemon=True,
+                ).start()
+
         dialog.connect("response", on_response)
         dialog.present()
-    
+
     def _run_environment_removal(self, env_id: str, dialog: LogProgressDialog):
-        """Run environment removal in thread"""
+        def log(msg):
+            GLib.idle_add(dialog.add_log, msg)
+
         try:
-            def log_to_dialog(message):
-                GLib.idle_add(dialog.add_log, message)
-            
             GLib.idle_add(dialog.set_status, _("Removing container..."))
-            self.env_manager.remove_environment(env_id, log_callback=log_to_dialog)
-            
+            self.env_manager.remove_environment(env_id, log_callback=log)
             GLib.idle_add(dialog.finish, True)
         except Exception as e:
-            error_message = _("Error: {}").format(e)
-            GLib.idle_add(dialog.add_log, error_message)
+            GLib.idle_add(dialog.add_log, _("Error: {}").format(e))
             GLib.idle_add(dialog.finish, False)
         finally:
-            GLib.idle_add(self.env_page.update_status, self.env_manager)
-            GLib.idle_add(self._update_build_environments_list)
-            
+            GLib.idle_add(self._refresh_environments)
+
     def _on_install_packages_clicked(self, env_manager):
-        """Handle install packages button click"""
         install_info = env_manager.get_install_command()
-        
         if not install_info:
             show_error_dialog(
-                self.preferences_window,
+                self,
                 _("Cannot Install"),
-                _("Unable to determine package manager for your distribution.")
+                _("Unable to determine package manager for your distribution."),
             )
             return
-        
-        # Create and show install dialog
-        dialog = InstallPackagesDialog(self.preferences_window, install_info)
-        
-        def on_dialog_destroy(widget):
-            if hasattr(dialog, 'installation_success') and dialog.installation_success:
-                # Refresh environment manager state
+
+        dialog = InstallPackagesDialog(self, install_info)
+
+        def on_close(_widget):
+            if getattr(dialog, "installation_success", False):
                 self.env_manager = EnvironmentManager()
-                GLib.idle_add(self.env_page.update_status, self.env_manager)
-                
-                def show_restart_dialog():
-                    dialog = Adw.MessageDialog(transient_for=self.preferences_window)
-                    dialog.set_heading(_("Installation Complete"))
-                    dialog.set_body(_("Required packages were installed successfully!\n\n"
-                                     "Please restart the application to use the new features."))
-                    dialog.add_response("ok", _("OK"))
-                    dialog.set_default_response("ok")
-                    dialog.present()
-                
-                GLib.idle_add(show_restart_dialog)
-        
-        dialog.connect("close-request", on_dialog_destroy)
+                GLib.idle_add(self._refresh_system_status)
+
+                def show_restart():
+                    d = Adw.MessageDialog(transient_for=self)
+                    d.set_heading(_("Installation Complete"))
+                    d.set_body(
+                        _(
+                            "Required packages were installed successfully!\n\n"
+                            "Please restart the application to use the new "
+                            "features."
+                        )
+                    )
+                    d.add_response("ok", _("OK"))
+                    d.set_default_response("ok")
+                    d.present()
+
+                GLib.idle_add(show_restart)
+
+        dialog.connect("close-request", on_close)
         dialog.present()
-        
-    def _validate_inputs(self, *args):
-        """Validate inputs and update UI"""
-        name = self.name_row.get_text().strip()
-        executable = self.app_info.executable
-        
-        valid = len(name) > 0 and executable and os.path.exists(executable)
-        
-        self.build_button.set_sensitive(valid)
-        self.build_page.build_button.set_sensitive(valid)
-        
-        # Update status
-        if valid:
-            self.status_row.set_visible(True)
-            self.status_row.set_title(_("Ready to Build"))
-            self.status_row.set_subtitle(_("All requirements met"))
-        elif executable and os.path.exists(executable) and not name:
-            self.status_row.set_visible(True)
-            self.status_row.set_title(_("Almost Ready!"))
-            self.status_row.set_subtitle(_("Please enter an Application Name"))
-            self.name_row.add_css_class("error")
-        elif name and not (executable and os.path.exists(executable)):
-            self.status_row.set_visible(True)
-            self.status_row.set_title(_("Select Executable"))
-            self.status_row.set_subtitle(_("Please choose the main executable file"))
-        else:
-            self.status_row.set_visible(True)
-            self.status_row.set_title(_("Getting Started"))
-            self.status_row.set_subtitle(_("Enter name and select executable"))
-        
-        if name:
-            self.name_row.remove_css_class("error")
 
-    def _on_name_changed(self, entry):
-        """Update filename pattern when app name changes"""
-        app_name = entry.get_text().strip()
-        if self.app_info_page:
-            self.app_info_page.update_pattern_from_name(app_name)
+    # ------------------------------------------------------------------
+    #  File choosers
+    # ------------------------------------------------------------------
 
-    def _on_preferences_closed(self, window):
-        """Handle preferences window close"""
-        self._sync_from_preferences()
-        return False
-    
-    def _populate_dependency_switches(self):
-        """Create and populate the dependency switches in the build page."""
-        from core.builder import SYSTEM_DEPENDENCIES
-
-        # Clear any existing switches
-        while child := self.build_page.deps_list_box.get_first_child():
-            self.build_page.deps_list_box.remove(child)
-        self.dependency_switches.clear()
-
-        for key, data in SYSTEM_DEPENDENCIES.items():
-            switch_row = Adw.SwitchRow()
-            switch_row.set_title(data['name'])
-            
-            # Store the key for later reference
-            switch_row.dependency_key = key
-            
-            self.build_page.deps_list_box.append(switch_row)
-            self.dependency_switches[key] = switch_row
-
-        # Connect the main toggle to the expander's visibility
-        def on_deps_toggle(switch, _):
-            is_active = switch.get_active()
-            self.build_page.deps_expander_row.set_sensitive(is_active)
-        
-        self.build_page.deps_row.connect("notify::active", on_deps_toggle)
-        # Initial state
-        self.build_page.deps_expander_row.set_sensitive(self.build_page.deps_row.get_active())
-        
-    def _update_autodetected_dependencies(self):
-        """Check detected dependencies and toggle the corresponding switches."""
-        from core.builder import SYSTEM_DEPENDENCIES
-
-        # First, reset all non-essential switches to off
-        for key, switch in self.dependency_switches.items():
-            if not SYSTEM_DEPENDENCIES[key].get('essential', False):
-                switch.set_active(False)
-
-        # Run GUI dependency detection
-        gui_deps = self.builder._detect_gui_dependencies(self.app_info.to_dict())
-        
-        # Also detect if 'gi' is used at all for the base libs
-        if self.builder._detect_gi_usage(self.app_info.to_dict()):
-            gui_deps['gi'] = True
-
-        for dep_key, switch in self.dependency_switches.items():
-            dep_info = SYSTEM_DEPENDENCIES[dep_key]
-            detection_keyword = dep_info.get('detection_keyword')
-            
-            if detection_keyword and gui_deps.get(detection_keyword):
-                switch.set_active(True)
-                # If it's essential, disable the switch so the user can't turn it off
-                if dep_info.get('essential', False):
-                    switch.set_sensitive(False)
-                    switch.set_subtitle(_("Essential for this application type"))
-            elif dep_info.get('essential', False):
-                # Handle essential but not detected (e.g. glib for a non-gi app)
-                switch.set_sensitive(True)
-                switch.set_subtitle("")
-
-        # After setting all switches, sync to app_info immediately
-        # This ensures data is available even if preferences window is closed
-        self.app_info.selected_dependencies = [
-            key for key, switch in self.dependency_switches.items() 
-            if switch.get_active()
-        ]
-        
-    def _update_build_environments_list(self):
-        """Update the list of available build environments"""
-        self.build_page.env_model.splice(0, self.build_page.env_model.get_n_items())
-        
-        # Always add local system as first option
-        self.build_page.env_model.append(_("Local System (Current Python)"))
-        
-        # Add available containers
-        environments = self.env_manager.get_supported_environments()
-        for env in environments:
-            if env['status'] == 'ready':
-                self.build_page.env_model.append(f"{env['name']} (Container)")
-        
-        self.build_page.environment_row.set_selected(0)
-        
-    def _sync_to_preferences(self):
-        """Sync main window data to preferences"""
-        self.app_info_page.name_row.set_text(self.name_row.get_text())
-        
-        if self.app_info.executable:
-            filename = os.path.basename(self.app_info.executable)
-            self.files_page.executable_row.set_subtitle(filename)
-        
-        # Restore app type selection
-        if self.app_info.app_type:
-            types = ['binary', 'python', 'python_wrapper', 'shell', 'java', 'qt', 'gtk', 'electron']
-            try:
-                index = types.index(self.app_info.app_type)
-                self.files_page.app_type_row.set_selected(index)
-            except ValueError:
-                pass
-            
-        if self.app_info.icon:
-            filename = os.path.basename(self.app_info.icon)
-            self.files_page.icon_row.set_subtitle(filename)
-            
-        # Sync icon theme settings - ADICIONAR AQUI
-        if self.build_page.icon_theme_row:
-            self.build_page.icon_theme_row.set_active(self.app_info.include_icon_theme)
-            if self.app_info.icon_theme_choice == "papirus":
-                self.build_page.papirus_radio.set_active(True)
-            elif self.app_info.icon_theme_choice == "adwaita":
-                self.build_page.adwaita_radio.set_active(True)
-            
-    def _sync_from_preferences(self):
-        """Sync preferences back to main window"""
-        self.name_row.set_text(self.app_info_page.name_row.get_text())
-        
-        # Save selected app type
-        if self.files_page and self.files_page.app_type_row:
-            types = ['binary', 'python', 'python_wrapper', 'shell', 'java', 'qt', 'gtk', 'electron']
-            selected = self.files_page.app_type_row.get_selected()
-            if selected < len(types):
-                self.app_info.app_type = types[selected]
-        
-        # Save selected build environment
-        if self.build_page and self.build_page.environment_row:
-            selected_idx = self.build_page.environment_row.get_selected()
-            if selected_idx == 0:
-                self.app_info.build_environment = None
-            else:
-                environments = self.env_manager.get_supported_environments()
-                ready_envs = [env for env in environments if env['status'] == 'ready']
-                if selected_idx - 1 < len(ready_envs):
-                    self.app_info.build_environment = ready_envs[selected_idx - 1]['id']
-        
-        # Save selected system dependencies from switches (safely)
-        try:
-            if hasattr(self, 'dependency_switches') and self.dependency_switches:
-                self.app_info.selected_dependencies = [
-                    key for key, switch in self.dependency_switches.items() 
-                    if switch and switch.get_active()
-                ]
-        except Exception as e:
-            # If widgets are destroyed or invalid, keep existing dependencies
-            print(f"Warning: Could not sync dependencies from switches: {e}")
-        
-        # Sync icon theme settings
-        if self.build_page.icon_theme_row:
-            self.app_info.include_icon_theme = self.build_page.icon_theme_row.get_active()
-        if self.build_page.papirus_radio.get_active():
-            self.app_info.icon_theme_choice = "papirus"
-        elif self.build_page.adwaita_radio.get_active():
-            self.app_info.icon_theme_choice = "adwaita"
-        
-        self._validate_inputs()
-        
-    def _on_choose_executable(self, button):
-        """Handle executable file selection"""
-        parent = self.preferences_window if (self.preferences_window and self.preferences_window.is_visible()) else self
-        
+    def _on_choose_executable(self, _button):
         filters = {
             _("Executable Files"): ["*.py", "*.sh", "*.jar", "*"],
-            _("All Files"): ["*"]
+            _("All Files"): ["*"],
         }
-        
-        create_file_chooser(parent, _("Choose Executable"), 
-                        Gtk.FileChooserAction.OPEN, filters,
-                        self._on_executable_selected, self.settings)
-        
+        create_file_chooser(
+            self,
+            _("Choose Executable"),
+            Gtk.FileChooserAction.OPEN,
+            filters,
+            self._on_executable_selected,
+            self.settings,
+        )
+
     def _on_executable_selected(self, dialog, response):
-        """Handle executable file selection response"""
         if response == Gtk.ResponseType.OK:
             file = dialog.get_file()
             if file:
                 path = file.get_path()
                 self.app_info.executable = path
-                
-                # Update UI - main window
                 filename = os.path.basename(path)
-                self.executable_row.set_subtitle(_("Selected: {}").format(filename))
-                
-                # Update UI - preferences window
-                self.files_page.executable_row.set_subtitle(filename)
-                
-                # Analyze structure and store it in the main app_info object
+
+                self.app_page.executable_row.set_subtitle(
+                    _("Selected: {}").format(filename)
+                )
+
+                # Analyse structure
                 self.structure_analysis = detect_application_structure(path)
                 self.app_info.structure_analysis = self.structure_analysis
-                
-                # Auto-detect app type and store it
+
+                # Auto-detect app type
                 app_type = get_app_type_from_file(path, self.structure_analysis)
-                self.app_info.app_type = app_type  # Store in app_info
-                
-                # Update UI if preferences window exists
-                if self.files_page:
-                    type_mapping = {'binary': 0, 'python': 1, 'python_wrapper': 2, 
-                                'shell': 3, 'java': 4, 'qt': 5, 'gtk': 6, 'electron': 7}
-                    if app_type in type_mapping:
-                        self.files_page.app_type_row.set_selected(type_mapping[app_type])
-                
-                # Auto-fill name if empty
-                if not self.name_row.get_text().strip():
-                    suggested_name = os.path.splitext(filename)[0]
-                    suggested_name = suggested_name.replace('-gui', '').replace('-cli', '')
-                    suggested_name = suggested_name.replace('_', ' ').title()
-                    
-                    if suggested_name and len(suggested_name) > 2:
-                        self.name_row.set_text(suggested_name)
-                        if self.app_info_page:
-                            self.app_info_page.name_row.set_text(suggested_name)
-                
-                # Update UI with detected files
-                if self.files_page:
-                    self._update_detected_files()
-                    self._update_additional_directories_from_analysis()
-                    self._update_desktop_file_options()
-                    self._update_structure_preview()
-                    self._update_autodetected_dependencies()
-                    
-                    # The logic to auto-enable the icon theme for GTK apps has been removed.
-                    # The default is now False, and the user can enable it manually if needed.
-                
-                self._show_next_steps_message()
+                self.app_info.app_type = app_type
+
+                type_map = {
+                    "binary": 0,
+                    "python": 1,
+                    "python_wrapper": 2,
+                    "shell": 3,
+                    "java": 4,
+                    "qt": 5,
+                    "gtk": 6,
+                    "electron": 7,
+                }
+                if app_type in type_map:
+                    self.app_page.app_type_row.set_selected(type_map[app_type])
+                    saved_libs = self.lib_profiles.load(app_type)
+                    if saved_libs:
+                        self.build_page.set_extra_libs(saved_libs)
+
+                # Auto-fill name
+                if not self.app_page.name_row.get_text().strip():
+                    suggested = os.path.splitext(filename)[0]
+                    suggested = suggested.replace("-gui", "").replace("-cli", "")
+                    suggested = suggested.replace("_", " ").title()
+                    if suggested and len(suggested) > 2:
+                        self.app_page.name_row.set_text(suggested)
+
+                # Update config-page sections
+                self._update_detected_files()
+                self._update_additional_directories_from_analysis()
+                self._update_desktop_file_options()
+                self._update_structure_preview()
+                self._update_autodetected_dependencies()
+
                 self._validate_inputs()
-                
+
         dialog.destroy()
-        
-    def _on_choose_icon(self, button):
-        """Handle icon file selection"""
-        parent = self.preferences_window if (self.preferences_window and self.preferences_window.is_visible()) else self
-        
+
+    def _on_choose_icon(self, _button):
         filters = {_("Image Files"): ["*.png", "*.svg", "*.jpg", "*.ico"]}
-        
-        create_file_chooser(parent, _("Choose Icon"), 
-                        Gtk.FileChooserAction.OPEN, filters,
-                        self._on_icon_selected, self.settings)
-        
+        create_file_chooser(
+            self,
+            _("Choose Icon"),
+            Gtk.FileChooserAction.OPEN,
+            filters,
+            self._on_icon_selected,
+            self.settings,
+        )
+
     def _on_icon_selected(self, dialog, response):
-        """Handle icon selection response"""
         if response == Gtk.ResponseType.OK:
             file = dialog.get_file()
             if file:
                 path = file.get_path()
                 self.app_info.icon = path
-                
-                filename = os.path.basename(path)
-                self.icon_row.set_subtitle(_("Selected: {}").format(filename))
-                
-                if self.files_page:
-                    self.files_page.icon_row.set_subtitle(filename)
-                
+                self.app_page.icon_row.set_subtitle(
+                    _("Selected: {}").format(os.path.basename(path))
+                )
         dialog.destroy()
-        
-    def _on_add_directory(self, button):
-        """Handle add directory"""
-        create_file_chooser(self.preferences_window, _("Add Directory"), 
-                           Gtk.FileChooserAction.SELECT_FOLDER, None,
-                           self._on_directory_selected, self.settings)
-        
+
+    def _on_add_directory(self, _button):
+        create_file_chooser(
+            self,
+            _("Add Directory"),
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            None,
+            self._on_directory_selected,
+            self.settings,
+        )
+
     def _on_directory_selected(self, dialog, response):
-        """Handle directory selection response"""
         if response == Gtk.ResponseType.OK:
             file = dialog.get_file()
             if file:
-                path = file.get_path()
-                if self.files_page:
-                    self.files_page.directory_list.add_directory(path)
-                    self._update_structure_preview()
-                
+                self.config_page.directory_list.add_directory(file.get_path())
+                self._update_structure_preview()
         dialog.destroy()
-        
-    def _on_choose_output_dir(self, button):
-        """Handle output directory selection"""
-        create_file_chooser(self.preferences_window, _("Choose Output Directory"), 
-                           Gtk.FileChooserAction.SELECT_FOLDER, None,
-                           self._on_output_dir_selected, self.settings)
-        
+
+    def _on_choose_output_dir(self, _button):
+        create_file_chooser(
+            self,
+            _("Choose Output Directory"),
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            None,
+            self._on_output_dir_selected,
+            self.settings,
+        )
+
     def _on_output_dir_selected(self, dialog, response):
-        """Handle output directory selection response"""
         if response == Gtk.ResponseType.OK:
             file = dialog.get_file()
             if file:
                 path = file.get_path()
                 self.app_info.output_dir = path
-                
-                if self.build_page:
-                    self.build_page.output_row.set_subtitle(path)
-                
+                self.build_page.output_row.set_subtitle(path)
         dialog.destroy()
-        
+
+    # ------------------------------------------------------------------
+    #  Detected-files / desktop / preview helpers
+    # ------------------------------------------------------------------
+
     def _update_detected_files(self):
-        """Update detected files display"""
         if not self.structure_analysis:
-            self.files_page.detected_group.set_visible(False)
+            self.config_page.detected_group.set_visible(False)
             return
-            
-        detected_files = self.structure_analysis.get('detected_files', {})
-        filtered = {k: v for k, v in detected_files.items() if k != 'desktop_files'}
-        
+        detected = self.structure_analysis.get("detected_files", {})
+        filtered = {k: v for k, v in detected.items() if k != "desktop_files"}
         if any(filtered.values()):
-            self.files_page.detected_group.set_visible(True)
-            self.files_page.detected_files.update(detected_files)
+            self.config_page.detected_group.set_visible(True)
+            self.config_page.detected_files.update(detected)
         else:
-            self.files_page.detected_group.set_visible(False)
-            
+            self.config_page.detected_group.set_visible(False)
+
     def _update_additional_directories_from_analysis(self):
-        """Update additional directories from analysis"""
         if not self.structure_analysis:
             return
-            
-        suggested = self.structure_analysis.get('suggested_additional_dirs', [])
-        for dir_path in suggested:
-            if os.path.exists(dir_path):
-                self.files_page.directory_list.add_directory(dir_path)
-                
+        for d in self.structure_analysis.get("suggested_additional_dirs", []):
+            if os.path.exists(d):
+                self.config_page.directory_list.add_directory(d)
+
     def _update_desktop_file_options(self):
-        """Update desktop file options"""
         if not self.structure_analysis:
-            self.files_page.desktop_file_group.set_visible(False)
+            self.config_page.desktop_file_group.set_visible(False)
             return
-            
-        detected_desktop = self.structure_analysis.get('detected_files', {}).get('desktop_files', [])
-        
-        if detected_desktop:
-            self.files_page.desktop_file_group.set_visible(True)
-            self.app_info.detected_desktop_file = detected_desktop[0]
-            
-            filename = os.path.basename(detected_desktop[0])
-            self.files_page.found_desktop_row.set_subtitle(_("Found: {}").format(filename))
-            self.files_page.use_existing_desktop_row.set_active(True)
+        desktop = self.structure_analysis.get("detected_files", {}).get(
+            "desktop_files", []
+        )
+        if desktop:
+            self.config_page.desktop_file_group.set_visible(True)
+            self.app_info.detected_desktop_file = desktop[0]
+            self.config_page.found_desktop_row.set_subtitle(
+                _("Found: {}").format(os.path.basename(desktop[0]))
+            )
+            self.config_page.use_existing_desktop_row.set_active(True)
             self.app_info.use_existing_desktop = True
         else:
-            self.files_page.desktop_file_group.set_visible(False)
+            self.config_page.desktop_file_group.set_visible(False)
             self.app_info.use_existing_desktop = False
-            
-    def _on_use_existing_desktop_changed(self, switch_row, param):
-        """Handle desktop file toggle"""
+
+    def _on_use_existing_desktop_changed(self, switch_row, _param):
         self.app_info.use_existing_desktop = switch_row.get_active()
-        
-    def _on_view_desktop_file(self, button):
-        """View desktop file content"""
-        if self.app_info.detected_desktop_file and os.path.exists(self.app_info.detected_desktop_file):
-            show_desktop_file_viewer(self.preferences_window, self.app_info.detected_desktop_file)
-            
-    def _on_choose_desktop_file(self, button):
-        """Choose custom desktop file"""
+
+    def _on_view_desktop_file(self, _button):
+        df = self.app_info.detected_desktop_file
+        if df and os.path.exists(df):
+            show_desktop_file_viewer(self, df)
+
+    def _on_choose_desktop_file(self, _button):
         filters = {_("Desktop Files"): ["*.desktop"]}
-        create_file_chooser(self.preferences_window, _("Choose Desktop File"), 
-                           Gtk.FileChooserAction.OPEN, filters,
-                           self._on_desktop_file_selected, self.settings)
-        
+        create_file_chooser(
+            self,
+            _("Choose Desktop File"),
+            Gtk.FileChooserAction.OPEN,
+            filters,
+            self._on_desktop_file_selected,
+            self.settings,
+        )
+
     def _on_desktop_file_selected(self, dialog, response):
-        """Handle desktop file selection"""
         if response == Gtk.ResponseType.OK:
             file = dialog.get_file()
             if file:
                 path = file.get_path()
                 self.app_info.custom_desktop_file = path
-                
-                filename = os.path.basename(path)
-                self.files_page.manual_desktop_row.set_subtitle(_("Selected: {}").format(filename))
-                self.files_page.use_existing_desktop_row.set_active(False)
-                
+                self.config_page.manual_desktop_row.set_subtitle(
+                    _("Selected: {}").format(os.path.basename(path))
+                )
+                self.config_page.use_existing_desktop_row.set_active(False)
         dialog.destroy()
-        
+
     def _update_structure_preview(self):
-        """Update structure preview visibility"""
+        self.config_page.preview_group.set_visible(bool(self.app_info.executable))
+
+    def _get_current_app_type(self) -> str:
+        types = [
+            "binary",
+            "python",
+            "python_wrapper",
+            "shell",
+            "java",
+            "qt",
+            "gtk",
+            "electron",
+        ]
+        sel = self.app_page.app_type_row.get_selected()
+        return types[sel] if sel < len(types) else "unknown"
+
+    def _on_view_full_structure(self, _button):
         if not self.app_info.executable:
-            self.files_page.preview_group.set_visible(False)
             return
-            
-        # Just show the button group - detailed view is shown on click
-        self.files_page.preview_group.set_visible(True)
-        
-    def _get_current_app_type(self):
-        """Get current app type as string"""
-        types = ['binary', 'python', 'python_wrapper', 'shell', 'java', 'qt', 'gtk', 'electron']
-        selected = self.files_page.app_type_row.get_selected()
-        return types[selected] if selected < len(types) else 'unknown'
-        
-    def _on_view_full_structure(self, button):
-        """Show full structure view"""
-        if not self.app_info.executable:
-            return
-            
-        structure_text = self._generate_detailed_structure()
-        show_structure_viewer(self.preferences_window, 
-                            _("AppImage Structure - Full View"), 
-                            structure_text)
-        
-    def _generate_detailed_structure(self):
-        """Generate detailed structure text with all detected files"""
-        from pathlib import Path
-        
-        lines = [_("AppImage Structure - Detailed View"), "=" * 60, ""]
-        
-        app_name = sanitize_filename(self.name_row.get_text() or "MyApp")
-        
-        # Basic structure
-        lines.append(_("[AppImage Root]"))
-        lines.append(_("├── AppRun (main launcher)"))
-        lines.append(f"├── {app_name}.desktop")
-        lines.append(f"├── {app_name}.svg")
-        lines.append(_("└── usr/"))
-        lines.append(_("    ├── bin/"))
-        lines.append(f"    │   └── {app_name} (launcher)")
-        lines.append(_("    ├── lib/"))
-        lines.append(_("    └── share/"))
-        lines.append(f"        └── {app_name}/")
-        
-        # Main executable
-        if self.app_info.executable:
-            main_file = os.path.basename(self.app_info.executable)
-            lines.append(f"            ├── {main_file} (main executable)")
-        
-        # Get project root from structure analysis
-        project_root = None
-        if self.structure_analysis:
-            project_root = self.structure_analysis.get('project_root')
-        
-        # Scan project_root for all files
-        if project_root and os.path.isdir(project_root):
-            root_path = Path(project_root)
-            
-            # Find Python files
-            python_files = list(root_path.rglob("*.py"))
-            if python_files:
-                lines.append("")
-                lines.append(_("            [Python Files]"))
-                for f in python_files[:30]:
-                    rel_path = f.relative_to(root_path) if f.is_relative_to(root_path) else f.name
-                    lines.append(f"            ├── {rel_path}")
-                if len(python_files) > 30:
-                    lines.append(f"            └── ... and {len(python_files) - 30} more")
-            
-            # Find shell scripts
-            shell_files = list(root_path.rglob("*.sh"))
-            if shell_files:
-                lines.append("")
-                lines.append(_("            [Shell Scripts]"))
-                for f in shell_files[:10]:
-                    rel_path = f.relative_to(root_path) if f.is_relative_to(root_path) else f.name
-                    lines.append(f"            ├── {rel_path}")
-                if len(shell_files) > 10:
-                    lines.append(f"            └── ... and {len(shell_files) - 10} more")
-            
-            # Find UI files
-            ui_files = list(root_path.rglob("*.ui")) + list(root_path.rglob("*.glade"))
-            if ui_files:
-                lines.append("")
-                lines.append(_("            [UI Files]"))
-                for f in ui_files[:10]:
-                    rel_path = f.relative_to(root_path) if f.is_relative_to(root_path) else f.name
-                    lines.append(f"            ├── {rel_path}")
-                if len(ui_files) > 10:
-                    lines.append(f"            └── ... and {len(ui_files) - 10} more")
-            
-            # Find CSS files
-            css_files = list(root_path.rglob("*.css"))
-            if css_files:
-                lines.append("")
-                lines.append(_("            [CSS Files]"))
-                for f in css_files[:10]:
-                    rel_path = f.relative_to(root_path) if f.is_relative_to(root_path) else f.name
-                    lines.append(f"            ├── {rel_path}")
-        
-        # Show detected files from structure analysis (using correct keys)
-        if self.structure_analysis:
-            detected = self.structure_analysis.get('detected_files', {})
-            
-            # Icons (correct key)
-            if detected.get('icons'):
-                lines.append("")
-                lines.append(_("            [Icon Files]"))
-                for f in detected['icons'][:15]:
-                    lines.append(f"            ├── {os.path.basename(f)}")
-                if len(detected['icons']) > 15:
-                    lines.append(f"            └── ... and {len(detected['icons']) - 15} more")
-            
-            # Locale dirs (correct key)
-            if detected.get('locale_dirs'):
-                lines.append("")
-                lines.append(_("            [Locale Directories]"))
-                for f in detected['locale_dirs']:
-                    lines.append(f"            ├── {os.path.basename(f)}/")
-            
-            # Desktop files (correct key)
-            if detected.get('desktop_files'):
-                lines.append("")
-                lines.append(_("            [Desktop Files]"))
-                for f in detected['desktop_files']:
-                    lines.append(f"            ├── {os.path.basename(f)}")
-        
-        # Additional directories
-        dirs = self.files_page.directory_list.get_directories()
-        if dirs:
-            lines.append("")
-            lines.append(_("[Additional Directories]"))
-            for i, directory in enumerate(dirs):
-                is_last = i == len(dirs) - 1
-                prefix = "└── " if is_last else "├── "
-                
-                try:
-                    structure = scan_directory_structure(directory)
-                    dir_name = os.path.basename(directory)
-                    file_count = len(structure.get('files', []))
-                    total_size = structure.get('total_size', 0)
-                    lines.append(f"{prefix}{dir_name}/ ({file_count} files, {format_size(total_size)})")
-                    
-                    # Show first 10 files from each directory
-                    files = structure.get('files', [])[:10]
-                    for j, file_info in enumerate(files):
-                        file_prefix = "    └── " if j == len(files) - 1 else "    ├── "
-                        lines.append(f"{file_prefix}{file_info['name']}")
-                    if len(structure.get('files', [])) > 10:
-                        lines.append(f"    └── ... and {len(structure.get('files', [])) - 10} more files")
-                        
-                except Exception as e:
-                    dir_name = os.path.basename(directory)
-                    lines.append(f"{prefix}{dir_name}/ (error reading: {e})")
-        
-        # Summary section
-        lines.append("")
-        lines.append("=" * 60)
-        lines.append(_("SUMMARY"))
-        lines.append("=" * 60)
-        lines.append(f"  {_('Application Name')}: {app_name}")
-        lines.append(f"  {_('Application Type')}: {self._get_current_app_type()}")
-        lines.append(f"  {_('Project Root')}: {project_root or _('Not detected')}")
-        lines.append(f"  {_('Additional Directories')}: {len(dirs)}")
-        
-        # Count all files
-        if project_root and os.path.isdir(project_root):
-            root_path = Path(project_root)
-            total_py = len(list(root_path.rglob("*.py")))
-            total_sh = len(list(root_path.rglob("*.sh")))
-            total_ui = len(list(root_path.rglob("*.ui"))) + len(list(root_path.rglob("*.glade")))
-            
-            lines.append("")
-            lines.append(_("  File Breakdown:"))
-            if total_py:
-                lines.append(f"    • Python: {total_py}")
-            if total_sh:
-                lines.append(f"    • Shell: {total_sh}")
-            if total_ui:
-                lines.append(f"    • UI: {total_ui}")
-            
-            if self.structure_analysis:
-                detected = self.structure_analysis.get('detected_files', {})
-                if detected.get('icons'):
-                    lines.append(f"    • Icons: {len(detected['icons'])}")
-                if detected.get('locale_dirs'):
-                    lines.append(f"    • Locale Dirs: {len(detected['locale_dirs'])}")
-                if detected.get('desktop_files'):
-                    lines.append(f"    • Desktop: {len(detected['desktop_files'])}")
-        
-        return "\n".join(lines)
-        
-    def _show_next_steps_message(self):
-        """Show next steps message"""
-        name = self.name_row.get_text().strip()
-        
-        self.status_row.set_visible(True)
-        
-        if not name:
-            self.status_row.set_title(_("Tip"))
-            self.status_row.set_subtitle(_("Enter an Application Name above to continue"))
-        else:
-            self.status_row.set_title(_("Ready!"))
-            self.status_row.set_subtitle(_("Ready to create AppImage! Click 'Create AppImage' when ready."))
-            
-        GLib.timeout_add_seconds(4, self._remove_status_styling)
-        
-    def _remove_status_styling(self):
-        """Remove status row styling"""
-        try:
-            self._validate_inputs()
-        except:
-            pass
-        return False
-            
+        from core.structure_formatter import generate_detailed_structure
+
+        content = generate_detailed_structure(
+            app_name_raw=self.app_page.name_row.get_text(),
+            executable=self.app_info.executable,
+            structure_analysis=self.structure_analysis,
+            directories=self.config_page.directory_list.get_directories(),
+            app_type=self._get_current_app_type(),
+        )
+        show_structure_viewer(
+            self,
+            _("AppImage Structure - Full View"),
+            content,
+        )
+
+    # ------------------------------------------------------------------
+    #  Collect app info from wizard pages
+    # ------------------------------------------------------------------
+
     def _collect_app_info(self):
-        """Collect app info from UI"""
-        self.app_info.name = self.name_row.get_text().strip()
-        self.app_info.version = self.app_info_page.version_row.get_text().strip() or "1.0.0"
-        self.app_info.description = self.app_info_page.description_row.get_text().strip()
-        
-        # Ensure executable_name is set from the actual selected file
+        self.app_info.name = self.app_page.name_row.get_text().strip()
+        self.app_info.version = (
+            self.config_page.version_row.get_text().strip() or "1.0.0"
+        )
+        self.app_info.description = self.config_page.description_row.get_text().strip()
+
         if self.app_info.executable:
             self.app_info.executable_name = os.path.basename(self.app_info.executable)
-        
-        # Authors and websites are no longer collected from UI
+
         self.app_info.authors = ["Unknown"]
         self.app_info.websites = []
-        
-        # Categories
+
         categories = get_available_categories()
-        selected = self.app_info_page.category_row.get_selected()
-        self.app_info.categories = [categories[selected]]
-        
-        # App type
-        types = ['binary', 'python', 'python_wrapper', 'shell', 'java', 'qt', 'gtk', 'electron']
-        selected = self.files_page.app_type_row.get_selected()
-        self.app_info.app_type = types[selected]
-        
-        # Other settings
-        self.app_info.terminal = self.app_info_page.terminal_row.get_active()
-        self.app_info.additional_directories = self.files_page.directory_list.get_directories()
+        sel = self.config_page.category_row.get_selected()
+        self.app_info.categories = [categories[sel]]
+
+        types = [
+            "binary",
+            "python",
+            "python_wrapper",
+            "shell",
+            "java",
+            "qt",
+            "gtk",
+            "electron",
+        ]
+        sel = self.app_page.app_type_row.get_selected()
+        self.app_info.app_type = types[sel]
+
+        self.app_info.terminal = self.config_page.terminal_row.get_active()
+        self.app_info.additional_directories = (
+            self.config_page.directory_list.get_directories()
+        )
         self.app_info.structure_analysis = self.structure_analysis
 
-        # Auto-update settings
-        self.app_info.update_url = self.app_info_page.update_url_row.get_text().strip()
-        self.app_info.update_pattern = self.app_info_page.update_pattern_row.get_text().strip()
+        # Auto-update
+        self.app_info.update_url = self.config_page.update_url_row.get_text().strip()
+        self.app_info.update_pattern = (
+            self.config_page.update_pattern_row.get_text().strip()
+        )
 
-        # Selected dependencies are already stored in app_info from _sync_from_preferences()
-        # No need to access widgets here - data is already in the model
-        # This prevents accessing destroyed widgets and causing UI freeze
+        # Dependencies (read directly – widgets are always alive)
+        self.app_info.selected_dependencies = [
+            k for k, s in self.dependency_switches.items() if s.get_active()
+        ]
 
         # Build settings
         self.app_info.include_dependencies = self.build_page.deps_row.get_active()
         self.app_info.strip_binaries = self.build_page.strip_row.get_active()
-        
-        # Get selected environment
-        if self.build_page.environment_row:
-            selected_idx = self.build_page.environment_row.get_selected()
-            if selected_idx == 0:
-                self.app_info.build_environment = None
-            else:
-                environments = self.env_manager.get_supported_environments()
-                ready_envs = [env for env in environments if env['status'] == 'ready']
-                if selected_idx - 1 < len(ready_envs):
-                    self.app_info.build_environment = ready_envs[selected_idx - 1]['id']
-        else:
+        self.app_info.extra_libraries = self.build_page.get_extra_libs()
+
+        # Icon theme
+        self.app_info.include_icon_theme = self.build_page.icon_theme_row.get_active()
+        if self.build_page.papirus_radio.get_active():
+            self.app_info.icon_theme_choice = "papirus"
+        elif self.build_page.adwaita_radio.get_active():
+            self.app_info.icon_theme_choice = "adwaita"
+
+        # Build environment
+        sel_idx = self.build_page.environment_row.get_selected()
+        if sel_idx == 0:
             self.app_info.build_environment = None
-        
-    def _on_build_clicked(self, button):
-        """Start build process"""
-        print(f"[BOTAO] _on_build_clicked chamado! button ID: {id(button)}")
-        import traceback
-        traceback.print_stack()
+        else:
+            envs = self.env_manager.get_supported_environments()
+            ready = [e for e in envs if e["status"] == "ready"]
+            if sel_idx - 1 < len(ready):
+                self.app_info.build_environment = ready[sel_idx - 1]["id"]
+
+    # ------------------------------------------------------------------
+    #  Build
+    # ------------------------------------------------------------------
+
+    def _on_build_clicked(self, _button):
         try:
             self.build_in_progress = True
             self._collect_app_info()
-            self.builder.set_app_info(self.app_info.to_dict())
-            
-            # Check for local build compatibility warning
+            self.builder.set_app_info(self.app_info)
+
             warning = self.builder.get_compatibility_warning()
             if warning:
-                self.build_in_progress = False  # Reset flag until user confirms
+                self.build_in_progress = False
                 self._show_local_build_warning(warning)
-                return  # Wait for user response
-            
-            # No warning - proceed directly
+                return
+
             self._start_actual_build()
-            
         except ValidationError as e:
+            self.build_in_progress = False
             show_error_dialog(self, _("Validation Error"), str(e))
         except Exception as e:
-            show_error_dialog(self, _("Error"), _("Failed to start build: {}").format(e))
-            
+            self.build_in_progress = False
+            show_error_dialog(
+                self, _("Error"), _("Failed to start build: {}").format(e)
+            )
+
     def _show_local_build_warning(self, warning):
-        """Show custom local build warning dialog with better formatting"""
-        # Create custom dialog
         dialog = Adw.Window()
         dialog.set_transient_for(self)
         dialog.set_modal(True)
         dialog.set_default_size(500, 450)
         dialog.set_resizable(False)
-        
+
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         dialog.set_content(main_box)
-        
-        # Header
+
         header = Adw.HeaderBar()
         header.set_show_end_title_buttons(False)
         header.set_show_start_title_buttons(False)
+        title_lbl = Gtk.Label(label=warning["title"])
+        title_lbl.add_css_class("title-2")
+        header.set_title_widget(title_lbl)
         main_box.append(header)
-        
-        # Title centered
-        title_label = Gtk.Label(label=warning['title'])
-        title_label.add_css_class("title-2")
-        header.set_title_widget(title_label)
-        
-        # Content box
+
         content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16)
         content.set_margin_top(24)
         content.set_margin_bottom(24)
         content.set_margin_start(24)
         content.set_margin_end(24)
         main_box.append(content)
-        
-        # Parse message into parts
-        message_parts = warning['message'].split('\n\n')
-        
-        # First part (intro) - left aligned
-        intro = Gtk.Label(label=message_parts[0])
+
+        parts = warning["message"].split("\n\n")
+
+        intro = Gtk.Label(label=parts[0])
         intro.set_wrap(True)
         intro.set_xalign(0)
         intro.set_justify(Gtk.Justification.LEFT)
         content.append(intro)
-        
-        # Problems card - left aligned
-        if len(message_parts) > 1:
-            problems_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
-            problems_box.add_css_class("card")
-            problems_box.set_margin_start(12)
-            problems_box.set_margin_end(12)
-            problems_box.set_margin_top(8)
-            problems_box.set_margin_bottom(8)
-            content.append(problems_box)
-            
-            problems_title = Gtk.Label(label=_("AppImages built on your system may NOT work on other distributions due to:"))
-            problems_title.set_wrap(True)
-            problems_title.set_xalign(0)
-            problems_title.set_margin_start(12)
-            problems_title.set_margin_top(8)
-            problems_box.append(problems_title)
-            
-            # Parse bullet points
-            problems_text = message_parts[1]
-            for line in problems_text.split('\n'):
-                if line.strip().startswith('•'):
-                    problem_label = Gtk.Label(label=line.strip())
-                    problem_label.set_xalign(0)
-                    problem_label.set_margin_start(12)
-                    problems_box.append(problem_label)
-            
-            # Last item margin
-            problems_box.set_margin_bottom(8)
-        
-        # Recommendation - left aligned
-        if len(message_parts) > 2:
-            recommendation = Gtk.Label()
-            recommendation.set_markup(f"<b>{message_parts[2].split(':')[0]}:</b>\n{message_parts[2].split(':')[1]}")
-            recommendation.set_wrap(True)
-            recommendation.set_xalign(0)
-            recommendation.set_justify(Gtk.Justification.LEFT)
-            content.append(recommendation)
-        
-        # Question - left aligned
-        if len(message_parts) > 3:
-            question = Gtk.Label(label=message_parts[3])
-            question.set_xalign(0)
-            question.set_margin_top(8)
-            content.append(question)
-        
-        # Buttons side by side
-        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-        button_box.set_halign(Gtk.Align.CENTER)
-        button_box.set_margin_top(16)
-        content.append(button_box)
-        
-        cancel_button = Gtk.Button(label=_("Cancel"))
-        cancel_button.set_size_request(140, -1)
-        cancel_button.connect("clicked", lambda btn: dialog.close())
-        button_box.append(cancel_button)
-        
-        continue_button = Gtk.Button(label=_("Continue Anyway"))
-        continue_button.set_size_request(160, -1)
-        continue_button.add_css_class("destructive-action")
-        button_box.append(continue_button)
-        
-        def on_continue_clicked(btn):
+
+        if len(parts) > 1:
+            pbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
+            pbox.add_css_class("card")
+            pbox.set_margin_start(12)
+            pbox.set_margin_end(12)
+            pbox.set_margin_top(8)
+            pbox.set_margin_bottom(8)
+            content.append(pbox)
+
+            ptitle = Gtk.Label(
+                label=_(
+                    "AppImages built on your system may NOT work on other "
+                    "distributions due to:"
+                )
+            )
+            ptitle.set_wrap(True)
+            ptitle.set_xalign(0)
+            ptitle.set_margin_start(12)
+            ptitle.set_margin_top(8)
+            pbox.append(ptitle)
+
+            for line in parts[1].split("\n"):
+                if line.strip().startswith("•"):
+                    lbl = Gtk.Label(label=line.strip())
+                    lbl.set_xalign(0)
+                    lbl.set_margin_start(12)
+                    pbox.append(lbl)
+            pbox.set_margin_bottom(8)
+
+        if len(parts) > 2:
+            rec = Gtk.Label()
+            split = parts[2].split(":", 1)
+            rec.set_markup(f"<b>{split[0]}:</b>\n{split[1]}")
+            rec.set_wrap(True)
+            rec.set_xalign(0)
+            rec.set_justify(Gtk.Justification.LEFT)
+            content.append(rec)
+
+        if len(parts) > 3:
+            q = Gtk.Label(label=parts[3])
+            q.set_xalign(0)
+            q.set_margin_top(8)
+            content.append(q)
+
+        btn_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        btn_box.set_halign(Gtk.Align.CENTER)
+        btn_box.set_margin_top(16)
+        content.append(btn_box)
+
+        cancel = Gtk.Button(label=_("Cancel"))
+        cancel.set_size_request(140, -1)
+        cancel.connect("clicked", lambda _: dialog.close())
+        btn_box.append(cancel)
+
+        cont = Gtk.Button(label=_("Continue Anyway"))
+        cont.set_size_request(160, -1)
+        cont.add_css_class("destructive-action")
+
+        def on_continue(_b):
             dialog.close()
             self._start_actual_build()
-        
-        continue_button.connect("clicked", on_continue_clicked)
-        
+
+        cont.connect("clicked", on_continue)
+        btn_box.append(cont)
+
         dialog.present()
-    
+
     def _start_actual_build(self):
-        """Actually start the build process after confirmation"""
         try:
             self.build_in_progress = True
-            
             self.progress_dialog = BuildProgressDialog(self)
             self.progress_dialog.cancel_button.connect("clicked", self._on_cancel_build)
             self.progress_dialog.present()
-            
             self.builder.build_async(self._on_build_complete)
-            
         except Exception as e:
             self.build_in_progress = False
-            show_error_dialog(self, _("Error"), _("Failed to start build: {}").format(e))
-            
-    def _on_preferences_build_clicked(self, button):
-        """Build from preferences window"""
-        try:
-            self._sync_from_preferences()
-            self.preferences_window.close()
-            self._on_build_clicked(button)
-        except Exception as e:
-            show_error_dialog(self.preferences_window, _("Error"), str(e))
-            
+            show_error_dialog(
+                self, _("Error"), _("Failed to start build: {}").format(e)
+            )
+
     def _on_build_progress(self, percentage, message):
-        """Handle build progress"""
         GLib.idle_add(self._update_progress_ui, percentage, message)
-        
+
     def _update_progress_ui(self, percentage, message):
-        """Update progress UI"""
-        # Ignore updates if build finished - prevents updates to destroyed window
         if not self.build_in_progress:
             return False
-            
         if self.progress_dialog:
             self.progress_dialog.update_progress(percentage, message)
         return False
-        
+
     def _on_build_log(self, message):
-        """Handle build log"""
         print(f"Build: {message}")
-        
-    def _on_cancel_build(self, button):
-        """Cancel build"""
+
+    def _on_cancel_build(self, _button):
         self.build_in_progress = False
-        
         if self.builder:
             self.builder.cancel_build()
         if self.progress_dialog:
-            self.progress_dialog.destroy()  # Use destroy() instead of close() because deletable=False
+            self.progress_dialog.destroy()
             self.progress_dialog = None
-            
+
     def _on_build_complete(self, result, error):
-        """Handle build completion"""
         GLib.idle_add(self._handle_build_result, result, error)
-        
+
     def _handle_build_result(self, result, error):
-        """Handle build result - cleanup progress dialog properly"""
-        
-        # CRITICAL: Set flag FIRST to stop any pending updates
         self.build_in_progress = False
-        
-        # Give pending callbacks time to check flag and abort (flush event queue)
-        # This ensures no callbacks try to update after we destroy the window
-        GLib.idle_add(self._finish_build_cleanup, result, error, priority=GLib.PRIORITY_LOW)
-        
+        GLib.idle_add(
+            self._finish_build_cleanup,
+            result,
+            error,
+            priority=GLib.PRIORITY_LOW,
+        )
         return False
 
     def _finish_build_cleanup(self, result, error):
-        """Complete the build cleanup after all pending updates are ignored"""
-        print(f"[CLEANUP] _finish_build_cleanup iniciando")
-        print(f"[CLEANUP] progress_dialog existe? {self.progress_dialog is not None}")
         if self.progress_dialog:
-            print(f"[CLEANUP] progress_dialog ID: {id(self.progress_dialog)}")
-        
-        # Clean up progress dialog with proper GTK4 lifecycle management
-        if self.progress_dialog:
-            print(f"[CLEANUP] Tornando janela invisível...")
             self.progress_dialog.set_visible(False)
-            print(f"[CLEANUP] Habilitando deletable...")
             self.progress_dialog.set_deletable(True)
-            print(f"[CLEANUP] Chamando destroy()...")
             self.progress_dialog.destroy()
-            print(f"[CLEANUP] Destroy executado, setando para None...")
             self.progress_dialog = None
-            print(f"[CLEANUP] progress_dialog agora é None")
-            
-        # Show appropriate result dialog
+
+        validation = getattr(self.builder, "validation_result", None)
+        has_warnings = validation and not validation.get("ok", True)
+
+        def _back_to_welcome(*_args):
+            self.nav_view.pop_to_tag("welcome")
+
         if error:
-            show_error_dialog(self, _("Build Failed"), str(error))
+            show_error_dialog(
+                self,
+                _("Build Failed"),
+                self._friendly_error_message(str(error)),
+            )
+            _back_to_welcome()
         elif result:
-            # Use enhanced success dialog with appimage_path
-            show_success_dialog(self, _("Build Complete"), 
-                            _("AppImage created successfully:\\n{}").format(result),
-                            appimage_path=result)
+            extra_libs = self.app_info.extra_libraries
+            if extra_libs:
+                self.lib_profiles.save(self.app_info.app_type, extra_libs)
+            if has_warnings:
+                dlg = ValidationWarningDialog(self, validation, result)
+                dlg.connect("close-request", _back_to_welcome)
+                dlg.present()
+            else:
+                show_success_dialog(
+                    self,
+                    _("Build Complete"),
+                    _("AppImage created successfully:\\n{}").format(result),
+                    appimage_path=result,
+                    on_response=_back_to_welcome,
+                )
         else:
             show_info_dialog(self, _("Build Cancelled"), _("Build was cancelled"))
-            
+            _back_to_welcome()
         return False
+
+    @staticmethod
+    def _friendly_error_message(error_text: str) -> str:
+        """Map common build errors to user-friendly messages with suggestions."""
+        lower = error_text.lower()
+
+        patterns = [
+            (
+                "appimagetool not available",
+                _(
+                    "The appimagetool utility could not be found or downloaded.\n\n"
+                    "Suggestion: Check your internet connection and try again."
+                ),
+            ),
+            (
+                "failed to setup appimagetool",
+                _(
+                    "Could not set up appimagetool.\n\n"
+                    "Suggestion: Check your internet connection and available "
+                    "disk space."
+                ),
+            ),
+            (
+                "build timed out",
+                _(
+                    "The build process took too long and was stopped.\n\n"
+                    "Suggestion: Try building again. If the problem persists, "
+                    "check if the build environment is responsive."
+                ),
+            ),
+            (
+                "build cancelled",
+                _("The build was cancelled by the user."),
+            ),
+            (
+                "distrobox-create command not found",
+                _(
+                    "Distrobox is not installed on your system.\n\n"
+                    "Suggestion: Install distrobox from your package manager."
+                ),
+            ),
+            (
+                "host is not set up for distrobox",
+                _(
+                    "Your system is not configured for Distrobox containers.\n\n"
+                    "Suggestion: Make sure Docker or Podman is installed and "
+                    "running."
+                ),
+            ),
+            (
+                "failed to create build directory",
+                _(
+                    "Could not create the build directory.\n\n"
+                    "Suggestion: Check disk space and write permissions."
+                ),
+            ),
+            (
+                "failed to copy application files",
+                _(
+                    "Could not copy application files to the build directory.\n\n"
+                    "Suggestion: Ensure the source files still exist and you "
+                    "have read permissions."
+                ),
+            ),
+            (
+                "python setup timed out",
+                _(
+                    "Python environment setup took too long.\n\n"
+                    "Suggestion: Check your internet connection (pip may be "
+                    "downloading packages)."
+                ),
+            ),
+            (
+                "python stdlib required",
+                _(
+                    "Python standard library could not be found in the build "
+                    "container.\n\nSuggestion: Try removing and recreating the "
+                    "build environment."
+                ),
+            ),
+            (
+                "no space left",
+                _(
+                    "Not enough disk space to complete the build.\n\n"
+                    "Suggestion: Free up disk space and try again."
+                ),
+            ),
+            (
+                "permission denied",
+                _(
+                    "A file permission error occurred during the build.\n\n"
+                    "Suggestion: Check that you have the necessary permissions "
+                    "for all files."
+                ),
+            ),
+        ]
+
+        for pattern, message in patterns:
+            if pattern in lower:
+                return message
+
+        return error_text

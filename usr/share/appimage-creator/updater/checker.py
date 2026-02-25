@@ -9,7 +9,7 @@ import urllib.request
 import urllib.error
 import os
 from pathlib import Path
-from typing import Optional, Dict, Any
+from typing import Optional
 import fnmatch
 
 # Optional GitHub token to increase rate limit from 60 to 5000 requests/hour
@@ -58,7 +58,7 @@ class UpdateChecker:
             GitHub token (always returns a token)
         """
         # Try environment variable first (for advanced users)
-        token = os.environ.get('GITHUB_TOKEN')
+        token = os.environ.get("GITHUB_TOKEN")
         if token:
             return token.strip()
 
@@ -89,7 +89,10 @@ class UpdateChecker:
 
         try:
             # Detect source type from URL
-            if "api.github.com" in self.update_url and "/releases/latest" in self.update_url:
+            if (
+                "api.github.com" in self.update_url
+                and "/releases/latest" in self.update_url
+            ):
                 return self._check_github_releases()
             else:
                 # Try generic JSON format
@@ -98,39 +101,38 @@ class UpdateChecker:
             print(f"Update check failed: {e}")
             return None
 
-
     def _extract_version_from_tag(self, tag_name: str) -> str:
         """
         Extract version from tag using the filename pattern.
-        
+
         Example:
             Pattern: "app-*-x86_64.AppImage"
             Tag: "app-1.2.3-x86_64" or "v1.2.3"
             Returns: "1.2.3"
         """
         import re
-        
+
         # Remove 'v' prefix if present
-        tag = tag_name.lstrip('v')
-        
+        tag = tag_name.lstrip("v")
+
         # Remove .AppImage suffix from pattern for matching with tag
-        pattern_base = self.filename_pattern.replace('.AppImage', '')
-        
+        pattern_base = self.filename_pattern.replace(".AppImage", "")
+
         # Convert glob pattern to regex: replace * with (.+)
         # Escape other special regex chars first
-        regex_pattern = re.escape(pattern_base).replace(r'\*', '(.+)')
-        
+        regex_pattern = re.escape(pattern_base).replace(r"\*", "(.+)")
+
         # Try to match the tag against the pattern
-        match = re.match(f'^{regex_pattern}$', tag)
+        match = re.match(f"^{regex_pattern}$", tag)
         if match:
             return match.group(1)
-        
+
         # Fallback: if tag doesn't match pattern, try to extract version-like substring
         # Look for patterns like: 26.01.12-2122, 1.2.3, v1.0
-        version_match = re.search(r'(\d+\.\d+[\.\d\-]*)', tag)
+        version_match = re.search(r"(\d+\.\d+[\.\d\-]*)", tag)
         if version_match:
             return version_match.group(1)
-        
+
         # Last resort: return tag as-is
         return tag
 
@@ -138,18 +140,18 @@ class UpdateChecker:
         """Check GitHub releases API"""
         try:
             req = urllib.request.Request(self.update_url)
-            req.add_header('Accept', 'application/vnd.github.v3+json')
-            req.add_header('User-Agent', 'AppImage-Updater/1.0')
+            req.add_header("Accept", "application/vnd.github.v3+json")
+            req.add_header("User-Agent", "AppImage-Updater/1.0")
 
             # Add authorization header if token is available
             if self.github_token:
-                req.add_header('Authorization', f'token {self.github_token}')
+                req.add_header("Authorization", f"token {self.github_token}")
 
             with urllib.request.urlopen(req, timeout=10) as response:
-                data = json.loads(response.read().decode('utf-8'))
+                data = json.loads(response.read().decode("utf-8"))
 
             # Extract version from tag_name using smart extraction
-            tag_name = data.get('tag_name', '')
+            tag_name = data.get("tag_name", "")
             version = self._extract_version_from_tag(tag_name)
 
             # Check if version is newer
@@ -157,17 +159,17 @@ class UpdateChecker:
                 return None
 
             # Find matching AppImage asset
-            assets = data.get('assets', [])
+            assets = data.get("assets", [])
             for asset in assets:
-                filename = asset.get('name', '')
+                filename = asset.get("name", "")
                 if fnmatch.fnmatch(filename, self.filename_pattern):
-                    download_url = asset.get('browser_download_url', '')
-                    release_notes = data.get('body', '')
+                    download_url = asset.get("browser_download_url", "")
+                    release_notes = data.get("body", "")
 
                     return UpdateInfo(
                         version=version,
                         download_url=download_url,
-                        release_notes=release_notes
+                        release_notes=release_notes,
                     )
 
             return None
@@ -191,11 +193,11 @@ class UpdateChecker:
         """
         try:
             with urllib.request.urlopen(self.update_url, timeout=10) as response:
-                data = json.loads(response.read().decode('utf-8'))
+                data = json.loads(response.read().decode("utf-8"))
 
-            version = data.get('version', '')
-            download_url = data.get('download_url', '')
-            release_notes = data.get('release_notes', '')
+            version = data.get("version", "")
+            download_url = data.get("download_url", "")
+            release_notes = data.get("release_notes", "")
 
             if not version or not download_url:
                 return None
@@ -204,9 +206,7 @@ class UpdateChecker:
                 return None
 
             return UpdateInfo(
-                version=version,
-                download_url=download_url,
-                release_notes=release_notes
+                version=version, download_url=download_url, release_notes=release_notes
             )
 
         except Exception as e:
@@ -220,8 +220,8 @@ class UpdateChecker:
         """
         try:
             # Remove common prefixes
-            new_ver = new_version.lstrip('v')
-            curr_ver = self.current_version.lstrip('v')
+            new_ver = new_version.lstrip("v")
+            curr_ver = self.current_version.lstrip("v")
 
             # Simple string comparison for now
             # For more complex versioning, use packaging.version
@@ -245,7 +245,7 @@ def check_appimage_update(marker_file_path: Path) -> Optional[UpdateInfo]:
         if not marker_file_path.exists():
             return None
 
-        lines = marker_file_path.read_text().strip().split('\n')
+        lines = marker_file_path.read_text().strip().split("\n")
 
         # Format: line 1: appimage path, line 2: desktop file
         # line 3: update URL, line 4: version, line 5: pattern
