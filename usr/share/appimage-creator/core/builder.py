@@ -21,7 +21,15 @@ from validators.validators import (
 )
 from core.structure_analyzer import detect_application_structure
 from templates.app_templates import get_app_type_from_file
-from generators.icons import process_icon, generate_default_icon
+from generators.icons import process_icon, generate_default_icon, convert_svg_to_png
+
+try:
+    from PIL import Image
+
+    HAS_PIL = True
+except ImportError:
+    HAS_PIL = False
+
 from generators.files import create_apprun_file, generate_desktop_file
 from utils.file_ops import copy_files_recursively, download_file, verify_download_sha256
 from utils.system import get_system_info, find_executable_in_path, make_executable
@@ -322,7 +330,7 @@ class AppImageBuilder:
                 )
 
     def process_application_icon(self) -> None:
-        """Process and copy icon with consistent naming."""
+        """Process and copy icon with consistent naming and proper hicolor structure."""
         self.log(_("Processing icon..."))
 
         try:
@@ -355,16 +363,89 @@ class AppImageBuilder:
 
                     self.log(_("Using detected icon: {}").format(icon_path))
 
-            # Define the destination for the icon
-            icon_dest_dir = self.appdir_path / "usr/share/icons/hicolor/scalable/apps"
-            icon_dest_dir.mkdir(parents=True, exist_ok=True)
+            # Process icon into hicolor theme structure
+            hicolor_base = self.appdir_path / "usr/share/icons/hicolor"
+            scalable_dir = hicolor_base / "scalable/apps"
+            scalable_dir.mkdir(parents=True, exist_ok=True)
 
             if not icon_path or not os.path.exists(icon_path):
                 self.log(_("No icon provided or found, generating a default one."))
-                generate_default_icon(icon_dest_dir, canonical_basename)
+                generate_default_icon(scalable_dir, canonical_basename)
             else:
-                # Process the existing icon and save it with the canonical name
-                process_icon(icon_path, icon_dest_dir, canonical_basename)
+                is_svg = Path(icon_path).suffix.lower() == ".svg"
+
+                if is_svg:
+                    # SVG goes in scalable
+                    dest_svg = scalable_dir / f"{canonical_basename}.svg"
+                    shutil.copy2(icon_path, dest_svg)
+                    self.log(_("Copied SVG icon to scalable/apps/"))
+
+                    # Generate PNG sizes from SVG
+                    for size in (256, 128, 64, 48, 32, 16):
+                        size_dir = hicolor_base / f"{size}x{size}/apps"
+                        size_dir.mkdir(parents=True, exist_ok=True)
+                        png_dest = size_dir / f"{canonical_basename}.png"
+                        if convert_svg_to_png(icon_path, png_dest, size):
+                            self.log(f"  Generated {size}x{size} PNG")
+                else:
+                    # Raster (PNG/JPG/ICO) - resize into each size directory
+                    if HAS_PIL:
+                        try:
+                            with Image.open(icon_path) as img:
+                                if img.mode != "RGBA":
+                                    img = img.convert("RGBA")
+                                for size in (256, 128, 64, 48, 32, 16):
+                                    size_dir = hicolor_base / f"{size}x{size}/apps"
+                                    size_dir.mkdir(parents=True, exist_ok=True)
+                                    png_dest = size_dir / f"{canonical_basename}.png"
+                                    resized = img.resize(
+                                        (size, size), Image.Resampling.LANCZOS
+                                    )
+                                    resized.save(png_dest, "PNG")
+                                self.log(_("Generated PNG icons at all standard sizes"))
+                        except Exception as e:
+                            self.log(
+                                _("PIL resize failed, copying as-is: {}").format(e)
+                            )
+                            shutil.copy2(
+                                icon_path,
+                                scalable_dir / f"{canonical_basename}.png",
+                            )
+                    else:
+                        # No PIL, just copy to scalable
+                        shutil.copy2(
+                            icon_path,
+                            scalable_dir / f"{canonical_basename}.png",
+                        )
+
+            # Create icon symlink in AppDir root (required by appimagetool)
+            # Find the best icon to use as root icon
+            root_icon = None
+            for candidate in (
+                hicolor_base / f"256x256/apps/{canonical_basename}.png",
+                scalable_dir / f"{canonical_basename}.svg",
+                scalable_dir / f"{canonical_basename}.png",
+            ):
+                if candidate.exists():
+                    root_icon = candidate
+                    break
+
+            if root_icon:
+                ext = root_icon.suffix
+                root_link = self.appdir_path / f"{canonical_basename}{ext}"
+                if root_link.exists() or root_link.is_symlink():
+                    root_link.unlink()
+                relative = os.path.relpath(root_icon, self.appdir_path)
+                root_link.symlink_to(relative)
+                self.log(
+                    _("Created icon symlink in AppDir root: {}").format(root_link.name)
+                )
+
+                # Also create .DirIcon symlink (used by some file managers)
+                dir_icon = self.appdir_path / ".DirIcon"
+                if dir_icon.exists() or dir_icon.is_symlink():
+                    dir_icon.unlink()
+                dir_icon.symlink_to(relative)
 
             self.update_progress(35, _("Icon processed"))
 
@@ -377,35 +458,48 @@ class AppImageBuilder:
 
         try:
             appdir_desktop_files_dir = self.appdir_path / "usr/share/applications"
-            appdir_desktop_files = list(appdir_desktop_files_dir.glob("*.desktop"))
+            appdir_desktop_files_dir.mkdir(parents=True, exist_ok=True)
 
-            if not appdir_desktop_files:
-                self.log(_("No desktop file found in AppDir, generating a new one."))
-                # Generate a new desktop file with a canonical name
-                canonical_basename = (
-                    (self.app_info.name or "app").lower().replace(" ", "-")
-                )
-                desktop_content = generate_desktop_file(self.app_info)
-                new_desktop_path = (
-                    appdir_desktop_files_dir / f"{canonical_basename}.desktop"
-                )
-                with open(new_desktop_path, "w", encoding="utf-8") as f:
-                    f.write(desktop_content)
-                main_desktop_file_path = new_desktop_path
-            else:
-                # Use the existing desktop file, preserving its original name
-                source_desktop_file = appdir_desktop_files[0]
+            # Priority: custom desktop file > detected in AppDir > generate new
+            custom_desktop = self.app_info.custom_desktop_file
+            if custom_desktop and os.path.exists(custom_desktop):
+                # Copy user-selected or auto-detected desktop file into AppDir
+                dest = appdir_desktop_files_dir / os.path.basename(custom_desktop)
+                shutil.copy2(custom_desktop, dest)
                 self.log(
-                    _("Found desktop file from source project: {}").format(
-                        source_desktop_file.name
+                    _("Using custom desktop file: {}").format(
+                        os.path.basename(custom_desktop)
                     )
                 )
+                main_desktop_file_path = dest
+            else:
+                appdir_desktop_files = list(appdir_desktop_files_dir.glob("*.desktop"))
 
-                # Keep the original filename - do NOT rename it
-                main_desktop_file_path = source_desktop_file
-                self.log(
-                    f"Using desktop file with original name: {main_desktop_file_path.name}"
-                )
+                if not appdir_desktop_files:
+                    self.log(
+                        _("No desktop file found in AppDir, generating a new one.")
+                    )
+                    canonical_basename = (
+                        (self.app_info.name or "app").lower().replace(" ", "-")
+                    )
+                    desktop_content = generate_desktop_file(self.app_info)
+                    new_desktop_path = (
+                        appdir_desktop_files_dir / f"{canonical_basename}.desktop"
+                    )
+                    with open(new_desktop_path, "w", encoding="utf-8") as f:
+                        f.write(desktop_content)
+                    main_desktop_file_path = new_desktop_path
+                else:
+                    source_desktop_file = appdir_desktop_files[0]
+                    self.log(
+                        _("Found desktop file from source project: {}").format(
+                            source_desktop_file.name
+                        )
+                    )
+                    main_desktop_file_path = source_desktop_file
+                    self.log(
+                        f"Using desktop file with original name: {main_desktop_file_path.name}"
+                    )
 
             # Create symlink to the desktop file in AppDir root (using original name)
             root_desktop_path = self.appdir_path / main_desktop_file_path.name
@@ -419,9 +513,96 @@ class AppImageBuilder:
                 )
             )
 
+            # Ensure the Icon= field in .desktop matches the canonical icon name
+            canonical_basename = self.app_info.canonical_basename
+            if not canonical_basename:
+                canonical_basename = (
+                    (self.app_info.name or "app").lower().replace(" ", "-")
+                )
+
+            try:
+                with open(main_desktop_file_path, "r", encoding="utf-8") as f:
+                    desktop_lines = f.readlines()
+
+                updated = False
+                has_wm_class = False
+                for i, line in enumerate(desktop_lines):
+                    if line.startswith("Icon="):
+                        old_icon = line.strip()
+                        desktop_lines[i] = f"Icon={canonical_basename}\n"
+                        if old_icon != f"Icon={canonical_basename}":
+                            self.log(
+                                _("Updated desktop Icon field: {} -> {}").format(
+                                    old_icon, f"Icon={canonical_basename}"
+                                )
+                            )
+                        updated = True
+                    if line.startswith("StartupWMClass="):
+                        has_wm_class = True
+
+                    # Remove NoDisplay=true — AppImages must be visible in menus
+                    if line.strip().lower() == "nodisplay=true":
+                        desktop_lines[i] = "NoDisplay=false\n"
+                        self.log(
+                            _(
+                                "Fixed NoDisplay=true -> false (AppImages must be visible in menus)"
+                            )
+                        )
+                        updated = True
+
+                    # Fix Terminal=true for GUI applications
+                    if (
+                        line.strip().lower() == "terminal=true"
+                        and not self.app_info.terminal
+                    ):
+                        desktop_lines[i] = "Terminal=false\n"
+                        self.log(_("Fixed Terminal=true -> false (GUI application)"))
+                        updated = True
+
+                if not updated:
+                    # Add Icon= if missing
+                    for i, line in enumerate(desktop_lines):
+                        if line.strip() == "[Desktop Entry]":
+                            desktop_lines.insert(i + 1, f"Icon={canonical_basename}\n")
+                            updated = True
+                            break
+
+                # Add StartupWMClass if missing (critical for Wayland icon matching)
+                if not has_wm_class:
+                    # For Electron apps, use the app_id from package.json
+                    structure = self.app_info.structure_analysis or {}
+                    electron_id = structure.get("electron_app_id")
+                    wm_class = (
+                        electron_id
+                        or self.app_info.executable_name
+                        or canonical_basename
+                    )
+                    for i, line in enumerate(desktop_lines):
+                        if line.startswith("Exec="):
+                            desktop_lines.insert(i + 1, f"StartupWMClass={wm_class}\n")
+                            self.log(
+                                _(
+                                    "Added StartupWMClass={} for Wayland compatibility"
+                                ).format(wm_class)
+                            )
+                            updated = True
+                            break
+
+                if updated:
+                    with open(main_desktop_file_path, "w", encoding="utf-8") as f:
+                        f.writelines(desktop_lines)
+            except Exception as e:
+                self.log(
+                    _(
+                        "Warning: Could not update Icon field in desktop file: {}"
+                    ).format(e)
+                )
+
             self.log(_("Creating custom AppRun script..."))
 
             app_info_for_apprun = self.app_info.copy()
+            # Set the actual desktop filename placed in the AppDir
+            app_info_for_apprun.apprun_desktop_filename = main_desktop_file_path.name
             app_type = self.app_info.app_type
 
             # Add the dynamically detected python_version to the app_info copy

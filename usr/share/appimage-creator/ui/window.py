@@ -31,7 +31,7 @@ from validators.validators import ValidationError, validate_app_name, validate_v
 from utils.i18n import _
 
 # Application version – single source of truth
-APP_VERSION = "1.1.1"
+APP_VERSION = "1.1.2"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
@@ -151,6 +151,9 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         # -- Application page --
         self.app_page.executable_button.connect("clicked", self._on_choose_executable)
         self.app_page.icon_button.connect("clicked", self._on_choose_icon)
+        self.app_page.desktop_button.connect(
+            "clicked", self._on_choose_desktop_app_page
+        )
         self.app_page.name_row.connect("changed", self._validate_inputs)
         self.app_page.name_row.connect("changed", self._on_name_changed)
 
@@ -647,31 +650,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                     _("Selected: {}").format(filename)
                 )
 
-                # Analyse structure
-                self.structure_analysis = detect_application_structure(path)
-                self.app_info.structure_analysis = self.structure_analysis
-
-                # Auto-detect app type
-                app_type = get_app_type_from_file(path, self.structure_analysis)
-                self.app_info.app_type = app_type
-
-                type_map = {
-                    "binary": 0,
-                    "python": 1,
-                    "python_wrapper": 2,
-                    "shell": 3,
-                    "java": 4,
-                    "qt": 5,
-                    "gtk": 6,
-                    "electron": 7,
-                }
-                if app_type in type_map:
-                    self.app_page.app_type_row.set_selected(type_map[app_type])
-                    saved_libs = self.lib_profiles.load(app_type)
-                    if saved_libs:
-                        self.build_page.set_extra_libs(saved_libs)
-
-                # Auto-fill name
+                # Auto-fill name immediately (lightweight)
                 if not self.app_page.name_row.get_text().strip():
                     suggested = os.path.splitext(filename)[0]
                     suggested = suggested.replace("-gui", "").replace("-cli", "")
@@ -679,16 +658,72 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                     if suggested and len(suggested) > 2:
                         self.app_page.name_row.set_text(suggested)
 
-                # Update config-page sections
-                self._update_detected_files()
-                self._update_additional_directories_from_analysis()
-                self._update_desktop_file_options()
-                self._update_structure_preview()
-                self._update_autodetected_dependencies()
+                # Show analysis in progress
+                self.app_page.status_row.set_title(_("Analyzing..."))
+                self.app_page.status_row.set_subtitle(
+                    _("Detecting application structure")
+                )
+                self.app_page.continue_button.set_sensitive(False)
 
-                self._validate_inputs()
+                # Run heavy analysis in background thread
+                def _analyze():
+                    structure = detect_application_structure(path)
+                    app_type = get_app_type_from_file(path, structure)
+                    GLib.idle_add(self._on_analysis_complete, path, structure, app_type)
+
+                threading.Thread(target=_analyze, daemon=True).start()
 
         dialog.destroy()
+
+    def _on_analysis_complete(self, path, structure, app_type):
+        """Apply analysis results on the main thread."""
+        self.structure_analysis = structure
+        self.app_info.structure_analysis = structure
+        self.app_info.app_type = app_type
+
+        type_map = {
+            "binary": 0,
+            "python": 1,
+            "python_wrapper": 2,
+            "shell": 3,
+            "java": 4,
+            "qt": 5,
+            "gtk": 6,
+            "electron": 7,
+        }
+        if app_type in type_map:
+            self.app_page.app_type_row.set_selected(type_map[app_type])
+            saved_libs = self.lib_profiles.load(app_type)
+            if saved_libs:
+                self.build_page.set_extra_libs(saved_libs)
+
+        # Auto-set detected .desktop file on Application page
+        desktop_files = structure.get("detected_files", {}).get("desktop_files", [])
+        if desktop_files:
+            self.app_info.detected_desktop_file = desktop_files[0]
+            self.app_info.custom_desktop_file = desktop_files[0]
+            self.app_info.use_existing_desktop = True
+            self.app_page.desktop_row.set_subtitle(
+                _("Detected: {}").format(os.path.basename(desktop_files[0]))
+            )
+
+        # Auto-set detected icon
+        icons = structure.get("detected_files", {}).get("icons", [])
+        if icons and not self.app_info.icon:
+            self.app_info.icon = icons[0]
+            self.app_page.icon_row.set_subtitle(
+                _("Detected: {}").format(os.path.basename(icons[0]))
+            )
+
+        # Update config-page sections
+        self._update_detected_files()
+        self._update_additional_directories_from_analysis()
+        self._update_desktop_file_options()
+        self._update_structure_preview()
+        self._update_autodetected_dependencies()
+
+        self._validate_inputs()
+        return False  # Remove from idle
 
     def _on_choose_icon(self, _button):
         filters = {_("Image Files"): ["*.png", "*.svg", "*.jpg", "*.ico"]}
@@ -710,6 +745,35 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                 self.app_page.icon_row.set_subtitle(
                     _("Selected: {}").format(os.path.basename(path))
                 )
+        dialog.destroy()
+
+    def _on_choose_desktop_app_page(self, _button):
+        filters = {_("Desktop Files"): ["*.desktop"]}
+        create_file_chooser(
+            self,
+            _("Choose Desktop File"),
+            Gtk.FileChooserAction.OPEN,
+            filters,
+            self._on_desktop_app_page_selected,
+            self.settings,
+        )
+
+    def _on_desktop_app_page_selected(self, dialog, response):
+        if response == Gtk.ResponseType.OK:
+            file = dialog.get_file()
+            if file:
+                path = file.get_path()
+                self.app_info.custom_desktop_file = path
+                self.app_info.use_existing_desktop = True
+                self.app_page.desktop_row.set_subtitle(
+                    _("Selected: {}").format(os.path.basename(path))
+                )
+                # Also update config page
+                self.config_page.desktop_file_group.set_visible(True)
+                self.config_page.manual_desktop_row.set_subtitle(
+                    _("Selected: {}").format(os.path.basename(path))
+                )
+                self.config_page.use_existing_desktop_row.set_active(True)
         dialog.destroy()
 
     def _on_add_directory(self, _button):

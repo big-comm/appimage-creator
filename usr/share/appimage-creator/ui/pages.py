@@ -345,6 +345,20 @@ class ApplicationPage:
         self.icon_row.add_suffix(self.icon_button)
         setup_group.add(self.icon_row)
 
+        # Desktop file
+        self.desktop_row = Adw.ActionRow()
+        self.desktop_row.set_title(_("Desktop File"))
+        self.desktop_row.set_subtitle(_("Optional – select a .desktop file"))
+        self.desktop_row.set_icon_name("application-x-desktop-symbolic")
+        self.desktop_row.set_tooltip_text(
+            _("Use an existing .desktop file instead of generating one")
+        )
+
+        self.desktop_button = Gtk.Button(label=_("Choose File"))
+        self.desktop_button.set_valign(Gtk.Align.CENTER)
+        self.desktop_row.add_suffix(self.desktop_button)
+        setup_group.add(self.desktop_row)
+
         # App type (auto-detected)
         self.app_type_row = Adw.ComboRow()
         self.app_type_row.set_title(_("Application Type"))
