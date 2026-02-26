@@ -49,19 +49,38 @@ def cleanup_orphaned_integrations():
                 desktop_file = (
                     Path.home() / ".local/share/applications" / desktop_filename
                 )
+
+                # Read icon name from desktop file before removing it
+                icon_name = app_name  # fallback
                 if desktop_file.exists():
+                    try:
+                        import configparser
+
+                        cfg = configparser.ConfigParser()
+                        cfg.read(desktop_file)
+                        icon_name = cfg.get("Desktop Entry", "Icon", fallback=app_name)
+                        # Strip path if it was an absolute path
+                        icon_name = Path(icon_name).stem
+                    except Exception:
+                        pass
                     desktop_file.unlink()
                     print(
                         f"Removed orphaned desktop file: {desktop_filename}",
                         file=sys.stderr,
                     )
 
-                # Remove icon files (can be .svg, .png, .xpm, etc)
-                icon_dir = Path.home() / ".local/share/icons/hicolor/scalable/apps"
-                if icon_dir.exists():
-                    for icon in icon_dir.glob(f"{app_name}.*"):
-                        icon.unlink()
-                        print(f"Removed orphaned icon: {icon.name}", file=sys.stderr)
+                # Remove icon files from all hicolor directories
+                hicolor_base = Path.home() / ".local/share/icons/hicolor"
+                if hicolor_base.exists():
+                    for size_dir in hicolor_base.iterdir():
+                        apps_dir = size_dir / "apps"
+                        if apps_dir.exists():
+                            for icon in apps_dir.glob(f"{icon_name}.*"):
+                                icon.unlink()
+                                print(
+                                    f"Removed orphaned icon: {icon.name}",
+                                    file=sys.stderr,
+                                )
 
                 # Remove marker file
                 marker_file.unlink()
@@ -86,7 +105,69 @@ def cleanup_orphaned_integrations():
         except Exception:
             pass
 
+    # Also clean desktop files that reference missing AppImages without marker files
+    removed_count += _cleanup_orphaned_desktop_files()
+
     return removed_count
+
+
+def _cleanup_orphaned_desktop_files():
+    """Scan desktop files for references to missing AppImages and clean them up."""
+    import configparser
+    import re
+
+    apps_dir = Path.home() / ".local/share/applications"
+    if not apps_dir.exists():
+        return 0
+
+    removed = 0
+    for desktop_file in apps_dir.glob("*.desktop"):
+        try:
+            content = desktop_file.read_text()
+            # Look for Exec= referencing an .AppImage file
+            match = re.search(
+                r'^Exec="?([^"\n]+\.AppImage)"?\s',
+                content,
+                flags=re.MULTILINE | re.IGNORECASE,
+            )
+            if not match:
+                continue
+
+            appimage_path = match.group(1).strip()
+            if Path(appimage_path).exists():
+                continue
+
+            # AppImage no longer exists — read Icon= and remove everything
+            cfg = configparser.ConfigParser()
+            cfg.read(desktop_file)
+            icon_name = cfg.get("Desktop Entry", "Icon", fallback="")
+            if icon_name:
+                icon_name = Path(icon_name).stem
+
+            # Remove icons
+            if icon_name:
+                hicolor_base = Path.home() / ".local/share/icons/hicolor"
+                if hicolor_base.exists():
+                    for size_dir in hicolor_base.iterdir():
+                        icons_sub = size_dir / "apps"
+                        if icons_sub.exists():
+                            for icon in icons_sub.glob(f"{icon_name}.*"):
+                                icon.unlink()
+                                print(
+                                    f"Removed orphaned icon: {icon.name}",
+                                    file=sys.stderr,
+                                )
+
+            desktop_file.unlink()
+            print(
+                f"Removed orphaned desktop file: {desktop_file.name}",
+                file=sys.stderr,
+            )
+            removed += 1
+        except Exception:
+            pass
+
+    return removed
 
 
 def is_systemd_available():
@@ -348,14 +429,23 @@ def integrate_appimage(
         0 on success, 1 on skip, 2 on error
     """
     try:
+        import re
+
         # Define target paths
         apps_dir = Path.home() / ".local/share/applications"
-        icons_dir = Path.home() / ".local/share/icons/hicolor/scalable/apps"
+
+        # For PNG icons, install to a sized directory; SVG to scalable
+        icon_suffix = icon_file.suffix.lower()
+        if icon_suffix == ".svg":
+            icons_dir = Path.home() / ".local/share/icons/hicolor/scalable/apps"
+        else:
+            icons_dir = Path.home() / ".local/share/icons/hicolor/256x256/apps"
 
         apps_dir.mkdir(parents=True, exist_ok=True)
         icons_dir.mkdir(parents=True, exist_ok=True)
 
-        # Target paths
+        # Determine canonical icon name (without extension for freedesktop lookup)
+        icon_stem = icon_file.stem
         target_desktop_path = apps_dir / desktop_file.name
         target_icon_path = icons_dir / icon_file.name
 
@@ -370,8 +460,6 @@ def integrate_appimage(
             # Check if Exec= path in desktop file matches current AppImage path
             try:
                 existing_content = target_desktop_path.read_text()
-                import re
-
                 exec_match = re.search(
                     r'^Exec="?([^"\n]+)"?', existing_content, flags=re.MULTILINE
                 )
@@ -390,10 +478,25 @@ def integrate_appimage(
         # --- Copy icon file ---
         shutil.copy2(icon_file, target_icon_path)
 
+        # Also install PNG to additional standard sizes if possible
+        if icon_suffix == ".png":
+            try:
+                from PIL import Image
+
+                with Image.open(icon_file) as img:
+                    for size in (128, 64, 48):
+                        sized_dir = (
+                            Path.home()
+                            / f".local/share/icons/hicolor/{size}x{size}/apps"
+                        )
+                        sized_dir.mkdir(parents=True, exist_ok=True)
+                        resized = img.resize((size, size), Image.LANCZOS)
+                        resized.save(sized_dir / icon_file.name, "PNG")
+            except Exception:
+                pass  # PIL not available, single size is enough
+
         # --- Modify and write desktop file ---
         desktop_content = desktop_file.read_text()
-
-        import re
 
         # 1. Replace Exec= with the absolute path to the AppImage
         modified_content = re.sub(
@@ -403,18 +506,33 @@ def integrate_appimage(
             flags=re.MULTILINE,
         )
 
-        # 2. Replace Icon= with the absolute path to the copied icon
+        # 2. Set Icon= to the icon name (freedesktop theme lookup)
+        # Using just the stem allows the icon theme system to find the correct size
         modified_content = re.sub(
             r"^Icon=.*$",
-            f"Icon={str(target_icon_path)}",
+            f"Icon={icon_stem}",
             modified_content,
             flags=re.MULTILINE,
         )
 
-        # 3. Write the modified desktop file
+        # 3. Ensure the app is visible in menus (NoDisplay=false, Terminal=false)
+        modified_content = re.sub(
+            r"^NoDisplay=true$",
+            "NoDisplay=false",
+            modified_content,
+            flags=re.MULTILINE | re.IGNORECASE,
+        )
+        modified_content = re.sub(
+            r"^Terminal=true$",
+            "Terminal=false",
+            modified_content,
+            flags=re.MULTILINE | re.IGNORECASE,
+        )
+
+        # 4. Write the modified desktop file
         target_desktop_path.write_text(modified_content)
 
-        # --- Update desktop database ---
+        # --- Update desktop and icon databases ---
         try:
             import subprocess
 
@@ -425,8 +543,17 @@ def integrate_appimage(
                 stderr=subprocess.DEVNULL,
                 timeout=5,
             )
+            # Update icon cache so desktop environments pick up the new icons
+            hicolor_dir = Path.home() / ".local/share/icons/hicolor"
+            subprocess.run(
+                ["gtk-update-icon-cache", "-f", "-t", str(hicolor_dir)],
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=10,
+            )
         except Exception:
-            # Silently ignore if update-desktop-database fails
+            # Silently ignore if update commands fail
             pass
 
         return 0  # Success

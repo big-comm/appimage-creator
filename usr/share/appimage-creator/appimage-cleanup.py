@@ -56,24 +56,38 @@ def cleanup_orphaned_integrations():
                 desktop_file = (
                     Path.home() / ".local/share/applications" / desktop_filename
                 )
+
+                # Read icon name from desktop file before removing it
+                icon_name = app_name  # fallback
                 if desktop_file.exists():
+                    try:
+                        import configparser
+
+                        cfg = configparser.ConfigParser()
+                        cfg.read(desktop_file)
+                        icon_name = cfg.get("Desktop Entry", "Icon", fallback=app_name)
+                        icon_name = Path(icon_name).stem
+                    except Exception:
+                        pass
                     desktop_file.unlink()
                     print(f"  ✓ Removed desktop file: {desktop_filename}")
 
-                # Remove icon files (can be .svg, .png, .xpm, etc)
-                icon_dir = Path.home() / ".local/share/icons/hicolor/scalable/apps"
-                if icon_dir.exists():
-                    icon_count = 0
-                    for icon in icon_dir.glob(f"{app_name}.*"):
-                        icon.unlink()
-                        icon_count += 1
-                    # Also try to remove icons matching desktop file base name
+                # Remove icon files from all hicolor directories
+                hicolor_base = Path.home() / ".local/share/icons/hicolor"
+                icon_count = 0
+                if hicolor_base.exists():
                     desktop_base = desktop_filename.replace(".desktop", "")
-                    for icon in icon_dir.glob(f"{desktop_base}.*"):
-                        icon.unlink()
-                        icon_count += 1
-                    if icon_count > 0:
-                        print(f"  ✓ Removed {icon_count} icon(s)")
+                    # Search all size directories for matching icons
+                    for size_dir in hicolor_base.iterdir():
+                        apps_dir = size_dir / "apps"
+                        if not apps_dir.exists():
+                            continue
+                        for pattern in (icon_name, app_name, desktop_base):
+                            for icon in apps_dir.glob(f"{pattern}.*"):
+                                icon.unlink()
+                                icon_count += 1
+                if icon_count > 0:
+                    print(f"  ✓ Removed {icon_count} icon(s)")
 
                 # Remove marker file
                 marker_file.unlink()
@@ -89,6 +103,14 @@ def cleanup_orphaned_integrations():
     print(
         f"\nChecked {checked_count} integration(s), removed {removed_count} orphaned integration(s)"
     )
+
+    # Also clean desktop files that reference missing AppImages without marker files
+    extra_removed = _cleanup_orphaned_desktop_files()
+    if extra_removed > 0:
+        print(
+            f"Also removed {extra_removed} desktop file(s) referencing missing AppImages"
+        )
+        removed_count += extra_removed
 
     if removed_count > 0:
         # Update desktop database
@@ -205,6 +227,64 @@ def cleanup_orphaned_integrations():
             print(f"Warning: Cleanup failed: {e}", file=sys.stderr)
 
     return removed_count
+
+
+def _cleanup_orphaned_desktop_files():
+    """Scan desktop files for references to missing AppImages and clean them up."""
+    import configparser
+    import re
+
+    apps_dir = Path.home() / ".local/share/applications"
+    if not apps_dir.exists():
+        return 0
+
+    removed = 0
+    for desktop_file in apps_dir.glob("*.desktop"):
+        try:
+            content = desktop_file.read_text()
+            # Look for Exec= referencing an .AppImage file
+            match = re.search(
+                r'^Exec="?([^"\n]+\.AppImage)"?\s',
+                content,
+                flags=re.MULTILINE | re.IGNORECASE,
+            )
+            if not match:
+                continue
+
+            appimage_path = match.group(1).strip()
+            if Path(appimage_path).exists():
+                continue
+
+            # AppImage no longer exists — read Icon= and remove everything
+            cfg = configparser.ConfigParser()
+            cfg.read(desktop_file)
+            icon_name = cfg.get("Desktop Entry", "Icon", fallback="")
+            if icon_name:
+                icon_name = Path(icon_name).stem
+
+            # Remove icons
+            if icon_name:
+                hicolor_base = Path.home() / ".local/share/icons/hicolor"
+                if hicolor_base.exists():
+                    icon_count = 0
+                    for size_dir in hicolor_base.iterdir():
+                        icons_sub = size_dir / "apps"
+                        if icons_sub.exists():
+                            for icon in icons_sub.glob(f"{icon_name}.*"):
+                                icon.unlink()
+                                icon_count += 1
+                    if icon_count > 0:
+                        print(
+                            f"  ✓ Removed {icon_count} orphaned icon(s) for {icon_name}"
+                        )
+
+            desktop_file.unlink()
+            print(f"  ✓ Removed orphaned desktop file: {desktop_file.name}")
+            removed += 1
+        except Exception as e:
+            print(f"Error scanning {desktop_file}: {e}", file=sys.stderr)
+
+    return removed
 
 
 def should_check_for_updates():

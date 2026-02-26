@@ -65,6 +65,7 @@ class AppInfo:
     python_version: str = ""
     apprun_executable: str = ""
     apprun_argument: str | None = None
+    apprun_desktop_filename: str = ""
 
     # Compatibility properties
     @property

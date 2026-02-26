@@ -2,8 +2,10 @@
 Application structure analysis and detection
 """
 
+import json
 import os
 import re
+import struct
 import sys
 from pathlib import Path
 from utils.file_ops import get_file_type
@@ -84,10 +86,10 @@ def analyze_wrapper_script(script_path: str) -> dict:
                 project_root = Path(script_path).resolve().parent
                 found_root = False
                 for _ in range(5):  # Search up to 5 levels
+                    if project_root.parent == project_root:  # Reached filesystem root
+                        break
                     if (project_root / "usr").is_dir():
                         found_root = True
-                        break
-                    if project_root.parent == project_root:  # Reached filesystem root
                         break
                     project_root = project_root.parent
 
@@ -152,10 +154,10 @@ def detect_application_structure(executable_path: str) -> dict:
             project_root = None
             current_dir = path.parent
             for _ in range(5):
+                if current_dir == current_dir.parent:
+                    break  # Reached filesystem root, stop
                 if (current_dir / "usr").is_dir():
                     project_root = current_dir
-                    break
-                if current_dir.parent == current_dir:
                     break
                 current_dir = current_dir.parent
 
@@ -192,13 +194,14 @@ def detect_application_structure(executable_path: str) -> dict:
     }
 
     # Find project root by searching for a 'usr' directory in parent paths
+    # but never use the filesystem root as project root
     project_root = None
     current_dir = path.parent
     for _ in range(5):  # Search up to 5 levels up
+        if current_dir == current_dir.parent:
+            break  # Reached filesystem root, stop
         if (current_dir / "usr").is_dir():
             project_root = current_dir
-            break
-        if current_dir.parent == current_dir:
             break
         current_dir = current_dir.parent
 
@@ -216,31 +219,92 @@ def detect_application_structure(executable_path: str) -> dict:
         len(structure["detected_files"]["desktop_files"]) > 0
     )
 
+    # Detect Electron app_id from resources/app.asar
+    if structure.get("project_root"):
+        electron_id = _detect_electron_app_id(Path(structure["project_root"]))
+        if electron_id:
+            structure["electron_app_id"] = electron_id
+            print(f"[DEBUG] Electron app_id detected: {electron_id}", file=sys.stderr)
+
     return structure
+
+
+def _detect_electron_app_id(project_root: Path) -> str | None:
+    """Extract Electron app name from resources/app.asar for Wayland app_id."""
+    asar_path = project_root / "resources" / "app.asar"
+    if not asar_path.exists():
+        return None
+
+    try:
+        with open(asar_path, "rb") as f:
+            header_data = f.read(16)
+            if len(header_data) < 16:
+                return None
+            header_string_size = struct.unpack("<I", header_data[12:16])[0]
+            header_json = f.read(header_string_size).decode("utf-8")
+            header = json.loads(header_json)
+
+        # Find package.json in the asar header
+        pkg_entry = header.get("files", {}).get("package.json", {})
+        if "offset" not in pkg_entry or "size" not in pkg_entry:
+            return None
+
+        offset = int(pkg_entry["offset"])
+        size = int(pkg_entry["size"])
+
+        with open(asar_path, "rb") as f:
+            f.seek(16 + header_string_size + offset)
+            pkg_data = f.read(size)
+            pkg_json = json.loads(pkg_data)
+
+        # productName has priority (display name), but name is the app_id
+        return pkg_json.get("name") or None
+    except Exception:
+        return None
 
 
 def _scan_project_root(project_root_path, structure):
     """Scans for common files within a given project root directory."""
     root = Path(project_root_path)
 
-    # Find desktop files
-    for desktop_file in root.glob("**/*.desktop"):
-        structure["detected_files"]["desktop_files"].append(str(desktop_file))
+    # Directories to skip during scanning (Electron/node heavy dirs)
+    _skip_dirs = {"node_modules", ".git", "__pycache__", "locales"}
 
-    # Find icons
-    for icon_file in root.glob("**/*.svg"):
-        if "icons" in str(icon_file):
-            structure["detected_files"]["icons"].append(str(icon_file))
-    for icon_file in root.glob("**/*.png"):
-        if "icons" in str(icon_file):
-            structure["detected_files"]["icons"].append(str(icon_file))
+    def _walk(base: Path):
+        """Yield files under base, skipping heavy directories."""
+        try:
+            for entry in base.iterdir():
+                if entry.is_dir():
+                    if entry.name in _skip_dirs:
+                        continue
+                    yield from _walk(entry)
+                else:
+                    yield entry
+        except PermissionError:
+            pass
 
-    # Find locale directories
-    for mo_file in root.glob("**/LC_MESSAGES/*.mo"):
-        # The locale dir is typically '.../share/locale'
-        locale_dir = mo_file.parent.parent.parent
-        if (
-            locale_dir.name == "locale"
-            and str(locale_dir) not in structure["detected_files"]["locale_dirs"]
-        ):
-            structure["detected_files"]["locale_dirs"].append(str(locale_dir))
+    for item in _walk(root):
+        suffix = item.suffix.lower()
+        name = item.name.lower()
+
+        # Desktop files
+        if suffix == ".desktop":
+            structure["detected_files"]["desktop_files"].append(str(item))
+
+        # Icons: files in "icons" dirs, or common icon filenames at project root
+        elif suffix in (".svg", ".png"):
+            if "icons" in str(item):
+                structure["detected_files"]["icons"].append(str(item))
+            elif name in ("icon.png", "icon.svg") or (
+                item.parent == root and suffix in (".svg", ".png")
+            ):
+                structure["detected_files"]["icons"].append(str(item))
+
+        # Locale directories (via .mo files)
+        elif name.endswith(".mo") and "LC_MESSAGES" in str(item):
+            locale_dir = item.parent.parent.parent
+            if (
+                locale_dir.name == "locale"
+                and str(locale_dir) not in structure["detected_files"]["locale_dirs"]
+            ):
+                structure["detected_files"]["locale_dirs"].append(str(locale_dir))
