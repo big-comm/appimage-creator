@@ -16,64 +16,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: attranslate\n"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 18
+# File: usr/share/appimage-creator/generators/icons.py, line: 16
 #: NEEDS WORK
-msgid "Application name must be at least 2 characters long"
-msgstr "Az alkalmazás neve legalább 2 karakter hosszú kell legyen."
+msgid "Warning: PIL/Pillow not available, icon processing will be limited"
+msgstr "Figyelmeztetés: A PIL/Pillow nem elérhető, az ikonfeldolgozás korlátozott lesz."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 21
-#: NEEDS WORK
-msgid "Application name contains invalid characters"
-msgstr "Az alkalmazás neve érvénytelen karaktereket tartalmaz."
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 29
-#: NEEDS WORK
-msgid "Version is required"
-msgstr "A verzió kötelező"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 32
-#: NEEDS WORK
-msgid "Invalid version format"
-msgstr "Érvénytelen verzióformátum"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 40
-#: NEEDS WORK
-msgid "Executable file does not exist"
-msgstr "A végrehajtható fájl nem létezik"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 43
-#: NEEDS WORK
-msgid "File is not executable"
-msgstr "A fájl nem futtatható."
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 54
-#: NEEDS WORK
-msgid "Error: Missing [Desktop Entry] section"
-msgstr "Hiba: Hiányzik a [Desktop Entry] szakasz"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 69
+# File: usr/share/appimage-creator/generators/icons.py, line: 82
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Missing required keys: {}"
-msgstr "Hiba: Hiányzó kötelező kulcsok: {}"
-# 
-# File: usr/share/appimage-creator/validators/validators.py, line: 81
-#: NEEDS WORK
-#, python-brace-format
-msgid "Error: Empty value for required key: {}"
-msgstr "Hiba: Üres érték a kötelező kulcshoz: {}"
-# 
-# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to download {}: {}"
-msgstr "Sikertelen letöltés {}: {}"
-# 
-# File: usr/share/appimage-creator/utils/system.py, line: 108
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to make file executable: {}"
-msgstr "A fájl végrehajthatóvá tétele nem sikerült: {}"
+msgid "Error processing icon: {}"
+msgstr "Hiba az ikon feldolgozása során: {}"
 # 
 # File: usr/share/appimage-creator/generators/files.py, line: 70
 #: NEEDS WORK
@@ -90,279 +42,6 @@ msgstr "Nem sikerült létrehozni az asztali fájlt"
 #, python-brace-format
 msgid "Warning: Failed to adapt existing desktop file: {}"
 msgstr "Figyelmeztetés: Nem sikerült a meglévő asztali fájl módosítása: {}"
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 16
-#: NEEDS WORK
-msgid "Warning: PIL/Pillow not available, icon processing will be limited"
-msgstr "Figyelmeztetés: A PIL/Pillow nem elérhető, az ikonfeldolgozás korlátozott lesz."
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 82
-#: NEEDS WORK
-#, python-brace-format
-msgid "Error processing icon: {}"
-msgstr "Hiba az ikon feldolgozása során: {}"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
-#: NEEDS WORK
-msgid "Building AppImage"
-msgstr "AppImage építése"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
-#: NEEDS WORK
-msgid "Preparing..."
-msgstr "Előkészítés..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
-#: NEEDS WORK
-msgid "Cancel Build"
-msgstr "Építés megszakítása"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
-#: NEEDS WORK
-msgid "Dependency Warnings"
-msgstr "Függőségi figyelmeztetések"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
-#: NEEDS WORK
-msgid "AppImage Created with Warnings"
-msgstr "Figyelmeztetésekkel létrehozott AppImage"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
-#: NEEDS WORK
-msgid ""
-"The AppImage was created successfully, but some library dependencies could not be resolved. The "
-"application may not work correctly on some systems."
-msgstr ""
-"Az AppImage sikeresen létrejött, de néhány könyvtári függőség nem volt megoldható. Az alkalmazás "
-"nem működhet megfelelően egyes rendszereken."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
-#: NEEDS WORK
-msgid "Missing Libraries"
-msgstr "Hiányzó könyvtárak"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
-#: NEEDS WORK
-msgid "How to fix:"
-msgstr "Hogyan javítsuk ki:"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
-#: NEEDS WORK
-msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
-msgstr "• Próbáljon meg egy másik konténerrel építeni (pl. Ubuntu 22.04 helyett 24.04)"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
-#: NEEDS WORK
-msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
-msgstr "• Adja hozzá a hiányzó könyvtárakat a 'További könyvtárak' szakaszhoz a fordítás előtt"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
-#: NEEDS WORK
-msgid "• Install the required -dev packages in the build container"
-msgstr "• Telepítse a szükséges -dev csomagokat a build konténerben"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
-#: NEEDS WORK
-msgid "Close"
-msgstr "Bezárás"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
-#: NEEDS WORK
-msgid "Open Folder"
-msgstr "Mappa megnyitása"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
-# File: usr/share/appimage-creator/ui/window.py, line: 405
-#: NEEDS WORK
-msgid "OK"
-msgstr "Rendben"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 950
-#: NEEDS WORK
-msgid "Build Complete"
-msgstr "Build kész."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
-#: NEEDS WORK
-msgid "AppImage created successfully:"
-msgstr "AppImage sikeresen létrehozva:"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
-# File: usr/share/appimage-creator/ui/window.py, line: 341
-#: NEEDS WORK
-msgid "Cancel"
-msgstr "Mégsem"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
-#: NEEDS WORK
-msgid "Open"
-msgstr "Megnyitás"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
-#: NEEDS WORK
-msgid "Select"
-msgstr "Kiválasztás"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
-#: NEEDS WORK
-msgid "Save"
-msgstr "Mentés"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
-#: NEEDS WORK
-msgid "Copy to clipboard"
-msgstr "Másolás a vágólapra"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
-#: NEEDS WORK
-msgid "Desktop File Content"
-msgstr "Asztali fájl tartalom"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-# File: usr/share/appimage-creator/ui/window.py, line: 897
-# File: usr/share/appimage-creator/ui/window.py, line: 906
-#: NEEDS WORK
-msgid "Error"
-msgstr "Hiba"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to read file: {}"
-msgstr "A fájl olvasása nem sikerült: {}"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
-#: NEEDS WORK
-msgid "Starting..."
-msgstr "Indulás..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
-#: NEEDS WORK
-msgid "Cancelling..."
-msgstr "Mégse..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
-#: NEEDS WORK
-msgid "Cancelled."
-msgstr "Törölve."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
-#: NEEDS WORK
-msgid "Completed successfully!"
-msgstr "Sikeresen befejeződött!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
-#: NEEDS WORK
-msgid "Finished with errors."
-msgstr "Hibákkal befejezve."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
-# File: usr/share/appimage-creator/ui/pages.py, line: 459
-#: NEEDS WORK
-msgid "Install Required Packages"
-msgstr "Szükséges csomagok telepítése"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
-#: NEEDS WORK
-msgid "Installation Information"
-msgstr "Telepítési információk"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
-#: NEEDS WORK
-msgid "Packages to Install"
-msgstr "Telepítendő csomagok"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
-#: NEEDS WORK
-msgid "Command"
-msgstr "Parancs"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
-#: NEEDS WORK
-msgid ""
-"<b>Administrator privileges required</b>\n"
-"You will be asked for your password to install system packages."
-msgstr ""
-"<b>Rendszergazdai jogosultság szükséges</b> A rendszercsomagok telepítéséhez meg kell adnia a "
-"jelszavát."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
-#: NEEDS WORK
-msgid "Installation Output"
-msgstr "Telepítési kimenet"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
-#: NEEDS WORK
-msgid "Install"
-msgstr "Telepítés"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 426
-#: NEEDS WORK
-msgid ""
-"Starting installation...\n"
-"\n"
-msgstr "Telepítés indítása..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
-#: NEEDS WORK
-msgid "Error running command"
-msgstr "Hiba a parancs végrehajtása során"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
-#: NEEDS WORK
-msgid "Pre-command completed successfully."
-msgstr "Előparancs sikeresen befejeződött."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
-#: NEEDS WORK
-msgid "Installation completed successfully!"
-msgstr "A telepítés sikeresen befejeződött!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
-#: NEEDS WORK
-msgid "Command failed with exit code"
-msgstr "A parancs végrehajtása hibával zárult, kilépési kód:"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
-#: NEEDS WORK
-msgid "Installation failed."
-msgstr "A telepítés meghiúsult."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
-#: NEEDS WORK
-msgid "Please check the errors above and try again."
-msgstr "Kérjük, ellenőrizze a fenti hibákat, és próbálja újra."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/widgets.py, line: 32
-# File: usr/share/appimage-creator/ui/widgets.py, line: 104
-# File: usr/share/appimage-creator/ui/pages.py, line: 484
-# File: usr/share/appimage-creator/ui/window.py, line: 342
-#: NEEDS WORK
-msgid "Remove"
-msgstr "Eltávolítás"
-# 
-# File: usr/share/appimage-creator/ui/widgets.py, line: 147
-#: NEEDS WORK
-#, python-brace-format
-msgid "{}: {}"
-msgstr "{}: {}"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 76
 #: NEEDS WORK
@@ -442,6 +121,14 @@ msgstr "Kész"
 msgid "Not installed ({})"
 msgstr "Nincs telepítve ({})"
 # 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
+# File: usr/share/appimage-creator/ui/pages.py, line: 459
+#: NEEDS WORK
+msgid "Install Required Packages"
+msgstr "Szükséges csomagok telepítése"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 196
 #: NEEDS WORK
 msgid "Missing Components"
@@ -465,6 +152,18 @@ msgstr "Ajánlott"
 #: NEEDS WORK
 msgid "★ Recommended"
 msgstr "★ Ajánlott"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/widgets.py, line: 32
+# File: usr/share/appimage-creator/ui/widgets.py, line: 104
+# File: usr/share/appimage-creator/ui/pages.py, line: 484
+# File: usr/share/appimage-creator/ui/window.py, line: 342
+#: NEEDS WORK
+msgid "Remove"
+msgstr "Eltávolítás"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 493
 #: NEEDS WORK
@@ -561,6 +260,21 @@ msgstr "Ajánlott egy 256×256 vagy nagyobb PNG/SVG ikon."
 #: NEEDS WORK
 msgid "Choose Icon"
 msgstr "Ikon választása"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 219
+#: NEEDS WORK
+msgid "Desktop File"
+msgstr "Asztali fájl"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 351
+#: NEEDS WORK
+msgid "Optional – select a .desktop file"
+msgstr "Opcionális – válasszon egy .desktop fájlt"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 354
+#: NEEDS WORK
+msgid "Use an existing .desktop file instead of generating one"
+msgstr "Használjon egy meglévő .desktop fájlt a generálás helyett."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 165
 #: NEEDS WORK
@@ -715,11 +429,6 @@ msgstr "Automatikusan észlelt fájlok"
 #: NEEDS WORK
 msgid "Files automatically found for your application"
 msgstr "A fájlok automatikusan megtalálva az alkalmazásához"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 219
-#: NEEDS WORK
-msgid "Desktop File"
-msgstr "Asztali fájl"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 223
 #: NEEDS WORK
@@ -1108,6 +817,254 @@ msgstr "AppImage létrehozása"
 msgid "Generate your distributable AppImage file"
 msgstr "Generálja a terjeszthető AppImage fájlt"
 # 
+# File: usr/share/appimage-creator/ui/widgets.py, line: 147
+#: NEEDS WORK
+#, python-brace-format
+msgid "{}: {}"
+msgstr "{}: {}"
+# 
+# File: usr/share/appimage-creator/ui/app.py, line: 75
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not load custom CSS: {}"
+msgstr "Figyelmeztetés: Nem sikerült betölteni a testreszabott CSS-t: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
+#: NEEDS WORK
+msgid "Building AppImage"
+msgstr "AppImage építése"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
+#: NEEDS WORK
+msgid "Preparing..."
+msgstr "Előkészítés..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
+#: NEEDS WORK
+msgid "Cancel Build"
+msgstr "Építés megszakítása"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
+#: NEEDS WORK
+msgid "Dependency Warnings"
+msgstr "Függőségi figyelmeztetések"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
+#: NEEDS WORK
+msgid "AppImage Created with Warnings"
+msgstr "Figyelmeztetésekkel létrehozott AppImage"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
+#: NEEDS WORK
+msgid ""
+"The AppImage was created successfully, but some library dependencies could not be resolved. The "
+"application may not work correctly on some systems."
+msgstr ""
+"Az AppImage sikeresen létrejött, de néhány könyvtári függőség nem volt megoldható. Az alkalmazás "
+"nem működhet megfelelően egyes rendszereken."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
+#: NEEDS WORK
+msgid "Missing Libraries"
+msgstr "Hiányzó könyvtárak"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
+#: NEEDS WORK
+msgid "How to fix:"
+msgstr "Hogyan javítsuk ki:"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
+#: NEEDS WORK
+msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
+msgstr "• Próbáljon meg egy másik konténerrel építeni (pl. Ubuntu 22.04 helyett 24.04)"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
+#: NEEDS WORK
+msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
+msgstr "• Adja hozzá a hiányzó könyvtárakat a 'További könyvtárak' szakaszhoz a fordítás előtt"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
+#: NEEDS WORK
+msgid "• Install the required -dev packages in the build container"
+msgstr "• Telepítse a szükséges -dev csomagokat a build konténerben"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
+#: NEEDS WORK
+msgid "Close"
+msgstr "Bezárás"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
+#: NEEDS WORK
+msgid "Open Folder"
+msgstr "Mappa megnyitása"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
+# File: usr/share/appimage-creator/ui/window.py, line: 405
+#: NEEDS WORK
+msgid "OK"
+msgstr "Rendben"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 950
+#: NEEDS WORK
+msgid "Build Complete"
+msgstr "Build kész."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
+#: NEEDS WORK
+msgid "AppImage created successfully:"
+msgstr "AppImage sikeresen létrehozva:"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
+# File: usr/share/appimage-creator/ui/window.py, line: 341
+#: NEEDS WORK
+msgid "Cancel"
+msgstr "Mégsem"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
+#: NEEDS WORK
+msgid "Open"
+msgstr "Megnyitás"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
+#: NEEDS WORK
+msgid "Select"
+msgstr "Kiválasztás"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
+#: NEEDS WORK
+msgid "Save"
+msgstr "Mentés"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
+#: NEEDS WORK
+msgid "Copy to clipboard"
+msgstr "Másolás a vágólapra"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
+#: NEEDS WORK
+msgid "Desktop File Content"
+msgstr "Asztali fájl tartalom"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+# File: usr/share/appimage-creator/ui/window.py, line: 906
+#: NEEDS WORK
+msgid "Error"
+msgstr "Hiba"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to read file: {}"
+msgstr "A fájl olvasása nem sikerült: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
+#: NEEDS WORK
+msgid "Starting..."
+msgstr "Indulás..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
+#: NEEDS WORK
+msgid "Cancelling..."
+msgstr "Mégse..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
+#: NEEDS WORK
+msgid "Cancelled."
+msgstr "Törölve."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
+#: NEEDS WORK
+msgid "Completed successfully!"
+msgstr "Sikeresen befejeződött!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
+#: NEEDS WORK
+msgid "Finished with errors."
+msgstr "Hibákkal befejezve."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
+#: NEEDS WORK
+msgid "Installation Information"
+msgstr "Telepítési információk"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
+#: NEEDS WORK
+msgid "Packages to Install"
+msgstr "Telepítendő csomagok"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
+#: NEEDS WORK
+msgid "Command"
+msgstr "Parancs"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
+#: NEEDS WORK
+msgid ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+msgstr ""
+"<b>Rendszergazdai jogosultság szükséges</b> A rendszercsomagok telepítéséhez meg kell adnia a "
+"jelszavát."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
+#: NEEDS WORK
+msgid "Installation Output"
+msgstr "Telepítési kimenet"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
+#: NEEDS WORK
+msgid "Install"
+msgstr "Telepítés"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 426
+#: NEEDS WORK
+msgid ""
+"Starting installation...\n"
+"\n"
+msgstr "Telepítés indítása..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
+#: NEEDS WORK
+msgid "Error running command"
+msgstr "Hiba a parancs végrehajtása során"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
+#: NEEDS WORK
+msgid "Pre-command completed successfully."
+msgstr "Előparancs sikeresen befejeződött."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
+#: NEEDS WORK
+msgid "Installation completed successfully!"
+msgstr "A telepítés sikeresen befejeződött!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
+#: NEEDS WORK
+msgid "Command failed with exit code"
+msgstr "A parancs végrehajtása hibával zárult, kilépési kód:"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
+#: NEEDS WORK
+msgid "Installation failed."
+msgstr "A telepítés meghiúsult."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
+#: NEEDS WORK
+msgid "Please check the errors above and try again."
+msgstr "Kérjük, ellenőrizze a fenti hibákat, és próbálja újra."
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 48
 # File: usr/share/appimage-creator/ui/window.py, line: 131
 #: NEEDS WORK
@@ -1152,6 +1109,11 @@ msgstr "Majdnem kész!"
 #: NEEDS WORK
 msgid "Please enter an Application Name"
 msgstr "Kérjük, adja meg az Alkalmazás nevét"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 21
+#: NEEDS WORK
+msgid "Application name contains invalid characters"
+msgstr "Az alkalmazás neve érvénytelen karaktereket tartalmaz."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 436
 #: NEEDS WORK
@@ -1301,10 +1263,37 @@ msgstr "Válassza ki az végrehajtható fájlt"
 msgid "Selected: {}"
 msgstr "Kiválasztva: {}"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 662
+#: NEEDS WORK
+msgid "Analyzing..."
+msgstr "Elemzés..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 664
+#: NEEDS WORK
+msgid "Detecting application structure"
+msgstr "Alkalmazás struktúrájának észlelése"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 707
+# File: usr/share/appimage-creator/ui/window.py, line: 715
+#: NEEDS WORK
+#, python-brace-format
+msgid "Detected: {}"
+msgstr "Észlelve: {}"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 577
 #: NEEDS WORK
 msgid "Image Files"
 msgstr "Kép fájlok"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 692
+#: NEEDS WORK
+msgid "Desktop Files"
+msgstr "Asztali fájlok"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 693
+#: NEEDS WORK
+msgid "Choose Desktop File"
+msgstr "Asztali fájl kiválasztása"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 619
 #: NEEDS WORK
@@ -1316,16 +1305,6 @@ msgstr "Válassza ki a kimeneti könyvtárat"
 #, python-brace-format
 msgid "Found: {}"
 msgstr "Megtalálva: {}"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 692
-#: NEEDS WORK
-msgid "Desktop Files"
-msgstr "Asztali fájlok"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 693
-#: NEEDS WORK
-msgid "Choose Desktop File"
-msgstr "Asztali fájl kiválasztása"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 755
 #: NEEDS WORK
@@ -1506,177 +1485,257 @@ msgstr ""
 "\n"
 "Javaslat: Ellenőrizze, hogy rendelkezik-e a szükséges jogosultságokkal az összes fájlhoz."
 # 
-# File: usr/share/appimage-creator/ui/app.py, line: 75
+# File: usr/share/appimage-creator/validators/validators.py, line: 18
+#: NEEDS WORK
+msgid "Application name must be at least 2 characters long"
+msgstr "Az alkalmazás neve legalább 2 karakter hosszú kell legyen."
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 29
+#: NEEDS WORK
+msgid "Version is required"
+msgstr "A verzió kötelező"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 32
+#: NEEDS WORK
+msgid "Invalid version format"
+msgstr "Érvénytelen verzióformátum"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 40
+#: NEEDS WORK
+msgid "Executable file does not exist"
+msgstr "A végrehajtható fájl nem létezik"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 43
+#: NEEDS WORK
+msgid "File is not executable"
+msgstr "A fájl nem futtatható."
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 54
+#: NEEDS WORK
+msgid "Error: Missing [Desktop Entry] section"
+msgstr "Hiba: Hiányzik a [Desktop Entry] szakasz"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 69
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Could not load custom CSS: {}"
-msgstr "Figyelmeztetés: Nem sikerült betölteni a testreszabott CSS-t: {}"
+msgid "Error: Missing required keys: {}"
+msgstr "Hiba: Hiányzó kötelező kulcsok: {}"
 # 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
+# File: usr/share/appimage-creator/validators/validators.py, line: 81
 #: NEEDS WORK
 #, python-brace-format
-msgid "Including user-specified extra libraries: {}"
-msgstr "Felhasználó által megadott extra könyvtárak: {}"
+msgid "Error: Empty value for required key: {}"
+msgstr "Hiba: Üres érték a kötelező kulcshoz: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1323
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying standard system libraries: {}"
-msgstr "A szabványos rendszerkönyvtárak másolása: {}"
+msgid "Failed to download {}: {}"
+msgstr "Sikertelen letöltés {}: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1327
+# File: usr/share/appimage-creator/utils/system.py, line: 108
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying conflicting system libraries to fallback dir: {}"
-msgstr "Ütköző rendszerkönyvtárak másolása a visszaállító könyvtárba: {}"
+msgid "Failed to make file executable: {}"
+msgstr "A fájl végrehajthatóvá tétele nem sikerült: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1344
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 152
+# File: usr/share/appimage-creator/updater/update_window.py, line: 141
+#: NEEDS WORK
+msgid "Updating"
+msgstr "Frissítés"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 218
+# File: usr/share/appimage-creator/updater/update_window.py, line: 207
+#: NEEDS WORK
+msgid "Done"
+msgstr "Kész"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 232
+# File: usr/share/appimage-creator/updater/update_window.py, line: 221
+#: NEEDS WORK
+msgid "Downloading update..."
+msgstr "Frissítés letöltése..."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 233
+# File: usr/share/appimage-creator/updater/update_window.py, line: 222
 #: NEEDS WORK
 #, python-brace-format
-msgid "Generating script to copy libraries to {}..."
-msgstr "Könyvtárak másolásához script generálása a(z) {}..."
+msgid "Version {}"
+msgstr "Verzió {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1241
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 241
+# File: usr/share/appimage-creator/updater/update_window.py, line: 230
 #: NEEDS WORK
-msgid "Executing library copy script..."
-msgstr "Könyvtár másoló szkript végrehajtása..."
+msgid "Installing update..."
+msgstr "Frissítés telepítése..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1039
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 264
+# File: usr/share/appimage-creator/updater/update_window.py, line: 253
 #: NEEDS WORK
-msgid "Warning: Library copy script finished with errors."
-msgstr "Figyelmeztetés: A könyvtár másoló szkript hibákkal fejeződött be."
+msgid "Update completed!"
+msgstr "Frissítés befejeződött!"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1041
-#: NEEDS WORK
-msgid "Library copy script finished successfully."
-msgstr "A könyvtár másoló szkript sikeresen befejeződött."
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1273
-#: NEEDS WORK
-msgid "No typelibs selected for inclusion."
-msgstr "Nincsenek kiválasztva típuskönyvtárak a beillesztéshez."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1276
-#: NEEDS WORK
-#, python-brace-format
-msgid "Copying selected typelibs: {}"
-msgstr "Kiválasztott típuskönyvtárak másolása: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1284
-#: NEEDS WORK
-msgid "Generating script to copy typelibs..."
-msgstr "A typelibrary-k másolásához szükséges script generálása..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1318
-#: NEEDS WORK
-msgid "Executing typelib copy script..."
-msgstr "A típuskönyvtár másoló szkript végrehajtása..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1286
-#: NEEDS WORK
-msgid "Warning: Some typelibs may not have been copied"
-msgstr "Figyelmeztetés: Néhány típuskönyvtár lehet, hogy nem lett átmásolva"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1288
-#: NEEDS WORK
-msgid "Typelib copy complete"
-msgstr "Typelib másolat kész."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1467
-#: NEEDS WORK
-msgid "Copying essential GStreamer plugins..."
-msgstr "Fontos GStreamer bővítmények másolása..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1530
-#: NEEDS WORK
-msgid "Detected video playback requirements"
-msgstr "A videolejátszási követelmények észlelve"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1579
-#: NEEDS WORK
-msgid "Copying GStreamer plugins..."
-msgstr "GStreamer bővítmények másolása..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1588
-#: NEEDS WORK
-msgid "GStreamer plugin copying complete"
-msgstr "A GStreamer bővítmény másolása befejeződött"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1385
-#: NEEDS WORK
-msgid "Copying Adwaita symbolic icons..."
-msgstr "Adwaita szimbolikus ikonok másolása..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1394
-#: NEEDS WORK
-msgid "Symbolic icons already present"
-msgstr "Jelképes ikonok már jelen vannak"
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
-#: NEEDS WORK
-msgid "Copying symbolic icons from container..."
-msgstr "Szimbólikus ikonok másolása a tárolóból..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
-#: NEEDS WORK
-msgid "Copying symbolic icons from host system..."
-msgstr "Szimbólikus ikonok másolása a gazdarendszerről..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
+# File: update_window.py, line: 265
+# File: usr/share/appimage-creator/updater/update_window.py, line: 254
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Adwaita symbolic icons not found at {}"
-msgstr "Figyelmeztetés: Az Adwaita szimbolikus ikonok nem találhatók itt: {}"
+msgid "Version {} installed successfully"
+msgstr "A(z) {} verzió sikeresen telepítve."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1442
-#: NEEDS WORK
-msgid "Warning: Failed to copy symbolic icons"
-msgstr "Figyelmeztetés: A szimbolikus ikonok másolása nem sikerült"
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1656
+# File: update_window.py, line: 290
+# File: usr/share/appimage-creator/updater/update_window.py, line: 279
 #: NEEDS WORK
-msgid "Creating custom index.theme for Adwaita symbolic icons..."
-msgstr "Egyedi index.theme létrehozása az Adwaita szimbolikus ikonokhoz..."
+msgid "Update failed"
+msgstr "Frissítés sikertelen"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1444
-#: NEEDS WORK
-msgid "Symbolic icons copied successfully"
-msgstr "A szimbolikus ikonok sikeresen másolva lettek."
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1477
+# File: update_window.py, line: 303
+# File: usr/share/appimage-creator/updater/update_window.py, line: 292
 #: NEEDS WORK
-msgid "Copying Papirus symbolic icons..."
-msgstr "Papirus szimbolikus ikonok másolása..."
+#, python-brace-format
+msgid "{:.1f} MB of {:.1f} MB"
+msgstr "{:.1f} MB-ból {:.1f} MB"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1501
-#: NEEDS WORK
-msgid "Papirus symbolic icons already present"
-msgstr "Papirus szimbolikus ikonok már jelen vannak"
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1510
+# File: update_window.py, line: 335
+# File: update_window.py, line: 433
+# File: usr/share/appimage-creator/updater/update_window.py, line: 324
+# File: usr/share/appimage-creator/updater/update_window.py, line: 422
 #: NEEDS WORK
-msgid "Copying Papirus and Papirus-Dark symbolic icons..."
-msgstr "Papirus és Papirus-Dark szimbolikus ikonok másolása..."
+msgid "Update Available"
+msgstr "Frissítés elérhető"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1584
-#: NEEDS WORK
-msgid "Executing Papirus icons copy script..."
-msgstr "A Papirus ikonok másolási szkript végrehajtása..."
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1594
+# File: update_window.py, line: 440
+# File: usr/share/appimage-creator/updater/update_window.py, line: 429
 #: NEEDS WORK
-msgid "Warning: Papirus icons not available, falling back to Adwaita"
-msgstr "Figyelem: A Papirus ikonok nem elérhetők, visszaállás az Adwaitára."
+#, python-brace-format
+msgid "A new version of {} is available"
+msgstr "Új verzió érhető el a(z) {} számára"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1882
-#: NEEDS WORK
-msgid "Creating custom index.theme for Papirus symbolic icons..."
-msgstr "Egyedi index.theme létrehozása a Papirus szimbolikus ikonokhoz..."
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1597
+# File: update_window.py, line: 448
+# File: usr/share/appimage-creator/updater/update_window.py, line: 437
 #: NEEDS WORK
-msgid "Papirus symbolic icons copied successfully"
-msgstr "A Papirus szimbolikus ikonok sikeresen másolva."
+msgid "Version Information"
+msgstr "Verzióinformáció"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 451
+# File: usr/share/appimage-creator/updater/update_window.py, line: 440
+#: NEEDS WORK
+msgid "Current Version"
+msgstr "Jelenlegi verzió"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 456
+# File: usr/share/appimage-creator/updater/update_window.py, line: 445
+#: NEEDS WORK
+msgid "New Version"
+msgstr "Új verzió"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 465
+# File: usr/share/appimage-creator/updater/update_window.py, line: 454
+#: NEEDS WORK
+msgid "What's New"
+msgstr "Újdonságok"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 469
+# File: usr/share/appimage-creator/updater/update_window.py, line: 458
+#: NEEDS WORK
+msgid "Release Notes"
+msgstr "Kiadási megjegyzések"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 470
+# File: usr/share/appimage-creator/updater/update_window.py, line: 459
+#: NEEDS WORK
+msgid "Click to view changes"
+msgstr "Kattintson a változások megtekintéséhez"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 491
+# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+#: NEEDS WORK
+msgid "Options"
+msgstr "Beállítások"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 495
+# File: usr/share/appimage-creator/updater/update_window.py, line: 484
+#: NEEDS WORK
+msgid "Remove old version"
+msgstr "Régi verzió eltávolítása"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 496
+# File: usr/share/appimage-creator/updater/update_window.py, line: 485
+#: NEEDS WORK
+msgid "Delete previous version after successful update"
+msgstr "A sikeres frissítés után törölje az előző verziót"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 525
+# File: usr/share/appimage-creator/updater/update_window.py, line: 514
+#: NEEDS WORK
+msgid "Later"
+msgstr "Később"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 529
+# File: usr/share/appimage-creator/updater/update_window.py, line: 518
+#: NEEDS WORK
+msgid "Update"
+msgstr "Frissítés"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 592
+# File: usr/share/appimage-creator/updater/update_window.py, line: 581
+#: NEEDS WORK
+msgid "Download failed"
+msgstr "Letöltés sikertelen"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 605
+# File: usr/share/appimage-creator/updater/update_window.py, line: 594
+#: NEEDS WORK
+msgid "Integration failed"
+msgstr "Integrációs hiba"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
@@ -1885,6 +1944,297 @@ msgstr "Figyelmeztetés: Nem sikerült automatikusan eltávolítani a képet"
 msgid "An error occurred while removing the container: {}"
 msgstr "Hiba történt a konténer eltávolítása során: {}"
 # 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
+#: NEEDS WORK
+#, python-brace-format
+msgid "Including user-specified extra libraries: {}"
+msgstr "Felhasználó által megadott extra könyvtárak: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying standard system libraries: {}"
+msgstr "A szabványos rendszerkönyvtárak másolása: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Ütköző rendszerkönyvtárak másolása a visszaállító könyvtárba: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
+#: NEEDS WORK
+#, python-brace-format
+msgid "Generating script to copy libraries to {}..."
+msgstr "Könyvtárak másolásához script generálása a(z) {}..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
+#: NEEDS WORK
+msgid "Executing library copy script..."
+msgstr "Könyvtár másoló szkript végrehajtása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1039
+#: NEEDS WORK
+msgid "Warning: Library copy script finished with errors."
+msgstr "Figyelmeztetés: A könyvtár másoló szkript hibákkal fejeződött be."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1041
+#: NEEDS WORK
+msgid "Library copy script finished successfully."
+msgstr "A könyvtár másoló szkript sikeresen befejeződött."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
+#: NEEDS WORK
+msgid "No typelibs selected for inclusion."
+msgstr "Nincsenek kiválasztva típuskönyvtárak a beillesztéshez."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying selected typelibs: {}"
+msgstr "Kiválasztott típuskönyvtárak másolása: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
+#: NEEDS WORK
+msgid "Generating script to copy typelibs..."
+msgstr "A typelibrary-k másolásához szükséges script generálása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
+#: NEEDS WORK
+msgid "Executing typelib copy script..."
+msgstr "A típuskönyvtár másoló szkript végrehajtása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
+#: NEEDS WORK
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "Figyelmeztetés: Néhány típuskönyvtár lehet, hogy nem lett átmásolva"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
+#: NEEDS WORK
+msgid "Typelib copy complete"
+msgstr "Typelib másolat kész."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
+#: NEEDS WORK
+msgid "Copying essential GStreamer plugins..."
+msgstr "Fontos GStreamer bővítmények másolása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
+#: NEEDS WORK
+msgid "Detected video playback requirements"
+msgstr "A videolejátszási követelmények észlelve"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
+#: NEEDS WORK
+msgid "Copying GStreamer plugins..."
+msgstr "GStreamer bővítmények másolása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
+#: NEEDS WORK
+msgid "GStreamer plugin copying complete"
+msgstr "A GStreamer bővítmény másolása befejeződött"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Adwaita szimbolikus ikonok másolása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
+#: NEEDS WORK
+msgid "Symbolic icons already present"
+msgstr "Jelképes ikonok már jelen vannak"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
+#: NEEDS WORK
+msgid "Copying symbolic icons from container..."
+msgstr "Szimbólikus ikonok másolása a tárolóból..."
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
+#: NEEDS WORK
+msgid "Copying symbolic icons from host system..."
+msgstr "Szimbólikus ikonok másolása a gazdarendszerről..."
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Adwaita symbolic icons not found at {}"
+msgstr "Figyelmeztetés: Az Adwaita szimbolikus ikonok nem találhatók itt: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
+#: NEEDS WORK
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Figyelmeztetés: A szimbolikus ikonok másolása nem sikerült"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
+#: NEEDS WORK
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Egyedi index.theme létrehozása az Adwaita szimbolikus ikonokhoz..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "A szimbolikus ikonok sikeresen másolva lettek."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "Papirus szimbolikus ikonok másolása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Papirus szimbolikus ikonok már jelen vannak"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Papirus és Papirus-Dark szimbolikus ikonok másolása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "A Papirus ikonok másolási szkript végrehajtása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Figyelem: A Papirus ikonok nem elérhetők, visszaállás az Adwaitára."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Egyedi index.theme létrehozása a Papirus szimbolikus ikonokhoz..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "A Papirus szimbolikus ikonok sikeresen másolva."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 827
+#: NEEDS WORK
+msgid "Processing external binaries with linuxdeploy..."
+msgstr "Külső binárisok feldolgozása a linuxdeploy segítségével..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 830
+#: NEEDS WORK
+msgid "Warning: linuxdeploy not available, skipping binary bundling"
+msgstr "Figyelem: a linuxdeploy nem elérhető, a bináris csomagolás kihagyva."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 841
+#: NEEDS WORK
+#, python-brace-format
+msgid "Backed up original wrapper: {}"
+msgstr "Biztonsági másolat készült az eredeti burkolóról: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 855
+#: NEEDS WORK
+msgid "Backed up custom AppRun"
+msgstr "Biztonsági másolat készült a testreszabott AppRun-ról"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 861
+#: NEEDS WORK
+msgid "Warning: No .desktop file found, skipping linuxdeploy"
+msgstr "Figyelmeztetés: Nincs .desktop fájl, a linuxdeploy kihagyva"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1304
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping copy of '{}' executable, as it is treated as a library provider."
+msgstr "A '{}' végrehajtható másolásának kihagyása, mivel könyvtárszolgáltatóként van kezelve."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 891
+#: NEEDS WORK
+#, python-brace-format
+msgid "Will bundle: {}"
+msgstr "Csomagolni fog: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1243
+#: NEEDS WORK
+msgid "No external binaries or plugins to process with linuxdeploy."
+msgstr "Nincsenek külső binárisok vagy bővítmények a linuxdeploy feldolgozásához."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 902
+#: NEEDS WORK
+msgid "Running linuxdeploy..."
+msgstr "Futtatás linuxdeploy..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 903
+#: NEEDS WORK
+msgid "Bundling binary dependencies..."
+msgstr "Bináris függőségek csomagolása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 906
+#: NEEDS WORK
+msgid "Note: linuxdeploy runs locally but accesses container files"
+msgstr "Megjegyzés: a linuxdeploy helyben fut, de hozzáfér a konténerfájlokhoz."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 920
+#: NEEDS WORK
+msgid "Warning: linuxdeploy had issues but continuing..."
+msgstr "Figyelem: a linuxdeploy problémákat észlelt, de folytatja..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 922
+#: NEEDS WORK
+msgid "External binaries bundled successfully"
+msgstr "Külső binárisok sikeresen csomagolva"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 932
+#: NEEDS WORK
+msgid "Restored custom AppRun"
+msgstr "Visszaállított egyedi AppRun"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 942
+#: NEEDS WORK
+#, python-brace-format
+msgid "Restored original wrapper: {}"
+msgstr "Visszaállított eredeti burkoló: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1370
+#: NEEDS WORK
+msgid "Generating icon cache inside AppDir..."
+msgstr "Ikon gyorsítótár létrehozása az AppDir-ben..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1383
+#: NEEDS WORK
+msgid "Successfully generated icon-theme.cache."
+msgstr "Sikeresen létrehozva az icon-theme.cache fájl."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
+#: NEEDS WORK
+msgid "Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
+msgstr ""
+"Figyelmeztetés: Nem sikerült létrehozni az icon-theme.cache fájlt. Az ikonok nem jelenhetnek meg a "
+"menükben."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1388
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not run gtk-update-icon-cache: {}"
+msgstr "Figyelmeztetés: Nem sikerült futtatni a gtk-update-icon-cache-t: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 945
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Binary bundling failed: {}"
+msgstr "Figyelmeztetés: A bináris csomagolás meghiúsult: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2081
+#: NEEDS WORK
+msgid "Warning: Could not determine source path for binary detection."
+msgstr "Figyelmeztetés: Nem sikerült meghatározni a forrásútvonalat a bináris észleléshez."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2084
+#: NEEDS WORK
+#, python-brace-format
+msgid "Scanning for binary dependencies in: {}"
+msgstr "Binaris függőségek keresése itt: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2104
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected dependency on binary: {}"
+msgstr "Felfedezett függőség a bináristól: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 125
 #: NEEDS WORK
 msgid "⚠️ Local Build Warning"
@@ -2045,6 +2395,28 @@ msgstr "A észlelt ikon használata: {}"
 msgid "No icon provided or found, generating a default one."
 msgstr "Nincs ikon megadva vagy találva, alapértelmezett generálása."
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 381
+#: NEEDS WORK
+msgid "Copied SVG icon to scalable/apps/"
+msgstr "Másolt SVG ikon a scalable/apps/ mappába"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 405
+#: NEEDS WORK
+msgid "Generated PNG icons at all standard sizes"
+msgstr "Generált PNG ikonok minden szabványos méretben"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 408
+#: NEEDS WORK
+#, python-brace-format
+msgid "PIL resize failed, copying as-is: {}"
+msgstr "A PIL átméretezés nem sikerült, másolás változatlanul: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 441
+#: NEEDS WORK
+#, python-brace-format
+msgid "Created icon symlink in AppDir root: {}"
+msgstr "Létrehozva ikon szimbolikus hivatkozás az AppDir gyökérben: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 267
 #: NEEDS WORK
 msgid "Icon processed"
@@ -2060,6 +2432,12 @@ msgstr "Figyelmeztetés: Az ikon feldolgozása meghiúsult: {}"
 #: NEEDS WORK
 msgid "Creating launcher and desktop files..."
 msgstr "Indító és asztali fájlok létrehozása..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 470
+#: NEEDS WORK
+#, python-brace-format
+msgid "Using custom desktop file: {}"
+msgstr "Egyéni asztali fájl használata: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 281
 #: NEEDS WORK
@@ -2077,6 +2455,34 @@ msgstr "Megtalált desktop fájl a forrásprojekttől: {}"
 #, python-brace-format
 msgid "Created desktop symlink in AppDir root: {}"
 msgstr "Asztali szimbolikus hivatkozás létrehozva az AppDir gyökérben: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 535
+#: NEEDS WORK
+#, python-brace-format
+msgid "Updated desktop Icon field: {} -> {}"
+msgstr "Frissített asztali ikon mező: {} -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 548
+#: NEEDS WORK
+msgid "Fixed NoDisplay=true -> false (AppImages must be visible in menus)"
+msgstr "Javítva NoDisplay=true -> false (Az AppImage-eknek láthatónak kell lenniük a menükben)"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 559
+#: NEEDS WORK
+msgid "Fixed Terminal=true -> false (GUI application)"
+msgstr "Rögzített terminál=true -> false (GUI alkalmazás)"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 585
+#: NEEDS WORK
+#, python-brace-format
+msgid "Added StartupWMClass={} for Wayland compatibility"
+msgstr "Hozzáadva a StartupWMClass={} a Wayland kompatibilitás érdekében"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 597
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not update Icon field in desktop file: {}"
+msgstr "Figyelmeztetés: Nem sikerült frissíteni az Ikon mezőt az asztali fájlban: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 287
 #: NEEDS WORK
@@ -2614,220 +3020,121 @@ msgstr "✗ A build hibás: {}"
 msgid "Build already in progress"
 msgstr "A build már folyamatban van"
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 760
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
 #: NEEDS WORK
-msgid "AppImage Structure - Detailed View"
-msgstr "AppImage struktúra - Részletes nézet"
+msgid "Starting recursive dependency resolution..."
+msgstr "Kezdő rekurzív függőségi feloldás..."
 # 
-# File: usr/share/appimage-creator/ui/window.py, line: 764
-#: NEEDS WORK
-msgid "[AppImage Root]"
-msgstr "[AppImage Gyökér]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 765
-#: NEEDS WORK
-msgid "├── AppRun (main launcher)"
-msgstr "├── AppRun (fő indító)"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 768
-#: NEEDS WORK
-msgid "└── usr/"
-msgstr "└── usr/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 769
-#: NEEDS WORK
-msgid "    ├── bin/"
-msgstr "├── bin/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 771
-#: NEEDS WORK
-msgid "    ├── lib/"
-msgstr "├── lib/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 772
-#: NEEDS WORK
-msgid "    └── share/"
-msgstr "└── megosztás/"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
-#: NEEDS WORK
-msgid "Python Files"
-msgstr "Python fájlok"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
-#: NEEDS WORK
-msgid "Shell Scripts"
-msgstr "Shell szkriptek"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
-#: NEEDS WORK
-msgid "UI Files"
-msgstr "UI fájlok"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
-#: NEEDS WORK
-msgid "CSS Files"
-msgstr "CSS fájlok"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
-#: NEEDS WORK
-msgid "Icon Files"
-msgstr "Ikonfájlok"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
-#: NEEDS WORK
-msgid "Locale Directories"
-msgstr "Helyi könyvtárak"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1085
-#: NEEDS WORK
-msgid "[Additional Directories]"
-msgstr "[Extra könyvtárak]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1112
-#: NEEDS WORK
-msgid "SUMMARY"
-msgstr "ÖSSZEFOGLALÓ"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1116
-#: NEEDS WORK
-msgid "Project Root"
-msgstr "Projektgyökér"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1116
-#: NEEDS WORK
-msgid "Not detected"
-msgstr "Nem észlelve"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1127
-#: NEEDS WORK
-msgid "  File Breakdown:"
-msgstr "Fájl bontás:"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 827
-#: NEEDS WORK
-msgid "Processing external binaries with linuxdeploy..."
-msgstr "Külső binárisok feldolgozása a linuxdeploy segítségével..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 830
-#: NEEDS WORK
-msgid "Warning: linuxdeploy not available, skipping binary bundling"
-msgstr "Figyelem: a linuxdeploy nem elérhető, a bináris csomagolás kihagyva."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 841
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
 #: NEEDS WORK
 #, python-brace-format
-msgid "Backed up original wrapper: {}"
-msgstr "Biztonsági másolat készült az eredeti burkolóról: {}"
+msgid "  Resolution iteration {}/{}..."
+msgstr "Felbontás iteráció {}/{}..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 855
-#: NEEDS WORK
-msgid "Backed up custom AppRun"
-msgstr "Biztonsági másolat készült a testreszabott AppRun-ról"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 861
-#: NEEDS WORK
-msgid "Warning: No .desktop file found, skipping linuxdeploy"
-msgstr "Figyelmeztetés: Nincs .desktop fájl, a linuxdeploy kihagyva"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1304
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Skipping copy of '{}' executable, as it is treated as a library provider."
-msgstr "A '{}' végrehajtható másolásának kihagyása, mivel könyvtárszolgáltatóként van kezelve."
+msgid "  Found {} ELF files to scan"
+msgstr "Találtunk {} ELF fájlt a vizsgálathoz"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 891
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
+#: NEEDS WORK
+msgid "  No missing libraries found — resolution complete"
+msgstr "Nincsenek hiányzó könyvtárak — a megoldás befejeződött"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
 #: NEEDS WORK
 #, python-brace-format
-msgid "Will bundle: {}"
-msgstr "Csomagolni fog: {}"
+msgid "  Found {} missing libraries: {}"
+msgstr "Megtalált {} hiányzó könyvtár: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1243
-#: NEEDS WORK
-msgid "No external binaries or plugins to process with linuxdeploy."
-msgstr "Nincsenek külső binárisok vagy bővítmények a linuxdeploy feldolgozásához."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 902
-#: NEEDS WORK
-msgid "Running linuxdeploy..."
-msgstr "Futtatás linuxdeploy..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 903
-#: NEEDS WORK
-msgid "Bundling binary dependencies..."
-msgstr "Bináris függőségek csomagolása..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 906
-#: NEEDS WORK
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "Megjegyzés: a linuxdeploy helyben fut, de hozzáfér a konténerfájlokhoz."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 920
-#: NEEDS WORK
-msgid "Warning: linuxdeploy had issues but continuing..."
-msgstr "Figyelem: a linuxdeploy problémákat észlelt, de folytatja..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 922
-#: NEEDS WORK
-msgid "External binaries bundled successfully"
-msgstr "Külső binárisok sikeresen csomagolva"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 932
-#: NEEDS WORK
-msgid "Restored custom AppRun"
-msgstr "Visszaállított egyedi AppRun"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 942
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
 #: NEEDS WORK
 #, python-brace-format
-msgid "Restored original wrapper: {}"
-msgstr "Visszaállított eredeti burkoló: {}"
+msgid "    Copied: {}"
+msgstr "Másolt: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1370
-#: NEEDS WORK
-msgid "Generating icon cache inside AppDir..."
-msgstr "Ikon gyorsítótár létrehozása az AppDir-ben..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1383
-#: NEEDS WORK
-msgid "Successfully generated icon-theme.cache."
-msgstr "Sikeresen létrehozva az icon-theme.cache fájl."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1385
-#: NEEDS WORK
-msgid "Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
-msgstr ""
-"Figyelmeztetés: Nem sikerült létrehozni az icon-theme.cache fájlt. Az ikonok nem jelenhetnek meg a "
-"menükben."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1388
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Could not run gtk-update-icon-cache: {}"
-msgstr "Figyelmeztetés: Nem sikerült futtatni a gtk-update-icon-cache-t: {}"
+msgid "    Failed to copy: {}"
+msgstr "Másolás nem sikerült: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 945
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Binary bundling failed: {}"
-msgstr "Figyelmeztetés: A bináris csomagolás meghiúsult: {}"
+msgid "    Not found in system: {}"
+msgstr "Nem található a rendszerben: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 2081
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
 #: NEEDS WORK
-msgid "Warning: Could not determine source path for binary detection."
-msgstr "Figyelmeztetés: Nem sikerült meghatározni a forrásútvonalat a bináris észleléshez."
+msgid "  No new libraries could be copied — stopping"
+msgstr "Nem lehetett új könyvtárakat másolni — leállítás"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 2084
-#: NEEDS WORK
-#, python-brace-format
-msgid "Scanning for binary dependencies in: {}"
-msgstr "Binaris függőségek keresése itt: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 2104
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Detected dependency on binary: {}"
-msgstr "Felfedezett függőség a bináristól: {}"
+msgid "  Copied {} libraries this iteration"
+msgstr "Másolt {} könyvtár ezen iteráció alatt"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
+#: NEEDS WORK
+#, python-brace-format
+msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
+msgstr "A függőségek feloldása befejeződött: {} másolva, {} még hiányzik ({} iteráció)"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
+#: NEEDS WORK
+msgid "Validating library dependencies..."
+msgstr "Könyvtárfüggőségek érvényesítése..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
+#: NEEDS WORK
+msgid "Library validation FAILED:"
+msgstr "Könyvtár érvényesítése MEGFAJTOTT:"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
+#: NEEDS WORK
+msgid "Library validation passed — all dependencies resolved"
+msgstr "A könyvtár érvényesítése sikeres — az összes függőség megoldva"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
+#: NEEDS WORK
+#, python-brace-format
+msgid "Validating Python imports for module: {}"
+msgstr "A Python importok érvényesítése a következő modulhoz: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
+#: NEEDS WORK
+msgid "Python import validation passed"
+msgstr "A Python import érvényesítése sikeres."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
+#: NEEDS WORK
+#, python-brace-format
+msgid "Python import validation FAILED: {}"
+msgstr "Python import érvényesítés MEGHÍVÁS: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
+#: NEEDS WORK
+#, python-brace-format
+msgid "Python import validation error: {}"
+msgstr "Python import érvényesítési hiba: {}"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
+#: NEEDS WORK
+msgid "Running pre-packaging validation..."
+msgstr "Futó előcsomagolási érvényesítés..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
+#: NEEDS WORK
+msgid "Pre-packaging validation PASSED"
+msgstr "Előcsomagolási érvényesítés SIKERES"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
+#: NEEDS WORK
+msgid "Pre-packaging validation FAILED — check warnings above"
+msgstr "Előcsomagolási érvényesítés MEGFAJTOTT — ellenőrizze a fenti figyelmeztetéseket"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 356
 #: NEEDS WORK
@@ -3064,316 +3371,92 @@ msgstr "A rendszer PyGObject másolása nem sikerült"
 msgid "Error using system PyGObject: {}"
 msgstr "Hiba a PyGObject rendszer használata közben: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
+# File: usr/share/appimage-creator/ui/window.py, line: 760
 #: NEEDS WORK
-msgid "Starting recursive dependency resolution..."
-msgstr "Kezdő rekurzív függőségi feloldás..."
+msgid "AppImage Structure - Detailed View"
+msgstr "AppImage struktúra - Részletes nézet"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
+# File: usr/share/appimage-creator/ui/window.py, line: 764
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Resolution iteration {}/{}..."
-msgstr "Felbontás iteráció {}/{}..."
+msgid "[AppImage Root]"
+msgstr "[AppImage Gyökér]"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
+# File: usr/share/appimage-creator/ui/window.py, line: 765
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Found {} ELF files to scan"
-msgstr "Találtunk {} ELF fájlt a vizsgálathoz"
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun (fő indító)"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
+# File: usr/share/appimage-creator/ui/window.py, line: 768
 #: NEEDS WORK
-msgid "  No missing libraries found — resolution complete"
-msgstr "Nincsenek hiányzó könyvtárak — a megoldás befejeződött"
+msgid "└── usr/"
+msgstr "└── usr/"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
+# File: usr/share/appimage-creator/ui/window.py, line: 769
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Found {} missing libraries: {}"
-msgstr "Megtalált {} hiányzó könyvtár: {}"
+msgid "    ├── bin/"
+msgstr "├── bin/"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
+# File: usr/share/appimage-creator/ui/window.py, line: 771
 #: NEEDS WORK
-#, python-brace-format
-msgid "    Copied: {}"
-msgstr "Másolt: {}"
+msgid "    ├── lib/"
+msgstr "├── lib/"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
+# File: usr/share/appimage-creator/ui/window.py, line: 772
 #: NEEDS WORK
-#, python-brace-format
-msgid "    Failed to copy: {}"
-msgstr "Másolás nem sikerült: {}"
+msgid "    └── share/"
+msgstr "└── megosztás/"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
 #: NEEDS WORK
-#, python-brace-format
-msgid "    Not found in system: {}"
-msgstr "Nem található a rendszerben: {}"
+msgid "Python Files"
+msgstr "Python fájlok"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
 #: NEEDS WORK
-msgid "  No new libraries could be copied — stopping"
-msgstr "Nem lehetett új könyvtárakat másolni — leállítás"
+msgid "Shell Scripts"
+msgstr "Shell szkriptek"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied {} libraries this iteration"
-msgstr "Másolt {} könyvtár ezen iteráció alatt"
+msgid "UI Files"
+msgstr "UI fájlok"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
 #: NEEDS WORK
-#, python-brace-format
-msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
-msgstr "A függőségek feloldása befejeződött: {} másolva, {} még hiányzik ({} iteráció)"
+msgid "CSS Files"
+msgstr "CSS fájlok"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
 #: NEEDS WORK
-msgid "Validating library dependencies..."
-msgstr "Könyvtárfüggőségek érvényesítése..."
+msgid "Icon Files"
+msgstr "Ikonfájlok"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
 #: NEEDS WORK
-msgid "Library validation FAILED:"
-msgstr "Könyvtár érvényesítése MEGFAJTOTT:"
+msgid "Locale Directories"
+msgstr "Helyi könyvtárak"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
 #: NEEDS WORK
-msgid "Library validation passed — all dependencies resolved"
-msgstr "A könyvtár érvényesítése sikeres — az összes függőség megoldva"
+msgid "[Additional Directories]"
+msgstr "[Extra könyvtárak]"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
 #: NEEDS WORK
-#, python-brace-format
-msgid "Validating Python imports for module: {}"
-msgstr "A Python importok érvényesítése a következő modulhoz: {}"
+msgid "SUMMARY"
+msgstr "ÖSSZEFOGLALÓ"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
 #: NEEDS WORK
-msgid "Python import validation passed"
-msgstr "A Python import érvényesítése sikeres."
+msgid "Project Root"
+msgstr "Projektgyökér"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation FAILED: {}"
-msgstr "Python import érvényesítés MEGHÍVÁS: {}"
+msgid "Not detected"
+msgstr "Nem észlelve"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation error: {}"
-msgstr "Python import érvényesítési hiba: {}"
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
-#: NEEDS WORK
-msgid "Running pre-packaging validation..."
-msgstr "Futó előcsomagolási érvényesítés..."
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
-#: NEEDS WORK
-msgid "Pre-packaging validation PASSED"
-msgstr "Előcsomagolási érvényesítés SIKERES"
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
-#: NEEDS WORK
-msgid "Pre-packaging validation FAILED — check warnings above"
-msgstr "Előcsomagolási érvényesítés MEGFAJTOTT — ellenőrizze a fenti figyelmeztetéseket"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 152
-# File: usr/share/appimage-creator/updater/update_window.py, line: 141
-#: NEEDS WORK
-msgid "Updating"
-msgstr "Frissítés"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 218
-# File: usr/share/appimage-creator/updater/update_window.py, line: 207
-#: NEEDS WORK
-msgid "Done"
-msgstr "Kész"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 232
-# File: usr/share/appimage-creator/updater/update_window.py, line: 221
-#: NEEDS WORK
-msgid "Downloading update..."
-msgstr "Frissítés letöltése..."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 233
-# File: usr/share/appimage-creator/updater/update_window.py, line: 222
-#: NEEDS WORK
-#, python-brace-format
-msgid "Version {}"
-msgstr "Verzió {}"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 241
-# File: usr/share/appimage-creator/updater/update_window.py, line: 230
-#: NEEDS WORK
-msgid "Installing update..."
-msgstr "Frissítés telepítése..."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 264
-# File: usr/share/appimage-creator/updater/update_window.py, line: 253
-#: NEEDS WORK
-msgid "Update completed!"
-msgstr "Frissítés befejeződött!"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 265
-# File: usr/share/appimage-creator/updater/update_window.py, line: 254
-#: NEEDS WORK
-#, python-brace-format
-msgid "Version {} installed successfully"
-msgstr "A(z) {} verzió sikeresen telepítve."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 290
-# File: usr/share/appimage-creator/updater/update_window.py, line: 279
-#: NEEDS WORK
-msgid "Update failed"
-msgstr "Frissítés sikertelen"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 303
-# File: usr/share/appimage-creator/updater/update_window.py, line: 292
-#: NEEDS WORK
-#, python-brace-format
-msgid "{:.1f} MB of {:.1f} MB"
-msgstr "{:.1f} MB-ból {:.1f} MB"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 335
-# File: update_window.py, line: 433
-# File: usr/share/appimage-creator/updater/update_window.py, line: 324
-# File: usr/share/appimage-creator/updater/update_window.py, line: 422
-#: NEEDS WORK
-msgid "Update Available"
-msgstr "Frissítés elérhető"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 440
-# File: usr/share/appimage-creator/updater/update_window.py, line: 429
-#: NEEDS WORK
-#, python-brace-format
-msgid "A new version of {} is available"
-msgstr "Új verzió érhető el a(z) {} számára"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 448
-# File: usr/share/appimage-creator/updater/update_window.py, line: 437
-#: NEEDS WORK
-msgid "Version Information"
-msgstr "Verzióinformáció"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 451
-# File: usr/share/appimage-creator/updater/update_window.py, line: 440
-#: NEEDS WORK
-msgid "Current Version"
-msgstr "Jelenlegi verzió"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 456
-# File: usr/share/appimage-creator/updater/update_window.py, line: 445
-#: NEEDS WORK
-msgid "New Version"
-msgstr "Új verzió"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 465
-# File: usr/share/appimage-creator/updater/update_window.py, line: 454
-#: NEEDS WORK
-msgid "What's New"
-msgstr "Újdonságok"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 469
-# File: usr/share/appimage-creator/updater/update_window.py, line: 458
-#: NEEDS WORK
-msgid "Release Notes"
-msgstr "Kiadási megjegyzések"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 470
-# File: usr/share/appimage-creator/updater/update_window.py, line: 459
-#: NEEDS WORK
-msgid "Click to view changes"
-msgstr "Kattintson a változások megtekintéséhez"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 491
-# File: usr/share/appimage-creator/updater/update_window.py, line: 480
-#: NEEDS WORK
-msgid "Options"
-msgstr "Beállítások"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 495
-# File: usr/share/appimage-creator/updater/update_window.py, line: 484
-#: NEEDS WORK
-msgid "Remove old version"
-msgstr "Régi verzió eltávolítása"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 496
-# File: usr/share/appimage-creator/updater/update_window.py, line: 485
-#: NEEDS WORK
-msgid "Delete previous version after successful update"
-msgstr "A sikeres frissítés után törölje az előző verziót"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 525
-# File: usr/share/appimage-creator/updater/update_window.py, line: 514
-#: NEEDS WORK
-msgid "Later"
-msgstr "Később"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 529
-# File: usr/share/appimage-creator/updater/update_window.py, line: 518
-#: NEEDS WORK
-msgid "Update"
-msgstr "Frissítés"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 592
-# File: usr/share/appimage-creator/updater/update_window.py, line: 581
-#: NEEDS WORK
-msgid "Download failed"
-msgstr "Letöltés sikertelen"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 605
-# File: usr/share/appimage-creator/updater/update_window.py, line: 594
-#: NEEDS WORK
-msgid "Integration failed"
-msgstr "Integrációs hiba"
+msgid "  File Breakdown:"
+msgstr "Fájl bontás:"
