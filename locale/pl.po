@@ -207,11 +207,6 @@ msgstr "Główny plik wykonywalny"
 msgid "Select the main application file"
 msgstr "Wybierz główny plik aplikacji"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 318
-#: NEEDS WORK
-msgid "The main binary or script that starts your application"
-msgstr "Główny plik binarny lub skrypt, który uruchamia twoją aplikację"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 159
@@ -229,11 +224,6 @@ msgstr "Wybierz plik"
 msgid "Application Name"
 msgstr "Nazwa aplikacji"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 330
-#: NEEDS WORK
-msgid "Letters, numbers, spaces, hyphens, underscores and dots only"
-msgstr "Tylko litery, cyfry, spacje, myślniki, podkreślenia i kropki"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 253
@@ -242,15 +232,10 @@ msgstr "Tylko litery, cyfry, spacje, myślniki, podkreślenia i kropki"
 msgid "Application Icon"
 msgstr "Ikona aplikacji"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 337
+# File: usr/share/appimage-creator/ui/pages.py, line: 332
 #: NEEDS WORK
-msgid "Optional – PNG, SVG or other image"
-msgstr "Opcjonalne – PNG, SVG lub inny obraz"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 340
-#: NEEDS WORK
-msgid "A 256×256 or larger PNG/SVG icon is recommended"
-msgstr "Zaleca się ikonę PNG/SVG o rozmiarze 256×256 lub większym."
+msgid "Recommended – needed for menu and taskbar integration"
+msgstr "Zalecane – potrzebne do integracji z menu i paskiem zadań"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -266,15 +251,10 @@ msgstr "Wybierz ikonę"
 msgid "Desktop File"
 msgstr "Plik pulpitu"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 351
+# File: usr/share/appimage-creator/ui/pages.py, line: 345
 #: NEEDS WORK
-msgid "Optional – select a .desktop file"
-msgstr "Opcjonalnie – wybierz plik .desktop"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 354
-#: NEEDS WORK
-msgid "Use an existing .desktop file instead of generating one"
-msgstr "Użyj istniejącego pliku .desktop zamiast generować nowy."
+msgid "Optional – a default will be generated if not provided"
+msgstr "Opcjonalne – domyślna wartość zostanie wygenerowana, jeśli nie zostanie podana"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 165
 #: NEEDS WORK
@@ -285,11 +265,6 @@ msgstr "Typ aplikacji"
 #: NEEDS WORK
 msgid "Auto-detected from executable"
 msgstr "Automatycznie wykryte z pliku wykonywalnego"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 353
-#: NEEDS WORK
-msgid "Determines how the launcher script is generated"
-msgstr "Określa, jak jest generowany skrypt uruchamiający"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 169
 #: NEEDS WORK
@@ -361,20 +336,10 @@ msgstr "Szczegóły aplikacji"
 msgid "Version"
 msgstr "Wersja"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 427
-#: NEEDS WORK
-msgid "Semantic version: digits separated by dots (e.g. 1.2.3)"
-msgstr "Wersja semantyczna: cyfry oddzielone kropkami (np. 1.2.3)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 51
 #: NEEDS WORK
 msgid "Description"
 msgstr "Opis"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
-#: NEEDS WORK
-msgid "A short one-line description shown in application menus"
-msgstr "Krótki opis w jednej linii wyświetlany w menu aplikacji"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 110
 #: NEEDS WORK
@@ -390,11 +355,6 @@ msgstr "Wymaga terminala"
 #: NEEDS WORK
 msgid "Check if your application needs to run in a terminal"
 msgstr "Sprawdź, czy Twoja aplikacja musi działać w terminalu."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 453
-#: NEEDS WORK
-msgid "Enable for CLI tools; the desktop will open a terminal first"
-msgstr "Włącz dla narzędzi CLI; pulpit najpierw otworzy terminal"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 181
 #: NEEDS WORK
@@ -548,11 +508,6 @@ msgstr ""
 msgid "Update URL"
 msgstr "Adres URL aktualizacji"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 608
-#: NEEDS WORK
-msgid "GitHub Releases API URL (must start with https://)"
-msgstr "Adres URL API GitHub Releases (musi zaczynać się od https://)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 118
 #: NEEDS WORK
 msgid "Paste GitHub API template"
@@ -562,11 +517,6 @@ msgstr "Wklej szablon API GitHub"
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Wzorzec nazwy pliku"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 625
-#: NEEDS WORK
-msgid "Glob pattern to match the AppImage filename in releases"
-msgstr "Wzorzec glob do dopasowania nazwy pliku AppImage w wydaniach"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 168
 #: NEEDS WORK
@@ -628,11 +578,6 @@ msgstr "Ustawienia wyjścia"
 msgid "Output Directory"
 msgstr "Katalog wyjściowy"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 721
-#: NEEDS WORK
-msgid "Directory where the final .AppImage file will be saved"
-msgstr "Katalog, w którym zostanie zapisany finalny plik .AppImage"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 320
 #: NEEDS WORK
 msgid "Choose Folder"
@@ -654,11 +599,6 @@ msgstr "Wybierz miejsce, w którym chcesz zbudować AppImage"
 #: NEEDS WORK
 msgid "Select container or use local system"
 msgstr "Wybierz kontener lub użyj lokalnego systemu"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 740
-#: NEEDS WORK
-msgid "Use a Distrobox container for maximum compatibility"
-msgstr "Użyj kontenera Distrobox dla maksymalnej kompatybilności"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -693,11 +633,6 @@ msgstr "Dołącz zależności"
 msgid "Automatically include system dependencies"
 msgstr "Automatycznie dołączaj zależności systemowe"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 776
-#: NEEDS WORK
-msgid "Bundle shared libraries so the AppImage works on other systems"
-msgstr "Zbundluj biblioteki współdzielone, aby AppImage działał na innych systemach"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 356
 #: NEEDS WORK
 msgid "System Dependencies"
@@ -722,11 +657,6 @@ msgstr "Dołącz motyw ikon"
 #: NEEDS WORK
 msgid "Bundle icons for consistent UI across systems"
 msgstr "Ikony pakietu dla spójnego interfejsu użytkownika w różnych systemach"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 806
-#: NEEDS WORK
-msgid "Without a bundled theme, some icons may be missing on other desktops"
-msgstr "Bez dołączonego motywu niektóre ikony mogą być niedostępne na innych pulpitach."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 378
 #: NEEDS WORK
@@ -772,11 +702,6 @@ msgstr "Usuń symbole debugowania"
 #: NEEDS WORK
 msgid "Reduce file size by removing debug information"
 msgstr "Zredukuj rozmiar pliku, usuwając informacje debugowania"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 849
-#: NEEDS WORK
-msgid "Reduces AppImage size but makes debugging harder"
-msgstr "Zmniejsza rozmiar AppImage, ale utrudnia debugowanie."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 857
 #: NEEDS WORK
@@ -1537,6 +1462,201 @@ msgstr "Nie udało się pobrać {}: {}"
 #, python-brace-format
 msgid "Failed to make file executable: {}"
 msgstr "Nie udało się ustawić pliku jako wykonywalnego: {}"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+#: NEEDS WORK
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"Wybierz główny plik binarny lub skrypt, który uruchamia Twoją aplikację.\n"
+"\n"
+"To jest punkt wejścia — plik, który zostanie wykonany, gdy użytkownik uruchomi AppImage."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+#: NEEDS WORK
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"Nazwa aplikacji używana w nazwie pliku AppImage i wpisie w menu.\n"
+"\n"
+"Dozwolone są tylko litery, cyfry, spacje, myślniki, podkreślenia i kropki."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+#: NEEDS WORK
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"Ikona aplikacji jest używana w menu systemowym, pasku zadań i menedżerze plików.\n"
+"\n"
+"Zalecana jest ikona PNG/SVG o rozmiarze 256×256 lub większym.\n"
+"\n"
+"Bez ikony, AppImage wyświetli ogólną ikonę w menu i pasku zadań."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+#: NEEDS WORK
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+"Plik .desktop kontroluje, jak aplikacja pojawia się w menu systemowym, w tym jej nazwę, ikonę, "
+"kategorie i opcje uruchamiania.\n"
+"\n"
+"Jeśli go nie dostarczysz, podstawowy plik .desktop zostanie automatycznie wygenerowany na podstawie "
+"informacji skonfigurowanych tutaj.\n"
+"\n"
+"Aby uzyskać pełną integrację, dostarcz własny plik z odpowiednimi kategoriami i metadanymi."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+#: NEEDS WORK
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"Określa, w jaki sposób generowany jest skrypt uruchamiający (AppRun).\n"
+"\n"
+"Jest to automatycznie wykrywane z pliku wykonywalnego, ale możesz to nadpisać:\n"
+"• Binary — skompilowany natywny plik wykonywalny\n"
+"• Python — skrypt Pythona używający systemowego interpretera\n"
+"• Electron — aplikacja oparta na Electronie\n"
+"• GTK/Qt — aplikacje GUI z zmiennymi środowiskowymi specyficznymi dla zestawu narzędzi"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+#: NEEDS WORK
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"Semantyczna wersja twojej aplikacji (np. 1.2.3).\n"
+"\n"
+"Jest to osadzone w metadanych AppImage i używane do wykrywania aktualizacji."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr "Krótki opis wyświetlany w menu aplikacji i menedżerach pakietów."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"Włącz to dla narzędzi CLI, które potrzebują terminala do działania.\n"
+"\n"
+"Gdy jest włączone, środowisko pulpitu otworzy emulator terminala przed uruchomieniem aplikacji."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"URL API GitHub Releases do automatycznych aktualizacji.\n"
+"\n"
+"Musisz zacząć od https:// — zazwyczaj:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Kliknij przycisk wklej, aby wstawić szablon."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"Wzorzec glob do identyfikacji, który plik pobrać z wydania.\n"
+"\n"
+"Asterisk (*) pasuje do dowolnego tekstu. Przykłady:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"Katalog, w którym zostanie zapisany finalny plik .AppImage.\n"
+"\n"
+"Domyślnie w bieżącym katalogu roboczym."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr "Wybierz miejsce, w którym chcesz zbudować AppImage."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"Zbundluj biblioteki współdzielone (.so) w AppImage.\n"
+"\n"
+"To zapewnia, że aplikacja działa na innych systemach, które mogą nie mieć zainstalowanych "
+"wymaganych bibliotek."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"Zbundluj motyw ikon wewnątrz AppImage.\n"
+"\n"
+"Bez zbundlowanego motywu niektóre ikony mogą być niedostępne na pulpitach, które używają innego "
+"motywu ikon niż ten, dla którego zaprojektowano twoją aplikację."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"Usuń symbole debugowania z binariów, aby zmniejszyć rozmiar AppImage.\n"
+"\n"
+"To sprawia, że plik jest mniejszy, ale trudniejszy do debugowania w przypadku wystąpienia problemów."
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 

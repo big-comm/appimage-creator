@@ -207,11 +207,6 @@ msgstr "Pääsuoritettava"
 msgid "Select the main application file"
 msgstr "Valitse pääsovellustiedosto"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 318
-#: NEEDS WORK
-msgid "The main binary or script that starts your application"
-msgstr "Pääbinaari tai skripti, joka käynnistää sovelluksesi"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 159
@@ -229,11 +224,6 @@ msgstr "Valitse tiedosto"
 msgid "Application Name"
 msgstr "Sovelluksen nimi"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 330
-#: NEEDS WORK
-msgid "Letters, numbers, spaces, hyphens, underscores and dots only"
-msgstr "Vain kirjaimia, numeroita, välilyöntejä, viivoja, alaviivoja ja pisteitä"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 253
@@ -242,15 +232,10 @@ msgstr "Vain kirjaimia, numeroita, välilyöntejä, viivoja, alaviivoja ja piste
 msgid "Application Icon"
 msgstr "Sovelluksen kuvake"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 337
+# File: usr/share/appimage-creator/ui/pages.py, line: 332
 #: NEEDS WORK
-msgid "Optional – PNG, SVG or other image"
-msgstr "Valinnainen – PNG, SVG tai muu kuva"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 340
-#: NEEDS WORK
-msgid "A 256×256 or larger PNG/SVG icon is recommended"
-msgstr "Suositellaan 256×256 tai suurempaa PNG/SVG-kuvaketta."
+msgid "Recommended – needed for menu and taskbar integration"
+msgstr "Suositeltu – tarvitaan valikko- ja tehtäväpalkkiintegraatiota"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -266,15 +251,10 @@ msgstr "Valitse kuvake"
 msgid "Desktop File"
 msgstr "Työpöytä Tiedosto"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 351
+# File: usr/share/appimage-creator/ui/pages.py, line: 345
 #: NEEDS WORK
-msgid "Optional – select a .desktop file"
-msgstr "Valinnainen – valitse .desktop-tiedosto"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 354
-#: NEEDS WORK
-msgid "Use an existing .desktop file instead of generating one"
-msgstr "Käytä olemassa olevaa .desktop-tiedostoa sen sijaan, että luot uuden."
+msgid "Optional – a default will be generated if not provided"
+msgstr "Valinnainen – oletusarvo luodaan, jos sitä ei anneta"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 165
 #: NEEDS WORK
@@ -285,11 +265,6 @@ msgstr "Sovellustyyppi"
 #: NEEDS WORK
 msgid "Auto-detected from executable"
 msgstr "Automaattisesti tunnistettu suoritettavasta tiedostosta"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 353
-#: NEEDS WORK
-msgid "Determines how the launcher script is generated"
-msgstr "Määrittää, miten käynnistyskomentosarja luodaan"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 169
 #: NEEDS WORK
@@ -361,20 +336,10 @@ msgstr "Sovelluksen tiedot"
 msgid "Version"
 msgstr "Versio"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 427
-#: NEEDS WORK
-msgid "Semantic version: digits separated by dots (e.g. 1.2.3)"
-msgstr "Semanttinen versio: numeroita erotettuna pisteillä (esim. 1.2.3)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 51
 #: NEEDS WORK
 msgid "Description"
 msgstr "Kuvaus"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
-#: NEEDS WORK
-msgid "A short one-line description shown in application menus"
-msgstr "Lyhyt yksirivinen kuvaus, joka näkyy sovelluksen valikoissa"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 110
 #: NEEDS WORK
@@ -390,11 +355,6 @@ msgstr "Vaatii terminaalin"
 #: NEEDS WORK
 msgid "Check if your application needs to run in a terminal"
 msgstr "Tarkista, tarvitseeko sovelluksesi suorittaa terminaalissa."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 453
-#: NEEDS WORK
-msgid "Enable for CLI tools; the desktop will open a terminal first"
-msgstr "Ota käyttöön CLI-työkaluille; työpöytä avaa ensin terminaalin"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 181
 #: NEEDS WORK
@@ -549,11 +509,6 @@ msgstr ""
 msgid "Update URL"
 msgstr "Päivitys-URL"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 608
-#: NEEDS WORK
-msgid "GitHub Releases API URL (must start with https://)"
-msgstr "GitHub Releases API -osoite (on aloitettava https://)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 118
 #: NEEDS WORK
 msgid "Paste GitHub API template"
@@ -563,11 +518,6 @@ msgstr "Liitä GitHub API -malli"
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Tiedostonimi Malli"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 625
-#: NEEDS WORK
-msgid "Glob pattern to match the AppImage filename in releases"
-msgstr "Glob-malli, joka vastaa AppImage-tiedostonimeä julkaisuissa"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 168
 #: NEEDS WORK
@@ -629,11 +579,6 @@ msgstr "Tulostusasetukset"
 msgid "Output Directory"
 msgstr "Tulostuskansio"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 721
-#: NEEDS WORK
-msgid "Directory where the final .AppImage file will be saved"
-msgstr "Hakemisto, johon lopullinen .AppImage-tiedosto tallennetaan"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 320
 #: NEEDS WORK
 msgid "Choose Folder"
@@ -655,11 +600,6 @@ msgstr "Valitse, mihin AppImage rakennetaan"
 #: NEEDS WORK
 msgid "Select container or use local system"
 msgstr "Valitse säiliö tai käytä paikallista järjestelmää"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 740
-#: NEEDS WORK
-msgid "Use a Distrobox container for maximum compatibility"
-msgstr "Käytä Distrobox-säilöä maksimaalisen yhteensopivuuden saavuttamiseksi"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -694,11 +634,6 @@ msgstr "Sisällytä riippuvuudet"
 msgid "Automatically include system dependencies"
 msgstr "Sisällytä järjestelmän riippuvuudet automaattisesti"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 776
-#: NEEDS WORK
-msgid "Bundle shared libraries so the AppImage works on other systems"
-msgstr "Pakkaa jaetut kirjastot, jotta AppImage toimii muilla järjestelmillä."
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 356
 #: NEEDS WORK
 msgid "System Dependencies"
@@ -723,11 +658,6 @@ msgstr "Sisällytä kuvakeaihe"
 #: NEEDS WORK
 msgid "Bundle icons for consistent UI across systems"
 msgstr "Yhdistä kuvakkeet johdonmukaisen käyttöliittymän saavuttamiseksi eri järjestelmissä"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 806
-#: NEEDS WORK
-msgid "Without a bundled theme, some icons may be missing on other desktops"
-msgstr "Ilman pakattua teemaa jotkin kuvakkeet saattavat puuttua muilta työpöydiltä."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 378
 #: NEEDS WORK
@@ -773,11 +703,6 @@ msgstr "Poista virheenkorjaussymbolit"
 #: NEEDS WORK
 msgid "Reduce file size by removing debug information"
 msgstr "Vähennä tiedoston kokoa poistamalla virheenkorjaustiedot"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 849
-#: NEEDS WORK
-msgid "Reduces AppImage size but makes debugging harder"
-msgstr "Vähentää AppImage-kokoa, mutta vaikeuttaa virheenkorjausta."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 857
 #: NEEDS WORK
@@ -1539,6 +1464,205 @@ msgstr "Lataus epäonnistui {}: {}"
 #, python-brace-format
 msgid "Failed to make file executable: {}"
 msgstr "Epäonnistui tekemään tiedostosta suoritettavaa: {}"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+#: NEEDS WORK
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"Valitse pääbinaari tai skripti, joka käynnistää sovelluksesi.\n"
+"\n"
+"Tämä on sisäänkäyntipiste — tiedosto, joka suoritetaan, kun käyttäjä käynnistää AppImage-tiedoston."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+#: NEEDS WORK
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"Sovelluksen nimi, jota käytetään AppImage-tiedostonimessä ja valikkokohdassa.\n"
+"\n"
+"Vain kirjaimet, numerot, välilyönnit, viivat, alaviivat ja pisteet ovat sallittuja."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+#: NEEDS WORK
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"Sovelluksen kuvake käytetään järjestelmävalikossa, tehtäväpalkissa ja tiedostonhallinnassa.\n"
+"\n"
+"Suositellaan 256×256 tai suurempaa PNG/SVG-kuvaketta.\n"
+"\n"
+"Ilman kuvaketta AppImage näyttää yleiskuvakkeen valikoissa ja tehtäväpalkissa."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+#: NEEDS WORK
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+".desktop-tiedosto ohjaa, miten sovellus näkyy järjestelmän valikossa, mukaan lukien sen nimi, "
+"kuvake, kategoriat ja käynnistysvaihtoehdot.\n"
+"\n"
+"Jos et tarjoa sellaista, perus .desktop-tiedosto luodaan automaattisesti täällä määritettyjen "
+"tietojen perusteella.\n"
+"\n"
+"Täydellistä integraatiota varten tarjoa oma tiedostosi, jossa on oikeat kategoriat ja metatiedot."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+#: NEEDS WORK
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"Määrittää, miten käynnistys (AppRun) skripti luodaan.\n"
+"\n"
+"Tämä havaitaan automaattisesti suoritettavasta tiedostosta, mutta voit ohittaa sen:\n"
+"• Binaari — käännetty natiivisuoritettava\n"
+"• Python — Python-skripti, joka käyttää järjestelmäinterpreteriä\n"
+"• Electron — Electron-pohjainen sovellus\n"
+"• GTK/Qt — GUI-sovellukset, joissa on työkalupakkiin liittyvät ympäristömuuttujat"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+#: NEEDS WORK
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"Sovelluksesi semanttinen versio (esim. 1.2.3).\n"
+"\n"
+"Tämä on upotettu AppImage-metadataan ja sitä käytetään päivitysten havaitsemiseen."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr "Lyhyt yksirivinen kuvaus, joka näkyy sovelluksen valikoissa ja pakettien hallinnassa."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"Ota tämä käyttöön CLI-työkaluille, jotka tarvitsevat terminaalin toimiakseen.\n"
+"\n"
+"Kun tämä on käytössä, työpöytäympäristö avaa terminaaliohjelman ennen sovelluksen käynnistämistä."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"GitHub Releases API -osoite automaattisia päivityksiä varten.\n"
+"\n"
+"Täytyy alkaa https:// — tyypillisesti:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Napsauta liitä-painiketta lisätäksesi mallin."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"Glob-malli, jolla tunnistetaan, mikä tiedosto ladataan julkaisusta.\n"
+"\n"
+"Tähtimerkki (*) vastaa mitä tahansa tekstiä. Esimerkkejä:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"Hakemisto, johon lopullinen .AppImage-tiedosto tallennetaan.\n"
+"\n"
+"Oletuksena nykyinen työskentelyhakemisto."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr ""
+"Valitse, mihin AppImage rakennetaan. \n"
+"\n"
+"Distrobox-kontin käyttäminen tarjoaa maksimaalisen yhteensopivuuden vanhempien Linux-jakeluiden "
+"kanssa, koska se rakentaa vanhempaa glibc:tä vastaan."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"Pakkaa jaetut kirjastot (.so-tiedostot) AppImageen.\n"
+"\n"
+"Tämä varmistaa, että sovellus toimii muilla järjestelmillä, joilla ei välttämättä ole tarvittavia "
+"kirjastoja asennettuna."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"Pakkaa kuvateema AppImageen.\n"
+"\n"
+"Ilman pakattua teemaa joitakin kuvakkeita saattaa puuttua työpöydiltä, jotka käyttävät eri "
+"kuvateemaa kuin se, jota sovelluksesi on suunniteltu varten."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"Poista virheenkorjaussymbolit binääreistä AppImage-koko pienentämiseksi.\n"
+"\n"
+"Tämä tekee tiedostosta pienemmän, mutta vaikeammaksi virheenkorjata, jos ongelmia ilmenee."
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 

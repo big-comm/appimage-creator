@@ -207,11 +207,6 @@ msgstr "Glavni izvršni program"
 msgid "Select the main application file"
 msgstr "Odaberite glavnu aplikacijsku datoteku"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 318
-#: NEEDS WORK
-msgid "The main binary or script that starts your application"
-msgstr "Glavni binarni ili skript koji pokreće vašu aplikaciju"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 159
@@ -229,11 +224,6 @@ msgstr "Odaberi datoteku"
 msgid "Application Name"
 msgstr "Naziv aplikacije"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 330
-#: NEEDS WORK
-msgid "Letters, numbers, spaces, hyphens, underscores and dots only"
-msgstr "Samo slova, brojevi, razmaci, crtice, donje crte i točke"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 253
@@ -242,15 +232,10 @@ msgstr "Samo slova, brojevi, razmaci, crtice, donje crte i točke"
 msgid "Application Icon"
 msgstr "Ikona aplikacije"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 337
+# File: usr/share/appimage-creator/ui/pages.py, line: 332
 #: NEEDS WORK
-msgid "Optional – PNG, SVG or other image"
-msgstr "Opcionalno – PNG, SVG ili druga slika"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 340
-#: NEEDS WORK
-msgid "A 256×256 or larger PNG/SVG icon is recommended"
-msgstr "Preporučuje se PNG/SVG ikona veličine 256×256 ili veća."
+msgid "Recommended – needed for menu and taskbar integration"
+msgstr "Preporučeno – potrebno za integraciju izbornika i alatne trake"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -266,15 +251,10 @@ msgstr "Odaberite ikonu"
 msgid "Desktop File"
 msgstr "Datoteka radne površine"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 351
+# File: usr/share/appimage-creator/ui/pages.py, line: 345
 #: NEEDS WORK
-msgid "Optional – select a .desktop file"
-msgstr "Opcionalno – odaberite .desktop datoteku"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 354
-#: NEEDS WORK
-msgid "Use an existing .desktop file instead of generating one"
-msgstr "Koristite postojeću .desktop datoteku umjesto generiranja nove."
+msgid "Optional – a default will be generated if not provided"
+msgstr "Opcionalno – zadano će se generirati ako nije navedeno"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 165
 #: NEEDS WORK
@@ -285,11 +265,6 @@ msgstr "Vrsta aplikacije"
 #: NEEDS WORK
 msgid "Auto-detected from executable"
 msgstr "Automatski otkriveno iz izvršne datoteke"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 353
-#: NEEDS WORK
-msgid "Determines how the launcher script is generated"
-msgstr "Određuje kako se generira skripta za pokretač."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 169
 #: NEEDS WORK
@@ -361,20 +336,10 @@ msgstr "Detalji aplikacije"
 msgid "Version"
 msgstr "Verzija"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 427
-#: NEEDS WORK
-msgid "Semantic version: digits separated by dots (e.g. 1.2.3)"
-msgstr "Semantička verzija: znamenke odvojene točkama (npr. 1.2.3)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 51
 #: NEEDS WORK
 msgid "Description"
 msgstr "Opis"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
-#: NEEDS WORK
-msgid "A short one-line description shown in application menus"
-msgstr "Kratak opis u jednoj liniji prikazan u izbornicima aplikacije"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 110
 #: NEEDS WORK
@@ -390,11 +355,6 @@ msgstr "Zahteva Terminal"
 #: NEEDS WORK
 msgid "Check if your application needs to run in a terminal"
 msgstr "Provjerite treba li vaša aplikacija raditi u terminalu"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 453
-#: NEEDS WORK
-msgid "Enable for CLI tools; the desktop will open a terminal first"
-msgstr "Omogući za CLI alate; radna površina će prvo otvoriti terminal"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 181
 #: NEEDS WORK
@@ -548,11 +508,6 @@ msgstr ""
 msgid "Update URL"
 msgstr "URL za ažuriranje"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 608
-#: NEEDS WORK
-msgid "GitHub Releases API URL (must start with https://)"
-msgstr "GitHub Releases API URL (mora početi s https://)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 118
 #: NEEDS WORK
 msgid "Paste GitHub API template"
@@ -562,11 +517,6 @@ msgstr "Zalijepi GitHub API predložak"
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Obrazac imena datoteke"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 625
-#: NEEDS WORK
-msgid "Glob pattern to match the AppImage filename in releases"
-msgstr "Glob obrazac za usklađivanje s nazivom datoteke AppImage u izdanjima"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 168
 #: NEEDS WORK
@@ -628,11 +578,6 @@ msgstr "Postavke izlaza"
 msgid "Output Directory"
 msgstr "Izlazni direktorij"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 721
-#: NEEDS WORK
-msgid "Directory where the final .AppImage file will be saved"
-msgstr "Direktorij u kojem će biti spremljena konačna .AppImage datoteka"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 320
 #: NEEDS WORK
 msgid "Choose Folder"
@@ -654,11 +599,6 @@ msgstr "Odaberite gdje izgraditi AppImage"
 #: NEEDS WORK
 msgid "Select container or use local system"
 msgstr "Odaberite kontejner ili upotrijebite lokalni sustav"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 740
-#: NEEDS WORK
-msgid "Use a Distrobox container for maximum compatibility"
-msgstr "Koristite Distrobox kontejner za maksimalnu kompatibilnost"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -693,11 +633,6 @@ msgstr "Uključi ovisnosti"
 msgid "Automatically include system dependencies"
 msgstr "Automatski uključite sistemske ovisnosti"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 776
-#: NEEDS WORK
-msgid "Bundle shared libraries so the AppImage works on other systems"
-msgstr "Paketirajte zajedničke biblioteke kako bi AppImage radio na drugim sustavima"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 356
 #: NEEDS WORK
 msgid "System Dependencies"
@@ -722,11 +657,6 @@ msgstr "Uključi temu ikona"
 #: NEEDS WORK
 msgid "Bundle icons for consistent UI across systems"
 msgstr "Ikone paketa za dosljedno korisničko sučelje na svim sustavima"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 806
-#: NEEDS WORK
-msgid "Without a bundled theme, some icons may be missing on other desktops"
-msgstr "Bez ugrađenog teme, neki ikone mogu nedostajati na drugim radnim površinama."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 378
 #: NEEDS WORK
@@ -772,11 +702,6 @@ msgstr "Ukloni simbole za ispravljanje grešaka"
 #: NEEDS WORK
 msgid "Reduce file size by removing debug information"
 msgstr "Smanjite veličinu datoteke uklanjanjem informacija za otklanjanje pogrešaka"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 849
-#: NEEDS WORK
-msgid "Reduces AppImage size but makes debugging harder"
-msgstr "Smanjuje veličinu AppImage-a, ali otežava otklanjanje grešaka."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 857
 #: NEEDS WORK
@@ -1538,6 +1463,202 @@ msgstr "Preuzimanje {} nije uspjelo: {}"
 #, python-brace-format
 msgid "Failed to make file executable: {}"
 msgstr "Nije moguće učiniti datoteku izvršnom: {}"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+#: NEEDS WORK
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"Odaberite glavni binarni ili skriptu koja pokreće vašu aplikaciju.\n"
+"\n"
+"Ovo je ulazna točka — datoteka koja će se izvršiti kada korisnik pokrene AppImage."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+#: NEEDS WORK
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"Naziv aplikacije koji se koristi za naziv datoteke AppImage i unos u izbornik.\n"
+"\n"
+"Dozvoljena su samo slova, brojevi, razmaci, crtice, donje crte i točke."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+#: NEEDS WORK
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"Ikona aplikacije koristi se u sustavnom izborniku, traci zadataka i upravitelju datoteka.\n"
+"\n"
+"Preporučuje se ikona veličine 256×256 ili veća u PNG/SVG formatu.\n"
+"\n"
+"Bez ikone, AppImage će prikazati generičku ikonu u izbornicima i traci zadataka."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+#: NEEDS WORK
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+"Datoteka .desktop kontrolira kako se aplikacija prikazuje u sustavnom izborniku, uključujući "
+"njezino ime, ikonu, kategorije i opcije pokretanja.\n"
+"\n"
+"Ako je ne pružite, osnovna datoteka .desktop bit će automatski generirana koristeći ovdje "
+"konfigurirane informacije.\n"
+"\n"
+"Za potpunu integraciju, pružite svoju vlastitu datoteku s ispravnim kategorijama i metapodacima."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+#: NEEDS WORK
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"Određuje kako se generira skripta za pokretač (AppRun).\n"
+"\n"
+"Ovo se automatski otkriva iz izvršne datoteke, ali to možete nadjačati:\n"
+"• Binarna — kompajlirana izvorna izvršna datoteka\n"
+"• Python — Python skripta koja koristi sustavni interpreter\n"
+"• Electron — aplikacija temeljena na Electronu\n"
+"• GTK/Qt — GUI aplikacije s varijablama okruženja specifičnim za alatne programe"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+#: NEEDS WORK
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"Semantička verzija vaše aplikacije (npr. 1.2.3).\n"
+"\n"
+"Ovo je ugrađeno u AppImage metapodatke i koristi se za otkrivanje ažuriranja."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr "Kratak opis prikazan u izbornicima aplikacija i upraviteljima paketa."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"Omogućite ovo za CLI alate koji trebaju terminal za rad.\n"
+"\n"
+"Kada je omogućeno, radno okruženje će otvoriti emulator terminala prije pokretanja aplikacije."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"GitHub Releases API URL za automatska ažuriranja. \n"
+"\n"
+"Mora početi s https:// — obično:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Kliknite gumb za lijepljenje za umetanje predloška."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"Glob obrazac za identifikaciju koje datoteke preuzeti iz izdanja.\n"
+"\n"
+"Asterisk (*) odgovara bilo kojem tekstu. Primjeri:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"Direktorij u kojem će biti spremljena konačna .AppImage datoteka.\n"
+"\n"
+"Zadano na trenutni radni direktorij."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr "Odaberite gdje izgraditi AppImage."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"Spojite zajedničke biblioteke (.so datoteke) u AppImage.\n"
+"\n"
+"To osigurava da aplikacija radi na drugim sustavima koji možda nemaju instalirane potrebne "
+"biblioteke."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"Uključite temu ikona unutar AppImage-a.\n"
+"\n"
+"Bez uključene teme, neke ikone mogu nedostajati na radnim površinama koje koriste drugačiju temu "
+"ikona od one za koju je vaša aplikacija dizajnirana."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"Ukloni simbole za ispravljanje grešaka iz binarnih datoteka kako bi se smanjila veličina "
+"AppImage-a.\n"
+"\n"
+"To čini datoteku manjom, ali otežava ispravljanje grešaka ako dođe do problema."
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 

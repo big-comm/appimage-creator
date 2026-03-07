@@ -207,11 +207,6 @@ msgstr "Hlavní spustitelný soubor"
 msgid "Select the main application file"
 msgstr "Vyberte hlavní soubor aplikace"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 318
-#: NEEDS WORK
-msgid "The main binary or script that starts your application"
-msgstr "Hlavní binární soubor nebo skript, který spouští vaši aplikaci"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 159
@@ -229,11 +224,6 @@ msgstr "Vyberte soubor"
 msgid "Application Name"
 msgstr "Název aplikace"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 330
-#: NEEDS WORK
-msgid "Letters, numbers, spaces, hyphens, underscores and dots only"
-msgstr "Písmena, čísla, mezery, pomlčky, podtržítka a tečky pouze"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 253
@@ -242,15 +232,10 @@ msgstr "Písmena, čísla, mezery, pomlčky, podtržítka a tečky pouze"
 msgid "Application Icon"
 msgstr "Ikona aplikace"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 337
+# File: usr/share/appimage-creator/ui/pages.py, line: 332
 #: NEEDS WORK
-msgid "Optional – PNG, SVG or other image"
-msgstr "Volitelné – PNG, SVG nebo jiný obrázek"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 340
-#: NEEDS WORK
-msgid "A 256×256 or larger PNG/SVG icon is recommended"
-msgstr "Doporučuje se ikona PNG/SVG o velikosti 256×256 nebo větší."
+msgid "Recommended – needed for menu and taskbar integration"
+msgstr "Doporučeno – potřebné pro integraci do nabídky a panelu úloh"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -266,15 +251,10 @@ msgstr "Vyberte ikonu"
 msgid "Desktop File"
 msgstr "Soubor na ploše"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 351
+# File: usr/share/appimage-creator/ui/pages.py, line: 345
 #: NEEDS WORK
-msgid "Optional – select a .desktop file"
-msgstr "Volitelné – vyberte soubor .desktop"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 354
-#: NEEDS WORK
-msgid "Use an existing .desktop file instead of generating one"
-msgstr "Použijte existující .desktop soubor místo generování nového."
+msgid "Optional – a default will be generated if not provided"
+msgstr "Volitelné – výchozí hodnota bude vygenerována, pokud nebude poskytnuta"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 165
 #: NEEDS WORK
@@ -285,11 +265,6 @@ msgstr "Typ aplikace"
 #: NEEDS WORK
 msgid "Auto-detected from executable"
 msgstr "Automaticky detekováno z spustitelného souboru"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 353
-#: NEEDS WORK
-msgid "Determines how the launcher script is generated"
-msgstr "Určuje, jak je generován spouštěcí skript."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 169
 #: NEEDS WORK
@@ -361,20 +336,10 @@ msgstr "Podrobnosti aplikace"
 msgid "Version"
 msgstr "Verze"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 427
-#: NEEDS WORK
-msgid "Semantic version: digits separated by dots (e.g. 1.2.3)"
-msgstr "Sémantická verze: číslice oddělené tečkami (např. 1.2.3)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 51
 #: NEEDS WORK
 msgid "Description"
 msgstr "Popis"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
-#: NEEDS WORK
-msgid "A short one-line description shown in application menus"
-msgstr "Krátký popis zobrazený v nabídkách aplikace"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 110
 #: NEEDS WORK
@@ -390,11 +355,6 @@ msgstr "Vyžaduje terminál"
 #: NEEDS WORK
 msgid "Check if your application needs to run in a terminal"
 msgstr "Zkontrolujte, zda vaše aplikace potřebuje běžet v terminálu."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 453
-#: NEEDS WORK
-msgid "Enable for CLI tools; the desktop will open a terminal first"
-msgstr "Povolit pro nástroje CLI; nejprve se otevře terminál na ploše"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 181
 #: NEEDS WORK
@@ -548,11 +508,6 @@ msgstr ""
 msgid "Update URL"
 msgstr "URL pro aktualizaci"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 608
-#: NEEDS WORK
-msgid "GitHub Releases API URL (must start with https://)"
-msgstr "URL API verzí GitHubu (musí začínat na https://)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 118
 #: NEEDS WORK
 msgid "Paste GitHub API template"
@@ -562,11 +517,6 @@ msgstr "Vložte šablonu GitHub API"
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "Vzor názvu souboru"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 625
-#: NEEDS WORK
-msgid "Glob pattern to match the AppImage filename in releases"
-msgstr "Glob vzor pro shodu s názvem souboru AppImage v relezech"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 168
 #: NEEDS WORK
@@ -628,11 +578,6 @@ msgstr "Nastavení výstupu"
 msgid "Output Directory"
 msgstr "Výstupní adresář"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 721
-#: NEEDS WORK
-msgid "Directory where the final .AppImage file will be saved"
-msgstr "Adresář, kde bude uložen finální soubor .AppImage"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 320
 #: NEEDS WORK
 msgid "Choose Folder"
@@ -654,11 +599,6 @@ msgstr "Vyberte místo pro vytvoření AppImage"
 #: NEEDS WORK
 msgid "Select container or use local system"
 msgstr "Vyberte kontejner nebo použijte místní systém"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 740
-#: NEEDS WORK
-msgid "Use a Distrobox container for maximum compatibility"
-msgstr "Použijte kontejner Distrobox pro maximální kompatibilitu"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -693,11 +633,6 @@ msgstr "Zahrnout závislosti"
 msgid "Automatically include system dependencies"
 msgstr "Automaticky zahrnout systémové závislosti"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 776
-#: NEEDS WORK
-msgid "Bundle shared libraries so the AppImage works on other systems"
-msgstr "Sbalit sdílené knihovny, aby AppImage fungoval na jiných systémech"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 356
 #: NEEDS WORK
 msgid "System Dependencies"
@@ -722,11 +657,6 @@ msgstr "Zahrnout ikonu motivu"
 #: NEEDS WORK
 msgid "Bundle icons for consistent UI across systems"
 msgstr "Sbalit ikony pro konzistentní uživatelské rozhraní napříč systémy"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 806
-#: NEEDS WORK
-msgid "Without a bundled theme, some icons may be missing on other desktops"
-msgstr "Bez zabalené šablony mohou některé ikony chybět na jiných plochách."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 378
 #: NEEDS WORK
@@ -772,11 +702,6 @@ msgstr "Odebrat ladicí symboly"
 #: NEEDS WORK
 msgid "Reduce file size by removing debug information"
 msgstr "Snížit velikost souboru odstraněním ladicích informací"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 849
-#: NEEDS WORK
-msgid "Reduces AppImage size but makes debugging harder"
-msgstr "Snižuje velikost AppImage, ale ztěžuje ladění."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 857
 #: NEEDS WORK
@@ -1537,6 +1462,201 @@ msgstr "Nepodařilo se stáhnout {}: {}"
 #, python-brace-format
 msgid "Failed to make file executable: {}"
 msgstr "Nepodařilo se nastavit soubor jako spustitelný: {}"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+#: NEEDS WORK
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"Vyberte hlavní binární soubor nebo skript, který spouští vaši aplikaci.\n"
+"\n"
+"Toto je vstupní bod — soubor, který bude proveden, když uživatel spustí AppImage."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+#: NEEDS WORK
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"Název aplikace používaný pro název souboru AppImage a položku v nabídce.\n"
+"\n"
+"Povoleny jsou pouze písmena, čísla, mezery, pomlčky, podtržítka a tečky."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+#: NEEDS WORK
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"Ikona aplikace se používá v systémovém menu, na panelu úloh a v správci souborů.\n"
+"\n"
+"Doporučuje se ikona PNG/SVG o velikosti 256×256 nebo větší.\n"
+"\n"
+"Bez ikony se v menu a na panelu úloh zobrazí obecná ikona AppImage."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+#: NEEDS WORK
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+"Soubor .desktop řídí, jak se aplikace zobrazuje v systémovém menu, včetně jejího názvu, ikony, "
+"kategorií a možností spuštění.\n"
+"\n"
+"Pokud jeden neposkytnete, bude automaticky vygenerován základní soubor .desktop pomocí zde "
+"nakonfigurovaných informací.\n"
+"\n"
+"Pro plnou integraci poskytněte svůj vlastní soubor s odpovídajícími kategoriemi a metadaty."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+#: NEEDS WORK
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"Určuje, jak je generován spouštěcí skript (AppRun).\n"
+"\n"
+"Toto je automaticky detekováno z spustitelného souboru, ale můžete to přepsat:\n"
+"• Binární — zkompilovaný nativní spustitelný soubor\n"
+"• Python — Python skript používající systémový interpreter\n"
+"• Electron — aplikace založená na Electronu\n"
+"• GTK/Qt — GUI aplikace s proměnnými prostředí specifickými pro toolkit"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+#: NEEDS WORK
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"Sémantická verze vaší aplikace (např. 1.2.3).\n"
+"\n"
+"Toto je vloženo v metadatech AppImage a používá se pro detekci aktualizací."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr "Krátký popis zobrazený v aplikačních nabídkách a správci balíčků."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"Povolte to pro nástroje CLI, které potřebují terminál k běhu.\n"
+"\n"
+"Když je to povoleno, desktopové prostředí otevře emulátor terminálu před spuštěním aplikace."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"API URL GitHub Releases pro automatické aktualizace. \n"
+"\n"
+"Musí začínat https:// — typicky: \n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Klikněte na tlačítko vložit pro vložení šablony."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"Globový vzor pro identifikaci, který soubor stáhnout z vydání.\n"
+"\n"
+"Hvězdička (*) odpovídá jakémukoli textu. Příklady:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"Adresář, kde bude uložen finální soubor .AppImage.\n"
+"\n"
+"Ve výchozím nastavení se používá aktuální pracovní adresář."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr "Vyberte místo pro vytvoření AppImage."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"Sbalit sdílené knihovny (.so soubory) do AppImage.\n"
+"\n"
+"To zajišťuje, že aplikace funguje na jiných systémech, které nemusí mít nainstalovány požadované "
+"knihovny."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"Zabalte ikonu téma do AppImage.\n"
+"\n"
+"Bez zabalného tématu mohou některé ikony chybět na plochách, které používají jinou ikonu téma, než "
+"pro kterou byla vaše aplikace navržena."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"Odstraňte ladicí symboly z binárních souborů, abyste snížili velikost AppImage.\n"
+"\n"
+"To zmenší soubor, ale ztíží ladění, pokud dojde k problémům."
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
