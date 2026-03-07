@@ -49,6 +49,11 @@ class AppImageCreatorApp(Adw.Application):
             border: 1px solid @success_color;
         }
         
+        .warning {
+            background-color: alpha(@warning_color, 0.1);
+            border: 1px solid @warning_color;
+        }
+        
         .accent {
             color: @accent_color;
         }

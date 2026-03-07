@@ -314,9 +314,6 @@ class ApplicationPage:
         self.executable_row.set_title(_("Main Executable"))
         self.executable_row.set_subtitle(_("Select the main application file"))
         self.executable_row.set_icon_name("application-x-executable-symbolic")
-        self.executable_row.set_tooltip_text(
-            _("The main binary or script that starts your application")
-        )
 
         self.executable_button = Gtk.Button(label=_("Choose File"))
         self.executable_button.set_valign(Gtk.Align.CENTER)
@@ -326,19 +323,15 @@ class ApplicationPage:
         # App name
         self.name_row = Adw.EntryRow()
         self.name_row.set_title(_("Application Name"))
-        self.name_row.set_tooltip_text(
-            _("Letters, numbers, spaces, hyphens, underscores and dots only")
-        )
         setup_group.add(self.name_row)
 
         # Icon
         self.icon_row = Adw.ActionRow()
         self.icon_row.set_title(_("Application Icon"))
-        self.icon_row.set_subtitle(_("Optional – PNG, SVG or other image"))
-        self.icon_row.set_icon_name("image-x-generic-symbolic")
-        self.icon_row.set_tooltip_text(
-            _("A 256×256 or larger PNG/SVG icon is recommended")
+        self.icon_row.set_subtitle(
+            _("Recommended – needed for menu and taskbar integration")
         )
+        self.icon_row.set_icon_name("image-x-generic-symbolic")
 
         self.icon_button = Gtk.Button(label=_("Choose Icon"))
         self.icon_button.set_valign(Gtk.Align.CENTER)
@@ -348,11 +341,10 @@ class ApplicationPage:
         # Desktop file
         self.desktop_row = Adw.ActionRow()
         self.desktop_row.set_title(_("Desktop File"))
-        self.desktop_row.set_subtitle(_("Optional – select a .desktop file"))
-        self.desktop_row.set_icon_name("application-x-desktop-symbolic")
-        self.desktop_row.set_tooltip_text(
-            _("Use an existing .desktop file instead of generating one")
+        self.desktop_row.set_subtitle(
+            _("Optional – a default will be generated if not provided")
         )
+        self.desktop_row.set_icon_name("application-x-desktop-symbolic")
 
         self.desktop_button = Gtk.Button(label=_("Choose File"))
         self.desktop_button.set_valign(Gtk.Align.CENTER)
@@ -363,9 +355,6 @@ class ApplicationPage:
         self.app_type_row = Adw.ComboRow()
         self.app_type_row.set_title(_("Application Type"))
         self.app_type_row.set_subtitle(_("Auto-detected from executable"))
-        self.app_type_row.set_tooltip_text(
-            _("Determines how the launcher script is generated")
-        )
 
         type_model = Gtk.StringList()
         for label in [
@@ -386,14 +375,18 @@ class ApplicationPage:
         content_box.append(setup_group)
 
         # ---- Status ----
-        status_group = Adw.PreferencesGroup()
+        self.status_group = Adw.PreferencesGroup()
 
         self.status_row = Adw.ActionRow()
         self.status_row.set_title(_("Getting Started"))
         self.status_row.set_subtitle(_("Enter name and select executable"))
-        status_group.add(self.status_row)
 
-        content_box.append(status_group)
+        self._status_icon = Gtk.Image.new_from_icon_name("dialog-information-symbolic")
+        self.status_row.add_prefix(self._status_icon)
+        self.status_group.add(self.status_row)
+        self.status_group.set_visible(False)
+
+        content_box.append(self.status_group)
 
         # ---- Continue ----
         continue_group = Adw.PreferencesGroup()
@@ -437,16 +430,10 @@ class ConfigurationPage:
         self.version_row = Adw.EntryRow()
         self.version_row.set_title(_("Version"))
         self.version_row.set_text("1.0.0")
-        self.version_row.set_tooltip_text(
-            _("Semantic version: digits separated by dots (e.g. 1.2.3)")
-        )
         details_group.add(self.version_row)
 
         self.description_row = Adw.EntryRow()
         self.description_row.set_title(_("Description"))
-        self.description_row.set_tooltip_text(
-            _("A short one-line description shown in application menus")
-        )
         details_group.add(self.description_row)
 
         self.category_row = Adw.ComboRow()
@@ -462,9 +449,6 @@ class ConfigurationPage:
         self.terminal_row.set_title(_("Requires Terminal"))
         self.terminal_row.set_subtitle(
             _("Check if your application needs to run in a terminal")
-        )
-        self.terminal_row.set_tooltip_text(
-            _("Enable for CLI tools; the desktop will open a terminal first")
         )
         details_group.add(self.terminal_row)
 
@@ -618,9 +602,6 @@ class ConfigurationPage:
         self.update_url_row = Adw.EntryRow()
         self.update_url_row.set_title(_("Update URL"))
         self.update_url_row.set_text("")
-        self.update_url_row.set_tooltip_text(
-            _("GitHub Releases API URL (must start with https://)")
-        )
 
         template_btn = Gtk.Button()
         template_btn.set_icon_name("edit-paste-symbolic")
@@ -635,9 +616,6 @@ class ConfigurationPage:
         self.update_pattern_row = Adw.EntryRow()
         self.update_pattern_row.set_title(_("Filename Pattern"))
         self.update_pattern_row.set_text("*-x86_64.AppImage")
-        self.update_pattern_row.set_tooltip_text(
-            _("Glob pattern to match the AppImage filename in releases")
-        )
         update_group.add(self.update_pattern_row)
 
         # Interval
@@ -731,9 +709,6 @@ class BuildPage:
         self.output_row = Adw.ActionRow()
         self.output_row.set_title(_("Output Directory"))
         self.output_row.set_subtitle(str(Path.cwd()))
-        self.output_row.set_tooltip_text(
-            _("Directory where the final .AppImage file will be saved")
-        )
 
         self.output_button = Gtk.Button(label=_("Choose Folder"))
         self.output_button.set_valign(Gtk.Align.CENTER)
@@ -750,9 +725,6 @@ class BuildPage:
         self.environment_row = Adw.ComboRow()
         self.environment_row.set_title(_("Build Environment"))
         self.environment_row.set_subtitle(_("Select container or use local system"))
-        self.environment_row.set_tooltip_text(
-            _("Use a Distrobox container for maximum compatibility")
-        )
 
         self.env_model = Gtk.StringList()
         self.env_model.append(_("Local System (Current Python)"))
@@ -786,9 +758,6 @@ class BuildPage:
         self.deps_row.set_title(_("Include Dependencies"))
         self.deps_row.set_subtitle(_("Automatically include system dependencies"))
         self.deps_row.set_active(True)
-        self.deps_row.set_tooltip_text(
-            _("Bundle shared libraries so the AppImage works on other systems")
-        )
         deps_group.add(self.deps_row)
 
         self.deps_expander_row = Adw.ExpanderRow()
@@ -816,9 +785,6 @@ class BuildPage:
             _("Bundle icons for consistent UI across systems")
         )
         self.icon_theme_row.set_active(True)
-        self.icon_theme_row.set_tooltip_text(
-            _("Without a bundled theme, some icons may be missing on other desktops")
-        )
         theme_group.add(self.icon_theme_row)
 
         self.icon_theme_expander_row = Adw.ExpanderRow()
@@ -859,9 +825,6 @@ class BuildPage:
         self.strip_row.set_title(_("Strip Debug Symbols"))
         self.strip_row.set_subtitle(_("Reduce file size by removing debug information"))
         self.strip_row.set_active(False)
-        self.strip_row.set_tooltip_text(
-            _("Reduces AppImage size but makes debugging harder")
-        )
         advanced_group.add(self.strip_row)
 
         content_box.append(advanced_group)
