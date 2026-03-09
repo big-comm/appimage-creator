@@ -32,7 +32,7 @@ except ImportError:
 
 from generators.files import create_apprun_file, generate_desktop_file
 from utils.file_ops import copy_files_recursively, download_file, verify_download_sha256
-from utils.system import get_system_info, find_executable_in_path, make_executable
+from utils.system import get_system_info, find_executable_in_path, make_executable, get_host_env
 from core.dependency_resolver import DependencyResolver, PrePackagingValidator
 from core.app_info import AppInfo
 from utils.i18n import _
@@ -165,8 +165,8 @@ class AppImageBuilder:
                 cmd_str,
             ]
 
-            # Merge environment variables
-            merged_env = os.environ.copy()
+            # Merge environment variables with clean host env
+            merged_env = get_host_env()
             if env:
                 merged_env.update(env)
 
@@ -474,6 +474,12 @@ class AppImageBuilder:
                 main_desktop_file_path = dest
             else:
                 appdir_desktop_files = list(appdir_desktop_files_dir.glob("*.desktop"))
+                # Filter out auxiliary desktop files (updater, vainfo, etc.)
+                appdir_desktop_files = [
+                    d for d in appdir_desktop_files
+                    if "updater" not in d.name.lower()
+                    and "vainfo" not in d.name.lower()
+                ]
 
                 if not appdir_desktop_files:
                     self.log(
@@ -1420,7 +1426,7 @@ class AppImageBuilder:
             raise RuntimeError(_("appimagetool not available"))
 
         try:
-            env = os.environ.copy()
+            env = get_host_env()
             system_info = get_system_info()
             env["ARCH"] = system_info["architecture"]
 
@@ -1494,6 +1500,8 @@ class AppImageBuilder:
             app_type = self.app_info.app_type or "binary"
             validation_failed = []
 
+            host_env = get_host_env()
+
             try:
                 # Validate based on app type
                 if app_type in ["python", "python_wrapper", "gtk", "qt"]:
@@ -1509,6 +1517,7 @@ class AppImageBuilder:
                         capture_output=True,
                         text=True,
                         timeout=10,
+                        env=host_env,
                     )
                     if result.returncode != 0:
                         validation_failed.append("python3")
@@ -1528,6 +1537,7 @@ class AppImageBuilder:
                         capture_output=True,
                         text=True,
                         timeout=10,
+                        env=host_env,
                     )
                     if result.returncode != 0:
                         validation_failed.append("java")
@@ -1541,6 +1551,7 @@ class AppImageBuilder:
                         capture_output=True,
                         text=True,
                         timeout=10,
+                        env=host_env,
                     )
                     if result.returncode != 0:
                         validation_failed.append(tool)

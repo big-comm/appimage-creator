@@ -32,7 +32,7 @@ from utils.i18n import _
 from utils.tooltip_helper import TooltipHelper
 
 # Application version – single source of truth
-APP_VERSION = "1.2.0"
+APP_VERSION = "1.2.1"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
@@ -751,6 +751,12 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
 
         # Auto-set detected .desktop file on Application page
         desktop_files = structure.get("detected_files", {}).get("desktop_files", [])
+        # Filter out auxiliary desktop files (updater, vainfo, etc.)
+        desktop_files = [
+            d for d in desktop_files
+            if "updater" not in os.path.basename(d).lower()
+            and "vainfo" not in os.path.basename(d).lower()
+        ]
         if desktop_files:
             self.app_info.detected_desktop_file = desktop_files[0]
             self.app_info.custom_desktop_file = desktop_files[0]

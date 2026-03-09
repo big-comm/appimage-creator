@@ -6,11 +6,16 @@ shared libraries, and copies them from the build system (host or container).
 """
 
 import os
+import re
 import subprocess
 from pathlib import Path
 from typing import Callable, Optional
 
 from utils.i18n import _
+
+# Pattern for auditwheel-hashed library names (e.g. libXau-154567c4.so.6.0.0)
+# These are bundled inside pip wheel .libs/ directories and resolve via RPATH.
+_AUDITWHEEL_HASH_RE = re.compile(r"^lib.+-[0-9a-f]{8}\.so")
 
 
 class DependencyResolver:
@@ -131,8 +136,12 @@ class DependencyResolver:
                 # Pattern: "libfoo.so.1 => not found"
                 if "not found" in line:
                     lib_name = line.split()[0]
-                    if not self._is_host_only(lib_name):
-                        missing.append(lib_name)
+                    if self._is_host_only(lib_name):
+                        continue
+                    # Skip auditwheel-hashed libs (bundled in pip .libs/)
+                    if _AUDITWHEEL_HASH_RE.match(lib_name):
+                        continue
+                    missing.append(lib_name)
         except (subprocess.TimeoutExpired, Exception):
             pass
         return missing
@@ -296,6 +305,14 @@ class PrePackagingValidator:
             str(appdir / "usr" / "lib"),
             str(appdir / "usr" / "lib-fallback"),
         ]
+
+        # Include pip wheel .libs directories (auditwheel-bundled deps)
+        # These use RPATH $ORIGIN at runtime, but ldd may not resolve
+        # them correctly during static validation.
+        for libs_dir in appdir.rglob("*.libs"):
+            if libs_dir.is_dir():
+                lib_paths.append(str(libs_dir))
+
         env_override = {"LD_LIBRARY_PATH": ":".join(lib_paths)}
 
         for elf_path in elf_files:
@@ -312,8 +329,11 @@ class PrePackagingValidator:
                     for line in result.stdout.splitlines():
                         if "not found" in line:
                             lib_name = line.strip().split()[0]
-                            if not self._resolver._is_host_only(lib_name):
-                                missing.append(lib_name)
+                            if self._resolver._is_host_only(lib_name):
+                                continue
+                            if _AUDITWHEEL_HASH_RE.match(lib_name):
+                                continue
+                            missing.append(lib_name)
                 if missing:
                     rel_path = str(elf_path.relative_to(appdir))
                     problems.append((rel_path, missing))
