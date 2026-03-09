@@ -207,11 +207,6 @@ msgstr "主可执行文件"
 msgid "Select the main application file"
 msgstr "选择主应用程序文件"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 318
-#: NEEDS WORK
-msgid "The main binary or script that starts your application"
-msgstr "启动您应用程序的主二进制文件或脚本"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 159
@@ -229,11 +224,6 @@ msgstr "选择文件"
 msgid "Application Name"
 msgstr "应用名称"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 330
-#: NEEDS WORK
-msgid "Letters, numbers, spaces, hyphens, underscores and dots only"
-msgstr "仅限字母、数字、空格、连字符、下划线和点"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 253
@@ -242,15 +232,10 @@ msgstr "仅限字母、数字、空格、连字符、下划线和点"
 msgid "Application Icon"
 msgstr "应用程序图标"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 337
+# File: usr/share/appimage-creator/ui/pages.py, line: 332
 #: NEEDS WORK
-msgid "Optional – PNG, SVG or other image"
-msgstr "可选 – PNG、SVG 或其他图像"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 340
-#: NEEDS WORK
-msgid "A 256×256 or larger PNG/SVG icon is recommended"
-msgstr "建议使用256×256或更大的PNG/SVG图标"
+msgid "Recommended – needed for menu and taskbar integration"
+msgstr "推荐 - 需要用于菜单和任务栏集成"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -266,15 +251,10 @@ msgstr "选择图标"
 msgid "Desktop File"
 msgstr "桌面文件"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 351
+# File: usr/share/appimage-creator/ui/pages.py, line: 345
 #: NEEDS WORK
-msgid "Optional – select a .desktop file"
-msgstr "可选 - 选择一个 .desktop 文件"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 354
-#: NEEDS WORK
-msgid "Use an existing .desktop file instead of generating one"
-msgstr "使用现有的 .desktop 文件，而不是生成一个新的"
+msgid "Optional – a default will be generated if not provided"
+msgstr "可选 - 如果未提供，将生成默认值"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 165
 #: NEEDS WORK
@@ -285,11 +265,6 @@ msgstr "应用类型"
 #: NEEDS WORK
 msgid "Auto-detected from executable"
 msgstr "从可执行文件自动检测"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 353
-#: NEEDS WORK
-msgid "Determines how the launcher script is generated"
-msgstr "确定启动器脚本的生成方式"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 169
 #: NEEDS WORK
@@ -361,20 +336,10 @@ msgstr "应用程序详情"
 msgid "Version"
 msgstr "版本"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 427
-#: NEEDS WORK
-msgid "Semantic version: digits separated by dots (e.g. 1.2.3)"
-msgstr "语义版本：由点分隔的数字（例如 1.2.3）"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 51
 #: NEEDS WORK
 msgid "Description"
 msgstr "描述"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
-#: NEEDS WORK
-msgid "A short one-line description shown in application menus"
-msgstr "在应用程序菜单中显示的简短一行描述"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 110
 #: NEEDS WORK
@@ -390,11 +355,6 @@ msgstr "需要终端"
 #: NEEDS WORK
 msgid "Check if your application needs to run in a terminal"
 msgstr "检查您的应用程序是否需要在终端中运行"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 453
-#: NEEDS WORK
-msgid "Enable for CLI tools; the desktop will open a terminal first"
-msgstr "为命令行工具启用；桌面将首先打开终端"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 181
 #: NEEDS WORK
@@ -548,11 +508,6 @@ msgstr ""
 msgid "Update URL"
 msgstr "更新网址"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 608
-#: NEEDS WORK
-msgid "GitHub Releases API URL (must start with https://)"
-msgstr "GitHub 发布 API URL（必须以 https:// 开头）"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 118
 #: NEEDS WORK
 msgid "Paste GitHub API template"
@@ -562,11 +517,6 @@ msgstr "粘贴 GitHub API 模板"
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "文件名模式"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 625
-#: NEEDS WORK
-msgid "Glob pattern to match the AppImage filename in releases"
-msgstr "在发布中匹配 AppImage 文件名的 Glob 模式"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 168
 #: NEEDS WORK
@@ -628,11 +578,6 @@ msgstr "输出设置"
 msgid "Output Directory"
 msgstr "输出目录"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 721
-#: NEEDS WORK
-msgid "Directory where the final .AppImage file will be saved"
-msgstr "最终 .AppImage 文件将保存的目录"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 320
 #: NEEDS WORK
 msgid "Choose Folder"
@@ -654,11 +599,6 @@ msgstr "选择构建 AppImage 的位置"
 #: NEEDS WORK
 msgid "Select container or use local system"
 msgstr "选择容器或使用本地系统"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 740
-#: NEEDS WORK
-msgid "Use a Distrobox container for maximum compatibility"
-msgstr "使用 Distrobox 容器以获得最佳兼容性"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -693,11 +633,6 @@ msgstr "包含依赖项"
 msgid "Automatically include system dependencies"
 msgstr "自动包含系统依赖项"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 776
-#: NEEDS WORK
-msgid "Bundle shared libraries so the AppImage works on other systems"
-msgstr "将共享库打包，以便 AppImage 在其他系统上运行"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 356
 #: NEEDS WORK
 msgid "System Dependencies"
@@ -722,11 +657,6 @@ msgstr "包含图标主题"
 #: NEEDS WORK
 msgid "Bundle icons for consistent UI across systems"
 msgstr "为系统间一致的用户界面打包图标"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 806
-#: NEEDS WORK
-msgid "Without a bundled theme, some icons may be missing on other desktops"
-msgstr "没有捆绑主题的情况下，某些图标可能在其他桌面上缺失。"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 378
 #: NEEDS WORK
@@ -772,11 +702,6 @@ msgstr "剥离调试符号"
 #: NEEDS WORK
 msgid "Reduce file size by removing debug information"
 msgstr "通过删除调试信息来减小文件大小"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 849
-#: NEEDS WORK
-msgid "Reduces AppImage size but makes debugging harder"
-msgstr "减少 AppImage 大小，但使调试变得更加困难"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 857
 #: NEEDS WORK
@@ -1532,6 +1457,200 @@ msgstr "下载 {} 失败：{}"
 #, python-brace-format
 msgid "Failed to make file executable: {}"
 msgstr "无法使文件可执行：{}"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+#: NEEDS WORK
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"选择启动您应用程序的主二进制文件或脚本。\n"
+"\n"
+"这是入口点 — 当用户启动 AppImage 时将执行的文件。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+#: NEEDS WORK
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"用于 AppImage 文件名和菜单项的应用程序名称。\n"
+"\n"
+"仅允许字母、数字、空格、连字符、下划线和点。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+#: NEEDS WORK
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"应用程序图标用于系统菜单、任务栏和文件管理器。\n"
+"\n"
+"建议使用256×256或更大的PNG/SVG图标。\n"
+"\n"
+"如果没有图标，AppImage将在菜单和任务栏中显示通用图标。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+#: NEEDS WORK
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+".desktop 文件控制应用程序在系统菜单中的显示方式，包括其名称、图标、类别和启动选项。\n"
+"\n"
+"如果您不提供一个，将自动生成一个基本的 .desktop 文件，使用此处配置的信息。\n"
+"\n"
+"为了实现完全集成，请提供您自己的文件，包含适当的类别和元数据。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+#: NEEDS WORK
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"确定启动器（AppRun）脚本的生成方式。\n"
+"\n"
+"这会从可执行文件中自动检测，但您可以覆盖它：\n"
+"• 二进制 — 编译的本地可执行文件\n"
+"• Python — 使用系统解释器的 Python 脚本\n"
+"• Electron — 基于 Electron 的应用程序\n"
+"• GTK/Qt — 带有工具包特定环境变量的 GUI 应用程序"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+#: NEEDS WORK
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"您应用程序的语义版本（例如 1.2.3）。\n"
+"\n"
+"这嵌入在 AppImage 元数据中，用于更新检测。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr "在应用程序菜单和软件包管理器中显示的简短描述。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"为需要终端运行的CLI工具启用此选项。\n"
+"\n"
+"启用后，桌面环境将在启动应用程序之前打开终端仿真器。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"GitHub 发布 API URL 用于自动更新。\n"
+"\n"
+"必须以 https:// 开头 — 通常是：\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"点击粘贴按钮以插入模板。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"用于识别从发布中下载哪个文件的全局模式。\n"
+"\n"
+"星号 (*) 匹配任何文本。示例：\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"最终 .AppImage 文件将保存的目录。\n"
+"\n"
+"默认为当前工作目录。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr ""
+"选择构建 AppImage 的位置。\n"
+"\n"
+"使用 Distrobox 容器可以与较旧的 Linux 发行版实现最大兼容性，因为它是针对较旧的 glibc 构建的。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"将共享库（.so 文件）打包到 AppImage 中。\n"
+"\n"
+"这确保应用程序在可能未安装所需库的其他系统上正常工作。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"将图标主题打包到 AppImage 中。\n"
+"\n"
+"如果没有打包主题，某些图标可能会在使用与您的应用程序设计不同的图标主题的桌面上缺失。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"从二进制文件中移除调试符号以减小 AppImage 的大小。\n"
+"\n"
+"这使文件变小，但如果出现问题则更难调试。"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -2394,7 +2513,7 @@ msgstr "已复制 SVG 图标到 scalable/apps/"
 # File: usr/share/appimage-creator/core/builder.py, line: 405
 #: NEEDS WORK
 msgid "Generated PNG icons at all standard sizes"
-msgstr "在所有标准尺寸下生成的 PNG 图标"
+msgstr "在所有标准尺寸生成的 PNG 图标"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 408
 #: NEEDS WORK

@@ -287,9 +287,11 @@ def _scan_project_root(project_root_path, structure):
         suffix = item.suffix.lower()
         name = item.name.lower()
 
-        # Desktop files
+        # Desktop files (exclude known auxiliary desktop files like updater/vainfo)
         if suffix == ".desktop":
-            structure["detected_files"]["desktop_files"].append(str(item))
+            _excluded = ("updater", "vainfo")
+            if not any(ex in name for ex in _excluded):
+                structure["detected_files"]["desktop_files"].append(str(item))
 
         # Icons: files in "icons" dirs, or common icon filenames at project root
         elif suffix in (".svg", ".png"):

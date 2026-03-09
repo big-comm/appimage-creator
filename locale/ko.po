@@ -207,11 +207,6 @@ msgstr "주 실행 파일"
 msgid "Select the main application file"
 msgstr "주 응용 프로그램 파일을 선택하십시오."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 318
-#: NEEDS WORK
-msgid "The main binary or script that starts your application"
-msgstr "애플리케이션을 시작하는 주요 바이너리 또는 스크립트"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 159
@@ -229,11 +224,6 @@ msgstr "파일 선택"
 msgid "Application Name"
 msgstr "애플리케이션 이름"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 330
-#: NEEDS WORK
-msgid "Letters, numbers, spaces, hyphens, underscores and dots only"
-msgstr "문자, 숫자, 공백, 하이픈, 밑줄 및 점만"
-# 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 253
@@ -242,15 +232,10 @@ msgstr "문자, 숫자, 공백, 하이픈, 밑줄 및 점만"
 msgid "Application Icon"
 msgstr "애플리케이션 아이콘"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 337
+# File: usr/share/appimage-creator/ui/pages.py, line: 332
 #: NEEDS WORK
-msgid "Optional – PNG, SVG or other image"
-msgstr "선택 사항 – PNG, SVG 또는 기타 이미지"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 340
-#: NEEDS WORK
-msgid "A 256×256 or larger PNG/SVG icon is recommended"
-msgstr "256×256 이상 크기의 PNG/SVG 아이콘을 권장합니다."
+msgid "Recommended – needed for menu and taskbar integration"
+msgstr "권장됨 – 메뉴 및 작업 표시줄 통합에 필요"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -266,15 +251,10 @@ msgstr "아이콘 선택"
 msgid "Desktop File"
 msgstr "바탕화면 파일"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 351
+# File: usr/share/appimage-creator/ui/pages.py, line: 345
 #: NEEDS WORK
-msgid "Optional – select a .desktop file"
-msgstr "선택 사항 – .desktop 파일을 선택하세요"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 354
-#: NEEDS WORK
-msgid "Use an existing .desktop file instead of generating one"
-msgstr "기존 .desktop 파일을 생성하는 대신 사용하세요."
+msgid "Optional – a default will be generated if not provided"
+msgstr "선택 사항 – 제공되지 않으면 기본값이 생성됩니다."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 165
 #: NEEDS WORK
@@ -285,11 +265,6 @@ msgstr "응용 프로그램 유형"
 #: NEEDS WORK
 msgid "Auto-detected from executable"
 msgstr "실행 파일에서 자동 감지됨"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 353
-#: NEEDS WORK
-msgid "Determines how the launcher script is generated"
-msgstr "런처 스크립트가 생성되는 방식을 결정합니다."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 169
 #: NEEDS WORK
@@ -361,20 +336,10 @@ msgstr "애플리케이션 세부정보"
 msgid "Version"
 msgstr "버전"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 427
-#: NEEDS WORK
-msgid "Semantic version: digits separated by dots (e.g. 1.2.3)"
-msgstr "시맨틱 버전: 점으로 구분된 숫자 (예: 1.2.3)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 51
 #: NEEDS WORK
 msgid "Description"
 msgstr "설명"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 434
-#: NEEDS WORK
-msgid "A short one-line description shown in application menus"
-msgstr "응용 프로그램 메뉴에 표시되는 짧은 한 줄 설명"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 110
 #: NEEDS WORK
@@ -390,11 +355,6 @@ msgstr "터미널 필요"
 #: NEEDS WORK
 msgid "Check if your application needs to run in a terminal"
 msgstr "애플리케이션이 터미널에서 실행되어야 하는지 확인하십시오."
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 453
-#: NEEDS WORK
-msgid "Enable for CLI tools; the desktop will open a terminal first"
-msgstr "CLI 도구 사용을 활성화합니다. 데스크탑에서 먼저 터미널이 열립니다."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 181
 #: NEEDS WORK
@@ -548,11 +508,6 @@ msgstr ""
 msgid "Update URL"
 msgstr "업데이트 URL"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 608
-#: NEEDS WORK
-msgid "GitHub Releases API URL (must start with https://)"
-msgstr "GitHub 릴리스 API URL(https://로 시작해야 함)"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 118
 #: NEEDS WORK
 msgid "Paste GitHub API template"
@@ -562,11 +517,6 @@ msgstr "GitHub API 템플릿 붙여넣기"
 #: NEEDS WORK
 msgid "Filename Pattern"
 msgstr "파일 이름 패턴"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 625
-#: NEEDS WORK
-msgid "Glob pattern to match the AppImage filename in releases"
-msgstr "릴리스에서 AppImage 파일 이름과 일치하는 Glob 패턴"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 168
 #: NEEDS WORK
@@ -628,11 +578,6 @@ msgstr "출력 설정"
 msgid "Output Directory"
 msgstr "출력 디렉토리"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 721
-#: NEEDS WORK
-msgid "Directory where the final .AppImage file will be saved"
-msgstr "최종 .AppImage 파일이 저장될 디렉토리"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 320
 #: NEEDS WORK
 msgid "Choose Folder"
@@ -654,11 +599,6 @@ msgstr "AppImage를 빌드할 위치를 선택하세요."
 #: NEEDS WORK
 msgid "Select container or use local system"
 msgstr "컨테이너를 선택하거나 로컬 시스템을 사용하세요"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 740
-#: NEEDS WORK
-msgid "Use a Distrobox container for maximum compatibility"
-msgstr "최대 호환성을 위해 Distrobox 컨테이너를 사용하세요."
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -693,11 +633,6 @@ msgstr "종속성 포함"
 msgid "Automatically include system dependencies"
 msgstr "시스템 종속성을 자동으로 포함합니다."
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 776
-#: NEEDS WORK
-msgid "Bundle shared libraries so the AppImage works on other systems"
-msgstr "앱이미지가 다른 시스템에서 작동하도록 공유 라이브러리를 번들로 묶으세요."
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 356
 #: NEEDS WORK
 msgid "System Dependencies"
@@ -722,11 +657,6 @@ msgstr "아이콘 테마 포함"
 #: NEEDS WORK
 msgid "Bundle icons for consistent UI across systems"
 msgstr "시스템 전반에 걸쳐 일관된 UI를 위한 아이콘 번들"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 806
-#: NEEDS WORK
-msgid "Without a bundled theme, some icons may be missing on other desktops"
-msgstr "번들 테마가 없으면 다른 바탕화면에서 일부 아이콘이 누락될 수 있습니다."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 378
 #: NEEDS WORK
@@ -772,11 +702,6 @@ msgstr "디버그 기호 제거"
 #: NEEDS WORK
 msgid "Reduce file size by removing debug information"
 msgstr "디버그 정보를 제거하여 파일 크기 줄이기"
-# 
-# File: usr/share/appimage-creator/ui/pages.py, line: 849
-#: NEEDS WORK
-msgid "Reduces AppImage size but makes debugging harder"
-msgstr "AppImage 크기를 줄이지만 디버깅이 더 어려워집니다."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 857
 #: NEEDS WORK
@@ -1534,6 +1459,200 @@ msgstr "다운로드 실패 {}: {}"
 #, python-brace-format
 msgid "Failed to make file executable: {}"
 msgstr "파일을 실행 가능하게 만들지 못했습니다: {}"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+#: NEEDS WORK
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"애플리케이션을 시작하는 주요 바이너리 또는 스크립트를 선택하십시오.\n"
+"\n"
+"이것은 진입점입니다 — 사용자가 AppImage를 실행할 때 실행될 파일입니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+#: NEEDS WORK
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"AppImage 파일 이름 및 메뉴 항목에 사용되는 애플리케이션 이름입니다.\n"
+"\n"
+"영문자, 숫자, 공백, 하이픈, 밑줄 및 점만 허용됩니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+#: NEEDS WORK
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"응용 프로그램 아이콘은 시스템 메뉴, 작업 표시줄 및 파일 관리자에서 사용됩니다.\n"
+"\n"
+"256×256 또는 그 이상의 PNG/SVG 아이콘이 권장됩니다.\n"
+"\n"
+"아이콘이 없으면 AppImage는 메뉴와 작업 표시줄에 일반 아이콘을 표시합니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+#: NEEDS WORK
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+".desktop 파일은 애플리케이션이 시스템 메뉴에 어떻게 표시되는지를 제어하며, 여기에는 이름, 아이콘, 카테고리 및 실행 옵션이 포함됩니다.\n"
+"\n"
+"제공하지 않으면, 여기에서 구성된 정보를 사용하여 기본 .desktop 파일이 자동으로 생성됩니다.\n"
+"\n"
+"완전한 통합을 위해 적절한 카테고리와 메타데이터가 포함된 파일을 제공하십시오."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+#: NEEDS WORK
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"런처(AppRun) 스크립트가 생성되는 방식을 결정합니다.\n"
+"\n"
+"이는 실행 파일에서 자동으로 감지되지만, 이를 재정의할 수 있습니다:\n"
+"• 바이너리 — 컴파일된 네이티브 실행 파일\n"
+"• 파이썬 — 시스템 인터프리터를 사용하는 파이썬 스크립트\n"
+"• 일렉트론 — 일렉트론 기반 애플리케이션\n"
+"• GTK/Qt — 툴킷 특정 환경 변수를 가진 GUI 애플리케이션"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+#: NEEDS WORK
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"응용 프로그램의 시맨틱 버전(예: 1.2.3).\n"
+"\n"
+"이는 AppImage 메타데이터에 포함되어 있으며 업데이트 감지에 사용됩니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr "응용 프로그램 메뉴 및 패키지 관리자에 표시되는 짧은 설명입니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"터미널에서 실행해야 하는 CLI 도구에 대해 이 기능을 활성화하십시오.\n"
+"\n"
+"활성화되면 데스크탑 환경이 애플리케이션을 실행하기 전에 터미널 에뮬레이터를 엽니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"자동 업데이트를 위한 GitHub 릴리스 API URL입니다.\n"
+"\n"
+"https://로 시작해야 합니다 — 일반적으로:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"템플릿을 삽입하려면 붙여넣기 버튼을 클릭하세요."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"릴리스에서 다운로드할 파일을 식별하는 글로브 패턴입니다.\n"
+"\n"
+"별표 (*)는 모든 텍스트와 일치합니다. 예:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"최종 .AppImage 파일이 저장될 디렉토리입니다.\n"
+"\n"
+"현재 작업 디렉토리로 기본 설정됩니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr ""
+"AppImage를 빌드할 위치를 선택하세요. \n"
+"\n"
+"Distrobox 컨테이너를 사용하면 이전 glibc에 대해 빌드되므로 이전 Linux 배포판과 최대 호환성을 제공합니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"AppImage에 공유 라이브러리(.so 파일)를 번들로 묶습니다.\n"
+"\n"
+"이렇게 하면 필수 라이브러리가 설치되지 않은 다른 시스템에서도 애플리케이션이 작동합니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"AppImage 안에 아이콘 테마를 번들로 묶으세요.\n"
+"\n"
+"번들로 묶인 테마가 없으면, 앱이 설계된 것과 다른 아이콘 테마를 사용하는 데스크탑에서 일부 아이콘이 누락될 수 있습니다."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"바이너리에서 디버그 기호를 제거하여 AppImage 크기를 줄입니다.\n"
+"\n"
+"이로 인해 파일 크기가 작아지지만 문제가 발생할 경우 디버그하기가 더 어려워집니다."
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -2391,7 +2510,7 @@ msgstr "아이콘이 제공되지 않거나 발견되지 않아 기본 아이콘
 # File: usr/share/appimage-creator/core/builder.py, line: 381
 #: NEEDS WORK
 msgid "Copied SVG icon to scalable/apps/"
-msgstr "스케일러블/앱에 SVG 아이콘 복사됨"
+msgstr "스케일러블/앱에 SVG 아이콘 복사됨/"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 405
 #: NEEDS WORK

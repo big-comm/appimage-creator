@@ -89,6 +89,9 @@ def cleanup_orphaned_integrations():
         except Exception as e:
             print(f"Error cleaning {marker_file}: {e}", file=sys.stderr)
 
+    # Also clean desktop files that reference missing AppImages without marker files
+    removed_count += _cleanup_orphaned_desktop_files()
+
     if removed_count > 0:
         # Update desktop database
         try:
@@ -105,8 +108,20 @@ def cleanup_orphaned_integrations():
         except Exception:
             pass
 
-    # Also clean desktop files that reference missing AppImages without marker files
-    removed_count += _cleanup_orphaned_desktop_files()
+        # Update icon cache so removed icons are no longer referenced
+        # Without this, the stale cache prevents fallback to system icons
+        try:
+            hicolor_dir = Path.home() / ".local/share/icons/hicolor"
+            if hicolor_dir.exists():
+                subprocess.run(
+                    ["gtk-update-icon-cache", "-f", "-t", str(hicolor_dir)],
+                    check=False,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    timeout=10,
+                )
+        except Exception:
+            pass
 
     return removed_count
 

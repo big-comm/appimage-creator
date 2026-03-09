@@ -6,7 +6,7 @@ import subprocess
 import shutil
 from typing import List, Dict, Any, Optional, Callable
 
-from utils.system import get_distro_info, check_host_dependencies
+from utils.system import get_distro_info, check_host_dependencies, get_host_env
 from utils.i18n import _
 
 
@@ -204,7 +204,10 @@ class EnvironmentManager:
         if shutil.which("docker"):
             # Verify docker is actually working
             try:
-                subprocess.run(["docker", "ps"], capture_output=True, timeout=5)
+                subprocess.run(
+                    ["docker", "ps"], capture_output=True, timeout=5,
+                    env=get_host_env(),
+                )
                 return "docker"
             except (subprocess.TimeoutExpired, subprocess.CalledProcessError):
                 pass
@@ -373,12 +376,15 @@ class EnvironmentManager:
                 )
                 log_callback(f"$ {' '.join(cmd)}")
 
+            host_env = get_host_env()
+
             process = subprocess.Popen(
                 cmd,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,
                 bufsize=1,
+                env=host_env,
             )
             assert process.stdout is not None
 
@@ -436,6 +442,7 @@ class EnvironmentManager:
                     stderr=subprocess.STDOUT,
                     text=True,
                     bufsize=1,
+                    env=host_env,
                 )
                 assert init_process.stdout is not None
 
@@ -558,12 +565,15 @@ class EnvironmentManager:
                 )
                 log_callback(f"$ distrobox-enter {container_name} -- '{install_cmd}'")
 
+            host_env = get_host_env()
+
             process = subprocess.Popen(
                 cmd,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,
                 bufsize=1,
+                env=host_env,
             )
             assert process.stdout is not None
 
@@ -626,12 +636,15 @@ class EnvironmentManager:
                 log_callback(_("Removing container '{}'...").format(container_name))
                 log_callback(f"$ {' '.join(cmd)}")
 
+            host_env = get_host_env()
+
             process = subprocess.Popen(
                 cmd,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,
                 bufsize=1,
+                env=host_env,
             )
             assert process.stdout is not None
 
@@ -664,7 +677,8 @@ class EnvironmentManager:
                 rm_image_cmd = [runtime, "rmi", image_name, "--force"]
                 try:
                     img_result = subprocess.run(
-                        rm_image_cmd, capture_output=True, text=True, timeout=60
+                        rm_image_cmd, capture_output=True, text=True, timeout=60,
+                        env=host_env,
                     )
                     if img_result.returncode == 0:
                         if log_callback:
@@ -701,6 +715,7 @@ class EnvironmentManager:
                 capture_output=True,
                 text=True,
                 timeout=10,
+                env=get_host_env(),
             )
             if result.returncode != 0:
                 return []

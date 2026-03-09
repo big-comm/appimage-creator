@@ -29,9 +29,10 @@ from ui.dialogs import (
 )
 from validators.validators import ValidationError, validate_app_name, validate_version
 from utils.i18n import _
+from utils.tooltip_helper import TooltipHelper
 
 # Application version – single source of truth
-APP_VERSION = "1.1.2"
+APP_VERSION = "1.2.1"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
@@ -71,6 +72,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self._setup_builder_callbacks()
         self._connect_signals()
         self._populate_dependency_switches()
+        self._setup_tooltips()
 
         # Save window size on close
         self.connect("close-request", self._on_close_request)
@@ -86,6 +88,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         """Save window dimensions before closing."""
         self.settings.set("window-width", self.get_width())
         self.settings.set("window-height", self.get_height())
+        self.tooltip_helper.cleanup()
         return False
 
     # ------------------------------------------------------------------
@@ -193,6 +196,32 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             self._on_remove_environment_clicked
         )
 
+    def _setup_tooltips(self) -> None:
+        """Replace native tooltips with rich popover tooltips."""
+        self.tooltip_helper = TooltipHelper()
+        th = self.tooltip_helper
+
+        # Application Setup page
+        th.add_tooltip(self.app_page.executable_row, "executable")
+        th.add_tooltip(self.app_page.name_row, "app_name")
+        th.add_tooltip(self.app_page.icon_row, "app_icon")
+        th.add_tooltip(self.app_page.desktop_row, "desktop_file")
+        th.add_tooltip(self.app_page.app_type_row, "app_type")
+
+        # Configuration page
+        th.add_tooltip(self.config_page.version_row, "version")
+        th.add_tooltip(self.config_page.description_row, "description")
+        th.add_tooltip(self.config_page.terminal_row, "terminal")
+        th.add_tooltip(self.config_page.update_url_row, "update_url")
+        th.add_tooltip(self.config_page.update_pattern_row, "update_pattern")
+
+        # Build page
+        th.add_tooltip(self.build_page.output_row, "output_dir")
+        th.add_tooltip(self.build_page.environment_row, "build_environment")
+        th.add_tooltip(self.build_page.deps_row, "include_deps")
+        th.add_tooltip(self.build_page.icon_theme_row, "icon_theme")
+        th.add_tooltip(self.build_page.strip_row, "strip_symbols")
+
     def _on_continue_to_build(self, _button):
         """Validate configuration inputs and navigate to the Build page."""
         # Validate version before proceeding
@@ -291,21 +320,40 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self.build_page.build_button.set_sensitive(valid)
 
         row = self.app_page.status_row
+        group = self.app_page.status_group
+        icon = self.app_page._status_icon
         if valid:
+            group.set_visible(True)
             row.set_title(_("Ready to Build"))
             row.set_subtitle(_("All requirements met"))
+            icon.set_from_icon_name("emblem-ok-symbolic")
+            row.remove_css_class("warning")
+            row.add_css_class("success")
         elif exe_valid and not name:
+            group.set_visible(True)
             row.set_title(_("Almost Ready!"))
             row.set_subtitle(_("Please enter an Application Name"))
+            icon.set_from_icon_name("dialog-warning-symbolic")
+            row.remove_css_class("success")
+            row.add_css_class("warning")
         elif exe_valid and name and not name_valid:
+            group.set_visible(True)
             row.set_title(_("Almost Ready!"))
             row.set_subtitle(_("Application name contains invalid characters"))
+            icon.set_from_icon_name("dialog-warning-symbolic")
+            row.remove_css_class("success")
+            row.add_css_class("warning")
         elif name_valid and not exe_valid:
+            group.set_visible(True)
             row.set_title(_("Select Executable"))
             row.set_subtitle(_("Please choose the main executable file"))
+            icon.set_from_icon_name("dialog-warning-symbolic")
+            row.remove_css_class("success")
+            row.add_css_class("warning")
         else:
-            row.set_title(_("Getting Started"))
-            row.set_subtitle(_("Enter name and select executable"))
+            group.set_visible(False)
+            row.remove_css_class("success")
+            row.remove_css_class("warning")
 
     def _validate_version_input(self, entry):
         """Validate version field inline on every keystroke."""
@@ -659,10 +707,14 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                         self.app_page.name_row.set_text(suggested)
 
                 # Show analysis in progress
+                self.app_page.status_group.set_visible(True)
                 self.app_page.status_row.set_title(_("Analyzing..."))
                 self.app_page.status_row.set_subtitle(
                     _("Detecting application structure")
                 )
+                self.app_page._status_icon.set_from_icon_name("content-loading-symbolic")
+                self.app_page.status_row.remove_css_class("success")
+                self.app_page.status_row.remove_css_class("warning")
                 self.app_page.continue_button.set_sensitive(False)
 
                 # Run heavy analysis in background thread
@@ -699,6 +751,12 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
 
         # Auto-set detected .desktop file on Application page
         desktop_files = structure.get("detected_files", {}).get("desktop_files", [])
+        # Filter out auxiliary desktop files (updater, vainfo, etc.)
+        desktop_files = [
+            d for d in desktop_files
+            if "updater" not in os.path.basename(d).lower()
+            and "vainfo" not in os.path.basename(d).lower()
+        ]
         if desktop_files:
             self.app_info.detected_desktop_file = desktop_files[0]
             self.app_info.custom_desktop_file = desktop_files[0]

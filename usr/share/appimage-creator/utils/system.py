@@ -95,6 +95,56 @@ def find_executable_in_path(executable: str) -> Optional[str]:
     return shutil.which(executable)
 
 
+def get_host_env() -> Dict[str, str]:
+    """Return a clean copy of the environment without AppImage pollution.
+
+    When running inside an AppImage, variables like LD_LIBRARY_PATH,
+    PYTHONHOME, PYTHONPATH, and PATH are modified to point to the
+    AppImage mount point. These break host tools like distrobox/podman.
+    """
+    env = os.environ.copy()
+    appdir = env.get("APPDIR", "")
+
+    if not appdir:
+        return env
+
+    # Remove AppImage-specific variables
+    for var in ("APPDIR", "APPIMAGE", "OWD", "PYTHONHOME", "PYTHONPATH"):
+        env.pop(var, None)
+
+    # Clean PATH: remove entries under the AppImage mount point
+    if "PATH" in env:
+        clean_paths = [
+            p for p in env["PATH"].split(os.pathsep)
+            if not p.startswith(appdir)
+        ]
+        env["PATH"] = os.pathsep.join(clean_paths)
+
+    # Clean LD_LIBRARY_PATH: remove entries under the AppImage mount point
+    if "LD_LIBRARY_PATH" in env:
+        clean_ld = [
+            p for p in env["LD_LIBRARY_PATH"].split(os.pathsep)
+            if p and not p.startswith(appdir)
+        ]
+        if clean_ld:
+            env["LD_LIBRARY_PATH"] = os.pathsep.join(clean_ld)
+        else:
+            del env["LD_LIBRARY_PATH"]
+
+    # Clean GI_TYPELIB_PATH
+    if "GI_TYPELIB_PATH" in env:
+        clean_gi = [
+            p for p in env["GI_TYPELIB_PATH"].split(os.pathsep)
+            if p and not p.startswith(appdir)
+        ]
+        if clean_gi:
+            env["GI_TYPELIB_PATH"] = os.pathsep.join(clean_gi)
+        else:
+            del env["GI_TYPELIB_PATH"]
+
+    return env
+
+
 def make_executable(file_path: str | os.PathLike) -> None:
     """Make file executable"""
     try:

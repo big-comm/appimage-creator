@@ -130,6 +130,23 @@ def cleanup_orphaned_integrations():
         except Exception as e:
             print(f"Warning: Failed to update desktop database: {e}", file=sys.stderr)
 
+        # Update icon cache so removed icons are no longer referenced
+        # Without this, the stale cache prevents fallback to system icons
+        try:
+            hicolor_dir = Path.home() / ".local/share/icons/hicolor"
+            if hicolor_dir.exists():
+                print("Updating icon cache...")
+                subprocess.run(
+                    ["gtk-update-icon-cache", "-f", "-t", str(hicolor_dir)],
+                    check=False,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    timeout=10,
+                )
+                print("✓ Icon cache updated")
+        except Exception as e:
+            print(f"Warning: Failed to update icon cache: {e}", file=sys.stderr)
+
     # Auto-disable systemd watcher if no integrations remain
     if checked_count == removed_count and removed_count > 0:
         print("\nAll integrations removed. Cleaning up update system...")
