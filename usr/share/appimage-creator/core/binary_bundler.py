@@ -83,12 +83,19 @@ class BinaryBundler:
 
             cmd.append("--create-desktop-file")
 
+            # detected_binaries holds binary_name values, which may differ from the
+            # SYSTEM_BINARIES dict keys; index by binary_name so the lookup is correct.
+            binaries_by_name = {
+                info.get("binary_name", key): info
+                for key, info in SYSTEM_BINARIES.items()
+            }
+
             # Add each detected binary
             for binary in detected_binaries:
                 if binary in ["sh", "bash"]:
                     continue
 
-                if SYSTEM_BINARIES.get(binary, {}).get("manage_libs_manually"):
+                if binaries_by_name.get(binary, {}).get("manage_libs_manually"):
                     self._b.log(
                         _(
                             "Skipping copy of '{}' executable, as it is treated as a library provider."
@@ -135,13 +142,23 @@ class BinaryBundler:
                 bufsize=1,
             )
 
-            for line in iter(process.stdout.readline, ""):
-                log_line = line.strip()
-                if log_line and not log_line.startswith("ERROR:"):
-                    self._b.log(f"[linuxdeploy] {log_line}")
+            try:
+                for line in iter(process.stdout.readline, ""):
+                    log_line = line.strip()
+                    if log_line and not log_line.startswith("ERROR:"):
+                        self._b.log(f"[linuxdeploy] {log_line}")
 
-            process.stdout.close()
-            return_code = process.wait(timeout=300)
+                return_code = process.wait(timeout=300)
+            except subprocess.TimeoutExpired:
+                self._b.log(_("Warning: linuxdeploy timed out and was terminated."))
+                return_code = 1
+            finally:
+                # Always release the pipe and reap the child, even on error/timeout
+                if process.stdout:
+                    process.stdout.close()
+                if process.poll() is None:
+                    process.kill()
+                    process.wait()
 
             if return_code != 0:
                 self._b.log(_("Warning: linuxdeploy had issues but continuing..."))

@@ -7,7 +7,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("Vte", "3.91")
 
-from gi.repository import Gtk, Adw, Gio, Vte, GLib, Pango
+from gi.repository import Gtk, Adw, Gio, Vte, GLib, Pango, Gdk
 import subprocess
 from typing import Callable, TYPE_CHECKING
 from utils.i18n import _
@@ -215,7 +215,10 @@ class ValidationWarningDialog(Adw.Window):
             if launcher:
                 launcher.launch_uris([f"file://{folder}"], None)
         except Exception:
-            subprocess.Popen(["xdg-open", folder])
+            try:
+                subprocess.Popen(["xdg-open", folder])
+            except Exception as e:
+                print(f"Could not open folder: {e}")
         self.destroy()
 
 
@@ -275,9 +278,13 @@ class BuildSuccessDialog(Adw.Window):
                 color: #26a269;
             }
         """)
-        icon.get_style_context().add_provider(
-            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
+        _display = icon.get_display() or Gdk.Display.get_default()
+        if _display is not None:
+            Gtk.StyleContext.add_provider_for_display(
+                _display,
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+            )
         icon.add_css_class("success-icon")
         content.append(icon)
 
@@ -807,8 +814,16 @@ class InstallPackagesDialog(Adw.Window):
                 )
                 self._finish_installation(True)
         else:
+            # VTE reports a waitpid-style status; convert to a real exit code for display
+            display_code = exit_status
+            _to_code = getattr(os, "waitstatus_to_exitcode", None)
+            if _to_code is not None:
+                try:
+                    display_code = _to_code(exit_status)
+                except (ValueError, OSError):
+                    display_code = exit_status
             self._write_to_terminal(
-                f"{_('Command failed with exit code')}: {exit_status}\n"
+                f"{_('Command failed with exit code')}: {display_code}\n"
             )
             self._finish_installation(False)
 
@@ -831,8 +846,8 @@ class InstallPackagesDialog(Adw.Window):
             self._write_to_terminal(_("Installation completed successfully!") + "\n")
             self._write_to_terminal("=" * 50 + "\n")
 
-            # Close dialog automatically after success
-            GLib.timeout_add(500, lambda: self.close())
+            # Close dialog automatically after success (one-shot timeout)
+            GLib.timeout_add(500, lambda: (self.close(), GLib.SOURCE_REMOVE)[1])
         else:
             self._write_to_terminal("\n")
             self._write_to_terminal("=" * 50 + "\n")

@@ -24,6 +24,8 @@ class SettingsManager:
             "last-chooser-directory": str(Path.home()),
             "window-width": 820,
             "window-height": 720,
+            # Remembered build environment (container id, or None for local).
+            "default-build-environment": None,
         }
 
     def _load(self):

@@ -11,6 +11,7 @@ Optionally sets up systemd watcher for automatic cleanup
 
 import os
 import sys
+import re
 import shutil
 import configparser
 import subprocess
@@ -36,6 +37,9 @@ def cleanup_orphaned_integrations():
         try:
             # Read marker file (format: line 1 = appimage path, line 2 = desktop filename)
             lines = marker_file.read_text().strip().split("\n")
+            if not lines or not lines[0].strip():
+                # Malformed/empty marker; skip to avoid operating on "." path
+                continue
             appimage_path = lines[0]
             desktop_filename = (
                 lines[1] if len(lines) > 1 else f"{marker_file.stem}.desktop"
@@ -54,8 +58,6 @@ def cleanup_orphaned_integrations():
                 icon_name = app_name  # fallback
                 if desktop_file.exists():
                     try:
-                        import configparser
-
                         cfg = configparser.ConfigParser()
                         cfg.read(desktop_file)
                         icon_name = cfg.get("Desktop Entry", "Icon", fallback=app_name)
@@ -128,9 +130,6 @@ def cleanup_orphaned_integrations():
 
 def _cleanup_orphaned_desktop_files():
     """Scan desktop files for references to missing AppImages and clean them up."""
-    import configparser
-    import re
-
     apps_dir = Path.home() / ".local/share/applications"
     if not apps_dir.exists():
         return 0
@@ -141,7 +140,7 @@ def _cleanup_orphaned_desktop_files():
             content = desktop_file.read_text()
             # Look for Exec= referencing an .AppImage file
             match = re.search(
-                r'^Exec="?([^"\n]+\.AppImage)"?\s',
+                r'^Exec="?([^"\n]+\.AppImage)"?(?:\s|$)',
                 content,
                 flags=re.MULTILINE | re.IGNORECASE,
             )
@@ -314,7 +313,6 @@ def setup_systemd_watcher():
 
                     # Read and patch content
                     content = updater_desktop_source.read_text()
-                    import re
 
                     # Patch Icon path if icon was installed
                     if target_icon_path:
@@ -444,8 +442,6 @@ def integrate_appimage(
         0 on success, 1 on skip, 2 on error
     """
     try:
-        import re
-
         # Define target paths
         apps_dir = Path.home() / ".local/share/applications"
 
@@ -549,8 +545,6 @@ def integrate_appimage(
 
         # --- Update desktop and icon databases ---
         try:
-            import subprocess
-
             subprocess.run(
                 ["update-desktop-database", str(apps_dir)],
                 check=False,

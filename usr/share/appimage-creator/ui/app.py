@@ -7,7 +7,7 @@ import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Gtk, Adw, Gio
+from gi.repository import Gtk, Adw, Gio, Gdk
 from ui.window import AppImageCreatorWindow
 from utils.i18n import _
 
@@ -73,11 +73,9 @@ class AppImageCreatorApp(Adw.Application):
                 else None
             )
             if display is None:
-                display = (
-                    Gtk.get_default_display()
-                    if hasattr(Gtk, "get_default_display")
-                    else None
-                )
+                # During do_startup there is no active window yet; GTK4 exposes
+                # the default display via Gdk (Gtk.get_default_display does not exist).
+                display = Gdk.Display.get_default()
 
             if display:
                 Gtk.StyleContext.add_provider_for_display(

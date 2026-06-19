@@ -155,11 +155,18 @@ class ProgressDialog(Adw.Window):
 
         # Prevent closing during download
         self.can_close = False
+        # Block window-manager / Esc close attempts while a download is in progress
+        self.connect("close-request", self._on_close_request)
 
         self.app_name = app_name
         self.new_version = new_version
 
         self._build_ui()
+
+    def _on_close_request(self, *_args):
+        """Reject close attempts until the download is finished."""
+        # Returning True stops the default handler (the window stays open)
+        return not self.can_close
 
     def _set_window_icon(self):
         """Set window icon from installed location or fallback"""
@@ -281,8 +288,10 @@ class ProgressDialog(Adw.Window):
                 color: #26a269;
             }
         """)
-        self.status_icon.get_style_context().add_provider(
-            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        Gtk.StyleContext.add_provider_for_display(
+            self.status_icon.get_display(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
         self.status_icon.add_css_class("success-icon")
 
@@ -308,8 +317,10 @@ class ProgressDialog(Adw.Window):
                 color: #c01c28;
             }
         """)
-        self.status_icon.get_style_context().add_provider(
-            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        Gtk.StyleContext.add_provider_for_display(
+            self.status_icon.get_display(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
         self.status_icon.add_css_class("error-icon")
 
@@ -656,7 +667,13 @@ class UpdateWindow(Adw.ApplicationWindow):
             # Remove old version if requested
             if self.remove_old_version:
                 try:
-                    if self.appimage_path.exists():
+                    # Never delete the file we just installed (can happen when the
+                    # new filename matches the existing one).
+                    same_file = (
+                        self.appimage_path.exists()
+                        and downloaded_file.resolve() == self.appimage_path.resolve()
+                    )
+                    if self.appimage_path.exists() and not same_file:
                         self.appimage_path.unlink()
                 except Exception as e:
                     print(f"Warning: Could not remove old version: {e}")
@@ -731,7 +748,13 @@ class UpdateWindow(Adw.ApplicationWindow):
 
                 config = configparser.ConfigParser()
                 config.read(desktop_file)
-                icon_name = config.get("Desktop Entry", "Icon")
+                icon_name = config.get(
+                    "Desktop Entry", "Icon", fallback=None
+                )
+
+                if not icon_name:
+                    print("Desktop file has no Icon entry")
+                    return False
 
                 icon_file = None
                 for ext in [".svg", ".png", ".xpm"]:
@@ -789,6 +812,23 @@ class UpdateWindow(Adw.ApplicationWindow):
                 except Exception:
                     pass
 
+                # Refresh the icon cache so a changed icon shows up
+                try:
+                    subprocess.run(
+                        [
+                            "gtk-update-icon-cache",
+                            "-f",
+                            "-t",
+                            str(Path.home() / ".local/share/icons/hicolor"),
+                        ],
+                        check=False,
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                        timeout=10,
+                    )
+                except Exception:
+                    pass
+
                 return True
 
         except Exception as e:
@@ -809,7 +849,12 @@ class UpdateWindow(Adw.ApplicationWindow):
             if len(lines) >= 4:
                 lines[3] = self.update_info.version
 
-            self.marker_file.write_text("\n".join(lines))
+            # Write atomically so a crash mid-write can't corrupt the marker
+            tmp_marker = self.marker_file.with_suffix(
+                self.marker_file.suffix + ".tmp"
+            )
+            tmp_marker.write_text("\n".join(lines))
+            os.replace(str(tmp_marker), str(self.marker_file))
 
         except Exception as e:
             print(f"Failed to update marker file: {e}")
@@ -871,8 +916,6 @@ def show_update_notification(
         marker_file: Path to marker file
         filename_pattern: Pattern for new filename
     """
-    import sys
-
     app = UpdateApp(
         app_name,
         update_info,
@@ -881,4 +924,5 @@ def show_update_notification(
         marker_file,
         filename_pattern,
     )
-    return app.run(sys.argv)
+    # Pass an empty argv so the timer process's own arguments aren't misparsed by GTK
+    return app.run([])

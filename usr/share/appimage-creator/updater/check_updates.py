@@ -58,7 +58,7 @@ def complete_pending_updates():
     for marker_file in marker_dir.glob("*.path"):
         try:
             lines = marker_file.read_text().strip().split("\n")
-            if len(lines) < 1:
+            if not lines or not lines[0].strip():
                 continue
 
             appimage_path = Path(lines[0])

@@ -108,7 +108,7 @@ def analyze_wrapper_script(script_path: str) -> dict:
                     target_path = found_targets[0]
 
                 # The final target_executable is the full, correct path on the build system.
-                if target_path.exists():
+                if target_path is not None and target_path.exists():
                     analysis["target_executable"] = str(target_path)
                     analysis["target_type"] = "python"
 

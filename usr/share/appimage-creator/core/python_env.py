@@ -5,6 +5,7 @@ Handles virtualenv creation, stdlib copying, package installation,
 and system PyGObject fallback.
 """
 
+import ast
 import os
 import re
 import shutil
@@ -41,6 +42,90 @@ _IMPORT_TO_PIP: dict[str, str] = {
     "usb1": "libusb1",
     "cups": "pycups",
     "gi.repository": "PyGObject",
+    "odf": "odfpy",
+    "OpenGL": "PyOpenGL",
+    "OpenSSL": "pyOpenSSL",
+    "dbus": "dbus-python",
+    "Xlib": "python-xlib",
+    "nacl": "PyNaCl",
+    "zmq": "pyzmq",
+    "slugify": "python-slugify",
+    "dns": "dnspython",
+    "git": "GitPython",
+    "markdown": "Markdown",
+    "docx": "python-docx",
+    "pptx": "python-pptx",
+    "fitz": "PyMuPDF",
+    "google": "google-api-python-client",
+}
+
+# Development/test-only tooling that may be imported by tests, conftest, docs or
+# build scripts but must never be bundled into the runtime AppImage. Compared
+# against package names normalised to lower-case with "_" -> "-".
+_DEV_PACKAGES: set[str] = {
+    "pytest",
+    "pytest-cov",
+    "pytest-xdist",
+    "pytest-mock",
+    "pytest-asyncio",
+    "pytest-timeout",
+    "ruff",
+    "mypy",
+    "black",
+    "flake8",
+    "pyflakes",
+    "pycodestyle",
+    "pylint",
+    "isort",
+    "tox",
+    "nox",
+    "coverage",
+    "pre-commit",
+    "twine",
+    "build",
+    "wheel",
+    "setuptools",
+    "pip",
+    "hypothesis",
+    "bandit",
+    "autopep8",
+    "yapf",
+    "sphinx",
+    "mkdocs",
+}
+
+# cv2 functions that live in OpenCV's highgui (GUI) module. If an app calls any
+# of these it needs the full opencv-python build; otherwise it can use the much
+# smaller opencv-python-headless (no Qt5/GTK GUI stack).
+_CV2_GUI_FUNCS: tuple[str, ...] = (
+    "imshow",
+    "namedWindow",
+    "waitKey",
+    "waitKeyEx",
+    "startWindowThread",
+    "destroyAllWindows",
+    "destroyWindow",
+    "selectROI",
+    "selectROIs",
+    "setMouseCallback",
+    "createTrackbar",
+    "getTrackbarPos",
+    "setTrackbarPos",
+    "getWindowProperty",
+    "setWindowProperty",
+    "getWindowImageRect",
+    "moveWindow",
+    "resizeWindow",
+    "setWindowTitle",
+    "createButton",
+    "displayOverlay",
+    "displayStatusBar",
+)
+
+# Full -> headless package substitutions.
+_OPENCV_HEADLESS: dict[str, str] = {
+    "opencv-python": "opencv-python-headless",
+    "opencv-contrib-python": "opencv-contrib-python-headless",
 }
 
 
@@ -60,47 +145,57 @@ class PythonEnvironmentSetup:
 
             if project_root_str:
                 project_root = Path(project_root_str)
-                requirements_source = project_root / "requirements.txt"
             else:
-                executable_path = Path(self._b.app_info.executable)
-                requirements_source = executable_path.parent / "requirements.txt"
+                project_root = Path(self._b.app_info.executable).parent
+                project_root_str = str(project_root)
 
             # Start with essential packages for GTK/Python applications
             packages_to_install = ["PyGObject", "PyCairo"]
 
-            # If requirements.txt exists, add its content to the list
-            if requirements_source.exists():
-                with open(requirements_source, "r") as f:
-                    user_packages = []
-                    for line in f:
-                        line = line.split("#", 1)[0].strip()
-                        if line:
-                            user_packages.append(line)
-                    packages_to_install.extend(user_packages)
-                self._b.log(
-                    _("Loaded {} packages from requirements.txt").format(
-                        len(user_packages)
-                    )
-                )
+            # Prefer the project's *declared* dependencies (requirements.txt or
+            # pyproject.toml [project.dependencies]). They are authoritative, so
+            # when present we do NOT also scan imports. Import scanning is a
+            # best-effort guess that can pull the wrong packages: local modules
+            # in a src/ layout, names matched inside docstrings/comments, or
+            # test-only deps. Mixing it in is what bloated builds with unrelated
+            # packages, so declared deps win outright.
+            declared = self._load_declared_dependencies(project_root)
+            if declared is not None:
+                packages_to_install.extend(declared)
             else:
                 self._b.log(
                     _(
-                        "No requirements.txt found. Auto-detecting dependencies from source code..."
+                        "No declared dependencies (requirements.txt / pyproject.toml). "
+                        "Auto-detecting from source code..."
                     )
                 )
+                detected = self._detect_pip_dependencies(project_root_str)
+                if detected:
+                    self._b.log(
+                        _("Auto-detected pip packages: {}").format(
+                            ", ".join(detected)
+                        )
+                    )
+                    packages_to_install.extend(detected)
 
-            # Auto-detect pip dependencies from Python source files
-            detected = self._detect_pip_dependencies(
-                project_root_str or str(Path(self._b.app_info.executable).parent)
-            )
-            if detected:
-                self._b.log(
-                    _("Auto-detected pip packages: {}").format(", ".join(detected))
-                )
-                packages_to_install.extend(detected)
+            # Remove duplicates while preserving order and deduplicating by the
+            # package base-name, so "requests" and "requests==2.0" don't both end
+            # up installed (set() would also randomize the install order).
+            def _base_name(spec: str) -> str:
+                return re.split(r"[<>=!~\[ ]", spec.strip(), maxsplit=1)[0].lower()
 
-            # Remove duplicates and join
-            requirements_content = "\n".join(list(set(packages_to_install)))
+            seen_names = set()
+            deduped_packages = []
+            for pkg in packages_to_install:
+                if not pkg or not pkg.strip():
+                    continue
+                base = _base_name(pkg)
+                if base in seen_names:
+                    continue
+                seen_names.add(base)
+                deduped_packages.append(pkg.strip())
+
+            requirements_content = "\n".join(deduped_packages)
 
             python_dir = self._b.appdir_path / "usr" / "python"
             python_dir.mkdir(parents=True, exist_ok=True)
@@ -136,6 +231,11 @@ class PythonEnvironmentSetup:
 
             # Install required packages into the venv
             self._install_packages(venv_path, requirements_content, py_version_short)
+
+            # Swap full opencv-python for the headless build when the app uses no
+            # cv2 GUI functions (drops the Qt5 stack, even when opencv is only a
+            # transitive dependency).
+            self._optimize_opencv(venv_path, py_version_short, project_root_str)
 
             # Aggressive cleanup AFTER pip installation
             self._cleanup_venv(venv_path, venv_stdlib_dest, py_version_short)
@@ -334,7 +434,51 @@ fi
                     f"  Warning: Could not copy Python libs from {pattern}: {e}"
                 )
 
+        # `cp -L` above dereferences the .so symlink chain and writes several
+        # byte-identical multi-MB copies (libpython.so, .so.1, .so.1.0).
+        # Collapse the duplicates back into symlinks to save ~18 MB.
+        try:
+            dup_libs = sorted(lib_dir.glob(f"libpython{py_version_str}*.so*"))
+            saved = self._dedup_identical_files(dup_libs)
+            if saved:
+                self._b.log(
+                    _("  Deduplicated python libraries (saved {:.1f} MB)").format(
+                        saved / 1024 / 1024
+                    )
+                )
+        except Exception as e:
+            self._b.log(f"  Warning: could not dedup python libraries: {e}")
+
         self._b.log(_("Python shared libraries copied"))
+
+    @staticmethod
+    def _dedup_identical_files(paths) -> int:
+        """Replace byte-identical duplicate files with relative symlinks.
+
+        Keeps the first path as the real file and points the rest at it. All
+        paths must live in the same directory. Returns the bytes reclaimed.
+        """
+        import filecmp
+
+        saved = 0
+        canonical = None
+        for p in paths:
+            if not p.is_file() or p.is_symlink():
+                continue
+            if canonical is None:
+                canonical = p
+                continue
+            try:
+                if p.stat().st_size == canonical.stat().st_size and filecmp.cmp(
+                    str(canonical), str(p), shallow=False
+                ):
+                    size = p.stat().st_size
+                    p.unlink()
+                    p.symlink_to(canonical.name)
+                    saved += size
+            except OSError:
+                continue
+        return saved
 
     def _install_packages(self, venv_path, requirements_content, py_version_short):
         """Install required packages into the venv."""
@@ -361,6 +505,31 @@ fi
             )
             install_env["PKG_CONFIG_PATH"] = ":".join(filter(None, all_paths))
 
+        if not packages:
+            self._b.log(_("No Python packages to install"))
+            return
+
+        # First try installing everything in a single call so pip can resolve
+        # version constraints jointly (faster and avoids inconsistent pins).
+        batch_cmd = [
+            str(pip_executable),
+            "install",
+            "--no-warn-script-location",
+            *packages,
+        ]
+        batch_result = self._b._run_command(batch_cmd, timeout=600, env=install_env)
+
+        if batch_result.returncode == 0:
+            self._b.log(_("Python packages installed"))
+            return
+
+        # Batch install failed; fall back to per-package installs so a single bad
+        # package doesn't block the rest, and so the PyGObject fallback can run.
+        self._b.log(
+            _("Batch install failed, retrying packages individually...")
+        )
+
+        failed_packages = []
         for package in packages:
             self._b.log(_("Installing {}...").format(package))
             install_cmd = [
@@ -384,10 +553,188 @@ fi
                         _("Attempting fallback: using system PyGObject bindings")
                     )
                     self._use_system_pygobject(venv_path)
+                else:
+                    failed_packages.append(package)
             else:
                 self._b.log(_("Successfully installed {}").format(package))
 
+        if failed_packages:
+            self._b.log(
+                _("Warning: the following packages could not be installed: {}").format(
+                    ", ".join(failed_packages)
+                )
+            )
+
         self._b.log(_("Python packages installed"))
+
+    def _app_uses_cv2_gui(self, project_root: str) -> bool:
+        """True if the app calls any cv2 highgui (GUI) function.
+
+        Errs toward True (keep the full opencv build) so we never break an app
+        that actually shows OpenCV windows.
+        """
+        root = Path(project_root)
+        if not root.exists():
+            return False
+        attr_re = re.compile(r"cv2\s*\.\s*(" + "|".join(_CV2_GUI_FUNCS) + r")\b")
+        from_re = re.compile(r"from\s+cv2\s+import\s+([^\n]+)")
+        ignored = {
+            "tests", "test", "testing", "docs", "doc", "examples", "example",
+            ".git", "build", "dist", "node_modules", ".tox", ".venv", "venv",
+        }
+        for py_file in root.rglob("*.py"):
+            try:
+                rel_parts = py_file.relative_to(root).parts
+            except ValueError:
+                rel_parts = py_file.parts
+            if any(seg in ignored for seg in rel_parts):
+                continue
+            try:
+                text = py_file.read_text(encoding="utf-8", errors="ignore")
+            except Exception:
+                continue
+            if attr_re.search(text):
+                return True
+            for m in from_re.finditer(text):
+                if any(fn in m.group(1) for fn in _CV2_GUI_FUNCS):
+                    return True
+        return False
+
+    def _optimize_opencv(self, venv_path, py_version_short, project_root: str):
+        """Replace full opencv-python with the headless build when safe.
+
+        The full wheel hard-links the Qt5 GUI stack (~25-30 MB) that a non-GUI
+        app never uses. opencv-python is frequently a *transitive* dependency
+        (e.g. rapidocr requires it), so swapping the declared requirement is not
+        enough — we replace it in the installed venv after the fact.
+        """
+        site_packages = venv_path / "lib" / py_version_short / "site-packages"
+        if not site_packages.exists():
+            return
+
+        installed_full = []
+        for full_name in _OPENCV_HEADLESS:
+            dist_glob = full_name.replace("-", "_") + "-*.dist-info"
+            dist_dirs = list(site_packages.glob(dist_glob))
+            if dist_dirs:
+                installed_full.append((full_name, dist_dirs[0]))
+
+        if not installed_full:
+            return
+
+        if self._app_uses_cv2_gui(project_root):
+            self._b.log(
+                _("Keeping full OpenCV build (app uses cv2 GUI functions).")
+            )
+            return
+
+        pip_executable = venv_path / "bin" / "pip"
+        for full_name, dist_dir in installed_full:
+            headless_name = _OPENCV_HEADLESS[full_name]
+            version = None
+            try:
+                stem = dist_dir.name[: -len(".dist-info")]
+                version = stem.split("-")[-1]
+            except Exception:
+                version = None
+
+            self._b.log(
+                _("Replacing {} with {} (no cv2 GUI usage detected)...").format(
+                    full_name, headless_name
+                )
+            )
+
+            # Remove the full build first so its Qt5/ffmpeg libs go away cleanly
+            # (via its RECORD), then install the headless build with no GUI libs.
+            self._b._run_command(
+                [str(pip_executable), "uninstall", "-y", full_name], timeout=120
+            )
+
+            headless_spec = (
+                f"{headless_name}=={version}" if version else headless_name
+            )
+            result = self._b._run_command(
+                [
+                    str(pip_executable),
+                    "install",
+                    "--no-deps",
+                    "--no-warn-script-location",
+                    headless_spec,
+                ],
+                timeout=300,
+            )
+            if result.returncode != 0 and version:
+                # exact-version headless not available — retry unpinned
+                result = self._b._run_command(
+                    [
+                        str(pip_executable),
+                        "install",
+                        "--no-deps",
+                        "--no-warn-script-location",
+                        headless_name,
+                    ],
+                    timeout=300,
+                )
+
+            if result.returncode != 0:
+                # Never leave cv2 broken: restore the full build.
+                self._b.log(
+                    _("Headless install failed; restoring {}.").format(full_name)
+                )
+                restore_spec = f"{full_name}=={version}" if version else full_name
+                self._b._run_command(
+                    [
+                        str(pip_executable),
+                        "install",
+                        "--no-deps",
+                        "--no-warn-script-location",
+                        restore_spec,
+                    ],
+                    timeout=300,
+                )
+            else:
+                self._b.log(
+                    _("  {} installed (Qt5 GUI libraries dropped).").format(
+                        headless_name
+                    )
+                )
+
+    def _strip_shared_objects(self, venv_path):
+        """Strip debug/local symbols from bundled .so files to reclaim space.
+
+        Uses `strip --strip-unneeded`, which preserves the dynamic symbol table
+        required for loading — safe for shared libraries, and a no-op on files
+        that are already stripped.
+        """
+        strip_bin = shutil.which("strip")
+        if not strip_bin:
+            return
+        stripped = 0
+        saved = 0
+        for so in venv_path.rglob("*.so*"):
+            if not so.is_file() or so.is_symlink():
+                continue
+            try:
+                before = so.stat().st_size
+                result = subprocess.run(
+                    [strip_bin, "--strip-unneeded", str(so)],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    timeout=120,
+                )
+                if result.returncode == 0:
+                    after = so.stat().st_size
+                    if after < before:
+                        saved += before - after
+                        stripped += 1
+            except (OSError, subprocess.SubprocessError):
+                continue
+        if stripped:
+            self._b.log(
+                _("  Stripped {} shared libraries (saved {:.1f} MB)").format(
+                    stripped, saved / 1024 / 1024
+                )
+            )
 
     def _cleanup_venv(self, venv_path, venv_stdlib_dest, py_version_short):
         """Perform aggressive cleanup for size optimization."""
@@ -453,7 +800,151 @@ fi
                 removed_pycache, removed_pyc
             )
         )
+
+        # Remove static archives (*.a) — useless at runtime, often tens of MB
+        # (e.g. libpython3.x.a + libpython3.x-pic.a ~= 27 MB).
+        removed_static = 0
+        static_bytes = 0
+        for a_file in venv_path.rglob("*.a"):
+            try:
+                static_bytes += a_file.stat().st_size
+            except OSError:
+                pass
+            a_file.unlink(missing_ok=True)
+            removed_static += 1
+        if removed_static:
+            self._b.log(
+                _("  Removed {} static .a archives ({:.1f} MB)").format(
+                    removed_static, static_bytes / 1024 / 1024
+                )
+            )
+
+        # Remove bundled test suites from installed packages — never used at
+        # runtime, and heavy packages (numpy/scipy/pandas/numba/...) ship tens of
+        # MB of them.
+        if site_packages.exists():
+            removed_tests = 0
+            for tests_dir in list(site_packages.rglob("tests")):
+                if tests_dir.is_dir():
+                    shutil.rmtree(tests_dir, ignore_errors=True)
+                    removed_tests += 1
+            if removed_tests:
+                self._b.log(
+                    _("  Removed {} bundled test directories").format(removed_tests)
+                )
+
+        # De-duplicate the interpreter copies: `python -m venv --copies` writes
+        # python / python3 / python3.x as three identical real binaries. Collapse
+        # the duplicates into symlinks (~16 MB).
+        bin_dir = venv_path / "bin"
+        if bin_dir.is_dir():
+            try:
+                py_bins = sorted(
+                    p
+                    for p in bin_dir.glob("python*")
+                    if p.is_file() and not p.is_symlink()
+                )
+                saved = self._dedup_identical_files(py_bins)
+                if saved:
+                    self._b.log(
+                        _("  Deduplicated python binaries (saved {:.1f} MB)").format(
+                            saved / 1024 / 1024
+                        )
+                    )
+            except Exception:
+                pass
+
+        # Strip debug/local symbols from bundled shared libraries (OpenBLAS,
+        # OpenCV, numpy/scipy extensions ship unstripped — tens of MB).
+        self._strip_shared_objects(venv_path)
+
         self._b.log(_("Aggressive cleanup complete."))
+
+    def _load_declared_dependencies(self, project_root: Path):
+        """Return the project's *declared* runtime dependencies, or None.
+
+        Looks for requirements.txt first, then pyproject.toml
+        ([project].dependencies). Returns None when neither declares anything so
+        the caller can fall back to scanning imports.
+        """
+        # 1) requirements.txt — closest to "exactly what to install"
+        req = project_root / "requirements.txt"
+        if req.exists():
+            try:
+                packages = []
+                for line in req.read_text(
+                    encoding="utf-8", errors="ignore"
+                ).splitlines():
+                    line = line.split("#", 1)[0].strip()
+                    # Skip pip option lines like "-r base.txt" / "--hash=..."
+                    if line and not line.startswith("-"):
+                        packages.append(line)
+                if packages:
+                    self._b.log(
+                        _("Loaded {} packages from requirements.txt").format(
+                            len(packages)
+                        )
+                    )
+                    return packages
+            except Exception as e:
+                self._b.log(
+                    _("Warning: could not read requirements.txt: {}").format(e)
+                )
+
+        # 2) pyproject.toml [project].dependencies
+        pyproject = project_root / "pyproject.toml"
+        if pyproject.exists():
+            deps = self._read_pyproject_dependencies(pyproject)
+            if deps:
+                self._b.log(
+                    _("Loaded {} dependencies from pyproject.toml").format(len(deps))
+                )
+                return deps
+
+        return None
+
+    @staticmethod
+    def _read_pyproject_dependencies(pyproject_path: Path):
+        """Parse [project].dependencies from pyproject.toml. Returns list or None."""
+        try:
+            try:
+                import tomllib  # Python 3.11+
+            except ModuleNotFoundError:
+                try:
+                    import tomli as tomllib  # backport for 3.8-3.10
+                except ModuleNotFoundError:
+                    return None
+            with open(pyproject_path, "rb") as f:
+                data = tomllib.load(f)
+            deps = data.get("project", {}).get("dependencies", [])
+            cleaned = [d.strip() for d in deps if isinstance(d, str) and d.strip()]
+            return cleaned or None
+        except Exception:
+            return None
+
+    @staticmethod
+    def _project_self_names(root: Path) -> set[str]:
+        """Names that refer to the project itself and are never dependencies."""
+        names: set[str] = set()
+        pyproject = root / "pyproject.toml"
+        if pyproject.exists():
+            try:
+                text = pyproject.read_text(encoding="utf-8", errors="ignore")
+                m = re.search(
+                    r'(?m)^\s*name\s*=\s*["\']([^"\']+)["\']', text
+                )
+                if m:
+                    base = m.group(1).strip().lower()
+                    names.update({base, base.replace("-", "_"), base.replace("_", "-")})
+            except Exception:
+                pass
+        # src-layout: every top-level package under src/ is local to the project
+        src_dir = root / "src"
+        if src_dir.is_dir():
+            for child in src_dir.iterdir():
+                if child.is_dir() and (child / "__init__.py").exists():
+                    names.add(child.name)
+        return names
 
     def _detect_pip_dependencies(self, project_root: str) -> list[str]:
         """Scan Python source files to auto-detect third-party pip dependencies."""
@@ -474,35 +965,69 @@ fi
                 if sibling.is_dir() and sibling.name.lower() == pkg_name:
                     vendored_dirs.add(sibling.as_posix())
 
-        # Collect ALL local module/package names at every level
+        # Collect ALL local module/package names. We scan recursively (not just
+        # the top level) so that src-layout projects — where packages live under
+        # src/<pkg>/ with no src/__init__.py — are still recognised as local and
+        # not mistaken for PyPI packages. Without this, a local window.py wrongly
+        # pulls the unrelated "window" package off PyPI.
         local_modules: set[str] = set()
-        for d in root.iterdir():
-            if d.is_dir() and (d / "__init__.py").exists():
-                local_modules.add(d.name)
-                # Also add sub-modules (for intra-package imports like 'from checker import ...')
-                for sub in d.rglob("*.py"):
-                    local_modules.add(sub.stem)
-        for py_file in root.glob("*.py"):
+        for py_file in py_files:
             local_modules.add(py_file.stem)
+            parent = py_file.parent
+            if (parent / "__init__.py").exists():
+                local_modules.add(parent.name)
+        # The project's own distribution/package name is never a dependency.
+        local_modules |= self._project_self_names(root)
 
-        # Collect top-level import names (skip only vendored package files)
+        # Directory segments to ignore when scanning for imports: test suites,
+        # docs and build trees pull in dev-only deps (pytest, sphinx, ...) that
+        # must not be bundled into the runtime AppImage.
+        ignored_segments = {
+            "tests", "test", "testing", "docs", "doc", "examples", "example",
+            "benchmarks", "benchmark", ".git", "build", "dist", "node_modules",
+            ".tox", ".venv", "venv",
+        }
+
+        # Collect top-level import names using the AST. Parsing (instead of regex
+        # over raw text) means imports written inside docstrings/comments/strings
+        # are never matched — that false-positive previously pulled a 178 MB
+        # unrelated package off a single docstring line.
         import_names: set[str] = set()
-        import_pattern = re.compile(r"^\s*(?:import|from)\s+([\w.]+)", re.MULTILINE)
-
-        for py_file in py_files[:100]:
-            # Skip files inside vendored directories
+        for py_file in py_files:
             file_path = py_file.as_posix()
-            skip = any(file_path.startswith(vdir) for vdir in vendored_dirs)
-            if skip:
+            # Skip vendored packages
+            if any(file_path.startswith(vdir) for vdir in vendored_dirs):
+                continue
+            # Skip test/doc/build trees and pytest files (relative to the project)
+            try:
+                rel_parts = py_file.relative_to(root).parts
+            except ValueError:
+                rel_parts = py_file.parts
+            if any(seg in ignored_segments for seg in rel_parts):
+                continue
+            if py_file.name == "conftest.py" or py_file.name.startswith("test_"):
                 continue
             try:
                 content = py_file.read_text(encoding="utf-8", errors="ignore")
-                for match in import_pattern.finditer(content):
-                    module = match.group(1).split(".")[0]
-                    if module:
-                        import_names.add(module)
+                tree = ast.parse(content, filename=file_path)
             except Exception:
+                # Unparseable file — skip it rather than guessing from raw text.
                 continue
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+                    for alias in node.names:
+                        top = alias.name.split(".")[0]
+                        if top:
+                            import_names.add(top)
+                elif isinstance(node, ast.ImportFrom):
+                    # level > 0 is a relative import (from . / from ..) which is
+                    # always a local module, never a PyPI package.
+                    if node.level:
+                        continue
+                    if node.module:
+                        top = node.module.split(".")[0]
+                        if top:
+                            import_names.add(top)
 
         # Get stdlib module names
         stdlib_modules: set[str] = set()
@@ -726,7 +1251,12 @@ fi
             pip_name = _IMPORT_TO_PIP.get(module, module)
             pip_packages.add(pip_name)
 
-        # Remove packages already in the default list
+        # Drop dev/test-only tooling (pytest, ruff, ...) and the packages already
+        # in the default list.
+        def _norm(name: str) -> str:
+            return name.lower().replace("_", "-")
+
+        pip_packages = {p for p in pip_packages if _norm(p) not in _DEV_PACKAGES}
         pip_packages.discard("PyGObject")
         pip_packages.discard("PyCairo")
 

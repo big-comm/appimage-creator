@@ -4,6 +4,7 @@
 AppImage downloader and installer
 """
 
+import os
 import urllib.request
 import urllib.error
 import tempfile
@@ -52,6 +53,12 @@ class AppImageDownloader:
         Returns:
             Path to downloaded file, or None on error
         """
+        # Only allow HTTPS downloads to avoid unauthenticated/tampered binaries
+        if not isinstance(download_url, str) or not download_url.startswith("https://"):
+            print(f"Refusing non-HTTPS download URL: {download_url}")
+            return None
+
+        part_file = None
         try:
             # Determine filename
             if target_filename:
@@ -67,12 +74,43 @@ class AppImageDownloader:
 
             download_dir.mkdir(parents=True, exist_ok=True)
             target_file = download_dir / filename
+            # Download to a temporary .part file first, then atomically replace
+            part_file = download_dir / (filename + ".part")
 
-            # Download
-            progress = DownloadProgress(progress_callback)
-            urllib.request.urlretrieve(
-                download_url, str(target_file), reporthook=progress.update
+            req = urllib.request.Request(
+                download_url, headers={"User-Agent": "AppImage-Updater/1.0"}
             )
+
+            downloaded = 0
+            with urllib.request.urlopen(req, timeout=30) as response:
+                # Content-Length may be absent on some redirects
+                length_header = response.headers.get("Content-Length")
+                total_size = int(length_header) if length_header else 0
+
+                with open(part_file, "wb") as out:
+                    while True:
+                        chunk = response.read(64 * 1024)
+                        if not chunk:
+                            break
+                        out.write(chunk)
+                        downloaded += len(chunk)
+                        if progress_callback:
+                            progress_callback(downloaded, total_size)
+
+            # Integrity check: must not be empty, and must match Content-Length
+            if downloaded == 0:
+                print("Download failed: received 0 bytes")
+                part_file.unlink(missing_ok=True)
+                return None
+            if total_size and downloaded != total_size:
+                print(
+                    f"Download incomplete: got {downloaded} of {total_size} bytes"
+                )
+                part_file.unlink(missing_ok=True)
+                return None
+
+            # Atomically move the verified file into place
+            os.replace(str(part_file), str(target_file))
 
             # Make executable
             target_file.chmod(0o755)
@@ -81,13 +119,19 @@ class AppImageDownloader:
 
         except urllib.error.URLError as e:
             print(f"Download failed: {e}")
+            if part_file is not None:
+                part_file.unlink(missing_ok=True)
             return None
         except Exception as e:
             print(f"Error downloading update: {e}")
+            if part_file is not None:
+                part_file.unlink(missing_ok=True)
             return None
 
     @staticmethod
-    def install_update(old_path: Path, new_path: Path) -> bool:
+    def install_update(
+        old_path: Path, new_path: Path, new_version: Optional[str] = None
+    ) -> bool:
         """
         Replace old AppImage with new one
 
@@ -99,6 +143,8 @@ class AppImageDownloader:
         Args:
             old_path: Path to current AppImage
             new_path: Path to downloaded AppImage
+            new_version: Optional version string; when provided, a "<path>.new.version"
+                marker is written so a deferred update can update the marker file later.
 
         Returns:
             True on success, False on error
@@ -110,6 +156,14 @@ class AppImageDownloader:
 
             # Move downloaded file to .new location
             shutil.move(str(new_path), str(new_version_path))
+
+            # Record the staged version so complete_pending_update can update the
+            # marker file on next launch (avoids re-detecting the same update).
+            if new_version:
+                try:
+                    Path(str(old_path) + ".new.version").write_text(new_version)
+                except Exception:
+                    pass
 
             # Make executable
             new_version_path.chmod(0o755)
@@ -130,6 +184,9 @@ class AppImageDownloader:
                 # Remove backup if successful
                 if backup_path.exists():
                     backup_path.unlink()
+
+                # Update completed immediately; the deferred version marker is moot
+                Path(str(old_path) + ".new.version").unlink(missing_ok=True)
 
                 return True
 

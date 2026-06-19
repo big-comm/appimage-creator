@@ -118,6 +118,20 @@ def create_desktop_file(appdir_path: str | os.PathLike, app_info: AppInfo) -> Pa
 def create_apprun_script(app_info: AppInfo) -> str:
     """Create AppRun script content"""
 
+    def sh_dq(value) -> str:
+        """Escape a value for safe interpolation inside a double-quoted bash string."""
+        if not value:
+            return ""
+        text = str(value)
+        # Order matters: backslash first, then characters special in double quotes
+        text = text.replace("\\", "\\\\")
+        text = text.replace('"', '\\"')
+        text = text.replace("`", "\\`")
+        text = text.replace("$", "\\$")
+        # Strip newlines that would break the single command line
+        text = text.replace("\n", " ").replace("\r", " ")
+        return text
+
     executable = app_info.apprun_executable
     argument = app_info.apprun_argument
 
@@ -150,8 +164,15 @@ def create_apprun_script(app_info: AppInfo) -> str:
         if detected_desktops:
             main_desktop_filename = Path(detected_desktops[0]).name
 
+    # Pre-escape user-controllable metadata for safe shell interpolation below
+    safe_app_name = sh_dq(app_info.name)
+    safe_update_url = sh_dq(app_info.update_url)
+    safe_version = sh_dq(app_info.version)
+    safe_update_pattern = sh_dq(app_info.update_pattern)
+    safe_desktop_filename = sh_dq(main_desktop_filename)
+
     return f'''#!/bin/bash
-# AppRun for {app_info.name}
+# AppRun for {safe_app_name}
 
 HERE="$(dirname "$(readlink -f "${{0}}")")"
 
@@ -186,11 +207,11 @@ fi
 # to offer the user to integrate the AppImage into their system menu.
 if [ -n "$APPIMAGE" ] && [ -f "$HERE/usr/bin/integration_helper.py" ]; then
     # We need to find the main .desktop file name to pass to the helper
-    DESKTOP_FILE_NAME="{main_desktop_filename}"
+    DESKTOP_FILE_NAME="{safe_desktop_filename}"
     if [ -n "$DESKTOP_FILE_NAME" ]; then
         # Now we can just call 'python3' because the PATH is correctly set
         # Pass update metadata if available
-        python3 "$HERE/usr/bin/integration_helper.py" "{app_info.name}" "$APPIMAGE" "$DESKTOP_FILE_NAME" "{app_info.update_url}" "{app_info.version}" "{app_info.update_pattern}"
+        python3 "$HERE/usr/bin/integration_helper.py" "{safe_app_name}" "$APPIMAGE" "$DESKTOP_FILE_NAME" "{safe_update_url}" "{safe_version}" "{safe_update_pattern}"
     fi
 fi
 # --- End of Integration Helper ---
@@ -266,46 +287,3 @@ def create_launcher_script_file(
     script_path.chmod(script_path.stat().st_mode | stat.S_IEXEC)
 
     return script_path
-
-
-def adapt_existing_desktop_file(
-    source_desktop_file: str,
-    appdir_path: str | os.PathLike,
-    app_info: AppInfo,
-    new_exec: str | None = None,
-) -> Path | None:
-    """Copy and adapt existing desktop file without renaming it or changing icon"""
-    try:
-        with open(source_desktop_file, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        lines = content.split("\n")
-        modified_lines = []
-
-        for line in lines:
-            # Keep Exec= and Icon= unchanged
-            modified_lines.append(line)
-
-        # Ensure Version field exists
-        if not any(line.strip().startswith("Version=") for line in modified_lines):
-            for i, line in enumerate(modified_lines):
-                if line.strip() == "[Desktop Entry]":
-                    modified_lines.insert(i + 1, "Version=1.0")
-                    break
-
-        modified_content = "\n".join(modified_lines)
-
-        # Overwrite with modified content
-        with open(source_desktop_file, "w", encoding="utf-8") as f:
-            f.write(modified_content)
-
-        # Copy to AppDir root, keeping original name
-        root_desktop_path = appdir_path / Path(source_desktop_file).name
-        with open(root_desktop_path, "w", encoding="utf-8") as f:
-            f.write(modified_content)
-
-        return True
-
-    except Exception as e:
-        print(_("Warning: Failed to adapt existing desktop file: {}").format(e))
-        return False

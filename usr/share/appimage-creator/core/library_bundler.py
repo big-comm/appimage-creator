@@ -51,13 +51,27 @@ class LibraryBundler:
 
         extra_libs = self._b.app_info.extra_libraries
         if extra_libs:
-            self._b.log(
-                _("Including user-specified extra libraries: {}").format(
-                    ", ".join(extra_libs)
+            # These library names are interpolated into a generated bash script
+            # (find ... -name '<name>'). Only allow characters valid in a library
+            # name / glob pattern to prevent shell injection from the UI field.
+            safe_pattern = re.compile(r"^[A-Za-z0-9._+*?\[\]-]+$")
+            safe_extra = []
+            for lib in extra_libs:
+                if safe_pattern.match(lib):
+                    safe_extra.append(lib)
+                else:
+                    self._b.log(
+                        _("Ignoring unsafe extra library name: {}").format(lib)
+                    )
+
+            if safe_extra:
+                self._b.log(
+                    _("Including user-specified extra libraries: {}").format(
+                        ", ".join(safe_extra)
+                    )
                 )
-            )
-            required_libs.extend(extra_libs)
-            required_libs = sorted(list(set(required_libs)))
+                required_libs.extend(safe_extra)
+                required_libs = sorted(list(set(required_libs)))
 
         if required_libs:
             self._b.log(
@@ -191,7 +205,10 @@ class LibraryBundler:
             script_lines.append(f'echo "Searching for {typelib}..."')
             script_lines.append("FOUND=0")
             for search_path in system_typelib_paths:
-                script_lines.append(f'if [ -f "{search_path}/{typelib}" ]; then')
+                # Only copy from the first path that has it (avoids double-counting)
+                script_lines.append(
+                    f'if [ $FOUND -eq 0 ] && [ -f "{search_path}/{typelib}" ]; then'
+                )
                 script_lines.append(f'    cp -v "{search_path}/{typelib}" "$DEST_DIR/"')
                 script_lines.append("    COPIED=$((COPIED + 1))")
                 script_lines.append("    FOUND=1")
@@ -929,13 +946,18 @@ Type=Scalable
             # Create symlinks in the AppDir root
             relative_icon_path = os.path.relpath(icon_file_for_symlink, self._b.appdir_path)
 
-            # Create main icon symlink
+            # Create main icon symlink (remove any existing file/symlink first to
+            # avoid FileExistsError leaving the AppImage without a root icon)
             root_icon_symlink = self._b.appdir_path / new_icon_name
+            if root_icon_symlink.is_symlink() or root_icon_symlink.exists():
+                root_icon_symlink.unlink()
             root_icon_symlink.symlink_to(relative_icon_path)
             self._b.log(f"Created root icon symlink: {root_icon_symlink.name} -> {relative_icon_path}")
 
             # Create .DirIcon symlink
             dir_icon_symlink = self._b.appdir_path / ".DirIcon"
+            if dir_icon_symlink.is_symlink() or dir_icon_symlink.exists():
+                dir_icon_symlink.unlink()
             dir_icon_symlink.symlink_to(relative_icon_path)
             self._b.log(f"Created .DirIcon symlink: .DirIcon -> {relative_icon_path}")
 

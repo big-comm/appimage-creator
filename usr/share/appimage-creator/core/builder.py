@@ -1086,8 +1086,6 @@ class AppImageBuilder:
         if not python_files:
             return False
 
-        import re
-
         gi_patterns = [
             r"\bimport\s+gi\b",
             r"\bfrom\s+gi\b",
@@ -1208,7 +1206,9 @@ class AppImageBuilder:
         self.log(_("Checking for missing packages in the container..."))
         for pkg in packages_needed:
             # Use dpkg-query to check package status. It returns non-zero if not installed.
-            check_cmd = ["dpkg-query", "-W", "-f='${Status}'", pkg]
+            # No surrounding quotes: there's no shell to strip them (args are passed
+            # as a list / shlex-quoted), so they would otherwise end up in the output.
+            check_cmd = ["dpkg-query", "-W", "-f=${Status}", pkg]
             result = self._run_command(check_cmd, capture_output=True)
             # A successful query contains 'install ok installed'
             if result.returncode != 0 or "install ok installed" not in result.stdout:

@@ -117,29 +117,31 @@ def convert_svg_to_png(
     ):
         pass
 
-    # Try ImageMagick
-    try:
-        subprocess.run(
-            [
-                "convert",
-                "-background",
-                "transparent",
-                "-resize",
-                f"{size}x{size}",
-                str(svg_path),
-                str(png_path),
-            ],
-            check=True,
-            capture_output=True,
-            timeout=30,
-        )
-        return True
-    except (
-        subprocess.CalledProcessError,
-        FileNotFoundError,
-        subprocess.TimeoutExpired,
-    ):
-        pass
+    # Try ImageMagick (IM7 uses the unified "magick" binary; "convert" is the
+    # legacy IM6 name and may be absent on IM7-only systems)
+    for im_cmd in (["magick"], ["convert"]):
+        try:
+            subprocess.run(
+                im_cmd
+                + [
+                    "-background",
+                    "transparent",
+                    "-resize",
+                    f"{size}x{size}",
+                    str(svg_path),
+                    str(png_path),
+                ],
+                check=True,
+                capture_output=True,
+                timeout=30,
+            )
+            return True
+        except (
+            subprocess.CalledProcessError,
+            FileNotFoundError,
+            subprocess.TimeoutExpired,
+        ):
+            continue
 
     # Try inkscape
     try:

@@ -8,6 +8,7 @@ import json
 import urllib.request
 import urllib.error
 import os
+import re
 from pathlib import Path
 from typing import Optional
 import fnmatch
@@ -77,6 +78,11 @@ class UpdateChecker:
         # Provides 5000 req/hour instead of 60 req/hour
         return DEFAULT_GITHUB_TOKEN
 
+    @staticmethod
+    def _is_safe_url(url: str) -> bool:
+        """Only allow HTTPS URLs to avoid unauthenticated/tampered downloads."""
+        return isinstance(url, str) and url.startswith("https://")
+
     def check_for_update(self) -> Optional[UpdateInfo]:
         """
         Check if an update is available
@@ -85,6 +91,10 @@ class UpdateChecker:
             UpdateInfo if update is available, None otherwise
         """
         if not self.update_url:
+            return None
+
+        if not self._is_safe_url(self.update_url):
+            print(f"Refusing non-HTTPS update URL: {self.update_url}")
             return None
 
         try:
@@ -110,8 +120,6 @@ class UpdateChecker:
             Tag: "app-1.2.3-x86_64" or "v1.2.3"
             Returns: "1.2.3"
         """
-        import re
-
         # Remove 'v' prefix if present
         tag = tag_name.lstrip("v")
 
@@ -166,6 +174,10 @@ class UpdateChecker:
                     download_url = asset.get("browser_download_url", "")
                     release_notes = data.get("body", "")
 
+                    if not self._is_safe_url(download_url):
+                        print(f"Refusing non-HTTPS download URL: {download_url}")
+                        return None
+
                     return UpdateInfo(
                         version=version,
                         download_url=download_url,
@@ -202,6 +214,10 @@ class UpdateChecker:
             if not version or not download_url:
                 return None
 
+            if not self._is_safe_url(download_url):
+                print(f"Refusing non-HTTPS download URL: {download_url}")
+                return None
+
             if not self._is_newer_version(version):
                 return None
 
@@ -209,6 +225,12 @@ class UpdateChecker:
                 version=version, download_url=download_url, release_notes=release_notes
             )
 
+        except urllib.error.URLError as e:
+            print(f"Network error checking generic JSON: {e}")
+            return None
+        except json.JSONDecodeError as e:
+            print(f"Invalid JSON response: {e}")
+            return None
         except Exception as e:
             print(f"Error checking generic JSON: {e}")
             return None
@@ -223,12 +245,25 @@ class UpdateChecker:
             new_ver = new_version.lstrip("v")
             curr_ver = self.current_version.lstrip("v")
 
-            # Simple string comparison for now
-            # For more complex versioning, use packaging.version
-            return new_ver > curr_ver
+            if new_ver == curr_ver:
+                return False
+
+            def _version_key(version: str):
+                # Split on dots and dashes, compare numeric parts as ints so
+                # that "25.11" > "25.9" (lexicographic compare gets this wrong).
+                key = []
+                for part in re.split(r"[.\-]", version):
+                    if part.isdigit():
+                        key.append((1, int(part), ""))
+                    else:
+                        key.append((0, 0, part))
+                return key
+
+            return _version_key(new_ver) > _version_key(curr_ver)
 
         except Exception:
-            return False
+            # Fall back to string comparison if parsing fails
+            return new_version.lstrip("v") > self.current_version.lstrip("v")
 
 
 def check_appimage_update(marker_file_path: Path) -> Optional[UpdateInfo]:

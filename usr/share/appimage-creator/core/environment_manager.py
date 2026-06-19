@@ -202,14 +202,17 @@ class EnvironmentManager:
     def check_container_runtime(self) -> Optional[str]:
         """Check which container runtime is installed (docker or podman)."""
         if shutil.which("docker"):
-            # Verify docker is actually working
+            # Verify docker is actually working. Note: subprocess.run() does not
+            # raise on a non-zero exit unless check=True, so inspect returncode
+            # (a broken/permission-denied docker daemon returns non-zero).
             try:
-                subprocess.run(
+                result = subprocess.run(
                     ["docker", "ps"], capture_output=True, timeout=5,
                     env=get_host_env(),
                 )
-                return "docker"
-            except (subprocess.TimeoutExpired, subprocess.CalledProcessError):
+                if result.returncode == 0:
+                    return "docker"
+            except (subprocess.TimeoutExpired, OSError):
                 pass
 
         if shutil.which("podman"):
@@ -664,9 +667,6 @@ class EnvironmentManager:
             if log_callback:
                 log_callback(_("Container removed successfully!"))
 
-            # Refresh container list
-            self._distrobox_containers = self._list_distrobox_containers()
-
             # Step 2: Remove the Docker/Podman image to free disk space
             if log_callback:
                 log_callback("")
@@ -691,9 +691,6 @@ class EnvironmentManager:
                 except Exception:
                     if log_callback:
                         log_callback(_("Warning: Could not remove image automatically"))
-
-            if log_callback:
-                log_callback(_("Container removed successfully!"))
 
         except Exception as e:
             raise RuntimeError(

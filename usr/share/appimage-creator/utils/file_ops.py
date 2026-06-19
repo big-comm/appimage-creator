@@ -103,20 +103,16 @@ def verify_download_sha256(
     when the remote checksum is unavailable (fail-open for continuous
     releases that have no checksum file).
     """
-    import tempfile
-
     local_hash = compute_sha256(file_path)
     filename = Path(file_path).name
 
     try:
-        tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".sha256")
-        tmp.close()
-        urllib.request.urlretrieve(sha256_url, tmp.name)
-
-        with open(tmp.name, "r") as f:
-            content = f.read().strip()
-
-        os.unlink(tmp.name)
+        # Fetch the checksum file with a timeout so a stalled server can't hang
+        req = urllib.request.Request(
+            sha256_url, headers={"User-Agent": "AppImage-Updater/1.0"}
+        )
+        with urllib.request.urlopen(req, timeout=15) as response:
+            content = response.read().decode("utf-8", errors="replace").strip()
 
         # Formats: "<hash>  <filename>" or bare "<hash>"
         for line in content.splitlines():
@@ -124,8 +120,9 @@ def verify_download_sha256(
             if not parts:
                 continue
             remote_hash = parts[0].lower()
-            # Either bare hash or hash matching our filename
-            if len(parts) == 1 or filename in line:
+            # Bare hash, or a line whose (last) filename field matches exactly
+            entry_name = parts[-1].lstrip("*") if len(parts) > 1 else ""
+            if len(parts) == 1 or entry_name == filename:
                 return (remote_hash == local_hash, local_hash)
 
         # Remote file existed but didn't contain matching entry

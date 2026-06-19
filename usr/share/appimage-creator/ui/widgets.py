@@ -2,6 +2,7 @@
 Custom widgets for AppImage Creator UI
 """
 
+import os
 import gi
 
 gi.require_version("Gtk", "4.0")
@@ -90,8 +91,6 @@ class DirectoryListWidget:
 
     def _refresh_list(self):
         """Refresh the list display"""
-        import os
-
         # Clear existing rows
         child = self.list_box.get_first_child()
         while child:
@@ -146,8 +145,6 @@ class DetectedFilesWidget:
         }
 
         # Add detected files
-        import os
-
         for file_type, files in filtered_files.items():
             if files:
                 for file_path in files:

@@ -142,8 +142,10 @@ class DependencyResolver:
                     if _AUDITWHEEL_HASH_RE.match(lib_name):
                         continue
                     missing.append(lib_name)
-        except (subprocess.TimeoutExpired, Exception):
+        except (subprocess.TimeoutExpired, OSError, subprocess.SubprocessError):
             pass
+        except Exception as e:
+            print(f"Unexpected error running ldd on {elf_path}: {e}")
         return missing
 
     def _find_lib_in_system(self, lib_name: str) -> Optional[str]:
