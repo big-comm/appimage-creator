@@ -32,7 +32,7 @@ from utils.i18n import _
 from utils.tooltip_helper import TooltipHelper
 
 # Application version – single source of truth
-APP_VERSION = "1.3.0"
+APP_VERSION = "1.3.1"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
@@ -773,12 +773,21 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                 _("Detected: {}").format(os.path.basename(desktop_files[0]))
             )
 
-        # Auto-set detected icon
+        # Auto-set detected icon (best candidate, not first found — symbolic
+        # icons and random SVGs must not win over the real hicolor app icon)
         icons = structure.get("detected_files", {}).get("icons", [])
         if icons and not self.app_info.icon:
-            self.app_info.icon = icons[0]
+            from generators.icons import select_best_icon
+
+            hint = ""
+            if self.app_info.executable:
+                hint = os.path.splitext(
+                    os.path.basename(self.app_info.executable)
+                )[0]
+            best_icon = select_best_icon(icons, hint)
+            self.app_info.icon = best_icon
             self.app_page.icon_row.set_subtitle(
-                _("Detected: {}").format(os.path.basename(icons[0]))
+                _("Detected: {}").format(os.path.basename(best_icon))
             )
 
         # Update config-page sections
