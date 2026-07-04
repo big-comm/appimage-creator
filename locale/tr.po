@@ -1340,22 +1340,50 @@ msgstr "Kütüphane bağımlılıkları çözülüyor..."
 msgid "Warning: {} libraries could not be resolved: {}"
 msgstr "Uyarı: {} kütüphaneleri çözülemedi: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 999
+#: NEEDS WORK
+msgid "Checking GObject introspection API compatibility..."
+msgstr "GObject introspeksiyon API uyumluluğu kontrol ediliyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1023
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} (namespace unavailable)"
+msgstr "{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1027
+#: NEEDS WORK
+msgid "  All GI symbols available in this environment."
+msgstr "Bu ortamda mevcut olan tüm GI sembolleri."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1033
+#: NEEDS WORK
+msgid "⚠️  WARNING: the app uses API not available in this build environment:"
+msgstr "⚠️  UYARI: uygulama, bu derleme ortamında mevcut olmayan API'yi kullanıyor:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1042
+#: NEEDS WORK
+#, python-brace-format
+msgid "    • {} (environment has {} {})"
+msgstr "• {} (ortam {} {} var)"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1050
+#: NEEDS WORK
+msgid "    These features will CRASH at runtime. Use a newer build environment or add fallbacks in the app."
+msgstr ""
+"Bu özellikler çalışma zamanında ÇÖKECEK. Daha yeni bir derleme ortamı kullanın veya uygulamada "
+"yedeklemeler ekleyin."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1056
+#: NEEDS WORK
+#, python-brace-format
+msgid "GI compatibility check skipped: {}"
+msgstr "GI uyumluluk kontrolü atlandı: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 716
 #: NEEDS WORK
 msgid "Detecting GUI framework dependencies..."
 msgstr "GUI çerçeve bağımlılıkları tespit ediliyor..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 867
-#: NEEDS WORK
-#, python-brace-format
-msgid "Analyzing Python files in: {}"
-msgstr "{} içindeki Python dosyaları analiz ediliyor:"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 874
-#: NEEDS WORK
-#, python-brace-format
-msgid "Analyzing Python files in executable's directory: {}"
-msgstr "Yürütülebilir dosyanın dizinindeki Python dosyaları analiz ediliyor: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK

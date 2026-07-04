@@ -1144,22 +1144,48 @@ msgstr "라이브러리 종속성 해결 중..."
 msgid "Warning: {} libraries could not be resolved: {}"
 msgstr "경고: {} 라이브러리를 확인할 수 없습니다: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 999
+#: NEEDS WORK
+msgid "Checking GObject introspection API compatibility..."
+msgstr "GObject 주석 API 호환성 확인 중..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1023
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} (namespace unavailable)"
+msgstr "죄송합니다. 번역할 문자열이 없습니다."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1027
+#: NEEDS WORK
+msgid "  All GI symbols available in this environment."
+msgstr "이 환경에서 사용 가능한 모든 GI 기호."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1033
+#: NEEDS WORK
+msgid "⚠️  WARNING: the app uses API not available in this build environment:"
+msgstr "⚠️  경고: 이 앱은 이 빌드 환경에서 사용할 수 없는 API를 사용합니다:"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1042
+#: NEEDS WORK
+#, python-brace-format
+msgid "    • {} (environment has {} {})"
+msgstr "• {} (환경에 {} {}가 있습니다)"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1050
+#: NEEDS WORK
+msgid "    These features will CRASH at runtime. Use a newer build environment or add fallbacks in the app."
+msgstr "이 기능은 런타임에 충돌할 것입니다. 더 최신의 빌드 환경을 사용하거나 앱에 대체 기능을 추가하세요."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1056
+#: NEEDS WORK
+#, python-brace-format
+msgid "GI compatibility check skipped: {}"
+msgstr "GI 호환성 검사 건너뜀: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 716
 #: NEEDS WORK
 msgid "Detecting GUI framework dependencies..."
 msgstr "GUI 프레임워크 종속성 감지 중..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 867
-#: NEEDS WORK
-#, python-brace-format
-msgid "Analyzing Python files in: {}"
-msgstr "Python 파일 분석 중: {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 874
-#: NEEDS WORK
-#, python-brace-format
-msgid "Analyzing Python files in executable's directory: {}"
-msgstr "실행 파일의 디렉토리에서 Python 파일 분석 중: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK

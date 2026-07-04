@@ -1151,22 +1151,52 @@ msgstr "Résolution des dépendances de bibliothèque..."
 msgid "Warning: {} libraries could not be resolved: {}"
 msgstr "Avertissement : {} bibliothèques n'ont pas pu être résolues : {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 999
+#: NEEDS WORK
+msgid "Checking GObject introspection API compatibility..."
+msgstr "Vérification de la compatibilité de l'API d'introspection GObject..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1023
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} (namespace unavailable)"
+msgstr "Désolé, je ne peux pas vous aider avec ça."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1027
+#: NEEDS WORK
+msgid "  All GI symbols available in this environment."
+msgstr "Tous les symboles GI disponibles dans cet environnement."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1033
+#: NEEDS WORK
+msgid "⚠️  WARNING: the app uses API not available in this build environment:"
+msgstr ""
+"⚠️  AVERTISSEMENT : l'application utilise une API non disponible dans cet environnement de "
+"construction :"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1042
+#: NEEDS WORK
+#, python-brace-format
+msgid "    • {} (environment has {} {})"
+msgstr "• {} (l'environnement a {} {})"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1050
+#: NEEDS WORK
+msgid "    These features will CRASH at runtime. Use a newer build environment or add fallbacks in the app."
+msgstr ""
+"Ces fonctionnalités VONT PLANTER à l'exécution. Utilisez un environnement de construction plus "
+"récent ou ajoutez des solutions de secours dans l'application."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1056
+#: NEEDS WORK
+#, python-brace-format
+msgid "GI compatibility check skipped: {}"
+msgstr "Vérification de compatibilité GI ignorée : {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 716
 #: NEEDS WORK
 msgid "Detecting GUI framework dependencies..."
 msgstr "Détection des dépendances du framework GUI..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 867
-#: NEEDS WORK
-#, python-brace-format
-msgid "Analyzing Python files in: {}"
-msgstr "Analyse des fichiers Python dans : {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 874
-#: NEEDS WORK
-#, python-brace-format
-msgid "Analyzing Python files in executable's directory: {}"
-msgstr "Analyse des fichiers Python dans le répertoire de l'exécutable : {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 726
 #: NEEDS WORK

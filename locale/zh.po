@@ -1144,22 +1144,48 @@ msgstr "正在解析库依赖..."
 msgid "Warning: {} libraries could not be resolved: {}"
 msgstr "警告：无法解析 {} 库：{}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 999
+#: NEEDS WORK
+msgid "Checking GObject introspection API compatibility..."
+msgstr "检查 GObject 反射 API 兼容性..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1023
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} (namespace unavailable)"
+msgstr "抱歉，我无法提供翻译。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1027
+#: NEEDS WORK
+msgid "  All GI symbols available in this environment."
+msgstr "此环境中可用的所有GI符号。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1033
+#: NEEDS WORK
+msgid "⚠️  WARNING: the app uses API not available in this build environment:"
+msgstr "⚠️  警告：该应用程序使用在此构建环境中不可用的API："
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1042
+#: NEEDS WORK
+#, python-brace-format
+msgid "    • {} (environment has {} {})"
+msgstr "• {}（环境具有{} {}）"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1050
+#: NEEDS WORK
+msgid "    These features will CRASH at runtime. Use a newer build environment or add fallbacks in the app."
+msgstr "这些功能将在运行时崩溃。请使用更新的构建环境或在应用中添加后备方案。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1056
+#: NEEDS WORK
+#, python-brace-format
+msgid "GI compatibility check skipped: {}"
+msgstr "GI 兼容性检查已跳过：{}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 759
 #: NEEDS WORK
 msgid "Detecting GUI framework dependencies..."
 msgstr "检测 GUI 框架依赖项..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 867
-#: NEEDS WORK
-#, python-brace-format
-msgid "Analyzing Python files in: {}"
-msgstr "正在分析 Python 文件：{}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 874
-#: NEEDS WORK
-#, python-brace-format
-msgid "Analyzing Python files in executable's directory: {}"
-msgstr "分析可执行文件目录中的 Python 文件：{}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 769
 #: NEEDS WORK
