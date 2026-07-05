@@ -14,7 +14,12 @@ def get_system_info() -> Dict[str, str]:
     """Get system information for AppImage creation"""
     try:
         arch = subprocess.check_output(["uname", "-m"], text=True, timeout=5).strip()
-    except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+    except (
+        subprocess.CalledProcessError,
+        subprocess.TimeoutExpired,
+        FileNotFoundError,
+        OSError,
+    ):
         arch = "x86_64"
 
     return {"architecture": arch, "platform": "linux"}
@@ -72,8 +77,8 @@ def sanitize_filename(filename: str) -> str:
     sanitized = re.sub(r"\s+", "_", sanitized)
     # Remove multiple underscores
     sanitized = re.sub(r"_+", "_", sanitized)
-    # Remove leading/trailing underscores
-    sanitized = sanitized.strip("_")
+    # Remove leading/trailing underscores, dots and spaces (avoid hidden/dot-only names)
+    sanitized = sanitized.strip("_ .")
 
     return sanitized if sanitized else "MyApp"
 

@@ -40,6 +40,9 @@ def cleanup_orphaned_integrations():
         try:
             # Read marker file (format: line 1 = appimage path, line 2 = desktop filename)
             lines = marker_file.read_text().strip().split("\n")
+            if not lines or not lines[0].strip():
+                # Malformed/empty marker; skip to avoid operating on "." path
+                continue
             appimage_path = lines[0]
             desktop_filename = (
                 lines[1] if len(lines) > 1 else f"{marker_file.stem}.desktop"
@@ -261,7 +264,7 @@ def _cleanup_orphaned_desktop_files():
             content = desktop_file.read_text()
             # Look for Exec= referencing an .AppImage file
             match = re.search(
-                r'^Exec="?([^"\n]+\.AppImage)"?\s',
+                r'^Exec="?([^"\n]+\.AppImage)"?(?:\s|$)',
                 content,
                 flags=re.MULTILINE | re.IGNORECASE,
             )

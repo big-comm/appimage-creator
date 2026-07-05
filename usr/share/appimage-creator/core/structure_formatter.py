@@ -47,6 +47,14 @@ def generate_detailed_structure(
         else None
     )
 
+    # Walk the project tree only once and reuse the results in both the detail
+    # listing and the summary below (avoids 8 redundant rglob traversals).
+    glob_cache = {}
+    if project_root and os.path.isdir(project_root):
+        _root = Path(project_root)
+        for pattern in ("*.py", "*.sh", "*.ui", "*.glade", "*.css"):
+            glob_cache[pattern] = list(_root.rglob(pattern))
+
     if project_root and os.path.isdir(project_root):
         root = Path(project_root)
 
@@ -56,9 +64,9 @@ def generate_detailed_structure(
             (_("UI Files"), "*.ui", 10),
             (_("CSS Files"), "*.css", 10),
         ]:
-            found = list(root.rglob(glob))
+            found = list(glob_cache.get(glob, []))
             if glob == "*.ui":
-                found += list(root.rglob("*.glade"))
+                found += list(glob_cache.get("*.glade", []))
             if found:
                 lines += ["", f"            [{label}]"]
                 for f in found[:limit]:
@@ -96,7 +104,9 @@ def generate_detailed_structure(
                 dn = os.path.basename(directory)
                 lines.append(f"{prefix}{dn}/ ({fc} files, {format_size(ts)})")
                 for j, fi in enumerate(structure.get("files", [])[:10]):
-                    fp = "    └── " if j == min(9, fc - 1) else "    ├── "
+                    # Only the genuine last line (no "...more" line after) gets └──
+                    is_last = j == fc - 1
+                    fp = "    └── " if is_last else "    ├── "
                     lines.append(f"{fp}{fi['name']}")
                 if fc > 10:
                     lines.append(f"    └── ... and {fc - 10} more files")
@@ -117,11 +127,11 @@ def generate_detailed_structure(
     ]
 
     if project_root and os.path.isdir(project_root):
-        root = Path(project_root)
         counts = {
-            "Python": len(list(root.rglob("*.py"))),
-            "Shell": len(list(root.rglob("*.sh"))),
-            "UI": len(list(root.rglob("*.ui"))) + len(list(root.rglob("*.glade"))),
+            "Python": len(glob_cache.get("*.py", [])),
+            "Shell": len(glob_cache.get("*.sh", [])),
+            "UI": len(glob_cache.get("*.ui", []))
+            + len(glob_cache.get("*.glade", [])),
         }
         if any(counts.values()):
             lines += ["", _("  File Breakdown:")]

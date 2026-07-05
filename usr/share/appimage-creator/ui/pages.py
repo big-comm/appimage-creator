@@ -438,11 +438,19 @@ class ConfigurationPage:
 
         self.category_row = Adw.ComboRow()
         self.category_row.set_title(_("Primary Category"))
+        categories = get_available_categories()
         cat_model = Gtk.StringList()
-        for cat in get_available_categories():
+        for cat in categories:
             cat_model.append(cat)
         self.category_row.set_model(cat_model)
-        self.category_row.set_selected(12)  # Utility
+        # Default to "Utility" by name so it stays correct if the list changes
+        default_category = "Utility"
+        default_index = (
+            categories.index(default_category)
+            if default_category in categories
+            else 0
+        )
+        self.category_row.set_selected(default_index)
         details_group.add(self.category_row)
 
         self.terminal_row = Adw.SwitchRow()
@@ -730,6 +738,8 @@ class BuildPage:
         self.env_model.append(_("Local System (Current Python)"))
         self.environment_row.set_model(self.env_model)
         self.environment_row.set_selected(0)
+        # Parallel mapping to env_model entries: None = Local, str = container id.
+        self.env_ids = [None]
         env_group.add(self.environment_row)
 
         # Manage environments expander
@@ -980,12 +990,40 @@ class BuildPage:
             self.environments_listbox.append(row)
 
     def update_env_model(self, env_manager: EnvironmentManager) -> None:
-        """Update the environment ComboRow model with ready containers."""
+        """Update the environment ComboRow model.
+
+        When at least one container is ready, the Local option is hidden so
+        builds default to a container (better AppImage portability — building on
+        the host links against its bleeding-edge libraries). Local reappears only
+        as a fallback when no container is ready.
+        """
         self.env_model.splice(0, self.env_model.get_n_items())
-        self.env_model.append(_("Local System (Current Python)"))
+        self.env_ids = []
 
-        for env in env_manager.get_supported_environments():
-            if env["status"] == "ready":
-                self.env_model.append(f"{env['name']} (Container)")
+        ready = [
+            env
+            for env in env_manager.get_supported_environments()
+            if env["status"] == "ready"
+        ]
 
-        self.environment_row.set_selected(0)
+        for env in ready:
+            self.env_model.append(f"{env['name']} (Container)")
+            self.env_ids.append(env["id"])
+
+        # Local is offered only when there is no ready container to fall back on.
+        if not ready:
+            self.env_model.append(_("Local System (Current Python)"))
+            self.env_ids.append(None)
+
+        if self.env_model.get_n_items() > 0:
+            self.environment_row.set_selected(0)
+
+        # Keep the subtitle honest about what is available.
+        if ready:
+            self.environment_row.set_subtitle(
+                _("Building in a container for maximum compatibility")
+            )
+        else:
+            self.environment_row.set_subtitle(
+                _("No container available — building on the local system")
+            )

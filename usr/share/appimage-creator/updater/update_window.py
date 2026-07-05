@@ -155,11 +155,18 @@ class ProgressDialog(Adw.Window):
 
         # Prevent closing during download
         self.can_close = False
+        # Block window-manager / Esc close attempts while a download is in progress
+        self.connect("close-request", self._on_close_request)
 
         self.app_name = app_name
         self.new_version = new_version
 
         self._build_ui()
+
+    def _on_close_request(self, *_args):
+        """Reject close attempts until the download is finished."""
+        # Returning True stops the default handler (the window stays open)
+        return not self.can_close
 
     def _set_window_icon(self):
         """Set window icon from installed location or fallback"""
@@ -281,8 +288,10 @@ class ProgressDialog(Adw.Window):
                 color: #26a269;
             }
         """)
-        self.status_icon.get_style_context().add_provider(
-            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        Gtk.StyleContext.add_provider_for_display(
+            self.status_icon.get_display(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
         self.status_icon.add_css_class("success-icon")
 
@@ -308,8 +317,10 @@ class ProgressDialog(Adw.Window):
                 color: #c01c28;
             }
         """)
-        self.status_icon.get_style_context().add_provider(
-            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        Gtk.StyleContext.add_provider_for_display(
+            self.status_icon.get_display(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
         self.status_icon.add_css_class("error-icon")
 
@@ -656,7 +667,13 @@ class UpdateWindow(Adw.ApplicationWindow):
             # Remove old version if requested
             if self.remove_old_version:
                 try:
-                    if self.appimage_path.exists():
+                    # Never delete the file we just installed (can happen when the
+                    # new filename matches the existing one).
+                    same_file = (
+                        self.appimage_path.exists()
+                        and downloaded_file.resolve() == self.appimage_path.resolve()
+                    )
+                    if self.appimage_path.exists() and not same_file:
                         self.appimage_path.unlink()
                 except Exception as e:
                     print(f"Warning: Could not remove old version: {e}")
@@ -731,7 +748,13 @@ class UpdateWindow(Adw.ApplicationWindow):
 
                 config = configparser.ConfigParser()
                 config.read(desktop_file)
-                icon_name = config.get("Desktop Entry", "Icon")
+                icon_name = config.get(
+                    "Desktop Entry", "Icon", fallback=None
+                )
+
+                if not icon_name:
+                    print("Desktop file has no Icon entry")
+                    return False
 
                 icon_file = None
                 for ext in [".svg", ".png", ".xpm"]:
@@ -789,6 +812,23 @@ class UpdateWindow(Adw.ApplicationWindow):
                 except Exception:
                     pass
 
+                # Refresh the icon cache so a changed icon shows up
+                try:
+                    subprocess.run(
+                        [
+                            "gtk-update-icon-cache",
+                            "-f",
+                            "-t",
+                            str(Path.home() / ".local/share/icons/hicolor"),
+                        ],
+                        check=False,
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                        timeout=10,
+                    )
+                except Exception:
+                    pass
+
                 return True
 
         except Exception as e:
@@ -809,7 +849,12 @@ class UpdateWindow(Adw.ApplicationWindow):
             if len(lines) >= 4:
                 lines[3] = self.update_info.version
 
-            self.marker_file.write_text("\n".join(lines))
+            # Write atomically so a crash mid-write can't corrupt the marker
+            tmp_marker = self.marker_file.with_suffix(
+                self.marker_file.suffix + ".tmp"
+            )
+            tmp_marker.write_text("\n".join(lines))
+            os.replace(str(tmp_marker), str(self.marker_file))
 
         except Exception as e:
             print(f"Failed to update marker file: {e}")
@@ -826,6 +871,7 @@ class UpdateApp(Adw.Application):
         appimage_path: Path,
         marker_file: Path,
         filename_pattern: str,
+        prefer_dark=None,
     ):
         super().__init__(application_id="org.bigcommunity.appimage.updater")
 
@@ -835,9 +881,24 @@ class UpdateApp(Adw.Application):
         self.appimage_path = appimage_path
         self.marker_file = marker_file
         self.filename_pattern = filename_pattern
+        self.prefer_dark = prefer_dark
 
     def do_activate(self):
         """Called when application is activated"""
+        # When running inside an AppImage, the bundled libadwaita cannot see
+        # the host's theme settings (portal/dconf plumbing) and defaults to
+        # light. The host-side checker detects the real preference and passes
+        # it in the payload; apply it here. None = leave libadwaita's own
+        # detection alone (host GTK4 path, where it works).
+        if self.prefer_dark is True:
+            Adw.StyleManager.get_default().set_color_scheme(
+                Adw.ColorScheme.FORCE_DARK
+            )
+        elif self.prefer_dark is False:
+            Adw.StyleManager.get_default().set_color_scheme(
+                Adw.ColorScheme.FORCE_LIGHT
+            )
+
         window = self.props.active_window
         if not window:
             window = UpdateWindow(
@@ -859,6 +920,7 @@ def show_update_notification(
     appimage_path: Path,
     marker_file: Path,
     filename_pattern: str = "",
+    prefer_dark=None,
 ):
     """
     Show update notification window
@@ -870,9 +932,9 @@ def show_update_notification(
         appimage_path: Path to AppImage
         marker_file: Path to marker file
         filename_pattern: Pattern for new filename
+        prefer_dark: Host-detected dark preference (True/False), or None to
+            let libadwaita detect it (used by the host GTK4 path)
     """
-    import sys
-
     app = UpdateApp(
         app_name,
         update_info,
@@ -880,5 +942,45 @@ def show_update_notification(
         appimage_path,
         marker_file,
         filename_pattern,
+        prefer_dark=prefer_dark,
     )
-    return app.run(sys.argv)
+    # Pass an empty argv so the timer process's own arguments aren't misparsed by GTK
+    return app.run([])
+
+
+def _main_from_payload(payload_path: str) -> int:
+    """
+    Standalone entry point used by the AppRun embedded-update-window hook
+    (APPIMAGE_SHOW_UPDATE_PAYLOAD environment variable).
+    The host-side checker writes a JSON payload file and runs this script
+    inside the AppImage so the window uses the bundled GTK4 libraries.
+    """
+    import json
+
+    with open(payload_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    update_info = UpdateInfo(
+        version=data["new_version"],
+        download_url=data["download_url"],
+        release_notes=data.get("release_notes", ""),
+    )
+
+    return show_update_notification(
+        data["app_name"],
+        update_info,
+        data.get("current_version", ""),
+        Path(data["appimage_path"]),
+        Path(data["marker_file"]),
+        data.get("filename_pattern", ""),
+        prefer_dark=data.get("prefer_dark"),
+    )
+
+
+if __name__ == "__main__":
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: update_window.py <payload.json>", file=sys.stderr)
+        sys.exit(2)
+    sys.exit(_main_from_payload(sys.argv[1]) or 0)

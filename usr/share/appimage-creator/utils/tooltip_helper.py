@@ -233,6 +233,11 @@ class TooltipHelper:
             self.active_widget = None
 
     def _show_tooltip(self) -> int:
+        # This callback fires once and returns SOURCE_REMOVE on every path, so the
+        # timer id is already dead — clear it up front to avoid a later
+        # GLib.source_remove() on a stale id (which logs GLib-CRITICAL).
+        self.show_timer_id = None
+
         if not self.active_widget or not self.popover:
             return GLib.SOURCE_REMOVE
 
@@ -271,7 +276,6 @@ class TooltipHelper:
         except Exception:
             self.active_widget = None
 
-        self.show_timer_id = None
         return GLib.SOURCE_REMOVE
 
     def _hide_tooltip(self, animate: bool = False) -> None:

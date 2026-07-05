@@ -32,7 +32,7 @@ from utils.i18n import _
 from utils.tooltip_helper import TooltipHelper
 
 # Application version – single source of truth
-APP_VERSION = "1.2.1"
+APP_VERSION = "1.3.4"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
@@ -246,16 +246,24 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self.build_page.update_env_model(self.env_manager)
         self.build_page.update_environments(self.env_manager)
 
-        # Restore previously selected build environment
-        if self.app_info.build_environment:
-            environments = self.env_manager.get_supported_environments()
-            ready_envs = [e for e in environments if e["status"] == "ready"]
-            for idx, env in enumerate(ready_envs):
-                if env["id"] == self.app_info.build_environment:
-                    self.build_page.environment_row.set_selected(idx + 1)
-                    break
+        # Default selection: this session's choice, else the remembered one,
+        # else the first entry (a container when any is ready, Local otherwise).
+        self._select_default_environment()
 
         self.nav_view.push(self.build_page.nav_page)
+
+    def _select_default_environment(self) -> None:
+        """Pick the default build-environment entry in the ComboRow."""
+        env_ids = getattr(self.build_page, "env_ids", None)
+        if not env_ids:
+            return
+
+        target = self.app_info.build_environment
+        if target is None:
+            target = self.settings.get("default-build-environment")
+
+        idx = env_ids.index(target) if target in env_ids else 0
+        self.build_page.environment_row.set_selected(idx)
 
     # ------------------------------------------------------------------
     #  About
@@ -765,12 +773,21 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                 _("Detected: {}").format(os.path.basename(desktop_files[0]))
             )
 
-        # Auto-set detected icon
+        # Auto-set detected icon (best candidate, not first found — symbolic
+        # icons and random SVGs must not win over the real hicolor app icon)
         icons = structure.get("detected_files", {}).get("icons", [])
         if icons and not self.app_info.icon:
-            self.app_info.icon = icons[0]
+            from generators.icons import select_best_icon
+
+            hint = ""
+            if self.app_info.executable:
+                hint = os.path.splitext(
+                    os.path.basename(self.app_info.executable)
+                )[0]
+            best_icon = select_best_icon(icons, hint)
+            self.app_info.icon = best_icon
             self.app_page.icon_row.set_subtitle(
-                _("Detected: {}").format(os.path.basename(icons[0]))
+                _("Detected: {}").format(os.path.basename(best_icon))
             )
 
         # Update config-page sections
@@ -1042,15 +1059,19 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         elif self.build_page.adwaita_radio.get_active():
             self.app_info.icon_theme_choice = "adwaita"
 
-        # Build environment
+        # Build environment — map the selected row back to its env id via the
+        # parallel env_ids list (None = Local).
         sel_idx = self.build_page.environment_row.get_selected()
-        if sel_idx == 0:
-            self.app_info.build_environment = None
+        env_ids = getattr(self.build_page, "env_ids", [None])
+        if 0 <= sel_idx < len(env_ids):
+            self.app_info.build_environment = env_ids[sel_idx]
         else:
-            envs = self.env_manager.get_supported_environments()
-            ready = [e for e in envs if e["status"] == "ready"]
-            if sel_idx - 1 < len(ready):
-                self.app_info.build_environment = ready[sel_idx - 1]["id"]
+            self.app_info.build_environment = None
+
+        # Remember the choice so it becomes the default next time.
+        self.settings.set(
+            "default-build-environment", self.app_info.build_environment
+        )
 
     # ------------------------------------------------------------------
     #  Build
@@ -1257,7 +1278,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                 show_success_dialog(
                     self,
                     _("Build Complete"),
-                    _("AppImage created successfully:\\n{}").format(result),
+                    _("AppImage created successfully:\n{}").format(result),
                     appimage_path=result,
                     on_response=_back_to_welcome,
                 )

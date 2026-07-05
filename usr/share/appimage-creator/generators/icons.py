@@ -3,6 +3,7 @@ Icon processing and generation
 """
 
 import os
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -15,6 +16,51 @@ try:
 except ImportError:
     HAS_PIL = False
     print(_("Warning: PIL/Pillow not available, icon processing will be limited"))
+
+
+def select_best_icon(icon_paths, app_hint=""):
+    """
+    Pick the most appropriate application icon from detected candidates.
+
+    Ranks generically by freedesktop conventions instead of taking the first
+    file found by the directory walk:
+    - "-symbolic" icons are monochrome UI glyphs, never the app icon (penalty)
+    - exact filename match with the app name/executable (strong bonus)
+    - installed theme locations (icons/hicolor/**/apps/) (bonus)
+    - scalable SVG preferred over raster; larger rasters over smaller
+    """
+    if not icon_paths:
+        return None
+    hint = (app_hint or "").lower().strip()
+
+    def score(path_str):
+        p = Path(path_str)
+        stem = p.stem.lower()
+        posix = p.as_posix().lower()
+        s = 0
+        if stem.endswith("-symbolic"):
+            s -= 1000
+        if hint:
+            if stem == hint:
+                s += 500
+            elif hint in stem:
+                s += 100
+        if "/apps/" in posix:
+            s += 60
+        if "/hicolor/" in posix:
+            s += 40
+        if "/scalable/" in posix:
+            s += 20
+        if p.suffix.lower() == ".svg":
+            s += 10
+        else:
+            size_match = re.search(r"/(\d+)x\1/", posix)
+            if size_match:
+                # Up to +8 for large rasters (256x256 and above)
+                s += min(int(size_match.group(1)), 512) // 64
+        return s
+
+    return max(icon_paths, key=score)
 
 
 def process_icon(
@@ -117,29 +163,31 @@ def convert_svg_to_png(
     ):
         pass
 
-    # Try ImageMagick
-    try:
-        subprocess.run(
-            [
-                "convert",
-                "-background",
-                "transparent",
-                "-resize",
-                f"{size}x{size}",
-                str(svg_path),
-                str(png_path),
-            ],
-            check=True,
-            capture_output=True,
-            timeout=30,
-        )
-        return True
-    except (
-        subprocess.CalledProcessError,
-        FileNotFoundError,
-        subprocess.TimeoutExpired,
-    ):
-        pass
+    # Try ImageMagick (IM7 uses the unified "magick" binary; "convert" is the
+    # legacy IM6 name and may be absent on IM7-only systems)
+    for im_cmd in (["magick"], ["convert"]):
+        try:
+            subprocess.run(
+                im_cmd
+                + [
+                    "-background",
+                    "transparent",
+                    "-resize",
+                    f"{size}x{size}",
+                    str(svg_path),
+                    str(png_path),
+                ],
+                check=True,
+                capture_output=True,
+                timeout=30,
+            )
+            return True
+        except (
+            subprocess.CalledProcessError,
+            FileNotFoundError,
+            subprocess.TimeoutExpired,
+        ):
+            continue
 
     # Try inkscape
     try:

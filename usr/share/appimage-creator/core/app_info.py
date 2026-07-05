@@ -79,5 +79,10 @@ class AppInfo:
         return self.websites[0] if self.websites else ""
 
     def copy(self) -> "AppInfo":
-        """Return a shallow copy of this AppInfo instance."""
-        return copy.copy(self)
+        """Return an independent (deep) copy of this AppInfo instance.
+
+        A deep copy is used so callers can mutate list/dict fields (e.g.
+        selected_dependencies, structure_analysis) without corrupting the
+        original instance via shared references.
+        """
+        return copy.deepcopy(self)

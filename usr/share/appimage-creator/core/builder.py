@@ -21,7 +21,12 @@ from validators.validators import (
 )
 from core.structure_analyzer import detect_application_structure
 from templates.app_templates import get_app_type_from_file
-from generators.icons import process_icon, generate_default_icon, convert_svg_to_png
+from generators.icons import (
+    process_icon,
+    generate_default_icon,
+    convert_svg_to_png,
+    select_best_icon,
+)
 
 try:
     from PIL import Image
@@ -346,21 +351,9 @@ class AppImageBuilder:
                     "icons", []
                 )
                 if detected_icons:
-                    svg_icons = [i for i in detected_icons if i.endswith(".svg")]
-
-                    # Prioritize icons that match the canonical basename
-                    matching_icons = [
-                        i
-                        for i in svg_icons
-                        if canonical_basename in os.path.basename(i).lower()
-                    ]
-                    if matching_icons:
-                        icon_path = matching_icons[0]
-                    elif svg_icons:
-                        icon_path = svg_icons[0]
-                    else:
-                        icon_path = detected_icons[0]
-
+                    # Rank candidates (symbolic icons penalized, hicolor/apps
+                    # and name matches preferred) instead of taking the first.
+                    icon_path = select_best_icon(detected_icons, canonical_basename)
                     self.log(_("Using detected icon: {}").format(icon_path))
 
             # Process icon into hicolor theme structure
@@ -954,6 +947,11 @@ class AppImageBuilder:
         # Recursive ldd-based dependency resolution
         self._resolve_missing_libraries()
 
+        # Preflight: warn when the app uses GI symbols this build environment
+        # lacks (e.g. libadwaita too old in the container). The AppImage
+        # bundles the environment's typelibs, so these crash at runtime.
+        self._check_gi_symbol_compatibility()
+
         self.log(_("Dependencies installed successfully."))
         self.update_progress(70, _("Dependencies processed"))
 
@@ -981,6 +979,120 @@ class AppImageBuilder:
 
         PythonEnvironmentSetup(self).setup()
 
+    def _check_gi_symbol_compatibility(self):
+        """
+        Warn when the app uses gi symbols the build environment does not
+        provide. Never aborts the build — only reports what will break.
+        """
+        try:
+            from core.gi_preflight import build_probe_script, collect_gi_usage
+
+            structure_analysis = self.app_info.structure_analysis or {}
+            project_root = structure_analysis.get("project_root")
+            if not project_root or not Path(project_root).exists():
+                return
+
+            versions, symbols = collect_gi_usage(project_root)
+            if not symbols:
+                return
+
+            self.log(_("Checking GObject introspection API compatibility..."))
+            script_path = self.build_dir / "gi_preflight_probe.py"
+            script_path.write_text(build_probe_script(versions, symbols))
+            try:
+                result = self._run_command(
+                    ["python3", str(script_path)], timeout=60
+                )
+            finally:
+                script_path.unlink(missing_ok=True)
+
+            if result.returncode != 0:
+                # Environment python/gi unusable for probing — skip silently.
+                return
+
+            env_versions = {}
+            missing = []
+            for line in (result.stdout or "").splitlines():
+                parts = line.split(maxsplit=2)
+                if len(parts) >= 3 and parts[0] == "VERSION":
+                    env_versions[parts[1]] = parts[2]
+                elif len(parts) >= 2 and parts[0] == "MISSING":
+                    missing.append(parts[1])
+                elif len(parts) >= 2 and parts[0] == "NAMESPACE":
+                    missing.append(
+                        _("{} (namespace unavailable)").format(parts[1])
+                    )
+
+            if not missing:
+                self.log(_("  All GI symbols available in this environment."))
+                return
+
+            self.log("")
+            self.log(
+                _(
+                    "⚠️  WARNING: the app uses API not available in this "
+                    "build environment:"
+                )
+            )
+            for item in missing:
+                ns = item.split(".")[0]
+                env_v = env_versions.get(ns)
+                if env_v:
+                    self.log(
+                        _("    • {} (environment has {} {})").format(
+                            item, ns, env_v
+                        )
+                    )
+                else:
+                    self.log("    • {}".format(item))
+            self.log(
+                _(
+                    "    These features will CRASH at runtime. Use a newer "
+                    "build environment or add fallbacks in the app."
+                )
+            )
+            self.log("")
+        except Exception as e:
+            self.log(_("GI compatibility check skipped: {}").format(e))
+
+    def _collect_source_python_files(self, app_info: AppInfo) -> list:
+        """
+        Collect the project's runtime .py files for dependency detection,
+        skipping test suites, docs and build trees. Those directories are not
+        runtime code, and in large projects they can crowd out the real source
+        files (e.g. tests/ appearing before src/ made a Vte requirement in
+        src/ go undetected).
+        """
+        non_source_segments = {
+            "tests", "test", "testing", "docs", "doc", "examples", "example",
+            "benchmarks", "benchmark", ".git", "build", "dist", "node_modules",
+            ".tox", ".venv", "venv", "__pycache__",
+        }
+
+        structure_analysis = app_info.structure_analysis or {}
+        project_root = structure_analysis.get("project_root")
+
+        if project_root and Path(project_root).exists():
+            root = Path(project_root)
+        elif app_info.executable:
+            # Fallback if project root is not available
+            root = Path(app_info.executable).parent
+        else:
+            return []
+
+        source_files = []
+        for py_file in root.rglob("*.py"):
+            try:
+                rel_parts = py_file.relative_to(root).parts
+            except ValueError:
+                rel_parts = py_file.parts
+            if any(seg in non_source_segments for seg in rel_parts):
+                continue
+            if py_file.name == "conftest.py" or py_file.name.startswith("test_"):
+                continue
+            source_files.append(py_file)
+        return source_files
+
     def _detect_gui_dependencies(self, app_info: AppInfo):
         """
         Detect GUI framework dependencies by analyzing Python source code.
@@ -990,24 +1102,7 @@ class AppImageBuilder:
         dependencies: dict[str, bool] = {}
 
         # Find Python files in the original project source, not the AppDir
-        python_files = []
-        structure_analysis = app_info.structure_analysis or {}
-        project_root = structure_analysis.get("project_root")
-
-        if project_root and Path(project_root).exists():
-            self.log(_("Analyzing Python files in: {}").format(project_root))
-            python_files = list(Path(project_root).rglob("*.py"))
-        else:
-            # Fallback if project root is not available
-            executable_path = app_info.executable
-            if executable_path:
-                executable_dir = Path(executable_path).parent
-                self.log(
-                    _("Analyzing Python files in executable's directory: {}").format(
-                        executable_dir
-                    )
-                )
-                python_files = list(executable_dir.rglob("*.py"))
+        python_files = self._collect_source_python_files(app_info)
 
         if not python_files:
             self.log(_("No Python files found for dependency detection"))
@@ -1047,17 +1142,19 @@ class AppImageBuilder:
             "mpv": [r"import\s+mpv", r"from\s+mpv"],
         }
 
-        for py_file in python_files[:50]:
+        for py_file in python_files:
             try:
                 with open(py_file, "r", encoding="utf-8", errors="ignore") as f:
                     content = f.read()
 
-                    for framework, pattern_list in patterns.items():
-                        for pattern in pattern_list:
-                            if re.search(pattern, content):
-                                dependencies[framework] = True
-                                self.log(_("  Detected: {}").format(framework.upper()))
-                                break
+                for framework, pattern_list in patterns.items():
+                    if dependencies.get(framework):
+                        continue
+                    for pattern in pattern_list:
+                        if re.search(pattern, content):
+                            dependencies[framework] = True
+                            self.log(_("  Detected: {}").format(framework.upper()))
+                            break
             except Exception:
                 continue
 
@@ -1070,23 +1167,10 @@ class AppImageBuilder:
         """
         self.log(_("Checking for PyGObject usage..."))
 
-        python_files = []
-        structure_analysis = app_info.structure_analysis or {}
-        project_root = structure_analysis.get("project_root")
-
-        if project_root and Path(project_root).exists():
-            python_files = list(Path(project_root).rglob("*.py"))
-        else:
-            # Fallback if project root is not available
-            executable_path = app_info.executable
-            if executable_path:
-                executable_dir = Path(executable_path).parent
-                python_files = list(executable_dir.rglob("*.py"))
+        python_files = self._collect_source_python_files(app_info)
 
         if not python_files:
             return False
-
-        import re
 
         gi_patterns = [
             r"\bimport\s+gi\b",
@@ -1094,7 +1178,7 @@ class AppImageBuilder:
             r"\bfrom\s+gi\.repository\b",
         ]
 
-        for py_file in python_files[:50]:
+        for py_file in python_files:
             try:
                 with open(py_file, "r", encoding="utf-8", errors="ignore") as f:
                     content = f.read()
@@ -1208,7 +1292,9 @@ class AppImageBuilder:
         self.log(_("Checking for missing packages in the container..."))
         for pkg in packages_needed:
             # Use dpkg-query to check package status. It returns non-zero if not installed.
-            check_cmd = ["dpkg-query", "-W", "-f='${Status}'", pkg]
+            # No surrounding quotes: there's no shell to strip them (args are passed
+            # as a list / shlex-quoted), so they would otherwise end up in the output.
+            check_cmd = ["dpkg-query", "-W", "-f=${Status}", pkg]
             result = self._run_command(check_cmd, capture_output=True)
             # A successful query contains 'install ok installed'
             if result.returncode != 0 or "install ok installed" not in result.stdout:

@@ -11,6 +11,7 @@ Optionally sets up systemd watcher for automatic cleanup
 
 import os
 import sys
+import re
 import shutil
 import configparser
 import subprocess
@@ -36,6 +37,9 @@ def cleanup_orphaned_integrations():
         try:
             # Read marker file (format: line 1 = appimage path, line 2 = desktop filename)
             lines = marker_file.read_text().strip().split("\n")
+            if not lines or not lines[0].strip():
+                # Malformed/empty marker; skip to avoid operating on "." path
+                continue
             appimage_path = lines[0]
             desktop_filename = (
                 lines[1] if len(lines) > 1 else f"{marker_file.stem}.desktop"
@@ -54,8 +58,6 @@ def cleanup_orphaned_integrations():
                 icon_name = app_name  # fallback
                 if desktop_file.exists():
                     try:
-                        import configparser
-
                         cfg = configparser.ConfigParser()
                         cfg.read(desktop_file)
                         icon_name = cfg.get("Desktop Entry", "Icon", fallback=app_name)
@@ -128,9 +130,6 @@ def cleanup_orphaned_integrations():
 
 def _cleanup_orphaned_desktop_files():
     """Scan desktop files for references to missing AppImages and clean them up."""
-    import configparser
-    import re
-
     apps_dir = Path.home() / ".local/share/applications"
     if not apps_dir.exists():
         return 0
@@ -141,7 +140,7 @@ def _cleanup_orphaned_desktop_files():
             content = desktop_file.read_text()
             # Look for Exec= referencing an .AppImage file
             match = re.search(
-                r'^Exec="?([^"\n]+\.AppImage)"?\s',
+                r'^Exec="?([^"\n]+\.AppImage)"?(?:\s|$)',
                 content,
                 flags=re.MULTILINE | re.IGNORECASE,
             )
@@ -314,7 +313,6 @@ def setup_systemd_watcher():
 
                     # Read and patch content
                     content = updater_desktop_source.read_text()
-                    import re
 
                     # Patch Icon path if icon was installed
                     if target_icon_path:
@@ -342,27 +340,7 @@ def setup_systemd_watcher():
                     file=sys.stderr,
                 )
 
-        # Check if already configured
-        if service_file.exists() and timer_file.exists():
-            # Already set up, just ensure timer is enabled
-            subprocess.run(
-                ["systemctl", "--user", "enable", "--now", "appimage-cleaner.timer"],
-                check=False,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                timeout=5,
-            )
-            # Kickstart the timer if not running
-            subprocess.run(
-                ["systemctl", "--user", "start", "appimage-cleaner.service"],
-                check=False,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                timeout=5,
-            )
-            return True
-
-        # Create service file
+        # Desired unit contents (the single source of truth)
         service_content = """[Unit]
 Description=AppImage Integration Cleaner
 Documentation=https://github.com/AppImage/AppImageKit
@@ -374,23 +352,65 @@ ExecStart=%h/.local/bin/appimage-cleanup.py
 [Install]
 WantedBy=default.target
 """
-        service_file.write_text(service_content)
 
-        # Create timer file (runs every 5 seconds)
+        # AccuracySec is essential: the systemd default is 1 minute, which
+        # coalesces the 5s interval up to a full minute and makes orphan
+        # cleanup look stuck (removals taking 60s+ instead of ~7s).
         timer_content = """[Unit]
 Description=Timer for AppImage Integration Cleanup
 
 [Timer]
 OnBootSec=5sec
 OnUnitInactiveSec=5sec
+AccuracySec=1s
 Persistent=true
 
 [Install]
 WantedBy=timers.target
 """
+
+        def _content_differs(path, content):
+            try:
+                return path.read_text() != content
+            except Exception:
+                return True
+
+        units_changed = _content_differs(service_file, service_content) or (
+            _content_differs(timer_file, timer_content)
+        )
+
+        # Already configured and up to date: just ensure it's running
+        if not units_changed:
+            subprocess.run(
+                ["systemctl", "--user", "enable", "--now", "appimage-cleaner.timer"],
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=5,
+            )
+            # Kickstart the timer if not running. --no-block is essential:
+            # the service can legitimately stay "activating" for a long time
+            # (an update notification/window waiting for the user), and a
+            # blocking start would stall this app's launch until timeout.
+            subprocess.run(
+                [
+                    "systemctl",
+                    "--user",
+                    "start",
+                    "--no-block",
+                    "appimage-cleaner.service",
+                ],
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=5,
+            )
+            return True
+
+        # Write (or update) unit files and reload systemd
+        service_file.write_text(service_content)
         timer_file.write_text(timer_content)
 
-        # Reload systemd and enable timer
         subprocess.run(
             ["systemctl", "--user", "daemon-reload"],
             check=False,
@@ -407,9 +427,17 @@ WantedBy=timers.target
             timeout=5,
         )
 
-        # Run service once to kickstart the timer cycle
+        # Run service once to kickstart the timer cycle (--no-block: don't
+        # wait for completion — the service may show a notification/window
+        # that stays open for a long time)
         subprocess.run(
-            ["systemctl", "--user", "start", "appimage-cleaner.service"],
+            [
+                "systemctl",
+                "--user",
+                "start",
+                "--no-block",
+                "appimage-cleaner.service",
+            ],
             check=False,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
@@ -444,8 +472,6 @@ def integrate_appimage(
         0 on success, 1 on skip, 2 on error
     """
     try:
-        import re
-
         # Define target paths
         apps_dir = Path.home() / ".local/share/applications"
 
@@ -549,8 +575,6 @@ def integrate_appimage(
 
         # --- Update desktop and icon databases ---
         try:
-            import subprocess
-
             subprocess.run(
                 ["update-desktop-database", str(apps_dir)],
                 check=False,
@@ -584,17 +608,25 @@ def read_marker_file(marker_file):
     Read the marker file to get the last known AppImage path and version
 
     Returns:
-        tuple: (path, version) or (None, None) if marker doesn't exist
+        tuple: (path, version, has_embedded_window) — (None, None, False) if
+        the marker doesn't exist. has_embedded_window is True when line 6
+        records that this AppImage's AppRun supports --appimage-show-update.
     """
     try:
         if marker_file.exists():
             lines = marker_file.read_text().strip().split("\n")
             path = lines[0] if len(lines) > 0 else None
             version = lines[3] if len(lines) > 3 else None
-            return (path, version)
+            # "=2" required: the env-var hook. "=1" was a short-lived variant
+            # using a --appimage-* argument, which the AppImage runtime
+            # swallows — markers with it must be rewritten.
+            has_embedded_window = (
+                len(lines) > 5 and "embedded-update-window=2" in lines[5]
+            )
+            return (path, version, has_embedded_window)
     except Exception:
         pass
-    return (None, None)
+    return (None, None, False)
 
 
 def write_marker_file(
@@ -610,7 +642,14 @@ def write_marker_file(
         marker_file.parent.mkdir(parents=True, exist_ok=True)
         # Format: line 1 = appimage path, line 2 = desktop filename
         # line 3 = update URL, line 4 = version, line 5 = update pattern
-        content = f"{appimage_path}\n{desktop_filename}\n{update_url}\n{version}\n{update_pattern}"
+        # line 6 = capability flag: this AppImage's AppRun supports the
+        # APPIMAGE_SHOW_UPDATE_PAYLOAD env-var hook (GTK4 update window runs
+        # with the bundled libraries, independent of what the host has).
+        # "=2" = env-var hook; "=1" was a broken argument-based variant.
+        content = (
+            f"{appimage_path}\n{desktop_filename}\n{update_url}\n{version}\n"
+            f"{update_pattern}\nembedded-update-window=2"
+        )
         marker_file.write_text(content)
     except Exception as e:
         print(f"Warning: Could not write marker file: {e}", file=sys.stderr)
@@ -669,7 +708,9 @@ def main():
     marker_dir = Path.home() / ".local/share/appimage-integrations"
     marker_file = marker_dir / f"{app_name.replace(' ', '_')}.path"
 
-    last_known_path, last_known_version = read_marker_file(marker_file)
+    last_known_path, last_known_version, has_embedded_window = read_marker_file(
+        marker_file
+    )
 
     # Determine if we need to integrate/update
     force_update = False
@@ -683,6 +724,10 @@ def main():
         force_update = True
     elif last_known_version != version and version:
         # Only version changed, just update marker file
+        version_only_update = True
+    elif not has_embedded_window:
+        # Marker predates the embedded update window capability (line 6);
+        # rewrite it so the update checker can use --appimage-show-update
         version_only_update = True
 
     # If only version changed, just update the marker file
