@@ -203,9 +203,13 @@ def _detect_dark_preference() -> bool:
     except Exception:
         pass
 
-    # 2) Theme names from gsettings desktop schemas (schemas missing on a
-    #    given desktop are simply skipped). Mint in particular can leave the
-    #    portal at "no preference" while the Cinnamon theme is dark.
+    # 2) APPLICATION theme names from gsettings desktop schemas (schemas
+    #    missing on a given desktop are simply skipped). Mint in particular
+    #    can leave the portal at "no preference" while the app theme is dark.
+    #    NOTE: only application-theme keys belong here. Shell themes (e.g.
+    #    org.cinnamon.theme, the panel/menu theme) are deliberately NOT
+    #    consulted: on Mint the shell is commonly dark while application
+    #    windows are light, and the update window is an application window.
     try:
         from gi.repository import Gio
 
@@ -227,7 +231,6 @@ def _detect_dark_preference() -> bool:
         for schema, key in (
             ("org.gnome.desktop.interface", "gtk-theme"),
             ("org.cinnamon.desktop.interface", "gtk-theme"),
-            ("org.cinnamon.theme", "name"),
             ("org.mate.interface", "gtk-theme"),
             ("com.deepin.dde.appearance", "gtk-theme"),
         ):
