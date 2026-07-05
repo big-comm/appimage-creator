@@ -350,9 +350,18 @@ def setup_systemd_watcher():
                 stderr=subprocess.DEVNULL,
                 timeout=5,
             )
-            # Kickstart the timer if not running
+            # Kickstart the timer if not running. --no-block is essential:
+            # the service can legitimately stay "activating" for a long time
+            # (an update notification/window waiting for the user), and a
+            # blocking start would stall this app's launch until timeout.
             subprocess.run(
-                ["systemctl", "--user", "start", "appimage-cleaner.service"],
+                [
+                    "systemctl",
+                    "--user",
+                    "start",
+                    "--no-block",
+                    "appimage-cleaner.service",
+                ],
                 check=False,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
@@ -405,9 +414,17 @@ WantedBy=timers.target
             timeout=5,
         )
 
-        # Run service once to kickstart the timer cycle
+        # Run service once to kickstart the timer cycle (--no-block: don't
+        # wait for completion — the service may show a notification/window
+        # that stays open for a long time)
         subprocess.run(
-            ["systemctl", "--user", "start", "appimage-cleaner.service"],
+            [
+                "systemctl",
+                "--user",
+                "start",
+                "--no-block",
+                "appimage-cleaner.service",
+            ],
             check=False,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
@@ -578,17 +595,25 @@ def read_marker_file(marker_file):
     Read the marker file to get the last known AppImage path and version
 
     Returns:
-        tuple: (path, version) or (None, None) if marker doesn't exist
+        tuple: (path, version, has_embedded_window) — (None, None, False) if
+        the marker doesn't exist. has_embedded_window is True when line 6
+        records that this AppImage's AppRun supports --appimage-show-update.
     """
     try:
         if marker_file.exists():
             lines = marker_file.read_text().strip().split("\n")
             path = lines[0] if len(lines) > 0 else None
             version = lines[3] if len(lines) > 3 else None
-            return (path, version)
+            # "=2" required: the env-var hook. "=1" was a short-lived variant
+            # using a --appimage-* argument, which the AppImage runtime
+            # swallows — markers with it must be rewritten.
+            has_embedded_window = (
+                len(lines) > 5 and "embedded-update-window=2" in lines[5]
+            )
+            return (path, version, has_embedded_window)
     except Exception:
         pass
-    return (None, None)
+    return (None, None, False)
 
 
 def write_marker_file(
@@ -604,7 +629,14 @@ def write_marker_file(
         marker_file.parent.mkdir(parents=True, exist_ok=True)
         # Format: line 1 = appimage path, line 2 = desktop filename
         # line 3 = update URL, line 4 = version, line 5 = update pattern
-        content = f"{appimage_path}\n{desktop_filename}\n{update_url}\n{version}\n{update_pattern}"
+        # line 6 = capability flag: this AppImage's AppRun supports the
+        # APPIMAGE_SHOW_UPDATE_PAYLOAD env-var hook (GTK4 update window runs
+        # with the bundled libraries, independent of what the host has).
+        # "=2" = env-var hook; "=1" was a broken argument-based variant.
+        content = (
+            f"{appimage_path}\n{desktop_filename}\n{update_url}\n{version}\n"
+            f"{update_pattern}\nembedded-update-window=2"
+        )
         marker_file.write_text(content)
     except Exception as e:
         print(f"Warning: Could not write marker file: {e}", file=sys.stderr)
@@ -663,7 +695,9 @@ def main():
     marker_dir = Path.home() / ".local/share/appimage-integrations"
     marker_file = marker_dir / f"{app_name.replace(' ', '_')}.path"
 
-    last_known_path, last_known_version = read_marker_file(marker_file)
+    last_known_path, last_known_version, has_embedded_window = read_marker_file(
+        marker_file
+    )
 
     # Determine if we need to integrate/update
     force_update = False
@@ -677,6 +711,10 @@ def main():
         force_update = True
     elif last_known_version != version and version:
         # Only version changed, just update marker file
+        version_only_update = True
+    elif not has_embedded_window:
+        # Marker predates the embedded update window capability (line 6);
+        # rewrite it so the update checker can use --appimage-show-update
         version_only_update = True
 
     # If only version changed, just update the marker file

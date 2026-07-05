@@ -205,7 +205,7 @@ fi
 # --- Optional Desktop Integration Helper ---
 # This section runs a helper script on first launch in a Wayland session
 # to offer the user to integrate the AppImage into their system menu.
-if [ -n "$APPIMAGE" ] && [ -f "$HERE/usr/bin/integration_helper.py" ]; then
+if [ -n "$APPIMAGE" ] && [ -z "$APPIMAGE_SHOW_UPDATE_PAYLOAD" ] && [ -f "$HERE/usr/bin/integration_helper.py" ]; then
     # We need to find the main .desktop file name to pass to the helper
     DESKTOP_FILE_NAME="{safe_desktop_filename}"
     if [ -n "$DESKTOP_FILE_NAME" ]; then
@@ -251,6 +251,23 @@ export TEXTDOMAINDIR="${{HERE}}/usr/share/locale"
 # Bundled GTK4 may not support modern CSS syntax or settings from system themes.
 # These do not affect functionality; filter them and residual blank lines.
 exec 2> >(grep -v -e 'Theme parser error' -e 'Unknown key' -e '^[[:space:]]*$' >&2)
+
+# --- Embedded Update Window Hook ---
+# Triggered via environment variable by the host-side update checker
+# (~/.local/bin/updater) so the GTK4 update window runs with the libraries
+# bundled in this AppImage. This makes update notifications work even on
+# hosts without GTK4 (GTK3-only or Qt-only systems). A non-zero exit tells
+# the checker to fall back to other methods.
+# NOTE: an environment variable is used instead of a command-line argument
+# because the AppImage runtime reserves the --appimage-* prefix and swallows
+# unknown options before AppRun ever sees them.
+if [ -n "$APPIMAGE_SHOW_UPDATE_PAYLOAD" ]; then
+    if [ -f "${{HERE}}/usr/bin/updater/update_window.py" ]; then
+        exec python3 "${{HERE}}/usr/bin/updater/update_window.py" "$APPIMAGE_SHOW_UPDATE_PAYLOAD"
+    fi
+    echo "Embedded updater not bundled in this AppImage" >&2
+    exit 21
+fi
 
 # Execute the target application
 {exec_line}

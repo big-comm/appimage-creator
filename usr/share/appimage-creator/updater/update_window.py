@@ -871,6 +871,7 @@ class UpdateApp(Adw.Application):
         appimage_path: Path,
         marker_file: Path,
         filename_pattern: str,
+        prefer_dark=None,
     ):
         super().__init__(application_id="org.bigcommunity.appimage.updater")
 
@@ -880,9 +881,24 @@ class UpdateApp(Adw.Application):
         self.appimage_path = appimage_path
         self.marker_file = marker_file
         self.filename_pattern = filename_pattern
+        self.prefer_dark = prefer_dark
 
     def do_activate(self):
         """Called when application is activated"""
+        # When running inside an AppImage, the bundled libadwaita cannot see
+        # the host's theme settings (portal/dconf plumbing) and defaults to
+        # light. The host-side checker detects the real preference and passes
+        # it in the payload; apply it here. None = leave libadwaita's own
+        # detection alone (host GTK4 path, where it works).
+        if self.prefer_dark is True:
+            Adw.StyleManager.get_default().set_color_scheme(
+                Adw.ColorScheme.FORCE_DARK
+            )
+        elif self.prefer_dark is False:
+            Adw.StyleManager.get_default().set_color_scheme(
+                Adw.ColorScheme.FORCE_LIGHT
+            )
+
         window = self.props.active_window
         if not window:
             window = UpdateWindow(
@@ -904,6 +920,7 @@ def show_update_notification(
     appimage_path: Path,
     marker_file: Path,
     filename_pattern: str = "",
+    prefer_dark=None,
 ):
     """
     Show update notification window
@@ -915,6 +932,8 @@ def show_update_notification(
         appimage_path: Path to AppImage
         marker_file: Path to marker file
         filename_pattern: Pattern for new filename
+        prefer_dark: Host-detected dark preference (True/False), or None to
+            let libadwaita detect it (used by the host GTK4 path)
     """
     app = UpdateApp(
         app_name,
@@ -923,6 +942,45 @@ def show_update_notification(
         appimage_path,
         marker_file,
         filename_pattern,
+        prefer_dark=prefer_dark,
     )
     # Pass an empty argv so the timer process's own arguments aren't misparsed by GTK
     return app.run([])
+
+
+def _main_from_payload(payload_path: str) -> int:
+    """
+    Standalone entry point used by the AppRun embedded-update-window hook
+    (APPIMAGE_SHOW_UPDATE_PAYLOAD environment variable).
+    The host-side checker writes a JSON payload file and runs this script
+    inside the AppImage so the window uses the bundled GTK4 libraries.
+    """
+    import json
+
+    with open(payload_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    update_info = UpdateInfo(
+        version=data["new_version"],
+        download_url=data["download_url"],
+        release_notes=data.get("release_notes", ""),
+    )
+
+    return show_update_notification(
+        data["app_name"],
+        update_info,
+        data.get("current_version", ""),
+        Path(data["appimage_path"]),
+        Path(data["marker_file"]),
+        data.get("filename_pattern", ""),
+        prefer_dark=data.get("prefer_dark"),
+    )
+
+
+if __name__ == "__main__":
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: update_window.py <payload.json>", file=sys.stderr)
+        sys.exit(2)
+    sys.exit(_main_from_payload(sys.argv[1]) or 0)
