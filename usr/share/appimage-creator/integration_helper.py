@@ -340,9 +340,47 @@ def setup_systemd_watcher():
                     file=sys.stderr,
                 )
 
-        # Check if already configured
-        if service_file.exists() and timer_file.exists():
-            # Already set up, just ensure timer is enabled
+        # Desired unit contents (the single source of truth)
+        service_content = """[Unit]
+Description=AppImage Integration Cleaner
+Documentation=https://github.com/AppImage/AppImageKit
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/appimage-cleanup.py
+
+[Install]
+WantedBy=default.target
+"""
+
+        # AccuracySec is essential: the systemd default is 1 minute, which
+        # coalesces the 5s interval up to a full minute and makes orphan
+        # cleanup look stuck (removals taking 60s+ instead of ~7s).
+        timer_content = """[Unit]
+Description=Timer for AppImage Integration Cleanup
+
+[Timer]
+OnBootSec=5sec
+OnUnitInactiveSec=5sec
+AccuracySec=1s
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+"""
+
+        def _content_differs(path, content):
+            try:
+                return path.read_text() != content
+            except Exception:
+                return True
+
+        units_changed = _content_differs(service_file, service_content) or (
+            _content_differs(timer_file, timer_content)
+        )
+
+        # Already configured and up to date: just ensure it's running
+        if not units_changed:
             subprocess.run(
                 ["systemctl", "--user", "enable", "--now", "appimage-cleaner.timer"],
                 check=False,
@@ -369,35 +407,10 @@ def setup_systemd_watcher():
             )
             return True
 
-        # Create service file
-        service_content = """[Unit]
-Description=AppImage Integration Cleaner
-Documentation=https://github.com/AppImage/AppImageKit
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/appimage-cleanup.py
-
-[Install]
-WantedBy=default.target
-"""
+        # Write (or update) unit files and reload systemd
         service_file.write_text(service_content)
-
-        # Create timer file (runs every 5 seconds)
-        timer_content = """[Unit]
-Description=Timer for AppImage Integration Cleanup
-
-[Timer]
-OnBootSec=5sec
-OnUnitInactiveSec=5sec
-Persistent=true
-
-[Install]
-WantedBy=timers.target
-"""
         timer_file.write_text(timer_content)
 
-        # Reload systemd and enable timer
         subprocess.run(
             ["systemctl", "--user", "daemon-reload"],
             check=False,

@@ -32,7 +32,7 @@ from utils.i18n import _
 from utils.tooltip_helper import TooltipHelper
 
 # Application version – single source of truth
-APP_VERSION = "1.3.2"
+APP_VERSION = "1.3.3"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
