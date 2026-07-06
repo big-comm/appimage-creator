@@ -10,6 +10,30 @@ import sys
 from pathlib import Path
 from utils.file_ops import get_file_type
 
+# Build-system marker files that identify the source-project root of a
+# compiled language (Rust, Go, C/C++, Zig, Autotools...). package.json is
+# deliberately NOT listed: Electron app folders are self-contained bundles
+# and must keep the whole-directory copy behavior.
+BUILD_SYSTEM_MARKERS = (
+    "Cargo.toml",      # Rust
+    "go.mod",          # Go
+    "meson.build",     # Meson (C/C++/Vala/...)
+    "CMakeLists.txt",  # CMake
+    "build.zig",       # Zig
+    "configure.ac",    # Autotools
+    "Makefile.am",     # Autotools
+    "Makefile",        # Plain make
+)
+
+# Directories that only hold build artifacts or caches — never runtime
+# resources. Skipped when scanning a compiled project for desktop files,
+# icons and translations (a Rust target/ tree alone can hold gigabytes).
+BUILD_ARTIFACT_DIRS = {
+    "target", "build", "builddir", "_build", "dist", "out",
+    "node_modules", ".git", ".github", ".cargo", ".venv", "venv",
+    "__pycache__", ".tox", ".mypy_cache", ".pytest_cache",
+}
+
 
 def analyze_wrapper_script(script_path: str) -> dict:
     """Analyze wrapper script to detect underlying application type"""
@@ -180,6 +204,13 @@ def detect_application_structure(executable_path: str) -> dict:
 
             return structure
 
+    # Compiled artifact (ELF) inside a source project: the program is the
+    # binary itself, so the source tree must never be copied wholesale.
+    if file_type == "binary":
+        compiled_structure = _detect_compiled_structure(path)
+        if compiled_structure:
+            return compiled_structure
+
     structure = {
         "type": "simple",
         "main_executable": str(path),
@@ -229,6 +260,79 @@ def detect_application_structure(executable_path: str) -> dict:
     return structure
 
 
+def _looks_like_electron_bundle(exe_dir: Path) -> bool:
+    """Detect an Electron/Chromium app folder next to the selected ELF."""
+    return (
+        (exe_dir / "resources" / "app.asar").exists()
+        or (exe_dir / "chrome-sandbox").exists()
+        or (exe_dir / "libffmpeg.so").exists()
+    )
+
+
+def _detect_compiled_structure(path: Path) -> dict | None:
+    """
+    Build the structure for a compiled executable (ELF) that lives inside a
+    source project (Rust, Go, C/C++...). The artifact IS the program, so the
+    builder copies only the binary to usr/bin and harvests installable
+    resources (usr/share, compiled locale) from the resource root — never
+    the source tree with its build directories (a Rust target/ can hold
+    gigabytes of artifacts).
+
+    Returns None when the executable does not look like the artifact of a
+    source project; the caller then keeps the legacy behavior. This keeps
+    Electron app folders and bare binaries with adjacent data files working
+    exactly as before.
+    """
+    exe_dir = path.parent
+
+    # Electron/Chromium bundles are self-contained folders that need the
+    # whole-directory copy (resources/, locales/, bundled .so files).
+    if _looks_like_electron_bundle(exe_dir):
+        return None
+
+    project_root = None
+    current = exe_dir
+    for _ in range(5):  # Search up to 5 levels
+        if current == current.parent:
+            break  # Reached filesystem root
+        if any((current / marker).is_file() for marker in BUILD_SYSTEM_MARKERS):
+            project_root = current
+            break
+        current = current.parent
+
+    if not project_root:
+        return None  # Not a source project — keep legacy behavior
+
+    structure = {
+        "type": "compiled",
+        "main_executable": str(path),
+        # Deliberately None so the whole-tree copy path in the builder and
+        # the Python source scanners never run for compiled artifacts.
+        "project_root": None,
+        "resource_root": str(project_root),
+        "build_markers": [
+            m for m in BUILD_SYSTEM_MARKERS if (project_root / m).is_file()
+        ],
+        "detected_files": {"desktop_files": [], "icons": [], "locale_dirs": []},
+        "wrapper_analysis": None,
+        "has_desktop_file": False,
+    }
+
+    _scan_project_root(
+        project_root, structure, extra_skip_dirs=BUILD_ARTIFACT_DIRS
+    )
+    structure["has_desktop_file"] = (
+        len(structure["detected_files"]["desktop_files"]) > 0
+    )
+
+    print(
+        f"[DEBUG] Compiled project detected (markers: {structure['build_markers']}), "
+        f"resource root: {project_root}",
+        file=sys.stderr,
+    )
+    return structure
+
+
 def _detect_electron_app_id(project_root: Path) -> str | None:
     """Extract Electron app name from resources/app.asar for Wayland app_id."""
     asar_path = project_root / "resources" / "app.asar"
@@ -263,12 +367,14 @@ def _detect_electron_app_id(project_root: Path) -> str | None:
         return None
 
 
-def _scan_project_root(project_root_path, structure):
+def _scan_project_root(project_root_path, structure, extra_skip_dirs=None):
     """Scans for common files within a given project root directory."""
     root = Path(project_root_path)
 
     # Directories to skip during scanning (Electron/node heavy dirs)
     _skip_dirs = {"node_modules", ".git", "__pycache__", "locales"}
+    if extra_skip_dirs:
+        _skip_dirs = _skip_dirs | set(extra_skip_dirs)
 
     def _walk(base: Path):
         """Yield files under base, skipping heavy directories."""

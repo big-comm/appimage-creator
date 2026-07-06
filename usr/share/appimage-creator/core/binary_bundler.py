@@ -23,6 +23,26 @@ class BinaryBundler:
 
     def bundle_external_binaries(self) -> None:
         """Bundle external binaries (ffmpeg, etc) using linuxdeploy."""
+        if (self._b.app_info.structure_analysis or {}).get("type") == "compiled":
+            # linuxdeploy would closure-bundle the compiled binary's whole
+            # dependency tree from the build host, patching every library
+            # with patchelf. On hosts whose libraries use packed DT_RELR
+            # relocations (Arch/Manjaro) patchelf corrupts them and the
+            # AppImage segfaults inside ld.so before main() runs. Compiled
+            # apps bundle their framework libraries through the dependency
+            # profiles instead (the same proven model as the Python/GTK
+            # flow): unpatched libraries loaded via the AppRun
+            # LD_LIBRARY_PATH. linuxdeploy is only needed for
+            # SYSTEM_BINARIES, which are not detected for compiled apps.
+            self._b.log(
+                _(
+                    "Compiled application: bundling via dependency profiles "
+                    "(skipping linuxdeploy)."
+                )
+            )
+            self._generate_icon_cache()
+            return
+
         self._b.log(_("Processing external binaries with linuxdeploy..."))
 
         if not self._b.download_linuxdeploy():
@@ -187,31 +207,35 @@ class BinaryBundler:
                     _("Restored original wrapper: {}").format(original_wrapper.name)
                 )
 
-            # Generate icon cache inside the AppDir for better integration
-            self._b.log(_("Generating icon cache inside AppDir..."))
-            hicolor_dir = self._b.appdir_path / "usr/share/icons/hicolor"
-            if hicolor_dir.is_dir():
-                try:
-                    cache_cmd = ["gtk-update-icon-cache", "-f", "-t", str(hicolor_dir)]
-                    result = self._b._run_command(cache_cmd, timeout=60)
-                    if result.returncode == 0:
-                        self._b.log(_("Successfully generated icon-theme.cache."))
-                    else:
-                        self._b.log(
-                            _(
-                                "Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
-                            )
-                        )
-                        self._b.log(result.stderr or result.stdout)
-                except Exception as cache_error:
-                    self._b.log(
-                        _("Warning: Could not run gtk-update-icon-cache: {}").format(
-                            cache_error
-                        )
-                    )
+            self._generate_icon_cache()
 
         except Exception as e:
             self._b.log(_("Warning: Binary bundling failed: {}").format(e))
+
+    def _generate_icon_cache(self) -> None:
+        """Generate icon cache inside the AppDir for better integration."""
+        self._b.log(_("Generating icon cache inside AppDir..."))
+        hicolor_dir = self._b.appdir_path / "usr/share/icons/hicolor"
+        if not hicolor_dir.is_dir():
+            return
+        try:
+            cache_cmd = ["gtk-update-icon-cache", "-f", "-t", str(hicolor_dir)]
+            result = self._b._run_command(cache_cmd, timeout=60)
+            if result.returncode == 0:
+                self._b.log(_("Successfully generated icon-theme.cache."))
+            else:
+                self._b.log(
+                    _(
+                        "Warning: Failed to generate icon-theme.cache. Icons may not appear in menus."
+                    )
+                )
+                self._b.log(result.stderr or result.stdout)
+        except Exception as cache_error:
+            self._b.log(
+                _("Warning: Could not run gtk-update-icon-cache: {}").format(
+                    cache_error
+                )
+            )
 
     def detect_binary_dependencies(self) -> list[str]:
         """Detect required system binaries by scanning project files using SYSTEM_BINARIES."""
@@ -223,6 +247,11 @@ class BinaryBundler:
         # Determine search path for source files
         source_path = None
         structure_analysis = self._b.app_info.structure_analysis or {}
+        if structure_analysis.get("type") == "compiled":
+            # Compiled artifact: keyword-scanning source files is meaningless
+            # for the binary itself, and the fallback directory would be a
+            # build tree (e.g. Rust target/release) holding gigabytes.
+            return list(detected_binaries)
         project_root = structure_analysis.get("project_root")
         if project_root and Path(project_root).exists():
             source_path = Path(project_root)

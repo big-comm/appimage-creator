@@ -37,7 +37,7 @@ except ImportError:
 
 from generators.files import create_apprun_file, generate_desktop_file
 from utils.file_ops import copy_files_recursively, download_file, verify_download_sha256
-from utils.system import get_system_info, find_executable_in_path, make_executable, get_host_env
+from utils.system import get_system_info, find_executable_in_path, make_executable, get_host_env, read_elf_needed
 from core.dependency_resolver import DependencyResolver, PrePackagingValidator
 from core.app_info import AppInfo
 from utils.i18n import _
@@ -251,7 +251,11 @@ class AppImageBuilder:
             structure_analysis = self.app_info.structure_analysis or {}
             project_root = structure_analysis.get("project_root")
 
-            if project_root and os.path.exists(project_root):
+            if structure_analysis.get("type") == "compiled":
+                # Compiled artifact (Rust, Go, C/C++...): only the binary and
+                # the project's installable data enter the AppDir.
+                self._copy_compiled_application(structure_analysis)
+            elif project_root and os.path.exists(project_root):
                 self.log(_("Copying structured project from: {}").format(project_root))
                 exclude_patterns = [
                     # Version control and cache
@@ -272,6 +276,21 @@ class AppImageBuilder:
                     # Specific build/package directories
                     "pkgbuild",
                 ]
+
+                # Defensive net: build-artifact directories must never ship
+                # inside an AppImage (a Rust target/ alone can hold gigabytes).
+                # Gated on build markers so a legitimate app directory that
+                # happens to use one of these names is not dropped.
+                root_path = Path(project_root)
+                if (root_path / "Cargo.toml").is_file():
+                    exclude_patterns.append("target")
+                if (root_path / "meson.build").is_file() or (
+                    root_path / "CMakeLists.txt"
+                ).is_file():
+                    exclude_patterns.extend(["build", "builddir", "_build"])
+                for venv_name in (".venv", "venv"):
+                    if (root_path / venv_name / "pyvenv.cfg").is_file():
+                        exclude_patterns.append(venv_name)
 
                 copy_files_recursively(
                     project_root, self.appdir_path, exclude_patterns=exclude_patterns
@@ -309,6 +328,51 @@ class AppImageBuilder:
             self.update_progress(25, _("Application files copied"))
         except Exception as e:
             raise RuntimeError(_("Failed to copy application files: {}").format(e))
+
+    def _copy_compiled_application(self, structure_analysis: dict) -> None:
+        """
+        Copy a compiled application (Rust, Go, C/C++...) into the AppDir.
+
+        The executable is the whole program: it goes to usr/bin, plus the
+        project's installable data (usr/share layout and compiled locale).
+        The source tree — and especially build directories like Rust's
+        target/ — is never copied wholesale.
+        """
+        executable_path = Path(self.app_info.executable)
+        exe_name = self.app_info.executable_name or executable_path.name
+
+        bin_dir = self.appdir_path / "usr" / "bin"
+        bin_dir.mkdir(parents=True, exist_ok=True)
+        dest_binary = bin_dir / exe_name
+        shutil.copy2(executable_path, dest_binary)
+        make_executable(dest_binary)
+        self.log(_("Copied compiled binary to usr/bin/{}").format(exe_name))
+
+        resource_root = structure_analysis.get("resource_root")
+        if not resource_root or not os.path.isdir(resource_root):
+            return
+
+        # Installable data shipped by the project (freedesktop layout):
+        # desktop file, icons, metainfo, translations...
+        share_src = Path(resource_root) / "usr" / "share"
+        if share_src.is_dir():
+            self.log(_("Copying project data from: {}").format(share_src))
+            copy_files_recursively(share_src, self.appdir_path / "usr" / "share")
+
+        # Compiled translations living outside usr/share (e.g. ./locale)
+        locale_dest = self.appdir_path / "usr" / "share" / "locale"
+        detected_locales = structure_analysis.get("detected_files", {}).get(
+            "locale_dirs", []
+        )
+        for locale_dir in detected_locales:
+            locale_path = Path(locale_dir)
+            try:
+                locale_path.relative_to(share_src)
+                continue  # Already covered by the usr/share copy above
+            except ValueError:
+                pass
+            self.log(_("Copying translations from: {}").format(locale_path))
+            copy_files_recursively(locale_path, locale_dest)
 
     def _copy_additional_directories(self):
         """Copy user-specified additional directories"""
@@ -904,8 +968,10 @@ class AppImageBuilder:
         # System libraries (fallback)
         self._copy_system_libraries()
 
-        # GObject Introspection typelibs (for PyGObject apps)
-        self._copy_typelibs()
+        # GObject Introspection typelibs (for PyGObject apps). A compiled
+        # binary links the C libraries directly and never loads typelibs.
+        if (self.app_info.structure_analysis or {}).get("type") != "compiled":
+            self._copy_typelibs()
 
         # Copy only essential GStreamer plugins
         self._copy_gstreamer_plugins()
@@ -1070,6 +1136,11 @@ class AppImageBuilder:
         }
 
         structure_analysis = app_info.structure_analysis or {}
+        if structure_analysis.get("type") == "compiled":
+            # Compiled artifact: there is no Python runtime source to scan,
+            # and the fallback (the executable's directory) would walk a
+            # huge build tree such as Rust's target/release.
+            return []
         project_root = structure_analysis.get("project_root")
 
         if project_root and Path(project_root).exists():
@@ -1093,13 +1164,82 @@ class AppImageBuilder:
             source_files.append(py_file)
         return source_files
 
+    # Libraries whose presence in an ELF's DT_NEEDED identifies a dependency
+    # profile from SYSTEM_DEPENDENCIES. Only signature libraries are listed —
+    # support libs like libcairo would cause false positives (a GTK4 app links
+    # libcairo directly, which must not select the gtk3 profile).
+    ELF_SIGNATURE_LIBS = {
+        "gtk3": ["libgtk-3.so*"],
+        "gtk4": ["libgtk-4.so*"],
+        "adwaita": ["libadwaita-1.so*"],
+        "vte": ["libvte-2.91.so*", "libvte-2.91-gtk4.so*"],
+        "libsecret": ["libsecret-1.so*"],
+        "mpv": ["libmpv.so*"],
+        "gstreamer-gtk": ["libgstgtk.so*"],
+        "glib": ["libgirepository-1.0.so*", "libgirepository-2.0.so*"],
+    }
+
+    def _detect_elf_dependencies(self, app_info: AppInfo):
+        """
+        Detect GUI framework dependencies for a compiled executable by
+        reading the DT_NEEDED entries of the ELF — the libraries the binary
+        was actually linked against. Language-independent: works the same
+        for Rust, C, C++, Go, Zig... Returns the same dict shape as
+        _detect_gui_dependencies (keys usable by the UI switches and by the
+        container package installer).
+        """
+        from fnmatch import fnmatch
+
+        from core.build_config import SYSTEM_DEPENDENCIES
+
+        needed = read_elf_needed(app_info.executable)
+        if not needed:
+            self.log(_("No dynamic libraries detected in executable"))
+            return {}
+
+        self.log(
+            _("Executable links against {} libraries").format(len(needed))
+        )
+
+        dependencies: dict[str, bool] = {}
+
+        for dep_key, patterns in self.ELF_SIGNATURE_LIBS.items():
+            if any(fnmatch(lib, p) for lib in needed for p in patterns):
+                dependencies[dep_key] = True
+                # Also flag the detection keyword so the UI switches light
+                # up exactly like they do for Python source detection
+                # (e.g. the glib profile is keyed on 'gi').
+                keyword = SYSTEM_DEPENDENCIES.get(dep_key, {}).get(
+                    "detection_keyword"
+                )
+                if keyword:
+                    dependencies[keyword] = True
+                self.log(_("  Detected: {}").format(dep_key.upper()))
+
+        # Qt has no bundling profile yet, but the container must have it
+        # installed so library validation can resolve the dependencies.
+        if any(lib.startswith("libQt5") for lib in needed):
+            dependencies["qt5"] = True
+            self.log(_("  Detected: QT5"))
+        if any(lib.startswith("libQt6") for lib in needed):
+            dependencies["qt6"] = True
+            self.log(_("  Detected: QT6"))
+
+        return dependencies
+
     def _detect_gui_dependencies(self, app_info: AppInfo):
         """
         Detect GUI framework dependencies by analyzing Python source code.
-        Returns dict with framework info: {'gtk3': True, 'gtk4': True, etc}
+        For compiled executables, the analysis reads the ELF's linked
+        libraries instead. Returns dict with framework info:
+        {'gtk3': True, 'gtk4': True, etc}
         """
         self.log(_("Detecting GUI framework dependencies..."))
         dependencies: dict[str, bool] = {}
+
+        structure_analysis = app_info.structure_analysis or {}
+        if structure_analysis.get("type") == "compiled":
+            return self._detect_elf_dependencies(app_info)
 
         # Find Python files in the original project source, not the AppDir
         python_files = self._collect_source_python_files(app_info)
@@ -1674,10 +1814,17 @@ class AppImageBuilder:
             if self.cancel_requested:
                 raise RuntimeError(_("Build cancelled"))
 
-            # Install native GUI dependencies in the container and download plugins
+            # Install native GUI dependencies in the container and download plugins.
+            # Package installation only makes sense inside a container: on a
+            # local build the libraries are taken from the host, and the host
+            # may not even use apt/dnf (Arch, openSUSE...).
             gui_deps = self._detect_gui_dependencies(self.app_info)
-            if gui_deps:
+            if gui_deps and self.container_name:
                 self._ensure_native_dependencies(gui_deps)
+            elif gui_deps:
+                self.log(
+                    _("Local build: bundling detected dependencies from host libraries.")
+                )
 
             if self.cancel_requested:
                 raise RuntimeError(_("Build cancelled"))
