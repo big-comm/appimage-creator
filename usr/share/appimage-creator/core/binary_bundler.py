@@ -144,6 +144,9 @@ class BinaryBundler:
             env = os.environ.copy()
             env["DISABLE_COPYRIGHT_FILES_DEPLOYMENT"] = "1"
             env["NO_STRIP"] = "1"
+            # Self-extract instead of FUSE-mounting so bundling works on hosts
+            # without FUSE (linuxdeploy is itself an AppImage).
+            env["APPIMAGE_EXTRACT_AND_RUN"] = "1"
 
             self._b.log(_("Running linuxdeploy..."))
             self._b.update_progress(65, _("Bundling binary dependencies..."))

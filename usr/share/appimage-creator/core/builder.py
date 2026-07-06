@@ -1655,6 +1655,11 @@ class AppImageBuilder:
             env = get_host_env()
             system_info = get_system_info()
             env["ARCH"] = system_info["architecture"]
+            # Run appimagetool by self-extracting instead of FUSE-mounting, so
+            # the build works on hosts without FUSE (or where /dev/fuse is
+            # unavailable, e.g. some containers and sandboxes). appimagetool is
+            # itself an AppImage, so this applies to the tool, not the output.
+            env["APPIMAGE_EXTRACT_AND_RUN"] = "1"
 
             output_dir = Path(self.app_info.output_dir or Path.cwd())
             output_dir.mkdir(parents=True, exist_ok=True)
@@ -1666,9 +1671,9 @@ class AppImageBuilder:
 
             self.log(_("Running: {}").format(" ".join(cmd)))
 
-            # appimagetool must run locally (needs FUSE)
+            # appimagetool must run locally (accesses the AppDir on the host)
             if self.container_name:
-                self.log(_("Note: appimagetool runs locally (requires FUSE)"))
+                self.log(_("Note: appimagetool runs locally on the host"))
 
             result = subprocess.run(
                 cmd,

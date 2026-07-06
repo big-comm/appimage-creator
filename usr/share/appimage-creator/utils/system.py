@@ -46,6 +46,8 @@ def get_distro_info() -> Dict[str, Optional[str]]:
                     distro_info["base"] = "debian"
                 elif "fedora" in bases or "rhel" in bases:
                     distro_info["base"] = "rpm"
+                elif "suse" in bases or "opensuse" in bases:
+                    distro_info["base"] = "suse"
     except FileNotFoundError:
         pass  # Could not find os-release file
 
@@ -57,6 +59,14 @@ def get_distro_info() -> Dict[str, Optional[str]]:
             distro_info["base"] = "debian"
         elif distro_info["id"] in ["fedora", "centos", "rhel", "nobara"]:
             distro_info["base"] = "rpm"
+        elif distro_info["id"] in [
+            "opensuse",
+            "opensuse-leap",
+            "opensuse-tumbleweed",
+            "sles",
+            "suse",
+        ]:
+            distro_info["base"] = "suse"
 
     return distro_info
 
@@ -67,6 +77,25 @@ def check_host_dependencies(dependencies: List[str]) -> Dict[str, bool]:
     for dep in dependencies:
         status[dep] = find_executable_in_path(dep) is not None
     return status
+
+
+def has_fuse() -> bool:
+    """
+    Report whether FUSE is usable on the host.
+
+    FUSE lets a type-2 AppImage mount itself instead of extracting. The
+    builder no longer requires it (it runs the AppImage tools with
+    APPIMAGE_EXTRACT_AND_RUN=1), but the AppImages this tool *produces*
+    will mount via FUSE on the end user's machine unless FUSE is missing
+    there too. We treat it as usable when the kernel device exists and a
+    fusermount helper is present.
+    """
+    if not os.path.exists("/dev/fuse"):
+        return False
+    return any(
+        find_executable_in_path(tool) is not None
+        for tool in ("fusermount", "fusermount3", "fusermount2")
+    )
 
 
 def sanitize_filename(filename: str) -> str:
