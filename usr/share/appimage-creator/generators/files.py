@@ -219,9 +219,15 @@ fi
 # GObject Introspection typelibs
 export GI_TYPELIB_PATH="${{HERE}}/usr/lib/girepository-1.0:${{HERE}}/usr/lib/x86_64-linux-gnu/girepository-1.0:${{GI_TYPELIB_PATH}}"
 
-# GStreamer plugin path
-export GST_PLUGIN_PATH="${{HERE}}/usr/lib/gstreamer-1.0:${{GST_PLUGIN_PATH}}"
-export GST_PLUGIN_SYSTEM_PATH="${{HERE}}/usr/lib/gstreamer-1.0"
+# GStreamer plugin path — only when this AppImage bundles plugins.
+# Setting GST_PLUGIN_SYSTEM_PATH unconditionally stops GStreamer from
+# scanning the host's plugin directories, which leaves apps that use the
+# host GStreamer (e.g. compiled apps) with zero plugins — and therefore
+# no audio/video devices.
+if [ -d "${{HERE}}/usr/lib/gstreamer-1.0" ]; then
+    export GST_PLUGIN_PATH="${{HERE}}/usr/lib/gstreamer-1.0:${{GST_PLUGIN_PATH}}"
+    export GST_PLUGIN_SYSTEM_PATH="${{HERE}}/usr/lib/gstreamer-1.0"
+fi
 
 # GTK icon and theme paths - CRITICAL for bundled icon themes
 export XDG_DATA_DIRS="${{HERE}}/usr/share:${{XDG_DATA_DIRS:-/usr/local/share:/usr/share}}"

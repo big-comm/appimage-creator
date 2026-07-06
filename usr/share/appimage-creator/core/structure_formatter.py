@@ -46,6 +46,12 @@ def generate_detailed_structure(
         if structure_analysis
         else None
     )
+    # Compiled apps have no project_root (nothing is tree-copied); show the
+    # resource root in the summary. The rglob sections below stay keyed on
+    # project_root so a huge build tree (Rust target/) is never walked.
+    display_root = project_root or (
+        structure_analysis.get("resource_root") if structure_analysis else None
+    )
 
     # Walk the project tree only once and reuse the results in both the detail
     # listing and the summary below (avoids 8 redundant rglob traversals).
@@ -122,7 +128,7 @@ def generate_detailed_structure(
         "=" * 60,
         f"  {_('Application Name')}: {app_name}",
         f"  {_('Application Type')}: {app_type}",
-        f"  {_('Project Root')}: {project_root or _('Not detected')}",
+        f"  {_('Project Root')}: {display_root or _('Not detected')}",
         f"  {_('Additional Directories')}: {len(directories)}",
     ]
 
