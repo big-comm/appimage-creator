@@ -6,7 +6,12 @@ import subprocess
 import shutil
 from typing import List, Dict, Any, Optional, Callable
 
-from utils.system import get_distro_info, check_host_dependencies, get_host_env
+from utils.system import (
+    get_distro_info,
+    check_host_dependencies,
+    get_host_env,
+    has_fuse,
+)
 from utils.i18n import _
 
 
@@ -288,6 +293,24 @@ class EnvironmentManager:
                 "packages": packages,
             }
 
+        # openSUSE/SUSE-based distributions
+        elif distro_base == "suse" or distro_id in [
+            "opensuse",
+            "opensuse-leap",
+            "opensuse-tumbleweed",
+            "sles",
+            "suse",
+        ]:
+            return {
+                "method": "zypper",
+                # --non-interactive is zypper's non-prompting mode (there is
+                # no -y); it still resolves and installs dependencies.
+                "command": ["pkexec", "zypper", "--non-interactive", "install"]
+                + packages,
+                "display": f"pkexec zypper --non-interactive install {' '.join(packages)}",
+                "packages": packages,
+            }
+
         return None
 
     def is_host_ready(self) -> bool:
@@ -308,6 +331,7 @@ class EnvironmentManager:
             "has_podman": self.host_deps.get("podman", False),
             "has_docker": self.host_deps.get("docker", False),
             "has_distrobox": self.host_deps.get("distrobox", False),
+            "has_fuse": has_fuse(),
             "container_runtime": runtime,
             "missing_components": missing,
             "is_ready": self.is_host_ready(),

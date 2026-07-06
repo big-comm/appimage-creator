@@ -76,7 +76,10 @@ class WelcomePage:
             _("Welcome"), "welcome"
         )
 
-        scrolled, content_box = _scrollable_content()
+        # Tighter section spacing so the three requirement rows + the build
+        # environments section fit the default window height without a
+        # scrollbar (16 instead of the default 24).
+        scrolled, content_box = _scrollable_content(spacing=16)
         toolbar_view.set_content(scrolled)
 
         # ---- Branding area ----
@@ -107,15 +110,20 @@ class WelcomePage:
         self.req_group = Adw.PreferencesGroup()
         self.req_group.set_title(_("System Requirements"))
 
+        # Single-line rows: the status shows as a compact suffix label
+        # instead of a subtitle, so each requirement takes one line and the
+        # section stays short (no scrollbar on the main page).
         self.distrobox_row = Adw.ActionRow()
         self.distrobox_row.set_title("Distrobox")
-        self.distrobox_row.set_subtitle(_("Checking…"))
         self.req_group.add(self.distrobox_row)
 
         self.runtime_row = Adw.ActionRow()
         self.runtime_row.set_title(_("Container Runtime"))
-        self.runtime_row.set_subtitle(_("Checking…"))
         self.req_group.add(self.runtime_row)
+
+        self.fuse_row = Adw.ActionRow()
+        self.fuse_row.set_title("FUSE")
+        self.req_group.add(self.fuse_row)
 
         content_box.append(self.req_group)
 
@@ -171,20 +179,35 @@ class WelcomePage:
 
         # Distrobox
         if missing.get("distrobox"):
-            self.distrobox_row.set_subtitle(_("Not installed"))
-            self._set_row_icon(self.distrobox_row, False)
+            self._set_row_status(self.distrobox_row, False, _("Not installed"))
         else:
-            self.distrobox_row.set_subtitle(_("Ready"))
-            self._set_row_icon(self.distrobox_row, True)
+            self._set_row_status(self.distrobox_row, True, _("Ready"))
 
         # Container runtime
         if missing.get("runtime"):
             name = missing.get("runtime_name", "podman / docker")
-            self.runtime_row.set_subtitle(_("Not installed ({})").format(name))
-            self._set_row_icon(self.runtime_row, False)
+            self._set_row_status(
+                self.runtime_row, False, _("Not installed ({})").format(name)
+            )
         else:
-            self.runtime_row.set_subtitle(_("Ready"))
-            self._set_row_icon(self.runtime_row, True)
+            self._set_row_status(self.runtime_row, True, _("Ready"))
+
+        # FUSE — not required to build (the tools self-extract), but the
+        # AppImages produced here mount via FUSE on the target machine. The
+        # long explanation lives in a tooltip to keep the row single-line.
+        if host.get("has_fuse", True):
+            self._set_row_status(self.fuse_row, True, _("Ready"))
+        else:
+            self._set_row_status(
+                self.fuse_row,
+                False,
+                _("Not detected"),
+                tooltip=_(
+                    "Builds still work, but the AppImages you create need "
+                    "FUSE to run on the target machine (or launching them "
+                    "with --appimage-extract-and-run)."
+                ),
+            )
 
         # Show / hide install button
         if not host["is_ready"]:
@@ -206,16 +229,35 @@ class WelcomePage:
                 self.install_button = None
 
     @staticmethod
-    def _set_row_icon(row: Adw.ActionRow, ok: bool):
-        """Set a status icon as prefix on the row (replaces any existing)."""
+    def _set_row_status(
+        row: Adw.ActionRow, ok: bool, text: str, tooltip: str | None = None
+    ):
+        """Show status as a prefix icon + compact suffix label (single line).
+
+        Using a suffix label instead of a subtitle keeps each requirement
+        row one line tall, so the requirements section does not push the
+        main page into a scrollbar.
+        """
+        # Prefix status icon (replace any existing)
         old_icon = getattr(row, "_status_icon", None)
         if old_icon is not None:
             row.remove(old_icon)
-
         icon_name = "emblem-ok-symbolic" if ok else "dialog-warning-symbolic"
         icon = Gtk.Image.new_from_icon_name(icon_name)
         row.add_prefix(icon)
         row._status_icon = icon  # type: ignore[attr-defined]
+
+        # Suffix status label (replace any existing)
+        old_label = getattr(row, "_status_label", None)
+        if old_label is not None:
+            row.remove(old_label)
+        label = Gtk.Label(label=text)
+        label.set_valign(Gtk.Align.CENTER)
+        label.add_css_class("dim-label")
+        row.add_suffix(label)
+        row._status_label = label  # type: ignore[attr-defined]
+
+        row.set_tooltip_text(tooltip or "")
 
     def update_environments(self, env_manager: EnvironmentManager) -> None:
         """Populate the Build Environments expander with available containers."""
