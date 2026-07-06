@@ -861,6 +861,24 @@ msgstr "Fichiers d'application copiés"
 msgid "Failed to copy application files: {}"
 msgstr "Échec de la copie des fichiers de l'application : {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 349
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied compiled binary to usr/bin/{}"
+msgstr "Copie du binaire compilé dans usr/bin/{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 359
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying project data from: {}"
+msgstr "Copie des données de projet depuis : {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 374
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying translations from: {}"
+msgstr "Copie des traductions depuis : {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 229
 #: NEEDS WORK
 #, python-brace-format
@@ -1193,6 +1211,33 @@ msgstr ""
 msgid "GI compatibility check skipped: {}"
 msgstr "Vérification de compatibilité GI ignorée : {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1197
+#: NEEDS WORK
+msgid "No dynamic libraries detected in executable"
+msgstr "Aucune bibliothèque dynamique détectée dans l'exécutable"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1201
+#: NEEDS WORK
+#, python-brace-format
+msgid "Executable links against {} libraries"
+msgstr "Liens exécutables contre des bibliothèques {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 760
+#: NEEDS WORK
+#, python-brace-format
+msgid "  Detected: {}"
+msgstr "Détecté : {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1223
+#: NEEDS WORK
+msgid "  Detected: QT5"
+msgstr "Détecté : QT5"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1226
+#: NEEDS WORK
+msgid "  Detected: QT6"
+msgstr "Détecté : QT6"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 716
 #: NEEDS WORK
 msgid "Detecting GUI framework dependencies..."
@@ -1208,12 +1253,6 @@ msgstr "Aucun fichier Python trouvé pour la détection des dépendances"
 #, python-brace-format
 msgid "Analyzing {} Python files..."
 msgstr "Analyse des fichiers Python {}..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 760
-#: NEEDS WORK
-#, python-brace-format
-msgid "  Detected: {}"
-msgstr "Détecté : {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 816
 #: NEEDS WORK
@@ -1396,10 +1435,10 @@ msgstr "appimagetool non disponible"
 msgid "Running: {}"
 msgstr "En cours : {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1290
+# File: usr/share/appimage-creator/core/builder.py, line: 1676
 #: NEEDS WORK
-msgid "Note: appimagetool runs locally (requires FUSE)"
-msgstr "Remarque : appimagetool s'exécute localement (nécessite FUSE)"
+msgid "Note: appimagetool runs locally on the host"
+msgstr "Remarque : appimagetool s'exécute localement sur l'hôte"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1296
 #: NEEDS WORK
@@ -1504,6 +1543,11 @@ msgstr "Initialisation..."
 #: NEEDS WORK
 msgid "Build cancelled"
 msgstr "Construction annulée"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1831
+#: NEEDS WORK
+msgid "Local build: bundling detected dependencies from host libraries."
+msgstr "Compilation locale : regroupement des dépendances détectées à partir des bibliothèques hôtes."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1412
 #: NEEDS WORK
@@ -1757,6 +1801,11 @@ msgstr "Avertissement : Impossible de supprimer l'image automatiquement"
 msgid "An error occurred while removing the container: {}"
 msgstr "Une erreur est survenue lors de la suppression du conteneur : {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
+#: NEEDS WORK
+msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
+msgstr "Application compilée : regroupement via des profils de dépendance (sauter linuxdeploy)."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 827
 #: NEEDS WORK
 msgid "Processing external binaries with linuxdeploy..."
@@ -1841,6 +1890,12 @@ msgstr "AppRun personnalisé restauré"
 msgid "Restored original wrapper: {}"
 msgstr "Restauration de l'enveloppe originale : {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 945
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Binary bundling failed: {}"
+msgstr "Avertissement : Échec de l'assemblage binaire : {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1370
 #: NEEDS WORK
 msgid "Generating icon cache inside AppDir..."
@@ -1863,12 +1918,6 @@ msgstr ""
 #, python-brace-format
 msgid "Warning: Could not run gtk-update-icon-cache: {}"
 msgstr "Avertissement : Impossible d'exécuter gtk-update-icon-cache : {}"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 945
-#: NEEDS WORK
-#, python-brace-format
-msgid "Warning: Binary bundling failed: {}"
-msgstr "Avertissement : Échec de l'assemblage binaire : {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 2081
 #: NEEDS WORK
@@ -3016,12 +3065,6 @@ msgstr "Créer des AppImages distribuables à partir de n'importe quelle applica
 msgid "System Requirements"
 msgstr "Exigences système"
 # 
-# File: usr/share/appimage-creator/ui/pages.py, line: 112
-# File: usr/share/appimage-creator/ui/pages.py, line: 117
-#: NEEDS WORK
-msgid "Checking…"
-msgstr "Vérification…"
-# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 116
 #: NEEDS WORK
 msgid "Container Runtime"
@@ -3078,6 +3121,15 @@ msgstr "Prêt"
 #, python-brace-format
 msgid "Not installed ({})"
 msgstr "Non installé ({})"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 206
+#: NEEDS WORK
+msgid ""
+"Builds still work, but the AppImages you create need FUSE to run on the target machine (or "
+"launching them with --appimage-extract-and-run)."
+msgstr ""
+"Les builds fonctionnent toujours, mais les AppImages que vous créez ont besoin de FUSE pour "
+"s'exécuter sur la machine cible (ou en les lançant avec --appimage-extract-and-run)."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 196
 #: NEEDS WORK
