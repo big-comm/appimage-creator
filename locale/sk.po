@@ -1157,7 +1157,7 @@ msgstr "Kontrola kompatibility API introspekcie GObject..."
 #: NEEDS WORK
 #, python-brace-format
 msgid "{} (namespace unavailable)"
-msgstr "I'm sorry, but I need a specific string to translate. Please provide the text you want translated."
+msgstr "{} (menný priestor nedostupný)"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1027
 #: NEEDS WORK
@@ -2505,7 +2505,7 @@ msgstr "Inštalovať"
 msgid ""
 "Starting installation...\n"
 "\n"
-msgstr "Začínam inštaláciu..."
+msgstr ""
 # 
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 456
 #: NEEDS WORK
@@ -2554,7 +2554,7 @@ msgstr "Odstrániť"
 #: NEEDS WORK
 #, python-brace-format
 msgid "{}: {}"
-msgstr "Kľúč: {}"
+msgstr "{}: {}"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 48
 # File: usr/share/appimage-creator/ui/window.py, line: 131
@@ -3710,3 +3710,111 @@ msgstr "Upozornenie: Súbor na ploche môže mať problémy s validáciou"
 #: NEEDS WORK
 msgid "Failed to create desktop file"
 msgstr "Nepodarilo sa vytvoriť súbor na plochu"
+# 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
+#: NEEDS WORK
+msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
+msgstr "Skompilovaná aplikácia: balenie pomocou profilov závislostí (linuxdeploy preskočený)."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 394
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied compiled binary to usr/bin/{}"
+msgstr "Skompilovaný binárny súbor skopírovaný do usr/bin/{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 404
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying project data from: {}"
+msgstr "Kopírovanie údajov projektu z: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 419
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying translations from: {}"
+msgstr "Kopírovanie prekladov z: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 763
+#: NEEDS WORK
+#, python-brace-format
+msgid "AppRun primary via entry point: {}:{}"
+msgstr "Primárny AppRun cez vstupný bod: {}:{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 849
+#: NEEDS WORK
+#, python-brace-format
+msgid "Primary launcher: {} ({}:{})"
+msgstr "Primárny spúšťač: {} ({}:{})"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 885
+#: NEEDS WORK
+#, python-brace-format
+msgid "Secondary launcher '{}' -> {}"
+msgstr "Sekundárny spúšťač '{}' -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1391
+#: NEEDS WORK
+msgid "No dynamic libraries detected in executable"
+msgstr "V spustiteľnom súbore neboli zistené žiadne dynamické knižnice"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1395
+#: NEEDS WORK
+#, python-brace-format
+msgid "Executable links against {} libraries"
+msgstr "Spustiteľný súbor je prepojený s {} knižnicami"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1417
+#: NEEDS WORK
+msgid "  Detected: QT5"
+msgstr "  Zistené: QT5"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1420
+#: NEEDS WORK
+msgid "  Detected: QT6"
+msgstr "  Zistené: QT6"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1870
+#: NEEDS WORK
+msgid "Note: appimagetool runs locally on the host"
+msgstr "Poznámka: appimagetool beží lokálne na hostiteľovi"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2025
+#: NEEDS WORK
+msgid "Local build: bundling detected dependencies from host libraries."
+msgstr "Lokálne zostavenie: balenie zistených závislostí z knižníc hostiteľa."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 206
+#: NEEDS WORK
+msgid "Builds still work, but the AppImages you create need FUSE to run on the target machine (or launching them with --appimage-extract-and-run)."
+msgstr "Zostavenia stále fungujú, ale vytvorené AppImage potrebujú na spustenie na cieľovom počítači FUSE (alebo ich spúšťajte s --appimage-extract-and-run)."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 584
+#: NEEDS WORK
+msgid "Additional Executables"
+msgstr "Ďalšie spustiteľné súbory"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 587
+#: NEEDS WORK
+msgid "This package exposes more than one program. Include the extra ones in the same AppImage (they share the bundled runtime)."
+msgstr "Tento balík obsahuje viac než jeden program. Zahrňte ďalšie do rovnakého AppImage (zdieľajú pribalené behové prostredie)."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 746
+#: NEEDS WORK
+msgid "GUI"
+msgstr "GUI"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 746
+#: NEEDS WORK
+msgid "CLI"
+msgstr "CLI"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 749
+#: NEEDS WORK
+#, python-brace-format
+msgid "{kind} · {module}:{func}"
+msgstr "{kind} · {module}:{func}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
+#: NEEDS WORK
+msgid "Starting installation..."
+msgstr "Spúšťanie inštalácie..."

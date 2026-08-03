@@ -1157,7 +1157,7 @@ msgstr "Verificando a compatibilidade da API de introspecção GObject..."
 #: NEEDS WORK
 #, python-brace-format
 msgid "{} (namespace unavailable)"
-msgstr "Desculpe, não há string para traduzir."
+msgstr "{} (namespace indisponível)"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1027
 #: NEEDS WORK
@@ -2507,7 +2507,7 @@ msgstr "Instalar"
 msgid ""
 "Starting installation...\n"
 "\n"
-msgstr "Iniciando a instalação..."
+msgstr ""
 # 
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 456
 #: NEEDS WORK
@@ -2556,7 +2556,7 @@ msgstr "Remover"
 #: NEEDS WORK
 #, python-brace-format
 msgid "{}: {}"
-msgstr "Chave: {}"
+msgstr "{}: {}"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 48
 # File: usr/share/appimage-creator/ui/window.py, line: 131
@@ -3713,3 +3713,111 @@ msgstr "Aviso: O arquivo de área de trabalho pode ter problemas de validação"
 #: NEEDS WORK
 msgid "Failed to create desktop file"
 msgstr "Falha ao criar arquivo de área de trabalho"
+# 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
+#: NEEDS WORK
+msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
+msgstr "Aplicativo compilado: empacotando via perfis de dependência (ignorando linuxdeploy)."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 394
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copied compiled binary to usr/bin/{}"
+msgstr "Binário compilado copiado para usr/bin/{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 404
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying project data from: {}"
+msgstr "Copiando dados do projeto de: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 419
+#: NEEDS WORK
+#, python-brace-format
+msgid "Copying translations from: {}"
+msgstr "Copiando traduções de: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 763
+#: NEEDS WORK
+#, python-brace-format
+msgid "AppRun primary via entry point: {}:{}"
+msgstr "AppRun primário via ponto de entrada: {}:{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 849
+#: NEEDS WORK
+#, python-brace-format
+msgid "Primary launcher: {} ({}:{})"
+msgstr "Lançador primário: {} ({}:{})"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 885
+#: NEEDS WORK
+#, python-brace-format
+msgid "Secondary launcher '{}' -> {}"
+msgstr "Lançador secundário '{}' -> {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1391
+#: NEEDS WORK
+msgid "No dynamic libraries detected in executable"
+msgstr "Nenhuma biblioteca dinâmica detectada no executável"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1395
+#: NEEDS WORK
+#, python-brace-format
+msgid "Executable links against {} libraries"
+msgstr "O executável usa {} bibliotecas"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1417
+#: NEEDS WORK
+msgid "  Detected: QT5"
+msgstr "  Detectado: QT5"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1420
+#: NEEDS WORK
+msgid "  Detected: QT6"
+msgstr "  Detectado: QT6"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1870
+#: NEEDS WORK
+msgid "Note: appimagetool runs locally on the host"
+msgstr "Nota: o appimagetool roda localmente no host"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 2025
+#: NEEDS WORK
+msgid "Local build: bundling detected dependencies from host libraries."
+msgstr "Compilação local: empacotando dependências detectadas a partir das bibliotecas do host."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 206
+#: NEEDS WORK
+msgid "Builds still work, but the AppImages you create need FUSE to run on the target machine (or launching them with --appimage-extract-and-run)."
+msgstr "As compilações continuam funcionando, mas os AppImages que você criar precisam de FUSE para rodar na máquina de destino (ou serem iniciados com --appimage-extract-and-run)."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 584
+#: NEEDS WORK
+msgid "Additional Executables"
+msgstr "Executáveis adicionais"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 587
+#: NEEDS WORK
+msgid "This package exposes more than one program. Include the extra ones in the same AppImage (they share the bundled runtime)."
+msgstr "Este pacote expõe mais de um programa. Inclua os extras no mesmo AppImage (eles compartilham o runtime empacotado)."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 746
+#: NEEDS WORK
+msgid "GUI"
+msgstr "GUI"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 746
+#: NEEDS WORK
+msgid "CLI"
+msgstr "CLI"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 749
+#: NEEDS WORK
+#, python-brace-format
+msgid "{kind} · {module}:{func}"
+msgstr "{kind} · {module}:{func}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
+#: NEEDS WORK
+msgid "Starting installation..."
+msgstr "Iniciando a instalação..."

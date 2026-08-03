@@ -764,7 +764,9 @@ class InstallPackagesDialog(Adw.Window):
         self.install_button.set_sensitive(False)
         self.cancel_button.set_sensitive(False)
 
-        self._write_to_terminal(_("Starting installation...\n\n"))
+        # Keep the trailing newlines out of the translatable string:
+        # auto-translators drop them, which makes msgfmt reject the .po.
+        self._write_to_terminal(_("Starting installation...") + "\n\n")
 
         # Run pre-command if exists (like apt-get update)
         if "pre_command" in self.packages_info:
