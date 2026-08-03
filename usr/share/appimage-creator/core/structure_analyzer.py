@@ -201,6 +201,10 @@ def detect_application_structure(executable_path: str) -> dict:
                 structure["has_desktop_file"] = (
                     len(structure["detected_files"]["desktop_files"]) > 0
                 )
+                # All launchers this package exposes (primary + secondaries).
+                # The builder/UI separate the primary (matching the selected
+                # executable) from the secondaries the user opts to bundle.
+                structure["entry_points"] = detect_entry_points(project_root)
 
             return structure
 
@@ -241,6 +245,8 @@ def detect_application_structure(executable_path: str) -> dict:
         structure["type"] = "structured_project"
         # Scan for files ONLY within the project root
         _scan_project_root(project_root, structure)
+        # All launchers this package exposes (primary + secondaries)
+        structure["entry_points"] = detect_entry_points(project_root)
     else:
         # Fallback for simple cases: project root is the executable's directory
         structure["project_root"] = str(path.parent)
@@ -331,6 +337,106 @@ def _detect_compiled_structure(path: Path) -> dict | None:
         file=sys.stderr,
     )
     return structure
+
+
+def _looks_cli(name: str) -> bool:
+    """Heuristic: does this entry point name denote a command-line tool?"""
+    low = name.lower()
+    return low.endswith(("-cli", "-cmd", "-term")) or low.endswith("cli")
+
+
+def _entry_from_python_c(content: str) -> tuple[str, str] | None:
+    """Extract (module, func) from a `python -c "from <mod> import <f>; <f>()"`
+    style wrapper. Returns None when no such pattern is present."""
+    m = re.search(
+        r"from\s+([\w.]+)\s+import\s+(\w+)\s*;?\s*\2\s*\(", content
+    )
+    if m:
+        return m.group(1), m.group(2)
+    # `python -m package` form
+    m = re.search(r"python3?\s+-m\s+([\w.]+)", content)
+    if m:
+        return m.group(1), ""  # -m module (no explicit func)
+    return None
+
+
+def detect_entry_points(project_root: Path) -> list[dict]:
+    """
+    Detect the launchers a Python project exposes, so a single AppImage can
+    ship more than one entry point sharing the same venv (e.g. a GUI plus a
+    second GUI or a CLI).
+
+    Two sources are merged, keyed by launcher name:
+      1. Wrapper scripts in ``usr/bin/`` — what the package actually installs.
+         These are the source of truth (a project's pyproject can be out of
+         sync with the wrappers it ships).
+      2. ``pyproject.toml`` ``[project.scripts]`` / ``[project.gui-scripts]``.
+
+    Each returned item: ``{"name", "module", "func", "is_gui", "source"}``.
+    Only module/func launchers are returned (they map cleanly to
+    ``python -c "from <module> import <func>; <func>()"`` regardless of cwd).
+    """
+    root = Path(project_root)
+    entries: dict[str, dict] = {}
+
+    # --- Source 1: wrapper scripts shipped in usr/bin/ -----------------
+    bin_dir = root / "usr" / "bin"
+    if bin_dir.is_dir():
+        for wrapper in sorted(bin_dir.iterdir()):
+            if not wrapper.is_file():
+                continue
+            try:
+                content = wrapper.read_text(encoding="utf-8", errors="ignore")
+            except OSError:
+                continue
+            if "python" not in content:
+                continue
+            parsed = _entry_from_python_c(content)
+            if not parsed:
+                continue
+            module, func = parsed
+            name = wrapper.name
+            entries[name] = {
+                "name": name,
+                "module": module,
+                "func": func,
+                "is_gui": not _looks_cli(name),
+                "source": "wrapper",
+            }
+
+    # --- Source 2: pyproject.toml entry points -------------------------
+    pyproject = root / "pyproject.toml"
+    if pyproject.is_file():
+        try:
+            import tomllib
+
+            data = tomllib.loads(pyproject.read_text(encoding="utf-8"))
+            project = data.get("project", {})
+            for table, is_gui in (
+                ("scripts", False),
+                ("gui-scripts", True),
+            ):
+                for name, target in (project.get(table) or {}).items():
+                    # target form: "module.path:func"
+                    if ":" not in str(target):
+                        continue
+                    module, func = str(target).split(":", 1)
+                    module, func = module.strip(), func.strip()
+                    if name in entries:
+                        continue  # wrapper wins (it's what's really shipped)
+                    entries[name] = {
+                        "name": name,
+                        "module": module,
+                        "func": func,
+                        # gui-scripts are GUI; scripts are CLI unless the name
+                        # says otherwise
+                        "is_gui": is_gui and not _looks_cli(name),
+                        "source": "pyproject",
+                    }
+        except (OSError, ValueError, ImportError):
+            pass
+
+    return list(entries.values())
 
 
 def _detect_electron_app_id(project_root: Path) -> str | None:

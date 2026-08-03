@@ -456,7 +456,12 @@ WantedBy=timers.target
 
 
 def integrate_appimage(
-    app_name, appimage_path, desktop_file, icon_file, force_update=False
+    app_name,
+    appimage_path,
+    desktop_file,
+    icon_file,
+    force_update=False,
+    dispatch_flag="",
 ):
     """
     Silently integrate AppImage into user's local directories
@@ -467,6 +472,9 @@ def integrate_appimage(
         desktop_file: Path to the .desktop file inside AppDir
         icon_file: Path to the icon file inside AppDir
         force_update: Force update even if already integrated
+        dispatch_flag: For secondary launchers, the entry-point name; the
+            Exec line becomes `"<appimage>" --<flag> %F` so the AppImage's
+            AppRun dispatches to that entry point. Empty for the primary.
 
     Returns:
         0 on success, 1 on skip, 2 on error
@@ -539,10 +547,13 @@ def integrate_appimage(
         # --- Modify and write desktop file ---
         desktop_content = desktop_file.read_text()
 
-        # 1. Replace Exec= with the absolute path to the AppImage
+        # 1. Replace Exec= with the absolute path to the AppImage. For a
+        # secondary launcher, add its --<flag> so AppRun dispatches to that
+        # entry point.
+        flag_part = f" --{dispatch_flag}" if dispatch_flag else ""
         modified_content = re.sub(
             r"^Exec=.*$",
-            f'Exec="{appimage_path}" %F',
+            f'Exec="{appimage_path}"{flag_part} %F',
             desktop_content,
             flags=re.MULTILINE,
         )
@@ -655,6 +666,68 @@ def write_marker_file(
         print(f"Warning: Could not write marker file: {e}", file=sys.stderr)
 
 
+def _resolve_icon_file(appdir, icon_name):
+    """Find an icon file for icon_name: AppDir root first (where the primary
+    symlink lives), then the bundled hicolor theme. Returns a Path or None."""
+    for ext in (".svg", ".png", ".xpm"):
+        candidate = appdir / f"{icon_name}{ext}"
+        if candidate.exists():
+            return candidate
+    icons_root = appdir / "usr" / "share" / "icons"
+    if icons_root.is_dir():
+        for ext in (".svg", ".png", ".xpm"):
+            matches = sorted(icons_root.rglob(f"{icon_name}{ext}"))
+            if matches:
+                return matches[0]
+    return None
+
+
+def _integrate_secondaries(appdir, appimage_path, secondary_spec):
+    """
+    Install menu entries for secondary GUI launchers of a multi-executable
+    AppImage. secondary_spec is "flag|desktopfile;flag|desktopfile".
+
+    Fully isolated: any failure here is swallowed so it can never affect the
+    primary integration or the update flow.
+    """
+    if not secondary_spec:
+        return
+    for item in secondary_spec.split(";"):
+        item = item.strip()
+        if "|" not in item:
+            continue
+        flag, desktop_name = item.split("|", 1)
+        flag, desktop_name = flag.strip(), desktop_name.strip()
+        if not flag or not desktop_name:
+            continue
+        try:
+            desktop_path = appdir / "usr/share/applications" / desktop_name
+            if not desktop_path.exists():
+                continue
+            cfg = configparser.ConfigParser()
+            cfg.read(desktop_path)
+            icon_name = cfg.get("Desktop Entry", "Icon", fallback="")
+            icon_file = _resolve_icon_file(appdir, icon_name) if icon_name else None
+            if not icon_file:
+                # No icon resolved: still install the entry using the primary
+                # icon would be misleading; skip menu entry for this one.
+                print(
+                    f"Secondary '{flag}': icon '{icon_name}' not found, skipping",
+                    file=sys.stderr,
+                )
+                continue
+            integrate_appimage(
+                flag,
+                appimage_path,
+                desktop_path,
+                icon_file,
+                force_update=True,
+                dispatch_flag=flag,
+            )
+        except Exception as e:
+            print(f"Secondary integration '{flag}' failed: {e}", file=sys.stderr)
+
+
 def main():
     """Main entry point - silent automatic integration with collaborative cleanup"""
     if len(sys.argv) < 4:
@@ -669,6 +742,9 @@ def main():
     update_url = sys.argv[4] if len(sys.argv) > 4 else ""
     version = sys.argv[5] if len(sys.argv) > 5 else ""
     update_pattern = sys.argv[6] if len(sys.argv) > 6 else ""
+    # Optional secondary GUI launchers ("flag|desktopfile;...") for
+    # multi-executable AppImages.
+    secondary_spec = sys.argv[7] if len(sys.argv) > 7 else ""
 
     # Only run in graphical environment (X11 or Wayland)
     if not (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY")):
@@ -761,6 +837,14 @@ def main():
                 version,
                 update_pattern,
             )
+
+    # Secondary GUI launchers (multi-executable AppImage). Isolated so it can
+    # never affect the primary integration, the marker, or the update flow.
+    if secondary_spec:
+        try:
+            _integrate_secondaries(appdir, appimage_path, secondary_spec)
+        except Exception as e:
+            print(f"Warning: secondary integration failed: {e}", file=sys.stderr)
 
     # --- COLLABORATIVE CLEANUP ---
     # Clean up orphaned integrations from OTHER AppImages

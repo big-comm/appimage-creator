@@ -792,15 +792,25 @@ Type=Scalable
                 return
 
             # First, try to get the expected icon name from the .desktop file
-            # Exclude updater and vainfo (created by linuxdeploy) desktop files
+            # Exclude updater and vainfo (created by linuxdeploy) desktop files.
+            # For multi-desktop apps, read the Icon= from the PRIMARY desktop
+            # (the one at the AppDir root) so the root icon appimagetool checks
+            # matches; otherwise the glob order could pick a secondary's icon.
             expected_icon_name = None
             desktop_files_dir = self._b.appdir_path / "usr/share/applications"
             if desktop_files_dir.exists():
-                for desktop_file in desktop_files_dir.glob("*.desktop"):
-                    # Skip updater and vainfo desktop files
-                    fname_lower = desktop_file.name.lower()
-                    if 'updater' in fname_lower or 'vainfo' in fname_lower:
-                        continue
+                primary_name = getattr(self._b, "_primary_desktop_name", "")
+                all_desktops = [
+                    d for d in desktop_files_dir.glob("*.desktop")
+                    if "updater" not in d.name.lower()
+                    and "vainfo" not in d.name.lower()
+                ]
+                # Primary first, then a stable order for the rest
+                ordered = sorted(
+                    all_desktops,
+                    key=lambda d: (d.name != primary_name, d.name),
+                )
+                for desktop_file in ordered:
                     try:
                         content = desktop_file.read_text()
                         match = re.search(r'^Icon=(.+)$', content, re.MULTILINE)
@@ -868,8 +878,18 @@ Type=Scalable
                                  if 'updater' not in Path(d).name.lower()
                                  and 'vainfo' not in Path(d).name.lower()]
 
+            # Prefer the PRIMARY desktop (the one placed at the AppDir root),
+            # so the root icon this function creates matches the desktop
+            # appimagetool inspects. Critical for multi-desktop apps.
+            primary_desktop_name = getattr(self._b, "_primary_desktop_name", "")
+            if primary_desktop_name:
+                candidate_path = desktop_files_dir / primary_desktop_name
+                if candidate_path.exists():
+                    main_desktop_file = candidate_path
+                    self._b.log(f"Using primary desktop for icon: {primary_desktop_name}")
+
             # Try to find the desktop file from structure analysis
-            if detected_desktops:
+            if not main_desktop_file and detected_desktops:
                 original_desktop_filename = Path(detected_desktops[0]).name
                 candidate_path = desktop_files_dir / original_desktop_filename
                 if candidate_path.exists():

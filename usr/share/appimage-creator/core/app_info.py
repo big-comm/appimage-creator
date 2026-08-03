@@ -60,6 +60,25 @@ class AppInfo:
     keywords: list[str] = field(default_factory=list)
     mime_types: list[str] = field(default_factory=list)
 
+    # Multiple entry points (one AppImage, several launchers sharing the
+    # same venv — e.g. a package exposing GUI + a second GUI/CLI). These are
+    # the SECONDARY launchers the user chose to bundle; the primary launcher
+    # stays the selected executable. Each item:
+    #   {"name": str, "module": str, "func": str, "is_gui": bool, "desktop": str}
+    # Empty list = single-executable build (current behavior, unchanged).
+    entry_points: list[dict] = field(default_factory=list)
+
+    # In multi-executable mode, the primary launcher runs via this module/func
+    # too (python -c "from <module> import <func>; <func>()"), keeping all
+    # launchers consistent and avoiding fragile target-script guessing. Empty
+    # = primary uses the classic file-path exec (single-executable behavior).
+    primary_module: str = ""
+    primary_func: str = ""
+    # Directories (relative to the AppDir root) to prepend to PYTHONPATH so the
+    # entry-point modules import (e.g. "src" for a src-layout project). Only
+    # emitted in multi-executable mode.
+    entry_point_syspath: list[str] = field(default_factory=list)
+
     # Dynamic build-time fields
     canonical_basename: str = ""
     python_version: str = ""

@@ -579,6 +579,19 @@ class ConfigurationPage:
 
         content_box.append(self.desktop_file_group)
 
+        # ---- Additional Executables (multi-entry-point apps) ----
+        self.entry_points_group = Adw.PreferencesGroup()
+        self.entry_points_group.set_title(_("Additional Executables"))
+        self.entry_points_group.set_description(
+            _(
+                "This package exposes more than one program. Include the extra "
+                "ones in the same AppImage (they share the bundled runtime)."
+            )
+        )
+        self.entry_points_group.set_visible(False)
+        self._entry_point_rows: list = []
+        content_box.append(self.entry_points_group)
+
         # ---- Structure Preview ----
         self.preview_group = Adw.PreferencesGroup()
         self.preview_group.set_title(_("Structure Preview"))
@@ -715,6 +728,45 @@ class ConfigurationPage:
         content_box.append(continue_group)
 
     # -- helpers --
+
+    def update_entry_points(self, secondaries: list) -> None:
+        """Populate the Additional Executables section from detected secondary
+        entry points. Hidden when the package exposes only one program."""
+        # Clear previous rows
+        for row in self._entry_point_rows:
+            self.entry_points_group.remove(row)
+        self._entry_point_rows = []
+
+        if not secondaries:
+            self.entry_points_group.set_visible(False)
+            return
+
+        for ep in secondaries:
+            row = Adw.SwitchRow()
+            kind = _("GUI") if ep.get("is_gui") else _("CLI")
+            row.set_title(ep.get("name", "?"))
+            row.set_subtitle(
+                _("{kind} · {module}:{func}").format(
+                    kind=kind,
+                    module=ep.get("module", ""),
+                    func=ep.get("func", "") or "-",
+                )
+            )
+            # GUI launchers default to on (menu entry); CLI default off
+            row.set_active(bool(ep.get("is_gui")))
+            row._entry_point = ep  # type: ignore[attr-defined]
+            self.entry_points_group.add(row)
+            self._entry_point_rows.append(row)
+
+        self.entry_points_group.set_visible(True)
+
+    def get_selected_entry_points(self) -> list:
+        """Return the entry-point dicts the user chose to bundle."""
+        return [
+            row._entry_point  # type: ignore[attr-defined]
+            for row in self._entry_point_rows
+            if row.get_active()
+        ]
 
     def update_pattern_from_name(self, app_name: str) -> None:
         """Auto-fill filename pattern from app name."""

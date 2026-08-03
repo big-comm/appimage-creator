@@ -60,6 +60,51 @@ class AppImageBuilder:
         self.build_environment = None
         self.python_version = None
         self.container_name = None
+        # Name of the primary .desktop chosen for multi-desktop apps, so icon
+        # symlink creation aligns the AppDir-root icon with it.
+        self._primary_desktop_name = ""
+
+    @staticmethod
+    def _select_primary_desktop(desktop_files, primary_name):
+        """Pick the primary .desktop among several: the one whose Exec runs
+        the selected executable (by command basename) in its plainest form.
+
+        A package may ship several .desktop files for the same binary that
+        differ only in flags (e.g. `foo %F` vs `foo --edit %F`). The default
+        launcher must be the plain one, so among matches we prefer the fewest
+        extra Exec arguments (field codes like %F/%U are ignored). A stable
+        alphabetical order breaks ties and provides the fallback.
+        """
+        ordered = sorted(desktop_files, key=lambda d: d.name)
+        if primary_name:
+            best = None
+            best_extra = None
+            for desktop in ordered:
+                try:
+                    for line in desktop.read_text(
+                        encoding="utf-8", errors="ignore"
+                    ).splitlines():
+                        if not line.startswith("Exec="):
+                            continue
+                        parts = line[len("Exec="):].strip().split()
+                        if not parts or os.path.basename(
+                            parts[0].strip('"')
+                        ) != primary_name:
+                            break
+                        # Count real extra args, ignoring field codes
+                        extra = [
+                            a
+                            for a in parts[1:]
+                            if not (a.startswith("%") and len(a) == 2)
+                        ]
+                        if best_extra is None or len(extra) < best_extra:
+                            best, best_extra = desktop, len(extra)
+                        break
+                except OSError:
+                    continue
+            if best is not None:
+                return best
+        return ordered[0]
 
     def is_local_build(self) -> bool:
         """Check if building locally (not in container)"""
@@ -553,7 +598,18 @@ class AppImageBuilder:
                         f.write(desktop_content)
                     main_desktop_file_path = new_desktop_path
                 else:
-                    source_desktop_file = appdir_desktop_files[0]
+                    # With several .desktop files (multi-executable apps ship
+                    # one per launcher), pick the primary one: the desktop
+                    # whose Exec runs the selected executable. Falls back to a
+                    # stable alphabetical order so the choice is deterministic.
+                    primary_name = self.app_info.executable_name or (
+                        os.path.basename(self.app_info.executable)
+                        if self.app_info.executable
+                        else ""
+                    )
+                    source_desktop_file = self._select_primary_desktop(
+                        appdir_desktop_files, primary_name
+                    )
                     self.log(
                         _("Found desktop file from source project: {}").format(
                             source_desktop_file.name
@@ -563,6 +619,11 @@ class AppImageBuilder:
                     self.log(
                         f"Using desktop file with original name: {main_desktop_file_path.name}"
                     )
+
+            # Remember the primary desktop so icon-symlink creation aligns the
+            # AppDir-root icon with it (appimagetool reads the root desktop's
+            # Icon= and needs a matching icon at the root).
+            self._primary_desktop_name = main_desktop_file_path.name
 
             # Create symlink to the desktop file in AppDir root (using original name)
             root_desktop_path = self.appdir_path / main_desktop_file_path.name
@@ -672,29 +733,60 @@ class AppImageBuilder:
             if hasattr(self, "python_version") and self.python_version:
                 app_info_for_apprun.python_version = self.python_version
 
+            # Multi-executable: does the selected executable map to a detected
+            # entry point (module:func)? If so, the primary runs via that too,
+            # which also covers wrappers that have no single target .py file.
+            multi_primary = None
+            if app_info_for_apprun.entry_points:
+                structure0 = self.app_info.structure_analysis or {}
+                primary_name = self.app_info.executable_name or Path(
+                    self.app_info.executable
+                ).name
+                multi_primary = next(
+                    (
+                        e
+                        for e in structure0.get("entry_points", [])
+                        if e.get("name") == primary_name and e.get("module")
+                    ),
+                    None,
+                )
+
             # Determine the components of the command that AppRun should execute
             if app_type in ["python", "python_wrapper", "gtk", "qt"]:
-                structure = self.app_info.structure_analysis or {}
-                wrapper_analysis = structure.get("wrapper_analysis", {})
+                app_info_for_apprun.apprun_executable = "usr/python/venv/bin/python3"
 
-                target_script_abs = wrapper_analysis.get("target_executable")
-                project_root_abs = structure.get("project_root")
+                if multi_primary:
+                    # Primary launcher runs via module:func (set below in
+                    # _prepare_multi_executable); no target script needed.
+                    app_info_for_apprun.apprun_argument = None
+                    self.log(
+                        _("AppRun primary via entry point: {}:{}").format(
+                            multi_primary["module"], multi_primary.get("func", "")
+                        )
+                    )
+                else:
+                    structure = self.app_info.structure_analysis or {}
+                    wrapper_analysis = structure.get("wrapper_analysis", {})
 
-                if not target_script_abs or not project_root_abs:
-                    raise RuntimeError(
-                        "Could not determine target Python script from structure analysis."
+                    target_script_abs = wrapper_analysis.get("target_executable")
+                    project_root_abs = structure.get("project_root")
+
+                    if not target_script_abs or not project_root_abs:
+                        raise RuntimeError(
+                            "Could not determine target Python script from structure analysis."
+                        )
+
+                    # Calculate the script's path relative to the project root
+                    relative_script_path = os.path.relpath(
+                        target_script_abs, project_root_abs
                     )
 
-                # Calculate the script's path relative to the project root
-                relative_script_path = os.path.relpath(
-                    target_script_abs, project_root_abs
-                )
-
-                app_info_for_apprun.apprun_executable = "usr/python/venv/bin/python3"
-                app_info_for_apprun.apprun_argument = relative_script_path
-                self.log(
-                    _("AppRun will execute Python on: {}").format(relative_script_path)
-                )
+                    app_info_for_apprun.apprun_argument = relative_script_path
+                    self.log(
+                        _("AppRun will execute Python on: {}").format(
+                            relative_script_path
+                        )
+                    )
 
             else:
                 # For binary apps
@@ -715,12 +807,114 @@ class AppImageBuilder:
                     )
                 )
 
+            # Multi-executable: wire up the selected secondary launchers.
+            if app_info_for_apprun.entry_points:
+                self._prepare_multi_executable(app_info_for_apprun)
+
             # Create the AppRun file
             create_apprun_file(self.appdir_path, app_info_for_apprun)
 
             self.update_progress(50, _("Launcher and desktop files created"))
         except Exception as e:
             raise RuntimeError(_("Failed to create launcher files: {}").format(e))
+
+    def _prepare_multi_executable(self, app_info) -> None:
+        """
+        Wire up a multi-executable build:
+          1. Drive the PRIMARY launcher via its module:func too (from the
+             detected entry point matching the selected executable), so all
+             launchers use the same robust mechanism and the fragile
+             target-script guess is bypassed.
+          2. Compute the PYTHONPATH dirs the entry-point modules need to
+             import (e.g. "src" for a src-layout project).
+          3. Match each secondary GUI entry point to the .desktop the project
+             ships for it (by Exec basename) for menu integration.
+        """
+        structure = self.app_info.structure_analysis or {}
+        all_entries = structure.get("entry_points", []) or []
+        primary_name = self.app_info.executable_name or Path(
+            self.app_info.executable
+        ).name
+
+        # 1. Primary launcher via module:func (if detected for this executable)
+        primary = next(
+            (e for e in all_entries if e.get("name") == primary_name), None
+        )
+        modules = []
+        if primary and primary.get("module"):
+            app_info.primary_module = primary["module"]
+            app_info.primary_func = primary.get("func", "")
+            modules.append(primary["module"])
+            self.log(
+                _("Primary launcher: {} ({}:{})").format(
+                    primary_name, primary["module"], primary.get("func", "")
+                )
+            )
+        for ep in app_info.entry_points:
+            if ep.get("module"):
+                modules.append(ep["module"])
+
+        # 2. PYTHONPATH dirs so the modules import
+        app_info.entry_point_syspath = self._compute_entry_syspath(modules)
+
+        # 3. Secondary GUI -> .desktop mapping
+        apps_dir = self.appdir_path / "usr" / "share" / "applications"
+        exec_to_desktop: dict[str, str] = {}
+        if apps_dir.is_dir():
+            for desktop in apps_dir.glob("*.desktop"):
+                name_l = desktop.name.lower()
+                if "updater" in name_l or "vainfo" in name_l:
+                    continue
+                try:
+                    for line in desktop.read_text(encoding="utf-8").splitlines():
+                        if line.startswith("Exec="):
+                            parts = line[len("Exec="):].strip().split()
+                            if parts:
+                                base = os.path.basename(parts[0].strip('"'))
+                                exec_to_desktop.setdefault(base, desktop.name)
+                            break
+                except OSError:
+                    continue
+
+        for ep in app_info.entry_points:
+            ep["desktop"] = (
+                exec_to_desktop.get(ep["name"], "") if ep.get("is_gui") else ""
+            )
+            if ep["desktop"]:
+                self.log(
+                    _("Secondary launcher '{}' -> {}").format(
+                        ep["name"], ep["desktop"]
+                    )
+                )
+
+    def _compute_entry_syspath(self, modules) -> list:
+        """
+        Return AppDir-relative directories to prepend to PYTHONPATH so the
+        given entry-point modules import. For each module's TOP-LEVEL package,
+        locate ``<pkg>/__init__.py`` in the AppDir and record the parent dir
+        (e.g. src/bigocrpdf -> "src"). The bundled venv site-packages is
+        already on PYTHONPATH, so packages living only there are skipped.
+        """
+        dirs: list[str] = []
+        seen = set()
+        venv_dir = self.appdir_path / "usr" / "python" / "venv"
+        for module in modules:
+            top = module.split(".")[0]
+            if not top:
+                continue
+            for init in self.appdir_path.rglob(f"{top}/__init__.py"):
+                # Skip copies inside the venv (already importable) and any
+                # nested match where the package dir isn't named exactly <top>
+                if venv_dir in init.parents:
+                    continue
+                if init.parent.name != top:
+                    continue
+                rel = os.path.relpath(init.parent.parent, self.appdir_path)
+                if rel not in seen:
+                    seen.add(rel)
+                    dirs.append(rel)
+                break
+        return dirs
 
     def copy_integration_helpers(self) -> None:
         """Copy integration helper scripts to usr/bin/ inside AppImage"""

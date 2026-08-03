@@ -138,10 +138,34 @@ def create_apprun_script(app_info: AppInfo) -> str:
     if not executable:
         executable = f"usr/bin/{app_info.executable_name or 'app'}"
 
-    if argument:
+    # In multi-executable mode the primary runs via its module:func too
+    # (robust, cwd-independent, and consistent with the secondaries). Falls
+    # back to the classic file-path exec for single-executable builds.
+    import re as _re
+
+    primary_module = getattr(app_info, "primary_module", "")
+    primary_func = getattr(app_info, "primary_func", "")
+    if (
+        primary_module
+        and _re.match(r"^[\w.]+$", primary_module)
+        and (not primary_func or _re.match(r"^\w+$", primary_func))
+    ):
+        if primary_func:
+            pycmd = f'-c "from {primary_module} import {primary_func}; {primary_func}()"'
+        else:
+            pycmd = f"-m {primary_module}"
+        exec_line = f'exec "${{HERE}}/{executable}" {pycmd} "$@"'
+    elif argument:
         exec_line = f'exec "${{HERE}}/{executable}" "${{HERE}}/{argument}" "$@"'
     else:
         exec_line = f'exec "${{HERE}}/{executable}" "$@"'
+
+    # Optional multi-executable dispatch: when the app bundles secondary
+    # launchers (same venv, extra entry points), the AppImage decides which
+    # to run by the invocation name (ARGV0, so a `foo-cli` symlink works) or
+    # an explicit `--<name>` flag. The primary launcher (exec_line above)
+    # stays the default, so single-executable builds are unchanged.
+    dispatch_block = _build_entrypoint_dispatch(app_info, executable)
 
     py_version = (
         app_info.python_version or f"{sys.version_info.major}.{sys.version_info.minor}"
@@ -170,6 +194,17 @@ def create_apprun_script(app_info: AppInfo) -> str:
     safe_version = sh_dq(app_info.version)
     safe_update_pattern = sh_dq(app_info.update_pattern)
     safe_desktop_filename = sh_dq(main_desktop_filename)
+
+    # Secondary GUI launchers to register as extra menu entries, encoded as
+    # "flag|desktopfile;flag|desktopfile" for the integration helper. Only
+    # entries that resolved to a shipped .desktop are included.
+    secondary_specs = []
+    for ep in getattr(app_info, "entry_points", None) or []:
+        desktop = ep.get("desktop", "")
+        name = ep.get("name", "")
+        if desktop and name and "|" not in name and ";" not in desktop:
+            secondary_specs.append(f"{name}|{desktop}")
+    safe_secondary_spec = sh_dq(";".join(secondary_specs))
 
     return f'''#!/bin/bash
 # AppRun for {safe_app_name}
@@ -210,8 +245,8 @@ if [ -n "$APPIMAGE" ] && [ -z "$APPIMAGE_SHOW_UPDATE_PAYLOAD" ] && [ -f "$HERE/u
     DESKTOP_FILE_NAME="{safe_desktop_filename}"
     if [ -n "$DESKTOP_FILE_NAME" ]; then
         # Now we can just call 'python3' because the PATH is correctly set
-        # Pass update metadata if available
-        python3 "$HERE/usr/bin/integration_helper.py" "{safe_app_name}" "$APPIMAGE" "$DESKTOP_FILE_NAME" "{safe_update_url}" "{safe_version}" "{safe_update_pattern}"
+        # Pass update metadata if available (arg 7 = secondary GUI launchers)
+        python3 "$HERE/usr/bin/integration_helper.py" "{safe_app_name}" "$APPIMAGE" "$DESKTOP_FILE_NAME" "{safe_update_url}" "{safe_version}" "{safe_update_pattern}" "{safe_secondary_spec}"
     fi
 fi
 # --- End of Integration Helper ---
@@ -276,8 +311,89 @@ if [ -n "$APPIMAGE_SHOW_UPDATE_PAYLOAD" ]; then
 fi
 
 # Execute the target application
-{exec_line}
+{dispatch_block}{exec_line}
 '''
+
+
+def _build_entrypoint_dispatch(app_info: "AppInfo", executable: str) -> str:
+    """
+    Build the bash dispatch block for secondary entry points, or "" when the
+    app has none (single-executable build — unchanged behavior).
+
+    Each secondary launcher runs `python -c "from <module> import <func>;
+    <func>()"` with the SAME interpreter the primary uses (the bundled venv
+    python), so all launchers share one venv. Selection is by invocation
+    name (ARGV0) or an explicit `--<name>` flag; the primary stays default.
+    """
+    import re
+
+    entry_points = getattr(app_info, "entry_points", None) or []
+    if not entry_points:
+        return ""
+
+    # The primary interpreter path, e.g. "${HERE}/usr/python/venv/bin/python3"
+    interp = "${HERE}/" + executable
+
+    name_re = re.compile(r"^[\w.+-]+$")
+    module_re = re.compile(r"^[\w.]+$")
+    func_re = re.compile(r"^\w+$")
+
+    by_name: list[str] = []
+    by_flag: list[str] = []
+    for ep in entry_points:
+        name = str(ep.get("name", ""))
+        module = str(ep.get("module", ""))
+        func = str(ep.get("func", ""))
+        # Only emit launchers whose identifiers are safe to interpolate into
+        # a shell `case` pattern and a Python `-c` snippet unquoted.
+        if not (name_re.match(name) and module_re.match(module)):
+            continue
+        if func and not func_re.match(func):
+            continue
+
+        if func:
+            pycmd = f'-c "from {module} import {func}; {func}()"'
+        else:
+            # `python -m module` form (no explicit function)
+            pycmd = f'-m {module}'
+
+        run = f'exec "{interp}" {pycmd} "$@"'
+        by_name.append(f'    {name}) {run} ;;')
+        by_flag.append(f'    --{name}) shift; {run} ;;')
+
+    # PYTHONPATH dirs so the entry-point modules import (e.g. src-layout).
+    syspath = getattr(app_info, "entry_point_syspath", None) or []
+    safe_dirs = [d for d in syspath if re.match(r"^[\w./-]+$", str(d))]
+    pythonpath_line = ""
+    if safe_dirs:
+        prefix = ":".join(f"${{HERE}}/{d}" for d in safe_dirs)
+        pythonpath_line = f'export PYTHONPATH="{prefix}:${{PYTHONPATH}}"'
+
+    if not by_name and not pythonpath_line:
+        return ""
+
+    lines = [
+        "# --- Multiple entry points (shared venv) ---",
+        "# Choose a launcher by invocation name (ARGV0, so a `<name>` symlink",
+        "# to this AppImage works) or by an explicit `--<name>` flag. Falls",
+        "# through to the primary launcher below when neither matches.",
+    ]
+    if pythonpath_line:
+        # Make the app's own packages importable for every launcher below
+        # (including the primary), on top of the bundled venv site-packages.
+        lines.append(pythonpath_line)
+    if by_name:
+        lines += [
+            'DISPATCH_ENTRY="$(basename "${ARGV0:-$0}")"',
+            'case "$DISPATCH_ENTRY" in',
+            *by_name,
+            "esac",
+            'case "${1:-}" in',
+            *by_flag,
+            "esac",
+        ]
+    lines += ["", ""]
+    return "\n".join(lines)
 
 
 def create_apprun_file(appdir_path: str | os.PathLike, app_info: AppInfo) -> Path:

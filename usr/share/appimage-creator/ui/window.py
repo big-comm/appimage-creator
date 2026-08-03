@@ -32,7 +32,7 @@ from utils.i18n import _
 from utils.tooltip_helper import TooltipHelper
 
 # Application version – single source of truth
-APP_VERSION = "1.4.0"
+APP_VERSION = "1.5.0"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
@@ -794,6 +794,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         self._update_detected_files()
         self._update_additional_directories_from_analysis()
         self._update_desktop_file_options()
+        self._update_entry_points()
         self._update_structure_preview()
         self._update_autodetected_dependencies()
 
@@ -930,6 +931,23 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             self.config_page.desktop_file_group.set_visible(False)
             self.app_info.use_existing_desktop = False
 
+    def _update_entry_points(self):
+        """Show the Additional Executables section when the package exposes
+        more than one program (the selected executable being the primary)."""
+        secondaries = []
+        if self.structure_analysis:
+            primary = self.app_info.executable_name or (
+                os.path.basename(self.app_info.executable)
+                if self.app_info.executable
+                else ""
+            )
+            secondaries = [
+                ep
+                for ep in self.structure_analysis.get("entry_points", [])
+                if ep.get("name") != primary
+            ]
+        self.config_page.update_entry_points(secondaries)
+
     def _on_use_existing_desktop_changed(self, switch_row, _param):
         self.app_info.use_existing_desktop = switch_row.get_active()
 
@@ -1035,6 +1053,9 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             self.config_page.directory_list.get_directories()
         )
         self.app_info.structure_analysis = self.structure_analysis
+
+        # Additional executables (secondary entry points chosen by the user)
+        self.app_info.entry_points = self.config_page.get_selected_entry_points()
 
         # Auto-update
         self.app_info.update_url = self.config_page.update_url_row.get_text().strip()
