@@ -6,6 +6,8 @@ Flow: Welcome → Application → Configuration → Build
 
 import os
 import threading
+from pathlib import Path
+
 from gi.repository import Gtk, Adw, GLib, Gio
 
 from core.builder import AppImageBuilder
@@ -766,11 +768,21 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             and "vainfo" not in os.path.basename(d).lower()
         ]
         if desktop_files:
-            self.app_info.detected_desktop_file = desktop_files[0]
-            self.app_info.custom_desktop_file = desktop_files[0]
+            # A multi-executable package ships one .desktop per launcher, and
+            # the alphabetically first is not the primary: bigocrpdf ships
+            # bigocrimage.desktop ahead of bigocrpdf.desktop, so the secondary
+            # became the menu entry and the selected executable got none.
+            # Pick the desktop whose Exec runs the chosen executable -- the
+            # same rule the builder already applies to the AppDir-root icon.
+            primary = AppImageBuilder._select_primary_desktop(
+                [Path(d) for d in desktop_files],
+                os.path.basename(self.app_info.executable or ""),
+            )
+            self.app_info.detected_desktop_file = str(primary)
+            self.app_info.custom_desktop_file = str(primary)
             self.app_info.use_existing_desktop = True
             self.app_page.desktop_row.set_subtitle(
-                _("Detected: {}").format(os.path.basename(desktop_files[0]))
+                _("Detected: {}").format(primary.name)
             )
 
         # Auto-set detected icon (best candidate, not first found — symbolic

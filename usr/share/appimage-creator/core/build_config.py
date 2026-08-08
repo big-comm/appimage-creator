@@ -104,6 +104,47 @@ SYSTEM_DEPENDENCIES = {
         "detection_keyword": "gstreamer-gtk",
         "essential": False,
     },
+    "poppler": {
+        "name": "Poppler (PDF Rendering)",
+        # libpoppler-glib is the introspected front end and links against the
+        # core libpoppler, whose SONAME carries a fast-moving version suffix,
+        # so the host copy is rarely a usable substitute.  openjp2 and lcms2
+        # are the image decoders poppler pulls in that a plain GTK app would
+        # not, and so cannot be assumed present on the target.
+        # Deliberately minimal. Every extra library here overrides the target's
+        # copy for every consumer on the system, not just for us, so anything
+        # the target already has is left alone. openjp2 is the exception: it
+        # arrives as a dependency of poppler itself, so a target without
+        # poppler installed does not have it either.
+        "libs": [
+            "libpoppler-glib.so*",
+            "libpoppler.so*",
+            "libopenjp2.so*",
+            # Debian and Ubuntu build poppler against their own gnutls flavour
+            # of curl. That SONAME exists nowhere else -- Fedora and Arch ship
+            # only libcurl.so.4, and its symbols carry a different version tag
+            # (CURL_OPENSSL_4 vs CURL_GNUTLS_3), so it cannot stand in. Poppler
+            # from those containers therefore cannot load anywhere else unless
+            # this travels with it.
+            "libcurl-gnutls.so*",
+            # Of curl's backends, bundle only the SONAMEs a target genuinely
+            # lacks. librtmp lives in RPM Fusion, so Fedora has none, and
+            # Debian's libsasl2.so.2 was superseded by .so.3 elsewhere -- a
+            # different SONAME, so the two coexist.
+            #
+            # Everything else curl needs (libssh, libldap, krb5, nghttp2, psl,
+            # com_err) is present on any target AND is loaded by the target's
+            # own libcurl.so.4. Bundling those puts an older copy ahead of the
+            # host's on LD_LIBRARY_PATH and breaks it: Fedora's libcurl wants
+            # LIBSSH_4_10_0, which Ubuntu's libssh does not export, and the
+            # whole GTK stack then fails to load.
+            "librtmp.so*",
+            "libsasl2.so.2*",
+        ],
+        "typelibs": ["Poppler-0.18.typelib"],
+        "detection_keyword": "poppler",
+        "essential": False,
+    },
     "mpv": {
         "name": "MPV Library",
         "libs": [
@@ -131,6 +172,14 @@ SYSTEM_BINARIES = {
         "detection_keyword": "vainfo",
         "essential": False,
     },
+    # NOTE: do not add pdftoppm (or any other poppler-utils binary) here.
+    # Binaries are resolved with shutil.which() and handed to linuxdeploy, both
+    # of which run on the host even when the build targets a container, so the
+    # host's library closure gets dragged into an AppDir whose other libraries
+    # came from the container.  For poppler that mixes a host libtiff needing
+    # jpeg12_* against the container's older libjpeg, and GTK fails to load.
+    # PDF apps fall back to the Poppler introspection bindings, which are
+    # bundled correctly from the container by SYSTEM_DEPENDENCIES["poppler"].
     "mpv": {
         "name": "MPV Media Player",
         "binary_name": "mpv",

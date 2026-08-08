@@ -34,6 +34,9 @@ SUPPORTED_ENVIRONMENTS: List[Dict[str, Any]] = [
             "libcairo2-dev",
             "libgirepository1.0-dev",
             "gir1.2-glib-2.0",
+            # PDF apps reach Poppler through introspection; the typelib and
+            # libpoppler-glib have to exist here for the bundler to copy them.
+            "gir1.2-poppler-0.18",
             "git",
             "binutils",
             "file",
@@ -58,6 +61,9 @@ SUPPORTED_ENVIRONMENTS: List[Dict[str, Any]] = [
             "libcairo2-dev",
             "libgirepository1.0-dev",
             "gir1.2-glib-2.0",
+            # PDF apps reach Poppler through introspection; the typelib and
+            # libpoppler-glib have to exist here for the bundler to copy them.
+            "gir1.2-poppler-0.18",
             "git",
             "binutils",
             "file",
@@ -151,6 +157,9 @@ SUPPORTED_ENVIRONMENTS: List[Dict[str, Any]] = [
             "pkg-config",
             "cairo-devel",
             "gobject-introspection-devel",
+            # PDF apps reach Poppler through introspection; the typelib and
+            # libpoppler-glib have to exist here for the bundler to copy them.
+            "poppler-glib",
             "git",
             "binutils",
             "file",
@@ -175,6 +184,9 @@ SUPPORTED_ENVIRONMENTS: List[Dict[str, Any]] = [
             "pkg-config",
             "cairo-devel",
             "gobject-introspection-devel",
+            # PDF apps reach Poppler through introspection; the typelib and
+            # libpoppler-glib have to exist here for the bundler to copy them.
+            "poppler-glib",
             "git",
             "binutils",
             "file",

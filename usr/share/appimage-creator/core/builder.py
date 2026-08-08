@@ -1464,6 +1464,12 @@ class AppImageBuilder:
                 r"from gi\.repository import Secret",
                 r"import.*Secret",
             ],
+            "poppler": [
+                # Version-agnostic: the typelib is Poppler-0.18 but apps pin it
+                # as "0.18" or "0.20" depending on the era they were written in.
+                r"gi\.require_version\(['\"]Poppler['\"],",
+                r"from gi\.repository import.*\bPoppler\b",
+            ],
             "qt5": [r"from PyQt5", r"import PyQt5"],
             "qt6": [r"from PyQt6", r"import PyQt6"],
             "gstreamer-gtk": [
@@ -1799,14 +1805,25 @@ class AppImageBuilder:
         self.log(_("Setting up linuxdeploy..."))
 
         try:
-            # Check if linuxdeploy is already in PATH
-            self.linuxdeploy_path = find_executable_in_path("linuxdeploy")
-            if self.linuxdeploy_path:
-                self.log(_("Found linuxdeploy: {}").format(self.linuxdeploy_path))
+            host_copy = find_executable_in_path("linuxdeploy")
+            download_path = self.build_dir / "linuxdeploy-x86_64.AppImage"
+
+            if host_copy and not self.container_name:
+                self.linuxdeploy_path = host_copy
+                self.log(_("Found linuxdeploy: {}").format(host_copy))
                 return True
 
-            # Check if already downloaded in build directory
-            download_path = self.build_dir / "linuxdeploy-x86_64.AppImage"
+            # For container builds the host's path need not exist inside the
+            # container, but the build directory is shared, so copying a host
+            # installation there keeps the build working offline instead of
+            # forcing a download.
+            if host_copy and not download_path.exists():
+                try:
+                    shutil.copy2(host_copy, download_path)
+                    self.log(_("Reusing host linuxdeploy inside the container"))
+                except OSError as e:
+                    self.log(_("Could not stage host linuxdeploy: {}").format(e))
+
             if download_path.exists():
                 self.linuxdeploy_path = str(download_path)
                 make_executable(download_path)

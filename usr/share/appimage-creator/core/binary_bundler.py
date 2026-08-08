@@ -21,6 +21,51 @@ class BinaryBundler:
     def __init__(self, builder):
         self._b = builder
 
+    # ------------------------------------------------------------------
+    # Container-aware helpers
+    # ------------------------------------------------------------------
+    #
+    # Everything that touches system binaries or their libraries has to run
+    # where the build targets, not where the GUI happens to be. Resolving a
+    # binary on an Arch host and letting linuxdeploy follow its closure there
+    # drops Arch libraries into an AppDir whose remaining libraries came from
+    # the container, and the two disagree: an Arch libtiff needs jpeg12_*
+    # symbols that Ubuntu 24.04's older libjpeg does not export, so GTK fails
+    # to load at startup on the user's machine.
+
+    def _locate_binary(self, binary: str) -> str | None:
+        """Absolute path of ``binary`` in the build environment, or None."""
+        if not self._b.container_name:
+            return shutil.which(binary)
+
+        result = self._b._run_command(["sh", "-c", f"command -v {binary}"])
+        if result.returncode != 0:
+            return None
+        path = (result.stdout or "").strip().splitlines()
+        return path[-1].strip() if path and path[-1].strip() else None
+
+    def _copy_binary(self, source: str, dest: Path) -> bool:
+        """Copy ``source`` out of the build environment to ``dest``."""
+        dest.parent.mkdir(parents=True, exist_ok=True)
+
+        if not self._b.container_name:
+            shutil.copy2(source, dest)
+            make_executable(dest)
+            return True
+
+        # The build directory lives under /tmp, which distrobox shares with the
+        # container, so the container can write straight into the AppDir.
+        result = self._b._run_command(["cp", "-L", "--", source, str(dest)])
+        if result.returncode != 0:
+            self._b.log(
+                _("Warning: could not copy '{}' out of the container: {}").format(
+                    source, (result.stderr or "").strip()
+                )
+            )
+            return False
+        make_executable(dest)
+        return True
+
     def bundle_external_binaries(self) -> None:
         """Bundle external binaries (ffmpeg, etc) using linuxdeploy."""
         if (self._b.app_info.structure_analysis or {}).get("type") == "compiled":
@@ -123,16 +168,21 @@ class BinaryBundler:
                     )
                     continue
 
-                system_bin = shutil.which(binary)
+                system_bin = self._locate_binary(binary)
                 if system_bin:
                     dest = self._b.appdir_path / "usr" / "bin" / binary
-                    dest.parent.mkdir(parents=True, exist_ok=True)
-                    if not dest.exists():
-                        shutil.copy2(system_bin, dest)
-                        make_executable(dest)
+                    if not dest.exists() and not self._copy_binary(system_bin, dest):
+                        continue
 
                     cmd.extend(["--executable", str(dest)])
                     self._b.log(_("Will bundle: {}").format(binary))
+                else:
+                    self._b.log(
+                        _(
+                            "Note: '{}' is not installed in the build environment; "
+                            "skipping it rather than taking the host's copy."
+                        ).format(binary)
+                    )
 
             # Skip if no binaries or plugins to bundle
             if len(cmd) <= 4:
@@ -141,47 +191,63 @@ class BinaryBundler:
                 )
                 return
 
+            linuxdeploy_env = {
+                "DISABLE_COPYRIGHT_FILES_DEPLOYMENT": "1",
+                "NO_STRIP": "1",
+                # Self-extract instead of FUSE-mounting so bundling works on
+                # hosts without FUSE (linuxdeploy is itself an AppImage).
+                "APPIMAGE_EXTRACT_AND_RUN": "1",
+            }
+            # Only the container path gets the bare dict: _run_command merges it
+            # onto a clean container environment, and inheriting the host PATH or
+            # LD_LIBRARY_PATH there would defeat the point of building inside it.
             env = os.environ.copy()
-            env["DISABLE_COPYRIGHT_FILES_DEPLOYMENT"] = "1"
-            env["NO_STRIP"] = "1"
-            # Self-extract instead of FUSE-mounting so bundling works on hosts
-            # without FUSE (linuxdeploy is itself an AppImage).
-            env["APPIMAGE_EXTRACT_AND_RUN"] = "1"
+            env.update(linuxdeploy_env)
 
             self._b.log(_("Running linuxdeploy..."))
             self._b.update_progress(65, _("Bundling binary dependencies..."))
 
             if self._b.container_name:
-                self._b.log(
-                    _("Note: linuxdeploy runs locally but accesses container files")
-                )
-
-            process = subprocess.Popen(
-                cmd,
-                env=env,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                bufsize=1,
-            )
-
-            try:
-                for line in iter(process.stdout.readline, ""):
+                # linuxdeploy resolves each executable's dependency closure with
+                # ldd, so it has to run where those libraries are meant to come
+                # from. It carries its own patchelf, and the build directory is
+                # under /tmp, which distrobox shares, so the AppDir is writable
+                # from inside. Output is collected rather than streamed, which
+                # is the one thing lost by not driving the process directly.
+                self._b.log(_("Running linuxdeploy inside the build container..."))
+                result = self._b._run_command(cmd, env=linuxdeploy_env, timeout=300)
+                for line in (result.stdout or "").splitlines():
                     log_line = line.strip()
                     if log_line and not log_line.startswith("ERROR:"):
                         self._b.log(f"[linuxdeploy] {log_line}")
+                return_code = result.returncode
+            else:
+                process = subprocess.Popen(
+                    cmd,
+                    env=env,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    bufsize=1,
+                )
 
-                return_code = process.wait(timeout=300)
-            except subprocess.TimeoutExpired:
-                self._b.log(_("Warning: linuxdeploy timed out and was terminated."))
-                return_code = 1
-            finally:
-                # Always release the pipe and reap the child, even on error/timeout
-                if process.stdout:
-                    process.stdout.close()
-                if process.poll() is None:
-                    process.kill()
-                    process.wait()
+                try:
+                    for line in iter(process.stdout.readline, ""):
+                        log_line = line.strip()
+                        if log_line and not log_line.startswith("ERROR:"):
+                            self._b.log(f"[linuxdeploy] {log_line}")
+
+                    return_code = process.wait(timeout=300)
+                except subprocess.TimeoutExpired:
+                    self._b.log(_("Warning: linuxdeploy timed out and was terminated."))
+                    return_code = 1
+                finally:
+                    # Always release the pipe and reap the child, even on error/timeout
+                    if process.stdout:
+                        process.stdout.close()
+                    if process.poll() is None:
+                        process.kill()
+                        process.wait()
 
             if return_code != 0:
                 self._b.log(_("Warning: linuxdeploy had issues but continuing..."))
