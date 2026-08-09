@@ -2559,6 +2559,17 @@ msgstr "Postavljanje linuxdeploy-a..."
 msgid "Found linuxdeploy: {}"
 msgstr "Pronađen linuxdeploy: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1823
+#: NEEDS WORK
+msgid "Reusing host linuxdeploy inside the container"
+msgstr "Ponovno korištenje host linuxdeploy unutar kontejnera"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1825
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not stage host linuxdeploy: {}"
+msgstr "Nije moguće postaviti domaćina linuxdeploy: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1064
 #: NEEDS WORK
 msgid "Downloading linuxdeploy..."
@@ -2961,6 +2972,12 @@ msgstr "Upozorenje: Nije moguće automatski ukloniti sliku"
 msgid "An error occurred while removing the container: {}"
 msgstr "Došlo je do pogreške prilikom uklanjanja kontejnera: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: could not copy '{}' out of the container: {}"
+msgstr "Upozorenje: nije moguće kopirati '{}' iz kontejnera: {}"
+# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
 #: NEEDS WORK
 msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
@@ -3004,6 +3021,16 @@ msgstr "Preskoči kopiranje izvršne datoteke '{}', jer se tretira kao pružatel
 msgid "Will bundle: {}"
 msgstr "Hoće se spojiti: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 182
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Note: '{}' is not installed in the build environment; skipping it rather than taking the host's "
+"copy."
+msgstr ""
+"Napomena: '{}' nije instaliran u okruženju za izgradnju; preskočit će se umjesto da se uzme kopija "
+"s domaćina."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
 msgid "No external binaries or plugins to process with linuxdeploy."
@@ -3019,10 +3046,10 @@ msgstr "Pokreće se linuxdeploy..."
 msgid "Bundling binary dependencies..."
 msgstr "Pakiranje binarnih ovisnosti..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 906
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 217
 #: NEEDS WORK
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "Napomena: linuxdeploy se pokreće lokalno, ali pristupa datotekama kontejnera."
+msgid "Running linuxdeploy inside the build container..."
+msgstr "Pokreće se linuxdeploy unutar kontejnera za izgradnju..."
 # 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 153
 #: NEEDS WORK

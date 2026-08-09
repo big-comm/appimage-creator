@@ -2571,6 +2571,17 @@ msgstr "Configuration de linuxdeploy..."
 msgid "Found linuxdeploy: {}"
 msgstr "Trouvé linuxdeploy : {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1823
+#: NEEDS WORK
+msgid "Reusing host linuxdeploy inside the container"
+msgstr "Réutilisation de linuxdeploy hôte à l'intérieur du conteneur"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1825
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not stage host linuxdeploy: {}"
+msgstr "Impossible de préparer l'hôte linuxdeploy : {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1064
 #: NEEDS WORK
 msgid "Downloading linuxdeploy..."
@@ -2975,6 +2986,12 @@ msgstr "Avertissement : Impossible de supprimer l'image automatiquement"
 msgid "An error occurred while removing the container: {}"
 msgstr "Une erreur est survenue lors de la suppression du conteneur : {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: could not copy '{}' out of the container: {}"
+msgstr "Avertissement : impossible de copier '{}' du conteneur : {}"
+# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
 #: NEEDS WORK
 msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
@@ -3018,6 +3035,16 @@ msgstr "Saut de la copie de '{}' exécutable, car il est traité comme un fourni
 msgid "Will bundle: {}"
 msgstr "Sera regroupé : {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 182
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Note: '{}' is not installed in the build environment; skipping it rather than taking the host's "
+"copy."
+msgstr ""
+"Remarque : '{}' n'est pas installé dans l'environnement de construction ; il est ignoré plutôt que "
+"de prendre la copie de l'hôte."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
 msgid "No external binaries or plugins to process with linuxdeploy."
@@ -3033,10 +3060,10 @@ msgstr "Exécution de linuxdeploy..."
 msgid "Bundling binary dependencies..."
 msgstr "Regroupement des dépendances binaires..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 906
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 217
 #: NEEDS WORK
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "Remarque : linuxdeploy s'exécute localement mais accède aux fichiers du conteneur."
+msgid "Running linuxdeploy inside the build container..."
+msgstr "Exécution de linuxdeploy à l'intérieur du conteneur de construction..."
 # 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 153
 #: NEEDS WORK

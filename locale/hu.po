@@ -2557,6 +2557,17 @@ msgstr "A linuxdeploy beállítása..."
 msgid "Found linuxdeploy: {}"
 msgstr "Megtalált linuxdeploy: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1823
+#: NEEDS WORK
+msgid "Reusing host linuxdeploy inside the container"
+msgstr "A konténeren belüli gazda linuxdeploy újrahasználata"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1825
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not stage host linuxdeploy: {}"
+msgstr "Nem sikerült a linuxdeploy gazda színpadra állítása: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1064
 #: NEEDS WORK
 msgid "Downloading linuxdeploy..."
@@ -2961,6 +2972,12 @@ msgstr "Figyelmeztetés: Nem sikerült automatikusan eltávolítani a képet"
 msgid "An error occurred while removing the container: {}"
 msgstr "Hiba történt a konténer eltávolítása során: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: could not copy '{}' out of the container: {}"
+msgstr "Figyelmeztetés: nem sikerült másolni a '{}' elemet a tárolóból: {}"
+# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
 #: NEEDS WORK
 msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
@@ -3004,6 +3021,16 @@ msgstr "A '{}' végrehajtható másolásának kihagyása, mivel könyvtárszolg�
 msgid "Will bundle: {}"
 msgstr "Csomagolni fog: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 182
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Note: '{}' is not installed in the build environment; skipping it rather than taking the host's "
+"copy."
+msgstr ""
+"Megjegyzés: '{}' nincs telepítve a build környezetben; kihagyva, ahelyett, hogy a gazda másolatát "
+"használnánk."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
 msgid "No external binaries or plugins to process with linuxdeploy."
@@ -3019,10 +3046,10 @@ msgstr "Futtatás linuxdeploy..."
 msgid "Bundling binary dependencies..."
 msgstr "Bináris függőségek csomagolása..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 906
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 217
 #: NEEDS WORK
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "Megjegyzés: a linuxdeploy helyben fut, de hozzáfér a konténerfájlokhoz."
+msgid "Running linuxdeploy inside the build container..."
+msgstr "A linuxdeploy futtatása a build tartályon belül..."
 # 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 153
 #: NEEDS WORK

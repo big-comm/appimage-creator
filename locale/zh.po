@@ -2541,6 +2541,17 @@ msgstr "正在设置 linuxdeploy..."
 msgid "Found linuxdeploy: {}"
 msgstr "找到 linuxdeploy: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1823
+#: NEEDS WORK
+msgid "Reusing host linuxdeploy inside the container"
+msgstr "在容器内重用主机linuxdeploy"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1825
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not stage host linuxdeploy: {}"
+msgstr "无法暂存主机 linuxdeploy: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1369
 #: NEEDS WORK
 msgid "Downloading linuxdeploy..."
@@ -2943,6 +2954,12 @@ msgstr "警告：无法自动删除图像"
 msgid "An error occurred while removing the container: {}"
 msgstr "在移除容器时发生错误：{}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: could not copy '{}' out of the container: {}"
+msgstr "警告：无法从容器中复制'{}'：{}"
+# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
 #: NEEDS WORK
 msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
@@ -2986,6 +3003,14 @@ msgstr "跳过'{}'可执行文件的复制，因为它被视为库提供者。"
 msgid "Will bundle: {}"
 msgstr "将捆绑：{}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 182
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Note: '{}' is not installed in the build environment; skipping it rather than taking the host's "
+"copy."
+msgstr "注意：'{}' 未安装在构建环境中；跳过它而不是使用主机的副本。"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
 msgid "No external binaries or plugins to process with linuxdeploy."
@@ -3001,10 +3026,10 @@ msgstr "正在运行 linuxdeploy..."
 msgid "Bundling binary dependencies..."
 msgstr "打包二进制依赖项..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1014
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 217
 #: NEEDS WORK
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "注意：linuxdeploy 在本地运行，但访问容器文件"
+msgid "Running linuxdeploy inside the build container..."
+msgstr "在构建容器中运行 linuxdeploy..."
 # 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 153
 #: NEEDS WORK

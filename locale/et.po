@@ -2638,6 +2638,17 @@ msgstr "Linuxdeploy seadistamine..."
 msgid "Found linuxdeploy: {}"
 msgstr "Leitud linuxdeploy: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1823
+#: NEEDS WORK
+msgid "Reusing host linuxdeploy inside the container"
+msgstr "Kasutades konteineris host linuxdeploy'd uuesti"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1825
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not stage host linuxdeploy: {}"
+msgstr "Ei saanud host linuxdeploy'd etappi: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1064
 #: NEEDS WORK
 msgid "Downloading linuxdeploy..."
@@ -3040,6 +3051,12 @@ msgstr "Hoiatus: Pilti ei saanud automaatselt eemaldada"
 msgid "An error occurred while removing the container: {}"
 msgstr "Konteineri eemaldamisel tekkis viga: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: could not copy '{}' out of the container: {}"
+msgstr "Hoiatus: ei saanud kopeerida '{}' konteinerist välja: {}"
+# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
 #: NEEDS WORK
 msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
@@ -3083,6 +3100,14 @@ msgstr "Jätan '{}' täitmise koopia vahele, kuna seda käsitletakse teegipakkuj
 msgid "Will bundle: {}"
 msgstr "Kogub: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 182
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Note: '{}' is not installed in the build environment; skipping it rather than taking the host's "
+"copy."
+msgstr "Märkus: '{}' ei ole ehituskeskkonnas installitud; selle vahelejätmine, mitte hosti koopia võtmine."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
 msgid "No external binaries or plugins to process with linuxdeploy."
@@ -3098,10 +3123,10 @@ msgstr "Käivitamine linuxdeploy..."
 msgid "Bundling binary dependencies..."
 msgstr "Kogumise binaarseid sõltuvusi..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 906
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 217
 #: NEEDS WORK
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "Märkus: linuxdeploy töötab kohapeal, kuid pääseb juurde konteineri failidele."
+msgid "Running linuxdeploy inside the build container..."
+msgstr "Käivitamine linuxdeploy ehitusmahutis..."
 # 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 153
 #: NEEDS WORK

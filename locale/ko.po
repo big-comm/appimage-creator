@@ -2545,6 +2545,17 @@ msgstr "linuxdeploy 설정 중..."
 msgid "Found linuxdeploy: {}"
 msgstr "linuxdeploy를 찾았습니다: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1823
+#: NEEDS WORK
+msgid "Reusing host linuxdeploy inside the container"
+msgstr "컨테이너 내에서 호스트 linuxdeploy 재사용"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1825
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not stage host linuxdeploy: {}"
+msgstr "호스트 linuxdeploy를 스테이징할 수 없습니다: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1064
 #: NEEDS WORK
 msgid "Downloading linuxdeploy..."
@@ -2947,6 +2958,12 @@ msgstr "경고: 이미지를 자동으로 제거할 수 없습니다."
 msgid "An error occurred while removing the container: {}"
 msgstr "컨테이너를 제거하는 동안 오류가 발생했습니다: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: could not copy '{}' out of the container: {}"
+msgstr "경고: '{}'를 컨테이너에서 복사할 수 없습니다: {}"
+# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
 #: NEEDS WORK
 msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
@@ -2990,6 +3007,14 @@ msgstr "'{}' 실행 파일의 복사를 건너뜁니다. 라이브러리 제공�
 msgid "Will bundle: {}"
 msgstr "번들할 것입니다: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 182
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Note: '{}' is not installed in the build environment; skipping it rather than taking the host's "
+"copy."
+msgstr "참고: '{}'는 빌드 환경에 설치되어 있지 않습니다. 호스트의 복사본을 사용하는 대신 건너뜁니다."
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
 msgid "No external binaries or plugins to process with linuxdeploy."
@@ -3005,10 +3030,10 @@ msgstr "리눅스 배포 중..."
 msgid "Bundling binary dependencies..."
 msgstr "바이너리 종속성 번들링 중..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 906
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 217
 #: NEEDS WORK
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "참고: linuxdeploy는 로컬에서 실행되지만 컨테이너 파일에 접근합니다."
+msgid "Running linuxdeploy inside the build container..."
+msgstr "빌드 컨테이너 내에서 linuxdeploy 실행 중..."
 # 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 153
 #: NEEDS WORK

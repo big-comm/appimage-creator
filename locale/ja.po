@@ -2536,6 +2536,17 @@ msgstr "linuxdeployの設定中..."
 msgid "Found linuxdeploy: {}"
 msgstr "linuxdeployが見つかりました: {}"
 # 
+# File: usr/share/appimage-creator/core/builder.py, line: 1823
+#: NEEDS WORK
+msgid "Reusing host linuxdeploy inside the container"
+msgstr "コンテナ内でホストのlinuxdeployを再利用しています"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1825
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not stage host linuxdeploy: {}"
+msgstr "ホストlinuxdeployをステージできませんでした: {}"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1064
 #: NEEDS WORK
 msgid "Downloading linuxdeploy..."
@@ -2938,6 +2949,12 @@ msgstr "警告: 画像を自動的に削除できませんでした"
 msgid "An error occurred while removing the container: {}"
 msgstr "コンテナの削除中にエラーが発生しました: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: could not copy '{}' out of the container: {}"
+msgstr "警告: コンテナから'{}'をコピーできませんでした: {}"
+# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 39
 #: NEEDS WORK
 msgid "Compiled application: bundling via dependency profiles (skipping linuxdeploy)."
@@ -2981,6 +2998,14 @@ msgstr "'{}' 実行可能ファイルのコピーをスキップしています�
 msgid "Will bundle: {}"
 msgstr "バンドルします: {}"
 # 
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 182
+#: NEEDS WORK
+#, python-brace-format
+msgid ""
+"Note: '{}' is not installed in the build environment; skipping it rather than taking the host's "
+"copy."
+msgstr "注意: '{}' はビルド環境にインストールされていません; ホストのコピーを使用するのではなく、スキップします。"
+# 
 # File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
 msgid "No external binaries or plugins to process with linuxdeploy."
@@ -2996,10 +3021,10 @@ msgstr "linuxdeployを実行中..."
 msgid "Bundling binary dependencies..."
 msgstr "バイナリ依存関係をバンドルしています..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 906
+# File: usr/share/appimage-creator/core/binary_bundler.py, line: 217
 #: NEEDS WORK
-msgid "Note: linuxdeploy runs locally but accesses container files"
-msgstr "注意: linuxdeployはローカルで実行されますが、コンテナファイルにアクセスします。"
+msgid "Running linuxdeploy inside the build container..."
+msgstr "ビルドコンテナ内でlinuxdeployを実行中..."
 # 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 153
 #: NEEDS WORK
