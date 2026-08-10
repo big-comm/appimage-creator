@@ -6,6 +6,7 @@ GTK4/Libadwaita Update Notification Window
 
 # Configure locale BEFORE importing GTK (critical for translations)
 import os
+import sys
 import locale
 
 # Fix for systemd/cron environments where LANG might be missing
@@ -51,10 +52,20 @@ GLib.set_application_name("AppImage Updater")
 try:
     from updater.checker import UpdateInfo
     from updater.downloader import AppImageDownloader
+    from updater.safe_paths import (
+        safe_appimage_path,
+        safe_marker_file,
+        safe_payload_file,
+    )
 except ImportError:
     # When running as standalone (from AppImage)
     from checker import UpdateInfo  # type: ignore[no-redef]
     from downloader import AppImageDownloader  # type: ignore[no-redef]
+    from safe_paths import (  # type: ignore[no-redef]
+        safe_appimage_path,
+        safe_marker_file,
+        safe_payload_file,
+    )
 
 
 # Translation support (same approach as tac-writer)
@@ -957,8 +968,21 @@ def _main_from_payload(payload_path: str) -> int:
     """
     import json
 
-    with open(payload_path, "r", encoding="utf-8") as f:
+    # The payload name arrives via env var/argv, and its content decides which
+    # file gets replaced: both are validated before anything is touched.
+    payload = safe_payload_file(payload_path)
+    if not payload:
+        print(f"Invalid update payload: {payload_path}", file=sys.stderr)
+        return 2
+
+    with open(payload, "r", encoding="utf-8") as f:
         data = json.load(f)
+
+    appimage_path = safe_appimage_path(data["appimage_path"])
+    marker_file = safe_marker_file(data["marker_file"])
+    if not appimage_path or not marker_file:
+        print("Update payload points outside the integration data", file=sys.stderr)
+        return 2
 
     update_info = UpdateInfo(
         version=data["new_version"],
@@ -970,16 +994,14 @@ def _main_from_payload(payload_path: str) -> int:
         data["app_name"],
         update_info,
         data.get("current_version", ""),
-        Path(data["appimage_path"]),
-        Path(data["marker_file"]),
+        appimage_path,
+        marker_file,
         data.get("filename_pattern", ""),
         prefer_dark=data.get("prefer_dark"),
     )
 
 
 if __name__ == "__main__":
-    import sys
-
     if len(sys.argv) < 2:
         print("Usage: update_window.py <payload.json>", file=sys.stderr)
         sys.exit(2)

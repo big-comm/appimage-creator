@@ -8,6 +8,7 @@ Can also be run manually for maintenance
 """
 
 import os
+import re
 import sys
 import subprocess
 from pathlib import Path
@@ -16,6 +17,29 @@ import time
 # For update checking
 UPDATE_CHECK_INTERVAL = 60  # Check for updates every minute (in seconds) - DEBUG MODE
 LAST_CHECK_FILE = Path.home() / ".local/share/appimage-integrations/.last_update_check"
+
+# Icon names are used to build glob patterns for files this script deletes:
+# anything outside this set (path separators, wildcards) is rejected.
+SAFE_NAME_RE = re.compile(r"^[A-Za-z0-9._+-]+$")
+
+
+def safe_desktop_filename(raw, fallback_stem):
+    """
+    Marker line 2 names a file that gets deleted from
+    ~/.local/share/applications, so accept only a bare *.desktop name —
+    never a path — falling back to the marker's own stem.
+    """
+    name = (raw or "").strip()
+    if name != Path(name).name or not name.endswith(".desktop"):
+        return f"{fallback_stem}.desktop"
+    return name
+
+
+def safe_icon_pattern(raw):
+    """Return an icon base name usable in a glob, or None if it isn't one."""
+    name = Path((raw or "").strip()).name
+    stem = Path(name).stem
+    return stem if SAFE_NAME_RE.match(stem) else None
 
 
 def cleanup_orphaned_integrations():
@@ -44,11 +68,10 @@ def cleanup_orphaned_integrations():
                 # Malformed/empty marker; skip to avoid operating on "." path
                 continue
             appimage_path = lines[0]
-            desktop_filename = (
-                lines[1] if len(lines) > 1 else f"{marker_file.stem}.desktop"
-            )
-
             app_name = marker_file.stem
+            desktop_filename = safe_desktop_filename(
+                lines[1] if len(lines) > 1 else "", app_name
+            )
 
             # Check if AppImage still exists
             if not Path(appimage_path).exists():
@@ -68,8 +91,12 @@ def cleanup_orphaned_integrations():
 
                         cfg = configparser.ConfigParser()
                         cfg.read(desktop_file)
-                        icon_name = cfg.get("Desktop Entry", "Icon", fallback=app_name)
-                        icon_name = Path(icon_name).stem
+                        icon_name = (
+                            safe_icon_pattern(
+                                cfg.get("Desktop Entry", "Icon", fallback=app_name)
+                            )
+                            or app_name
+                        )
                     except Exception:
                         pass
                     desktop_file.unlink()
@@ -86,6 +113,8 @@ def cleanup_orphaned_integrations():
                         if not apps_dir.exists():
                             continue
                         for pattern in (icon_name, app_name, desktop_base):
+                            if not SAFE_NAME_RE.match(pattern):
+                                continue
                             for icon in apps_dir.glob(f"{pattern}.*"):
                                 icon.unlink()
                                 icon_count += 1

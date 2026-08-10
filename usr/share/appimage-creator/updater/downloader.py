@@ -12,6 +12,14 @@ import shutil
 from pathlib import Path
 from typing import Callable, Optional
 
+try:
+    from updater.safe_paths import safe_appimage_path, safe_marker_file
+except ImportError:
+    from safe_paths import (  # type: ignore[no-redef]
+        safe_appimage_path,
+        safe_marker_file,
+    )
+
 
 class DownloadProgress:
     """Progress callback for downloads"""
@@ -233,8 +241,13 @@ class AppImageDownloader:
         Returns:
             True if update was completed, False otherwise
         """
+        target = safe_appimage_path(appimage_path, must_exist=False)
+        if not target:
+            print(f"Refusing to complete update for invalid path: {appimage_path}")
+            return False
+
         try:
-            new_version_path = Path(str(appimage_path) + ".new")
+            new_version_path = target.with_name(target.name + ".new")
 
             # Check if pending update exists
             if not new_version_path.exists():
@@ -243,15 +256,15 @@ class AppImageDownloader:
             print(f"Completing pending update from: {new_version_path}")
 
             # Create backup of current version
-            backup_path = Path(str(appimage_path) + ".old")
-            if appimage_path.exists():
-                shutil.move(str(appimage_path), str(backup_path))
+            backup_path = target.with_name(target.name + ".old")
+            if target.exists():
+                shutil.move(str(target), str(backup_path))
 
             # Move new version into place
-            shutil.move(str(new_version_path), str(appimage_path))
+            shutil.move(str(new_version_path), str(target))
 
             # Make executable
-            appimage_path.chmod(0o755)
+            target.chmod(0o755)
 
             # Remove old backup
             if backup_path.exists():
@@ -267,10 +280,10 @@ class AppImageDownloader:
             print(f"Failed to complete pending update: {e}")
 
             # Try to restore from backup
-            backup_path = Path(str(appimage_path) + ".old")
-            if backup_path.exists() and not appimage_path.exists():
+            backup_path = target.with_name(target.name + ".old")
+            if backup_path.exists() and not target.exists():
                 try:
-                    shutil.move(str(backup_path), str(appimage_path))
+                    shutil.move(str(backup_path), str(target))
                 except Exception:
                     pass
 
@@ -285,16 +298,21 @@ class AppImageDownloader:
             marker_file: Path to marker file
             new_version: New version string
         """
+        marker = safe_marker_file(marker_file)
+        if not marker:
+            print(f"Refusing to write outside the integration dir: {marker_file}")
+            return
+
         try:
-            if not marker_file.exists():
+            if not marker.exists():
                 return
 
-            lines = marker_file.read_text().strip().split("\n")
+            lines = marker.read_text().strip().split("\n")
 
             # Update version (line 4)
             if len(lines) >= 4:
                 lines[3] = new_version
-                marker_file.write_text("\n".join(lines))
+                marker.write_text("\n".join(lines))
 
         except Exception as e:
             print(f"Failed to update marker file: {e}")

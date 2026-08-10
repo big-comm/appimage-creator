@@ -34,7 +34,7 @@ from utils.i18n import _
 from utils.tooltip_helper import TooltipHelper
 
 # Application version – single source of truth
-APP_VERSION = "1.5.1"
+APP_VERSION = "1.5.2"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
@@ -1246,14 +1246,16 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
             )
 
     def _on_build_progress(self, percentage, message):
-        GLib.idle_add(self._update_progress_ui, percentage, message)
+        def apply_progress():
+            self._update_progress_ui(percentage, message)
+            return GLib.SOURCE_REMOVE
+
+        GLib.idle_add(apply_progress)
 
     def _update_progress_ui(self, percentage, message):
-        if not self.build_in_progress:
-            return False
-        if self.progress_dialog:
+        """Runs on the GTK main thread (never while the build is stopping)."""
+        if self.build_in_progress and self.progress_dialog:
             self.progress_dialog.update_progress(percentage, message)
-        return False
 
     def _on_build_log(self, message):
         print(f"Build: {message}")

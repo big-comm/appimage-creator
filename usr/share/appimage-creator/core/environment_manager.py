@@ -425,7 +425,8 @@ class EnvironmentManager:
                 bufsize=1,
                 env=host_env,
             )
-            assert process.stdout is not None
+            if process.stdout is None:
+                raise RuntimeError("Failed to capture the process output.")
 
             # Stream output to the log callback
             if log_callback:
@@ -483,7 +484,8 @@ class EnvironmentManager:
                     bufsize=1,
                     env=host_env,
                 )
-                assert init_process.stdout is not None
+                if init_process.stdout is None:
+                    raise RuntimeError("Failed to capture the process output.")
 
                 # Stream initialization output
                 if log_callback:
@@ -614,7 +616,8 @@ class EnvironmentManager:
                 bufsize=1,
                 env=host_env,
             )
-            assert process.stdout is not None
+            if process.stdout is None:
+                raise RuntimeError("Failed to capture the process output.")
 
             if log_callback:
                 for line in iter(process.stdout.readline, ""):
@@ -685,7 +688,8 @@ class EnvironmentManager:
                 bufsize=1,
                 env=host_env,
             )
-            assert process.stdout is not None
+            if process.stdout is None:
+                raise RuntimeError("Failed to capture the process output.")
 
             if log_callback:
                 for line in iter(process.stdout.readline, ""):

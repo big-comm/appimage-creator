@@ -42,9 +42,19 @@ from pathlib import Path
 try:
     from updater.checker import check_appimage_update, UpdateInfo
     from updater.downloader import AppImageDownloader
+    from updater.safe_paths import (
+        safe_appimage_path,
+        safe_marker_file,
+        safe_payload_file,
+    )
 except ImportError:
     from checker import check_appimage_update, UpdateInfo  # type: ignore[no-redef]
     from downloader import AppImageDownloader  # type: ignore[no-redef]
+    from safe_paths import (  # type: ignore[no-redef]
+        safe_appimage_path,
+        safe_marker_file,
+        safe_payload_file,
+    )
 
 # Minimum time (in seconds) to wait after integration before showing update notification
 # This gives the AppImage time to complete integration and the main app to open
@@ -139,14 +149,27 @@ def _run_notifier_from_payload(payload_file: str) -> None:
     """Entry point for the transient notifier unit (--notify <payload.json>)."""
     import json
 
+    payload = safe_payload_file(payload_file)
+    if not payload:
+        print(f"Refusing to read payload outside the temp dir: {payload_file}")
+        return
+
     try:
-        with open(payload_file, "r", encoding="utf-8") as f:
+        with open(payload, "r", encoding="utf-8") as f:
             data = json.load(f)
     finally:
         try:
-            os.unlink(payload_file)
+            os.unlink(payload)
         except OSError:
             pass
+
+    # The payload was written from marker-file content: re-validate here, the
+    # notifier runs in its own process and this is its only input.
+    appimage_path = safe_appimage_path(data["appimage_path"])
+    marker_file = safe_marker_file(data["marker_file"])
+    if not appimage_path or not marker_file:
+        print("Refusing to notify: payload points outside the integration data")
+        return
 
     update_info = UpdateInfo(
         version=data["new_version"],
@@ -157,8 +180,8 @@ def _run_notifier_from_payload(payload_file: str) -> None:
         data["app_name"],
         update_info,
         data.get("current_version", ""),
-        Path(data["appimage_path"]),
-        Path(data["marker_file"]),
+        appimage_path,
+        marker_file,
         data.get("filename_pattern", ""),
         data.get("marker_lines", []),
     )
@@ -323,7 +346,10 @@ def _show_via_appimage(appimage_path, payload) -> bool:
     import subprocess
     import tempfile
 
-    if not appimage_path.exists() or not os.access(str(appimage_path), os.X_OK):
+    # Sink guard: this is the only place the updater executes a path that
+    # originated in a marker file, so re-validate it right before running.
+    target = safe_appimage_path(appimage_path, executable=True)
+    if not target:
         return False
 
     payload_file = None
@@ -342,7 +368,7 @@ def _show_via_appimage(appimage_path, payload) -> bool:
         # AppImage, no FUSE, etc.) falls through to the next method.
         env = dict(os.environ)
         env["APPIMAGE_SHOW_UPDATE_PAYLOAD"] = payload_file
-        result = subprocess.run([str(appimage_path)], env=env)
+        result = subprocess.run([str(target)], env=env)
         if result.returncode != 0:
             print(
                 f"Embedded update window exited with code {result.returncode}, "
@@ -460,21 +486,28 @@ def complete_pending_updates():
     for marker_file in marker_dir.glob("*.path"):
         try:
             lines = marker_file.read_text().strip().split("\n")
-            if not lines or not lines[0].strip():
+            if not lines:
                 continue
 
-            appimage_path = Path(lines[0])
+            # Marker content is user-writable data: a path that is not an
+            # AppImage must never reach the move/unlink calls below.
+            appimage_path = safe_appimage_path(lines[0], must_exist=False)
+            marker = safe_marker_file(marker_file)
+            if not appimage_path or not marker:
+                continue
 
             # Try to complete pending update
             if AppImageDownloader.complete_pending_update(appimage_path):
-                app_name = marker_file.stem.replace("_", " ")
+                app_name = marker.stem.replace("_", " ")
                 print(f"Completed pending update for {app_name}")
 
                 # Update marker file version if update completed
-                new_version_marker = Path(str(appimage_path) + ".new.version")
+                new_version_marker = appimage_path.with_name(
+                    appimage_path.name + ".new.version"
+                )
                 if new_version_marker.exists():
                     new_version = new_version_marker.read_text().strip()
-                    AppImageDownloader.update_marker_file(marker_file, new_version)
+                    AppImageDownloader.update_marker_file(marker, new_version)
                     new_version_marker.unlink()
 
         except Exception as e:
@@ -515,7 +548,11 @@ def check_all_appimages():
                 if len(lines) < 5:
                     continue
 
-                appimage_path = Path(lines[0])
+                appimage_path = safe_appimage_path(lines[0])
+                if not appimage_path:
+                    print(f"Ignoring marker with invalid AppImage path: {marker_file}")
+                    continue
+
                 app_name = marker_file.stem.replace("_", " ")
                 current_version = lines[3]
                 filename_pattern = lines[4] if len(lines) >= 5 else ""

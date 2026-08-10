@@ -578,10 +578,8 @@ Type=Scalable
             self._b.log(_("Papirus symbolic icons already present"))
             return
 
-        if self._b.container_name:
-            source_base = "/usr/share/icons"
-        else:
-            source_base = "/usr/share/icons"
+        # Same location whether the copy runs inside the container or on the host
+        source_base = "/usr/share/icons"
 
         self._b.log(_("Copying Papirus and Papirus-Dark symbolic icons..."))
 

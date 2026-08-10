@@ -29,7 +29,7 @@ def validate_version(version: str) -> str:
     if not version or len(version.strip()) < 1:
         raise ValidationError(_("Version is required"))
 
-    if not re.match(r"^[0-9]+(\.[0-9]+)*([a-zA-Z0-9\-_.]*)?$", version):
+    if not re.match(r"^[0-9]+(\.[0-9]+)*[a-zA-Z0-9\-_.]*$", version):
         raise ValidationError(_("Invalid version format"))
 
     return version.strip()

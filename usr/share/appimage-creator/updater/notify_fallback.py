@@ -118,16 +118,21 @@ def _notify_via_gio(
         expire_timeout=0 if has_actions else -1,
     )
 
-    if not has_actions:
-        # User informed; nothing else we can do without action support
-        return True
+    # Without action support the user is merely informed; with it, "update"
+    # is the only answer that triggers work — anything else (dismissed,
+    # "later", timeout) leaves the notification as the whole interaction.
+    if has_actions and _wait_for_action(bus, GLib, Gio, notification_id) == "update":
+        _download_and_install(
+            bus, GLib, Gio, notification_id, update_info, appimage_path, marker_file
+        )
 
-    action = _wait_for_action(bus, GLib, Gio, notification_id)
+    return True
 
-    if action != "update":
-        return True  # dismissed, "later", or timed out — user was informed
 
-    # --- User clicked "Update": download and install (no GUI needed) ---
+def _download_and_install(
+    bus, GLib, Gio, notification_id, update_info, appimage_path, marker_file
+) -> None:
+    """Download and install the update, reporting progress via notifications."""
     progress_id = _send_notification(
         bus,
         GLib,
@@ -179,8 +184,6 @@ def _notify_via_gio(
             actions=[],
             expire_timeout=-1,
         )
-
-    return True
 
 
 def _send_notification(
