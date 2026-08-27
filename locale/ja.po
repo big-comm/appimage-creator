@@ -364,6 +364,153 @@ msgstr "メニュー"
 msgid "About"
 msgstr "情報"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 314
+#: NEEDS WORK
+msgid "Building on the local system"
+msgstr "ローカルシステムでのビルド"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 315
+#: NEEDS WORK
+msgid "Packages come from the host; nothing to manage here."
+msgstr "パッケージはホストから来ます。ここで管理するものはありません。"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 324
+#: NEEDS WORK
+msgid "Checking container..."
+msgstr "コンテナを確認中..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Remove from the list"
+msgstr "リストから削除"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Required by the build environment"
+msgstr "ビルド環境によって必要です"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 382
+#: NEEDS WORK
+msgid "Suggested by the selected dependencies"
+msgstr "選択された依存関係によって提案されました"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 383
+#: NEEDS WORK
+msgid "Added by you"
+msgstr "あなたによって追加されました"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 398
+#: NEEDS WORK
+msgid "installed"
+msgstr "インストール済み"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 400
+#: NEEDS WORK
+msgid "not installed"
+msgstr "未インストール"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 403
+#: NEEDS WORK
+msgid "not found in this container"
+msgstr "このコンテナに見つかりません"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 425
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} missing in the container"
+msgstr "{} がコンテナにありません"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 427
+#: NEEDS WORK
+msgid "Everything listed is installed"
+msgstr "リストにあるすべてがインストールされています"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 437
+# File: usr/share/appimage-creator/ui/pages.py, line: 905
+#: NEEDS WORK
+msgid "Add Package"
+msgstr "パッケージを追加"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 439
+#: NEEDS WORK
+#, python-brace-format
+msgid "Name of the package to install in {}"
+msgstr "{}にインストールするパッケージの名前"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 443
+#: NEEDS WORK
+msgid "e.g. libwebkit2gtk-4.1-0"
+msgstr "libwebkit2gtk-4.1-0"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 457
+#: NEEDS WORK
+msgid "Check"
+msgstr "チェック"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 458
+#: NEEDS WORK
+msgid "Add"
+msgstr "追加"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 469
+#: NEEDS WORK
+msgid "Invalid package name."
+msgstr "無効なパッケージ名。"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 480
+#: NEEDS WORK
+msgid "Checking in the container..."
+msgstr "コンテナにチェックイン中..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 498
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not check: {}"
+msgstr "チェックできませんでした: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 501
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is unknown to this container's package manager."
+msgstr "'{}'はこのコンテナのパッケージマネージャーには不明です。"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 507
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is already installed ({})."
+msgstr "'{}'はすでにインストールされています（{}）。"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 513
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is available: version {}."
+msgstr "'{}' が利用可能です: バージョン {}."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 519
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' exists but has no installable version here."
+msgstr "'{}'は存在しますが、ここにはインストール可能なバージョンがありません。"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 529
+#: NEEDS WORK
+msgid "Installing Packages"
+msgstr "パッケージのインストール"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 544
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} provides: {}"
+msgstr "{}は{}を提供します。"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 551
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: {} installed no shared library"
+msgstr "警告: {} に共有ライブラリがインストールされていません"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 237
 #: NEEDS WORK
 msgid ""
@@ -1376,6 +1523,36 @@ msgstr "システム依存関係"
 msgid "Select which system libraries to bundle"
 msgstr "バンドルするシステムライブラリを選択してください"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 885
+#: NEEDS WORK
+msgid "Container Packages"
+msgstr "コンテナパッケージ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 887
+#: NEEDS WORK
+msgid "Packages available in the build environment"
+msgstr "ビルド環境で利用可能なパッケージ"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 908
+#: NEEDS WORK
+msgid "Add a package to install in the build container"
+msgstr "ビルドコンテナにインストールするパッケージを追加する"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 912
+#: NEEDS WORK
+msgid "Install Missing"
+msgstr "インストールが必要です"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 915
+#: NEEDS WORK
+msgid "Install the packages that are listed but not present yet"
+msgstr "まだ存在しないがリストにあるパッケージをインストールします"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 921
+#: NEEDS WORK
+msgid "Re-check the container"
+msgstr "コンテナを再確認してください"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 797
 #: NEEDS WORK
 msgid "Icon Theme"
@@ -1887,6 +2064,56 @@ msgstr "警告: 画像を自動的に削除できませんでした"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "コンテナの削除中にエラーが発生しました: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 793
+#: NEEDS WORK
+msgid "Invalid package name"
+msgstr "無効なパッケージ名"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 798
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 870
+#: NEEDS WORK
+msgid "Unknown environment"
+msgstr "不明な環境"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 809
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 883
+#: NEEDS WORK
+#, python-brace-format
+msgid "Unsupported package manager: {}"
+msgstr "サポートされていないパッケージマネージャー: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 815
+#: NEEDS WORK
+msgid "Timed out querying the container"
+msgstr "コンテナのクエリがタイムアウトしました"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 818
+#: NEEDS WORK
+msgid "Distrobox is not available"
+msgstr "Distroboxは利用できません"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 862
+#: NEEDS WORK
+#, python-brace-format
+msgid "Ignoring invalid package names: {}"
+msgstr "無効なパッケージ名を無視しています: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 866
+#: NEEDS WORK
+msgid "No valid package names given"
+msgstr "有効なパッケージ名が指定されていません"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 887
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing in container: {}"
+msgstr "コンテナにインストール中: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 892
+#: NEEDS WORK
+msgid "Installation timed out"
+msgstr "インストールがタイムアウトしました"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 760
 #: NEEDS WORK
@@ -2476,6 +2703,12 @@ msgstr "実行ファイルに動的ライブラリが検出されませんでし
 #, python-brace-format
 msgid "Executable links against {} libraries"
 msgstr "実行ファイルは {} 個のライブラリにリンクしています"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1432
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found {} libraries loaded at runtime (dlopen)"
+msgstr "ランタイムで読み込まれたライブラリが {} 件見つかりました (dlopen)"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 760
 #: NEEDS WORK
@@ -3458,6 +3691,18 @@ msgstr "標準システムライブラリをコピーしています: {}"
 #, python-brace-format
 msgid "Copying conflicting system libraries to fallback dir: {}"
 msgstr "競合するシステムライブラリをフォールバックディレクトリにコピーしています: {}"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 123
+#: NEEDS WORK
+msgid "WARNING: selected dependencies bundled nothing"
+msgstr "警告: 選択された依存関係は何もバンドルされていません"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 128
+#: NEEDS WORK
+msgid ""
+"The build environment has no package providing these. The AppImage will fail on hosts that lack "
+"them: install the packages in the build page and build again."
+msgstr "ビルド環境にはこれを提供するパッケージがありません。これらが不足しているホストではAppImageが失敗します：ビルドページでパッケージをインストールし、再度ビルドしてください。"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1344
 #: NEEDS WORK

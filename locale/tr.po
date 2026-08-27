@@ -366,6 +366,153 @@ msgstr "Menü"
 msgid "About"
 msgstr "Hakkında"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 314
+#: NEEDS WORK
+msgid "Building on the local system"
+msgstr "Yerel sistemde inşa etme"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 315
+#: NEEDS WORK
+msgid "Packages come from the host; nothing to manage here."
+msgstr "Paketler ana bilgisayardan gelir; burada yönetilecek bir şey yok."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 324
+#: NEEDS WORK
+msgid "Checking container..."
+msgstr "Konteyner kontrol ediliyor..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Remove from the list"
+msgstr "Listeden kaldır"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Required by the build environment"
+msgstr "Derleme ortamı tarafından gereklidir"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 382
+#: NEEDS WORK
+msgid "Suggested by the selected dependencies"
+msgstr "Seçilen bağımlılıklar tarafından önerildi"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 383
+#: NEEDS WORK
+msgid "Added by you"
+msgstr "Sizin eklediğiniz"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 398
+#: NEEDS WORK
+msgid "installed"
+msgstr "kurulu"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 400
+#: NEEDS WORK
+msgid "not installed"
+msgstr "kurulu değil"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 403
+#: NEEDS WORK
+msgid "not found in this container"
+msgstr "bu konteynerde bulunamadı"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 425
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} missing in the container"
+msgstr "{} konteynerde eksik"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 427
+#: NEEDS WORK
+msgid "Everything listed is installed"
+msgstr "Listelenen her şey yüklüdür."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 437
+# File: usr/share/appimage-creator/ui/pages.py, line: 905
+#: NEEDS WORK
+msgid "Add Package"
+msgstr "Paket Ekle"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 439
+#: NEEDS WORK
+#, python-brace-format
+msgid "Name of the package to install in {}"
+msgstr "{}'yi yüklemek için paket adı"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 443
+#: NEEDS WORK
+msgid "e.g. libwebkit2gtk-4.1-0"
+msgstr "libwebkit2gtk-4.1-0"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 457
+#: NEEDS WORK
+msgid "Check"
+msgstr "Kontrol Et"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 458
+#: NEEDS WORK
+msgid "Add"
+msgstr "Ekle"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 469
+#: NEEDS WORK
+msgid "Invalid package name."
+msgstr "Geçersiz paket adı."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 480
+#: NEEDS WORK
+msgid "Checking in the container..."
+msgstr "Konteyanda kontrol ediliyor..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 498
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not check: {}"
+msgstr "Kontrol edilemedi: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 501
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is unknown to this container's package manager."
+msgstr "'{}' bu konteynerin paket yöneticisine bilinmiyor."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 507
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is already installed ({})."
+msgstr "'{}' zaten kurulu ({})."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 513
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is available: version {}."
+msgstr "'{}' mevcut: sürüm {}."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 519
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' exists but has no installable version here."
+msgstr "'{}' mevcut ancak burada yüklenebilir bir sürümü yok."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 529
+#: NEEDS WORK
+msgid "Installing Packages"
+msgstr "Paketler Yükleniyor"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 544
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} provides: {}"
+msgstr "{} sağlar: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 551
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: {} installed no shared library"
+msgstr "Uyarı: {} yüklü, paylaşılan kütüphane yok."
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 237
 #: NEEDS WORK
 msgid ""
@@ -1384,6 +1531,36 @@ msgstr "Sistem Bağımlılıkları"
 msgid "Select which system libraries to bundle"
 msgstr "Hangi sistem kütüphanelerinin paketleneceğini seçin"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 885
+#: NEEDS WORK
+msgid "Container Packages"
+msgstr "Konteyner Paketleri"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 887
+#: NEEDS WORK
+msgid "Packages available in the build environment"
+msgstr "Yapı ortamında mevcut paketler"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 908
+#: NEEDS WORK
+msgid "Add a package to install in the build container"
+msgstr "Yapı konteynerine yüklemek için bir paket ekle"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 912
+#: NEEDS WORK
+msgid "Install Missing"
+msgstr "Eksik Yükle"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 915
+#: NEEDS WORK
+msgid "Install the packages that are listed but not present yet"
+msgstr "Henüz mevcut olmayan ancak listelenen paketleri yükleyin."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 921
+#: NEEDS WORK
+msgid "Re-check the container"
+msgstr "Konteyneri yeniden kontrol et"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 797
 #: NEEDS WORK
 msgid "Icon Theme"
@@ -1910,6 +2087,56 @@ msgstr "Uyarı: Görüntü otomatik olarak kaldırılamadı"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Konteyneri kaldırırken bir hata oluştu: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 793
+#: NEEDS WORK
+msgid "Invalid package name"
+msgstr "Geçersiz paket adı"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 798
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 870
+#: NEEDS WORK
+msgid "Unknown environment"
+msgstr "Bilinmeyen ortam"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 809
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 883
+#: NEEDS WORK
+#, python-brace-format
+msgid "Unsupported package manager: {}"
+msgstr "Desteklenmeyen paket yöneticisi: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 815
+#: NEEDS WORK
+msgid "Timed out querying the container"
+msgstr "Konteyneri sorgularken zaman aşımına uğradı"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 818
+#: NEEDS WORK
+msgid "Distrobox is not available"
+msgstr "Distrobox mevcut değil"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 862
+#: NEEDS WORK
+#, python-brace-format
+msgid "Ignoring invalid package names: {}"
+msgstr "Geçersiz paket adları yok sayılıyor: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 866
+#: NEEDS WORK
+msgid "No valid package names given"
+msgstr "Geçerli paket adları verilmedi"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 887
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing in container: {}"
+msgstr "Konteyanda yükleniyor: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 892
+#: NEEDS WORK
+msgid "Installation timed out"
+msgstr "Kurulum zaman aşımına uğradı"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 760
 #: NEEDS WORK
@@ -2504,6 +2731,12 @@ msgstr "Çalıştırılabilir dosyada dinamik kitaplık bulunamadı"
 #, python-brace-format
 msgid "Executable links against {} libraries"
 msgstr "Çalıştırılabilir dosya {} kitaplığa bağlanıyor"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1432
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found {} libraries loaded at runtime (dlopen)"
+msgstr "Çalışma zamanında {} kütüphane bulundu (dlopen)"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 760
 #: NEEDS WORK
@@ -3490,6 +3723,20 @@ msgstr "Standart sistem kütüphanelerini kopyalama: {}"
 #, python-brace-format
 msgid "Copying conflicting system libraries to fallback dir: {}"
 msgstr "Çatışan sistem kütüphanelerini yedek dizine kopyalanıyor: {}"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 123
+#: NEEDS WORK
+msgid "WARNING: selected dependencies bundled nothing"
+msgstr "UYARI: seçilen bağımlılıklar hiçbir şey içermiyor"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 128
+#: NEEDS WORK
+msgid ""
+"The build environment has no package providing these. The AppImage will fail on hosts that lack "
+"them: install the packages in the build page and build again."
+msgstr ""
+"Derleme ortamında bunları sağlayan bir paket yok. AppImage, bunları eksik olan sunucularda "
+"başarısız olacaktır: paketleri derleme sayfasında yükleyin ve tekrar derleyin."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1344
 #: NEEDS WORK

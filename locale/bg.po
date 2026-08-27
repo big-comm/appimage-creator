@@ -366,6 +366,153 @@ msgstr "Меню"
 msgid "About"
 msgstr "За програмата"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 314
+#: NEEDS WORK
+msgid "Building on the local system"
+msgstr "Сглобяване на локалната система"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 315
+#: NEEDS WORK
+msgid "Packages come from the host; nothing to manage here."
+msgstr "Пакетите идват от хоста; няма какво да се управлява тук."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 324
+#: NEEDS WORK
+msgid "Checking container..."
+msgstr "Проверка на контейнер..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Remove from the list"
+msgstr "Премахни от списъка"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Required by the build environment"
+msgstr "Изисква се от средата за изграждане"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 382
+#: NEEDS WORK
+msgid "Suggested by the selected dependencies"
+msgstr "Предложено от избраните зависимости"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 383
+#: NEEDS WORK
+msgid "Added by you"
+msgstr "Добавено от вас"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 398
+#: NEEDS WORK
+msgid "installed"
+msgstr "инсталиран"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 400
+#: NEEDS WORK
+msgid "not installed"
+msgstr "не е инсталирано"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 403
+#: NEEDS WORK
+msgid "not found in this container"
+msgstr "не е намерен в този контейнер"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 425
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} missing in the container"
+msgstr "{} липсва в контейнера"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 427
+#: NEEDS WORK
+msgid "Everything listed is installed"
+msgstr "Всичко изброено е инсталирано"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 437
+# File: usr/share/appimage-creator/ui/pages.py, line: 905
+#: NEEDS WORK
+msgid "Add Package"
+msgstr "Добави пакет"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 439
+#: NEEDS WORK
+#, python-brace-format
+msgid "Name of the package to install in {}"
+msgstr "Име на пакета за инсталиране в {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 443
+#: NEEDS WORK
+msgid "e.g. libwebkit2gtk-4.1-0"
+msgstr "libwebkit2gtk-4.1-0"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 457
+#: NEEDS WORK
+msgid "Check"
+msgstr "Проверка"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 458
+#: NEEDS WORK
+msgid "Add"
+msgstr "Добави"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 469
+#: NEEDS WORK
+msgid "Invalid package name."
+msgstr "Невалидно име на пакет."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 480
+#: NEEDS WORK
+msgid "Checking in the container..."
+msgstr "Проверка в контейнера..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 498
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not check: {}"
+msgstr "Не можа да се провери: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 501
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is unknown to this container's package manager."
+msgstr "'{}' е неизвестен на мениджъра на пакети на този контейнер."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 507
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is already installed ({})."
+msgstr "'{}' вече е инсталиран ({})."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 513
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is available: version {}."
+msgstr "'{}' е наличен: версия {}."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 519
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' exists but has no installable version here."
+msgstr "'{}' съществува, но няма инсталирана версия тук."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 529
+#: NEEDS WORK
+msgid "Installing Packages"
+msgstr "Инсталиране на пакети"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 544
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} provides: {}"
+msgstr "{} предоставя: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 551
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: {} installed no shared library"
+msgstr "Предупреждение: {} не е инсталирана споделена библиотека"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 237
 #: NEEDS WORK
 msgid ""
@@ -1383,6 +1530,36 @@ msgstr "Системни зависимости"
 msgid "Select which system libraries to bundle"
 msgstr "Изберете кои системни библиотеки да включите"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 885
+#: NEEDS WORK
+msgid "Container Packages"
+msgstr "Контейнерни пакети"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 887
+#: NEEDS WORK
+msgid "Packages available in the build environment"
+msgstr "Пакети, налични в средата за изграждане"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 908
+#: NEEDS WORK
+msgid "Add a package to install in the build container"
+msgstr "Добавете пакет за инсталиране в контейнера за изграждане"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 912
+#: NEEDS WORK
+msgid "Install Missing"
+msgstr "Инсталирайте липсващото"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 915
+#: NEEDS WORK
+msgid "Install the packages that are listed but not present yet"
+msgstr "Инсталирайте пакетите, които са изброени, но все още не са налични."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 921
+#: NEEDS WORK
+msgid "Re-check the container"
+msgstr "Проверете отново контейнера"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 797
 #: NEEDS WORK
 msgid "Icon Theme"
@@ -1907,6 +2084,56 @@ msgstr "Предупреждение: Не можа да се премахне �
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Възникна грешка при премахването на контейнера: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 793
+#: NEEDS WORK
+msgid "Invalid package name"
+msgstr "Невалидно име на пакет"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 798
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 870
+#: NEEDS WORK
+msgid "Unknown environment"
+msgstr "Непозната среда"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 809
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 883
+#: NEEDS WORK
+#, python-brace-format
+msgid "Unsupported package manager: {}"
+msgstr "Неподдържан мениджър на пакети: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 815
+#: NEEDS WORK
+msgid "Timed out querying the container"
+msgstr "Изтекло време при запитване на контейнера"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 818
+#: NEEDS WORK
+msgid "Distrobox is not available"
+msgstr "Distrobox не е наличен"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 862
+#: NEEDS WORK
+#, python-brace-format
+msgid "Ignoring invalid package names: {}"
+msgstr "Игнориране на невалидни имена на пакети: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 866
+#: NEEDS WORK
+msgid "No valid package names given"
+msgstr "Няма валидни имена на пакети."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 887
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing in container: {}"
+msgstr "Инсталиране в контейнер: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 892
+#: NEEDS WORK
+msgid "Installation timed out"
+msgstr "Инсталацията изтече."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 760
 #: NEEDS WORK
@@ -2498,6 +2725,12 @@ msgstr "Не са открити динамични библиотеки в из
 #, python-brace-format
 msgid "Executable links against {} libraries"
 msgstr "Изпълнимият файл е свързан с {} библиотеки"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1432
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found {} libraries loaded at runtime (dlopen)"
+msgstr "Намерени са {} библиотеки, заредени по време на изпълнение (dlopen)"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 760
 #: NEEDS WORK
@@ -3488,6 +3721,20 @@ msgstr "Копиране на стандартни системни библио
 #, python-brace-format
 msgid "Copying conflicting system libraries to fallback dir: {}"
 msgstr "Копиране на конфликтни системни библиотеки в директория за резервно копие: {}"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 123
+#: NEEDS WORK
+msgid "WARNING: selected dependencies bundled nothing"
+msgstr "ПРЕДУПРЕЖДЕНИЕ: избраните зависимости не съдържат нищо"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 128
+#: NEEDS WORK
+msgid ""
+"The build environment has no package providing these. The AppImage will fail on hosts that lack "
+"them: install the packages in the build page and build again."
+msgstr ""
+"Средата за изграждане няма пакет, който да предоставя тези. AppImage ще се провали на хостове, "
+"които нямат тях: инсталирайте пакетите на страницата за изграждане и изградете отново."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1344
 #: NEEDS WORK

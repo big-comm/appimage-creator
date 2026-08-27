@@ -366,6 +366,153 @@ msgstr "Nabídka"
 msgid "About"
 msgstr "O aplikaci"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 314
+#: NEEDS WORK
+msgid "Building on the local system"
+msgstr "Stavění na místním systému"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 315
+#: NEEDS WORK
+msgid "Packages come from the host; nothing to manage here."
+msgstr "Balíčky pocházejí z hostitele; zde není nic k řízení."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 324
+#: NEEDS WORK
+msgid "Checking container..."
+msgstr "Kontrola kontejneru..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Remove from the list"
+msgstr "Odstranit ze seznamu"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Required by the build environment"
+msgstr "Požadováno prostředím pro sestavení"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 382
+#: NEEDS WORK
+msgid "Suggested by the selected dependencies"
+msgstr "Navrženo vybranými závislostmi"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 383
+#: NEEDS WORK
+msgid "Added by you"
+msgstr "Přidáno vámi"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 398
+#: NEEDS WORK
+msgid "installed"
+msgstr "nainstalováno"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 400
+#: NEEDS WORK
+msgid "not installed"
+msgstr "není nainstalováno"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 403
+#: NEEDS WORK
+msgid "not found in this container"
+msgstr "není nalezeno v tomto kontejneru"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 425
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} missing in the container"
+msgstr "{} chybí v kontejneru"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 427
+#: NEEDS WORK
+msgid "Everything listed is installed"
+msgstr "Všechny uvedené položky jsou nainstalovány."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 437
+# File: usr/share/appimage-creator/ui/pages.py, line: 905
+#: NEEDS WORK
+msgid "Add Package"
+msgstr "Přidat balíček"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 439
+#: NEEDS WORK
+#, python-brace-format
+msgid "Name of the package to install in {}"
+msgstr "Název balíčku k instalaci v {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 443
+#: NEEDS WORK
+msgid "e.g. libwebkit2gtk-4.1-0"
+msgstr "libwebkit2gtk-4.1-0"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 457
+#: NEEDS WORK
+msgid "Check"
+msgstr "Zkontrolovat"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 458
+#: NEEDS WORK
+msgid "Add"
+msgstr "Přidat"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 469
+#: NEEDS WORK
+msgid "Invalid package name."
+msgstr "Neplatný název balíčku."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 480
+#: NEEDS WORK
+msgid "Checking in the container..."
+msgstr "Kontroluji v kontejneru..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 498
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not check: {}"
+msgstr "Nelze zkontrolovat: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 501
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is unknown to this container's package manager."
+msgstr "'{}' není známo tomuto správci balíčků kontejneru."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 507
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is already installed ({})."
+msgstr "'{}' je již nainstalován ({})."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 513
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is available: version {}."
+msgstr "'{}' je k dispozici: verze {}."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 519
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' exists but has no installable version here."
+msgstr "'{}' existuje, ale zde není žádná instalovatelná verze."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 529
+#: NEEDS WORK
+msgid "Installing Packages"
+msgstr "Instalace balíčků"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 544
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} provides: {}"
+msgstr "{} poskytuje: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 551
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: {} installed no shared library"
+msgstr "Upozornění: {} nainstalována žádná sdílená knihovna"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 237
 #: NEEDS WORK
 msgid ""
@@ -1381,6 +1528,36 @@ msgstr "Závislosti systému"
 msgid "Select which system libraries to bundle"
 msgstr "Vyberte, které systémové knihovny chcete zahrnout."
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 885
+#: NEEDS WORK
+msgid "Container Packages"
+msgstr "Kontejnerové balíčky"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 887
+#: NEEDS WORK
+msgid "Packages available in the build environment"
+msgstr "Balíčky dostupné v prostředí pro sestavení"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 908
+#: NEEDS WORK
+msgid "Add a package to install in the build container"
+msgstr "Přidat balíček k instalaci v kontejneru pro sestavení"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 912
+#: NEEDS WORK
+msgid "Install Missing"
+msgstr "Nainstalovat chybějící"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 915
+#: NEEDS WORK
+msgid "Install the packages that are listed but not present yet"
+msgstr "Nainstalujte balíčky, které jsou uvedeny, ale dosud nejsou přítomny."
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 921
+#: NEEDS WORK
+msgid "Re-check the container"
+msgstr "Znovu zkontrolujte kontejner"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 797
 #: NEEDS WORK
 msgid "Icon Theme"
@@ -1902,6 +2079,56 @@ msgstr "Upozornění: Nelze automaticky odstranit obrázek"
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "Došlo k chybě při odstraňování kontejneru: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 793
+#: NEEDS WORK
+msgid "Invalid package name"
+msgstr "Neplatný název balíčku"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 798
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 870
+#: NEEDS WORK
+msgid "Unknown environment"
+msgstr "Neznámé prostředí"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 809
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 883
+#: NEEDS WORK
+#, python-brace-format
+msgid "Unsupported package manager: {}"
+msgstr "Nepodporovaný správce balíčků: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 815
+#: NEEDS WORK
+msgid "Timed out querying the container"
+msgstr "Vypršel čas při dotazování na kontejner"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 818
+#: NEEDS WORK
+msgid "Distrobox is not available"
+msgstr "Distrobox není k dispozici"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 862
+#: NEEDS WORK
+#, python-brace-format
+msgid "Ignoring invalid package names: {}"
+msgstr "Ignoruji neplatné názvy balíčků: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 866
+#: NEEDS WORK
+msgid "No valid package names given"
+msgstr "Nebyl poskytnut žádný platný název balíčku"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 887
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing in container: {}"
+msgstr "Instalace v kontejneru: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 892
+#: NEEDS WORK
+msgid "Installation timed out"
+msgstr "Instalace vypršela."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 760
 #: NEEDS WORK
@@ -2495,6 +2722,12 @@ msgstr "V spustitelném souboru nebyly zjištěny žádné dynamické knihovny"
 #, python-brace-format
 msgid "Executable links against {} libraries"
 msgstr "Spustitelný soubor je propojen s {} knihovnami"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1432
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found {} libraries loaded at runtime (dlopen)"
+msgstr "Nalezeno {} knihoven načtených za běhu (dlopen)"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 760
 #: NEEDS WORK
@@ -3483,6 +3716,20 @@ msgstr "Kopírování standardních systémových knihoven: {}"
 #, python-brace-format
 msgid "Copying conflicting system libraries to fallback dir: {}"
 msgstr "Kopírování konfliktních systémových knihoven do záložního adresáře: {}"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 123
+#: NEEDS WORK
+msgid "WARNING: selected dependencies bundled nothing"
+msgstr "UPOZORNĚNÍ: vybrané závislosti neobsahovaly nic"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 128
+#: NEEDS WORK
+msgid ""
+"The build environment has no package providing these. The AppImage will fail on hosts that lack "
+"them: install the packages in the build page and build again."
+msgstr ""
+"Buildovací prostředí nemá žádný balíček, který by tyto poskytoval. AppImage selže na hostitelích, "
+"kteří je postrádají: nainstalujte balíčky na stránce pro sestavení a sestavte znovu."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1344
 #: NEEDS WORK

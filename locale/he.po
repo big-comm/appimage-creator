@@ -366,6 +366,153 @@ msgstr "תפריט"
 msgid "About"
 msgstr "אודות"
 # 
+# File: usr/share/appimage-creator/ui/window.py, line: 314
+#: NEEDS WORK
+msgid "Building on the local system"
+msgstr "בנייה על המערכת המקומית"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 315
+#: NEEDS WORK
+msgid "Packages come from the host; nothing to manage here."
+msgstr "חבילות מגיעות מהשרת; אין מה לנהל כאן."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 324
+#: NEEDS WORK
+msgid "Checking container..."
+msgstr "בודק מיכל..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 370
+#: NEEDS WORK
+msgid "Remove from the list"
+msgstr "הסר מהרשימה"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 381
+#: NEEDS WORK
+msgid "Required by the build environment"
+msgstr "דרוש על ידי סביבת הבנייה"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 382
+#: NEEDS WORK
+msgid "Suggested by the selected dependencies"
+msgstr "מוצע על ידי התלויות שנבחרו"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 383
+#: NEEDS WORK
+msgid "Added by you"
+msgstr "נוסף על ידך"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 398
+#: NEEDS WORK
+msgid "installed"
+msgstr "מותקן"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 400
+#: NEEDS WORK
+msgid "not installed"
+msgstr "לא מותקן"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 403
+#: NEEDS WORK
+msgid "not found in this container"
+msgstr "לא נמצא במיכל זה"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 425
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} missing in the container"
+msgstr "{} חסר במיכל"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 427
+#: NEEDS WORK
+msgid "Everything listed is installed"
+msgstr "הכל ברשימה מותקן"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 437
+# File: usr/share/appimage-creator/ui/pages.py, line: 905
+#: NEEDS WORK
+msgid "Add Package"
+msgstr "הוסף חבילה"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 439
+#: NEEDS WORK
+#, python-brace-format
+msgid "Name of the package to install in {}"
+msgstr "שם החבילה להתקנה ב{}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 443
+#: NEEDS WORK
+msgid "e.g. libwebkit2gtk-4.1-0"
+msgstr "libwebkit2gtk-4.1-0"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 457
+#: NEEDS WORK
+msgid "Check"
+msgstr "בדוק"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 458
+#: NEEDS WORK
+msgid "Add"
+msgstr "הוסף"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 469
+#: NEEDS WORK
+msgid "Invalid package name."
+msgstr "שם חבילה לא חוקי."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 480
+#: NEEDS WORK
+msgid "Checking in the container..."
+msgstr "בודק במיכל..."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 498
+#: NEEDS WORK
+#, python-brace-format
+msgid "Could not check: {}"
+msgstr "לא ניתן לבדוק: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 501
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is unknown to this container's package manager."
+msgstr "'{}' אינו ידוע למנהל החבילות של מיכל זה."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 507
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is already installed ({})."
+msgstr "'{}' כבר מותקן ({})."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 513
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' is available: version {}."
+msgstr "'{}' זמין: גרסה {}."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 519
+#: NEEDS WORK
+#, python-brace-format
+msgid "'{}' exists but has no installable version here."
+msgstr "'{}' קיים אך אין לו גרסה ניתנת להתקנה כאן."
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 529
+#: NEEDS WORK
+msgid "Installing Packages"
+msgstr "התקנת חבילות"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 544
+#: NEEDS WORK
+#, python-brace-format
+msgid "{} provides: {}"
+msgstr "{} מספק: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 551
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: {} installed no shared library"
+msgstr "אזהרה: {} הותקן ללא ספריית שיתוף"
+# 
 # File: usr/share/appimage-creator/ui/window.py, line: 237
 #: NEEDS WORK
 msgid ""
@@ -1380,6 +1527,36 @@ msgstr "תלויות מערכת"
 msgid "Select which system libraries to bundle"
 msgstr "בחר אילו ספריות מערכת לכלול"
 # 
+# File: usr/share/appimage-creator/ui/pages.py, line: 885
+#: NEEDS WORK
+msgid "Container Packages"
+msgstr "חבילות מיכלים"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 887
+#: NEEDS WORK
+msgid "Packages available in the build environment"
+msgstr "חבילות זמינות בסביבת הבנייה"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 908
+#: NEEDS WORK
+msgid "Add a package to install in the build container"
+msgstr "הוסף חבילה להתקנה במיכל הבנייה"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 912
+#: NEEDS WORK
+msgid "Install Missing"
+msgstr "התקן חסר"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 915
+#: NEEDS WORK
+msgid "Install the packages that are listed but not present yet"
+msgstr "התקן את החבילות שמופיעות אך אינן נוכחות עדיין"
+# 
+# File: usr/share/appimage-creator/ui/pages.py, line: 921
+#: NEEDS WORK
+msgid "Re-check the container"
+msgstr "בדוק מחדש את המיכל"
+# 
 # File: usr/share/appimage-creator/ui/pages.py, line: 797
 #: NEEDS WORK
 msgid "Icon Theme"
@@ -1899,6 +2076,56 @@ msgstr "אזהרה: לא ניתן להסיר את התמונה באופן אוט
 #, python-brace-format
 msgid "An error occurred while removing the container: {}"
 msgstr "שגיאה התרחשה בעת הסרת המיכל: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 793
+#: NEEDS WORK
+msgid "Invalid package name"
+msgstr "שם חבילה לא חוקי"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 798
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 870
+#: NEEDS WORK
+msgid "Unknown environment"
+msgstr "סביבה לא ידועה"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 809
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 883
+#: NEEDS WORK
+#, python-brace-format
+msgid "Unsupported package manager: {}"
+msgstr "מנהל חבילות לא נתמך: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 815
+#: NEEDS WORK
+msgid "Timed out querying the container"
+msgstr "פג זמן בעת שאילתת המיכל"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 818
+#: NEEDS WORK
+msgid "Distrobox is not available"
+msgstr "דיסטרובוקס אינו זמין"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 862
+#: NEEDS WORK
+#, python-brace-format
+msgid "Ignoring invalid package names: {}"
+msgstr "מתעלם משמות חבילות לא חוקיים: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 866
+#: NEEDS WORK
+msgid "No valid package names given"
+msgstr "לא ניתנו שמות חבילות תקפים"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 887
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing in container: {}"
+msgstr "מתקין במיכל: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 892
+#: NEEDS WORK
+msgid "Installation timed out"
+msgstr "ההתקנה פגה בזמן"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 760
 #: NEEDS WORK
@@ -2488,6 +2715,12 @@ msgstr "לא זוהו ספריות דינמיות בקובץ ההפעלה"
 #, python-brace-format
 msgid "Executable links against {} libraries"
 msgstr "קובץ ההפעלה מקושר ל-{} ספריות"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1432
+#: NEEDS WORK
+#, python-brace-format
+msgid "Found {} libraries loaded at runtime (dlopen)"
+msgstr "נמצאו {} ספריות שהוטענו בזמן ריצה (dlopen)"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 760
 #: NEEDS WORK
@@ -3470,6 +3703,20 @@ msgstr "מעתיק ספריות מערכת סטנדרטיות: {}"
 #, python-brace-format
 msgid "Copying conflicting system libraries to fallback dir: {}"
 msgstr "מעתיק ספריות מערכת סותרות לתיקיית גיבוי: {}"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 123
+#: NEEDS WORK
+msgid "WARNING: selected dependencies bundled nothing"
+msgstr "אזהרה: התלויות שנבחרו לא כללו דבר"
+# 
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 128
+#: NEEDS WORK
+msgid ""
+"The build environment has no package providing these. The AppImage will fail on hosts that lack "
+"them: install the packages in the build page and build again."
+msgstr ""
+"סביבת הבנייה אינה כוללת חבילה המספקת את אלה. ה-AppImage ייכשל על מארחים שחסרים אותם: התקן את "
+"החבילות בדף הבנייה ובנה שוב."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1344
 #: NEEDS WORK
