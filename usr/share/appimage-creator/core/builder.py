@@ -314,6 +314,12 @@ class AppImageBuilder:
                     "*.tmp",
                     "*.po",
                     "*.pot",
+                    # Tooling caches
+                    ".pytest_cache",
+                    ".ruff_cache",
+                    ".mypy_cache",
+                    ".tox",
+                    ".nox",
                     # Documentation and project metadata files
                     "README.md",
                     "LICENSE",
@@ -333,9 +339,19 @@ class AppImageBuilder:
                     root_path / "CMakeLists.txt"
                 ).is_file():
                     exclude_patterns.extend(["build", "builddir", "_build"])
-                for venv_name in (".venv", "venv"):
-                    if (root_path / venv_name / "pyvenv.cfg").is_file():
-                        exclude_patterns.append(venv_name)
+                # A virtualenv is rebuilt inside the container, so the project's
+                # own one must never be copied. Detect it by its pyvenv.cfg
+                # instead of by name: bigocrpdf's ".venv-dev" slipped past a
+                # (".venv", "venv") list and added 73 MB to the AppImage.
+                for pattern in ("*/pyvenv.cfg", "*/*/pyvenv.cfg"):
+                    for cfg in root_path.glob(pattern):
+                        if cfg.parent.name not in exclude_patterns:
+                            exclude_patterns.append(cfg.parent.name)
+                            self.log(
+                                _("Skipping virtualenv directory: {}").format(
+                                    cfg.parent.relative_to(root_path)
+                                )
+                            )
 
                 copy_files_recursively(
                     project_root, self.appdir_path, exclude_patterns=exclude_patterns
