@@ -2,6 +2,7 @@
 Manages build environments using Distrobox
 """
 
+import re
 import subprocess
 import shutil
 from typing import List, Dict, Any, Optional, Callable
@@ -13,6 +14,7 @@ from utils.system import (
     has_fuse,
 )
 from utils.i18n import _
+from core.build_config import DEPENDENCY_PACKAGES, PACKAGE_NAME_PATTERN
 
 
 # Define the supported build environments
@@ -736,6 +738,225 @@ class EnvironmentManager:
             raise RuntimeError(
                 _("An error occurred while removing the container: {}").format(e)
             )
+
+    # ------------------------------------------------------------------
+    #  Container packages
+    # ------------------------------------------------------------------
+
+    def _env_spec(self, env_id: str) -> Optional[Dict[str, Any]]:
+        return next(
+            (env for env in SUPPORTED_ENVIRONMENTS if env["id"] == env_id), None
+        )
+
+    def _run_in_container(self, env_id: str, command: str, timeout: int = 120):
+        """Run a shell command inside the environment's container."""
+        return subprocess.run(
+            [
+                "distrobox-enter",
+                self._get_container_name(env_id),
+                "--",
+                "sh",
+                "-c",
+                command,
+            ],
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=get_host_env(),
+        )
+
+    @staticmethod
+    def is_valid_package_name(package: str) -> bool:
+        """Package names are interpolated into a shell command run in the
+        container, so only the characters the distros themselves allow pass."""
+        return bool(re.match(PACKAGE_NAME_PATTERN, package or ""))
+
+    def query_package(self, env_id: str, package: str) -> Dict[str, Any]:
+        """
+        Ask the container's package manager about one package.
+
+        Returns {"exists", "installed", "installable", "version", "error"}.
+        "exists" False with no error means the manager simply does not know that
+        name — which is the answer the "add package" field needs before letting a
+        typo through. "installable" is the stricter test: Debian keeps empty
+        transitional packages around that resolve but have no candidate version.
+        """
+        result = {
+            "exists": False,
+            "installed": False,
+            "installable": False,
+            "version": None,
+            "error": None,
+        }
+
+        if not self.is_valid_package_name(package):
+            result["error"] = _("Invalid package name")
+            return result
+
+        env_spec = self._env_spec(env_id)
+        if not env_spec:
+            result["error"] = _("Unknown environment")
+            return result
+
+        pm = env_spec["package_manager"]
+        if pm in ("apt",):
+            command = f"apt-cache policy {package}"
+        elif pm in ("dnf", "yum"):
+            command = f"{pm} --quiet info {package}"
+        elif pm == "pacman":
+            command = f"pacman -Si {package}"
+        else:
+            result["error"] = _("Unsupported package manager: {}").format(pm)
+            return result
+
+        try:
+            proc = self._run_in_container(env_id, command)
+        except subprocess.TimeoutExpired:
+            result["error"] = _("Timed out querying the container")
+            return result
+        except FileNotFoundError:
+            result["error"] = _("Distrobox is not available")
+            return result
+
+        stdout = proc.stdout or ""
+
+        if pm == "apt":
+            # apt-cache policy exits 0 and prints nothing for unknown names
+            if not stdout.strip():
+                return result
+            result["exists"] = True
+            for line in stdout.splitlines():
+                line = line.strip()
+                if line.startswith("Installed:"):
+                    value = line.split(":", 1)[1].strip()
+                    result["installed"] = value != "(none)"
+                elif line.startswith("Candidate:"):
+                    value = line.split(":", 1)[1].strip()
+                    result["version"] = None if value == "(none)" else value
+            result["installable"] = bool(result["version"]) or result["installed"]
+        else:
+            result["exists"] = proc.returncode == 0
+            result["installable"] = result["exists"]
+            if result["exists"]:
+                for line in stdout.splitlines():
+                    lowered = line.lower()
+                    if lowered.startswith("version"):
+                        result["version"] = line.split(":", 1)[1].strip()
+                        break
+                if pm == "pacman":
+                    installed = self._run_in_container(env_id, f"pacman -Qi {package}")
+                    result["installed"] = installed.returncode == 0
+                else:
+                    installed = self._run_in_container(env_id, f"rpm -q {package}")
+                    result["installed"] = installed.returncode == 0
+
+        return result
+
+    def install_packages(
+        self, env_id: str, packages: List[str], log_callback=None
+    ) -> Dict[str, Any]:
+        """Install packages inside the container. Returns {"ok", "output"}."""
+        safe = [p for p in packages if self.is_valid_package_name(p)]
+        rejected = [p for p in packages if p not in safe]
+        if rejected and log_callback:
+            log_callback(_("Ignoring invalid package names: {}").format(
+                ", ".join(rejected)
+            ))
+        if not safe:
+            return {"ok": False, "output": _("No valid package names given")}
+
+        env_spec = self._env_spec(env_id)
+        if not env_spec:
+            return {"ok": False, "output": _("Unknown environment")}
+
+        pm = env_spec["package_manager"]
+        joined = " ".join(safe)
+        if pm == "apt":
+            command = f"sudo apt-get update && sudo apt-get install -y {joined}"
+        elif pm in ("dnf", "yum"):
+            command = f"sudo {pm} install -y {joined}"
+        elif pm == "pacman":
+            command = f"sudo pacman -Sy --noconfirm {joined}"
+        else:
+            return {
+                "ok": False,
+                "output": _("Unsupported package manager: {}").format(pm),
+            }
+
+        if log_callback:
+            log_callback(_("Installing in container: {}").format(joined))
+
+        try:
+            proc = self._run_in_container(env_id, command, timeout=900)
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "output": _("Installation timed out")}
+
+        output = (proc.stdout or "") + (proc.stderr or "")
+        if log_callback:
+            for line in output.splitlines():
+                log_callback(line)
+        return {"ok": proc.returncode == 0, "output": output}
+
+    def package_libraries(self, env_id: str, package: str) -> List[str]:
+        """
+        List the shared libraries a package installed, so the caller can tell
+        the user when a package resolved but shipped no .so at all.
+        """
+        if not self.is_valid_package_name(package):
+            return []
+
+        env_spec = self._env_spec(env_id)
+        if not env_spec:
+            return []
+
+        pm = env_spec["package_manager"]
+        if pm == "apt":
+            command = f"dpkg -L {package}"
+        elif pm in ("dnf", "yum"):
+            command = f"rpm -ql {package}"
+        elif pm == "pacman":
+            command = f"pacman -Ql {package} | cut -d' ' -f2-"
+        else:
+            return []
+
+        try:
+            proc = self._run_in_container(env_id, command)
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            return []
+
+        if proc.returncode != 0:
+            return []
+
+        return sorted(
+            {
+                line.strip().split("/")[-1]
+                for line in (proc.stdout or "").splitlines()
+                if ".so" in line
+            }
+        )
+
+    def suggested_packages(self, env_id: str, dep_keys: List[str]) -> Dict[str, str]:
+        """
+        Map each selected dependency profile to the package that provides it in
+        this container, picking the first candidate the manager recognises
+        (names drift between releases). Profiles with no known candidate are
+        left out — the user adds those by hand.
+        """
+        env_spec = self._env_spec(env_id)
+        if not env_spec:
+            return {}
+
+        pm = env_spec["package_manager"]
+        suggestions: Dict[str, str] = {}
+
+        for dep_key in dep_keys:
+            candidates = DEPENDENCY_PACKAGES.get(dep_key, {}).get(pm, [])
+            for candidate in candidates:
+                if self.query_package(env_id, candidate)["installable"]:
+                    suggestions[dep_key] = candidate
+                    break
+
+        return suggestions
 
     def _get_container_name(self, env_id: str) -> str:
         """Generate a consistent container name for our app."""

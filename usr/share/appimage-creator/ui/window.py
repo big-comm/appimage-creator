@@ -15,6 +15,7 @@ from core.app_info import AppInfo
 from core.structure_analyzer import detect_application_structure
 from core.environment_manager import EnvironmentManager, SUPPORTED_ENVIRONMENTS
 from core.settings import LibraryProfileManager, SettingsManager
+from core.build_config import SYSTEM_DEPENDENCIES
 from templates.app_templates import get_app_type_from_file, get_available_categories
 from ui.pages import WelcomePage, ApplicationPage, ConfigurationPage, BuildPage
 from ui.dialogs import (
@@ -34,7 +35,7 @@ from utils.i18n import _
 from utils.tooltip_helper import TooltipHelper
 
 # Application version – single source of truth
-APP_VERSION = "1.5.3"
+APP_VERSION = "1.6.0"
 
 
 class AppImageCreatorWindow(Adw.ApplicationWindow):
@@ -191,6 +192,19 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         )
         self.build_page.papirus_radio.connect("toggled", self._on_icon_theme_changed)
         self.build_page.adwaita_radio.connect("toggled", self._on_icon_theme_changed)
+        self.build_page.add_package_button.connect(
+            "clicked", self._on_add_package_clicked
+        )
+        self.build_page.install_packages_button.connect(
+            "clicked", self._on_install_packages_clicked
+        )
+        self.build_page.refresh_packages_button.connect(
+            "clicked", self._refresh_container_packages
+        )
+        # The package list depends on which container is selected
+        self.build_page.environment_row.connect(
+            "notify::selected", self._refresh_container_packages
+        )
 
         # -- Welcome page environment management --
         self.welcome_page.on_setup_clicked_callback = self._on_setup_environment_clicked
@@ -251,6 +265,7 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
         # Default selection: this session's choice, else the remembered one,
         # else the first entry (a container when any is ready, Local otherwise).
         self._select_default_environment()
+        self._refresh_container_packages()
 
         self.nav_view.push(self.build_page.nav_page)
 
@@ -266,6 +281,282 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
 
         idx = env_ids.index(target) if target in env_ids else 0
         self.build_page.environment_row.set_selected(idx)
+
+    # ------------------------------------------------------------------
+    #  Container packages
+    # ------------------------------------------------------------------
+
+    def _selected_environment_id(self):
+        """The container id currently chosen, or None when building locally."""
+        idx = self.build_page.environment_row.get_selected()
+        env_ids = getattr(self.build_page, "env_ids", [None])
+        return env_ids[idx] if 0 <= idx < len(env_ids) else None
+
+    def _selected_dependency_keys(self) -> list[str]:
+        return [
+            key
+            for key, switch in self.dependency_switches.items()
+            if switch.get_active()
+        ]
+
+    def _refresh_container_packages(self, *_args):
+        """
+        Rebuild the container package list.
+
+        Every entry needs a round trip to the container's package manager, so
+        the whole thing runs off the main thread and repaints when it is done.
+        """
+        env_id = self._selected_environment_id()
+        self._clear_package_rows()
+
+        if not env_id:
+            self._add_package_row(
+                _("Building on the local system"),
+                _("Packages come from the host; nothing to manage here."),
+                None,
+            )
+            self.build_page.add_package_button.set_sensitive(False)
+            self.build_page.install_packages_button.set_sensitive(False)
+            return
+
+        self.build_page.add_package_button.set_sensitive(True)
+        self.build_page.install_packages_button.set_sensitive(False)
+        self._add_package_row(_("Checking container..."), env_id, None)
+
+        dep_keys = self._selected_dependency_keys()
+        extra = self.settings.get_extra_packages(env_id)
+
+        def worker():
+            env_spec = self.env_manager._env_spec(env_id) or {}
+            entries = []
+
+            for package in env_spec.get("build_deps", []):
+                info = self.env_manager.query_package(env_id, package)
+                entries.append(("base", package, None, info))
+
+            for dep_key, package in self.env_manager.suggested_packages(
+                env_id, dep_keys
+            ).items():
+                label = SYSTEM_DEPENDENCIES.get(dep_key, {}).get("name", dep_key)
+                info = self.env_manager.query_package(env_id, package)
+                entries.append(("suggested", package, label, info))
+
+            for package in extra:
+                info = self.env_manager.query_package(env_id, package)
+                entries.append(("extra", package, None, info))
+
+            GLib.idle_add(self._show_package_entries, env_id, entries)
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def _clear_package_rows(self):
+        box = self.build_page.packages_list_box
+        while child := box.get_first_child():
+            box.remove(child)
+
+    def _add_package_row(self, title, subtitle, status_icon, on_remove=None):
+        row = Adw.ActionRow()
+        row.set_title(title)
+        if subtitle:
+            row.set_subtitle(subtitle)
+        if status_icon:
+            icon = Gtk.Image.new_from_icon_name(status_icon)
+            row.add_prefix(icon)
+        if on_remove:
+            button = Gtk.Button()
+            button.set_icon_name("user-trash-symbolic")
+            button.add_css_class("flat")
+            button.set_valign(Gtk.Align.CENTER)
+            button.set_tooltip_text(_("Remove from the list"))
+            button.connect("clicked", on_remove)
+            row.add_suffix(button)
+        self.build_page.packages_list_box.append(row)
+        return row
+
+    def _show_package_entries(self, env_id, entries):
+        """Render the package list gathered by the worker thread."""
+        self._clear_package_rows()
+
+        group_titles = {
+            "base": _("Required by the build environment"),
+            "suggested": _("Suggested by the selected dependencies"),
+            "extra": _("Added by you"),
+        }
+        missing = []
+        current_group = None
+
+        for kind, package, label, info in entries:
+            if kind != current_group:
+                current_group = kind
+                header = Adw.ActionRow()
+                header.set_title(group_titles[kind])
+                header.set_activatable(False)
+                header.add_css_class("dim-label")
+                self.build_page.packages_list_box.append(header)
+
+            if info.get("installed"):
+                icon, state = "object-select-symbolic", _("installed")
+            elif info.get("installable"):
+                icon, state = "software-update-available-symbolic", _("not installed")
+                missing.append(package)
+            else:
+                icon, state = "dialog-warning-symbolic", _("not found in this container")
+
+            subtitle = state
+            if info.get("version"):
+                subtitle = f"{state} — {info['version']}"
+            if label:
+                subtitle = f"{subtitle}  ←  {label}"
+
+            on_remove = None
+            if kind == "extra":
+                def on_remove(_button, pkg=package):
+                    remaining = [
+                        p for p in self.settings.get_extra_packages(env_id) if p != pkg
+                    ]
+                    self.settings.set_extra_packages(env_id, remaining)
+                    self._refresh_container_packages()
+
+            self._add_package_row(package, subtitle, icon, on_remove)
+
+        self._pending_packages = missing
+        self.build_page.install_packages_button.set_sensitive(bool(missing))
+        self.build_page.packages_expander_row.set_subtitle(
+            _("{} missing in the container").format(len(missing))
+            if missing
+            else _("Everything listed is installed")
+        )
+        return False
+
+    def _on_add_package_clicked(self, _button):
+        env_id = self._selected_environment_id()
+        if not env_id:
+            return
+
+        dialog = Adw.MessageDialog(transient_for=self)
+        dialog.set_heading(_("Add Package"))
+        dialog.set_body(
+            _("Name of the package to install in {}").format(env_id)
+        )
+
+        entry = Gtk.Entry()
+        entry.set_placeholder_text(_("e.g. libwebkit2gtk-4.1-0"))
+        entry.set_activates_default(True)
+
+        feedback = Gtk.Label()
+        feedback.set_wrap(True)
+        feedback.set_xalign(0)
+        feedback.add_css_class("dim-label")
+
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+        box.append(entry)
+        box.append(feedback)
+        dialog.set_extra_child(box)
+
+        dialog.add_response("cancel", _("Cancel"))
+        dialog.add_response("check", _("Check"))
+        dialog.add_response("add", _("Add"))
+        dialog.set_response_appearance("add", Adw.ResponseAppearance.SUGGESTED)
+        dialog.set_default_response("check")
+        dialog.set_close_response("cancel")
+
+        def on_response(dlg, response):
+            if response == "cancel":
+                return
+
+            package = entry.get_text().strip()
+            if not self.env_manager.is_valid_package_name(package):
+                feedback.set_text(_("Invalid package name."))
+                self._reopen_package_dialog(dialog)
+                return
+
+            if response == "add":
+                stored = self.settings.get_extra_packages(env_id)
+                self.settings.set_extra_packages(env_id, stored + [package])
+                self._refresh_container_packages()
+                return
+
+            # "check": ask the container before letting a typo through
+            feedback.set_text(_("Checking in the container..."))
+            self._reopen_package_dialog(dialog)
+
+            def worker():
+                info = self.env_manager.query_package(env_id, package)
+                GLib.idle_add(self._show_package_check, feedback, package, info)
+
+            threading.Thread(target=worker, daemon=True).start()
+
+        dialog.connect("response", on_response)
+        dialog.present()
+
+    def _reopen_package_dialog(self, dialog):
+        """MessageDialog closes on any response; bring it back for retries."""
+        GLib.idle_add(dialog.present)
+
+    def _show_package_check(self, feedback, package, info):
+        if info.get("error"):
+            feedback.set_text(_("Could not check: {}").format(info["error"]))
+        elif not info.get("exists"):
+            feedback.set_text(
+                _("'{}' is unknown to this container's package manager.").format(
+                    package
+                )
+            )
+        elif info.get("installed"):
+            feedback.set_text(
+                _("'{}' is already installed ({}).").format(
+                    package, info.get("version") or "?"
+                )
+            )
+        elif info.get("installable"):
+            feedback.set_text(
+                _("'{}' is available: version {}.").format(
+                    package, info.get("version") or "?"
+                )
+            )
+        else:
+            feedback.set_text(
+                _("'{}' exists but has no installable version here.").format(package)
+            )
+        return False
+
+    def _on_install_packages_clicked(self, _button):
+        env_id = self._selected_environment_id()
+        packages = list(getattr(self, "_pending_packages", []))
+        if not env_id or not packages:
+            return
+
+        progress = LogProgressDialog(self, _("Installing Packages"))
+        progress.present()
+
+        def worker():
+            def log(message):
+                GLib.idle_add(progress.add_log, message)
+
+            result = self.env_manager.install_packages(env_id, packages, log)
+
+            if result["ok"]:
+                for package in packages:
+                    libs = self.env_manager.package_libraries(env_id, package)
+                    if libs:
+                        GLib.idle_add(
+                            progress.add_log,
+                            _("{} provides: {}").format(
+                                package, ", ".join(libs[:6])
+                            ),
+                        )
+                    else:
+                        GLib.idle_add(
+                            progress.add_log,
+                            _("Warning: {} installed no shared library").format(
+                                package
+                            ),
+                        )
+
+            GLib.idle_add(progress.finish, result["ok"])
+            GLib.idle_add(self._refresh_container_packages)
+
+        threading.Thread(target=worker, daemon=True).start()
 
     # ------------------------------------------------------------------
     #  About

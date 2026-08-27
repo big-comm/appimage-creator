@@ -877,6 +877,55 @@ class BuildPage:
         self.deps_list_box.add_css_class("boxed-list")
         self.deps_expander_row.add_row(self.deps_list_box)
 
+        # ---- Container packages ----
+        # A selected dependency can only be bundled if the container actually
+        # has a package providing it. This shows what is there, what the
+        # selected dependencies suggest, and lets the user add anything else.
+        self.packages_expander_row = Adw.ExpanderRow()
+        self.packages_expander_row.set_title(_("Container Packages"))
+        self.packages_expander_row.set_subtitle(
+            _("Packages available in the build environment")
+        )
+        self.packages_expander_row.set_show_enable_switch(False)
+        deps_group.add(self.packages_expander_row)
+
+        self.packages_list_box = Gtk.ListBox()
+        self.packages_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+        self.packages_list_box.add_css_class("boxed-list")
+        self.packages_expander_row.add_row(self.packages_list_box)
+
+        packages_buttons = Gtk.Box(
+            orientation=Gtk.Orientation.HORIZONTAL, spacing=8
+        )
+        packages_buttons.set_margin_top(8)
+        packages_buttons.set_margin_bottom(8)
+        packages_buttons.set_margin_start(12)
+        packages_buttons.set_margin_end(12)
+
+        self.add_package_button = Gtk.Button(label=_("Add Package"))
+        self.add_package_button.set_icon_name("list-add-symbolic")
+        self.add_package_button.set_tooltip_text(
+            _("Add a package to install in the build container")
+        )
+        packages_buttons.append(self.add_package_button)
+
+        self.install_packages_button = Gtk.Button(label=_("Install Missing"))
+        self.install_packages_button.add_css_class("suggested-action")
+        self.install_packages_button.set_tooltip_text(
+            _("Install the packages that are listed but not present yet")
+        )
+        packages_buttons.append(self.install_packages_button)
+
+        self.refresh_packages_button = Gtk.Button()
+        self.refresh_packages_button.set_icon_name("view-refresh-symbolic")
+        self.refresh_packages_button.set_tooltip_text(_("Re-check the container"))
+        packages_buttons.append(self.refresh_packages_button)
+
+        buttons_row = Adw.ActionRow()
+        buttons_row.set_activatable(False)
+        buttons_row.set_child(packages_buttons)
+        self.packages_expander_row.add_row(buttons_row)
+
         content_box.append(deps_group)
 
         # ---- Icon Theme ----

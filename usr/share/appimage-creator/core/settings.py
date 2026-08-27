@@ -26,7 +26,24 @@ class SettingsManager:
             "window-height": 720,
             # Remembered build environment (container id, or None for local).
             "default-build-environment": None,
+            # Packages the user added to a build container, per environment id:
+            # {"ubuntu-24.04": ["libwebkit2gtk-4.1-0", ...]}. Package names are
+            # distro-specific, so they cannot be shared across environments.
+            "extra-packages": {},
         }
+
+    def get_extra_packages(self, env_id: str) -> list[str]:
+        """Packages the user added for one build environment."""
+        return list((self.get("extra-packages") or {}).get(env_id, []))
+
+    def set_extra_packages(self, env_id: str, packages: list[str]) -> None:
+        stored = dict(self.get("extra-packages") or {})
+        cleaned = sorted(set(packages))
+        if cleaned:
+            stored[env_id] = cleaned
+        else:
+            stored.pop(env_id, None)
+        self.set("extra-packages", stored)
 
     def _load(self):
         """Loads settings from the JSON file."""

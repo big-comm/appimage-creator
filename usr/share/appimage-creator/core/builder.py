@@ -37,7 +37,14 @@ except ImportError:
 
 from generators.files import create_apprun_file, generate_desktop_file
 from utils.file_ops import copy_files_recursively, download_file, verify_download_sha256
-from utils.system import get_system_info, find_executable_in_path, make_executable, get_host_env, read_elf_needed
+from utils.system import (
+    get_system_info,
+    find_executable_in_path,
+    make_executable,
+    get_host_env,
+    read_elf_needed,
+    read_elf_dlopen_names,
+)
 from core.dependency_resolver import DependencyResolver, PrePackagingValidator
 from core.app_info import AppInfo
 from utils.i18n import _
@@ -1387,6 +1394,9 @@ class AppImageBuilder:
         "mpv": ["libmpv.so*"],
         "gstreamer-gtk": ["libgstgtk.so*"],
         "glib": ["libgirepository-1.0.so*", "libgirepository-2.0.so*"],
+        # dlopen-only: matched against the binary's string table, never
+        # against DT_NEEDED (see read_elf_dlopen_names).
+        "appindicator": ["libayatana-appindicator3.so*", "libappindicator3.so*"],
     }
 
     def _detect_elf_dependencies(self, app_info: AppInfo):
@@ -1411,10 +1421,24 @@ class AppImageBuilder:
             _("Executable links against {} libraries").format(len(needed))
         )
 
+        # Libraries the binary opens with dlopen() are missing from DT_NEEDED;
+        # their names only survive as strings inside the binary.
+        dlopened = [
+            lib for lib in read_elf_dlopen_names(app_info.executable)
+            if lib not in needed
+        ]
+        if dlopened:
+            self.log(
+                _("Found {} libraries loaded at runtime (dlopen)").format(
+                    len(dlopened)
+                )
+            )
+
+        candidates = list(needed) + dlopened
         dependencies: dict[str, bool] = {}
 
         for dep_key, patterns in self.ELF_SIGNATURE_LIBS.items():
-            if any(fnmatch(lib, p) for lib in needed for p in patterns):
+            if any(fnmatch(lib, p) for lib in candidates for p in patterns):
                 dependencies[dep_key] = True
                 # Also flag the detection keyword so the UI switches light
                 # up exactly like they do for Python source detection

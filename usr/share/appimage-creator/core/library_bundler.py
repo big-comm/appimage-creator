@@ -89,6 +89,50 @@ class LibraryBundler:
             )
             self._execute_library_copy(conflicting_libs, fallback_lib_dir)
 
+        self._report_empty_profiles(selected_deps, lib_dir, fallback_lib_dir)
+
+    def _report_empty_profiles(self, selected_deps, lib_dir, fallback_lib_dir):
+        """
+        Warn when a dependency the user selected produced no library at all.
+
+        The copy script reports a missing pattern on stdout and still exits 0,
+        so a container without the right package used to yield a build that
+        "succeeded" and an AppImage that aborts on the first host lacking that
+        library. The build still finishes — the library may legitimately come
+        from elsewhere — but this has to be impossible to miss in the log.
+        """
+        empty = []
+        for dep_key in selected_deps:
+            dep_info = SYSTEM_DEPENDENCIES.get(dep_key)
+            if not dep_info or not dep_info.get("libs"):
+                continue
+
+            target = (
+                fallback_lib_dir if dep_info.get("conflicting", False) else lib_dir
+            )
+            if not any(
+                any(target.glob(pattern)) for pattern in dep_info["libs"]
+            ):
+                empty.append(dep_info.get("name", dep_key))
+
+        if not empty:
+            return
+
+        self._b.log("")
+        self._b.log("=" * 60)
+        self._b.log(_("WARNING: selected dependencies bundled nothing"))
+        for name in empty:
+            self._b.log(f"  - {name}")
+        self._b.log(
+            _(
+                "The build environment has no package providing these. "
+                "The AppImage will fail on hosts that lack them: install the "
+                "packages in the build page and build again."
+            )
+        )
+        self._b.log("=" * 60)
+        self._b.log("")
+
     def _execute_library_copy(self, lib_patterns, dest_dir):
         """Find and copy the correct SONAME-versioned library file."""
         system_lib_paths = [

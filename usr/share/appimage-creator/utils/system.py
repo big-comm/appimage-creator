@@ -290,3 +290,48 @@ def read_elf_needed(file_path: str | os.PathLike) -> List[str]:
             return libraries
     except (OSError, struct.error):
         return []
+
+
+# A library name embedded as a plain string: "libfoo.so", "libfoo.so.1",
+# "libfoo-1.2.so.0". Anchored on the "lib" prefix to keep the noise down.
+# The part before ".so" is lazy: Rust stores its literals back to back with
+# no NUL between them, so a greedy match would swallow the next name whole
+# ("libayatana-appindicator3.so.1libappindicator3.so.1").
+_SONAME_IN_STRINGS = re.compile(
+    rb"lib[A-Za-z0-9_+-]{1,40}?(?:[.-][A-Za-z0-9_+-]{1,20}){0,6}?\.so(?:\.[0-9]+)*"
+)
+
+
+def read_elf_dlopen_names(file_path: str | os.PathLike) -> List[str]:
+    """
+    Return library names that appear as literal strings inside a binary.
+
+    Libraries opened with dlopen() at runtime are absent from DT_NEEDED, so
+    ldd and read_elf_needed() cannot see them — a Tauri app with a tray icon
+    dlopens libayatana-appindicator3.so.1 and crashes on a host that lacks
+    it. Their names still have to be stored somewhere in the binary, so the
+    string table is the only place left to look.
+
+    This is a heuristic: a name may be mentioned without ever being loaded.
+    Callers should use it to widen detection, never to reject anything.
+    """
+    names = set()
+    try:
+        with open(file_path, "rb") as f:
+            if f.read(4) != b"\x7fELF":
+                return []
+            f.seek(0)
+            # Chunked so a large binary never lands in memory whole; the
+            # overlap keeps a name split across two reads from being missed.
+            overlap = b""
+            while True:
+                chunk = f.read(4 * 1024 * 1024)
+                if not chunk:
+                    break
+                for match in _SONAME_IN_STRINGS.finditer(overlap + chunk):
+                    names.add(match.group().decode("ascii", errors="ignore"))
+                overlap = chunk[-80:]
+    except OSError:
+        return []
+
+    return sorted(names)

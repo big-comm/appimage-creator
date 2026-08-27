@@ -97,6 +97,22 @@ SYSTEM_DEPENDENCIES = {
         "detection_keyword": "libsecret",
         "essential": False,
     },
+    "appindicator": {
+        # Tauri/Electron apps with a tray icon dlopen() this at runtime, so it
+        # never shows up in DT_NEEDED. Without it bundled, the app aborts on
+        # any host that doesn't ship libayatana-appindicator (Fedora, for one).
+        "name": "AppIndicator (System Tray)",
+        "libs": [
+            "libayatana-appindicator3.so*",
+            "libayatana-indicator3.so*",
+            "libayatana-ido3-0.4.so*",
+            "libdbusmenu-glib.so*",
+            "libdbusmenu-gtk3.so*",
+        ],
+        "typelibs": [],
+        "detection_keyword": "appindicator",
+        "essential": False,
+    },
     "gstreamer-gtk": {
         "name": "GStreamer GTK Sink",
         "libs": ["libgstgtk.so*"],
@@ -188,3 +204,73 @@ SYSTEM_BINARIES = {
         "manage_libs_manually": True,
     },
 }
+
+
+# Distro packages that provide each SYSTEM_DEPENDENCIES profile inside the
+# build container. Values are *candidates* in order of preference, not a single
+# name: package names drift between releases (Ubuntu's 64-bit time_t rename
+# turned libgtk-3-0 into libgtk-3-0t64), so the first candidate the container's
+# package manager actually knows about is the one used. Anything not covered
+# here the user adds by hand in the build page — this map exists to make the
+# common cases discoverable, not to be exhaustive.
+DEPENDENCY_PACKAGES = {
+    "glib": {
+        "apt": ["python3-gi", "gir1.2-glib-2.0"],
+        "dnf": ["python3-gobject", "gobject-introspection"],
+        "pacman": ["python-gobject"],
+    },
+    "jpeg": {
+        "apt": ["libjpeg-turbo8"],
+        "dnf": ["libjpeg-turbo"],
+        "pacman": ["libjpeg-turbo"],
+    },
+    "gtk3": {
+        "apt": ["libgtk-3-0t64", "libgtk-3-0"],
+        "dnf": ["gtk3"],
+        "pacman": ["gtk3"],
+    },
+    "gtk4": {
+        "apt": ["libgtk-4-1"],
+        "dnf": ["gtk4"],
+        "pacman": ["gtk4"],
+    },
+    "adwaita": {
+        "apt": ["libadwaita-1-0"],
+        "dnf": ["libadwaita"],
+        "pacman": ["libadwaita"],
+    },
+    "vte": {
+        "apt": ["libvte-2.91-0t64", "libvte-2.91-0"],
+        "dnf": ["vte291"],
+        "pacman": ["vte3"],
+    },
+    "libsecret": {
+        "apt": ["libsecret-1-0"],
+        "dnf": ["libsecret"],
+        "pacman": ["libsecret"],
+    },
+    "appindicator": {
+        "apt": ["libayatana-appindicator3-1"],
+        "dnf": ["libayatana-appindicator-gtk3"],
+        "pacman": ["libayatana-appindicator"],
+    },
+    "gstreamer-gtk": {
+        "apt": ["gstreamer1.0-gtk3"],
+        "dnf": ["gstreamer1-plugins-good-gtk"],
+        "pacman": ["gst-plugin-gtk"],
+    },
+    "poppler": {
+        "apt": ["gir1.2-poppler-0.18", "libpoppler-glib8t64", "libpoppler-glib8"],
+        "dnf": ["poppler-glib"],
+        "pacman": ["poppler-glib"],
+    },
+    "mpv": {
+        "apt": ["libmpv2", "libmpv1"],
+        "dnf": ["mpv-libs"],
+        "pacman": ["mpv"],
+    },
+}
+
+# A package name as the distros allow it. Names reach the container inside a
+# shell command, so anything outside this set is rejected before it gets there.
+PACKAGE_NAME_PATTERN = r"^[a-z0-9][a-z0-9+._-]{0,99}$"
