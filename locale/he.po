@@ -16,210 +16,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: attranslate\n"
 # 
-# File: usr/share/appimage-creator/utils/system.py, line: 108
+# File: usr/share/appimage-creator/generators/icons.py, line: 16
+#: NEEDS WORK
+msgid "Warning: PIL/Pillow not available, icon processing will be limited"
+msgstr "אזהרה: PIL/Pillow אינו זמין, עיבוד האייקונים יהיה מוגבל"
+# 
+# File: usr/share/appimage-creator/generators/icons.py, line: 82
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to make file executable: {}"
-msgstr "נכשל בהפיכת הקובץ לביצועי: {}"
+msgid "Error processing icon: {}"
+msgstr "שגיאה בעיבוד אייקון: {}"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+# File: usr/share/appimage-creator/generators/files.py, line: 70
 #: NEEDS WORK
-msgid ""
-"Select the main binary or script that starts your application.\n"
-"\n"
-"This is the entry point — the file that will be executed when the user launches the AppImage."
-msgstr ""
-"בחר את הבינארי או הסקריפט הראשי שמתחיל את היישום שלך.\n"
-"\n"
-"זהו נקודת הכניסה — הקובץ שיבוצע כאשר המשתמש מפעיל את ה-AppImage."
+msgid "Warning: Desktop file may have validation issues"
+msgstr "אזהרה: קובץ שולחן העבודה עשוי להיות בעיות אימות"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+# File: usr/share/appimage-creator/generators/files.py, line: 85
 #: NEEDS WORK
-msgid ""
-"The application name used for the AppImage filename and menu entry.\n"
-"\n"
-"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
-msgstr ""
-"שם היישום המשמש לשם הקובץ של AppImage ולרשומת התפריט.\n"
-"\n"
-"מותר להשתמש רק באותיות, מספרים, רווחים, מקפים, קווים תחתונים ונקודות."
+msgid "Failed to create desktop file"
+msgstr "נכשל ביצירת קובץ שולחן עבודה"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+# File: usr/share/appimage-creator/validators/validators.py, line: 18
 #: NEEDS WORK
-msgid ""
-"The application icon is used in the system menu, taskbar, and file manager.\n"
-"\n"
-"A 256×256 or larger PNG/SVG icon is recommended.\n"
-"\n"
-"Without an icon, the AppImage will display a generic icon in menus and taskbar."
-msgstr ""
-"אייקון היישום משמש בתפריט המערכת, בשורת המשימות ובמנהל הקבצים.\n"
-"\n"
-"מומלץ להשתמש באייקון בגודל 256×256 או גדול יותר בפורמט PNG/SVG.\n"
-"\n"
-"ללא אייקון, ה-AppImage יציג אייקון גנרי בתפריטים ובשורת המשימות."
+msgid "Application name must be at least 2 characters long"
+msgstr "שם היישום חייב להיות באורך של לפחות 2 תווים"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+# File: usr/share/appimage-creator/validators/validators.py, line: 21
 #: NEEDS WORK
-msgid ""
-"The .desktop file controls how the application appears in the system menu, including its name, "
-"icon, categories, and launch options.\n"
-"\n"
-"If you don't provide one, a basic .desktop file will be generated automatically using the "
-"information configured here.\n"
-"\n"
-"For full integration, provide your own file with proper categories and metadata."
-msgstr ""
-"קובץ .desktop שולט כיצד היישום מופיע בתפריט המערכת, כולל שמו, האייקון שלו, הקטגוריות ואפשרויות "
-"ההפעלה.\n"
-"\n"
-"אם לא תספק אחד, קובץ .desktop בסיסי ייווצר אוטומטית באמצעות המידע שהוגדר כאן.\n"
-"\n"
-"לצורך אינטגרציה מלאה, ספק את הקובץ שלך עם קטגוריות ומטא-נתונים מתאימים."
+msgid "Application name contains invalid characters"
+msgstr "שם היישום מכיל תווים לא חוקיים"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+# File: usr/share/appimage-creator/validators/validators.py, line: 29
 #: NEEDS WORK
-msgid ""
-"Determines how the launcher (AppRun) script is generated.\n"
-"\n"
-"This is auto-detected from the executable, but you can override it:\n"
-"• Binary — compiled native executable\n"
-"• Python — Python script using system interpreter\n"
-"• Electron — Electron-based application\n"
-"• GTK/Qt — GUI applications with toolkit-specific environment variables"
-msgstr ""
-"קובע כיצד נוצר הסקריפט של המפעיל (AppRun).\n"
-"\n"
-"זה מזוהה אוטומטית מהקובץ ההפעלה, אך ניתן לדרוס אותו:\n"
-"• בינארי — קובץ הפעלה מקומפל\n"
-"• פייתון — סקריפט פייתון המשתמש במפרש המערכת\n"
-"• אלקטרון — יישום מבוסס אלקטרון\n"
-"• GTK/Qt — יישומי GUI עם משתני סביבה ספציפיים לכלים"
+msgid "Version is required"
+msgstr "גרסה נדרשת"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+# File: usr/share/appimage-creator/validators/validators.py, line: 32
 #: NEEDS WORK
-msgid ""
-"Semantic version of your application (e.g. 1.2.3).\n"
-"\n"
-"This is embedded in the AppImage metadata and used for update detection."
-msgstr ""
-"גרסה סמנטית של היישום שלך (למשל 1.2.3).\n"
-"\n"
-"זה משולב במטאדאטה של AppImage ומשמש לגילוי עדכונים."
+msgid "Invalid version format"
+msgstr "פורמט גרסה לא חוקי"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+# File: usr/share/appimage-creator/validators/validators.py, line: 40
 #: NEEDS WORK
-msgid ""
-"A short one-line description shown in application menus and package managers.\n"
-"\n"
-"Keep it concise — typically under 80 characters."
-msgstr "תיאור קצר בשורה אחת המוצג בתפריטי יישומים ובמנהלי חבילות."
+msgid "Executable file does not exist"
+msgstr "קובץ הרצה אינו קיים"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+# File: usr/share/appimage-creator/validators/validators.py, line: 43
 #: NEEDS WORK
-msgid ""
-"Enable this for CLI tools that need a terminal to run.\n"
-"\n"
-"When enabled, the desktop environment will open a terminal emulator before launching the "
-"application."
-msgstr ""
-"אפשר זאת עבור כלים בשורת הפקודה שזקוקים למסוף כדי לפעול.\n"
-"\n"
-"כאשר זה מופעל, סביבת שולחן העבודה תפתח אמולטור מסוף לפני השקת היישום."
+msgid "File is not executable"
+msgstr "הקובץ אינו ניתן להרצה"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+# File: usr/share/appimage-creator/validators/validators.py, line: 54
 #: NEEDS WORK
-msgid ""
-"GitHub Releases API URL for automatic updates.\n"
-"\n"
-"Must start with https:// — typically:\n"
-"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
-"\n"
-"Click the paste button to insert a template."
-msgstr ""
-"כתובת ה-API של GitHub Releases לעדכונים אוטומטיים.\n"
-"\n"
-"חייבת להתחיל ב-https:// — בדרך כלל:\n"
-"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
-"\n"
-"לחץ על כפתור ההדבקה כדי להכניס תבנית."
+msgid "Error: Missing [Desktop Entry] section"
+msgstr "שגיאה: חסר סעיף [Desktop Entry]"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
-#: NEEDS WORK
-msgid ""
-"Glob pattern to identify which file to download from the release.\n"
-"\n"
-"The asterisk (*) matches any text. Examples:\n"
-"• myapp-*-x86_64.AppImage\n"
-"• *-gui-*.AppImage"
-msgstr ""
-"תבנית גלוב לזיהוי איזה קובץ להוריד מהשחרור.\n"
-"\n"
-"הכוכבית (*) תואמת לכל טקסט. דוגמאות:\n"
-"• myapp-*-x86_64.AppImage\n"
-"• *-gui-*.AppImage"
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
-#: NEEDS WORK
-msgid ""
-"The directory where the final .AppImage file will be saved.\n"
-"\n"
-"Defaults to the current working directory."
-msgstr ""
-"המדריך שבו יישמר קובץ ה-.AppImage הסופי.\n"
-"\n"
-"ברירת מחדל היא המדריך הנוכחי."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
-#: NEEDS WORK
-msgid ""
-"Choose where to build the AppImage.\n"
-"\n"
-"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
-"builds against an older glibc."
-msgstr "בחר היכן לבנות את ה-AppImage."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
-#: NEEDS WORK
-msgid ""
-"Bundle shared libraries (.so files) into the AppImage.\n"
-"\n"
-"This ensures the application works on other systems that may not have the required libraries "
-"installed."
-msgstr ""
-"ארוז ספריות משותפות (.so קבצים) לתוך ה-AppImage.\n"
-"\n"
-"זה מבטיח שהיישום יעבוד על מערכות אחרות שעשויות לא לכלול את הספריות הנדרשות."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
-#: NEEDS WORK
-msgid ""
-"Bundle an icon theme inside the AppImage.\n"
-"\n"
-"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
-"the one your app was designed for."
-msgstr ""
-"ארוז נושא אייקונים בתוך ה-AppImage.\n"
-"\n"
-"ללא נושא ארוז, כמה אייקונים עשויים להיעדר בשולחנות עבודה המשתמשים בנושא אייקונים שונה מזה שעבורו "
-"עוצב האפליקציה שלך."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
-#: NEEDS WORK
-msgid ""
-"Remove debug symbols from binaries to reduce the AppImage size.\n"
-"\n"
-"This makes the file smaller but harder to debug if issues occur."
-msgstr ""
-"הסר סמלים של דיבוג מבינארים כדי להפחית את גודל ה-AppImage.\n"
-"\n"
-"זה מקטין את גודל הקובץ אך מקשה על הדיבוג אם מתעוררות בעיות."
-# 
-# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
+# File: usr/share/appimage-creator/validators/validators.py, line: 69
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to download {}: {}"
-msgstr "נכשל בהורדה {}: {}"
+msgid "Error: Missing required keys: {}"
+msgstr "שגיאה: מפתחות נדרשים חסרים: {}"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 81
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Empty value for required key: {}"
+msgstr "שגיאה: ערך ריק עבור מפתח נדרש: {}"
+# 
+# File: usr/share/appimage-creator/ui/app.py, line: 75
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not load custom CSS: {}"
+msgstr "אזהרה: לא ניתן לטעון CSS מותאם אישית: {}"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -239,11 +108,247 @@ msgstr "הסר"
 msgid "{}: {}"
 msgstr "{}: {}"
 # 
-# File: usr/share/appimage-creator/ui/app.py, line: 75
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
+#: NEEDS WORK
+msgid "Building AppImage"
+msgstr "בנייה של AppImage"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
+#: NEEDS WORK
+msgid "Preparing..."
+msgstr "מכין..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
+#: NEEDS WORK
+msgid "Cancel Build"
+msgstr "ביטול בנייה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
+#: NEEDS WORK
+msgid "Dependency Warnings"
+msgstr "אזהרות תלות"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
+#: NEEDS WORK
+msgid "AppImage Created with Warnings"
+msgstr "AppImage נוצר עם אזהרות"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
+#: NEEDS WORK
+msgid ""
+"The AppImage was created successfully, but some library dependencies could not be resolved. The "
+"application may not work correctly on some systems."
+msgstr ""
+"ה-AppImage נוצר בהצלחה, אך כמה תלויות ספרייה לא הצליחו להיפתר. היישום עשוי לא לפעול כראוי על כמה "
+"מערכות."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
+#: NEEDS WORK
+msgid "Missing Libraries"
+msgstr "ספריות חסרות"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
+#: NEEDS WORK
+msgid "How to fix:"
+msgstr "איך לתקן:"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
+#: NEEDS WORK
+msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
+msgstr "• נסה לבנות עם מיכל שונה (למשל, אובונטו 22.04 במקום 24.04)"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
+#: NEEDS WORK
+msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
+msgstr "• הוסף את הספריות החסרות לסעיף 'ספריות נוספות' לפני הבנייה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
+#: NEEDS WORK
+msgid "• Install the required -dev packages in the build container"
+msgstr "• התקן את חבילות ה--dev הנדרשות במיכל הבנייה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
+#: NEEDS WORK
+msgid "Close"
+msgstr "סגור"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
+#: NEEDS WORK
+msgid "Open Folder"
+msgstr "פתח תיקייה"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
+# File: usr/share/appimage-creator/ui/window.py, line: 405
+#: NEEDS WORK
+msgid "OK"
+msgstr "אוקי"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 950
+#: NEEDS WORK
+msgid "Build Complete"
+msgstr "הבנייה הושלמה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
+#: NEEDS WORK
+msgid "AppImage created successfully:"
+msgstr "AppImage נוצר בהצלחה:"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
+# File: usr/share/appimage-creator/ui/window.py, line: 341
+#: NEEDS WORK
+msgid "Cancel"
+msgstr "ביטול"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
+#: NEEDS WORK
+msgid "Open"
+msgstr "פתח"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
+#: NEEDS WORK
+msgid "Select"
+msgstr "בחר"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
+#: NEEDS WORK
+msgid "Save"
+msgstr "שמור"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
+#: NEEDS WORK
+msgid "Copy to clipboard"
+msgstr "העתק ללוח שנה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
+#: NEEDS WORK
+msgid "Desktop File Content"
+msgstr "תוכן קובץ שולחן עבודה"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+# File: usr/share/appimage-creator/ui/window.py, line: 906
+#: NEEDS WORK
+msgid "Error"
+msgstr "שגיאה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Could not load custom CSS: {}"
-msgstr "אזהרה: לא ניתן לטעון CSS מותאם אישית: {}"
+msgid "Failed to read file: {}"
+msgstr "לא הצליח לקרוא את הקובץ: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
+#: NEEDS WORK
+msgid "Starting..."
+msgstr "מתחיל..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
+#: NEEDS WORK
+msgid "Cancelling..."
+msgstr "מבוטל..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
+#: NEEDS WORK
+msgid "Cancelled."
+msgstr "בוטל."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
+#: NEEDS WORK
+msgid "Completed successfully!"
+msgstr "הושלם בהצלחה!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
+#: NEEDS WORK
+msgid "Finished with errors."
+msgstr "הושלם עם שגיאות."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
+# File: usr/share/appimage-creator/ui/pages.py, line: 459
+#: NEEDS WORK
+msgid "Install Required Packages"
+msgstr "התקן חבילות נדרשות"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
+#: NEEDS WORK
+msgid "Installation Information"
+msgstr "מידע על התקנה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
+#: NEEDS WORK
+msgid "Packages to Install"
+msgstr "חבילות להתקנה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
+#: NEEDS WORK
+msgid "Command"
+msgstr "פקודה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
+#: NEEDS WORK
+msgid ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+msgstr ""
+"<b>דרישות הרשאות מנהל</b>  \n"
+"תתבקש להזין את הסיסמה שלך כדי להתקין חבילות מערכת."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
+#: NEEDS WORK
+msgid "Installation Output"
+msgstr "פלט התקנה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
+#: NEEDS WORK
+msgid "Install"
+msgstr "התקן"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
+#: NEEDS WORK
+msgid "Starting installation..."
+msgstr "מתחיל בהתקנה..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
+#: NEEDS WORK
+msgid "Error running command"
+msgstr "שגיאה בהרצת פקודה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
+#: NEEDS WORK
+msgid "Pre-command completed successfully."
+msgstr "הפקודה הקודמת הושלמה בהצלחה."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
+#: NEEDS WORK
+msgid "Installation completed successfully!"
+msgstr "ההתקנה הושלמה בהצלחה!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
+#: NEEDS WORK
+msgid "Command failed with exit code"
+msgstr "הפקודה נכשלה עם קוד יציאה"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
+#: NEEDS WORK
+msgid "Installation failed."
+msgstr "ההתקנה נכשלה."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
+#: NEEDS WORK
+msgid "Please check the errors above and try again."
+msgstr "אנא בדוק את השגיאות למעלה ונסה שוב."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 48
 # File: usr/share/appimage-creator/ui/window.py, line: 131
@@ -290,11 +395,6 @@ msgstr "כמעט מוכן!"
 msgid "Please enter an Application Name"
 msgstr "אנא הזן שם יישום"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 21
-#: NEEDS WORK
-msgid "Application name contains invalid characters"
-msgstr "שם היישום מכיל תווים לא חוקיים"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 436
 #: NEEDS WORK
 msgid "Select Executable"
@@ -335,15 +435,6 @@ msgstr ""
 #: NEEDS WORK
 msgid "Do you want to continue?"
 msgstr "האם אתה רוצה להמשיך?"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
-# File: usr/share/appimage-creator/ui/window.py, line: 341
-#: NEEDS WORK
-msgid "Cancel"
-msgstr "ביטול"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 386
 #: NEEDS WORK
@@ -428,16 +519,6 @@ msgstr ""
 "החבילות הנדרשות הותקנו בהצלחה!\n"
 "\n"
 "אנא הפעל מחדש את היישום כדי להשתמש בתכונות החדשות."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
-# File: usr/share/appimage-creator/ui/window.py, line: 405
-#: NEEDS WORK
-msgid "OK"
-msgstr "אוקי"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
@@ -533,15 +614,6 @@ msgstr "מבנה AppImage - תצוגה מלאה"
 msgid "Validation Error"
 msgstr "שגיאת אימות"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-# File: usr/share/appimage-creator/ui/window.py, line: 897
-# File: usr/share/appimage-creator/ui/window.py, line: 906
-#: NEEDS WORK
-msgid "Error"
-msgstr "שגיאה"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 897
 #: NEEDS WORK
 #, python-brace-format
@@ -562,11 +634,6 @@ msgstr "המשך בכל מקרה"
 #: NEEDS WORK
 msgid "Build Failed"
 msgstr "הבנייה נכשלה"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 950
-#: NEEDS WORK
-msgid "Build Complete"
-msgstr "הבנייה הושלמה"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 1272
 #: NEEDS WORK
@@ -714,215 +781,6 @@ msgstr ""
 "שגיאת הרשאות קובץ התרחשה במהלך הבנייה.\n"
 "\n"
 "הצעה: בדוק שיש לך את ההרשאות הנדרשות לכל הקבצים."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
-#: NEEDS WORK
-msgid "Building AppImage"
-msgstr "בנייה של AppImage"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
-#: NEEDS WORK
-msgid "Preparing..."
-msgstr "מכין..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
-#: NEEDS WORK
-msgid "Cancel Build"
-msgstr "ביטול בנייה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
-#: NEEDS WORK
-msgid "Dependency Warnings"
-msgstr "אזהרות תלות"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
-#: NEEDS WORK
-msgid "AppImage Created with Warnings"
-msgstr "AppImage נוצר עם אזהרות"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
-#: NEEDS WORK
-msgid ""
-"The AppImage was created successfully, but some library dependencies could not be resolved. The "
-"application may not work correctly on some systems."
-msgstr ""
-"ה-AppImage נוצר בהצלחה, אך כמה תלויות ספרייה לא הצליחו להיפתר. היישום עשוי לא לפעול כראוי על כמה "
-"מערכות."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
-#: NEEDS WORK
-msgid "Missing Libraries"
-msgstr "ספריות חסרות"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
-#: NEEDS WORK
-msgid "How to fix:"
-msgstr "איך לתקן:"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
-#: NEEDS WORK
-msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
-msgstr "• נסה לבנות עם מיכל שונה (למשל, אובונטו 22.04 במקום 24.04)"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
-#: NEEDS WORK
-msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
-msgstr "• הוסף את הספריות החסרות לסעיף 'ספריות נוספות' לפני הבנייה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
-#: NEEDS WORK
-msgid "• Install the required -dev packages in the build container"
-msgstr "• התקן את חבילות ה--dev הנדרשות במיכל הבנייה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
-#: NEEDS WORK
-msgid "Close"
-msgstr "סגור"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
-#: NEEDS WORK
-msgid "Open Folder"
-msgstr "פתח תיקייה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
-#: NEEDS WORK
-msgid "AppImage created successfully:"
-msgstr "AppImage נוצר בהצלחה:"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
-#: NEEDS WORK
-msgid "Open"
-msgstr "פתח"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
-#: NEEDS WORK
-msgid "Select"
-msgstr "בחר"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
-#: NEEDS WORK
-msgid "Save"
-msgstr "שמור"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
-#: NEEDS WORK
-msgid "Copy to clipboard"
-msgstr "העתק ללוח שנה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
-#: NEEDS WORK
-msgid "Desktop File Content"
-msgstr "תוכן קובץ שולחן עבודה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to read file: {}"
-msgstr "לא הצליח לקרוא את הקובץ: {}"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
-#: NEEDS WORK
-msgid "Starting..."
-msgstr "מתחיל..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
-#: NEEDS WORK
-msgid "Cancelling..."
-msgstr "מבוטל..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
-#: NEEDS WORK
-msgid "Cancelled."
-msgstr "בוטל."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
-#: NEEDS WORK
-msgid "Completed successfully!"
-msgstr "הושלם בהצלחה!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
-#: NEEDS WORK
-msgid "Finished with errors."
-msgstr "הושלם עם שגיאות."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
-# File: usr/share/appimage-creator/ui/pages.py, line: 459
-#: NEEDS WORK
-msgid "Install Required Packages"
-msgstr "התקן חבילות נדרשות"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
-#: NEEDS WORK
-msgid "Installation Information"
-msgstr "מידע על התקנה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
-#: NEEDS WORK
-msgid "Packages to Install"
-msgstr "חבילות להתקנה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
-#: NEEDS WORK
-msgid "Command"
-msgstr "פקודה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
-#: NEEDS WORK
-msgid ""
-"<b>Administrator privileges required</b>\n"
-"You will be asked for your password to install system packages."
-msgstr ""
-"<b>דרישות הרשאות מנהל</b>  \n"
-"תתבקש להזין את הסיסמה שלך כדי להתקין חבילות מערכת."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
-#: NEEDS WORK
-msgid "Installation Output"
-msgstr "פלט התקנה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
-#: NEEDS WORK
-msgid "Install"
-msgstr "התקן"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
-#: NEEDS WORK
-msgid "Starting installation..."
-msgstr "מתחיל בהתקנה..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
-#: NEEDS WORK
-msgid "Error running command"
-msgstr "שגיאה בהרצת פקודה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
-#: NEEDS WORK
-msgid "Pre-command completed successfully."
-msgstr "הפקודה הקודמת הושלמה בהצלחה."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
-#: NEEDS WORK
-msgid "Installation completed successfully!"
-msgstr "ההתקנה הושלמה בהצלחה!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
-#: NEEDS WORK
-msgid "Command failed with exit code"
-msgstr "הפקודה נכשלה עם קוד יציאה"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
-#: NEEDS WORK
-msgid "Installation failed."
-msgstr "ההתקנה נכשלה."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
-#: NEEDS WORK
-msgid "Please check the errors above and try again."
-msgstr "אנא בדוק את השגיאות למעלה ונסה שוב."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 76
 #: NEEDS WORK
@@ -1630,250 +1488,502 @@ msgstr "בנייה בתוך קונטיינר למקסימום תאימות"
 msgid "No container available — building on the local system"
 msgstr "אין מיכל זמין — בונה על המערכת המקומית"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 18
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
 #: NEEDS WORK
-msgid "Application name must be at least 2 characters long"
-msgstr "שם היישום חייב להיות באורך של לפחות 2 תווים"
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"בחר את הבינארי או הסקריפט הראשי שמתחיל את היישום שלך.\n"
+"\n"
+"זהו נקודת הכניסה — הקובץ שיבוצע כאשר המשתמש מפעיל את ה-AppImage."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 29
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
 #: NEEDS WORK
-msgid "Version is required"
-msgstr "גרסה נדרשת"
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"שם היישום המשמש לשם הקובץ של AppImage ולרשומת התפריט.\n"
+"\n"
+"מותר להשתמש רק באותיות, מספרים, רווחים, מקפים, קווים תחתונים ונקודות."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 32
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
 #: NEEDS WORK
-msgid "Invalid version format"
-msgstr "פורמט גרסה לא חוקי"
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"אייקון היישום משמש בתפריט המערכת, בשורת המשימות ובמנהל הקבצים.\n"
+"\n"
+"מומלץ להשתמש באייקון בגודל 256×256 או גדול יותר בפורמט PNG/SVG.\n"
+"\n"
+"ללא אייקון, ה-AppImage יציג אייקון גנרי בתפריטים ובשורת המשימות."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 40
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
 #: NEEDS WORK
-msgid "Executable file does not exist"
-msgstr "קובץ הרצה אינו קיים"
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+"קובץ .desktop שולט כיצד היישום מופיע בתפריט המערכת, כולל שמו, האייקון שלו, הקטגוריות ואפשרויות "
+"ההפעלה.\n"
+"\n"
+"אם לא תספק אחד, קובץ .desktop בסיסי ייווצר אוטומטית באמצעות המידע שהוגדר כאן.\n"
+"\n"
+"לצורך אינטגרציה מלאה, ספק את הקובץ שלך עם קטגוריות ומטא-נתונים מתאימים."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 43
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
 #: NEEDS WORK
-msgid "File is not executable"
-msgstr "הקובץ אינו ניתן להרצה"
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"קובע כיצד נוצר הסקריפט של המפעיל (AppRun).\n"
+"\n"
+"זה מזוהה אוטומטית מהקובץ ההפעלה, אך ניתן לדרוס אותו:\n"
+"• בינארי — קובץ הפעלה מקומפל\n"
+"• פייתון — סקריפט פייתון המשתמש במפרש המערכת\n"
+"• אלקטרון — יישום מבוסס אלקטרון\n"
+"• GTK/Qt — יישומי GUI עם משתני סביבה ספציפיים לכלים"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 54
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
 #: NEEDS WORK
-msgid "Error: Missing [Desktop Entry] section"
-msgstr "שגיאה: חסר סעיף [Desktop Entry]"
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"גרסה סמנטית של היישום שלך (למשל 1.2.3).\n"
+"\n"
+"זה משולב במטאדאטה של AppImage ומשמש לגילוי עדכונים."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 69
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr "תיאור קצר בשורה אחת המוצג בתפריטי יישומים ובמנהלי חבילות."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"אפשר זאת עבור כלים בשורת הפקודה שזקוקים למסוף כדי לפעול.\n"
+"\n"
+"כאשר זה מופעל, סביבת שולחן העבודה תפתח אמולטור מסוף לפני השקת היישום."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"כתובת ה-API של GitHub Releases לעדכונים אוטומטיים.\n"
+"\n"
+"חייבת להתחיל ב-https:// — בדרך כלל:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"לחץ על כפתור ההדבקה כדי להכניס תבנית."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"תבנית גלוב לזיהוי איזה קובץ להוריד מהשחרור.\n"
+"\n"
+"הכוכבית (*) תואמת לכל טקסט. דוגמאות:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"המדריך שבו יישמר קובץ ה-.AppImage הסופי.\n"
+"\n"
+"ברירת מחדל היא המדריך הנוכחי."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr "בחר היכן לבנות את ה-AppImage."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"ארוז ספריות משותפות (.so קבצים) לתוך ה-AppImage.\n"
+"\n"
+"זה מבטיח שהיישום יעבוד על מערכות אחרות שעשויות לא לכלול את הספריות הנדרשות."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"ארוז נושא אייקונים בתוך ה-AppImage.\n"
+"\n"
+"ללא נושא ארוז, כמה אייקונים עשויים להיעדר בשולחנות עבודה המשתמשים בנושא אייקונים שונה מזה שעבורו "
+"עוצב האפליקציה שלך."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"הסר סמלים של דיבוג מבינארים כדי להפחית את גודל ה-AppImage.\n"
+"\n"
+"זה מקטין את גודל הקובץ אך מקשה על הדיבוג אם מתעוררות בעיות."
+# 
+# File: usr/share/appimage-creator/utils/system.py, line: 108
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Missing required keys: {}"
-msgstr "שגיאה: מפתחות נדרשים חסרים: {}"
+msgid "Failed to make file executable: {}"
+msgstr "נכשל בהפיכת הקובץ לביצועי: {}"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 81
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Empty value for required key: {}"
-msgstr "שגיאה: ערך ריק עבור מפתח נדרש: {}"
+msgid "Failed to download {}: {}"
+msgstr "נכשל בהורדה {}: {}"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 335
-# File: update_window.py, line: 433
-# File: usr/share/appimage-creator/updater/update_window.py, line: 324
-# File: usr/share/appimage-creator/updater/update_window.py, line: 422
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Update Available"
-msgstr "עדכון זמין"
+msgid "Recommended - Latest Ubuntu LTS with newest packages."
+msgstr "מומלץ - הגרסה האחרונה של אובונטו LTS עם החבילות החדשות ביותר."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 440
-# File: usr/share/appimage-creator/updater/update_window.py, line: 429
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 31
 #: NEEDS WORK
-#, python-brace-format
-msgid "A new version of {} is available"
-msgstr "גרסה חדשה של {} זמינה"
+msgid "Good balance of compatibility and modern packages."
+msgstr "איזון טוב בין תאימות וחבילות מודרניות."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 529
-# File: usr/share/appimage-creator/updater/update_window.py, line: 518
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 41
 #: NEEDS WORK
-msgid "Update"
-msgstr "עדכון"
+msgid "Excellent compatibility for older systems."
+msgstr "תאימות מצוינת למערכות ישנות."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 525
-# File: usr/share/appimage-creator/updater/update_window.py, line: 514
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 53
 #: NEEDS WORK
-msgid "Later"
-msgstr "מאוחר יותר"
+msgid "Latest Debian stable - very reliable."
+msgstr "דביאן היציב האחרון - מאוד אמין."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 232
-# File: usr/share/appimage-creator/updater/update_window.py, line: 221
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 63
 #: NEEDS WORK
-msgid "Downloading update..."
-msgstr "מעדכן הורדה..."
+msgid "Previous Debian stable - proven stability."
+msgstr "דביאן יציב קודם - יציבות מוכחת."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
+#: NEEDS WORK
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "פדורה האחרון עם חבילות מתקדמות ותמיכה ב-GTK4/VTE."
 # 
-# File: update_window.py, line: 233
-# File: usr/share/appimage-creator/updater/update_window.py, line: 222
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 105
+#: NEEDS WORK
+msgid "RHEL 9 compatible - enterprise-grade stability."
+msgstr "תואם ל-RHEL 9 - יציבות ברמה ארגונית."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 250
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox (missing dependencies)."
+msgstr "השרת לא מוגדר עבור Distrobox (חסרים תלויות)."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 263
 #: NEEDS WORK
 #, python-brace-format
-msgid "Version {}"
-msgstr "גרסה {}"
+msgid "Environment '{}' already exists."
+msgstr "הסביבה '{}' כבר קיימת."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 265
-# File: usr/share/appimage-creator/updater/update_window.py, line: 254
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 275
 #: NEEDS WORK
 #, python-brace-format
-msgid "Version {} installed successfully"
-msgstr "גרסה {} הותקנה בהצלחה"
+msgid "Creating environment '{}'... This may take a while."
+msgstr "יוצרים סביבה '{}'... זה עשוי לקחת זמן."
 # 
-# File: usr/share/appimage-creator/updater/notify_fallback.py, line: 159
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 392
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 431
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 451
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 576
 #: NEEDS WORK
-msgid "The update will be applied the next time the application starts"
-msgstr "העדכון ייושם בפעם הבאה שהיישום יתחיל"
+msgid "Cancelled by user."
+msgstr "בוטל על ידי המשתמש."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 264
-# File: usr/share/appimage-creator/updater/update_window.py, line: 253
-#: NEEDS WORK
-msgid "Update completed!"
-msgstr "עדכון הושלם!"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 290
-# File: usr/share/appimage-creator/updater/update_window.py, line: 279
-#: NEEDS WORK
-msgid "Update failed"
-msgstr "עדכון נכשל"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 592
-# File: usr/share/appimage-creator/updater/update_window.py, line: 581
-#: NEEDS WORK
-msgid "Download failed"
-msgstr "ההורדה נכשלה"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 152
-# File: usr/share/appimage-creator/updater/update_window.py, line: 141
-#: NEEDS WORK
-msgid "Updating"
-msgstr "מעודכן"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 218
-# File: usr/share/appimage-creator/updater/update_window.py, line: 207
-#: NEEDS WORK
-msgid "Done"
-msgstr "בוצע"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 241
-# File: usr/share/appimage-creator/updater/update_window.py, line: 230
-#: NEEDS WORK
-msgid "Installing update..."
-msgstr "מתקין עדכון..."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 303
-# File: usr/share/appimage-creator/updater/update_window.py, line: 292
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 295
 #: NEEDS WORK
 #, python-brace-format
-msgid "{:.1f} MB of {:.1f} MB"
-msgstr "{:.1f} MB מתוך {:.1f} MB"
+msgid "Failed to create environment. Distrobox exited with code {}."
+msgstr "נכשל ביצירת הסביבה. Distrobox יצא עם קוד {}."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 448
-# File: usr/share/appimage-creator/updater/update_window.py, line: 437
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 304
 #: NEEDS WORK
-msgid "Version Information"
-msgstr "מידע על גרסה"
+msgid "Initializing container (creating user and environment)..."
+msgstr "מ initializing container (יוצר משתמש וסביבה)..."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 451
-# File: usr/share/appimage-creator/updater/update_window.py, line: 440
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 305
 #: NEEDS WORK
-msgid "Current Version"
-msgstr "גרסה נוכחית"
+msgid "First-time setup may take 5-10 minutes on slow connections..."
+msgstr "הגדרת הפעם הראשונה עשויה לקחת 5-10 דקות על חיבורים איטיים..."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 456
-# File: usr/share/appimage-creator/updater/update_window.py, line: 445
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 306
 #: NEEDS WORK
-msgid "New Version"
-msgstr "גרסה חדשה"
+msgid "Please be patient - this is a one-time process."
+msgstr "אנא היה סבלני - זהו תהליך חד פעמי."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 465
-# File: usr/share/appimage-creator/updater/update_window.py, line: 454
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 336
 #: NEEDS WORK
-msgid "What's New"
-msgstr "מה חדש"
+msgid "Warning: Container initialization completed with issues"
+msgstr "אזהרה: אתחול המיכל הושלם עם בעיות"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 469
-# File: usr/share/appimage-creator/updater/update_window.py, line: 458
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 340
 #: NEEDS WORK
-msgid "Release Notes"
-msgstr "הערות שחרור"
+msgid "Container initialization complete!"
+msgstr "האתחול של המיכל הושלם!"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 470
-# File: usr/share/appimage-creator/updater/update_window.py, line: 459
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 344
 #: NEEDS WORK
-msgid "Click to view changes"
-msgstr "לחץ כדי לראות שינויים"
+msgid "Warning: Failed to initialize container automatically"
+msgstr "אזהרה: לא הצליח ליזום את המיכל באופן אוטומטי"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 491
-# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 345
 #: NEEDS WORK
-msgid "Options"
-msgstr "אפשרויות"
+#, python-brace-format
+msgid "You may need to run: distrobox-enter {}"
+msgstr "ייתכן שתצטרך להריץ: distrobox-enter {}"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 495
-# File: usr/share/appimage-creator/updater/update_window.py, line: 484
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 348
 #: NEEDS WORK
-msgid "Remove old version"
-msgstr "הסר גרסה ישנה"
+msgid "Environment created successfully!"
+msgstr "הסביבה נוצרה בהצלחה!"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 496
-# File: usr/share/appimage-creator/updater/update_window.py, line: 485
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 351
 #: NEEDS WORK
-msgid "Delete previous version after successful update"
-msgstr "מחק גרסה קודמת לאחר עדכון מוצלח"
+msgid "distrobox-create command not found."
+msgstr "פקודת distrobox-create לא נמצאה."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 605
-# File: usr/share/appimage-creator/updater/update_window.py, line: 594
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 354
 #: NEEDS WORK
-msgid "Integration failed"
-msgstr "אינטגרציה נכשלה"
+#, python-brace-format
+msgid "An error occurred while creating the environment: {}"
+msgstr "שגיאה התרחשה בעת יצירת הסביבה: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 359
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 435
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox."
+msgstr "ה-host לא מוגדר עבור Distrobox."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 372
+#: NEEDS WORK
+msgid "Waiting for container to be fully ready..."
+msgstr "ממתין שהמיכל יהיה מוכן לחלוטין..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 379
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' was created but is not accessible. Try again in a moment."
+msgstr "המיכל '{}' נוצר אך אינו נגיש. נסה שוב בעוד רגע."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 402
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing dependencies in '{}'..."
+msgstr "מתקין תלויות ב'{}'..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 421
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to install dependencies. Process exited with code {}."
+msgstr "נכשל בהתקנת תלויות. התהליך יצא עם קוד {}."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 424
+#: NEEDS WORK
+msgid "Dependencies installed successfully!"
+msgstr "תלויות הותקנו בהצלחה!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 430
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while installing dependencies: {}"
+msgstr "שגיאה התרחשה במהלך התקנת התלויות: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 449
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' does not exist."
+msgstr "המיכל '{}' אינו קיים."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 457
+#: NEEDS WORK
+#, python-brace-format
+msgid "Removing container '{}'..."
+msgstr "מסיר מיכל '{}'..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 476
+#: NEEDS WORK
+msgid "Failed to remove container."
+msgstr "כישלון בהסרת המיכל."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 482
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 513
+#: NEEDS WORK
+msgid "Container removed successfully!"
+msgstr "המיכל הוסר בהצלחה!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 490
+#: NEEDS WORK
+msgid "Removing container image to free disk space..."
+msgstr "מוחק תמונת קונטיינר לפינוי שטח דיסק..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 504
+#: NEEDS WORK
+msgid "Image removed successfully"
+msgstr "התמונה הוסרה בהצלחה"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 507
+#: NEEDS WORK
+msgid "Note: Image may still be in use by other containers"
+msgstr "הערה: התמונה עשויה עדיין להיות בשימוש על ידי מיכלים אחרים"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 510
+#: NEEDS WORK
+msgid "Warning: Could not remove image automatically"
+msgstr "אזהרה: לא ניתן להסיר את התמונה באופן אוטומטי"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 516
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while removing the container: {}"
+msgstr "שגיאה התרחשה בעת הסרת המיכל: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 760
+#: NEEDS WORK
+msgid "AppImage Structure - Detailed View"
+msgstr "מַבְנֶה AppImage - תצוגה מפורטת"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 764
+#: NEEDS WORK
+msgid "[AppImage Root]"
+msgstr "[שורש AppImage]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 765
+#: NEEDS WORK
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun (מפעיל ראשי)"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 768
+#: NEEDS WORK
+msgid "└── usr/"
+msgstr "└── usr/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 769
+#: NEEDS WORK
+msgid "    ├── bin/"
+msgstr "├── בינארי/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 771
+#: NEEDS WORK
+msgid "    ├── lib/"
+msgstr "├── ספריה/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 772
+#: NEEDS WORK
+msgid "    └── share/"
+msgstr "└── שתף/"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
+#: NEEDS WORK
+msgid "Python Files"
+msgstr "קבצי פייתון"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
+#: NEEDS WORK
+msgid "Shell Scripts"
+msgstr "סקריפטים של ש shell"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
+#: NEEDS WORK
+msgid "UI Files"
+msgstr "קבצי ממשק משתמש"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
+#: NEEDS WORK
+msgid "CSS Files"
+msgstr "קבצי CSS"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
+#: NEEDS WORK
+msgid "Icon Files"
+msgstr "קבצי אייקון"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
+#: NEEDS WORK
+msgid "Locale Directories"
+msgstr "קטעי שפה"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[ספריות נוספות]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "סיכום"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "שורש פרויקט"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "פירוק קובץ:"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 125
 #: NEEDS WORK
@@ -1968,6 +2078,12 @@ msgstr "מעתיק קבצי יישום..."
 #, python-brace-format
 msgid "Copying structured project from: {}"
 msgstr "מעתיק פרויקט מובנה מ: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 351
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping virtualenv directory: {}"
+msgstr "דלג על תיקיית virtualenv: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 206
 #: NEEDS WORK
@@ -2754,213 +2870,6 @@ msgstr "✗ בנייה נכשלה: {}"
 msgid "Build already in progress"
 msgstr "בנייה כבר בתהליך"
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
-#: NEEDS WORK
-msgid "Recommended - Latest Ubuntu LTS with newest packages."
-msgstr "מומלץ - הגרסה האחרונה של אובונטו LTS עם החבילות החדשות ביותר."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 31
-#: NEEDS WORK
-msgid "Good balance of compatibility and modern packages."
-msgstr "איזון טוב בין תאימות וחבילות מודרניות."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 41
-#: NEEDS WORK
-msgid "Excellent compatibility for older systems."
-msgstr "תאימות מצוינת למערכות ישנות."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 53
-#: NEEDS WORK
-msgid "Latest Debian stable - very reliable."
-msgstr "דביאן היציב האחרון - מאוד אמין."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 63
-#: NEEDS WORK
-msgid "Previous Debian stable - proven stability."
-msgstr "דביאן יציב קודם - יציבות מוכחת."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
-#: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
-msgstr "פדורה האחרון עם חבילות מתקדמות ותמיכה ב-GTK4/VTE."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 105
-#: NEEDS WORK
-msgid "RHEL 9 compatible - enterprise-grade stability."
-msgstr "תואם ל-RHEL 9 - יציבות ברמה ארגונית."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 250
-#: NEEDS WORK
-msgid "Host is not set up for Distrobox (missing dependencies)."
-msgstr "השרת לא מוגדר עבור Distrobox (חסרים תלויות)."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 263
-#: NEEDS WORK
-#, python-brace-format
-msgid "Environment '{}' already exists."
-msgstr "הסביבה '{}' כבר קיימת."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 275
-#: NEEDS WORK
-#, python-brace-format
-msgid "Creating environment '{}'... This may take a while."
-msgstr "יוצרים סביבה '{}'... זה עשוי לקחת זמן."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 392
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 431
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 451
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 576
-#: NEEDS WORK
-msgid "Cancelled by user."
-msgstr "בוטל על ידי המשתמש."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 295
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to create environment. Distrobox exited with code {}."
-msgstr "נכשל ביצירת הסביבה. Distrobox יצא עם קוד {}."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 304
-#: NEEDS WORK
-msgid "Initializing container (creating user and environment)..."
-msgstr "מ initializing container (יוצר משתמש וסביבה)..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 305
-#: NEEDS WORK
-msgid "First-time setup may take 5-10 minutes on slow connections..."
-msgstr "הגדרת הפעם הראשונה עשויה לקחת 5-10 דקות על חיבורים איטיים..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 306
-#: NEEDS WORK
-msgid "Please be patient - this is a one-time process."
-msgstr "אנא היה סבלני - זהו תהליך חד פעמי."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 336
-#: NEEDS WORK
-msgid "Warning: Container initialization completed with issues"
-msgstr "אזהרה: אתחול המיכל הושלם עם בעיות"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 340
-#: NEEDS WORK
-msgid "Container initialization complete!"
-msgstr "האתחול של המיכל הושלם!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 344
-#: NEEDS WORK
-msgid "Warning: Failed to initialize container automatically"
-msgstr "אזהרה: לא הצליח ליזום את המיכל באופן אוטומטי"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 345
-#: NEEDS WORK
-#, python-brace-format
-msgid "You may need to run: distrobox-enter {}"
-msgstr "ייתכן שתצטרך להריץ: distrobox-enter {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 348
-#: NEEDS WORK
-msgid "Environment created successfully!"
-msgstr "הסביבה נוצרה בהצלחה!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 351
-#: NEEDS WORK
-msgid "distrobox-create command not found."
-msgstr "פקודת distrobox-create לא נמצאה."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 354
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while creating the environment: {}"
-msgstr "שגיאה התרחשה בעת יצירת הסביבה: {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 359
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 435
-#: NEEDS WORK
-msgid "Host is not set up for Distrobox."
-msgstr "ה-host לא מוגדר עבור Distrobox."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 372
-#: NEEDS WORK
-msgid "Waiting for container to be fully ready..."
-msgstr "ממתין שהמיכל יהיה מוכן לחלוטין..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 379
-#: NEEDS WORK
-#, python-brace-format
-msgid "Container '{}' was created but is not accessible. Try again in a moment."
-msgstr "המיכל '{}' נוצר אך אינו נגיש. נסה שוב בעוד רגע."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 402
-#: NEEDS WORK
-#, python-brace-format
-msgid "Installing dependencies in '{}'..."
-msgstr "מתקין תלויות ב'{}'..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 421
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to install dependencies. Process exited with code {}."
-msgstr "נכשל בהתקנת תלויות. התהליך יצא עם קוד {}."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 424
-#: NEEDS WORK
-msgid "Dependencies installed successfully!"
-msgstr "תלויות הותקנו בהצלחה!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 430
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while installing dependencies: {}"
-msgstr "שגיאה התרחשה במהלך התקנת התלויות: {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 449
-#: NEEDS WORK
-#, python-brace-format
-msgid "Container '{}' does not exist."
-msgstr "המיכל '{}' אינו קיים."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 457
-#: NEEDS WORK
-#, python-brace-format
-msgid "Removing container '{}'..."
-msgstr "מסיר מיכל '{}'..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 476
-#: NEEDS WORK
-msgid "Failed to remove container."
-msgstr "כישלון בהסרת המיכל."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 482
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 513
-#: NEEDS WORK
-msgid "Container removed successfully!"
-msgstr "המיכל הוסר בהצלחה!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 490
-#: NEEDS WORK
-msgid "Removing container image to free disk space..."
-msgstr "מוחק תמונת קונטיינר לפינוי שטח דיסק..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 504
-#: NEEDS WORK
-msgid "Image removed successfully"
-msgstr "התמונה הוסרה בהצלחה"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 507
-#: NEEDS WORK
-msgid "Note: Image may still be in use by other containers"
-msgstr "הערה: התמונה עשויה עדיין להיות בשימוש על ידי מיכלים אחרים"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 510
-#: NEEDS WORK
-msgid "Warning: Could not remove image automatically"
-msgstr "אזהרה: לא ניתן להסיר את התמונה באופן אוטומטי"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 516
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while removing the container: {}"
-msgstr "שגיאה התרחשה בעת הסרת המיכל: {}"
-# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
 #: NEEDS WORK
 #, python-brace-format
@@ -3108,177 +3017,121 @@ msgstr "סריקה עבור תלותים בינאריים ב: {}"
 msgid "  Detected dependency on binary: {}"
 msgstr "תלות זוהתה בבינארי: {}"
 # 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
+#: NEEDS WORK
+msgid "Starting recursive dependency resolution..."
+msgstr "מתחיל פתרון תלותי רקורסיבי..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
 #: NEEDS WORK
 #, python-brace-format
-msgid "Ignoring unsafe extra library name: {}"
-msgstr "מתעלם משם ספרייה נוספת לא בטוחה: {}"
+msgid "  Resolution iteration {}/{}..."
+msgstr "איטרציית רזולוציה {}/{}..."
 # 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Including user-specified extra libraries: {}"
-msgstr "כולל ספריות נוספות שהוגדרו על ידי המשתמש: {}"
+msgid "  Found {} ELF files to scan"
+msgstr "נמצאו {} קבצי ELF לסריקה"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1323
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
+#: NEEDS WORK
+msgid "  No missing libraries found — resolution complete"
+msgstr "לא נמצאו ספריות חסרות - הפתרון הושלם"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying standard system libraries: {}"
-msgstr "מעתיק ספריות מערכת סטנדרטיות: {}"
+msgid "  Found {} missing libraries: {}"
+msgstr "נמצאו {} ספריות חסרות: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1327
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying conflicting system libraries to fallback dir: {}"
-msgstr "מעתיק ספריות מערכת סותרות לתיקיית גיבוי: {}"
+msgid "    Copied: {}"
+msgstr "הועתק: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1344
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
 #: NEEDS WORK
 #, python-brace-format
-msgid "Generating script to copy libraries to {}..."
-msgstr "מייצר סקריפט להעתקת ספריות ל{}..."
+msgid "    Failed to copy: {}"
+msgstr "נכשל בהעתקה: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1241
-#: NEEDS WORK
-msgid "Executing library copy script..."
-msgstr "מבצע סקריפט העתקת ספרייה..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1039
-#: NEEDS WORK
-msgid "Warning: Library copy script finished with errors."
-msgstr "אזהרה: סקריפט העתקת ספרייה הסתיים עם שגיאות."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1041
-#: NEEDS WORK
-msgid "Library copy script finished successfully."
-msgstr "העתקת הספרייה הושלמה בהצלחה."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1273
-#: NEEDS WORK
-msgid "No typelibs selected for inclusion."
-msgstr "לא נבחרו טיפליבס לכלילה."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1276
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected typelibs: {}"
-msgstr "מעתיק טיפולים נבחרים: {}"
+msgid "    Not found in system: {}"
+msgstr "לא נמצא במערכת: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1284
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
 #: NEEDS WORK
-msgid "Generating script to copy typelibs..."
-msgstr "מייצר סקריפט להעתקת טיפולים..."
+msgid "  No new libraries could be copied — stopping"
+msgstr "לא ניתן להעתיק ספריות חדשות - נעצר"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1318
-#: NEEDS WORK
-msgid "Executing typelib copy script..."
-msgstr "מבצע סקריפט העתקת טיפוסי..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1286
-#: NEEDS WORK
-msgid "Warning: Some typelibs may not have been copied"
-msgstr "אזהרה: ייתכן שחלק מהטיפולים לא הועתקו"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1288
-#: NEEDS WORK
-msgid "Typelib copy complete"
-msgstr "העתקת Typelib הושלמה"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1467
-#: NEEDS WORK
-msgid "Copying essential GStreamer plugins..."
-msgstr "מעתיק תוספי GStreamer חיוניים..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1530
-#: NEEDS WORK
-msgid "Detected video playback requirements"
-msgstr "דרישות ניגון וידאו זוהו"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1579
-#: NEEDS WORK
-msgid "Copying GStreamer plugins..."
-msgstr "מעתיק תוספי GStreamer..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1588
-#: NEEDS WORK
-msgid "GStreamer plugin copying complete"
-msgstr "העתקת תוסף GStreamer הושלמה"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1385
-#: NEEDS WORK
-msgid "Copying Adwaita symbolic icons..."
-msgstr "מעתיק סמלים סימבוליים של אדווייטה..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1394
-#: NEEDS WORK
-msgid "Symbolic icons already present"
-msgstr "אייקונים סימבוליים כבר קיימים"
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
-#: NEEDS WORK
-msgid "Copying symbolic icons from container..."
-msgstr "מעתיק סמלים סמליים מהמיכל..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
-#: NEEDS WORK
-msgid "Copying symbolic icons from host system..."
-msgstr "מעתיק סמלים סמליים ממערכת המארח..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Adwaita symbolic icons not found at {}"
-msgstr "אזהרה: לא נמצאו סמלים סימבוליים של Adwaita ב- {}"
+msgid "  Copied {} libraries this iteration"
+msgstr "הועתקו {} ספריות בגרסה זו"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1442
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
 #: NEEDS WORK
-msgid "Warning: Failed to copy symbolic icons"
-msgstr "אזהרה: כישלון בהעתקת סמלים סימבוליים"
+#, python-brace-format
+msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
+msgstr "פתרון התלות הושלם: {} הועתקו, {} עדיין חסרים ({} חזרות)"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1656
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
 #: NEEDS WORK
-msgid "Creating custom index.theme for Adwaita symbolic icons..."
-msgstr "יצירת index.theme מותאם אישית עבור סמלים סימבוליים של Adwaita..."
+msgid "Validating library dependencies..."
+msgstr "מאמת תלותי ספרייה..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1444
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
 #: NEEDS WORK
-msgid "Symbolic icons copied successfully"
-msgstr "אייקונים סימבוליים הועתקו בהצלחה"
+msgid "Library validation FAILED:"
+msgstr "אימות ספרייה נכשל:"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1477
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
 #: NEEDS WORK
-msgid "Copying Papirus symbolic icons..."
-msgstr "מעתיק סמלים סימבוליים של פאפירוס..."
+msgid "Library validation passed — all dependencies resolved"
+msgstr "אימות ספרייה עבר — כל התלויות נפתרו"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1501
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
 #: NEEDS WORK
-msgid "Papirus symbolic icons already present"
-msgstr "אייקונים סימבוליים של פאפירוס כבר קיימים"
+#, python-brace-format
+msgid "Validating Python imports for module: {}"
+msgstr "מאמת ייבוא של פייתון עבור מודול: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1510
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
 #: NEEDS WORK
-msgid "Copying Papirus and Papirus-Dark symbolic icons..."
-msgstr "מעתיק סמלים של פאפירוס ופאפירוס-דארק..."
+msgid "Python import validation passed"
+msgstr "אימות ייבוא פייתון עבר"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1584
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
 #: NEEDS WORK
-msgid "Executing Papirus icons copy script..."
-msgstr "מבצע סקריפט העתקת אייקוני פאפירוס..."
+#, python-brace-format
+msgid "Python import validation FAILED: {}"
+msgstr "אימות ייבוא של פייתון נכשל: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1594
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
 #: NEEDS WORK
-msgid "Warning: Papirus icons not available, falling back to Adwaita"
-msgstr "אזהרה: אייקוני פאפירוס אינם זמינים, חוזרים לאדווייטה"
+#, python-brace-format
+msgid "Python import validation error: {}"
+msgstr "שגיאת אימות ייבוא של פייתון: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1882
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
 #: NEEDS WORK
-msgid "Creating custom index.theme for Papirus symbolic icons..."
-msgstr "יצירת index.theme מותאם אישית עבור סמלים של פאפירוס..."
+msgid "Running pre-packaging validation..."
+msgstr "ריצה של בדיקת תקינות לפני אריזת התוכנה..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1597
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
 #: NEEDS WORK
-msgid "Papirus symbolic icons copied successfully"
-msgstr "אייקונים סימבוליים של פאפירוס הועתקו בהצלחה"
+msgid "Pre-packaging validation PASSED"
+msgstr "אימות לפני אריזת המוצר עבר בהצלחה"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
+#: NEEDS WORK
+msgid "Pre-packaging validation FAILED — check warnings above"
+msgstr "אימות לפני אריזת התוכנה נכשל — בדוק אזהרות למעלה"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 356
 #: NEEDS WORK
@@ -3594,224 +3447,377 @@ msgstr "כישלון בהעתקת PyGObject של המערכת"
 msgid "Error using system PyGObject: {}"
 msgstr "שגיאה בשימוש במערכת PyGObject: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
-#: NEEDS WORK
-msgid "Starting recursive dependency resolution..."
-msgstr "מתחיל פתרון תלותי רקורסיבי..."
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Resolution iteration {}/{}..."
-msgstr "איטרציית רזולוציה {}/{}..."
+msgid "Ignoring unsafe extra library name: {}"
+msgstr "מתעלם משם ספרייה נוספת לא בטוחה: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Found {} ELF files to scan"
-msgstr "נמצאו {} קבצי ELF לסריקה"
+msgid "Including user-specified extra libraries: {}"
+msgstr "כולל ספריות נוספות שהוגדרו על ידי המשתמש: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
-#: NEEDS WORK
-msgid "  No missing libraries found — resolution complete"
-msgstr "לא נמצאו ספריות חסרות - הפתרון הושלם"
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Found {} missing libraries: {}"
-msgstr "נמצאו {} ספריות חסרות: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "מעתיק ספריות מערכת סטנדרטיות: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Copied: {}"
-msgstr "הועתק: {}"
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "מעתיק ספריות מערכת סותרות לתיקיית גיבוי: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Failed to copy: {}"
-msgstr "נכשל בהעתקה: {}"
+msgid "Generating script to copy libraries to {}..."
+msgstr "מייצר סקריפט להעתקת ספריות ל{}..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
+#: NEEDS WORK
+msgid "Executing library copy script..."
+msgstr "מבצע סקריפט העתקת ספרייה..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1039
+#: NEEDS WORK
+msgid "Warning: Library copy script finished with errors."
+msgstr "אזהרה: סקריפט העתקת ספרייה הסתיים עם שגיאות."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1041
+#: NEEDS WORK
+msgid "Library copy script finished successfully."
+msgstr "העתקת הספרייה הושלמה בהצלחה."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
+#: NEEDS WORK
+msgid "No typelibs selected for inclusion."
+msgstr "לא נבחרו טיפליבס לכלילה."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Not found in system: {}"
-msgstr "לא נמצא במערכת: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "מעתיק טיפולים נבחרים: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "  No new libraries could be copied — stopping"
-msgstr "לא ניתן להעתיק ספריות חדשות - נעצר"
+msgid "Generating script to copy typelibs..."
+msgstr "מייצר סקריפט להעתקת טיפולים..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied {} libraries this iteration"
-msgstr "הועתקו {} ספריות בגרסה זו"
+msgid "Executing typelib copy script..."
+msgstr "מבצע סקריפט העתקת טיפוסי..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK
-#, python-brace-format
-msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
-msgstr "פתרון התלות הושלם: {} הועתקו, {} עדיין חסרים ({} חזרות)"
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "אזהרה: ייתכן שחלק מהטיפולים לא הועתקו"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
 #: NEEDS WORK
-msgid "Validating library dependencies..."
-msgstr "מאמת תלותי ספרייה..."
+msgid "Typelib copy complete"
+msgstr "העתקת Typelib הושלמה"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
 #: NEEDS WORK
-msgid "Library validation FAILED:"
-msgstr "אימות ספרייה נכשל:"
+msgid "Copying essential GStreamer plugins..."
+msgstr "מעתיק תוספי GStreamer חיוניים..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
 #: NEEDS WORK
-msgid "Library validation passed — all dependencies resolved"
-msgstr "אימות ספרייה עבר — כל התלויות נפתרו"
+msgid "Detected video playback requirements"
+msgstr "דרישות ניגון וידאו זוהו"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
 #: NEEDS WORK
-#, python-brace-format
-msgid "Validating Python imports for module: {}"
-msgstr "מאמת ייבוא של פייתון עבור מודול: {}"
+msgid "Copying GStreamer plugins..."
+msgstr "מעתיק תוספי GStreamer..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
 #: NEEDS WORK
-msgid "Python import validation passed"
-msgstr "אימות ייבוא פייתון עבר"
+msgid "GStreamer plugin copying complete"
+msgstr "העתקת תוסף GStreamer הושלמה"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation FAILED: {}"
-msgstr "אימות ייבוא של פייתון נכשל: {}"
+msgid "Copying Adwaita symbolic icons..."
+msgstr "מעתיק סמלים סימבוליים של אדווייטה..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation error: {}"
-msgstr "שגיאת אימות ייבוא של פייתון: {}"
+msgid "Symbolic icons already present"
+msgstr "אייקונים סימבוליים כבר קיימים"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
 #: NEEDS WORK
-msgid "Running pre-packaging validation..."
-msgstr "ריצה של בדיקת תקינות לפני אריזת התוכנה..."
+msgid "Copying symbolic icons from container..."
+msgstr "מעתיק סמלים סמליים מהמיכל..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
 #: NEEDS WORK
-msgid "Pre-packaging validation PASSED"
-msgstr "אימות לפני אריזת המוצר עבר בהצלחה"
+msgid "Copying symbolic icons from host system..."
+msgstr "מעתיק סמלים סמליים ממערכת המארח..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
-#: NEEDS WORK
-msgid "Pre-packaging validation FAILED — check warnings above"
-msgstr "אימות לפני אריזת התוכנה נכשל — בדוק אזהרות למעלה"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 760
-#: NEEDS WORK
-msgid "AppImage Structure - Detailed View"
-msgstr "מַבְנֶה AppImage - תצוגה מפורטת"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 764
-#: NEEDS WORK
-msgid "[AppImage Root]"
-msgstr "[שורש AppImage]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 765
-#: NEEDS WORK
-msgid "├── AppRun (main launcher)"
-msgstr "├── AppRun (מפעיל ראשי)"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 768
-#: NEEDS WORK
-msgid "└── usr/"
-msgstr "└── usr/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 769
-#: NEEDS WORK
-msgid "    ├── bin/"
-msgstr "├── בינארי/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 771
-#: NEEDS WORK
-msgid "    ├── lib/"
-msgstr "├── ספריה/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 772
-#: NEEDS WORK
-msgid "    └── share/"
-msgstr "└── שתף/"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
-#: NEEDS WORK
-msgid "Python Files"
-msgstr "קבצי פייתון"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
-#: NEEDS WORK
-msgid "Shell Scripts"
-msgstr "סקריפטים של ש shell"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
-#: NEEDS WORK
-msgid "UI Files"
-msgstr "קבצי ממשק משתמש"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
-#: NEEDS WORK
-msgid "CSS Files"
-msgstr "קבצי CSS"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
-#: NEEDS WORK
-msgid "Icon Files"
-msgstr "קבצי אייקון"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
-#: NEEDS WORK
-msgid "Locale Directories"
-msgstr "קטעי שפה"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1085
-#: NEEDS WORK
-msgid "[Additional Directories]"
-msgstr "[ספריות נוספות]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1112
-#: NEEDS WORK
-msgid "SUMMARY"
-msgstr "סיכום"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1116
-#: NEEDS WORK
-msgid "Project Root"
-msgstr "שורש פרויקט"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1127
-#: NEEDS WORK
-msgid "  File Breakdown:"
-msgstr "פירוק קובץ:"
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 16
-#: NEEDS WORK
-msgid "Warning: PIL/Pillow not available, icon processing will be limited"
-msgstr "אזהרה: PIL/Pillow אינו זמין, עיבוד האייקונים יהיה מוגבל"
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 82
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error processing icon: {}"
-msgstr "שגיאה בעיבוד אייקון: {}"
+msgid "Warning: Adwaita symbolic icons not found at {}"
+msgstr "אזהרה: לא נמצאו סמלים סימבוליים של Adwaita ב- {}"
 # 
-# File: usr/share/appimage-creator/generators/files.py, line: 70
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
 #: NEEDS WORK
-msgid "Warning: Desktop file may have validation issues"
-msgstr "אזהרה: קובץ שולחן העבודה עשוי להיות בעיות אימות"
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "אזהרה: כישלון בהעתקת סמלים סימבוליים"
 # 
-# File: usr/share/appimage-creator/generators/files.py, line: 85
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
 #: NEEDS WORK
-msgid "Failed to create desktop file"
-msgstr "נכשל ביצירת קובץ שולחן עבודה"
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "יצירת index.theme מותאם אישית עבור סמלים סימבוליים של Adwaita..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "אייקונים סימבוליים הועתקו בהצלחה"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "מעתיק סמלים סימבוליים של פאפירוס..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "אייקונים סימבוליים של פאפירוס כבר קיימים"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "מעתיק סמלים של פאפירוס ופאפירוס-דארק..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "מבצע סקריפט העתקת אייקוני פאפירוס..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "אזהרה: אייקוני פאפירוס אינם זמינים, חוזרים לאדווייטה"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "יצירת index.theme מותאם אישית עבור סמלים של פאפירוס..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "אייקונים סימבוליים של פאפירוס הועתקו בהצלחה"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 152
+# File: usr/share/appimage-creator/updater/update_window.py, line: 141
+#: NEEDS WORK
+msgid "Updating"
+msgstr "מעודכן"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 218
+# File: usr/share/appimage-creator/updater/update_window.py, line: 207
+#: NEEDS WORK
+msgid "Done"
+msgstr "בוצע"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 232
+# File: usr/share/appimage-creator/updater/update_window.py, line: 221
+#: NEEDS WORK
+msgid "Downloading update..."
+msgstr "מעדכן הורדה..."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 233
+# File: usr/share/appimage-creator/updater/update_window.py, line: 222
+#: NEEDS WORK
+#, python-brace-format
+msgid "Version {}"
+msgstr "גרסה {}"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 241
+# File: usr/share/appimage-creator/updater/update_window.py, line: 230
+#: NEEDS WORK
+msgid "Installing update..."
+msgstr "מתקין עדכון..."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 264
+# File: usr/share/appimage-creator/updater/update_window.py, line: 253
+#: NEEDS WORK
+msgid "Update completed!"
+msgstr "עדכון הושלם!"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 265
+# File: usr/share/appimage-creator/updater/update_window.py, line: 254
+#: NEEDS WORK
+#, python-brace-format
+msgid "Version {} installed successfully"
+msgstr "גרסה {} הותקנה בהצלחה"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 290
+# File: usr/share/appimage-creator/updater/update_window.py, line: 279
+#: NEEDS WORK
+msgid "Update failed"
+msgstr "עדכון נכשל"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 303
+# File: usr/share/appimage-creator/updater/update_window.py, line: 292
+#: NEEDS WORK
+#, python-brace-format
+msgid "{:.1f} MB of {:.1f} MB"
+msgstr "{:.1f} MB מתוך {:.1f} MB"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 335
+# File: update_window.py, line: 433
+# File: usr/share/appimage-creator/updater/update_window.py, line: 324
+# File: usr/share/appimage-creator/updater/update_window.py, line: 422
+#: NEEDS WORK
+msgid "Update Available"
+msgstr "עדכון זמין"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 440
+# File: usr/share/appimage-creator/updater/update_window.py, line: 429
+#: NEEDS WORK
+#, python-brace-format
+msgid "A new version of {} is available"
+msgstr "גרסה חדשה של {} זמינה"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 448
+# File: usr/share/appimage-creator/updater/update_window.py, line: 437
+#: NEEDS WORK
+msgid "Version Information"
+msgstr "מידע על גרסה"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 451
+# File: usr/share/appimage-creator/updater/update_window.py, line: 440
+#: NEEDS WORK
+msgid "Current Version"
+msgstr "גרסה נוכחית"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 456
+# File: usr/share/appimage-creator/updater/update_window.py, line: 445
+#: NEEDS WORK
+msgid "New Version"
+msgstr "גרסה חדשה"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 465
+# File: usr/share/appimage-creator/updater/update_window.py, line: 454
+#: NEEDS WORK
+msgid "What's New"
+msgstr "מה חדש"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 469
+# File: usr/share/appimage-creator/updater/update_window.py, line: 458
+#: NEEDS WORK
+msgid "Release Notes"
+msgstr "הערות שחרור"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 470
+# File: usr/share/appimage-creator/updater/update_window.py, line: 459
+#: NEEDS WORK
+msgid "Click to view changes"
+msgstr "לחץ כדי לראות שינויים"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 491
+# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+#: NEEDS WORK
+msgid "Options"
+msgstr "אפשרויות"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 495
+# File: usr/share/appimage-creator/updater/update_window.py, line: 484
+#: NEEDS WORK
+msgid "Remove old version"
+msgstr "הסר גרסה ישנה"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 496
+# File: usr/share/appimage-creator/updater/update_window.py, line: 485
+#: NEEDS WORK
+msgid "Delete previous version after successful update"
+msgstr "מחק גרסה קודמת לאחר עדכון מוצלח"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 525
+# File: usr/share/appimage-creator/updater/update_window.py, line: 514
+#: NEEDS WORK
+msgid "Later"
+msgstr "מאוחר יותר"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 529
+# File: usr/share/appimage-creator/updater/update_window.py, line: 518
+#: NEEDS WORK
+msgid "Update"
+msgstr "עדכון"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 592
+# File: usr/share/appimage-creator/updater/update_window.py, line: 581
+#: NEEDS WORK
+msgid "Download failed"
+msgstr "ההורדה נכשלה"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 605
+# File: usr/share/appimage-creator/updater/update_window.py, line: 594
+#: NEEDS WORK
+msgid "Integration failed"
+msgstr "אינטגרציה נכשלה"
+# 
+# File: usr/share/appimage-creator/updater/notify_fallback.py, line: 159
+#: NEEDS WORK
+msgid "The update will be applied the next time the application starts"
+msgstr "העדכון ייושם בפעם הבאה שהיישום יתחיל"

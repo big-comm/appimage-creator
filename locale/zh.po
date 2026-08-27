@@ -16,211 +16,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: attranslate\n"
 # 
-# File: usr/share/appimage-creator/utils/system.py, line: 108
+# File: usr/share/appimage-creator/generators/icons.py, line: 16
+#: NEEDS WORK
+msgid "Warning: PIL/Pillow not available, icon processing will be limited"
+msgstr "警告：PIL/Pillow 不可用，图标处理将受到限制"
+# 
+# File: usr/share/appimage-creator/generators/icons.py, line: 82
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to make file executable: {}"
-msgstr "无法使文件可执行：{}"
+msgid "Error processing icon: {}"
+msgstr "处理图标时出错：{}"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+# File: usr/share/appimage-creator/generators/files.py, line: 70
 #: NEEDS WORK
-msgid ""
-"Select the main binary or script that starts your application.\n"
-"\n"
-"This is the entry point — the file that will be executed when the user launches the AppImage."
-msgstr ""
-"选择启动您应用程序的主二进制文件或脚本。\n"
-"\n"
-"这是入口点 — 当用户启动 AppImage 时将执行的文件。"
+msgid "Warning: Desktop file may have validation issues"
+msgstr "警告：桌面文件可能存在验证问题"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+# File: usr/share/appimage-creator/generators/files.py, line: 85
 #: NEEDS WORK
-msgid ""
-"The application name used for the AppImage filename and menu entry.\n"
-"\n"
-"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
-msgstr ""
-"用于 AppImage 文件名和菜单项的应用程序名称。\n"
-"\n"
-"仅允许字母、数字、空格、连字符、下划线和点。"
+msgid "Failed to create desktop file"
+msgstr "无法创建桌面文件"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+# File: usr/share/appimage-creator/validators/validators.py, line: 18
 #: NEEDS WORK
-msgid ""
-"The application icon is used in the system menu, taskbar, and file manager.\n"
-"\n"
-"A 256×256 or larger PNG/SVG icon is recommended.\n"
-"\n"
-"Without an icon, the AppImage will display a generic icon in menus and taskbar."
-msgstr ""
-"应用程序图标用于系统菜单、任务栏和文件管理器。\n"
-"\n"
-"建议使用256×256或更大的PNG/SVG图标。\n"
-"\n"
-"如果没有图标，AppImage将在菜单和任务栏中显示通用图标。"
+msgid "Application name must be at least 2 characters long"
+msgstr "应用程序名称必须至少为 2 个字符长"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+# File: usr/share/appimage-creator/validators/validators.py, line: 21
 #: NEEDS WORK
-msgid ""
-"The .desktop file controls how the application appears in the system menu, including its name, "
-"icon, categories, and launch options.\n"
-"\n"
-"If you don't provide one, a basic .desktop file will be generated automatically using the "
-"information configured here.\n"
-"\n"
-"For full integration, provide your own file with proper categories and metadata."
-msgstr ""
-".desktop 文件控制应用程序在系统菜单中的显示方式，包括其名称、图标、类别和启动选项。\n"
-"\n"
-"如果您不提供一个，将自动生成一个基本的 .desktop 文件，使用此处配置的信息。\n"
-"\n"
-"为了实现完全集成，请提供您自己的文件，包含适当的类别和元数据。"
+msgid "Application name contains invalid characters"
+msgstr "应用程序名称包含无效字符"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+# File: usr/share/appimage-creator/validators/validators.py, line: 29
 #: NEEDS WORK
-msgid ""
-"Determines how the launcher (AppRun) script is generated.\n"
-"\n"
-"This is auto-detected from the executable, but you can override it:\n"
-"• Binary — compiled native executable\n"
-"• Python — Python script using system interpreter\n"
-"• Electron — Electron-based application\n"
-"• GTK/Qt — GUI applications with toolkit-specific environment variables"
-msgstr ""
-"确定启动器（AppRun）脚本的生成方式。\n"
-"\n"
-"这会从可执行文件中自动检测，但您可以覆盖它：\n"
-"• 二进制 — 编译的本地可执行文件\n"
-"• Python — 使用系统解释器的 Python 脚本\n"
-"• Electron — 基于 Electron 的应用程序\n"
-"• GTK/Qt — 带有工具包特定环境变量的 GUI 应用程序"
+msgid "Version is required"
+msgstr "版本是必需的"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+# File: usr/share/appimage-creator/validators/validators.py, line: 32
 #: NEEDS WORK
-msgid ""
-"Semantic version of your application (e.g. 1.2.3).\n"
-"\n"
-"This is embedded in the AppImage metadata and used for update detection."
-msgstr ""
-"您应用程序的语义版本（例如 1.2.3）。\n"
-"\n"
-"这嵌入在 AppImage 元数据中，用于更新检测。"
+msgid "Invalid version format"
+msgstr "无效的版本格式"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+# File: usr/share/appimage-creator/validators/validators.py, line: 40
 #: NEEDS WORK
-msgid ""
-"A short one-line description shown in application menus and package managers.\n"
-"\n"
-"Keep it concise — typically under 80 characters."
-msgstr "在应用程序菜单和软件包管理器中显示的简短描述。"
+msgid "Executable file does not exist"
+msgstr "可执行文件不存在"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+# File: usr/share/appimage-creator/validators/validators.py, line: 43
 #: NEEDS WORK
-msgid ""
-"Enable this for CLI tools that need a terminal to run.\n"
-"\n"
-"When enabled, the desktop environment will open a terminal emulator before launching the "
-"application."
-msgstr ""
-"为需要终端运行的CLI工具启用此选项。\n"
-"\n"
-"启用后，桌面环境将在启动应用程序之前打开终端仿真器。"
+msgid "File is not executable"
+msgstr "文件不可执行"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+# File: usr/share/appimage-creator/validators/validators.py, line: 54
 #: NEEDS WORK
-msgid ""
-"GitHub Releases API URL for automatic updates.\n"
-"\n"
-"Must start with https:// — typically:\n"
-"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
-"\n"
-"Click the paste button to insert a template."
-msgstr ""
-"GitHub 发布 API URL 用于自动更新。\n"
-"\n"
-"必须以 https:// 开头 — 通常是：\n"
-"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
-"\n"
-"点击粘贴按钮以插入模板。"
+msgid "Error: Missing [Desktop Entry] section"
+msgstr "错误：缺少 [Desktop Entry] 部分"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
-#: NEEDS WORK
-msgid ""
-"Glob pattern to identify which file to download from the release.\n"
-"\n"
-"The asterisk (*) matches any text. Examples:\n"
-"• myapp-*-x86_64.AppImage\n"
-"• *-gui-*.AppImage"
-msgstr ""
-"用于识别从发布中下载哪个文件的全局模式。\n"
-"\n"
-"星号 (*) 匹配任何文本。示例：\n"
-"• myapp-*-x86_64.AppImage\n"
-"• *-gui-*.AppImage"
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
-#: NEEDS WORK
-msgid ""
-"The directory where the final .AppImage file will be saved.\n"
-"\n"
-"Defaults to the current working directory."
-msgstr ""
-"最终 .AppImage 文件将保存的目录。\n"
-"\n"
-"默认为当前工作目录。"
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
-#: NEEDS WORK
-msgid ""
-"Choose where to build the AppImage.\n"
-"\n"
-"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
-"builds against an older glibc."
-msgstr ""
-"选择构建 AppImage 的位置。\n"
-"\n"
-"使用 Distrobox 容器可以与较旧的 Linux 发行版实现最大兼容性，因为它是针对较旧的 glibc 构建的。"
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
-#: NEEDS WORK
-msgid ""
-"Bundle shared libraries (.so files) into the AppImage.\n"
-"\n"
-"This ensures the application works on other systems that may not have the required libraries "
-"installed."
-msgstr ""
-"将共享库（.so 文件）打包到 AppImage 中。\n"
-"\n"
-"这确保应用程序在可能未安装所需库的其他系统上正常工作。"
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
-#: NEEDS WORK
-msgid ""
-"Bundle an icon theme inside the AppImage.\n"
-"\n"
-"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
-"the one your app was designed for."
-msgstr ""
-"将图标主题打包到 AppImage 中。\n"
-"\n"
-"如果没有打包主题，某些图标可能会在使用与您的应用程序设计不同的图标主题的桌面上缺失。"
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
-#: NEEDS WORK
-msgid ""
-"Remove debug symbols from binaries to reduce the AppImage size.\n"
-"\n"
-"This makes the file smaller but harder to debug if issues occur."
-msgstr ""
-"从二进制文件中移除调试符号以减小 AppImage 的大小。\n"
-"\n"
-"这使文件变小，但如果出现问题则更难调试。"
-# 
-# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
+# File: usr/share/appimage-creator/validators/validators.py, line: 69
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to download {}: {}"
-msgstr "下载 {} 失败：{}"
+msgid "Error: Missing required keys: {}"
+msgstr "错误：缺少必需的密钥：{}"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 81
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Empty value for required key: {}"
+msgstr "错误：必需键的值为空：{}"
+# 
+# File: usr/share/appimage-creator/ui/app.py, line: 75
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not load custom CSS: {}"
+msgstr "警告：无法加载自定义 CSS：{}"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -240,11 +108,245 @@ msgstr "移除"
 msgid "{}: {}"
 msgstr "{}: {}"
 # 
-# File: usr/share/appimage-creator/ui/app.py, line: 75
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
+#: NEEDS WORK
+msgid "Building AppImage"
+msgstr "构建 AppImage"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
+#: NEEDS WORK
+msgid "Preparing..."
+msgstr "准备中..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
+#: NEEDS WORK
+msgid "Cancel Build"
+msgstr "取消构建"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
+#: NEEDS WORK
+msgid "Dependency Warnings"
+msgstr "依赖警告"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
+#: NEEDS WORK
+msgid "AppImage Created with Warnings"
+msgstr "带有警告的 AppImage 创建完成"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
+#: NEEDS WORK
+msgid ""
+"The AppImage was created successfully, but some library dependencies could not be resolved. The "
+"application may not work correctly on some systems."
+msgstr "AppImage 创建成功，但某些库依赖项无法解析。该应用程序在某些系统上可能无法正常工作。"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
+#: NEEDS WORK
+msgid "Missing Libraries"
+msgstr "缺失的库"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
+#: NEEDS WORK
+msgid "How to fix:"
+msgstr "如何修复："
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
+#: NEEDS WORK
+msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
+msgstr "• 尝试使用不同的容器构建（例如，Ubuntu 22.04 而不是 24.04）"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
+#: NEEDS WORK
+msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
+msgstr "• 在构建之前，将缺失的库添加到“附加库”部分"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
+#: NEEDS WORK
+msgid "• Install the required -dev packages in the build container"
+msgstr "• 在构建容器中安装所需的 -dev 包"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 274
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
+#: NEEDS WORK
+msgid "Close"
+msgstr "关闭"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
+#: NEEDS WORK
+msgid "Open Folder"
+msgstr "打开文件夹"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
+# File: usr/share/appimage-creator/ui/window.py, line: 503
+#: NEEDS WORK
+msgid "OK"
+msgstr "好的"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1051
+#: NEEDS WORK
+msgid "Build Complete"
+msgstr "构建完成"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
+#: NEEDS WORK
+msgid "AppImage created successfully:"
+msgstr "AppImage 创建成功："
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
+# File: usr/share/appimage-creator/ui/window.py, line: 439
+#: NEEDS WORK
+msgid "Cancel"
+msgstr "取消"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
+#: NEEDS WORK
+msgid "Open"
+msgstr "打开"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
+#: NEEDS WORK
+msgid "Select"
+msgstr "选择"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
+#: NEEDS WORK
+msgid "Save"
+msgstr "保存"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
+#: NEEDS WORK
+msgid "Copy to clipboard"
+msgstr "复制到剪贴板"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
+#: NEEDS WORK
+msgid "Desktop File Content"
+msgstr "桌面文件内容"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/ui/window.py, line: 998
+# File: usr/share/appimage-creator/ui/window.py, line: 1007
+#: NEEDS WORK
+msgid "Error"
+msgstr "错误"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Could not load custom CSS: {}"
-msgstr "警告：无法加载自定义 CSS：{}"
+msgid "Failed to read file: {}"
+msgstr "无法读取文件：{}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
+#: NEEDS WORK
+msgid "Starting..."
+msgstr "正在启动..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
+#: NEEDS WORK
+msgid "Cancelling..."
+msgstr "取消中..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
+#: NEEDS WORK
+msgid "Cancelled."
+msgstr "已取消。"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
+#: NEEDS WORK
+msgid "Completed successfully!"
+msgstr "成功完成！"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
+#: NEEDS WORK
+msgid "Finished with errors."
+msgstr "完成时出错。"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
+# File: usr/share/appimage-creator/ui/pages.py, line: 459
+#: NEEDS WORK
+msgid "Install Required Packages"
+msgstr "安装所需软件包"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
+#: NEEDS WORK
+msgid "Installation Information"
+msgstr "安装信息"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
+#: NEEDS WORK
+msgid "Packages to Install"
+msgstr "要安装的包"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
+#: NEEDS WORK
+msgid "Command"
+msgstr "命令"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
+#: NEEDS WORK
+msgid ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+msgstr ""
+"<b>需要管理员权限</b>  \n"
+"系统将要求您输入密码以安装系统软件包。"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
+#: NEEDS WORK
+msgid "Installation Output"
+msgstr "安装输出"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
+#: NEEDS WORK
+msgid "Install"
+msgstr "安装"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
+#: NEEDS WORK
+msgid "Starting installation..."
+msgstr "正在开始安装..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
+#: NEEDS WORK
+msgid "Error running command"
+msgstr "运行命令时出错"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
+#: NEEDS WORK
+msgid "Pre-command completed successfully."
+msgstr "预命令成功完成。"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
+#: NEEDS WORK
+msgid "Installation completed successfully!"
+msgstr "安装成功完成！"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
+#: NEEDS WORK
+msgid "Command failed with exit code"
+msgstr "命令失败，退出代码为"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
+#: NEEDS WORK
+msgid "Installation failed."
+msgstr "安装失败。"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
+#: NEEDS WORK
+msgid "Please check the errors above and try again."
+msgstr "请检查上面的错误并重试。"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 48
 # File: usr/share/appimage-creator/ui/window.py, line: 132
@@ -291,11 +393,6 @@ msgstr "几乎准备好了！"
 msgid "Please enter an Application Name"
 msgstr "请输入应用程序名称"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 21
-#: NEEDS WORK
-msgid "Application name contains invalid characters"
-msgstr "应用程序名称包含无效字符"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 534
 #: NEEDS WORK
 msgid "Select Executable"
@@ -336,15 +433,6 @@ msgstr ""
 #: NEEDS WORK
 msgid "Do you want to continue?"
 msgstr "您想继续吗？"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
-# File: usr/share/appimage-creator/ui/window.py, line: 439
-#: NEEDS WORK
-msgid "Cancel"
-msgstr "取消"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 386
 #: NEEDS WORK
@@ -429,16 +517,6 @@ msgstr ""
 "所需的软件包已成功安装！\n"
 "\n"
 "请重新启动应用程序以使用新功能。"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
-# File: usr/share/appimage-creator/ui/window.py, line: 503
-#: NEEDS WORK
-msgid "OK"
-msgstr "好的"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 614
 #: NEEDS WORK
@@ -534,15 +612,6 @@ msgstr "AppImage 结构 - 完整视图"
 msgid "Validation Error"
 msgstr "验证错误"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-# File: usr/share/appimage-creator/ui/window.py, line: 998
-# File: usr/share/appimage-creator/ui/window.py, line: 1007
-#: NEEDS WORK
-msgid "Error"
-msgstr "错误"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 998
 #: NEEDS WORK
 #, python-brace-format
@@ -563,11 +632,6 @@ msgstr "继续执行"
 #: NEEDS WORK
 msgid "Build Failed"
 msgstr "构建失败"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1051
-#: NEEDS WORK
-msgid "Build Complete"
-msgstr "构建完成"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 1272
 #: NEEDS WORK
@@ -713,213 +777,6 @@ msgstr ""
 "构建过程中发生了文件权限错误。\n"
 "\n"
 "建议：检查您是否对所有文件具有必要的权限。"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
-#: NEEDS WORK
-msgid "Building AppImage"
-msgstr "构建 AppImage"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
-#: NEEDS WORK
-msgid "Preparing..."
-msgstr "准备中..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
-#: NEEDS WORK
-msgid "Cancel Build"
-msgstr "取消构建"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
-#: NEEDS WORK
-msgid "Dependency Warnings"
-msgstr "依赖警告"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
-#: NEEDS WORK
-msgid "AppImage Created with Warnings"
-msgstr "带有警告的 AppImage 创建完成"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
-#: NEEDS WORK
-msgid ""
-"The AppImage was created successfully, but some library dependencies could not be resolved. The "
-"application may not work correctly on some systems."
-msgstr "AppImage 创建成功，但某些库依赖项无法解析。该应用程序在某些系统上可能无法正常工作。"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
-#: NEEDS WORK
-msgid "Missing Libraries"
-msgstr "缺失的库"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
-#: NEEDS WORK
-msgid "How to fix:"
-msgstr "如何修复："
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
-#: NEEDS WORK
-msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
-msgstr "• 尝试使用不同的容器构建（例如，Ubuntu 22.04 而不是 24.04）"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
-#: NEEDS WORK
-msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
-msgstr "• 在构建之前，将缺失的库添加到“附加库”部分"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
-#: NEEDS WORK
-msgid "• Install the required -dev packages in the build container"
-msgstr "• 在构建容器中安装所需的 -dev 包"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 274
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
-#: NEEDS WORK
-msgid "Close"
-msgstr "关闭"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
-#: NEEDS WORK
-msgid "Open Folder"
-msgstr "打开文件夹"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
-#: NEEDS WORK
-msgid "AppImage created successfully:"
-msgstr "AppImage 创建成功："
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
-#: NEEDS WORK
-msgid "Open"
-msgstr "打开"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
-#: NEEDS WORK
-msgid "Select"
-msgstr "选择"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
-#: NEEDS WORK
-msgid "Save"
-msgstr "保存"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
-#: NEEDS WORK
-msgid "Copy to clipboard"
-msgstr "复制到剪贴板"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
-#: NEEDS WORK
-msgid "Desktop File Content"
-msgstr "桌面文件内容"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to read file: {}"
-msgstr "无法读取文件：{}"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
-#: NEEDS WORK
-msgid "Starting..."
-msgstr "正在启动..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
-#: NEEDS WORK
-msgid "Cancelling..."
-msgstr "取消中..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
-#: NEEDS WORK
-msgid "Cancelled."
-msgstr "已取消。"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
-#: NEEDS WORK
-msgid "Completed successfully!"
-msgstr "成功完成！"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
-#: NEEDS WORK
-msgid "Finished with errors."
-msgstr "完成时出错。"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
-# File: usr/share/appimage-creator/ui/pages.py, line: 459
-#: NEEDS WORK
-msgid "Install Required Packages"
-msgstr "安装所需软件包"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
-#: NEEDS WORK
-msgid "Installation Information"
-msgstr "安装信息"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
-#: NEEDS WORK
-msgid "Packages to Install"
-msgstr "要安装的包"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
-#: NEEDS WORK
-msgid "Command"
-msgstr "命令"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
-#: NEEDS WORK
-msgid ""
-"<b>Administrator privileges required</b>\n"
-"You will be asked for your password to install system packages."
-msgstr ""
-"<b>需要管理员权限</b>  \n"
-"系统将要求您输入密码以安装系统软件包。"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
-#: NEEDS WORK
-msgid "Installation Output"
-msgstr "安装输出"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
-#: NEEDS WORK
-msgid "Install"
-msgstr "安装"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
-#: NEEDS WORK
-msgid "Starting installation..."
-msgstr "正在开始安装..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
-#: NEEDS WORK
-msgid "Error running command"
-msgstr "运行命令时出错"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
-#: NEEDS WORK
-msgid "Pre-command completed successfully."
-msgstr "预命令成功完成。"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
-#: NEEDS WORK
-msgid "Installation completed successfully!"
-msgstr "安装成功完成！"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
-#: NEEDS WORK
-msgid "Command failed with exit code"
-msgstr "命令失败，退出代码为"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
-#: NEEDS WORK
-msgid "Installation failed."
-msgstr "安装失败。"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
-#: NEEDS WORK
-msgid "Please check the errors above and try again."
-msgstr "请检查上面的错误并重试。"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 76
 #: NEEDS WORK
@@ -1623,250 +1480,503 @@ msgstr "在容器中构建以实现最大兼容性"
 msgid "No container available — building on the local system"
 msgstr "没有可用的容器 — 在本地系统上构建"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 18
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
 #: NEEDS WORK
-msgid "Application name must be at least 2 characters long"
-msgstr "应用程序名称必须至少为 2 个字符长"
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"选择启动您应用程序的主二进制文件或脚本。\n"
+"\n"
+"这是入口点 — 当用户启动 AppImage 时将执行的文件。"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 29
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
 #: NEEDS WORK
-msgid "Version is required"
-msgstr "版本是必需的"
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"用于 AppImage 文件名和菜单项的应用程序名称。\n"
+"\n"
+"仅允许字母、数字、空格、连字符、下划线和点。"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 32
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
 #: NEEDS WORK
-msgid "Invalid version format"
-msgstr "无效的版本格式"
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"应用程序图标用于系统菜单、任务栏和文件管理器。\n"
+"\n"
+"建议使用256×256或更大的PNG/SVG图标。\n"
+"\n"
+"如果没有图标，AppImage将在菜单和任务栏中显示通用图标。"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 40
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
 #: NEEDS WORK
-msgid "Executable file does not exist"
-msgstr "可执行文件不存在"
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+".desktop 文件控制应用程序在系统菜单中的显示方式，包括其名称、图标、类别和启动选项。\n"
+"\n"
+"如果您不提供一个，将自动生成一个基本的 .desktop 文件，使用此处配置的信息。\n"
+"\n"
+"为了实现完全集成，请提供您自己的文件，包含适当的类别和元数据。"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 43
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
 #: NEEDS WORK
-msgid "File is not executable"
-msgstr "文件不可执行"
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"确定启动器（AppRun）脚本的生成方式。\n"
+"\n"
+"这会从可执行文件中自动检测，但您可以覆盖它：\n"
+"• 二进制 — 编译的本地可执行文件\n"
+"• Python — 使用系统解释器的 Python 脚本\n"
+"• Electron — 基于 Electron 的应用程序\n"
+"• GTK/Qt — 带有工具包特定环境变量的 GUI 应用程序"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 54
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
 #: NEEDS WORK
-msgid "Error: Missing [Desktop Entry] section"
-msgstr "错误：缺少 [Desktop Entry] 部分"
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"您应用程序的语义版本（例如 1.2.3）。\n"
+"\n"
+"这嵌入在 AppImage 元数据中，用于更新检测。"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 69
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr "在应用程序菜单和软件包管理器中显示的简短描述。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"为需要终端运行的CLI工具启用此选项。\n"
+"\n"
+"启用后，桌面环境将在启动应用程序之前打开终端仿真器。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"GitHub 发布 API URL 用于自动更新。\n"
+"\n"
+"必须以 https:// 开头 — 通常是：\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"点击粘贴按钮以插入模板。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"用于识别从发布中下载哪个文件的全局模式。\n"
+"\n"
+"星号 (*) 匹配任何文本。示例：\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"最终 .AppImage 文件将保存的目录。\n"
+"\n"
+"默认为当前工作目录。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr ""
+"选择构建 AppImage 的位置。\n"
+"\n"
+"使用 Distrobox 容器可以与较旧的 Linux 发行版实现最大兼容性，因为它是针对较旧的 glibc 构建的。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"将共享库（.so 文件）打包到 AppImage 中。\n"
+"\n"
+"这确保应用程序在可能未安装所需库的其他系统上正常工作。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"将图标主题打包到 AppImage 中。\n"
+"\n"
+"如果没有打包主题，某些图标可能会在使用与您的应用程序设计不同的图标主题的桌面上缺失。"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"从二进制文件中移除调试符号以减小 AppImage 的大小。\n"
+"\n"
+"这使文件变小，但如果出现问题则更难调试。"
+# 
+# File: usr/share/appimage-creator/utils/system.py, line: 108
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Missing required keys: {}"
-msgstr "错误：缺少必需的密钥：{}"
+msgid "Failed to make file executable: {}"
+msgstr "无法使文件可执行：{}"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 81
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Empty value for required key: {}"
-msgstr "错误：必需键的值为空：{}"
+msgid "Failed to download {}: {}"
+msgstr "下载 {} 失败：{}"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 335
-# File: update_window.py, line: 433
-# File: usr/share/appimage-creator/updater/update_window.py, line: 324
-# File: usr/share/appimage-creator/updater/update_window.py, line: 422
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Update Available"
-msgstr "更新可用"
+msgid "Recommended - Latest Ubuntu LTS with newest packages."
+msgstr "推荐 - 最新的 Ubuntu LTS 及最新软件包。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 440
-# File: usr/share/appimage-creator/updater/update_window.py, line: 429
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 31
 #: NEEDS WORK
-#, python-brace-format
-msgid "A new version of {} is available"
-msgstr "有一个新版本的{}可用"
+msgid "Good balance of compatibility and modern packages."
+msgstr "良好的兼容性与现代软件包的平衡。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 529
-# File: usr/share/appimage-creator/updater/update_window.py, line: 518
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 41
 #: NEEDS WORK
-msgid "Update"
-msgstr "更新"
+msgid "Excellent compatibility for older systems."
+msgstr "对旧系统的优秀兼容性。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 525
-# File: usr/share/appimage-creator/updater/update_window.py, line: 514
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 53
 #: NEEDS WORK
-msgid "Later"
-msgstr "稍后"
+msgid "Latest Debian stable - very reliable."
+msgstr "最新的 Debian 稳定版 - 非常可靠。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 232
-# File: usr/share/appimage-creator/updater/update_window.py, line: 221
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 63
 #: NEEDS WORK
-msgid "Downloading update..."
-msgstr "正在下载更新..."
+msgid "Previous Debian stable - proven stability."
+msgstr "之前的 Debian 稳定版 - 经过验证的稳定性。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
+#: NEEDS WORK
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "最新的 Fedora，配备前沿软件包和 GTK4/VTE 支持。"
 # 
-# File: update_window.py, line: 233
-# File: usr/share/appimage-creator/updater/update_window.py, line: 222
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 105
+#: NEEDS WORK
+msgid "RHEL 9 compatible - enterprise-grade stability."
+msgstr "RHEL 9 兼容 - 企业级稳定性。"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 250
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox (missing dependencies)."
+msgstr "主机未为 Distrobox 设置（缺少依赖项）。"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 263
 #: NEEDS WORK
 #, python-brace-format
-msgid "Version {}"
-msgstr "版本 {}"
+msgid "Environment '{}' already exists."
+msgstr "环境'{}'已经存在。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 265
-# File: usr/share/appimage-creator/updater/update_window.py, line: 254
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 275
 #: NEEDS WORK
 #, python-brace-format
-msgid "Version {} installed successfully"
-msgstr "版本 {} 安装成功"
+msgid "Creating environment '{}'... This may take a while."
+msgstr "正在创建环境'{}'... 这可能需要一些时间。"
 # 
-# File: usr/share/appimage-creator/updater/notify_fallback.py, line: 159
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 392
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 431
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 451
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 576
 #: NEEDS WORK
-msgid "The update will be applied the next time the application starts"
-msgstr "下次启动应用程序时将应用更新"
+msgid "Cancelled by user."
+msgstr "用户取消。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 264
-# File: usr/share/appimage-creator/updater/update_window.py, line: 253
-#: NEEDS WORK
-msgid "Update completed!"
-msgstr "更新完成！"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 290
-# File: usr/share/appimage-creator/updater/update_window.py, line: 279
-#: NEEDS WORK
-msgid "Update failed"
-msgstr "更新失败"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 592
-# File: usr/share/appimage-creator/updater/update_window.py, line: 581
-#: NEEDS WORK
-msgid "Download failed"
-msgstr "下载失败"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 152
-# File: usr/share/appimage-creator/updater/update_window.py, line: 141
-#: NEEDS WORK
-msgid "Updating"
-msgstr "更新中"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 218
-# File: usr/share/appimage-creator/updater/update_window.py, line: 207
-#: NEEDS WORK
-msgid "Done"
-msgstr "完成"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 241
-# File: usr/share/appimage-creator/updater/update_window.py, line: 230
-#: NEEDS WORK
-msgid "Installing update..."
-msgstr "正在安装更新..."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 303
-# File: usr/share/appimage-creator/updater/update_window.py, line: 292
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 295
 #: NEEDS WORK
 #, python-brace-format
-msgid "{:.1f} MB of {:.1f} MB"
-msgstr "{:.1f} MB / {:.1f} MB"
+msgid "Failed to create environment. Distrobox exited with code {}."
+msgstr "创建环境失败。Distrobox 以代码 {} 退出。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 448
-# File: usr/share/appimage-creator/updater/update_window.py, line: 437
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 304
 #: NEEDS WORK
-msgid "Version Information"
-msgstr "版本信息"
+msgid "Initializing container (creating user and environment)..."
+msgstr "初始化容器（创建用户和环境）..."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 451
-# File: usr/share/appimage-creator/updater/update_window.py, line: 440
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 305
 #: NEEDS WORK
-msgid "Current Version"
-msgstr "当前版本"
+msgid "First-time setup may take 5-10 minutes on slow connections..."
+msgstr "首次设置在慢速连接上可能需要 5-10 分钟..."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 456
-# File: usr/share/appimage-creator/updater/update_window.py, line: 445
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 306
 #: NEEDS WORK
-msgid "New Version"
-msgstr "新版本"
+msgid "Please be patient - this is a one-time process."
+msgstr "请耐心等待 - 这是一次性过程。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 465
-# File: usr/share/appimage-creator/updater/update_window.py, line: 454
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 336
 #: NEEDS WORK
-msgid "What's New"
-msgstr "新功能"
+msgid "Warning: Container initialization completed with issues"
+msgstr "警告：容器初始化完成，但存在问题"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 469
-# File: usr/share/appimage-creator/updater/update_window.py, line: 458
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 340
 #: NEEDS WORK
-msgid "Release Notes"
-msgstr "发布说明"
+msgid "Container initialization complete!"
+msgstr "容器初始化完成！"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 470
-# File: usr/share/appimage-creator/updater/update_window.py, line: 459
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 344
 #: NEEDS WORK
-msgid "Click to view changes"
-msgstr "点击查看更改"
+msgid "Warning: Failed to initialize container automatically"
+msgstr "警告：无法自动初始化容器"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 491
-# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 345
 #: NEEDS WORK
-msgid "Options"
-msgstr "选项"
+#, python-brace-format
+msgid "You may need to run: distrobox-enter {}"
+msgstr "您可能需要运行：distrobox-enter {}"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 495
-# File: usr/share/appimage-creator/updater/update_window.py, line: 484
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 348
 #: NEEDS WORK
-msgid "Remove old version"
-msgstr "删除旧版本"
+msgid "Environment created successfully!"
+msgstr "环境创建成功！"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 496
-# File: usr/share/appimage-creator/updater/update_window.py, line: 485
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 351
 #: NEEDS WORK
-msgid "Delete previous version after successful update"
-msgstr "成功更新后删除先前版本"
+msgid "distrobox-create command not found."
+msgstr "distrobox-create 命令未找到。"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 605
-# File: usr/share/appimage-creator/updater/update_window.py, line: 594
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 354
 #: NEEDS WORK
-msgid "Integration failed"
-msgstr "集成失败"
+#, python-brace-format
+msgid "An error occurred while creating the environment: {}"
+msgstr "创建环境时发生错误：{}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 359
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 438
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox."
+msgstr "主机未为 Distrobox 设置。"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 372
+#: NEEDS WORK
+msgid "Waiting for container to be fully ready..."
+msgstr "等待容器完全就绪..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 379
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' was created but is not accessible. Try again in a moment."
+msgstr "容器'{}'已创建，但无法访问。请稍后再试。"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 405
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing dependencies in '{}'..."
+msgstr "正在安装'{}'中的依赖项..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 424
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to install dependencies. Process exited with code {}."
+msgstr "安装依赖项失败。进程以代码 {} 退出。"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 427
+#: NEEDS WORK
+msgid "Dependencies installed successfully!"
+msgstr "依赖项安装成功！"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 433
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while installing dependencies: {}"
+msgstr "安装依赖时发生错误：{}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 452
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' does not exist."
+msgstr "容器'{}'不存在。"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 460
+#: NEEDS WORK
+#, python-brace-format
+msgid "Removing container '{}'..."
+msgstr "正在移除容器'{}'..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 479
+#: NEEDS WORK
+msgid "Failed to remove container."
+msgstr "无法删除容器。"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 485
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 516
+#: NEEDS WORK
+msgid "Container removed successfully!"
+msgstr "容器已成功移除！"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 493
+#: NEEDS WORK
+msgid "Removing container image to free disk space..."
+msgstr "正在删除容器镜像以释放磁盘空间..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 507
+#: NEEDS WORK
+msgid "Image removed successfully"
+msgstr "图像已成功删除"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 510
+#: NEEDS WORK
+msgid "Note: Image may still be in use by other containers"
+msgstr "注意：镜像可能仍在其他容器中使用"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 513
+#: NEEDS WORK
+msgid "Warning: Could not remove image automatically"
+msgstr "警告：无法自动删除图像"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 519
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while removing the container: {}"
+msgstr "在移除容器时发生错误：{}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 861
+#: NEEDS WORK
+msgid "AppImage Structure - Detailed View"
+msgstr "AppImage 结构 - 详细视图"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 865
+#: NEEDS WORK
+msgid "[AppImage Root]"
+msgstr "[AppImage 根目录]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 866
+#: NEEDS WORK
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun（主启动器）"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 869
+#: NEEDS WORK
+msgid "└── usr/"
+msgstr "└── usr/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 870
+#: NEEDS WORK
+msgid "    ├── bin/"
+msgstr "├── bin/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 872
+#: NEEDS WORK
+msgid "    ├── lib/"
+msgstr "├── 库/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 873
+#: NEEDS WORK
+msgid "    └── share/"
+msgstr "└── 分享/"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
+#: NEEDS WORK
+msgid "Python Files"
+msgstr "Python 文件"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
+#: NEEDS WORK
+msgid "Shell Scripts"
+msgstr "Shell 脚本"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
+#: NEEDS WORK
+msgid "UI Files"
+msgstr "用户界面文件"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
+#: NEEDS WORK
+msgid "CSS Files"
+msgstr "CSS 文件"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
+#: NEEDS WORK
+msgid "Icon Files"
+msgstr "图标文件"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
+#: NEEDS WORK
+msgid "Locale Directories"
+msgstr "区域目录"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[附加目录]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "摘要"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "项目根目录"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "文件分解："
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 125
 #: NEEDS WORK
@@ -1961,6 +2071,12 @@ msgstr "正在复制应用程序文件..."
 #, python-brace-format
 msgid "Copying structured project from: {}"
 msgstr "从以下位置复制结构化项目：{}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 351
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping virtualenv directory: {}"
+msgstr "跳过虚拟环境目录：{}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 207
 #: NEEDS WORK
@@ -2747,213 +2863,6 @@ msgstr "✗ 构建失败：{}"
 msgid "Build already in progress"
 msgstr "构建已在进行中"
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
-#: NEEDS WORK
-msgid "Recommended - Latest Ubuntu LTS with newest packages."
-msgstr "推荐 - 最新的 Ubuntu LTS 及最新软件包。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 31
-#: NEEDS WORK
-msgid "Good balance of compatibility and modern packages."
-msgstr "良好的兼容性与现代软件包的平衡。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 41
-#: NEEDS WORK
-msgid "Excellent compatibility for older systems."
-msgstr "对旧系统的优秀兼容性。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 53
-#: NEEDS WORK
-msgid "Latest Debian stable - very reliable."
-msgstr "最新的 Debian 稳定版 - 非常可靠。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 63
-#: NEEDS WORK
-msgid "Previous Debian stable - proven stability."
-msgstr "之前的 Debian 稳定版 - 经过验证的稳定性。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
-#: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
-msgstr "最新的 Fedora，配备前沿软件包和 GTK4/VTE 支持。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 105
-#: NEEDS WORK
-msgid "RHEL 9 compatible - enterprise-grade stability."
-msgstr "RHEL 9 兼容 - 企业级稳定性。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 250
-#: NEEDS WORK
-msgid "Host is not set up for Distrobox (missing dependencies)."
-msgstr "主机未为 Distrobox 设置（缺少依赖项）。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 263
-#: NEEDS WORK
-#, python-brace-format
-msgid "Environment '{}' already exists."
-msgstr "环境'{}'已经存在。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 275
-#: NEEDS WORK
-#, python-brace-format
-msgid "Creating environment '{}'... This may take a while."
-msgstr "正在创建环境'{}'... 这可能需要一些时间。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 392
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 431
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 451
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 576
-#: NEEDS WORK
-msgid "Cancelled by user."
-msgstr "用户取消。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 295
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to create environment. Distrobox exited with code {}."
-msgstr "创建环境失败。Distrobox 以代码 {} 退出。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 304
-#: NEEDS WORK
-msgid "Initializing container (creating user and environment)..."
-msgstr "初始化容器（创建用户和环境）..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 305
-#: NEEDS WORK
-msgid "First-time setup may take 5-10 minutes on slow connections..."
-msgstr "首次设置在慢速连接上可能需要 5-10 分钟..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 306
-#: NEEDS WORK
-msgid "Please be patient - this is a one-time process."
-msgstr "请耐心等待 - 这是一次性过程。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 336
-#: NEEDS WORK
-msgid "Warning: Container initialization completed with issues"
-msgstr "警告：容器初始化完成，但存在问题"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 340
-#: NEEDS WORK
-msgid "Container initialization complete!"
-msgstr "容器初始化完成！"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 344
-#: NEEDS WORK
-msgid "Warning: Failed to initialize container automatically"
-msgstr "警告：无法自动初始化容器"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 345
-#: NEEDS WORK
-#, python-brace-format
-msgid "You may need to run: distrobox-enter {}"
-msgstr "您可能需要运行：distrobox-enter {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 348
-#: NEEDS WORK
-msgid "Environment created successfully!"
-msgstr "环境创建成功！"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 351
-#: NEEDS WORK
-msgid "distrobox-create command not found."
-msgstr "distrobox-create 命令未找到。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 354
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while creating the environment: {}"
-msgstr "创建环境时发生错误：{}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 359
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 438
-#: NEEDS WORK
-msgid "Host is not set up for Distrobox."
-msgstr "主机未为 Distrobox 设置。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 372
-#: NEEDS WORK
-msgid "Waiting for container to be fully ready..."
-msgstr "等待容器完全就绪..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 379
-#: NEEDS WORK
-#, python-brace-format
-msgid "Container '{}' was created but is not accessible. Try again in a moment."
-msgstr "容器'{}'已创建，但无法访问。请稍后再试。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 405
-#: NEEDS WORK
-#, python-brace-format
-msgid "Installing dependencies in '{}'..."
-msgstr "正在安装'{}'中的依赖项..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 424
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to install dependencies. Process exited with code {}."
-msgstr "安装依赖项失败。进程以代码 {} 退出。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 427
-#: NEEDS WORK
-msgid "Dependencies installed successfully!"
-msgstr "依赖项安装成功！"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 433
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while installing dependencies: {}"
-msgstr "安装依赖时发生错误：{}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 452
-#: NEEDS WORK
-#, python-brace-format
-msgid "Container '{}' does not exist."
-msgstr "容器'{}'不存在。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 460
-#: NEEDS WORK
-#, python-brace-format
-msgid "Removing container '{}'..."
-msgstr "正在移除容器'{}'..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 479
-#: NEEDS WORK
-msgid "Failed to remove container."
-msgstr "无法删除容器。"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 485
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 516
-#: NEEDS WORK
-msgid "Container removed successfully!"
-msgstr "容器已成功移除！"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 493
-#: NEEDS WORK
-msgid "Removing container image to free disk space..."
-msgstr "正在删除容器镜像以释放磁盘空间..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 507
-#: NEEDS WORK
-msgid "Image removed successfully"
-msgstr "图像已成功删除"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 510
-#: NEEDS WORK
-msgid "Note: Image may still be in use by other containers"
-msgstr "注意：镜像可能仍在其他容器中使用"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 513
-#: NEEDS WORK
-msgid "Warning: Could not remove image automatically"
-msgstr "警告：无法自动删除图像"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 519
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while removing the container: {}"
-msgstr "在移除容器时发生错误：{}"
-# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
 #: NEEDS WORK
 #, python-brace-format
@@ -3101,177 +3010,121 @@ msgstr "正在扫描二进制依赖项：{}"
 msgid "  Detected dependency on binary: {}"
 msgstr "检测到对二进制文件的依赖：{}"
 # 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
+#: NEEDS WORK
+msgid "Starting recursive dependency resolution..."
+msgstr "开始递归依赖解析..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
 #: NEEDS WORK
 #, python-brace-format
-msgid "Ignoring unsafe extra library name: {}"
-msgstr "忽略不安全的额外库名称：{}"
+msgid "  Resolution iteration {}/{}..."
+msgstr "分辨率迭代 {}/{}..."
 # 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Including user-specified extra libraries: {}"
-msgstr "包括用户指定的额外库：{}"
+msgid "  Found {} ELF files to scan"
+msgstr "找到 {} 个 ELF 文件进行扫描"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1323
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
+#: NEEDS WORK
+msgid "  No missing libraries found — resolution complete"
+msgstr "未发现缺失的库 — 解决完成"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying standard system libraries: {}"
-msgstr "复制标准系统库：{}"
+msgid "  Found {} missing libraries: {}"
+msgstr "找到 {} 个缺失的库：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1327
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying conflicting system libraries to fallback dir: {}"
-msgstr "正在将冲突的系统库复制到备用目录：{}"
+msgid "    Copied: {}"
+msgstr "已复制：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1344
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
 #: NEEDS WORK
 #, python-brace-format
-msgid "Generating script to copy libraries to {}..."
-msgstr "正在生成脚本以将库复制到 {}..."
+msgid "    Failed to copy: {}"
+msgstr "复制失败：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1241
-#: NEEDS WORK
-msgid "Executing library copy script..."
-msgstr "正在执行库复制脚本..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1151
-#: NEEDS WORK
-msgid "Warning: Library copy script finished with errors."
-msgstr "警告：库复制脚本完成，但出现错误。"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1153
-#: NEEDS WORK
-msgid "Library copy script finished successfully."
-msgstr "库复制脚本成功完成。"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1273
-#: NEEDS WORK
-msgid "No typelibs selected for inclusion."
-msgstr "未选择要包含的类型库。"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1276
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected typelibs: {}"
-msgstr "复制选定的类型库：{}"
+msgid "    Not found in system: {}"
+msgstr "系统中未找到：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1284
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
 #: NEEDS WORK
-msgid "Generating script to copy typelibs..."
-msgstr "正在生成脚本以复制类型库..."
+msgid "  No new libraries could be copied — stopping"
+msgstr "无法复制新的库 — 停止"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1318
-#: NEEDS WORK
-msgid "Executing typelib copy script..."
-msgstr "正在执行类型库复制脚本..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1286
-#: NEEDS WORK
-msgid "Warning: Some typelibs may not have been copied"
-msgstr "警告：某些类型库可能未被复制"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1288
-#: NEEDS WORK
-msgid "Typelib copy complete"
-msgstr "类型库复制完成"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1467
-#: NEEDS WORK
-msgid "Copying essential GStreamer plugins..."
-msgstr "复制基本的 GStreamer 插件..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1530
-#: NEEDS WORK
-msgid "Detected video playback requirements"
-msgstr "检测到的视频播放要求"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1579
-#: NEEDS WORK
-msgid "Copying GStreamer plugins..."
-msgstr "正在复制 GStreamer 插件..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1588
-#: NEEDS WORK
-msgid "GStreamer plugin copying complete"
-msgstr "GStreamer 插件复制完成"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1385
-#: NEEDS WORK
-msgid "Copying Adwaita symbolic icons..."
-msgstr "复制 Adwaita 符号图标..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1394
-#: NEEDS WORK
-msgid "Symbolic icons already present"
-msgstr "已存在符号图标"
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
-#: NEEDS WORK
-msgid "Copying symbolic icons from container..."
-msgstr "从容器复制符号图标..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
-#: NEEDS WORK
-msgid "Copying symbolic icons from host system..."
-msgstr "从主机系统复制符号图标..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Adwaita symbolic icons not found at {}"
-msgstr "警告：在 {} 找不到 Adwaita 符号图标"
+msgid "  Copied {} libraries this iteration"
+msgstr "已复制 {} 个库本次迭代"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1442
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
 #: NEEDS WORK
-msgid "Warning: Failed to copy symbolic icons"
-msgstr "警告：复制符号图标失败"
+#, python-brace-format
+msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
+msgstr "依赖解析完成：{} 已复制，{} 仍然缺失（{} 次迭代）"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1656
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
 #: NEEDS WORK
-msgid "Creating custom index.theme for Adwaita symbolic icons..."
-msgstr "为Adwaita符号图标创建自定义index.theme..."
+msgid "Validating library dependencies..."
+msgstr "验证库依赖..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1444
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
 #: NEEDS WORK
-msgid "Symbolic icons copied successfully"
-msgstr "符号图标复制成功"
+msgid "Library validation FAILED:"
+msgstr "库验证失败："
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1477
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
 #: NEEDS WORK
-msgid "Copying Papirus symbolic icons..."
-msgstr "复制 Papirus 符号图标..."
+msgid "Library validation passed — all dependencies resolved"
+msgstr "库验证通过 — 所有依赖项已解决"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1501
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
 #: NEEDS WORK
-msgid "Papirus symbolic icons already present"
-msgstr "Papirus符号图标已存在"
+#, python-brace-format
+msgid "Validating Python imports for module: {}"
+msgstr "验证模块的 Python 导入：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1510
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
 #: NEEDS WORK
-msgid "Copying Papirus and Papirus-Dark symbolic icons..."
-msgstr "正在复制 Papirus 和 Papirus-Dark 符号图标..."
+msgid "Python import validation passed"
+msgstr "Python 导入验证通过"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1584
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
 #: NEEDS WORK
-msgid "Executing Papirus icons copy script..."
-msgstr "正在执行 Papirus 图标复制脚本..."
+#, python-brace-format
+msgid "Python import validation FAILED: {}"
+msgstr "Python 导入验证失败：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1594
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
 #: NEEDS WORK
-msgid "Warning: Papirus icons not available, falling back to Adwaita"
-msgstr "警告：Papirus 图标不可用，正在回退到 Adwaita"
+#, python-brace-format
+msgid "Python import validation error: {}"
+msgstr "Python 导入验证错误：{}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1882
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
 #: NEEDS WORK
-msgid "Creating custom index.theme for Papirus symbolic icons..."
-msgstr "为Papirus符号图标创建自定义index.theme..."
+msgid "Running pre-packaging validation..."
+msgstr "运行预打包验证..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1597
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
 #: NEEDS WORK
-msgid "Papirus symbolic icons copied successfully"
-msgstr "Papirus符号图标复制成功"
+msgid "Pre-packaging validation PASSED"
+msgstr "预包装验证通过"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
+#: NEEDS WORK
+msgid "Pre-packaging validation FAILED — check warnings above"
+msgstr "预打包验证失败 — 请检查上面的警告"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 367
 #: NEEDS WORK
@@ -3587,224 +3440,377 @@ msgstr "无法复制系统 PyGObject"
 msgid "Error using system PyGObject: {}"
 msgstr "使用系统 PyGObject 时出错：{}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
-#: NEEDS WORK
-msgid "Starting recursive dependency resolution..."
-msgstr "开始递归依赖解析..."
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Resolution iteration {}/{}..."
-msgstr "分辨率迭代 {}/{}..."
+msgid "Ignoring unsafe extra library name: {}"
+msgstr "忽略不安全的额外库名称：{}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Found {} ELF files to scan"
-msgstr "找到 {} 个 ELF 文件进行扫描"
+msgid "Including user-specified extra libraries: {}"
+msgstr "包括用户指定的额外库：{}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
-#: NEEDS WORK
-msgid "  No missing libraries found — resolution complete"
-msgstr "未发现缺失的库 — 解决完成"
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Found {} missing libraries: {}"
-msgstr "找到 {} 个缺失的库：{}"
+msgid "Copying standard system libraries: {}"
+msgstr "复制标准系统库：{}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Copied: {}"
-msgstr "已复制：{}"
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "正在将冲突的系统库复制到备用目录：{}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Failed to copy: {}"
-msgstr "复制失败：{}"
+msgid "Generating script to copy libraries to {}..."
+msgstr "正在生成脚本以将库复制到 {}..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
+#: NEEDS WORK
+msgid "Executing library copy script..."
+msgstr "正在执行库复制脚本..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1151
+#: NEEDS WORK
+msgid "Warning: Library copy script finished with errors."
+msgstr "警告：库复制脚本完成，但出现错误。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1153
+#: NEEDS WORK
+msgid "Library copy script finished successfully."
+msgstr "库复制脚本成功完成。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
+#: NEEDS WORK
+msgid "No typelibs selected for inclusion."
+msgstr "未选择要包含的类型库。"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Not found in system: {}"
-msgstr "系统中未找到：{}"
+msgid "Copying selected typelibs: {}"
+msgstr "复制选定的类型库：{}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "  No new libraries could be copied — stopping"
-msgstr "无法复制新的库 — 停止"
+msgid "Generating script to copy typelibs..."
+msgstr "正在生成脚本以复制类型库..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied {} libraries this iteration"
-msgstr "已复制 {} 个库本次迭代"
+msgid "Executing typelib copy script..."
+msgstr "正在执行类型库复制脚本..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK
-#, python-brace-format
-msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
-msgstr "依赖解析完成：{} 已复制，{} 仍然缺失（{} 次迭代）"
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "警告：某些类型库可能未被复制"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
 #: NEEDS WORK
-msgid "Validating library dependencies..."
-msgstr "验证库依赖..."
+msgid "Typelib copy complete"
+msgstr "类型库复制完成"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
 #: NEEDS WORK
-msgid "Library validation FAILED:"
-msgstr "库验证失败："
+msgid "Copying essential GStreamer plugins..."
+msgstr "复制基本的 GStreamer 插件..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
 #: NEEDS WORK
-msgid "Library validation passed — all dependencies resolved"
-msgstr "库验证通过 — 所有依赖项已解决"
+msgid "Detected video playback requirements"
+msgstr "检测到的视频播放要求"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
 #: NEEDS WORK
-#, python-brace-format
-msgid "Validating Python imports for module: {}"
-msgstr "验证模块的 Python 导入：{}"
+msgid "Copying GStreamer plugins..."
+msgstr "正在复制 GStreamer 插件..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
 #: NEEDS WORK
-msgid "Python import validation passed"
-msgstr "Python 导入验证通过"
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer 插件复制完成"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation FAILED: {}"
-msgstr "Python 导入验证失败：{}"
+msgid "Copying Adwaita symbolic icons..."
+msgstr "复制 Adwaita 符号图标..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation error: {}"
-msgstr "Python 导入验证错误：{}"
+msgid "Symbolic icons already present"
+msgstr "已存在符号图标"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
 #: NEEDS WORK
-msgid "Running pre-packaging validation..."
-msgstr "运行预打包验证..."
+msgid "Copying symbolic icons from container..."
+msgstr "从容器复制符号图标..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
 #: NEEDS WORK
-msgid "Pre-packaging validation PASSED"
-msgstr "预包装验证通过"
+msgid "Copying symbolic icons from host system..."
+msgstr "从主机系统复制符号图标..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
-#: NEEDS WORK
-msgid "Pre-packaging validation FAILED — check warnings above"
-msgstr "预打包验证失败 — 请检查上面的警告"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 861
-#: NEEDS WORK
-msgid "AppImage Structure - Detailed View"
-msgstr "AppImage 结构 - 详细视图"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 865
-#: NEEDS WORK
-msgid "[AppImage Root]"
-msgstr "[AppImage 根目录]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 866
-#: NEEDS WORK
-msgid "├── AppRun (main launcher)"
-msgstr "├── AppRun（主启动器）"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 869
-#: NEEDS WORK
-msgid "└── usr/"
-msgstr "└── usr/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 870
-#: NEEDS WORK
-msgid "    ├── bin/"
-msgstr "├── bin/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 872
-#: NEEDS WORK
-msgid "    ├── lib/"
-msgstr "├── 库/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 873
-#: NEEDS WORK
-msgid "    └── share/"
-msgstr "└── 分享/"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
-#: NEEDS WORK
-msgid "Python Files"
-msgstr "Python 文件"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
-#: NEEDS WORK
-msgid "Shell Scripts"
-msgstr "Shell 脚本"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
-#: NEEDS WORK
-msgid "UI Files"
-msgstr "用户界面文件"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
-#: NEEDS WORK
-msgid "CSS Files"
-msgstr "CSS 文件"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
-#: NEEDS WORK
-msgid "Icon Files"
-msgstr "图标文件"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
-#: NEEDS WORK
-msgid "Locale Directories"
-msgstr "区域目录"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1085
-#: NEEDS WORK
-msgid "[Additional Directories]"
-msgstr "[附加目录]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1112
-#: NEEDS WORK
-msgid "SUMMARY"
-msgstr "摘要"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1116
-#: NEEDS WORK
-msgid "Project Root"
-msgstr "项目根目录"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1127
-#: NEEDS WORK
-msgid "  File Breakdown:"
-msgstr "文件分解："
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 16
-#: NEEDS WORK
-msgid "Warning: PIL/Pillow not available, icon processing will be limited"
-msgstr "警告：PIL/Pillow 不可用，图标处理将受到限制"
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 82
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error processing icon: {}"
-msgstr "处理图标时出错：{}"
+msgid "Warning: Adwaita symbolic icons not found at {}"
+msgstr "警告：在 {} 找不到 Adwaita 符号图标"
 # 
-# File: usr/share/appimage-creator/generators/files.py, line: 70
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
 #: NEEDS WORK
-msgid "Warning: Desktop file may have validation issues"
-msgstr "警告：桌面文件可能存在验证问题"
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "警告：复制符号图标失败"
 # 
-# File: usr/share/appimage-creator/generators/files.py, line: 85
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
 #: NEEDS WORK
-msgid "Failed to create desktop file"
-msgstr "无法创建桌面文件"
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "为Adwaita符号图标创建自定义index.theme..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "符号图标复制成功"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "复制 Papirus 符号图标..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Papirus符号图标已存在"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "正在复制 Papirus 和 Papirus-Dark 符号图标..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "正在执行 Papirus 图标复制脚本..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "警告：Papirus 图标不可用，正在回退到 Adwaita"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "为Papirus符号图标创建自定义index.theme..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Papirus符号图标复制成功"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 152
+# File: usr/share/appimage-creator/updater/update_window.py, line: 141
+#: NEEDS WORK
+msgid "Updating"
+msgstr "更新中"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 218
+# File: usr/share/appimage-creator/updater/update_window.py, line: 207
+#: NEEDS WORK
+msgid "Done"
+msgstr "完成"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 232
+# File: usr/share/appimage-creator/updater/update_window.py, line: 221
+#: NEEDS WORK
+msgid "Downloading update..."
+msgstr "正在下载更新..."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 233
+# File: usr/share/appimage-creator/updater/update_window.py, line: 222
+#: NEEDS WORK
+#, python-brace-format
+msgid "Version {}"
+msgstr "版本 {}"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 241
+# File: usr/share/appimage-creator/updater/update_window.py, line: 230
+#: NEEDS WORK
+msgid "Installing update..."
+msgstr "正在安装更新..."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 264
+# File: usr/share/appimage-creator/updater/update_window.py, line: 253
+#: NEEDS WORK
+msgid "Update completed!"
+msgstr "更新完成！"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 265
+# File: usr/share/appimage-creator/updater/update_window.py, line: 254
+#: NEEDS WORK
+#, python-brace-format
+msgid "Version {} installed successfully"
+msgstr "版本 {} 安装成功"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 290
+# File: usr/share/appimage-creator/updater/update_window.py, line: 279
+#: NEEDS WORK
+msgid "Update failed"
+msgstr "更新失败"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 303
+# File: usr/share/appimage-creator/updater/update_window.py, line: 292
+#: NEEDS WORK
+#, python-brace-format
+msgid "{:.1f} MB of {:.1f} MB"
+msgstr "{:.1f} MB / {:.1f} MB"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 335
+# File: update_window.py, line: 433
+# File: usr/share/appimage-creator/updater/update_window.py, line: 324
+# File: usr/share/appimage-creator/updater/update_window.py, line: 422
+#: NEEDS WORK
+msgid "Update Available"
+msgstr "更新可用"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 440
+# File: usr/share/appimage-creator/updater/update_window.py, line: 429
+#: NEEDS WORK
+#, python-brace-format
+msgid "A new version of {} is available"
+msgstr "有一个新版本的{}可用"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 448
+# File: usr/share/appimage-creator/updater/update_window.py, line: 437
+#: NEEDS WORK
+msgid "Version Information"
+msgstr "版本信息"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 451
+# File: usr/share/appimage-creator/updater/update_window.py, line: 440
+#: NEEDS WORK
+msgid "Current Version"
+msgstr "当前版本"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 456
+# File: usr/share/appimage-creator/updater/update_window.py, line: 445
+#: NEEDS WORK
+msgid "New Version"
+msgstr "新版本"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 465
+# File: usr/share/appimage-creator/updater/update_window.py, line: 454
+#: NEEDS WORK
+msgid "What's New"
+msgstr "新功能"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 469
+# File: usr/share/appimage-creator/updater/update_window.py, line: 458
+#: NEEDS WORK
+msgid "Release Notes"
+msgstr "发布说明"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 470
+# File: usr/share/appimage-creator/updater/update_window.py, line: 459
+#: NEEDS WORK
+msgid "Click to view changes"
+msgstr "点击查看更改"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 491
+# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+#: NEEDS WORK
+msgid "Options"
+msgstr "选项"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 495
+# File: usr/share/appimage-creator/updater/update_window.py, line: 484
+#: NEEDS WORK
+msgid "Remove old version"
+msgstr "删除旧版本"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 496
+# File: usr/share/appimage-creator/updater/update_window.py, line: 485
+#: NEEDS WORK
+msgid "Delete previous version after successful update"
+msgstr "成功更新后删除先前版本"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 525
+# File: usr/share/appimage-creator/updater/update_window.py, line: 514
+#: NEEDS WORK
+msgid "Later"
+msgstr "稍后"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 529
+# File: usr/share/appimage-creator/updater/update_window.py, line: 518
+#: NEEDS WORK
+msgid "Update"
+msgstr "更新"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 592
+# File: usr/share/appimage-creator/updater/update_window.py, line: 581
+#: NEEDS WORK
+msgid "Download failed"
+msgstr "下载失败"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 605
+# File: usr/share/appimage-creator/updater/update_window.py, line: 594
+#: NEEDS WORK
+msgid "Integration failed"
+msgstr "集成失败"
+# 
+# File: usr/share/appimage-creator/updater/notify_fallback.py, line: 159
+#: NEEDS WORK
+msgid "The update will be applied the next time the application starts"
+msgstr "下次启动应用程序时将应用更新"

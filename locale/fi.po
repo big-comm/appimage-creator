@@ -16,216 +16,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: attranslate\n"
 # 
-# File: usr/share/appimage-creator/utils/system.py, line: 108
+# File: usr/share/appimage-creator/generators/icons.py, line: 16
+#: NEEDS WORK
+msgid "Warning: PIL/Pillow not available, icon processing will be limited"
+msgstr "Varoitus: PIL/Pillow ei ole saatavilla, kuvakkeiden käsittely on rajoitettua"
+# 
+# File: usr/share/appimage-creator/generators/icons.py, line: 82
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to make file executable: {}"
-msgstr "Epäonnistui tekemään tiedostosta suoritettavaa: {}"
+msgid "Error processing icon: {}"
+msgstr "Virhe kuvakkeen käsittelyssä: {}"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+# File: usr/share/appimage-creator/generators/files.py, line: 70
 #: NEEDS WORK
-msgid ""
-"Select the main binary or script that starts your application.\n"
-"\n"
-"This is the entry point — the file that will be executed when the user launches the AppImage."
-msgstr ""
-"Valitse pääbinaari tai skripti, joka käynnistää sovelluksesi.\n"
-"\n"
-"Tämä on sisäänkäyntipiste — tiedosto, joka suoritetaan, kun käyttäjä käynnistää AppImage-tiedoston."
+msgid "Warning: Desktop file may have validation issues"
+msgstr "Varoitus: Työpöytä tiedostossa saattaa olla voimassaoloon liittyviä ongelmia"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+# File: usr/share/appimage-creator/generators/files.py, line: 85
 #: NEEDS WORK
-msgid ""
-"The application name used for the AppImage filename and menu entry.\n"
-"\n"
-"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
-msgstr ""
-"Sovelluksen nimi, jota käytetään AppImage-tiedostonimessä ja valikkokohdassa.\n"
-"\n"
-"Vain kirjaimet, numerot, välilyönnit, viivat, alaviivat ja pisteet ovat sallittuja."
+msgid "Failed to create desktop file"
+msgstr "Desktop-tiedoston luominen epäonnistui"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+# File: usr/share/appimage-creator/validators/validators.py, line: 18
 #: NEEDS WORK
-msgid ""
-"The application icon is used in the system menu, taskbar, and file manager.\n"
-"\n"
-"A 256×256 or larger PNG/SVG icon is recommended.\n"
-"\n"
-"Without an icon, the AppImage will display a generic icon in menus and taskbar."
-msgstr ""
-"Sovelluksen kuvake käytetään järjestelmävalikossa, tehtäväpalkissa ja tiedostonhallinnassa.\n"
-"\n"
-"Suositellaan 256×256 tai suurempaa PNG/SVG-kuvaketta.\n"
-"\n"
-"Ilman kuvaketta AppImage näyttää yleiskuvakkeen valikoissa ja tehtäväpalkissa."
+msgid "Application name must be at least 2 characters long"
+msgstr "Sovelluksen nimen on oltava vähintään 2 merkkiä pitkä"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+# File: usr/share/appimage-creator/validators/validators.py, line: 21
 #: NEEDS WORK
-msgid ""
-"The .desktop file controls how the application appears in the system menu, including its name, "
-"icon, categories, and launch options.\n"
-"\n"
-"If you don't provide one, a basic .desktop file will be generated automatically using the "
-"information configured here.\n"
-"\n"
-"For full integration, provide your own file with proper categories and metadata."
-msgstr ""
-".desktop-tiedosto ohjaa, miten sovellus näkyy järjestelmän valikossa, mukaan lukien sen nimi, "
-"kuvake, kategoriat ja käynnistysvaihtoehdot.\n"
-"\n"
-"Jos et tarjoa sellaista, perus .desktop-tiedosto luodaan automaattisesti täällä määritettyjen "
-"tietojen perusteella.\n"
-"\n"
-"Täydellistä integraatiota varten tarjoa oma tiedostosi, jossa on oikeat kategoriat ja metatiedot."
+msgid "Application name contains invalid characters"
+msgstr "Sovelluksen nimi sisältää virheellisiä merkkejä"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+# File: usr/share/appimage-creator/validators/validators.py, line: 29
 #: NEEDS WORK
-msgid ""
-"Determines how the launcher (AppRun) script is generated.\n"
-"\n"
-"This is auto-detected from the executable, but you can override it:\n"
-"• Binary — compiled native executable\n"
-"• Python — Python script using system interpreter\n"
-"• Electron — Electron-based application\n"
-"• GTK/Qt — GUI applications with toolkit-specific environment variables"
-msgstr ""
-"Määrittää, miten käynnistys (AppRun) skripti luodaan.\n"
-"\n"
-"Tämä havaitaan automaattisesti suoritettavasta tiedostosta, mutta voit ohittaa sen:\n"
-"• Binaari — käännetty natiivisuoritettava\n"
-"• Python — Python-skripti, joka käyttää järjestelmäinterpreteriä\n"
-"• Electron — Electron-pohjainen sovellus\n"
-"• GTK/Qt — GUI-sovellukset, joissa on työkalupakkiin liittyvät ympäristömuuttujat"
+msgid "Version is required"
+msgstr "Versio on pakollinen"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+# File: usr/share/appimage-creator/validators/validators.py, line: 32
 #: NEEDS WORK
-msgid ""
-"Semantic version of your application (e.g. 1.2.3).\n"
-"\n"
-"This is embedded in the AppImage metadata and used for update detection."
-msgstr ""
-"Sovelluksesi semanttinen versio (esim. 1.2.3).\n"
-"\n"
-"Tämä on upotettu AppImage-metadataan ja sitä käytetään päivitysten havaitsemiseen."
+msgid "Invalid version format"
+msgstr "Virheellinen version muoto"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+# File: usr/share/appimage-creator/validators/validators.py, line: 40
 #: NEEDS WORK
-msgid ""
-"A short one-line description shown in application menus and package managers.\n"
-"\n"
-"Keep it concise — typically under 80 characters."
-msgstr "Lyhyt yksirivinen kuvaus, joka näkyy sovelluksen valikoissa ja pakettien hallinnassa."
+msgid "Executable file does not exist"
+msgstr "Suoritettava tiedosto ei ole olemassa"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+# File: usr/share/appimage-creator/validators/validators.py, line: 43
 #: NEEDS WORK
-msgid ""
-"Enable this for CLI tools that need a terminal to run.\n"
-"\n"
-"When enabled, the desktop environment will open a terminal emulator before launching the "
-"application."
-msgstr ""
-"Ota tämä käyttöön CLI-työkaluille, jotka tarvitsevat terminaalin toimiakseen.\n"
-"\n"
-"Kun tämä on käytössä, työpöytäympäristö avaa terminaaliohjelman ennen sovelluksen käynnistämistä."
+msgid "File is not executable"
+msgstr "Tiedosto ei ole suoritettavissa"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+# File: usr/share/appimage-creator/validators/validators.py, line: 54
 #: NEEDS WORK
-msgid ""
-"GitHub Releases API URL for automatic updates.\n"
-"\n"
-"Must start with https:// — typically:\n"
-"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
-"\n"
-"Click the paste button to insert a template."
-msgstr ""
-"GitHub Releases API -osoite automaattisia päivityksiä varten.\n"
-"\n"
-"Täytyy alkaa https:// — tyypillisesti:\n"
-"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
-"\n"
-"Napsauta liitä-painiketta lisätäksesi mallin."
+msgid "Error: Missing [Desktop Entry] section"
+msgstr "Virhe: Puuttuu [Desktop Entry] -osio"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
-#: NEEDS WORK
-msgid ""
-"Glob pattern to identify which file to download from the release.\n"
-"\n"
-"The asterisk (*) matches any text. Examples:\n"
-"• myapp-*-x86_64.AppImage\n"
-"• *-gui-*.AppImage"
-msgstr ""
-"Glob-malli, jolla tunnistetaan, mikä tiedosto ladataan julkaisusta.\n"
-"\n"
-"Tähtimerkki (*) vastaa mitä tahansa tekstiä. Esimerkkejä:\n"
-"• myapp-*-x86_64.AppImage\n"
-"• *-gui-*.AppImage"
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
-#: NEEDS WORK
-msgid ""
-"The directory where the final .AppImage file will be saved.\n"
-"\n"
-"Defaults to the current working directory."
-msgstr ""
-"Hakemisto, johon lopullinen .AppImage-tiedosto tallennetaan.\n"
-"\n"
-"Oletuksena nykyinen työskentelyhakemisto."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
-#: NEEDS WORK
-msgid ""
-"Choose where to build the AppImage.\n"
-"\n"
-"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
-"builds against an older glibc."
-msgstr ""
-"Valitse, mihin AppImage rakennetaan. \n"
-"\n"
-"Distrobox-kontin käyttäminen tarjoaa maksimaalisen yhteensopivuuden vanhempien Linux-jakeluiden "
-"kanssa, koska se rakentaa vanhempaa glibc:tä vastaan."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
-#: NEEDS WORK
-msgid ""
-"Bundle shared libraries (.so files) into the AppImage.\n"
-"\n"
-"This ensures the application works on other systems that may not have the required libraries "
-"installed."
-msgstr ""
-"Pakkaa jaetut kirjastot (.so-tiedostot) AppImageen.\n"
-"\n"
-"Tämä varmistaa, että sovellus toimii muilla järjestelmillä, joilla ei välttämättä ole tarvittavia "
-"kirjastoja asennettuna."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
-#: NEEDS WORK
-msgid ""
-"Bundle an icon theme inside the AppImage.\n"
-"\n"
-"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
-"the one your app was designed for."
-msgstr ""
-"Pakkaa kuvateema AppImageen.\n"
-"\n"
-"Ilman pakattua teemaa joitakin kuvakkeita saattaa puuttua työpöydiltä, jotka käyttävät eri "
-"kuvateemaa kuin se, jota sovelluksesi on suunniteltu varten."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
-#: NEEDS WORK
-msgid ""
-"Remove debug symbols from binaries to reduce the AppImage size.\n"
-"\n"
-"This makes the file smaller but harder to debug if issues occur."
-msgstr ""
-"Poista virheenkorjaussymbolit binääreistä AppImage-koko pienentämiseksi.\n"
-"\n"
-"Tämä tekee tiedostosta pienemmän, mutta vaikeammaksi virheenkorjata, jos ongelmia ilmenee."
-# 
-# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
+# File: usr/share/appimage-creator/validators/validators.py, line: 69
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to download {}: {}"
-msgstr "Lataus epäonnistui {}: {}"
+msgid "Error: Missing required keys: {}"
+msgstr "Virhe: Puuttuvat vaaditut avaimet: {}"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 81
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Empty value for required key: {}"
+msgstr "Virhe: Tyhjät arvot vaaditulle avaimelle: {}"
+# 
+# File: usr/share/appimage-creator/ui/app.py, line: 75
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not load custom CSS: {}"
+msgstr "Varoitus: Mukautettua CSS:ää ei voitu ladata: {}"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -245,11 +108,247 @@ msgstr "Poista"
 msgid "{}: {}"
 msgstr "{}: {}"
 # 
-# File: usr/share/appimage-creator/ui/app.py, line: 75
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
+#: NEEDS WORK
+msgid "Building AppImage"
+msgstr "Rakennetaan AppImage"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
+#: NEEDS WORK
+msgid "Preparing..."
+msgstr "Valmistellaan..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
+#: NEEDS WORK
+msgid "Cancel Build"
+msgstr "Peruuta kokoelma"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
+#: NEEDS WORK
+msgid "Dependency Warnings"
+msgstr "Riippuvuusvaroitukset"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
+#: NEEDS WORK
+msgid "AppImage Created with Warnings"
+msgstr "AppImage luotu varoituksilla"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
+#: NEEDS WORK
+msgid ""
+"The AppImage was created successfully, but some library dependencies could not be resolved. The "
+"application may not work correctly on some systems."
+msgstr ""
+"AppImage luotiin onnistuneesti, mutta joitakin kirjastoriippuvuuksia ei voitu ratkaista. Sovellus "
+"ei välttämättä toimi oikein joillakin järjestelmillä."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
+#: NEEDS WORK
+msgid "Missing Libraries"
+msgstr "Puuttuvat kirjastot"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
+#: NEEDS WORK
+msgid "How to fix:"
+msgstr "Kuinka korjata:"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
+#: NEEDS WORK
+msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
+msgstr "• Yritä rakentaa eri säilöllä (esim. Ubuntu 22.04 sijaan 24.04)"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
+#: NEEDS WORK
+msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
+msgstr "• Lisää puuttuvat kirjastot 'Lisäkirjastot' osioon ennen kääntämistä"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
+#: NEEDS WORK
+msgid "• Install the required -dev packages in the build container"
+msgstr "• Asenna tarvittavat -dev-paketit rakennusastiaan"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
+#: NEEDS WORK
+msgid "Close"
+msgstr "Sulje"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
+#: NEEDS WORK
+msgid "Open Folder"
+msgstr "Avaa kansio"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
+# File: usr/share/appimage-creator/ui/window.py, line: 405
+#: NEEDS WORK
+msgid "OK"
+msgstr "OK"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 950
+#: NEEDS WORK
+msgid "Build Complete"
+msgstr "Kokoaminen valmis"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
+#: NEEDS WORK
+msgid "AppImage created successfully:"
+msgstr "AppImage luotiin onnistuneesti:"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
+# File: usr/share/appimage-creator/ui/window.py, line: 341
+#: NEEDS WORK
+msgid "Cancel"
+msgstr "Peruuta"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
+#: NEEDS WORK
+msgid "Open"
+msgstr "Avaa"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
+#: NEEDS WORK
+msgid "Select"
+msgstr "Valitse"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
+#: NEEDS WORK
+msgid "Save"
+msgstr "Tallenna"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
+#: NEEDS WORK
+msgid "Copy to clipboard"
+msgstr "Kopioi leikepöydälle"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
+#: NEEDS WORK
+msgid "Desktop File Content"
+msgstr "Työpöydän tiedoston sisältö"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+# File: usr/share/appimage-creator/ui/window.py, line: 906
+#: NEEDS WORK
+msgid "Error"
+msgstr "Virhe"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Could not load custom CSS: {}"
-msgstr "Varoitus: Mukautettua CSS:ää ei voitu ladata: {}"
+msgid "Failed to read file: {}"
+msgstr "Tiedoston lukeminen epäonnistui: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
+#: NEEDS WORK
+msgid "Starting..."
+msgstr "Aloitetaan..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
+#: NEEDS WORK
+msgid "Cancelling..."
+msgstr "Peruutetaan..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
+#: NEEDS WORK
+msgid "Cancelled."
+msgstr "Peruutettu."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
+#: NEEDS WORK
+msgid "Completed successfully!"
+msgstr "Valmis onnistuneesti!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
+#: NEEDS WORK
+msgid "Finished with errors."
+msgstr "Valmis virheiden kanssa."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
+# File: usr/share/appimage-creator/ui/pages.py, line: 459
+#: NEEDS WORK
+msgid "Install Required Packages"
+msgstr "Asenna vaaditut paketit"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
+#: NEEDS WORK
+msgid "Installation Information"
+msgstr "Asennustiedot"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
+#: NEEDS WORK
+msgid "Packages to Install"
+msgstr "Asennettavat paketit"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
+#: NEEDS WORK
+msgid "Command"
+msgstr "Komento"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
+#: NEEDS WORK
+msgid ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+msgstr ""
+"<b>Vaaditaan järjestelmänvalvojan oikeudet</b>  \n"
+"Sinulta kysytään salasanaasi järjestelmäpakettien asentamiseksi."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
+#: NEEDS WORK
+msgid "Installation Output"
+msgstr "Asennuslähtö"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
+#: NEEDS WORK
+msgid "Install"
+msgstr "Asenna"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
+#: NEEDS WORK
+msgid "Starting installation..."
+msgstr "Käynnistetään asennusta..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
+#: NEEDS WORK
+msgid "Error running command"
+msgstr "Virhe komennon suorittamisessa"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
+#: NEEDS WORK
+msgid "Pre-command completed successfully."
+msgstr "Esikomento suoritettu onnistuneesti."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
+#: NEEDS WORK
+msgid "Installation completed successfully!"
+msgstr "Asennus suoritettu onnistuneesti!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
+#: NEEDS WORK
+msgid "Command failed with exit code"
+msgstr "Komento epäonnistui poistumiskoodilla"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
+#: NEEDS WORK
+msgid "Installation failed."
+msgstr "Asennus epäonnistui."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
+#: NEEDS WORK
+msgid "Please check the errors above and try again."
+msgstr "Ole hyvä ja tarkista yllä olevat virheet ja yritä uudelleen."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 48
 # File: usr/share/appimage-creator/ui/window.py, line: 131
@@ -296,11 +395,6 @@ msgstr "Melkein valmis!"
 msgid "Please enter an Application Name"
 msgstr "Ole hyvä ja syötä sovelluksen nimi"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 21
-#: NEEDS WORK
-msgid "Application name contains invalid characters"
-msgstr "Sovelluksen nimi sisältää virheellisiä merkkejä"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 436
 #: NEEDS WORK
 msgid "Select Executable"
@@ -341,15 +435,6 @@ msgstr ""
 #: NEEDS WORK
 msgid "Do you want to continue?"
 msgstr "Haluatko jatkaa?"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
-# File: usr/share/appimage-creator/ui/window.py, line: 341
-#: NEEDS WORK
-msgid "Cancel"
-msgstr "Peruuta"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 386
 #: NEEDS WORK
@@ -434,16 +519,6 @@ msgstr ""
 "Vaadittavat paketit asennettiin onnistuneesti!\n"
 "\n"
 "Käynnistä sovellus uudelleen, jotta voit käyttää uusia ominaisuuksia."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
-# File: usr/share/appimage-creator/ui/window.py, line: 405
-#: NEEDS WORK
-msgid "OK"
-msgstr "OK"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
@@ -539,15 +614,6 @@ msgstr "AppImage-rakenne - Täysi näkymä"
 msgid "Validation Error"
 msgstr "Vahvistusvirhe"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-# File: usr/share/appimage-creator/ui/window.py, line: 897
-# File: usr/share/appimage-creator/ui/window.py, line: 906
-#: NEEDS WORK
-msgid "Error"
-msgstr "Virhe"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 897
 #: NEEDS WORK
 #, python-brace-format
@@ -570,11 +636,6 @@ msgstr "Jatka silti"
 #: NEEDS WORK
 msgid "Build Failed"
 msgstr "Kokoaminen epäonnistui"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 950
-#: NEEDS WORK
-msgid "Build Complete"
-msgstr "Kokoaminen valmis"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 1272
 #: NEEDS WORK
@@ -722,215 +783,6 @@ msgstr ""
 "Tiedostojen käyttöoikeusvirhe tapahtui rakennusvaiheessa.\n"
 "\n"
 "Ehdotus: Tarkista, että sinulla on tarvittavat käyttöoikeudet kaikkiin tiedostoihin."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
-#: NEEDS WORK
-msgid "Building AppImage"
-msgstr "Rakennetaan AppImage"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
-#: NEEDS WORK
-msgid "Preparing..."
-msgstr "Valmistellaan..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
-#: NEEDS WORK
-msgid "Cancel Build"
-msgstr "Peruuta kokoelma"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
-#: NEEDS WORK
-msgid "Dependency Warnings"
-msgstr "Riippuvuusvaroitukset"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
-#: NEEDS WORK
-msgid "AppImage Created with Warnings"
-msgstr "AppImage luotu varoituksilla"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
-#: NEEDS WORK
-msgid ""
-"The AppImage was created successfully, but some library dependencies could not be resolved. The "
-"application may not work correctly on some systems."
-msgstr ""
-"AppImage luotiin onnistuneesti, mutta joitakin kirjastoriippuvuuksia ei voitu ratkaista. Sovellus "
-"ei välttämättä toimi oikein joillakin järjestelmillä."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
-#: NEEDS WORK
-msgid "Missing Libraries"
-msgstr "Puuttuvat kirjastot"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
-#: NEEDS WORK
-msgid "How to fix:"
-msgstr "Kuinka korjata:"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
-#: NEEDS WORK
-msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
-msgstr "• Yritä rakentaa eri säilöllä (esim. Ubuntu 22.04 sijaan 24.04)"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
-#: NEEDS WORK
-msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
-msgstr "• Lisää puuttuvat kirjastot 'Lisäkirjastot' osioon ennen kääntämistä"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
-#: NEEDS WORK
-msgid "• Install the required -dev packages in the build container"
-msgstr "• Asenna tarvittavat -dev-paketit rakennusastiaan"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
-#: NEEDS WORK
-msgid "Close"
-msgstr "Sulje"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
-#: NEEDS WORK
-msgid "Open Folder"
-msgstr "Avaa kansio"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
-#: NEEDS WORK
-msgid "AppImage created successfully:"
-msgstr "AppImage luotiin onnistuneesti:"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
-#: NEEDS WORK
-msgid "Open"
-msgstr "Avaa"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
-#: NEEDS WORK
-msgid "Select"
-msgstr "Valitse"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
-#: NEEDS WORK
-msgid "Save"
-msgstr "Tallenna"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
-#: NEEDS WORK
-msgid "Copy to clipboard"
-msgstr "Kopioi leikepöydälle"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
-#: NEEDS WORK
-msgid "Desktop File Content"
-msgstr "Työpöydän tiedoston sisältö"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to read file: {}"
-msgstr "Tiedoston lukeminen epäonnistui: {}"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
-#: NEEDS WORK
-msgid "Starting..."
-msgstr "Aloitetaan..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
-#: NEEDS WORK
-msgid "Cancelling..."
-msgstr "Peruutetaan..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
-#: NEEDS WORK
-msgid "Cancelled."
-msgstr "Peruutettu."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
-#: NEEDS WORK
-msgid "Completed successfully!"
-msgstr "Valmis onnistuneesti!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
-#: NEEDS WORK
-msgid "Finished with errors."
-msgstr "Valmis virheiden kanssa."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
-# File: usr/share/appimage-creator/ui/pages.py, line: 459
-#: NEEDS WORK
-msgid "Install Required Packages"
-msgstr "Asenna vaaditut paketit"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
-#: NEEDS WORK
-msgid "Installation Information"
-msgstr "Asennustiedot"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
-#: NEEDS WORK
-msgid "Packages to Install"
-msgstr "Asennettavat paketit"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
-#: NEEDS WORK
-msgid "Command"
-msgstr "Komento"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
-#: NEEDS WORK
-msgid ""
-"<b>Administrator privileges required</b>\n"
-"You will be asked for your password to install system packages."
-msgstr ""
-"<b>Vaaditaan järjestelmänvalvojan oikeudet</b>  \n"
-"Sinulta kysytään salasanaasi järjestelmäpakettien asentamiseksi."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
-#: NEEDS WORK
-msgid "Installation Output"
-msgstr "Asennuslähtö"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
-#: NEEDS WORK
-msgid "Install"
-msgstr "Asenna"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
-#: NEEDS WORK
-msgid "Starting installation..."
-msgstr "Käynnistetään asennusta..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
-#: NEEDS WORK
-msgid "Error running command"
-msgstr "Virhe komennon suorittamisessa"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
-#: NEEDS WORK
-msgid "Pre-command completed successfully."
-msgstr "Esikomento suoritettu onnistuneesti."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
-#: NEEDS WORK
-msgid "Installation completed successfully!"
-msgstr "Asennus suoritettu onnistuneesti!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
-#: NEEDS WORK
-msgid "Command failed with exit code"
-msgstr "Komento epäonnistui poistumiskoodilla"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
-#: NEEDS WORK
-msgid "Installation failed."
-msgstr "Asennus epäonnistui."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
-#: NEEDS WORK
-msgid "Please check the errors above and try again."
-msgstr "Ole hyvä ja tarkista yllä olevat virheet ja yritä uudelleen."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 76
 #: NEEDS WORK
@@ -1641,250 +1493,508 @@ msgstr "Rakentaminen säilössä maksimaalisen yhteensopivuuden saavuttamiseksi"
 msgid "No container available — building on the local system"
 msgstr "Ei säiliötä saatavilla — rakennetaan paikallisjärjestelmällä"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 18
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
 #: NEEDS WORK
-msgid "Application name must be at least 2 characters long"
-msgstr "Sovelluksen nimen on oltava vähintään 2 merkkiä pitkä"
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"Valitse pääbinaari tai skripti, joka käynnistää sovelluksesi.\n"
+"\n"
+"Tämä on sisäänkäyntipiste — tiedosto, joka suoritetaan, kun käyttäjä käynnistää AppImage-tiedoston."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 29
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
 #: NEEDS WORK
-msgid "Version is required"
-msgstr "Versio on pakollinen"
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"Sovelluksen nimi, jota käytetään AppImage-tiedostonimessä ja valikkokohdassa.\n"
+"\n"
+"Vain kirjaimet, numerot, välilyönnit, viivat, alaviivat ja pisteet ovat sallittuja."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 32
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
 #: NEEDS WORK
-msgid "Invalid version format"
-msgstr "Virheellinen version muoto"
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"Sovelluksen kuvake käytetään järjestelmävalikossa, tehtäväpalkissa ja tiedostonhallinnassa.\n"
+"\n"
+"Suositellaan 256×256 tai suurempaa PNG/SVG-kuvaketta.\n"
+"\n"
+"Ilman kuvaketta AppImage näyttää yleiskuvakkeen valikoissa ja tehtäväpalkissa."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 40
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
 #: NEEDS WORK
-msgid "Executable file does not exist"
-msgstr "Suoritettava tiedosto ei ole olemassa"
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+".desktop-tiedosto ohjaa, miten sovellus näkyy järjestelmän valikossa, mukaan lukien sen nimi, "
+"kuvake, kategoriat ja käynnistysvaihtoehdot.\n"
+"\n"
+"Jos et tarjoa sellaista, perus .desktop-tiedosto luodaan automaattisesti täällä määritettyjen "
+"tietojen perusteella.\n"
+"\n"
+"Täydellistä integraatiota varten tarjoa oma tiedostosi, jossa on oikeat kategoriat ja metatiedot."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 43
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
 #: NEEDS WORK
-msgid "File is not executable"
-msgstr "Tiedosto ei ole suoritettavissa"
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"Määrittää, miten käynnistys (AppRun) skripti luodaan.\n"
+"\n"
+"Tämä havaitaan automaattisesti suoritettavasta tiedostosta, mutta voit ohittaa sen:\n"
+"• Binaari — käännetty natiivisuoritettava\n"
+"• Python — Python-skripti, joka käyttää järjestelmäinterpreteriä\n"
+"• Electron — Electron-pohjainen sovellus\n"
+"• GTK/Qt — GUI-sovellukset, joissa on työkalupakkiin liittyvät ympäristömuuttujat"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 54
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
 #: NEEDS WORK
-msgid "Error: Missing [Desktop Entry] section"
-msgstr "Virhe: Puuttuu [Desktop Entry] -osio"
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"Sovelluksesi semanttinen versio (esim. 1.2.3).\n"
+"\n"
+"Tämä on upotettu AppImage-metadataan ja sitä käytetään päivitysten havaitsemiseen."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 69
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr "Lyhyt yksirivinen kuvaus, joka näkyy sovelluksen valikoissa ja pakettien hallinnassa."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"Ota tämä käyttöön CLI-työkaluille, jotka tarvitsevat terminaalin toimiakseen.\n"
+"\n"
+"Kun tämä on käytössä, työpöytäympäristö avaa terminaaliohjelman ennen sovelluksen käynnistämistä."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"GitHub Releases API -osoite automaattisia päivityksiä varten.\n"
+"\n"
+"Täytyy alkaa https:// — tyypillisesti:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Napsauta liitä-painiketta lisätäksesi mallin."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"Glob-malli, jolla tunnistetaan, mikä tiedosto ladataan julkaisusta.\n"
+"\n"
+"Tähtimerkki (*) vastaa mitä tahansa tekstiä. Esimerkkejä:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"Hakemisto, johon lopullinen .AppImage-tiedosto tallennetaan.\n"
+"\n"
+"Oletuksena nykyinen työskentelyhakemisto."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr ""
+"Valitse, mihin AppImage rakennetaan. \n"
+"\n"
+"Distrobox-kontin käyttäminen tarjoaa maksimaalisen yhteensopivuuden vanhempien Linux-jakeluiden "
+"kanssa, koska se rakentaa vanhempaa glibc:tä vastaan."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"Pakkaa jaetut kirjastot (.so-tiedostot) AppImageen.\n"
+"\n"
+"Tämä varmistaa, että sovellus toimii muilla järjestelmillä, joilla ei välttämättä ole tarvittavia "
+"kirjastoja asennettuna."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"Pakkaa kuvateema AppImageen.\n"
+"\n"
+"Ilman pakattua teemaa joitakin kuvakkeita saattaa puuttua työpöydiltä, jotka käyttävät eri "
+"kuvateemaa kuin se, jota sovelluksesi on suunniteltu varten."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"Poista virheenkorjaussymbolit binääreistä AppImage-koko pienentämiseksi.\n"
+"\n"
+"Tämä tekee tiedostosta pienemmän, mutta vaikeammaksi virheenkorjata, jos ongelmia ilmenee."
+# 
+# File: usr/share/appimage-creator/utils/system.py, line: 108
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Missing required keys: {}"
-msgstr "Virhe: Puuttuvat vaaditut avaimet: {}"
+msgid "Failed to make file executable: {}"
+msgstr "Epäonnistui tekemään tiedostosta suoritettavaa: {}"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 81
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Empty value for required key: {}"
-msgstr "Virhe: Tyhjät arvot vaaditulle avaimelle: {}"
+msgid "Failed to download {}: {}"
+msgstr "Lataus epäonnistui {}: {}"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 335
-# File: update_window.py, line: 433
-# File: usr/share/appimage-creator/updater/update_window.py, line: 324
-# File: usr/share/appimage-creator/updater/update_window.py, line: 422
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Update Available"
-msgstr "Päivitys saatavilla"
+msgid "Recommended - Latest Ubuntu LTS with newest packages."
+msgstr "Suositeltu - Uusin Ubuntu LTS uusimmilla paketeilla."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 440
-# File: usr/share/appimage-creator/updater/update_window.py, line: 429
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 31
 #: NEEDS WORK
-#, python-brace-format
-msgid "A new version of {} is available"
-msgstr "Uusi versio {} on saatavilla"
+msgid "Good balance of compatibility and modern packages."
+msgstr "Hyvä tasapaino yhteensopivuuden ja nykyaikaisten pakettien välillä."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 529
-# File: usr/share/appimage-creator/updater/update_window.py, line: 518
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 41
 #: NEEDS WORK
-msgid "Update"
-msgstr "Päivitä"
+msgid "Excellent compatibility for older systems."
+msgstr "Erinomainen yhteensopivuus vanhempien järjestelmien kanssa."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 525
-# File: usr/share/appimage-creator/updater/update_window.py, line: 514
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 53
 #: NEEDS WORK
-msgid "Later"
-msgstr "Myöhemmin"
+msgid "Latest Debian stable - very reliable."
+msgstr "Uusin Debian-stabiili - erittäin luotettava."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 232
-# File: usr/share/appimage-creator/updater/update_window.py, line: 221
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 63
 #: NEEDS WORK
-msgid "Downloading update..."
-msgstr "Ladataan päivitystä..."
+msgid "Previous Debian stable - proven stability."
+msgstr "Edellinen Debian-stable - todistettu vakaus."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
+#: NEEDS WORK
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "Uusin Fedora, jossa on huipputeknologian paketteja ja GTK4/VTE-tuki."
 # 
-# File: update_window.py, line: 233
-# File: usr/share/appimage-creator/updater/update_window.py, line: 222
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 105
+#: NEEDS WORK
+msgid "RHEL 9 compatible - enterprise-grade stability."
+msgstr "RHEL 9 yhteensopiva - yritystason vakaus."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 250
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox (missing dependencies)."
+msgstr "Isäntä ei ole asetettu Distroboxia varten (puuttuvat riippuvuudet)."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 263
 #: NEEDS WORK
 #, python-brace-format
-msgid "Version {}"
-msgstr "Versio {}"
+msgid "Environment '{}' already exists."
+msgstr "Ympäristö '{}' on jo olemassa."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 265
-# File: usr/share/appimage-creator/updater/update_window.py, line: 254
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 275
 #: NEEDS WORK
 #, python-brace-format
-msgid "Version {} installed successfully"
-msgstr "Versio {} asennettu onnistuneesti"
+msgid "Creating environment '{}'... This may take a while."
+msgstr "Luodaan ympäristö '{}'... Tämä saattaa kestää hetken."
 # 
-# File: usr/share/appimage-creator/updater/notify_fallback.py, line: 159
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 392
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 431
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 451
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 576
 #: NEEDS WORK
-msgid "The update will be applied the next time the application starts"
-msgstr "Päivitys otetaan käyttöön seuraavan kerran, kun sovellus käynnistetään."
+msgid "Cancelled by user."
+msgstr "Käyttäjän toimesta peruutettu."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 264
-# File: usr/share/appimage-creator/updater/update_window.py, line: 253
-#: NEEDS WORK
-msgid "Update completed!"
-msgstr "Päivitys valmis!"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 290
-# File: usr/share/appimage-creator/updater/update_window.py, line: 279
-#: NEEDS WORK
-msgid "Update failed"
-msgstr "Päivitys epäonnistui"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 592
-# File: usr/share/appimage-creator/updater/update_window.py, line: 581
-#: NEEDS WORK
-msgid "Download failed"
-msgstr "Lataus epäonnistui"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 152
-# File: usr/share/appimage-creator/updater/update_window.py, line: 141
-#: NEEDS WORK
-msgid "Updating"
-msgstr "Päivittäminen"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 218
-# File: usr/share/appimage-creator/updater/update_window.py, line: 207
-#: NEEDS WORK
-msgid "Done"
-msgstr "Valmis"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 241
-# File: usr/share/appimage-creator/updater/update_window.py, line: 230
-#: NEEDS WORK
-msgid "Installing update..."
-msgstr "Asennetaan päivitystä..."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 303
-# File: usr/share/appimage-creator/updater/update_window.py, line: 292
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 295
 #: NEEDS WORK
 #, python-brace-format
-msgid "{:.1f} MB of {:.1f} MB"
-msgstr "{:.1f} MB / {:.1f} MB"
+msgid "Failed to create environment. Distrobox exited with code {}."
+msgstr "Ympäristön luominen epäonnistui. Distrobox poistui koodilla {}."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 448
-# File: usr/share/appimage-creator/updater/update_window.py, line: 437
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 304
 #: NEEDS WORK
-msgid "Version Information"
-msgstr "Versiotiedot"
+msgid "Initializing container (creating user and environment)..."
+msgstr "Alustetaan säilöä (luodaan käyttäjä ja ympäristö)..."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 451
-# File: usr/share/appimage-creator/updater/update_window.py, line: 440
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 305
 #: NEEDS WORK
-msgid "Current Version"
-msgstr "Nykyinen versio"
+msgid "First-time setup may take 5-10 minutes on slow connections..."
+msgstr "Ensimmäinen asennus voi kestää 5-10 minuuttia hitaille yhteyksille..."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 456
-# File: usr/share/appimage-creator/updater/update_window.py, line: 445
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 306
 #: NEEDS WORK
-msgid "New Version"
-msgstr "Uusi versio"
+msgid "Please be patient - this is a one-time process."
+msgstr "Ole hyvä ja ole kärsivällinen - tämä on kertaluonteinen prosessi."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 465
-# File: usr/share/appimage-creator/updater/update_window.py, line: 454
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 336
 #: NEEDS WORK
-msgid "What's New"
-msgstr "Uutta"
+msgid "Warning: Container initialization completed with issues"
+msgstr "Varoitus: Säilön alustaminen valmistui ongelmien kanssa"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 469
-# File: usr/share/appimage-creator/updater/update_window.py, line: 458
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 340
 #: NEEDS WORK
-msgid "Release Notes"
-msgstr "Julkaisumuistiinpanot"
+msgid "Container initialization complete!"
+msgstr "Säilön alustaminen valmis!"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 470
-# File: usr/share/appimage-creator/updater/update_window.py, line: 459
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 344
 #: NEEDS WORK
-msgid "Click to view changes"
-msgstr "Napsauta nähdäksesi muutokset"
+msgid "Warning: Failed to initialize container automatically"
+msgstr "Varoitus: Kontin alustaminen epäonnistui automaattisesti"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 491
-# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 345
 #: NEEDS WORK
-msgid "Options"
-msgstr "Asetukset"
+#, python-brace-format
+msgid "You may need to run: distrobox-enter {}"
+msgstr "Saatat joutua suorittamaan: distrobox-enter {}"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 495
-# File: usr/share/appimage-creator/updater/update_window.py, line: 484
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 348
 #: NEEDS WORK
-msgid "Remove old version"
-msgstr "Poista vanha versio"
+msgid "Environment created successfully!"
+msgstr "Ympäristö luotiin onnistuneesti!"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 496
-# File: usr/share/appimage-creator/updater/update_window.py, line: 485
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 351
 #: NEEDS WORK
-msgid "Delete previous version after successful update"
-msgstr "Poista edellinen versio onnistuneen päivityksen jälkeen"
+msgid "distrobox-create command not found."
+msgstr "distrobox-create komentoa ei löytynyt."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 605
-# File: usr/share/appimage-creator/updater/update_window.py, line: 594
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 354
 #: NEEDS WORK
-msgid "Integration failed"
-msgstr "Integraatio epäonnistui"
+#, python-brace-format
+msgid "An error occurred while creating the environment: {}"
+msgstr "Virhe tapahtui ympäristön luomisessa: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 359
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 435
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox."
+msgstr "Isäntä ei ole asetettu Distroboxia varten."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 372
+#: NEEDS WORK
+msgid "Waiting for container to be fully ready..."
+msgstr "Odotetaan, että säiliö on täysin valmis..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 379
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' was created but is not accessible. Try again in a moment."
+msgstr "Säiliö '{}' luotiin, mutta se ei ole käytettävissä. Yritä uudelleen hetken kuluttua."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 402
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing dependencies in '{}'..."
+msgstr "Asennetaan riippuvuuksia '{}'..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 421
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to install dependencies. Process exited with code {}."
+msgstr "Riippuvuuksien asennus epäonnistui. Prosessi päättyi koodilla {}."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 424
+#: NEEDS WORK
+msgid "Dependencies installed successfully!"
+msgstr "Riippuvuudet asennettu onnistuneesti!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 430
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while installing dependencies: {}"
+msgstr "Asennusvirhe riippuvuuksia asennettaessa: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 449
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' does not exist."
+msgstr "Säiliötä '{}' ei ole olemassa."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 457
+#: NEEDS WORK
+#, python-brace-format
+msgid "Removing container '{}'..."
+msgstr "Poistetaan säiliö '{}'..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 476
+#: NEEDS WORK
+msgid "Failed to remove container."
+msgstr "Kontin poistaminen epäonnistui."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 482
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 513
+#: NEEDS WORK
+msgid "Container removed successfully!"
+msgstr "Kontti poistettu onnistuneesti!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 490
+#: NEEDS WORK
+msgid "Removing container image to free disk space..."
+msgstr "Poistetaan säilökuva levyn tilan vapauttamiseksi..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 504
+#: NEEDS WORK
+msgid "Image removed successfully"
+msgstr "Kuva poistettu onnistuneesti"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 507
+#: NEEDS WORK
+msgid "Note: Image may still be in use by other containers"
+msgstr "Huomautus: Kuvan käyttö saattaa olla edelleen muissa säiliöissä."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 510
+#: NEEDS WORK
+msgid "Warning: Could not remove image automatically"
+msgstr "Varoitus: Kuvan poistaminen ei onnistunut automaattisesti"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 516
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while removing the container: {}"
+msgstr "Virhe tapahtui säilön poistamisen aikana: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 760
+#: NEEDS WORK
+msgid "AppImage Structure - Detailed View"
+msgstr "AppImage-rakenne - Yksityiskohtainen näkymä"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 764
+#: NEEDS WORK
+msgid "[AppImage Root]"
+msgstr "[AppImage-juuri]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 765
+#: NEEDS WORK
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun (pääkäynnistin)"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 768
+#: NEEDS WORK
+msgid "└── usr/"
+msgstr "└── usr/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 769
+#: NEEDS WORK
+msgid "    ├── bin/"
+msgstr "├── bin/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 771
+#: NEEDS WORK
+msgid "    ├── lib/"
+msgstr "├── kirjasto/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 772
+#: NEEDS WORK
+msgid "    └── share/"
+msgstr "└── jakaa/"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
+#: NEEDS WORK
+msgid "Python Files"
+msgstr "Python-tiedostot"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
+#: NEEDS WORK
+msgid "Shell Scripts"
+msgstr "Shell-skriptit"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
+#: NEEDS WORK
+msgid "UI Files"
+msgstr "Käyttöliittymätiedostot"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
+#: NEEDS WORK
+msgid "CSS Files"
+msgstr "CSS-tiedostot"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
+#: NEEDS WORK
+msgid "Icon Files"
+msgstr "Ikonitiedostot"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
+#: NEEDS WORK
+msgid "Locale Directories"
+msgstr "Paikallishakemistot"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[Lisähakemistot]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "YHTEENVETO"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "Projektin juurihakemisto"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "Tiedoston erittely:"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 125
 #: NEEDS WORK
@@ -1979,6 +2089,12 @@ msgstr "Kopioidaan sovellustiedostoja..."
 #, python-brace-format
 msgid "Copying structured project from: {}"
 msgstr "Kopioidaan jäsenneltyä projektia kohdasta: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 351
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping virtualenv directory: {}"
+msgstr "Ohittaminen virtuaaliympäristön hakemistosta: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 206
 #: NEEDS WORK
@@ -2771,213 +2887,6 @@ msgstr "✗ Kokoaminen epäonnistui: {}"
 msgid "Build already in progress"
 msgstr "Kokoaminen on jo käynnissä"
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
-#: NEEDS WORK
-msgid "Recommended - Latest Ubuntu LTS with newest packages."
-msgstr "Suositeltu - Uusin Ubuntu LTS uusimmilla paketeilla."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 31
-#: NEEDS WORK
-msgid "Good balance of compatibility and modern packages."
-msgstr "Hyvä tasapaino yhteensopivuuden ja nykyaikaisten pakettien välillä."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 41
-#: NEEDS WORK
-msgid "Excellent compatibility for older systems."
-msgstr "Erinomainen yhteensopivuus vanhempien järjestelmien kanssa."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 53
-#: NEEDS WORK
-msgid "Latest Debian stable - very reliable."
-msgstr "Uusin Debian-stabiili - erittäin luotettava."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 63
-#: NEEDS WORK
-msgid "Previous Debian stable - proven stability."
-msgstr "Edellinen Debian-stable - todistettu vakaus."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
-#: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
-msgstr "Uusin Fedora, jossa on huipputeknologian paketteja ja GTK4/VTE-tuki."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 105
-#: NEEDS WORK
-msgid "RHEL 9 compatible - enterprise-grade stability."
-msgstr "RHEL 9 yhteensopiva - yritystason vakaus."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 250
-#: NEEDS WORK
-msgid "Host is not set up for Distrobox (missing dependencies)."
-msgstr "Isäntä ei ole asetettu Distroboxia varten (puuttuvat riippuvuudet)."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 263
-#: NEEDS WORK
-#, python-brace-format
-msgid "Environment '{}' already exists."
-msgstr "Ympäristö '{}' on jo olemassa."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 275
-#: NEEDS WORK
-#, python-brace-format
-msgid "Creating environment '{}'... This may take a while."
-msgstr "Luodaan ympäristö '{}'... Tämä saattaa kestää hetken."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 392
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 431
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 451
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 576
-#: NEEDS WORK
-msgid "Cancelled by user."
-msgstr "Käyttäjän toimesta peruutettu."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 295
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to create environment. Distrobox exited with code {}."
-msgstr "Ympäristön luominen epäonnistui. Distrobox poistui koodilla {}."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 304
-#: NEEDS WORK
-msgid "Initializing container (creating user and environment)..."
-msgstr "Alustetaan säilöä (luodaan käyttäjä ja ympäristö)..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 305
-#: NEEDS WORK
-msgid "First-time setup may take 5-10 minutes on slow connections..."
-msgstr "Ensimmäinen asennus voi kestää 5-10 minuuttia hitaille yhteyksille..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 306
-#: NEEDS WORK
-msgid "Please be patient - this is a one-time process."
-msgstr "Ole hyvä ja ole kärsivällinen - tämä on kertaluonteinen prosessi."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 336
-#: NEEDS WORK
-msgid "Warning: Container initialization completed with issues"
-msgstr "Varoitus: Säilön alustaminen valmistui ongelmien kanssa"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 340
-#: NEEDS WORK
-msgid "Container initialization complete!"
-msgstr "Säilön alustaminen valmis!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 344
-#: NEEDS WORK
-msgid "Warning: Failed to initialize container automatically"
-msgstr "Varoitus: Kontin alustaminen epäonnistui automaattisesti"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 345
-#: NEEDS WORK
-#, python-brace-format
-msgid "You may need to run: distrobox-enter {}"
-msgstr "Saatat joutua suorittamaan: distrobox-enter {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 348
-#: NEEDS WORK
-msgid "Environment created successfully!"
-msgstr "Ympäristö luotiin onnistuneesti!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 351
-#: NEEDS WORK
-msgid "distrobox-create command not found."
-msgstr "distrobox-create komentoa ei löytynyt."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 354
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while creating the environment: {}"
-msgstr "Virhe tapahtui ympäristön luomisessa: {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 359
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 435
-#: NEEDS WORK
-msgid "Host is not set up for Distrobox."
-msgstr "Isäntä ei ole asetettu Distroboxia varten."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 372
-#: NEEDS WORK
-msgid "Waiting for container to be fully ready..."
-msgstr "Odotetaan, että säiliö on täysin valmis..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 379
-#: NEEDS WORK
-#, python-brace-format
-msgid "Container '{}' was created but is not accessible. Try again in a moment."
-msgstr "Säiliö '{}' luotiin, mutta se ei ole käytettävissä. Yritä uudelleen hetken kuluttua."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 402
-#: NEEDS WORK
-#, python-brace-format
-msgid "Installing dependencies in '{}'..."
-msgstr "Asennetaan riippuvuuksia '{}'..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 421
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to install dependencies. Process exited with code {}."
-msgstr "Riippuvuuksien asennus epäonnistui. Prosessi päättyi koodilla {}."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 424
-#: NEEDS WORK
-msgid "Dependencies installed successfully!"
-msgstr "Riippuvuudet asennettu onnistuneesti!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 430
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while installing dependencies: {}"
-msgstr "Asennusvirhe riippuvuuksia asennettaessa: {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 449
-#: NEEDS WORK
-#, python-brace-format
-msgid "Container '{}' does not exist."
-msgstr "Säiliötä '{}' ei ole olemassa."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 457
-#: NEEDS WORK
-#, python-brace-format
-msgid "Removing container '{}'..."
-msgstr "Poistetaan säiliö '{}'..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 476
-#: NEEDS WORK
-msgid "Failed to remove container."
-msgstr "Kontin poistaminen epäonnistui."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 482
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 513
-#: NEEDS WORK
-msgid "Container removed successfully!"
-msgstr "Kontti poistettu onnistuneesti!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 490
-#: NEEDS WORK
-msgid "Removing container image to free disk space..."
-msgstr "Poistetaan säilökuva levyn tilan vapauttamiseksi..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 504
-#: NEEDS WORK
-msgid "Image removed successfully"
-msgstr "Kuva poistettu onnistuneesti"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 507
-#: NEEDS WORK
-msgid "Note: Image may still be in use by other containers"
-msgstr "Huomautus: Kuvan käyttö saattaa olla edelleen muissa säiliöissä."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 510
-#: NEEDS WORK
-msgid "Warning: Could not remove image automatically"
-msgstr "Varoitus: Kuvan poistaminen ei onnistunut automaattisesti"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 516
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while removing the container: {}"
-msgstr "Virhe tapahtui säilön poistamisen aikana: {}"
-# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
 #: NEEDS WORK
 #, python-brace-format
@@ -3127,177 +3036,121 @@ msgstr "Skannataan binaaririippuvuuksia kohdassa: {}"
 msgid "  Detected dependency on binary: {}"
 msgstr "Havaittu riippuvuus binääristä: {}"
 # 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
+#: NEEDS WORK
+msgid "Starting recursive dependency resolution..."
+msgstr "Aloitetaan rekursiivinen riippuvuuden ratkaisu..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
 #: NEEDS WORK
 #, python-brace-format
-msgid "Ignoring unsafe extra library name: {}"
-msgstr "Ohittamalla vaarallisen ylimääräisen kirjaston nimen: {}"
+msgid "  Resolution iteration {}/{}..."
+msgstr "Resoluutio iteraatio {}/{}..."
 # 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Including user-specified extra libraries: {}"
-msgstr "Sisältää käyttäjän määrittämiä ylimääräisiä kirjastoja: {}"
+msgid "  Found {} ELF files to scan"
+msgstr "Löydettiin {} ELF-tiedostoa skannattavaksi"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1323
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
+#: NEEDS WORK
+msgid "  No missing libraries found — resolution complete"
+msgstr "Ei puuttuvia kirjastoja löytynyt — ratkaisu valmis"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying standard system libraries: {}"
-msgstr "Kopioidaan standardijärjestelmäkirjastoja: {}"
+msgid "  Found {} missing libraries: {}"
+msgstr "Löydettiin {} puuttuvaa kirjastoa: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1327
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying conflicting system libraries to fallback dir: {}"
-msgstr "Kopioidaan ristiriitaisia järjestelmäkirjastoja varahakemistoon: {}"
+msgid "    Copied: {}"
+msgstr "Kopioitu: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1344
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
 #: NEEDS WORK
 #, python-brace-format
-msgid "Generating script to copy libraries to {}..."
-msgstr "Generoidaan skripti kirjastoiden kopioimiseen {}..."
+msgid "    Failed to copy: {}"
+msgstr "Kopiointi epäonnistui: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1241
-#: NEEDS WORK
-msgid "Executing library copy script..."
-msgstr "Suoritetaan kirjaston kopiointiskriptiä..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1039
-#: NEEDS WORK
-msgid "Warning: Library copy script finished with errors."
-msgstr "Varoitus: Kirjaston kopiointiskripti päättyi virheisiin."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1041
-#: NEEDS WORK
-msgid "Library copy script finished successfully."
-msgstr "Kirjaston kopiointiskripti suoritettiin onnistuneesti."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1273
-#: NEEDS WORK
-msgid "No typelibs selected for inclusion."
-msgstr "Ei tyypilukuja valittu sisällytettäväksi."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1276
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected typelibs: {}"
-msgstr "Kopioidaan valittuja tyyppikirjastoja: {}"
+msgid "    Not found in system: {}"
+msgstr "Ei löytynyt järjestelmästä: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1284
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
 #: NEEDS WORK
-msgid "Generating script to copy typelibs..."
-msgstr "Generoidaan skripti tyypin kirjastojen kopioimiseen..."
+msgid "  No new libraries could be copied — stopping"
+msgstr "Uusia kirjastoja ei voitu kopioida — pysäytetään"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1318
-#: NEEDS WORK
-msgid "Executing typelib copy script..."
-msgstr "Suoritetaan typelib-kopiointiskriptiä..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1286
-#: NEEDS WORK
-msgid "Warning: Some typelibs may not have been copied"
-msgstr "Varoitus: Jotkin tyyppikirjastot eivät ehkä ole kopioitu."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1288
-#: NEEDS WORK
-msgid "Typelib copy complete"
-msgstr "Typelib-kopiointi valmis"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1467
-#: NEEDS WORK
-msgid "Copying essential GStreamer plugins..."
-msgstr "Kopioidaan olennaisia GStreamer-laajennuksia..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1530
-#: NEEDS WORK
-msgid "Detected video playback requirements"
-msgstr "Havaitut videotoistovaatimukset"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1579
-#: NEEDS WORK
-msgid "Copying GStreamer plugins..."
-msgstr "Kopioidaan GStreamer-laajennoksia..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1588
-#: NEEDS WORK
-msgid "GStreamer plugin copying complete"
-msgstr "GStreamer-laajennoksen kopiointi valmis"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1385
-#: NEEDS WORK
-msgid "Copying Adwaita symbolic icons..."
-msgstr "Kopioidaan Adwaita-symboliikoneita..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1394
-#: NEEDS WORK
-msgid "Symbolic icons already present"
-msgstr "Symboliset ikonit ovat jo läsnä"
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
-#: NEEDS WORK
-msgid "Copying symbolic icons from container..."
-msgstr "Kopioidaan symbolisia kuvakkeita säiliöstä..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
-#: NEEDS WORK
-msgid "Copying symbolic icons from host system..."
-msgstr "Kopioidaan symbolisia kuvakkeita isäntäjärjestelmästä..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Adwaita symbolic icons not found at {}"
-msgstr "Varoitus: Adwaita-symboliset ikonit eivät löytyneet kohdasta {}"
+msgid "  Copied {} libraries this iteration"
+msgstr "Kopioitu {} kirjastoja tässä iteraatiossa"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1442
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
 #: NEEDS WORK
-msgid "Warning: Failed to copy symbolic icons"
-msgstr "Varoitus: Symbolisten kuvakkeiden kopiointi epäonnistui"
+#, python-brace-format
+msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
+msgstr "Riippuvuuksien ratkaisu valmis: {} kopioitu, {} vielä puuttuu ({} iteraatiota)"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1656
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
 #: NEEDS WORK
-msgid "Creating custom index.theme for Adwaita symbolic icons..."
-msgstr "Luodaan mukautettua index.theme-tiedostoa Adwaita-symboli-ikoneille..."
+msgid "Validating library dependencies..."
+msgstr "Kirjastoriippuvuuksien vahvistaminen..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1444
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
 #: NEEDS WORK
-msgid "Symbolic icons copied successfully"
-msgstr "Symboliset ikonit kopioitiin onnistuneesti"
+msgid "Library validation FAILED:"
+msgstr "Kirjaston vahvistus EPÄONNISTUI:"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1477
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
 #: NEEDS WORK
-msgid "Copying Papirus symbolic icons..."
-msgstr "Kopioidaan Papirus-symboliikoneita..."
+msgid "Library validation passed — all dependencies resolved"
+msgstr "Kirjaston vahvistus onnistui — kaikki riippuvuudet ratkaistu"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1501
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
 #: NEEDS WORK
-msgid "Papirus symbolic icons already present"
-msgstr "Papirus-symboliset ikonit jo olemassa"
+#, python-brace-format
+msgid "Validating Python imports for module: {}"
+msgstr "Vahvistetaan Pythonin tuontia moduulille: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1510
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
 #: NEEDS WORK
-msgid "Copying Papirus and Papirus-Dark symbolic icons..."
-msgstr "Kopioidaan Papirus- ja Papirus-Dark-symbolisia kuvakkeita..."
+msgid "Python import validation passed"
+msgstr "Pythonin tuontivaatimus hyväksytty"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1584
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
 #: NEEDS WORK
-msgid "Executing Papirus icons copy script..."
-msgstr "Suoritetaan Papirus-ikoneiden kopioskriptiä..."
+#, python-brace-format
+msgid "Python import validation FAILED: {}"
+msgstr "Pythonin tuontivarmistus EPÄONNISTUI: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1594
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
 #: NEEDS WORK
-msgid "Warning: Papirus icons not available, falling back to Adwaita"
-msgstr "Varoitus: Papirus-ikoneita ei ole saatavilla, siirrytään Adwaita-ikoneihin."
+#, python-brace-format
+msgid "Python import validation error: {}"
+msgstr "Pythonin tuontivarmennusvirhe: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1882
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
 #: NEEDS WORK
-msgid "Creating custom index.theme for Papirus symbolic icons..."
-msgstr "Luodaan mukautettua index.theme-tiedostoa Papirus-symboli-ikoneille..."
+msgid "Running pre-packaging validation..."
+msgstr "Suoritetaan esipakkaustarkistusta..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1597
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
 #: NEEDS WORK
-msgid "Papirus symbolic icons copied successfully"
-msgstr "Papirus-symboliset ikonit kopioitiin onnistuneesti"
+msgid "Pre-packaging validation PASSED"
+msgstr "Esikäsittelyn validointi HYVÄKSYTTY"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
+#: NEEDS WORK
+msgid "Pre-packaging validation FAILED — check warnings above"
+msgstr "Esipakkaustarkastus EPÄONNISTUI — tarkista yllä olevat varoitukset"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 356
 #: NEEDS WORK
@@ -3615,224 +3468,377 @@ msgstr "Epäonnistui kopioimaan järjestelmän PyGObjectia"
 msgid "Error using system PyGObject: {}"
 msgstr "Virhe käytettäessä järjestelmää PyGObject: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
-#: NEEDS WORK
-msgid "Starting recursive dependency resolution..."
-msgstr "Aloitetaan rekursiivinen riippuvuuden ratkaisu..."
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Resolution iteration {}/{}..."
-msgstr "Resoluutio iteraatio {}/{}..."
+msgid "Ignoring unsafe extra library name: {}"
+msgstr "Ohittamalla vaarallisen ylimääräisen kirjaston nimen: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Found {} ELF files to scan"
-msgstr "Löydettiin {} ELF-tiedostoa skannattavaksi"
+msgid "Including user-specified extra libraries: {}"
+msgstr "Sisältää käyttäjän määrittämiä ylimääräisiä kirjastoja: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
-#: NEEDS WORK
-msgid "  No missing libraries found — resolution complete"
-msgstr "Ei puuttuvia kirjastoja löytynyt — ratkaisu valmis"
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Found {} missing libraries: {}"
-msgstr "Löydettiin {} puuttuvaa kirjastoa: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Kopioidaan standardijärjestelmäkirjastoja: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Copied: {}"
-msgstr "Kopioitu: {}"
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Kopioidaan ristiriitaisia järjestelmäkirjastoja varahakemistoon: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Failed to copy: {}"
-msgstr "Kopiointi epäonnistui: {}"
+msgid "Generating script to copy libraries to {}..."
+msgstr "Generoidaan skripti kirjastoiden kopioimiseen {}..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
+#: NEEDS WORK
+msgid "Executing library copy script..."
+msgstr "Suoritetaan kirjaston kopiointiskriptiä..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1039
+#: NEEDS WORK
+msgid "Warning: Library copy script finished with errors."
+msgstr "Varoitus: Kirjaston kopiointiskripti päättyi virheisiin."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1041
+#: NEEDS WORK
+msgid "Library copy script finished successfully."
+msgstr "Kirjaston kopiointiskripti suoritettiin onnistuneesti."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
+#: NEEDS WORK
+msgid "No typelibs selected for inclusion."
+msgstr "Ei tyypilukuja valittu sisällytettäväksi."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Not found in system: {}"
-msgstr "Ei löytynyt järjestelmästä: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Kopioidaan valittuja tyyppikirjastoja: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "  No new libraries could be copied — stopping"
-msgstr "Uusia kirjastoja ei voitu kopioida — pysäytetään"
+msgid "Generating script to copy typelibs..."
+msgstr "Generoidaan skripti tyypin kirjastojen kopioimiseen..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied {} libraries this iteration"
-msgstr "Kopioitu {} kirjastoja tässä iteraatiossa"
+msgid "Executing typelib copy script..."
+msgstr "Suoritetaan typelib-kopiointiskriptiä..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK
-#, python-brace-format
-msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
-msgstr "Riippuvuuksien ratkaisu valmis: {} kopioitu, {} vielä puuttuu ({} iteraatiota)"
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "Varoitus: Jotkin tyyppikirjastot eivät ehkä ole kopioitu."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
 #: NEEDS WORK
-msgid "Validating library dependencies..."
-msgstr "Kirjastoriippuvuuksien vahvistaminen..."
+msgid "Typelib copy complete"
+msgstr "Typelib-kopiointi valmis"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
 #: NEEDS WORK
-msgid "Library validation FAILED:"
-msgstr "Kirjaston vahvistus EPÄONNISTUI:"
+msgid "Copying essential GStreamer plugins..."
+msgstr "Kopioidaan olennaisia GStreamer-laajennuksia..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
 #: NEEDS WORK
-msgid "Library validation passed — all dependencies resolved"
-msgstr "Kirjaston vahvistus onnistui — kaikki riippuvuudet ratkaistu"
+msgid "Detected video playback requirements"
+msgstr "Havaitut videotoistovaatimukset"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
 #: NEEDS WORK
-#, python-brace-format
-msgid "Validating Python imports for module: {}"
-msgstr "Vahvistetaan Pythonin tuontia moduulille: {}"
+msgid "Copying GStreamer plugins..."
+msgstr "Kopioidaan GStreamer-laajennoksia..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
 #: NEEDS WORK
-msgid "Python import validation passed"
-msgstr "Pythonin tuontivaatimus hyväksytty"
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer-laajennoksen kopiointi valmis"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation FAILED: {}"
-msgstr "Pythonin tuontivarmistus EPÄONNISTUI: {}"
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Kopioidaan Adwaita-symboliikoneita..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation error: {}"
-msgstr "Pythonin tuontivarmennusvirhe: {}"
+msgid "Symbolic icons already present"
+msgstr "Symboliset ikonit ovat jo läsnä"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
 #: NEEDS WORK
-msgid "Running pre-packaging validation..."
-msgstr "Suoritetaan esipakkaustarkistusta..."
+msgid "Copying symbolic icons from container..."
+msgstr "Kopioidaan symbolisia kuvakkeita säiliöstä..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
 #: NEEDS WORK
-msgid "Pre-packaging validation PASSED"
-msgstr "Esikäsittelyn validointi HYVÄKSYTTY"
+msgid "Copying symbolic icons from host system..."
+msgstr "Kopioidaan symbolisia kuvakkeita isäntäjärjestelmästä..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
-#: NEEDS WORK
-msgid "Pre-packaging validation FAILED — check warnings above"
-msgstr "Esipakkaustarkastus EPÄONNISTUI — tarkista yllä olevat varoitukset"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 760
-#: NEEDS WORK
-msgid "AppImage Structure - Detailed View"
-msgstr "AppImage-rakenne - Yksityiskohtainen näkymä"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 764
-#: NEEDS WORK
-msgid "[AppImage Root]"
-msgstr "[AppImage-juuri]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 765
-#: NEEDS WORK
-msgid "├── AppRun (main launcher)"
-msgstr "├── AppRun (pääkäynnistin)"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 768
-#: NEEDS WORK
-msgid "└── usr/"
-msgstr "└── usr/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 769
-#: NEEDS WORK
-msgid "    ├── bin/"
-msgstr "├── bin/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 771
-#: NEEDS WORK
-msgid "    ├── lib/"
-msgstr "├── kirjasto/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 772
-#: NEEDS WORK
-msgid "    └── share/"
-msgstr "└── jakaa/"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
-#: NEEDS WORK
-msgid "Python Files"
-msgstr "Python-tiedostot"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
-#: NEEDS WORK
-msgid "Shell Scripts"
-msgstr "Shell-skriptit"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
-#: NEEDS WORK
-msgid "UI Files"
-msgstr "Käyttöliittymätiedostot"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
-#: NEEDS WORK
-msgid "CSS Files"
-msgstr "CSS-tiedostot"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
-#: NEEDS WORK
-msgid "Icon Files"
-msgstr "Ikonitiedostot"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
-#: NEEDS WORK
-msgid "Locale Directories"
-msgstr "Paikallishakemistot"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1085
-#: NEEDS WORK
-msgid "[Additional Directories]"
-msgstr "[Lisähakemistot]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1112
-#: NEEDS WORK
-msgid "SUMMARY"
-msgstr "YHTEENVETO"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1116
-#: NEEDS WORK
-msgid "Project Root"
-msgstr "Projektin juurihakemisto"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1127
-#: NEEDS WORK
-msgid "  File Breakdown:"
-msgstr "Tiedoston erittely:"
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 16
-#: NEEDS WORK
-msgid "Warning: PIL/Pillow not available, icon processing will be limited"
-msgstr "Varoitus: PIL/Pillow ei ole saatavilla, kuvakkeiden käsittely on rajoitettua"
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 82
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error processing icon: {}"
-msgstr "Virhe kuvakkeen käsittelyssä: {}"
+msgid "Warning: Adwaita symbolic icons not found at {}"
+msgstr "Varoitus: Adwaita-symboliset ikonit eivät löytyneet kohdasta {}"
 # 
-# File: usr/share/appimage-creator/generators/files.py, line: 70
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
 #: NEEDS WORK
-msgid "Warning: Desktop file may have validation issues"
-msgstr "Varoitus: Työpöytä tiedostossa saattaa olla voimassaoloon liittyviä ongelmia"
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Varoitus: Symbolisten kuvakkeiden kopiointi epäonnistui"
 # 
-# File: usr/share/appimage-creator/generators/files.py, line: 85
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
 #: NEEDS WORK
-msgid "Failed to create desktop file"
-msgstr "Desktop-tiedoston luominen epäonnistui"
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Luodaan mukautettua index.theme-tiedostoa Adwaita-symboli-ikoneille..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Symboliset ikonit kopioitiin onnistuneesti"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "Kopioidaan Papirus-symboliikoneita..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Papirus-symboliset ikonit jo olemassa"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Kopioidaan Papirus- ja Papirus-Dark-symbolisia kuvakkeita..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "Suoritetaan Papirus-ikoneiden kopioskriptiä..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Varoitus: Papirus-ikoneita ei ole saatavilla, siirrytään Adwaita-ikoneihin."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Luodaan mukautettua index.theme-tiedostoa Papirus-symboli-ikoneille..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Papirus-symboliset ikonit kopioitiin onnistuneesti"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 152
+# File: usr/share/appimage-creator/updater/update_window.py, line: 141
+#: NEEDS WORK
+msgid "Updating"
+msgstr "Päivittäminen"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 218
+# File: usr/share/appimage-creator/updater/update_window.py, line: 207
+#: NEEDS WORK
+msgid "Done"
+msgstr "Valmis"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 232
+# File: usr/share/appimage-creator/updater/update_window.py, line: 221
+#: NEEDS WORK
+msgid "Downloading update..."
+msgstr "Ladataan päivitystä..."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 233
+# File: usr/share/appimage-creator/updater/update_window.py, line: 222
+#: NEEDS WORK
+#, python-brace-format
+msgid "Version {}"
+msgstr "Versio {}"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 241
+# File: usr/share/appimage-creator/updater/update_window.py, line: 230
+#: NEEDS WORK
+msgid "Installing update..."
+msgstr "Asennetaan päivitystä..."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 264
+# File: usr/share/appimage-creator/updater/update_window.py, line: 253
+#: NEEDS WORK
+msgid "Update completed!"
+msgstr "Päivitys valmis!"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 265
+# File: usr/share/appimage-creator/updater/update_window.py, line: 254
+#: NEEDS WORK
+#, python-brace-format
+msgid "Version {} installed successfully"
+msgstr "Versio {} asennettu onnistuneesti"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 290
+# File: usr/share/appimage-creator/updater/update_window.py, line: 279
+#: NEEDS WORK
+msgid "Update failed"
+msgstr "Päivitys epäonnistui"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 303
+# File: usr/share/appimage-creator/updater/update_window.py, line: 292
+#: NEEDS WORK
+#, python-brace-format
+msgid "{:.1f} MB of {:.1f} MB"
+msgstr "{:.1f} MB / {:.1f} MB"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 335
+# File: update_window.py, line: 433
+# File: usr/share/appimage-creator/updater/update_window.py, line: 324
+# File: usr/share/appimage-creator/updater/update_window.py, line: 422
+#: NEEDS WORK
+msgid "Update Available"
+msgstr "Päivitys saatavilla"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 440
+# File: usr/share/appimage-creator/updater/update_window.py, line: 429
+#: NEEDS WORK
+#, python-brace-format
+msgid "A new version of {} is available"
+msgstr "Uusi versio {} on saatavilla"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 448
+# File: usr/share/appimage-creator/updater/update_window.py, line: 437
+#: NEEDS WORK
+msgid "Version Information"
+msgstr "Versiotiedot"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 451
+# File: usr/share/appimage-creator/updater/update_window.py, line: 440
+#: NEEDS WORK
+msgid "Current Version"
+msgstr "Nykyinen versio"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 456
+# File: usr/share/appimage-creator/updater/update_window.py, line: 445
+#: NEEDS WORK
+msgid "New Version"
+msgstr "Uusi versio"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 465
+# File: usr/share/appimage-creator/updater/update_window.py, line: 454
+#: NEEDS WORK
+msgid "What's New"
+msgstr "Uutta"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 469
+# File: usr/share/appimage-creator/updater/update_window.py, line: 458
+#: NEEDS WORK
+msgid "Release Notes"
+msgstr "Julkaisumuistiinpanot"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 470
+# File: usr/share/appimage-creator/updater/update_window.py, line: 459
+#: NEEDS WORK
+msgid "Click to view changes"
+msgstr "Napsauta nähdäksesi muutokset"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 491
+# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+#: NEEDS WORK
+msgid "Options"
+msgstr "Asetukset"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 495
+# File: usr/share/appimage-creator/updater/update_window.py, line: 484
+#: NEEDS WORK
+msgid "Remove old version"
+msgstr "Poista vanha versio"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 496
+# File: usr/share/appimage-creator/updater/update_window.py, line: 485
+#: NEEDS WORK
+msgid "Delete previous version after successful update"
+msgstr "Poista edellinen versio onnistuneen päivityksen jälkeen"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 525
+# File: usr/share/appimage-creator/updater/update_window.py, line: 514
+#: NEEDS WORK
+msgid "Later"
+msgstr "Myöhemmin"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 529
+# File: usr/share/appimage-creator/updater/update_window.py, line: 518
+#: NEEDS WORK
+msgid "Update"
+msgstr "Päivitä"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 592
+# File: usr/share/appimage-creator/updater/update_window.py, line: 581
+#: NEEDS WORK
+msgid "Download failed"
+msgstr "Lataus epäonnistui"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 605
+# File: usr/share/appimage-creator/updater/update_window.py, line: 594
+#: NEEDS WORK
+msgid "Integration failed"
+msgstr "Integraatio epäonnistui"
+# 
+# File: usr/share/appimage-creator/updater/notify_fallback.py, line: 159
+#: NEEDS WORK
+msgid "The update will be applied the next time the application starts"
+msgstr "Päivitys otetaan käyttöön seuraavan kerran, kun sovellus käynnistetään."

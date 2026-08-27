@@ -16,217 +16,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: attranslate\n"
 # 
-# File: usr/share/appimage-creator/utils/system.py, line: 108
+# File: usr/share/appimage-creator/generators/icons.py, line: 16
+#: NEEDS WORK
+msgid "Warning: PIL/Pillow not available, icon processing will be limited"
+msgstr "Uyarı: PIL/Pillow mevcut değil, simge işleme sınırlı olacak."
+# 
+# File: usr/share/appimage-creator/generators/icons.py, line: 82
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to make file executable: {}"
-msgstr "Dosyayı çalıştırılabilir hale getirme başarısız oldu: {}"
+msgid "Error processing icon: {}"
+msgstr "Simge işlenirken hata: {}"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
+# File: usr/share/appimage-creator/generators/files.py, line: 70
 #: NEEDS WORK
-msgid ""
-"Select the main binary or script that starts your application.\n"
-"\n"
-"This is the entry point — the file that will be executed when the user launches the AppImage."
-msgstr ""
-"Uygulamanızı başlatan ana ikili dosyayı veya betiği seçin.\n"
-"\n"
-"Bu giriş noktasıdır — kullanıcının AppImage'ı başlattığında çalıştırılacak dosya."
+msgid "Warning: Desktop file may have validation issues"
+msgstr "Uyarı: Masaüstü dosyasının doğrulama sorunları olabilir"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
+# File: usr/share/appimage-creator/generators/files.py, line: 85
 #: NEEDS WORK
-msgid ""
-"The application name used for the AppImage filename and menu entry.\n"
-"\n"
-"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
-msgstr ""
-"Uygulama adı, AppImage dosya adı ve menü girişi için kullanılır.\n"
-"\n"
-"Yalnızca harfler, sayılar, boşluklar, tireler, alt çizgiler ve noktalar kullanılabilir."
+msgid "Failed to create desktop file"
+msgstr "Masaüstü dosyası oluşturulamadı"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
+# File: usr/share/appimage-creator/validators/validators.py, line: 18
 #: NEEDS WORK
-msgid ""
-"The application icon is used in the system menu, taskbar, and file manager.\n"
-"\n"
-"A 256×256 or larger PNG/SVG icon is recommended.\n"
-"\n"
-"Without an icon, the AppImage will display a generic icon in menus and taskbar."
-msgstr ""
-"Uygulama simgesi, sistem menüsünde, görev çubuğunda ve dosya yöneticisinde kullanılır.\n"
-"\n"
-"256×256 veya daha büyük bir PNG/SVG simgesi önerilir.\n"
-"\n"
-"Bir simge olmadan, AppImage menülerde ve görev çubuğunda genel bir simge gösterecektir."
+msgid "Application name must be at least 2 characters long"
+msgstr "Uygulama adı en az 2 karakter uzunluğunda olmalıdır."
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
+# File: usr/share/appimage-creator/validators/validators.py, line: 21
 #: NEEDS WORK
-msgid ""
-"The .desktop file controls how the application appears in the system menu, including its name, "
-"icon, categories, and launch options.\n"
-"\n"
-"If you don't provide one, a basic .desktop file will be generated automatically using the "
-"information configured here.\n"
-"\n"
-"For full integration, provide your own file with proper categories and metadata."
-msgstr ""
-".desktop dosyası, uygulamanın sistem menüsünde nasıl göründüğünü, adını, simgesini, kategorilerini "
-"ve başlatma seçeneklerini kontrol eder.\n"
-"\n"
-"Eğer bir tane sağlamazsanız, burada yapılandırılan bilgiler kullanılarak otomatik olarak temel bir "
-".desktop dosyası oluşturulacaktır.\n"
-"\n"
-"Tam entegrasyon için, uygun kategoriler ve meta verilerle kendi dosyanızı sağlayın."
+msgid "Application name contains invalid characters"
+msgstr "Uygulama adı geçersiz karakterler içeriyor."
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
+# File: usr/share/appimage-creator/validators/validators.py, line: 29
 #: NEEDS WORK
-msgid ""
-"Determines how the launcher (AppRun) script is generated.\n"
-"\n"
-"This is auto-detected from the executable, but you can override it:\n"
-"• Binary — compiled native executable\n"
-"• Python — Python script using system interpreter\n"
-"• Electron — Electron-based application\n"
-"• GTK/Qt — GUI applications with toolkit-specific environment variables"
-msgstr ""
-"Başlatıcı (AppRun) betiğinin nasıl oluşturulacağını belirler.\n"
-"\n"
-"Bu, çalıştırılabilir dosyadan otomatik olarak algılanır, ancak bunu geçersiz kılabilirsiniz:\n"
-"• İkili — derlenmiş yerel çalıştırılabilir dosya\n"
-"• Python — sistem yorumlayıcısını kullanan Python betiği\n"
-"• Electron — Electron tabanlı uygulama\n"
-"• GTK/Qt — araç takımı özel ortam değişkenlerine sahip GUI uygulamaları"
+msgid "Version is required"
+msgstr "Sürüm gereklidir"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
+# File: usr/share/appimage-creator/validators/validators.py, line: 32
 #: NEEDS WORK
-msgid ""
-"Semantic version of your application (e.g. 1.2.3).\n"
-"\n"
-"This is embedded in the AppImage metadata and used for update detection."
-msgstr ""
-"Uygulamanızın anlamsal sürümü (örn. 1.2.3).\n"
-"\n"
-"Bu, AppImage meta verilerine gömülüdür ve güncelleme tespiti için kullanılır."
+msgid "Invalid version format"
+msgstr "Geçersiz sürüm formatı"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+# File: usr/share/appimage-creator/validators/validators.py, line: 40
 #: NEEDS WORK
-msgid ""
-"A short one-line description shown in application menus and package managers.\n"
-"\n"
-"Keep it concise — typically under 80 characters."
-msgstr ""
-"Uygulama menülerinde ve paket yöneticilerinde gösterilen kısa bir açıklama. Kısa tutun - genellikle "
-"80 karakterin altında."
+msgid "Executable file does not exist"
+msgstr "Yürütülebilir dosya mevcut değil"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+# File: usr/share/appimage-creator/validators/validators.py, line: 43
 #: NEEDS WORK
-msgid ""
-"Enable this for CLI tools that need a terminal to run.\n"
-"\n"
-"When enabled, the desktop environment will open a terminal emulator before launching the "
-"application."
-msgstr ""
-"Bunu, çalışmak için bir terminale ihtiyaç duyan CLI araçları için etkinleştirin.\n"
-"\n"
-"Etkinleştirildiğinde, masaüstü ortamı uygulamayı başlatmadan önce bir terminal emülatörü açacaktır."
+msgid "File is not executable"
+msgstr "Dosya çalıştırılabilir değil."
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+# File: usr/share/appimage-creator/validators/validators.py, line: 54
 #: NEEDS WORK
-msgid ""
-"GitHub Releases API URL for automatic updates.\n"
-"\n"
-"Must start with https:// — typically:\n"
-"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
-"\n"
-"Click the paste button to insert a template."
-msgstr ""
-"GitHub Sürümler API URL'si otomatik güncellemeler için.\n"
-"\n"
-"Şu ile başlamalıdır: https:// — genellikle:\n"
-"https://api.github.com/repos/SAHİBİ/DEPO/releases/latest\n"
-"\n"
-"Bir şablonu eklemek için yapıştır düğmesine tıklayın."
+msgid "Error: Missing [Desktop Entry] section"
+msgstr "Hata: [Masaüstü Girişi] bölümü eksik"
 # 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
-#: NEEDS WORK
-msgid ""
-"Glob pattern to identify which file to download from the release.\n"
-"\n"
-"The asterisk (*) matches any text. Examples:\n"
-"• myapp-*-x86_64.AppImage\n"
-"• *-gui-*.AppImage"
-msgstr ""
-"Yayından hangi dosyanın indirileceğini belirlemek için glob deseni.\n"
-"\n"
-"Asterisk (*) herhangi bir metni eşleştirir. Örnekler:\n"
-"• myapp-*-x86_64.AppImage\n"
-"• *-gui-*.AppImage"
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
-#: NEEDS WORK
-msgid ""
-"The directory where the final .AppImage file will be saved.\n"
-"\n"
-"Defaults to the current working directory."
-msgstr ""
-"Son .AppImage dosyasının kaydedileceği dizin.\n"
-"\n"
-"Varsayılan olarak geçerli çalışma dizinidir."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
-#: NEEDS WORK
-msgid ""
-"Choose where to build the AppImage.\n"
-"\n"
-"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
-"builds against an older glibc."
-msgstr ""
-"AppImage'i nerede oluşturacağınızı seçin.\n"
-"\n"
-"Distrobox konteyneri kullanmak, daha eski Linux dağıtımlarıyla maksimum uyumluluk sağlar, çünkü "
-"daha eski bir glibc'ye karşı derlenir."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
-#: NEEDS WORK
-msgid ""
-"Bundle shared libraries (.so files) into the AppImage.\n"
-"\n"
-"This ensures the application works on other systems that may not have the required libraries "
-"installed."
-msgstr ""
-"Paylaşılan kütüphaneleri (.so dosyaları) AppImage içine paketleyin.\n"
-"\n"
-"Bu, uygulamanın gerekli kütüphanelerin yüklü olmadığı diğer sistemlerde çalışmasını sağlar."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
-#: NEEDS WORK
-msgid ""
-"Bundle an icon theme inside the AppImage.\n"
-"\n"
-"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
-"the one your app was designed for."
-msgstr ""
-"AppImage içinde bir simge teması paketleyin.\n"
-"\n"
-"Paketlenmiş bir tema olmadan, uygulamanızın tasarlandığı temadan farklı bir simge teması kullanan "
-"masaüstlerinde bazı simgeler eksik olabilir."
-# 
-# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
-#: NEEDS WORK
-msgid ""
-"Remove debug symbols from binaries to reduce the AppImage size.\n"
-"\n"
-"This makes the file smaller but harder to debug if issues occur."
-msgstr ""
-"Binaries'ten hata ayıklama sembollerini kaldırarak AppImage boyutunu azaltın.\n"
-"\n"
-"Bu, dosyayı daha küçük hale getirir ancak sorunlar ortaya çıkarsa hata ayıklamayı zorlaştırır."
-# 
-# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
+# File: usr/share/appimage-creator/validators/validators.py, line: 69
 #: NEEDS WORK
 #, python-brace-format
-msgid "Failed to download {}: {}"
-msgstr "{} indirilmedi: {}"
+msgid "Error: Missing required keys: {}"
+msgstr "Hata: Gerekli anahtarlar eksik: {}"
+# 
+# File: usr/share/appimage-creator/validators/validators.py, line: 81
+#: NEEDS WORK
+#, python-brace-format
+msgid "Error: Empty value for required key: {}"
+msgstr "Hata: Gerekli anahtar için boş değer: {}"
+# 
+# File: usr/share/appimage-creator/ui/app.py, line: 75
+#: NEEDS WORK
+#, python-brace-format
+msgid "Warning: Could not load custom CSS: {}"
+msgstr "Uyarı: Özel CSS yüklenemedi: {}"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -246,11 +108,247 @@ msgstr "Kaldır"
 msgid "{}: {}"
 msgstr "{}: {}"
 # 
-# File: usr/share/appimage-creator/ui/app.py, line: 75
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
+#: NEEDS WORK
+msgid "Building AppImage"
+msgstr "AppImage Oluşturma"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
+#: NEEDS WORK
+msgid "Preparing..."
+msgstr "Hazırlanıyor..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
+#: NEEDS WORK
+msgid "Cancel Build"
+msgstr "İnşaatı İptal Et"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
+#: NEEDS WORK
+msgid "Dependency Warnings"
+msgstr "Bağımlılık Uyarıları"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
+#: NEEDS WORK
+msgid "AppImage Created with Warnings"
+msgstr "Uyarılarla Oluşturulan AppImage"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
+#: NEEDS WORK
+msgid ""
+"The AppImage was created successfully, but some library dependencies could not be resolved. The "
+"application may not work correctly on some systems."
+msgstr ""
+"AppImage başarıyla oluşturuldu, ancak bazı kütüphane bağımlılıkları çözülemedi. Uygulama bazı "
+"sistemlerde doğru çalışmayabilir."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
+#: NEEDS WORK
+msgid "Missing Libraries"
+msgstr "Eksik Kütüphaneler"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
+#: NEEDS WORK
+msgid "How to fix:"
+msgstr "Nasıl düzeltilir:"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
+#: NEEDS WORK
+msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
+msgstr "• Farklı bir konteyner ile derlemeyi deneyin (örneğin, 24.04 yerine Ubuntu 22.04)"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
+#: NEEDS WORK
+msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
+msgstr "• Derleme işleminden önce 'Ek Kütüphaneler' bölümüne eksik kütüphaneleri ekleyin"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
+#: NEEDS WORK
+msgid "• Install the required -dev packages in the build container"
+msgstr "• Gerekli -dev paketlerini yapı konteynerine kurun"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
+#: NEEDS WORK
+msgid "Close"
+msgstr "Kapat"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
+#: NEEDS WORK
+msgid "Open Folder"
+msgstr "Klasörü Aç"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
+# File: usr/share/appimage-creator/ui/window.py, line: 405
+#: NEEDS WORK
+msgid "OK"
+msgstr "Tamam"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 950
+#: NEEDS WORK
+msgid "Build Complete"
+msgstr "Derleme Tamamlandı"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
+#: NEEDS WORK
+msgid "AppImage created successfully:"
+msgstr "AppImage başarıyla oluşturuldu:"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
+# File: usr/share/appimage-creator/ui/window.py, line: 341
+#: NEEDS WORK
+msgid "Cancel"
+msgstr "İptal"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
+#: NEEDS WORK
+msgid "Open"
+msgstr "Açık"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
+#: NEEDS WORK
+msgid "Select"
+msgstr "Seçin"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
+#: NEEDS WORK
+msgid "Save"
+msgstr "Kaydet"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
+#: NEEDS WORK
+msgid "Copy to clipboard"
+msgstr "Pano kopyala"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
+#: NEEDS WORK
+msgid "Desktop File Content"
+msgstr "Masaüstü Dosyası İçeriği"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
+# File: usr/share/appimage-creator/ui/window.py, line: 897
+# File: usr/share/appimage-creator/ui/window.py, line: 906
+#: NEEDS WORK
+msgid "Error"
+msgstr "Hata"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Could not load custom CSS: {}"
-msgstr "Uyarı: Özel CSS yüklenemedi: {}"
+msgid "Failed to read file: {}"
+msgstr "Dosya okunamadı: {}"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
+#: NEEDS WORK
+msgid "Starting..."
+msgstr "Başlatılıyor..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
+#: NEEDS WORK
+msgid "Cancelling..."
+msgstr "İptal ediliyor..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
+#: NEEDS WORK
+msgid "Cancelled."
+msgstr "İptal Edildi."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
+#: NEEDS WORK
+msgid "Completed successfully!"
+msgstr "Başarıyla tamamlandı!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
+#: NEEDS WORK
+msgid "Finished with errors."
+msgstr "Hatalarla tamamlandı."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
+# File: usr/share/appimage-creator/ui/pages.py, line: 459
+#: NEEDS WORK
+msgid "Install Required Packages"
+msgstr "Gerekli Paketleri Yükle"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
+#: NEEDS WORK
+msgid "Installation Information"
+msgstr "Kurulum Bilgileri"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
+#: NEEDS WORK
+msgid "Packages to Install"
+msgstr "Yüklenmesi Gereken Paketler"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
+#: NEEDS WORK
+msgid "Command"
+msgstr "Komut"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
+#: NEEDS WORK
+msgid ""
+"<b>Administrator privileges required</b>\n"
+"You will be asked for your password to install system packages."
+msgstr ""
+"<b>Yönetici ayrıcalıkları gereklidir</b>  \n"
+"Sistem paketlerini kurmak için şifreniz istenecektir."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
+#: NEEDS WORK
+msgid "Installation Output"
+msgstr "Kurulum Çıktısı"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
+#: NEEDS WORK
+msgid "Install"
+msgstr "Kurulum"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
+#: NEEDS WORK
+msgid "Starting installation..."
+msgstr "Kurulum başlatılıyor..."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
+#: NEEDS WORK
+msgid "Error running command"
+msgstr "Komut çalıştırma hatası"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
+#: NEEDS WORK
+msgid "Pre-command completed successfully."
+msgstr "Ön komut başarıyla tamamlandı."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
+#: NEEDS WORK
+msgid "Installation completed successfully!"
+msgstr "Kurulum başarıyla tamamlandı!"
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
+#: NEEDS WORK
+msgid "Command failed with exit code"
+msgstr "Komut, çıkış kodu ile başarısız oldu."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
+#: NEEDS WORK
+msgid "Installation failed."
+msgstr "Kurulum başarısız."
+# 
+# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
+#: NEEDS WORK
+msgid "Please check the errors above and try again."
+msgstr "Lütfen yukarıdaki hataları kontrol edin ve tekrar deneyin."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 48
 # File: usr/share/appimage-creator/ui/window.py, line: 131
@@ -297,11 +395,6 @@ msgstr "Neredeyse Hazır!"
 msgid "Please enter an Application Name"
 msgstr "Lütfen bir Uygulama Adı girin"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 21
-#: NEEDS WORK
-msgid "Application name contains invalid characters"
-msgstr "Uygulama adı geçersiz karakterler içeriyor."
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 436
 #: NEEDS WORK
 msgid "Select Executable"
@@ -342,15 +435,6 @@ msgstr ""
 #: NEEDS WORK
 msgid "Do you want to continue?"
 msgstr "Devam etmek istiyor musunuz?"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 119
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 402
-# File: usr/share/appimage-creator/ui/window.py, line: 341
-#: NEEDS WORK
-msgid "Cancel"
-msgstr "İptal"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 386
 #: NEEDS WORK
@@ -435,16 +519,6 @@ msgstr ""
 "Gerekli paketler başarıyla yüklendi!\n"
 "\n"
 "Yeni özellikleri kullanmak için lütfen uygulamayı yeniden başlatın."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 74
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 84
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 99
-# File: usr/share/appimage-creator/ui/window.py, line: 405
-#: NEEDS WORK
-msgid "OK"
-msgstr "Tamam"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 516
 #: NEEDS WORK
@@ -540,15 +614,6 @@ msgstr "AppImage Yapısı - Tam Görünüm"
 msgid "Validation Error"
 msgstr "Doğrulama Hatası"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-# File: usr/share/appimage-creator/ui/window.py, line: 897
-# File: usr/share/appimage-creator/ui/window.py, line: 906
-#: NEEDS WORK
-msgid "Error"
-msgstr "Hata"
-# 
 # File: usr/share/appimage-creator/ui/window.py, line: 897
 #: NEEDS WORK
 #, python-brace-format
@@ -569,11 +634,6 @@ msgstr "Devam Et Her Şeyden Önce"
 #: NEEDS WORK
 msgid "Build Failed"
 msgstr "Derleme Başarısız"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 950
-#: NEEDS WORK
-msgid "Build Complete"
-msgstr "Derleme Tamamlandı"
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 1272
 #: NEEDS WORK
@@ -722,215 +782,6 @@ msgstr ""
 "Bir dosya izin hatası derleme sırasında oluştu.\n"
 "\n"
 "Öneri: Tüm dosyalar için gerekli izinlere sahip olduğunuzu kontrol edin."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 24
-#: NEEDS WORK
-msgid "Building AppImage"
-msgstr "AppImage Oluşturma"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 46
-#: NEEDS WORK
-msgid "Preparing..."
-msgstr "Hazırlanıyor..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 57
-#: NEEDS WORK
-msgid "Cancel Build"
-msgstr "İnşaatı İptal Et"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 78
-#: NEEDS WORK
-msgid "Dependency Warnings"
-msgstr "Bağımlılık Uyarıları"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 113
-#: NEEDS WORK
-msgid "AppImage Created with Warnings"
-msgstr "Uyarılarla Oluşturulan AppImage"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 122
-#: NEEDS WORK
-msgid ""
-"The AppImage was created successfully, but some library dependencies could not be resolved. The "
-"application may not work correctly on some systems."
-msgstr ""
-"AppImage başarıyla oluşturuldu, ancak bazı kütüphane bağımlılıkları çözülemedi. Uygulama bazı "
-"sistemlerde doğru çalışmayabilir."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 136
-#: NEEDS WORK
-msgid "Missing Libraries"
-msgstr "Eksik Kütüphaneler"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 170
-#: NEEDS WORK
-msgid "How to fix:"
-msgstr "Nasıl düzeltilir:"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 176
-#: NEEDS WORK
-msgid "• Try building with a different container (e.g., Ubuntu 22.04 instead of 24.04)"
-msgstr "• Farklı bir konteyner ile derlemeyi deneyin (örneğin, 24.04 yerine Ubuntu 22.04)"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 180
-#: NEEDS WORK
-msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
-msgstr "• Derleme işleminden önce 'Ek Kütüphaneler' bölümüne eksik kütüphaneleri ekleyin"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 183
-#: NEEDS WORK
-msgid "• Install the required -dev packages in the build container"
-msgstr "• Gerekli -dev paketlerini yapı konteynerine kurun"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 270
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 411
-#: NEEDS WORK
-msgid "Close"
-msgstr "Kapat"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 85
-#: NEEDS WORK
-msgid "Open Folder"
-msgstr "Klasörü Aç"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 151
-#: NEEDS WORK
-msgid "AppImage created successfully:"
-msgstr "AppImage başarıyla oluşturuldu:"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 121
-#: NEEDS WORK
-msgid "Open"
-msgstr "Açık"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 123
-#: NEEDS WORK
-msgid "Select"
-msgstr "Seçin"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 125
-#: NEEDS WORK
-msgid "Save"
-msgstr "Kaydet"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 199
-#: NEEDS WORK
-msgid "Copy to clipboard"
-msgstr "Pano kopyala"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 217
-#: NEEDS WORK
-msgid "Desktop File Content"
-msgstr "Masaüstü Dosyası İçeriği"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 219
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to read file: {}"
-msgstr "Dosya okunamadı: {}"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 254
-#: NEEDS WORK
-msgid "Starting..."
-msgstr "Başlatılıyor..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 599
-#: NEEDS WORK
-msgid "Cancelling..."
-msgstr "İptal ediliyor..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 620
-#: NEEDS WORK
-msgid "Cancelled."
-msgstr "İptal Edildi."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 292
-#: NEEDS WORK
-msgid "Completed successfully!"
-msgstr "Başarıyla tamamlandı!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 294
-#: NEEDS WORK
-msgid "Finished with errors."
-msgstr "Hatalarla tamamlandı."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 304
-# File: usr/share/appimage-creator/ui/pages.py, line: 459
-#: NEEDS WORK
-msgid "Install Required Packages"
-msgstr "Gerekli Paketleri Yükle"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 330
-#: NEEDS WORK
-msgid "Installation Information"
-msgstr "Kurulum Bilgileri"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 335
-#: NEEDS WORK
-msgid "Packages to Install"
-msgstr "Yüklenmesi Gereken Paketler"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 342
-#: NEEDS WORK
-msgid "Command"
-msgstr "Komut"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 360
-#: NEEDS WORK
-msgid ""
-"<b>Administrator privileges required</b>\n"
-"You will be asked for your password to install system packages."
-msgstr ""
-"<b>Yönetici ayrıcalıkları gereklidir</b>  \n"
-"Sistem paketlerini kurmak için şifreniz istenecektir."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 371
-#: NEEDS WORK
-msgid "Installation Output"
-msgstr "Kurulum Çıktısı"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 406
-#: NEEDS WORK
-msgid "Install"
-msgstr "Kurulum"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 769
-#: NEEDS WORK
-msgid "Starting installation..."
-msgstr "Kurulum başlatılıyor..."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 456
-#: NEEDS WORK
-msgid "Error running command"
-msgstr "Komut çalıştırma hatası"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 465
-#: NEEDS WORK
-msgid "Pre-command completed successfully."
-msgstr "Ön komut başarıyla tamamlandı."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 469
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 491
-#: NEEDS WORK
-msgid "Installation completed successfully!"
-msgstr "Kurulum başarıyla tamamlandı!"
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 472
-#: NEEDS WORK
-msgid "Command failed with exit code"
-msgstr "Komut, çıkış kodu ile başarısız oldu."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 499
-#: NEEDS WORK
-msgid "Installation failed."
-msgstr "Kurulum başarısız."
-# 
-# File: usr/share/appimage-creator/ui/dialogs.py, line: 500
-#: NEEDS WORK
-msgid "Please check the errors above and try again."
-msgstr "Lütfen yukarıdaki hataları kontrol edin ve tekrar deneyin."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 76
 #: NEEDS WORK
@@ -1641,250 +1492,509 @@ msgstr "Maksimum uyumluluk için bir konteynerde inşa etme"
 msgid "No container available — building on the local system"
 msgstr "Hiç konteyner mevcut değil — yerel sistemde inşa ediliyor"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 18
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
 #: NEEDS WORK
-msgid "Application name must be at least 2 characters long"
-msgstr "Uygulama adı en az 2 karakter uzunluğunda olmalıdır."
+msgid ""
+"Select the main binary or script that starts your application.\n"
+"\n"
+"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr ""
+"Uygulamanızı başlatan ana ikili dosyayı veya betiği seçin.\n"
+"\n"
+"Bu giriş noktasıdır — kullanıcının AppImage'ı başlattığında çalıştırılacak dosya."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 29
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
 #: NEEDS WORK
-msgid "Version is required"
-msgstr "Sürüm gereklidir"
+msgid ""
+"The application name used for the AppImage filename and menu entry.\n"
+"\n"
+"Only letters, numbers, spaces, hyphens, underscores and dots are allowed."
+msgstr ""
+"Uygulama adı, AppImage dosya adı ve menü girişi için kullanılır.\n"
+"\n"
+"Yalnızca harfler, sayılar, boşluklar, tireler, alt çizgiler ve noktalar kullanılabilir."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 32
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 43
 #: NEEDS WORK
-msgid "Invalid version format"
-msgstr "Geçersiz sürüm formatı"
+msgid ""
+"The application icon is used in the system menu, taskbar, and file manager.\n"
+"\n"
+"A 256×256 or larger PNG/SVG icon is recommended.\n"
+"\n"
+"Without an icon, the AppImage will display a generic icon in menus and taskbar."
+msgstr ""
+"Uygulama simgesi, sistem menüsünde, görev çubuğunda ve dosya yöneticisinde kullanılır.\n"
+"\n"
+"256×256 veya daha büyük bir PNG/SVG simgesi önerilir.\n"
+"\n"
+"Bir simge olmadan, AppImage menülerde ve görev çubuğunda genel bir simge gösterecektir."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 40
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 48
 #: NEEDS WORK
-msgid "Executable file does not exist"
-msgstr "Yürütülebilir dosya mevcut değil"
+msgid ""
+"The .desktop file controls how the application appears in the system menu, including its name, "
+"icon, categories, and launch options.\n"
+"\n"
+"If you don't provide one, a basic .desktop file will be generated automatically using the "
+"information configured here.\n"
+"\n"
+"For full integration, provide your own file with proper categories and metadata."
+msgstr ""
+".desktop dosyası, uygulamanın sistem menüsünde nasıl göründüğünü, adını, simgesini, kategorilerini "
+"ve başlatma seçeneklerini kontrol eder.\n"
+"\n"
+"Eğer bir tane sağlamazsanız, burada yapılandırılan bilgiler kullanılarak otomatik olarak temel bir "
+".desktop dosyası oluşturulacaktır.\n"
+"\n"
+"Tam entegrasyon için, uygun kategoriler ve meta verilerle kendi dosyanızı sağlayın."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 43
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 55
 #: NEEDS WORK
-msgid "File is not executable"
-msgstr "Dosya çalıştırılabilir değil."
+msgid ""
+"Determines how the launcher (AppRun) script is generated.\n"
+"\n"
+"This is auto-detected from the executable, but you can override it:\n"
+"• Binary — compiled native executable\n"
+"• Python — Python script using system interpreter\n"
+"• Electron — Electron-based application\n"
+"• GTK/Qt — GUI applications with toolkit-specific environment variables"
+msgstr ""
+"Başlatıcı (AppRun) betiğinin nasıl oluşturulacağını belirler.\n"
+"\n"
+"Bu, çalıştırılabilir dosyadan otomatik olarak algılanır, ancak bunu geçersiz kılabilirsiniz:\n"
+"• İkili — derlenmiş yerel çalıştırılabilir dosya\n"
+"• Python — sistem yorumlayıcısını kullanan Python betiği\n"
+"• Electron — Electron tabanlı uygulama\n"
+"• GTK/Qt — araç takımı özel ortam değişkenlerine sahip GUI uygulamaları"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 54
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 64
 #: NEEDS WORK
-msgid "Error: Missing [Desktop Entry] section"
-msgstr "Hata: [Masaüstü Girişi] bölümü eksik"
+msgid ""
+"Semantic version of your application (e.g. 1.2.3).\n"
+"\n"
+"This is embedded in the AppImage metadata and used for update detection."
+msgstr ""
+"Uygulamanızın anlamsal sürümü (örn. 1.2.3).\n"
+"\n"
+"Bu, AppImage meta verilerine gömülüdür ve güncelleme tespiti için kullanılır."
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 69
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 68
+#: NEEDS WORK
+msgid ""
+"A short one-line description shown in application menus and package managers.\n"
+"\n"
+"Keep it concise — typically under 80 characters."
+msgstr ""
+"Uygulama menülerinde ve paket yöneticilerinde gösterilen kısa bir açıklama. Kısa tutun - genellikle "
+"80 karakterin altında."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 72
+#: NEEDS WORK
+msgid ""
+"Enable this for CLI tools that need a terminal to run.\n"
+"\n"
+"When enabled, the desktop environment will open a terminal emulator before launching the "
+"application."
+msgstr ""
+"Bunu, çalışmak için bir terminale ihtiyaç duyan CLI araçları için etkinleştirin.\n"
+"\n"
+"Etkinleştirildiğinde, masaüstü ortamı uygulamayı başlatmadan önce bir terminal emülatörü açacaktır."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 77
+#: NEEDS WORK
+msgid ""
+"GitHub Releases API URL for automatic updates.\n"
+"\n"
+"Must start with https:// — typically:\n"
+"https://api.github.com/repos/OWNER/REPO/releases/latest\n"
+"\n"
+"Click the paste button to insert a template."
+msgstr ""
+"GitHub Sürümler API URL'si otomatik güncellemeler için.\n"
+"\n"
+"Şu ile başlamalıdır: https:// — genellikle:\n"
+"https://api.github.com/repos/SAHİBİ/DEPO/releases/latest\n"
+"\n"
+"Bir şablonu eklemek için yapıştır düğmesine tıklayın."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 83
+#: NEEDS WORK
+msgid ""
+"Glob pattern to identify which file to download from the release.\n"
+"\n"
+"The asterisk (*) matches any text. Examples:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+msgstr ""
+"Yayından hangi dosyanın indirileceğini belirlemek için glob deseni.\n"
+"\n"
+"Asterisk (*) herhangi bir metni eşleştirir. Örnekler:\n"
+"• myapp-*-x86_64.AppImage\n"
+"• *-gui-*.AppImage"
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 90
+#: NEEDS WORK
+msgid ""
+"The directory where the final .AppImage file will be saved.\n"
+"\n"
+"Defaults to the current working directory."
+msgstr ""
+"Son .AppImage dosyasının kaydedileceği dizin.\n"
+"\n"
+"Varsayılan olarak geçerli çalışma dizinidir."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 94
+#: NEEDS WORK
+msgid ""
+"Choose where to build the AppImage.\n"
+"\n"
+"Using a Distrobox container provides maximum compatibility with older Linux distributions, as it "
+"builds against an older glibc."
+msgstr ""
+"AppImage'i nerede oluşturacağınızı seçin.\n"
+"\n"
+"Distrobox konteyneri kullanmak, daha eski Linux dağıtımlarıyla maksimum uyumluluk sağlar, çünkü "
+"daha eski bir glibc'ye karşı derlenir."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 99
+#: NEEDS WORK
+msgid ""
+"Bundle shared libraries (.so files) into the AppImage.\n"
+"\n"
+"This ensures the application works on other systems that may not have the required libraries "
+"installed."
+msgstr ""
+"Paylaşılan kütüphaneleri (.so dosyaları) AppImage içine paketleyin.\n"
+"\n"
+"Bu, uygulamanın gerekli kütüphanelerin yüklü olmadığı diğer sistemlerde çalışmasını sağlar."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 104
+#: NEEDS WORK
+msgid ""
+"Bundle an icon theme inside the AppImage.\n"
+"\n"
+"Without a bundled theme, some icons may be missing on desktops that use a different icon theme than "
+"the one your app was designed for."
+msgstr ""
+"AppImage içinde bir simge teması paketleyin.\n"
+"\n"
+"Paketlenmiş bir tema olmadan, uygulamanızın tasarlandığı temadan farklı bir simge teması kullanan "
+"masaüstlerinde bazı simgeler eksik olabilir."
+# 
+# File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 109
+#: NEEDS WORK
+msgid ""
+"Remove debug symbols from binaries to reduce the AppImage size.\n"
+"\n"
+"This makes the file smaller but harder to debug if issues occur."
+msgstr ""
+"Binaries'ten hata ayıklama sembollerini kaldırarak AppImage boyutunu azaltın.\n"
+"\n"
+"Bu, dosyayı daha küçük hale getirir ancak sorunlar ortaya çıkarsa hata ayıklamayı zorlaştırır."
+# 
+# File: usr/share/appimage-creator/utils/system.py, line: 108
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Missing required keys: {}"
-msgstr "Hata: Gerekli anahtarlar eksik: {}"
+msgid "Failed to make file executable: {}"
+msgstr "Dosyayı çalıştırılabilir hale getirme başarısız oldu: {}"
 # 
-# File: usr/share/appimage-creator/validators/validators.py, line: 81
+# File: usr/share/appimage-creator/utils/file_ops.py, line: 54
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error: Empty value for required key: {}"
-msgstr "Hata: Gerekli anahtar için boş değer: {}"
+msgid "Failed to download {}: {}"
+msgstr "{} indirilmedi: {}"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 335
-# File: update_window.py, line: 433
-# File: usr/share/appimage-creator/updater/update_window.py, line: 324
-# File: usr/share/appimage-creator/updater/update_window.py, line: 422
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
 #: NEEDS WORK
-msgid "Update Available"
-msgstr "Güncelleme Mevcut"
+msgid "Recommended - Latest Ubuntu LTS with newest packages."
+msgstr "Önerilen - En son paketlerle en yeni Ubuntu LTS."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 440
-# File: usr/share/appimage-creator/updater/update_window.py, line: 429
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 31
 #: NEEDS WORK
-#, python-brace-format
-msgid "A new version of {} is available"
-msgstr "{} için yeni bir sürüm mevcut."
+msgid "Good balance of compatibility and modern packages."
+msgstr "Uyum ve modern paketlerin iyi dengesi."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 529
-# File: usr/share/appimage-creator/updater/update_window.py, line: 518
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 41
 #: NEEDS WORK
-msgid "Update"
-msgstr "Güncelleme"
+msgid "Excellent compatibility for older systems."
+msgstr "Eski sistemler için mükemmel uyumluluk."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 525
-# File: usr/share/appimage-creator/updater/update_window.py, line: 514
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 53
 #: NEEDS WORK
-msgid "Later"
-msgstr "Sonra"
+msgid "Latest Debian stable - very reliable."
+msgstr "En son Debian kararlı - çok güvenilir."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 232
-# File: usr/share/appimage-creator/updater/update_window.py, line: 221
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 63
 #: NEEDS WORK
-msgid "Downloading update..."
-msgstr "Güncelleme indiriliyor..."
+msgid "Previous Debian stable - proven stability."
+msgstr "Önceki Debian kararlı - kanıtlanmış istikrar."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
+#: NEEDS WORK
+msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
+msgstr "En son Fedora, en son paketler ve GTK4/VTE desteği ile."
 # 
-# File: update_window.py, line: 233
-# File: usr/share/appimage-creator/updater/update_window.py, line: 222
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 105
+#: NEEDS WORK
+msgid "RHEL 9 compatible - enterprise-grade stability."
+msgstr "RHEL 9 uyumlu - kurumsal düzeyde istikrar."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 250
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox (missing dependencies)."
+msgstr "Distrobox için ana bilgisayar ayarlanmamış (eksik bağımlılıklar)."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 263
 #: NEEDS WORK
 #, python-brace-format
-msgid "Version {}"
-msgstr "Sürüm {}"
+msgid "Environment '{}' already exists."
+msgstr "Ortam '{}' zaten mevcut."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 265
-# File: usr/share/appimage-creator/updater/update_window.py, line: 254
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 275
 #: NEEDS WORK
 #, python-brace-format
-msgid "Version {} installed successfully"
-msgstr "Sürüm {} başarıyla yüklendi"
+msgid "Creating environment '{}'... This may take a while."
+msgstr "'{}' ortamı oluşturuluyor... Bu biraz zaman alabilir."
 # 
-# File: usr/share/appimage-creator/updater/notify_fallback.py, line: 159
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 392
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 431
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 451
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 576
 #: NEEDS WORK
-msgid "The update will be applied the next time the application starts"
-msgstr "Güncelleme, uygulama bir sonraki kez başlatıldığında uygulanacaktır."
+msgid "Cancelled by user."
+msgstr "Kullanıcı tarafından iptal edildi."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 264
-# File: usr/share/appimage-creator/updater/update_window.py, line: 253
-#: NEEDS WORK
-msgid "Update completed!"
-msgstr "Güncelleme tamamlandı!"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 290
-# File: usr/share/appimage-creator/updater/update_window.py, line: 279
-#: NEEDS WORK
-msgid "Update failed"
-msgstr "Güncelleme başarısız oldu"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 592
-# File: usr/share/appimage-creator/updater/update_window.py, line: 581
-#: NEEDS WORK
-msgid "Download failed"
-msgstr "İndirme başarısız oldu"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 152
-# File: usr/share/appimage-creator/updater/update_window.py, line: 141
-#: NEEDS WORK
-msgid "Updating"
-msgstr "Güncelleniyor"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 218
-# File: usr/share/appimage-creator/updater/update_window.py, line: 207
-#: NEEDS WORK
-msgid "Done"
-msgstr "Tamam"
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 241
-# File: usr/share/appimage-creator/updater/update_window.py, line: 230
-#: NEEDS WORK
-msgid "Installing update..."
-msgstr "Güncelleme yükleniyor..."
-# 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 303
-# File: usr/share/appimage-creator/updater/update_window.py, line: 292
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 295
 #: NEEDS WORK
 #, python-brace-format
-msgid "{:.1f} MB of {:.1f} MB"
-msgstr "{:.1f} MB / {:.1f} MB"
+msgid "Failed to create environment. Distrobox exited with code {}."
+msgstr "Ortam oluşturulamadı. Distrobox {} kodu ile kapandı."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 448
-# File: usr/share/appimage-creator/updater/update_window.py, line: 437
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 304
 #: NEEDS WORK
-msgid "Version Information"
-msgstr "Sürüm Bilgisi"
+msgid "Initializing container (creating user and environment)..."
+msgstr "Konteyner başlatılıyor (kullanıcı ve ortam oluşturuluyor)..."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 451
-# File: usr/share/appimage-creator/updater/update_window.py, line: 440
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 305
 #: NEEDS WORK
-msgid "Current Version"
-msgstr "Mevcut Sürüm"
+msgid "First-time setup may take 5-10 minutes on slow connections..."
+msgstr "İlk kurulum, yavaş bağlantılarda 5-10 dakika sürebilir..."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 456
-# File: usr/share/appimage-creator/updater/update_window.py, line: 445
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 306
 #: NEEDS WORK
-msgid "New Version"
-msgstr "Yeni Sürüm"
+msgid "Please be patient - this is a one-time process."
+msgstr "Lütfen sabırlı olun - bu tek seferlik bir işlemdir."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 465
-# File: usr/share/appimage-creator/updater/update_window.py, line: 454
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 336
 #: NEEDS WORK
-msgid "What's New"
-msgstr "Yeni Nedir"
+msgid "Warning: Container initialization completed with issues"
+msgstr "Uyarı: Konteyner başlatma sorunlarla tamamlandı"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 469
-# File: usr/share/appimage-creator/updater/update_window.py, line: 458
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 340
 #: NEEDS WORK
-msgid "Release Notes"
-msgstr "Sürüm Notları"
+msgid "Container initialization complete!"
+msgstr "Konteyner başlatma tamamlandı!"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 470
-# File: usr/share/appimage-creator/updater/update_window.py, line: 459
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 344
 #: NEEDS WORK
-msgid "Click to view changes"
-msgstr "Değişiklikleri görüntülemek için tıklayın"
+msgid "Warning: Failed to initialize container automatically"
+msgstr "Uyarı: Konteyner otomatik olarak başlatılamadı"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 491
-# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 345
 #: NEEDS WORK
-msgid "Options"
-msgstr "Seçenekler"
+#, python-brace-format
+msgid "You may need to run: distrobox-enter {}"
+msgstr "Şunu çalıştırmanız gerekebilir: distrobox-enter {}"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 495
-# File: usr/share/appimage-creator/updater/update_window.py, line: 484
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 348
 #: NEEDS WORK
-msgid "Remove old version"
-msgstr "Eski sürümü kaldır"
+msgid "Environment created successfully!"
+msgstr "Ortam başarıyla oluşturuldu!"
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 496
-# File: usr/share/appimage-creator/updater/update_window.py, line: 485
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 351
 #: NEEDS WORK
-msgid "Delete previous version after successful update"
-msgstr "Başarılı güncellemeden sonra önceki sürümü sil"
+msgid "distrobox-create command not found."
+msgstr "distrobox-create komutu bulunamadı."
 # 
-# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
-# 
-# File: update_window.py, line: 605
-# File: usr/share/appimage-creator/updater/update_window.py, line: 594
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 354
 #: NEEDS WORK
-msgid "Integration failed"
-msgstr "Entegrasyon başarısız oldu"
+#, python-brace-format
+msgid "An error occurred while creating the environment: {}"
+msgstr "Ortam oluşturulurken bir hata oluştu: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 359
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 435
+#: NEEDS WORK
+msgid "Host is not set up for Distrobox."
+msgstr "Ana bilgisayar Distrobox için yapılandırılmamış."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 372
+#: NEEDS WORK
+msgid "Waiting for container to be fully ready..."
+msgstr "Konteynerin tamamen hazır olmasını bekliyor..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 379
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' was created but is not accessible. Try again in a moment."
+msgstr "Konteyner '{}' oluşturuldu ancak erişilemez. Lütfen bir süre sonra tekrar deneyin."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 402
+#: NEEDS WORK
+#, python-brace-format
+msgid "Installing dependencies in '{}'..."
+msgstr "'{}' içinde bağımlılıkları yüklüyor..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 421
+#: NEEDS WORK
+#, python-brace-format
+msgid "Failed to install dependencies. Process exited with code {}."
+msgstr "Bağımlılıkları yükleme başarısız oldu. Süreç {} kodu ile sona erdi."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 424
+#: NEEDS WORK
+msgid "Dependencies installed successfully!"
+msgstr "Bağımlılıklar başarıyla yüklendi!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 430
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while installing dependencies: {}"
+msgstr "Bağımlılıkları yüklerken bir hata oluştu: {}"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 449
+#: NEEDS WORK
+#, python-brace-format
+msgid "Container '{}' does not exist."
+msgstr "Konteyner '{}' mevcut değil."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 457
+#: NEEDS WORK
+#, python-brace-format
+msgid "Removing container '{}'..."
+msgstr "Konteyner '{}' kaldırılıyor..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 476
+#: NEEDS WORK
+msgid "Failed to remove container."
+msgstr "Konteyneri kaldırma işlemi başarısız oldu."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 482
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 513
+#: NEEDS WORK
+msgid "Container removed successfully!"
+msgstr "Konteyner başarıyla kaldırıldı!"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 490
+#: NEEDS WORK
+msgid "Removing container image to free disk space..."
+msgstr "Disk alanı boşaltmak için konteyner görüntüsü kaldırılıyor..."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 504
+#: NEEDS WORK
+msgid "Image removed successfully"
+msgstr "Görüntü başarıyla kaldırıldı"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 507
+#: NEEDS WORK
+msgid "Note: Image may still be in use by other containers"
+msgstr "Not: Görüntü hala diğer konteynerler tarafından kullanılıyor olabilir."
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 510
+#: NEEDS WORK
+msgid "Warning: Could not remove image automatically"
+msgstr "Uyarı: Görüntü otomatik olarak kaldırılamadı"
+# 
+# File: usr/share/appimage-creator/core/environment_manager.py, line: 516
+#: NEEDS WORK
+#, python-brace-format
+msgid "An error occurred while removing the container: {}"
+msgstr "Konteyneri kaldırırken bir hata oluştu: {}"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 760
+#: NEEDS WORK
+msgid "AppImage Structure - Detailed View"
+msgstr "AppImage Yapısı - Ayrıntılı Görünüm"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 764
+#: NEEDS WORK
+msgid "[AppImage Root]"
+msgstr "[AppImage Kök]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 765
+#: NEEDS WORK
+msgid "├── AppRun (main launcher)"
+msgstr "├── AppRun (ana başlatıcı)"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 768
+#: NEEDS WORK
+msgid "└── usr/"
+msgstr "└── usr/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 769
+#: NEEDS WORK
+msgid "    ├── bin/"
+msgstr "├── bin/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 771
+#: NEEDS WORK
+msgid "    ├── lib/"
+msgstr "├── kütüphane/"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 772
+#: NEEDS WORK
+msgid "    └── share/"
+msgstr "└── paylaş/"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
+#: NEEDS WORK
+msgid "Python Files"
+msgstr "Python Dosyaları"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
+#: NEEDS WORK
+msgid "Shell Scripts"
+msgstr "Kabuk Betikleri"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
+#: NEEDS WORK
+msgid "UI Files"
+msgstr "Kullanıcı Arayüzü Dosyaları"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
+#: NEEDS WORK
+msgid "CSS Files"
+msgstr "CSS Dosyaları"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
+#: NEEDS WORK
+msgid "Icon Files"
+msgstr "Simge Dosyaları"
+# 
+# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
+#: NEEDS WORK
+msgid "Locale Directories"
+msgstr "Yerel Dizinler"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1085
+#: NEEDS WORK
+msgid "[Additional Directories]"
+msgstr "[Ekstra Dizinler]"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1112
+#: NEEDS WORK
+msgid "SUMMARY"
+msgstr "ÖZET"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1116
+#: NEEDS WORK
+msgid "Project Root"
+msgstr "Proje Kökü"
+# 
+# File: usr/share/appimage-creator/ui/window.py, line: 1127
+#: NEEDS WORK
+msgid "  File Breakdown:"
+msgstr "Dosya Ayrımı:"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 125
 #: NEEDS WORK
@@ -1980,6 +2090,12 @@ msgstr "Uygulama dosyaları kopyalanıyor..."
 #, python-brace-format
 msgid "Copying structured project from: {}"
 msgstr "Yapılandırılmış projeyi kopyalıyor: {}"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 351
+#: NEEDS WORK
+#, python-brace-format
+msgid "Skipping virtualenv directory: {}"
+msgstr "Sanal ortam dizini atlanıyor: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 206
 #: NEEDS WORK
@@ -2770,213 +2886,6 @@ msgstr "✗ Derleme başarısız: {}"
 msgid "Build already in progress"
 msgstr "Derleme zaten devam ediyor"
 # 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 21
-#: NEEDS WORK
-msgid "Recommended - Latest Ubuntu LTS with newest packages."
-msgstr "Önerilen - En son paketlerle en yeni Ubuntu LTS."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 31
-#: NEEDS WORK
-msgid "Good balance of compatibility and modern packages."
-msgstr "Uyum ve modern paketlerin iyi dengesi."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 41
-#: NEEDS WORK
-msgid "Excellent compatibility for older systems."
-msgstr "Eski sistemler için mükemmel uyumluluk."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 53
-#: NEEDS WORK
-msgid "Latest Debian stable - very reliable."
-msgstr "En son Debian kararlı - çok güvenilir."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 63
-#: NEEDS WORK
-msgid "Previous Debian stable - proven stability."
-msgstr "Önceki Debian kararlı - kanıtlanmış istikrar."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 95
-#: NEEDS WORK
-msgid "Latest Fedora with cutting-edge packages and GTK4/VTE support."
-msgstr "En son Fedora, en son paketler ve GTK4/VTE desteği ile."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 105
-#: NEEDS WORK
-msgid "RHEL 9 compatible - enterprise-grade stability."
-msgstr "RHEL 9 uyumlu - kurumsal düzeyde istikrar."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 250
-#: NEEDS WORK
-msgid "Host is not set up for Distrobox (missing dependencies)."
-msgstr "Distrobox için ana bilgisayar ayarlanmamış (eksik bağımlılıklar)."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 263
-#: NEEDS WORK
-#, python-brace-format
-msgid "Environment '{}' already exists."
-msgstr "Ortam '{}' zaten mevcut."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 275
-#: NEEDS WORK
-#, python-brace-format
-msgid "Creating environment '{}'... This may take a while."
-msgstr "'{}' ortamı oluşturuluyor... Bu biraz zaman alabilir."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 392
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 431
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 451
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 576
-#: NEEDS WORK
-msgid "Cancelled by user."
-msgstr "Kullanıcı tarafından iptal edildi."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 295
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to create environment. Distrobox exited with code {}."
-msgstr "Ortam oluşturulamadı. Distrobox {} kodu ile kapandı."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 304
-#: NEEDS WORK
-msgid "Initializing container (creating user and environment)..."
-msgstr "Konteyner başlatılıyor (kullanıcı ve ortam oluşturuluyor)..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 305
-#: NEEDS WORK
-msgid "First-time setup may take 5-10 minutes on slow connections..."
-msgstr "İlk kurulum, yavaş bağlantılarda 5-10 dakika sürebilir..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 306
-#: NEEDS WORK
-msgid "Please be patient - this is a one-time process."
-msgstr "Lütfen sabırlı olun - bu tek seferlik bir işlemdir."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 336
-#: NEEDS WORK
-msgid "Warning: Container initialization completed with issues"
-msgstr "Uyarı: Konteyner başlatma sorunlarla tamamlandı"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 340
-#: NEEDS WORK
-msgid "Container initialization complete!"
-msgstr "Konteyner başlatma tamamlandı!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 344
-#: NEEDS WORK
-msgid "Warning: Failed to initialize container automatically"
-msgstr "Uyarı: Konteyner otomatik olarak başlatılamadı"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 345
-#: NEEDS WORK
-#, python-brace-format
-msgid "You may need to run: distrobox-enter {}"
-msgstr "Şunu çalıştırmanız gerekebilir: distrobox-enter {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 348
-#: NEEDS WORK
-msgid "Environment created successfully!"
-msgstr "Ortam başarıyla oluşturuldu!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 351
-#: NEEDS WORK
-msgid "distrobox-create command not found."
-msgstr "distrobox-create komutu bulunamadı."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 354
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while creating the environment: {}"
-msgstr "Ortam oluşturulurken bir hata oluştu: {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 359
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 435
-#: NEEDS WORK
-msgid "Host is not set up for Distrobox."
-msgstr "Ana bilgisayar Distrobox için yapılandırılmamış."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 372
-#: NEEDS WORK
-msgid "Waiting for container to be fully ready..."
-msgstr "Konteynerin tamamen hazır olmasını bekliyor..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 379
-#: NEEDS WORK
-#, python-brace-format
-msgid "Container '{}' was created but is not accessible. Try again in a moment."
-msgstr "Konteyner '{}' oluşturuldu ancak erişilemez. Lütfen bir süre sonra tekrar deneyin."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 402
-#: NEEDS WORK
-#, python-brace-format
-msgid "Installing dependencies in '{}'..."
-msgstr "'{}' içinde bağımlılıkları yüklüyor..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 421
-#: NEEDS WORK
-#, python-brace-format
-msgid "Failed to install dependencies. Process exited with code {}."
-msgstr "Bağımlılıkları yükleme başarısız oldu. Süreç {} kodu ile sona erdi."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 424
-#: NEEDS WORK
-msgid "Dependencies installed successfully!"
-msgstr "Bağımlılıklar başarıyla yüklendi!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 430
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while installing dependencies: {}"
-msgstr "Bağımlılıkları yüklerken bir hata oluştu: {}"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 449
-#: NEEDS WORK
-#, python-brace-format
-msgid "Container '{}' does not exist."
-msgstr "Konteyner '{}' mevcut değil."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 457
-#: NEEDS WORK
-#, python-brace-format
-msgid "Removing container '{}'..."
-msgstr "Konteyner '{}' kaldırılıyor..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 476
-#: NEEDS WORK
-msgid "Failed to remove container."
-msgstr "Konteyneri kaldırma işlemi başarısız oldu."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 482
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 513
-#: NEEDS WORK
-msgid "Container removed successfully!"
-msgstr "Konteyner başarıyla kaldırıldı!"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 490
-#: NEEDS WORK
-msgid "Removing container image to free disk space..."
-msgstr "Disk alanı boşaltmak için konteyner görüntüsü kaldırılıyor..."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 504
-#: NEEDS WORK
-msgid "Image removed successfully"
-msgstr "Görüntü başarıyla kaldırıldı"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 507
-#: NEEDS WORK
-msgid "Note: Image may still be in use by other containers"
-msgstr "Not: Görüntü hala diğer konteynerler tarafından kullanılıyor olabilir."
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 510
-#: NEEDS WORK
-msgid "Warning: Could not remove image automatically"
-msgstr "Uyarı: Görüntü otomatik olarak kaldırılamadı"
-# 
-# File: usr/share/appimage-creator/core/environment_manager.py, line: 516
-#: NEEDS WORK
-#, python-brace-format
-msgid "An error occurred while removing the container: {}"
-msgstr "Konteyneri kaldırırken bir hata oluştu: {}"
-# 
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 61
 #: NEEDS WORK
 #, python-brace-format
@@ -3126,305 +3035,121 @@ msgstr "İçinde ikili bağımlılıkları tarama: {}"
 msgid "  Detected dependency on binary: {}"
 msgstr "İkili dosyaya bağımlılık tespit edildi: {}"
 # 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
+#: NEEDS WORK
+msgid "Starting recursive dependency resolution..."
+msgstr "Bağlantılı bağımlılık çözümlemesine başlama..."
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
 #: NEEDS WORK
 #, python-brace-format
-msgid "Ignoring unsafe extra library name: {}"
-msgstr "Güvensiz ek kütüphane adı yok sayılıyor: {}"
+msgid "  Resolution iteration {}/{}..."
+msgstr "Çözünürlük yinelemesi {}/{}..."
 # 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
 #: NEEDS WORK
 #, python-brace-format
-msgid "Including user-specified extra libraries: {}"
-msgstr "Kullanıcı tarafından belirtilen ek kütüphaneler: {}"
+msgid "  Found {} ELF files to scan"
+msgstr "{} ELF dosyası taramak için bulundu"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1323
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
+#: NEEDS WORK
+msgid "  No missing libraries found — resolution complete"
+msgstr "Eksik kütüphane bulunamadı — çözüm tamamlandı"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying standard system libraries: {}"
-msgstr "Standart sistem kütüphanelerini kopyalama: {}"
+msgid "  Found {} missing libraries: {}"
+msgstr "Bulunan {} eksik kütüphaneler: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1327
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying conflicting system libraries to fallback dir: {}"
-msgstr "Çatışan sistem kütüphanelerini yedek dizine kopyalanıyor: {}"
+msgid "    Copied: {}"
+msgstr "Kopyalandı: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1344
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
 #: NEEDS WORK
 #, python-brace-format
-msgid "Generating script to copy libraries to {}..."
-msgstr "Kütüphaneleri {}'ye kopyalamak için betik oluşturuluyor..."
+msgid "    Failed to copy: {}"
+msgstr "Kopyalama başarısız: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1241
-#: NEEDS WORK
-msgid "Executing library copy script..."
-msgstr "Kütüphane kopyalama betiği çalıştırılıyor..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1039
-#: NEEDS WORK
-msgid "Warning: Library copy script finished with errors."
-msgstr "Uyarı: Kütüphane kopyalama betiği hatalarla tamamlandı."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1041
-#: NEEDS WORK
-msgid "Library copy script finished successfully."
-msgstr "Kütüphane kopya betiği başarıyla tamamlandı."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1273
-#: NEEDS WORK
-msgid "No typelibs selected for inclusion."
-msgstr ""
-"Dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
-"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1276
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
 #: NEEDS WORK
 #, python-brace-format
-msgid "Copying selected typelibs: {}"
-msgstr "Seçilen tip kütüphaneleri kopyalanıyor: {}"
+msgid "    Not found in system: {}"
+msgstr "Sistemde bulunamadı: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1284
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
 #: NEEDS WORK
-msgid "Generating script to copy typelibs..."
-msgstr "Typeliblere kopyalamak için betik oluşturuluyor..."
+msgid "  No new libraries could be copied — stopping"
+msgstr "Yeni kütüphaneler kopyalanamadı — durduruluyor"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1318
-#: NEEDS WORK
-msgid "Executing typelib copy script..."
-msgstr "Type kütüphanesi kopyalama betiği çalıştırılıyor..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1286
-#: NEEDS WORK
-msgid "Warning: Some typelibs may not have been copied"
-msgstr "Uyarı: Bazı tip kütüphaneleri kopyalanmamış olabilir."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1288
-#: NEEDS WORK
-msgid "Typelib copy complete"
-msgstr "Typelib kopyası tamamlandı"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1467
-#: NEEDS WORK
-msgid "Copying essential GStreamer plugins..."
-msgstr "Temel GStreamer eklentileri kopyalanıyor..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1530
-#: NEEDS WORK
-msgid "Detected video playback requirements"
-msgstr "Algılanan video oynatma gereksinimleri"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1579
-#: NEEDS WORK
-msgid "Copying GStreamer plugins..."
-msgstr "GStreamer eklentileri kopyalanıyor..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1588
-#: NEEDS WORK
-msgid "GStreamer plugin copying complete"
-msgstr "GStreamer eklentisi kopyalama tamamlandı"
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1385
-#: NEEDS WORK
-msgid "Copying Adwaita symbolic icons..."
-msgstr "Adwaita sembolik simgeleri kopyalanıyor..."
-# 
-# File: usr/share/appimage-creator/core/builder.py, line: 1394
-#: NEEDS WORK
-msgid "Symbolic icons already present"
-msgstr "Sembolik simgeler zaten mevcut"
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
-#: NEEDS WORK
-msgid "Copying symbolic icons from container..."
-msgstr "Konteynerden sembolik simgeler kopyalanıyor..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
-#: NEEDS WORK
-msgid "Copying symbolic icons from host system..."
-msgstr "Ana sistemden sembolik simgeleri kopyalıyor..."
-# 
-# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
 #: NEEDS WORK
 #, python-brace-format
-msgid "Warning: Adwaita symbolic icons not found at {}"
-msgstr "Uyarı: Adwaita sembolik simgeleri {} konumunda bulunamadı."
+msgid "  Copied {} libraries this iteration"
+msgstr "Bu yinelemede {} kütüphaneler kopyalandı."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1442
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
 #: NEEDS WORK
-msgid "Warning: Failed to copy symbolic icons"
-msgstr "Uyarı: Sembolik simgeler kopyalanamadı"
+#, python-brace-format
+msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
+msgstr "Bağımlılık çözümü tamamlandı: {} kopyalandı, {} hala eksik ({} yineleme)"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1656
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
 #: NEEDS WORK
-msgid "Creating custom index.theme for Adwaita symbolic icons..."
-msgstr "Adwaita sembolik simgeler için özel index.theme oluşturuluyor..."
+msgid "Validating library dependencies..."
+msgstr "Kütüphane bağımlılıkları doğrulanıyor..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1444
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
 #: NEEDS WORK
-msgid "Symbolic icons copied successfully"
-msgstr "Sembolik simgeler başarıyla kopyalandı"
+msgid "Library validation FAILED:"
+msgstr "Kütüphane doğrulaması BAŞARISIZ:"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1477
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
 #: NEEDS WORK
-msgid "Copying Papirus symbolic icons..."
-msgstr "Papirus sembolik simgeleri kopyalanıyor..."
+msgid "Library validation passed — all dependencies resolved"
+msgstr "Kütüphane doğrulaması başarılı — tüm bağımlılıklar çözüldü"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1501
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
 #: NEEDS WORK
-msgid "Papirus symbolic icons already present"
-msgstr "Papirus sembolik simgeleri zaten mevcut"
+#, python-brace-format
+msgid "Validating Python imports for module: {}"
+msgstr "Modül için Python içe aktarımlarını doğrulama: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1510
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
 #: NEEDS WORK
-msgid "Copying Papirus and Papirus-Dark symbolic icons..."
-msgstr "Papirus ve Papirus-Dark sembolik simgeleri kopyalanıyor..."
+msgid "Python import validation passed"
+msgstr "Python içe aktarma doğrulaması başarılı"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1584
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
 #: NEEDS WORK
-msgid "Executing Papirus icons copy script..."
-msgstr "Papirus simgelerini kopyalama betiği çalıştırılıyor..."
+#, python-brace-format
+msgid "Python import validation FAILED: {}"
+msgstr "Python içe aktarma doğrulaması BAŞARISIZ: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1594
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
 #: NEEDS WORK
-msgid "Warning: Papirus icons not available, falling back to Adwaita"
-msgstr "Uyarı: Papirus simgeleri mevcut değil, Adwaita'ya geçiliyor."
+#, python-brace-format
+msgid "Python import validation error: {}"
+msgstr "Python içe aktarma doğrulama hatası: {}"
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1882
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
 #: NEEDS WORK
-msgid "Creating custom index.theme for Papirus symbolic icons..."
-msgstr "Papirus simgesi ikonları için özel index.theme oluşturuluyor..."
+msgid "Running pre-packaging validation..."
+msgstr "Ön paketleme doğrulaması çalışıyor..."
 # 
-# File: usr/share/appimage-creator/core/builder.py, line: 1597
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
 #: NEEDS WORK
-msgid "Papirus symbolic icons copied successfully"
-msgstr "Papirus sembolik simgeleri başarıyla kopyalandı"
+msgid "Pre-packaging validation PASSED"
+msgstr "Ön paketleme doğrulaması GEÇTİ"
+# 
+# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
+#: NEEDS WORK
+msgid "Pre-packaging validation FAILED — check warnings above"
+msgstr "Ön paketleme doğrulaması BAŞARISIZ — yukarıdaki uyarıları kontrol edin"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 356
 #: NEEDS WORK
@@ -3742,224 +3467,505 @@ msgstr "Sistem PyGObject kopyalanamadı"
 msgid "Error using system PyGObject: {}"
 msgstr "Sistem PyGObject kullanırken hata: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 189
-#: NEEDS WORK
-msgid "Starting recursive dependency resolution..."
-msgstr "Bağlantılı bağımlılık çözümlemesine başlama..."
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 200
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 64
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Resolution iteration {}/{}..."
-msgstr "Çözünürlük yinelemesi {}/{}..."
+msgid "Ignoring unsafe extra library name: {}"
+msgstr "Güvensiz ek kütüphane adı yok sayılıyor: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 205
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 55
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Found {} ELF files to scan"
-msgstr "{} ELF dosyası taramak için bulundu"
+msgid "Including user-specified extra libraries: {}"
+msgstr "Kullanıcı tarafından belirtilen ek kütüphaneler: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 216
-#: NEEDS WORK
-msgid "  No missing libraries found — resolution complete"
-msgstr "Eksik kütüphane bulunamadı — çözüm tamamlandı"
-# 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 220
+# File: usr/share/appimage-creator/core/builder.py, line: 1323
 #: NEEDS WORK
 #, python-brace-format
-msgid "  Found {} missing libraries: {}"
-msgstr "Bulunan {} eksik kütüphaneler: {}"
+msgid "Copying standard system libraries: {}"
+msgstr "Standart sistem kütüphanelerini kopyalama: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 231
+# File: usr/share/appimage-creator/core/builder.py, line: 1327
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Copied: {}"
-msgstr "Kopyalandı: {}"
+msgid "Copying conflicting system libraries to fallback dir: {}"
+msgstr "Çatışan sistem kütüphanelerini yedek dizine kopyalanıyor: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 235
+# File: usr/share/appimage-creator/core/builder.py, line: 1344
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Failed to copy: {}"
-msgstr "Kopyalama başarısız: {}"
+msgid "Generating script to copy libraries to {}..."
+msgstr "Kütüphaneleri {}'ye kopyalamak için betik oluşturuluyor..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 238
+# File: usr/share/appimage-creator/core/builder.py, line: 1241
+#: NEEDS WORK
+msgid "Executing library copy script..."
+msgstr "Kütüphane kopyalama betiği çalıştırılıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1039
+#: NEEDS WORK
+msgid "Warning: Library copy script finished with errors."
+msgstr "Uyarı: Kütüphane kopyalama betiği hatalarla tamamlandı."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1041
+#: NEEDS WORK
+msgid "Library copy script finished successfully."
+msgstr "Kütüphane kopya betiği başarıyla tamamlandı."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1273
+#: NEEDS WORK
+msgid "No typelibs selected for inclusion."
+msgstr ""
+"Dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil "
+"dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil dahil"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1276
 #: NEEDS WORK
 #, python-brace-format
-msgid "    Not found in system: {}"
-msgstr "Sistemde bulunamadı: {}"
+msgid "Copying selected typelibs: {}"
+msgstr "Seçilen tip kütüphaneleri kopyalanıyor: {}"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 242
+# File: usr/share/appimage-creator/core/builder.py, line: 1284
 #: NEEDS WORK
-msgid "  No new libraries could be copied — stopping"
-msgstr "Yeni kütüphaneler kopyalanamadı — durduruluyor"
+msgid "Generating script to copy typelibs..."
+msgstr "Typeliblere kopyalamak için betik oluşturuluyor..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 245
+# File: usr/share/appimage-creator/core/builder.py, line: 1318
 #: NEEDS WORK
-#, python-brace-format
-msgid "  Copied {} libraries this iteration"
-msgstr "Bu yinelemede {} kütüphaneler kopyalandı."
+msgid "Executing typelib copy script..."
+msgstr "Type kütüphanesi kopyalama betiği çalıştırılıyor..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 255
+# File: usr/share/appimage-creator/core/builder.py, line: 1286
 #: NEEDS WORK
-#, python-brace-format
-msgid "Dependency resolution complete: {} copied, {} still missing ({} iterations)"
-msgstr "Bağımlılık çözümü tamamlandı: {} kopyalandı, {} hala eksik ({} yineleme)"
+msgid "Warning: Some typelibs may not have been copied"
+msgstr "Uyarı: Bazı tip kütüphaneleri kopyalanmamış olabilir."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 289
+# File: usr/share/appimage-creator/core/builder.py, line: 1288
 #: NEEDS WORK
-msgid "Validating library dependencies..."
-msgstr "Kütüphane bağımlılıkları doğrulanıyor..."
+msgid "Typelib copy complete"
+msgstr "Typelib kopyası tamamlandı"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 324
+# File: usr/share/appimage-creator/core/builder.py, line: 1467
 #: NEEDS WORK
-msgid "Library validation FAILED:"
-msgstr "Kütüphane doğrulaması BAŞARISIZ:"
+msgid "Copying essential GStreamer plugins..."
+msgstr "Temel GStreamer eklentileri kopyalanıyor..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
+# File: usr/share/appimage-creator/core/builder.py, line: 1530
 #: NEEDS WORK
-msgid "Library validation passed — all dependencies resolved"
-msgstr "Kütüphane doğrulaması başarılı — tüm bağımlılıklar çözüldü"
+msgid "Detected video playback requirements"
+msgstr "Algılanan video oynatma gereksinimleri"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
+# File: usr/share/appimage-creator/core/builder.py, line: 1579
 #: NEEDS WORK
-#, python-brace-format
-msgid "Validating Python imports for module: {}"
-msgstr "Modül için Python içe aktarımlarını doğrulama: {}"
+msgid "Copying GStreamer plugins..."
+msgstr "GStreamer eklentileri kopyalanıyor..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 384
+# File: usr/share/appimage-creator/core/builder.py, line: 1588
 #: NEEDS WORK
-msgid "Python import validation passed"
-msgstr "Python içe aktarma doğrulaması başarılı"
+msgid "GStreamer plugin copying complete"
+msgstr "GStreamer eklentisi kopyalama tamamlandı"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 392
+# File: usr/share/appimage-creator/core/builder.py, line: 1385
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation FAILED: {}"
-msgstr "Python içe aktarma doğrulaması BAŞARISIZ: {}"
+msgid "Copying Adwaita symbolic icons..."
+msgstr "Adwaita sembolik simgeleri kopyalanıyor..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 395
+# File: usr/share/appimage-creator/core/builder.py, line: 1394
 #: NEEDS WORK
-#, python-brace-format
-msgid "Python import validation error: {}"
-msgstr "Python içe aktarma doğrulama hatası: {}"
+msgid "Symbolic icons already present"
+msgstr "Sembolik simgeler zaten mevcut"
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 405
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 410
 #: NEEDS WORK
-msgid "Running pre-packaging validation..."
-msgstr "Ön paketleme doğrulaması çalışıyor..."
+msgid "Copying symbolic icons from container..."
+msgstr "Konteynerden sembolik simgeler kopyalanıyor..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 413
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 422
 #: NEEDS WORK
-msgid "Pre-packaging validation PASSED"
-msgstr "Ön paketleme doğrulaması GEÇTİ"
+msgid "Copying symbolic icons from host system..."
+msgstr "Ana sistemden sembolik simgeleri kopyalıyor..."
 # 
-# File: usr/share/appimage-creator/core/dependency_resolver.py, line: 415
-#: NEEDS WORK
-msgid "Pre-packaging validation FAILED — check warnings above"
-msgstr "Ön paketleme doğrulaması BAŞARISIZ — yukarıdaki uyarıları kontrol edin"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 760
-#: NEEDS WORK
-msgid "AppImage Structure - Detailed View"
-msgstr "AppImage Yapısı - Ayrıntılı Görünüm"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 764
-#: NEEDS WORK
-msgid "[AppImage Root]"
-msgstr "[AppImage Kök]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 765
-#: NEEDS WORK
-msgid "├── AppRun (main launcher)"
-msgstr "├── AppRun (ana başlatıcı)"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 768
-#: NEEDS WORK
-msgid "└── usr/"
-msgstr "└── usr/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 769
-#: NEEDS WORK
-msgid "    ├── bin/"
-msgstr "├── bin/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 771
-#: NEEDS WORK
-msgid "    ├── lib/"
-msgstr "├── kütüphane/"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 772
-#: NEEDS WORK
-msgid "    └── share/"
-msgstr "└── paylaş/"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 54
-#: NEEDS WORK
-msgid "Python Files"
-msgstr "Python Dosyaları"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
-#: NEEDS WORK
-msgid "Shell Scripts"
-msgstr "Kabuk Betikleri"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
-#: NEEDS WORK
-msgid "UI Files"
-msgstr "Kullanıcı Arayüzü Dosyaları"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 57
-#: NEEDS WORK
-msgid "CSS Files"
-msgstr "CSS Dosyaları"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 75
-#: NEEDS WORK
-msgid "Icon Files"
-msgstr "Simge Dosyaları"
-# 
-# File: usr/share/appimage-creator/core/structure_formatter.py, line: 76
-#: NEEDS WORK
-msgid "Locale Directories"
-msgstr "Yerel Dizinler"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1085
-#: NEEDS WORK
-msgid "[Additional Directories]"
-msgstr "[Ekstra Dizinler]"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1112
-#: NEEDS WORK
-msgid "SUMMARY"
-msgstr "ÖZET"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1116
-#: NEEDS WORK
-msgid "Project Root"
-msgstr "Proje Kökü"
-# 
-# File: usr/share/appimage-creator/ui/window.py, line: 1127
-#: NEEDS WORK
-msgid "  File Breakdown:"
-msgstr "Dosya Ayrımı:"
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 16
-#: NEEDS WORK
-msgid "Warning: PIL/Pillow not available, icon processing will be limited"
-msgstr "Uyarı: PIL/Pillow mevcut değil, simge işleme sınırlı olacak."
-# 
-# File: usr/share/appimage-creator/generators/icons.py, line: 82
+# File: usr/share/appimage-creator/core/library_bundler.py, line: 430
 #: NEEDS WORK
 #, python-brace-format
-msgid "Error processing icon: {}"
-msgstr "Simge işlenirken hata: {}"
+msgid "Warning: Adwaita symbolic icons not found at {}"
+msgstr "Uyarı: Adwaita sembolik simgeleri {} konumunda bulunamadı."
 # 
-# File: usr/share/appimage-creator/generators/files.py, line: 70
+# File: usr/share/appimage-creator/core/builder.py, line: 1442
 #: NEEDS WORK
-msgid "Warning: Desktop file may have validation issues"
-msgstr "Uyarı: Masaüstü dosyasının doğrulama sorunları olabilir"
+msgid "Warning: Failed to copy symbolic icons"
+msgstr "Uyarı: Sembolik simgeler kopyalanamadı"
 # 
-# File: usr/share/appimage-creator/generators/files.py, line: 85
+# File: usr/share/appimage-creator/core/builder.py, line: 1656
 #: NEEDS WORK
-msgid "Failed to create desktop file"
-msgstr "Masaüstü dosyası oluşturulamadı"
+msgid "Creating custom index.theme for Adwaita symbolic icons..."
+msgstr "Adwaita sembolik simgeler için özel index.theme oluşturuluyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1444
+#: NEEDS WORK
+msgid "Symbolic icons copied successfully"
+msgstr "Sembolik simgeler başarıyla kopyalandı"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1477
+#: NEEDS WORK
+msgid "Copying Papirus symbolic icons..."
+msgstr "Papirus sembolik simgeleri kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1501
+#: NEEDS WORK
+msgid "Papirus symbolic icons already present"
+msgstr "Papirus sembolik simgeleri zaten mevcut"
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1510
+#: NEEDS WORK
+msgid "Copying Papirus and Papirus-Dark symbolic icons..."
+msgstr "Papirus ve Papirus-Dark sembolik simgeleri kopyalanıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1584
+#: NEEDS WORK
+msgid "Executing Papirus icons copy script..."
+msgstr "Papirus simgelerini kopyalama betiği çalıştırılıyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1594
+#: NEEDS WORK
+msgid "Warning: Papirus icons not available, falling back to Adwaita"
+msgstr "Uyarı: Papirus simgeleri mevcut değil, Adwaita'ya geçiliyor."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1882
+#: NEEDS WORK
+msgid "Creating custom index.theme for Papirus symbolic icons..."
+msgstr "Papirus simgesi ikonları için özel index.theme oluşturuluyor..."
+# 
+# File: usr/share/appimage-creator/core/builder.py, line: 1597
+#: NEEDS WORK
+msgid "Papirus symbolic icons copied successfully"
+msgstr "Papirus sembolik simgeleri başarıyla kopyalandı"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 152
+# File: usr/share/appimage-creator/updater/update_window.py, line: 141
+#: NEEDS WORK
+msgid "Updating"
+msgstr "Güncelleniyor"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 218
+# File: usr/share/appimage-creator/updater/update_window.py, line: 207
+#: NEEDS WORK
+msgid "Done"
+msgstr "Tamam"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 232
+# File: usr/share/appimage-creator/updater/update_window.py, line: 221
+#: NEEDS WORK
+msgid "Downloading update..."
+msgstr "Güncelleme indiriliyor..."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 233
+# File: usr/share/appimage-creator/updater/update_window.py, line: 222
+#: NEEDS WORK
+#, python-brace-format
+msgid "Version {}"
+msgstr "Sürüm {}"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 241
+# File: usr/share/appimage-creator/updater/update_window.py, line: 230
+#: NEEDS WORK
+msgid "Installing update..."
+msgstr "Güncelleme yükleniyor..."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 264
+# File: usr/share/appimage-creator/updater/update_window.py, line: 253
+#: NEEDS WORK
+msgid "Update completed!"
+msgstr "Güncelleme tamamlandı!"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 265
+# File: usr/share/appimage-creator/updater/update_window.py, line: 254
+#: NEEDS WORK
+#, python-brace-format
+msgid "Version {} installed successfully"
+msgstr "Sürüm {} başarıyla yüklendi"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 290
+# File: usr/share/appimage-creator/updater/update_window.py, line: 279
+#: NEEDS WORK
+msgid "Update failed"
+msgstr "Güncelleme başarısız oldu"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 303
+# File: usr/share/appimage-creator/updater/update_window.py, line: 292
+#: NEEDS WORK
+#, python-brace-format
+msgid "{:.1f} MB of {:.1f} MB"
+msgstr "{:.1f} MB / {:.1f} MB"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 335
+# File: update_window.py, line: 433
+# File: usr/share/appimage-creator/updater/update_window.py, line: 324
+# File: usr/share/appimage-creator/updater/update_window.py, line: 422
+#: NEEDS WORK
+msgid "Update Available"
+msgstr "Güncelleme Mevcut"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 440
+# File: usr/share/appimage-creator/updater/update_window.py, line: 429
+#: NEEDS WORK
+#, python-brace-format
+msgid "A new version of {} is available"
+msgstr "{} için yeni bir sürüm mevcut."
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 448
+# File: usr/share/appimage-creator/updater/update_window.py, line: 437
+#: NEEDS WORK
+msgid "Version Information"
+msgstr "Sürüm Bilgisi"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 451
+# File: usr/share/appimage-creator/updater/update_window.py, line: 440
+#: NEEDS WORK
+msgid "Current Version"
+msgstr "Mevcut Sürüm"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 456
+# File: usr/share/appimage-creator/updater/update_window.py, line: 445
+#: NEEDS WORK
+msgid "New Version"
+msgstr "Yeni Sürüm"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 465
+# File: usr/share/appimage-creator/updater/update_window.py, line: 454
+#: NEEDS WORK
+msgid "What's New"
+msgstr "Yeni Nedir"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 469
+# File: usr/share/appimage-creator/updater/update_window.py, line: 458
+#: NEEDS WORK
+msgid "Release Notes"
+msgstr "Sürüm Notları"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 470
+# File: usr/share/appimage-creator/updater/update_window.py, line: 459
+#: NEEDS WORK
+msgid "Click to view changes"
+msgstr "Değişiklikleri görüntülemek için tıklayın"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 491
+# File: usr/share/appimage-creator/updater/update_window.py, line: 480
+#: NEEDS WORK
+msgid "Options"
+msgstr "Seçenekler"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 495
+# File: usr/share/appimage-creator/updater/update_window.py, line: 484
+#: NEEDS WORK
+msgid "Remove old version"
+msgstr "Eski sürümü kaldır"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 496
+# File: usr/share/appimage-creator/updater/update_window.py, line: 485
+#: NEEDS WORK
+msgid "Delete previous version after successful update"
+msgstr "Başarılı güncellemeden sonra önceki sürümü sil"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 525
+# File: usr/share/appimage-creator/updater/update_window.py, line: 514
+#: NEEDS WORK
+msgid "Later"
+msgstr "Sonra"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 529
+# File: usr/share/appimage-creator/updater/update_window.py, line: 518
+#: NEEDS WORK
+msgid "Update"
+msgstr "Güncelleme"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 592
+# File: usr/share/appimage-creator/updater/update_window.py, line: 581
+#: NEEDS WORK
+msgid "Download failed"
+msgstr "İndirme başarısız oldu"
+# 
+# #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
+# 
+# File: update_window.py, line: 605
+# File: usr/share/appimage-creator/updater/update_window.py, line: 594
+#: NEEDS WORK
+msgid "Integration failed"
+msgstr "Entegrasyon başarısız oldu"
+# 
+# File: usr/share/appimage-creator/updater/notify_fallback.py, line: 159
+#: NEEDS WORK
+msgid "The update will be applied the next time the application starts"
+msgstr "Güncelleme, uygulama bir sonraki kez başlatıldığında uygulanacaktır."
