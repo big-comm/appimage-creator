@@ -1018,18 +1018,44 @@ class AppImageCreatorWindow(Adw.ApplicationWindow):
                 self.app_page.status_row.remove_css_class("warning")
                 self.app_page.continue_button.set_sensitive(False)
 
-                # Run heavy analysis in background thread
+                # Run heavy analysis in background thread. Any failure must
+                # still reach the main thread, or the page stays on
+                # "Analyzing..." with Continue disabled for good.
                 def _analyze():
-                    structure = detect_application_structure(path)
-                    app_type = get_app_type_from_file(path, structure)
+                    try:
+                        structure = detect_application_structure(path)
+                        app_type = get_app_type_from_file(path, structure)
+                    except Exception as e:
+                        GLib.idle_add(self._on_analysis_failed, path, e)
+                        return
                     GLib.idle_add(self._on_analysis_complete, path, structure, app_type)
 
                 threading.Thread(target=_analyze, daemon=True).start()
 
         dialog.destroy()
 
+    def _on_analysis_failed(self, path, error):
+        """Report an analysis error on the main thread."""
+        if path != self.app_info.executable:
+            return False  # superseded by a newer selection
+        print(f"[ERROR] Structure analysis failed for {path}: {error}")
+        row = self.app_page.status_row
+        self.app_page.status_group.set_visible(True)
+        row.set_title(_("Analysis Failed"))
+        row.set_subtitle(str(error))
+        self.app_page._status_icon.set_from_icon_name("dialog-warning-symbolic")
+        row.remove_css_class("success")
+        row.add_css_class("warning")
+        self.app_page.continue_button.set_sensitive(False)
+        self.build_page.build_button.set_sensitive(False)
+        return False
+
     def _on_analysis_complete(self, path, structure, app_type):
         """Apply analysis results on the main thread."""
+        if path != self.app_info.executable:
+            # The user picked another file while this analysis was running;
+            # its (slower) result must not overwrite the newer one.
+            return False
         self.structure_analysis = structure
         self.app_info.structure_analysis = structure
         self.app_info.app_type = app_type

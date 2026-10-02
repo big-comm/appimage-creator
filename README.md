@@ -1,464 +1,276 @@
 <div align="center">
 
-# 📦 AppImage Creator
+<img src="usr/share/icons/hicolor/128x128/apps/appimage-creator.png" alt="AppImage Creator icon" width="128" height="128">
 
-**Modern GTK4/Libadwaita Application for Creating AppImages**
+# AppImage Creator
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=opensourceinitiative&logoColor=white)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![GTK4](https://img.shields.io/badge/GTK-4.0+-4A86CF?style=flat-square&logo=gnome&logoColor=white)](https://www.gtk.org/)
-[![Libadwaita](https://img.shields.io/badge/Libadwaita-1.0+-4A86CF?style=flat-square&logo=gnome&logoColor=white)](https://gnome.pages.gitlab.gnome.org/libadwaita/)
+**Turn any Linux application into a portable AppImage — with a modern GTK4/Libadwaita interface.**
 
-Create portable AppImages from any Linux application with an intuitive interface.
-Supports Python, Qt, GTK, Java, Electron, and more.
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg?style=flat-square)](COPYING)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![GTK4](https://img.shields.io/badge/GTK-4-4A86CF?style=flat-square&logo=gnome&logoColor=white)](https://www.gtk.org/)
+[![Libadwaita](https://img.shields.io/badge/Libadwaita-1-4A86CF?style=flat-square&logo=gnome&logoColor=white)](https://gnome.pages.gitlab.gnome.org/libadwaita/)
+
+Python · GTK · Qt · Java · Electron · Shell scripts · Compiled binaries (Rust, Go, C/C++…)
+
+<img src="docs/screenshots/01-welcome.png" alt="Welcome screen" width="720">
 
 </div>
 
-***
+---
 
-## 📖 Overview
+## Overview
 
-AppImage Creator is a comprehensive tool for packaging Linux applications into portable AppImage format. Built with modern GTK4 and Libadwaita, it provides a native GNOME experience with powerful features for developers and packagers.
+AppImage Creator packages an existing Linux application into a single, portable `.AppImage` file. Point it at the program's executable and it works out the rest: what kind of application it is, which files belong to it, which system libraries it needs, and how it should be launched.
 
-**Key Highlights:**
-- 🎨 **Beautiful Interface** - Modern GTK4/Libadwaita UI
-- 🔍 **Smart Detection** - Automatically detects application type and dependencies
-- 🔄 **Auto-Update System** - Built-in update notifications for end users
-- 🌍 **Multi-Language** - Full internationalization support
-- 🐳 **Distrobox Integration** - Cross-distribution builds in containers
-- 📦 **Template System** - Flexible launchers for different app types
+Builds run inside [Distrobox](https://distrobox.it/) containers based on older, widely compatible distributions, so the resulting AppImage runs on far more systems than one built against your own (often newer) libraries.
 
-***
+### Highlights
 
-## 📋 Features
+- **Smart detection** — identifies the application type, its project root, desktop file, icons and translations, even behind complex wrapper scripts.
+- **Container builds** — seven ready-to-use build environments (Ubuntu, Debian, Fedora, AlmaLinux) managed from the app.
+- **Dependency bundling** — GTK3/GTK4, Libadwaita, VTE, Qt, GStreamer, MPV, libsecret and more, including GObject typelibs and libraries loaded only at runtime (`dlopen`).
+- **Multiple launchers** — a package that ships several executables (e.g. a GUI and a CLI) becomes one AppImage with all of them.
+- **Built-in auto-update** — optional update notifications for your users, from GitHub Releases or your own server.
+- **Desktop integration** — generated AppImages can add themselves to the application menu.
 
-### Core Capabilities
-- **Multi-Platform Support** - Python, Java, Shell scripts, Qt, GTK, Electron, and binary applications
-- **Wrapper Script Analysis** - Advanced analysis of complex wrapper scripts
-- **Auto-Discovery** - Automatically finds related files (locale, icons, desktop files)
-- **Icon Processing** - Automatic conversion and resizing with fallback generation
-- **Progress Tracking** - Real-time build progress with detailed logging
-- **Structure Preview** - Preview AppImage contents before building
+---
 
-### Auto-Update System
-Built-in automatic update checking provides end users with:
-- 🔔 Beautiful GTK4 update notifications
-- 📊 Visual download progress with MB counter
-- 📝 Release notes display with Markdown support
-- 🌐 Multi-language support (auto-detects system locale)
-- 🔄 One-click update and install
-- ⚙️ GitHub Releases API integration
+## Screenshots
 
-#### GitHub Token Configuration (Optional)
+<table>
+  <tr>
+    <td width="50%">
+      <img src="docs/screenshots/02-application.png" alt="Application page">
+      <p align="center"><b>Application</b> — pick the executable; type, icon and desktop file are detected automatically.</p>
+    </td>
+    <td width="50%">
+      <img src="docs/screenshots/03-configuration.png" alt="Configuration page">
+      <p align="center"><b>Configuration</b> — version, category and every file that will be bundled.</p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <img src="docs/screenshots/04-build.png" alt="Build page" width="50%">
+      <p align="center"><b>Build</b> — choose the build environment, dependencies and icon theme.</p>
+    </td>
+  </tr>
+</table>
 
-The auto-update system uses the GitHub API to check for new releases. By default, GitHub limits unauthenticated requests to **60 per hour**. To increase this limit to **5,000 requests per hour**, you can configure a GitHub Personal Access Token.
+---
 
-**Why use a token?**
-- Increases rate limit from 60 to 5,000 requests/hour
-- Prevents update check failures for users checking frequently
-- Token requires **NO permissions** (read-only access to public repositories only)
+## Installation
 
-**How to create a token:**
-1. Go to [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
-2. Click "Generate new token (classic)"
-3. Set a descriptive name (e.g., "AppImage Update Checker")
-4. **Do NOT select any scopes/permissions** (leave all checkboxes unchecked)
-5. Click "Generate token" and copy it
+### Requirements
 
-**For AppImage Developers (embedding token in AppImage):**
-
-If you want to distribute your AppImages with token embedded for better user experience:
-
-1. Edit `usr/share/appimage-creator/updater/checker.py` line 18:
-   ```python
-   # Change from:
-   DEFAULT_GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", None)
-
-   # To (temporarily, before building):
-   DEFAULT_GITHUB_TOKEN = "ghp_your_token_here"
-   ```
-
-2. Build your AppImage with the embedded token
-
-3. **Before committing:** Revert back to the original line to avoid GitHub blocking your push
-
-**For End Users (using environment variable):**
-
-Users can also configure their own token system-wide:
+| Required | Optional |
+|----------|----------|
+| `python` 3.10+, `python-gobject`, `python-pillow` | `fuse2` / `fuse3` — run the AppImage tools |
+| `gtk4`, `libadwaita`, `vte4` | `librsvg` / `imagemagick` — SVG icon conversion |
+| `distrobox` with `podman` or `docker` | |
 
 ```bash
-# Add to your shell profile (~/.bashrc, ~/.zshrc, etc.)
-export GITHUB_TOKEN="ghp_your_token_here"
+# Arch Linux / BigLinux / Manjaro
+sudo pacman -S distrobox podman gtk4 libadwaita vte4 python python-gobject python-pillow
 
-# Or set temporarily
-GITHUB_TOKEN="ghp_your_token_here" ./your-app.AppImage
+# Fedora
+sudo dnf install distrobox podman gtk4 libadwaita vte291-gtk4 python3 python3-gobject python3-pillow
+
+# Ubuntu / Debian
+sudo apt install distrobox podman libgtk-4-1 libadwaita-1-0 gir1.2-adw-1 gir1.2-vte-3.91 python3 python3-gi python3-pil
 ```
 
-**Security Note:** The token should have **zero permissions** and only provides read-only access to public repositories. It's safe to use and share publicly.
+### Arch Linux package
 
-#### Custom Server Configuration (Generic JSON)
+```bash
+git clone https://github.com/big-comm/appimage-creator.git
+cd appimage-creator/pkgbuild
+makepkg -si
+```
 
-You can also host your own update information file on any server. The system supports a generic JSON format.
+### Run from source
 
-**1. Create a JSON file (e.g., `update.json`):**
+```bash
+git clone https://github.com/big-comm/appimage-creator.git
+cd appimage-creator
+python usr/share/appimage-creator/main.py
+```
+
+`appimagetool` and `linuxdeploy` are downloaded automatically on first use and cached in `~/.cache/appimage-creator/tools/`.
+
+---
+
+## Usage
+
+1. **Welcome** — check that Distrobox, the container runtime and FUSE are ready, and create a build container (Ubuntu 24.04 LTS is a good default).
+2. **Application** — choose the main executable and give the application a name. Its type, icon and `.desktop` file are filled in automatically; change them if needed.
+3. **Configuration** — set the version, description and category, review the auto-detected files and add extra directories if the app needs them. Optionally configure auto-update.
+4. **Build** — choose the output folder and build environment, review the dependencies to bundle, and click **Build**. Progress and the full build log are shown live, and the build can be cancelled at any time.
+
+The result is written as `<name>-<version>-<arch>.AppImage`.
+
+### Supported application types
+
+| Type | How it is detected | Notes |
+|------|--------------------|-------|
+| Python | `.py` file / Python shebang | Bundled virtual environment with the project's requirements |
+| Python wrapper | Shell script that runs Python | Resolves the real script, including paths built from shell variables |
+| GTK / Qt | Imports and linked libraries | Bundles the toolkit, typelibs and schemas |
+| Binary | ELF executable | Compiled projects (Cargo, Go, Meson, CMake, Zig…) ship the binary, not the source tree |
+| Java | `.jar` | JVM launcher |
+| Electron | Electron app folder | Wayland-friendly app ID |
+| Shell script | Shell shebang | Script launcher |
+
+### Build environments
+
+| Environment | Best for |
+|-------------|----------|
+| Ubuntu 24.04 LTS · 22.04 LTS · 20.04 LTS | Broad compatibility (20.04 has no GTK4) |
+| Debian 12 · Debian 11 | Conservative, very stable bases |
+| Fedora 41 | Newest libraries |
+| AlmaLinux 9 | RHEL-compatible systems |
+
+An AppImage runs on systems with the same or newer libraries than the one it was built on, so pick the oldest environment that still provides what your app needs. **Local** builds (no container) are possible but much less portable.
+
+---
+
+## Auto-update
+
+When an update source is configured, the AppImage checks for new versions in the background (hourly, via a user systemd timer) and shows a GTK update window with the release notes, a download progress bar and a one-click update.
+
+**GitHub Releases**
+
+```
+Update URL:       https://api.github.com/repos/OWNER/REPO/releases/latest
+Filename pattern: myapp-*-x86_64.AppImage
+```
+
+**Your own server** — publish a JSON file:
+
 ```json
 {
     "version": "1.2.3",
-    "download_url": "https://your-server.com/downloads/myapp-1.2.3-x86_64.AppImage",
-    "release_notes": "## New Features\n- Added generic JSON support\n- Improved UI"
+    "download_url": "https://example.com/downloads/myapp-1.2.3-x86_64.AppImage",
+    "release_notes": "## New\n- Feature A\n- Fix B"
 }
 ```
 
-**2. Configure in AppImage Creator:**
-- **Update URL:** `https://your-server.com/update.json`
-- **Filename Pattern:** `myapp-*-x86_64.AppImage` (matches the file name on the server)
-
-The system automatically detects if the URL is from GitHub or a generic JSON file.
-
-***
-
-## 🚀 Installation
-
-### Prerequisites
-
-**Required Dependencies:**
-```bash
-# Arch Linux
-sudo pacman -S distrobox gtk4 libadwaita python python-pillow python-gobject vte4
-
-# Fedora
-sudo dnf install distrobox gtk4 libadwaita python3 python3-pillow python3-gobject vte4
-
-# Ubuntu/Debian
-sudo apt install distrobox gtk4 libadwaita python3 python3-pil python3-gi gir1.2-vte-3.91
+```
+Update URL:       https://example.com/update.json
+Filename pattern: myapp-*-x86_64.AppImage
 ```
 
-**Optional Dependencies:**
-- `fuse2` or `fuse3` - For running AppImage tools
-- `librsvg` - For SVG icon conversion (rsvg-convert)
-- `imagemagick` - Alternative icon conversion
-- `docker` or `podman` - Container runtime for distrobox
+The source type is detected from the URL.
 
-### Quick Start
+<details>
+<summary><b>GitHub API rate limit (optional token)</b></summary>
 
-**From Source:**
-```bash
-git clone https://github.com/BigCommunity/appimage-creator.git
-cd appimage-creator
-python usr/share/appimage-creator/main.py
-```
+Unauthenticated GitHub API requests are limited to 60 per hour per IP. A personal access token raises this to 5,000. Create a classic token at [github.com/settings/tokens](https://github.com/settings/tokens) **without selecting any scope** (public, read-only access is all that is needed), then either:
 
-**Arch Linux Package:**
-```bash
-cd pkgbuild
-makepkg -si
-appimage-creator
-```
+- export it for your session: `export GITHUB_TOKEN="ghp_..."`, or
+- embed it in an AppImage you distribute by temporarily changing `DEFAULT_GITHUB_TOKEN` in `usr/share/appimage-creator/updater/checker.py` before building — and revert the change before committing, as GitHub blocks pushes that contain tokens.
 
-***
+</details>
 
-## 🏗️ Architecture
+---
+
+## How it works
 
 ```mermaid
-flowchart TB
-    A[User Input] --> B[Application Analysis]
-    B --> C{Detect Type}
-    C -->|Python| D[Python Template]
-    C -->|Binary| E[Binary Template]
-    C -->|Java| F[Java Template]
-    C -->|Qt/GTK| G[Framework Template]
-    D --> H[AppDir Builder]
-    E --> H
-    F --> H
-    G --> H
-    H --> I[Dependency Resolution]
-    I --> J[Distrobox Container]
-    J --> K[File Integration]
-    K --> L[Icon Processing]
-    L --> M[Desktop Entry]
-    M --> N[AppImage Generation]
-    N --> O[Auto-Update Integration]
-    O --> P[Final AppImage]
+flowchart LR
+    A[Executable] --> B[Structure analysis]
+    B --> C[Application type<br/>and template]
+    C --> D[AppDir in a<br/>Distrobox container]
+    D --> E[Dependencies,<br/>typelibs, icons]
+    E --> F[Launcher and<br/>desktop entry]
+    F --> G[Library validation]
+    G --> H[appimagetool]
+    H --> I[.AppImage]
 ```
 
-### Build Process Flow
+1. **Analysis** — detect the application type, project root, entry points and resources.
+2. **Environment** — validate the build container and install any missing native packages.
+3. **AppDir** — copy the application, then bundle a Python environment, system libraries, typelibs and icons as required.
+4. **Launcher** — generate the `AppRun` script and the desktop entry.
+5. **Validation** — check that every bundled library resolves before packaging.
+6. **Packaging** — produce the final AppImage with `appimagetool`.
 
-1. **Analysis Phase** - Detect application type and structure
-2. **Environment Setup** - Create/reuse Distrobox container
-3. **AppDir Creation** - Build standard directory structure
-4. **Dependency Resolution** - Install system dependencies in container
-5. **File Integration** - Copy application files and resources
-6. **Launcher Generation** - Create appropriate launcher script
-7. **Icon Processing** - Convert icons to required sizes
-8. **Desktop Integration** - Generate .desktop file
-9. **AppImage Creation** - Use appimagetool or linuxdeploy
-10. **Update Configuration** - Embed auto-update metadata
+---
 
-***
+## Development
 
-## 📁 Project Structure
+### Project layout
 
 ```
-appimage-creator/
-├── usr/
-│   ├── bin/
-│   │   └── appimage-creator              # Shell wrapper
-│   └── share/
-│       ├── appimage-creator/             # Main application
-│       │   ├── main.py                   # Entry point
-│       │   ├── core/                     # Core modules
-│       │   │   ├── builder.py           # Build orchestration
-│       │   │   ├── environment_manager.py
-│       │   │   ├── app_info.py
-│       │   │   └── structure_analyzer.py
-│       │   ├── ui/                       # User interface
-│       │   │   ├── app.py
-│       │   │   ├── window.py
-│       │   │   ├── pages.py
-│       │   │   ├── widgets.py
-│       │   │   └── dialogs.py
-│       │   ├── templates/                # Application templates
-│       │   │   ├── base.py
-│       │   │   └── app_templates.py
-│       │   ├── generators/               # File generators
-│       │   │   ├── icons.py
-│       │   │   └── files.py
-│       │   ├── updater/                  # Auto-update system
-│       │   │   ├── checker.py
-│       │   │   ├── downloader.py
-│       │   │   ├── update_window.py
-│       │   │   └── check_updates.py
-│       │   ├── utils/                    # Utilities
-│       │   │   ├── i18n.py
-│       │   │   ├── system.py
-│       │   │   └── file_ops.py
-│       │   └── validators/               # Input validation
-│       │       └── validators.py
-│       ├── applications/                 # Desktop entries
-│       │   └── org.communitybig.appimage.desktop
-│       ├── icons/                        # Application icons
-│       │   └── hicolor/scalable/apps/
-│       │       └── appimage-creator.svg
-│       └── locale/                       # Translations
-│           └── [lang]/LC_MESSAGES/
-├── locale/                               # Source translations
-│   └── *.json
-├── pkgbuild/                            # Arch packaging
-│   ├── PKGBUILD
-│   └── pkgbuild.install
-├── CLAUDE.md                            # AI assistant guide
-├── GITHUB_TOKEN_SETUP.md                # GitHub setup guide
-└── README.md                            # This file
+usr/share/appimage-creator/
+├── main.py              # Entry point
+├── core/                # Build pipeline: builder, structure analysis,
+│                        # environments, dependency resolution, bundlers
+├── ui/                  # GTK4/Libadwaita window, pages and dialogs
+├── templates/           # Launcher templates per application type
+├── generators/          # Icon processing, desktop file and AppRun generation
+├── updater/             # Auto-update checker, downloader and window
+├── utils/               # i18n, system helpers, file operations
+└── validators/          # Input validation
 ```
 
-***
+System dependency profiles (libraries and typelibs for GTK, Qt, VTE, MPV…) live in `core/build_config.py`.
 
-## 🎯 Usage Guide
+### Translations
 
-### Basic Workflow
+Translations use gettext and are maintained in the repository (CI no longer generates them):
 
-1. **Launch Application**
-   ```bash
-   appimage-creator
-   ```
+- `locale/<lang>.po` — the main application (`appimage-creator` domain), 28 languages.
+- `locale/appimage-updater/<lang>.po` — the update window bundled into generated AppImages (`appimage-updater` domain).
 
-2. **Configure Application Info**
-   - Enter application name
-   - Set version number (e.g., 1.0.0)
-   - Select main executable
-   - Choose icon (optional)
-
-3. **Configure Auto-Update (Optional)**
-   - Click button to fill GitHub template
-   - Edit `OWNER/REPO` to match your repository
-   - Example: `https://api.github.com/repos/biglinux/myapp/releases/latest`
-   - Set filename pattern: `myapp-*-x86_64.AppImage`
-
-4. **Advanced Settings**
-   - Select application categories
-   - Choose build environment (Ubuntu/Debian/Fedora/Arch)
-   - Add additional directories if needed
-
-5. **Build AppImage**
-   - Review structure preview
-   - Click "Build" to generate AppImage
-   - Monitor progress in real-time
-
-### Supported Application Types
-
-| Type | Detection | Template | Features |
-|------|-----------|----------|----------|
-| **Binary** | ELF executable | BinaryAppTemplate | Direct execution |
-| **Python** | `.py` shebang | PythonAppTemplate | Python environment |
-| **Python Wrapper** | Complex scripts | PythonWrapperAppTemplate | Advanced detection |
-| **Shell Script** | Shell shebang | ShellAppTemplate | Script execution |
-| **Java** | `.jar` files | JavaAppTemplate | JVM setup |
-| **Qt** | Qt libraries | QtAppTemplate | Qt environment |
-| **GTK** | GTK libraries | GtkAppTemplate | GTK schemas/typelibs |
-| **Electron** | Electron app | ElectronAppTemplate | Electron runtime |
-
-### Auto-Update Configuration
-
-**For Developers:**
-
-**Option 1: GitHub Releases**
-```yaml
-Update URL: https://api.github.com/repos/OWNER/REPO/releases/latest
-Filename Pattern: myapp-*-x86_64.AppImage
-```
-
-**Option 2: Custom Server (Generic JSON)**
-```yaml
-Update URL: https://your-server.com/update.json
-Filename Pattern: myapp-*-x86_64.AppImage
-```
-
-**For End Users:**
-AppImages with auto-update enabled will:
-- Check for updates every hour automatically
-- Show notification when update is available
-- Display release notes and version info
-- Allow one-click update with progress tracking
-- Update seamlessly without losing data
-
-***
-
-## 🔧 Development
-
-### Running from Source
+After adding or changing strings, extract them with `xgettext` into the `.pot`, update every `.po` (each must translate all strings, keeping `{}` placeholders), then compile the `.mo` files:
 
 ```bash
-# Clone repository
-git clone https://github.com/BigCommunity/appimage-creator.git
-cd appimage-creator
-
-# Run directly
-python usr/share/appimage-creator/main.py
+./locale/compile-translations.sh
 ```
 
-### Building Package
+Do not edit the compiled files in `usr/share/locale/` or `usr/share/appimage-creator/updater/locale/` by hand.
+
+### Code style
+
+The project is linted with [Ruff](https://docs.astral.sh/ruff/):
 
 ```bash
-# Arch Linux
-cd pkgbuild
-makepkg -f
-
-# Install locally
-sudo pacman -U appimage-creator-*.pkg.tar.zst
+ruff check usr/share/appimage-creator
 ```
 
-### Translation Workflow
+---
 
-Translations use JSON format in `locale/` directory:
+## Troubleshooting
 
-```bash
-# Translations are auto-generated via GitHub Actions
-# using attranslate and Azure/OpenAI services
-locale/
-├── en.json      # English (fallback to source strings)
-├── pt_BR.json   # Portuguese (Brazil)
-├── es.json      # Spanish
-└── ...
-```
+**The build fails while installing packages in the container** — open the build log: it lists the packages that were requested and the package manager's error. Packages that do not exist in the selected distribution are skipped automatically.
 
-**Do not manually edit** files in `usr/share/locale/` - they are auto-generated.
+**The AppImage starts on the build system but not elsewhere** — build in an older environment (for example Ubuntu 22.04 instead of 24.04), and check the *library validation* section of the build log for unresolved libraries.
 
-### Dependencies Management
+**`appimagetool` or `linuxdeploy` will not run** — install `fuse2` or `fuse3`. To force a fresh download, delete `~/.cache/appimage-creator/tools/`.
 
-System dependencies are defined in `core/builder.py`:
+**The executable cannot be selected** — make sure it is executable: `chmod +x <file>`.
 
-```python
-SYSTEM_DEPENDENCIES = {
-    'glib': {
-        'libraries': ['libglib-2.0.so', 'libgio-2.0.so'],
-        'essential': True
-    },
-    'gtk3': {
-        'libraries': ['libgtk-3.so'],
-        'typelibs': ['Gtk-3.0']
-    },
-    # ... more dependencies
-}
-```
+---
 
-***
+## Contributing
 
-## 🛠️ Troubleshooting
+Contributions are welcome:
 
-### Common Issues
+1. Fork the repository and create a branch: `git checkout -b feature/my-feature`
+2. Commit your changes and push the branch
+3. Open a pull request
 
-**AppImage tools not found:**
-- Tools (appimagetool, linuxdeploy) are auto-downloaded on first use
-- Requires `fuse2` or `fuse3` to run downloaded tools
+Please keep code and comments in English, follow the existing style and run `ruff check` before submitting.
 
-**Permission denied on executable:**
-- Ensure selected executable has execute permissions: `chmod +x file`
+---
 
-**Icon processing fails:**
-- Install optional tools: `librsvg`, `imagemagick`, or `inkscape`
-- Application will generate fallback icon if tools unavailable
+## License
 
-**Build fails in container:**
-- Check Distrobox is properly installed
-- Verify container runtime (podman/docker) is working
-- Try different build environment (Ubuntu/Fedora/Arch)
-
-**Update notifications not appearing:**
-- Verify GitHub API URL is correct
-- Check filename pattern matches actual AppImage name
-- Ensure graphical environment is available (X11/Wayland)
-
-### Debug Mode
-
-Enable verbose logging:
-```bash
-python usr/share/appimage-creator/main.py --debug
-```
-
-Check build logs in console output for detailed error messages.
-
-***
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
-### Guidelines
-
-- Follow existing code style and structure
-- Add comments for complex logic
-- Update documentation for new features
-- Test thoroughly before submitting
-- Use English for code and comments
-
-***
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-***
-
-## 🙏 Acknowledgments
-
-- **GTK/GNOME Teams** - Excellent toolkit and design system
-- **AppImage Project** - Portable application format
-- **Distrobox** - Container-based build environments
-- **BigLinux Community** - Testing and feedback
-- All contributors and users
-
-***
+AppImage Creator is free software released under the **GNU General Public License v3.0** — see [COPYING](COPYING).
 
 <div align="center">
 
-**Made with ❤️ by [BigCommunity](https://github.com/BigCommunity)**
-
-[Report Bug](https://github.com/BigCommunity/appimage-creator/issues) · [Request Feature](https://github.com/BigCommunity/appimage-creator/issues) · [Documentation](CLAUDE.md)
+Made by [BigCommunity](https://github.com/big-comm) · [Report a bug](https://github.com/big-comm/appimage-creator/issues) · [Request a feature](https://github.com/big-comm/appimage-creator/issues)
 
 </div>

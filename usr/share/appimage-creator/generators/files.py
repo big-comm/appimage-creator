@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from utils.i18n import _
+from utils.system import canonical_basename as canonical_basename_for
 
 if TYPE_CHECKING:
     from core.app_info import AppInfo
@@ -38,7 +39,9 @@ def generate_desktop_file(app_info: AppInfo) -> str:
     # The canonical base name, derived from the App Name, used for consistency.
     # This will be used for the .desktop filename, Icon=, and StartupWMClass=.
     # e.g., "Big Video Converter" -> "big-video-converter"
-    canonical_basename = (app_info.name or "app").lower().replace(" ", "-")
+    canonical_basename = (
+        app_info.canonical_basename or canonical_basename_for(app_info.name)
+    )
 
     app_type = app_info.app_type or "binary"
     exec_prefix = ""
@@ -48,7 +51,17 @@ def generate_desktop_file(app_info: AppInfo) -> str:
     categories = app_info.categories
     if not categories:
         categories = ["Utility"]
-    categories_str = ";".join(categories) + ";"
+    # ';' is the list separator: strip it from each entry, then escape
+    categories_str = (
+        ";".join(
+            escape_value(c.replace(";", "").strip())
+            for c in categories
+            if c and c.replace(";", "").strip()
+        )
+        + ";"
+    )
+    if categories_str == ";":
+        categories_str = "Utility;"
 
     desktop_content = f"""[Desktop Entry]
 Version=1.0

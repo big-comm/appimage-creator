@@ -2129,7 +2129,7 @@ msgstr "Engin giltandi pakkaheiti gefin."
 #: NEEDS WORK
 #, python-brace-format
 msgid "Installing in container: {}"
-msgstr "Installing in container: {}"
+msgstr "Að setja upp í gámi: {}"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 892
 #: NEEDS WORK
@@ -3547,7 +3547,7 @@ msgstr "Hópuppsetning mistókst, reyni að setja pakkana upp einn og einn..."
 #: NEEDS WORK
 #, python-brace-format
 msgid "Installing {}..."
-msgstr "Installing {}..."
+msgstr "Að setja upp {}..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 590
 #: NEEDS WORK
@@ -3916,7 +3916,7 @@ msgstr "Útgáfa {}"
 # File: usr/share/appimage-creator/updater/update_window.py, line: 230
 #: NEEDS WORK
 msgid "Installing update..."
-msgstr "Installing update..."
+msgstr "Að setja upp uppfærslu..."
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -4079,3 +4079,45 @@ msgstr "Samþætting mistókst"
 #: NEEDS WORK
 msgid "The update will be applied the next time the application starts"
 msgstr "Uppfærslan verður beitt næst þegar forritið byrjar."
+# 
+msgid "Command timed out after {} seconds: {}"
+msgstr "Skipun rann út á tíma eftir {} sekúndur: {}"
+# 
+msgid "Warning: package list update failed: {}"
+msgstr "Aðvörun: uppfærsla pakkalista mistókst: {}"
+# 
+msgid "Skipping packages not available in this distribution: {}"
+msgstr "Sleppi pökkum sem eru ekki tiltækir í þessari dreifingu: {}"
+# 
+msgid "Warning: could not query installed packages: {}"
+msgstr "Aðvörun: gat ekki spurt um uppsetta pakka: {}"
+# 
+msgid "Warning: could not query available packages: {}"
+msgstr "Aðvörun: gat ekki spurt um tiltæka pakka: {}"
+# 
+msgid "Using cached {}: {}"
+msgstr "Nota skyndiminni {}: {}"
+# 
+msgid "Could not refresh {}: {}"
+msgstr "Gat ekki endurnýjað {}: {}"
+# 
+msgid "Downloading {}..."
+msgstr "Sæki {}..."
+# 
+msgid "Downloading {}"
+msgstr "Sæki {}"
+# 
+msgid "⚠ SHA256 checksum mismatch for {}!"
+msgstr "⚠ SHA256 tékksumma passar ekki fyrir {}!"
+# 
+msgid "⚠ No published checksum for {}; download not verified."
+msgstr "⚠ Engin útgefin tékksumma fyrir {}; niðurhal ekki staðfest."
+# 
+msgid "Analysis Failed"
+msgstr "Greining mistókst"
+# 
+msgid "Download cancelled"
+msgstr "Niðurhal fellt"
+# 
+msgid "incomplete download ({} of {} bytes)"
+msgstr "ófullkomið niðurhal ({} af {} bætum)"

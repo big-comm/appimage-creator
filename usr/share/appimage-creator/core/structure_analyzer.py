@@ -3,8 +3,8 @@ Application structure analysis and detection
 """
 
 import json
-import os
 import re
+import shlex
 import struct
 import sys
 from pathlib import Path
@@ -35,6 +35,167 @@ BUILD_ARTIFACT_DIRS = {
 }
 
 
+# Shell variable assignment: VAR=value (optionally export/readonly/local)
+_SHELL_ASSIGN_RE = re.compile(
+    r"^\s*(?:export\s+|readonly\s+|local\s+)?([A-Za-z_]\w*)=(.*)$", re.M
+)
+# A python interpreter invocation and the rest of its command line.
+# Matches python, python3, python3.12, /usr/bin/python3, env python3...
+_PYTHON_CMD_RE = re.compile(
+    r"(?:^|[\s;&|(`])(?:\S*/)?python(?:3(?:\.\d+)?)?(?=[ \t])(.*)$", re.M
+)
+_CD_BEFORE_RE = re.compile(r"\bcd\s+(\"[^\"]+\"|'[^']+'|\S+)\s*(?:&&|;)")
+_SHELL_VAR_RE = re.compile(r"\$(?:\{([A-Za-z_]\w*)\}|([A-Za-z_]\w*))")
+# Interpreter options that consume the following argument
+_PYTHON_OPTS_WITH_ARG = {"-X", "-W", "-Q"}
+_SHELL_OPERATORS = {";", "&&", "||", "|", "&", ">", ">>", "<", "2>", "2>&1"}
+
+
+def find_usr_project_root(start: Path, max_levels: int = 5) -> Path | None:
+    """Walk up from ``start`` looking for a directory that contains ``usr/``.
+    Never returns the filesystem root."""
+    current = start
+    for _ in range(max_levels):
+        if current == current.parent:
+            break
+        if (current / "usr").is_dir():
+            return current
+        current = current.parent
+    return None
+
+
+def _strip_shell_quotes(value: str) -> str:
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+        return value[1:-1]
+    return value
+
+
+def _expand_shell_vars(text: str, variables: dict, depth: int = 0) -> str:
+    """Expand $VAR / ${VAR} using assignments found in the script. Unknown
+    variables and command substitutions are left untouched."""
+    if depth > 5:
+        return text
+
+    def repl(m):
+        name = m.group(1) or m.group(2)
+        if name in variables:
+            return _expand_shell_vars(variables[name], variables, depth + 1)
+        return m.group(0)
+
+    return _SHELL_VAR_RE.sub(repl, text)
+
+
+def _static_path_suffix(path: str) -> list[str]:
+    """Trailing path components that contain no shell expansion, e.g.
+    ``$(dirname "$D")/share/app/main.py`` -> ``["share", "app", "main.py"]``."""
+    parts = path.split("/")
+    suffix = []
+    for part in reversed(parts):
+        if not part or any(c in part for c in "$`()"):
+            break
+        suffix.append(part)
+    return list(reversed(suffix))
+
+
+def _python_targets_from_command(args: str) -> list[str]:
+    """Extract script candidates from the arguments of a python invocation."""
+    try:
+        tokens = shlex.split(args, comments=True)
+    except ValueError:
+        # Unbalanced quotes (e.g. command continues on the next line)
+        tokens = args.split()
+
+    targets = []
+    i = 0
+    while i < len(tokens):
+        tok = tokens[i]
+        if tok in _SHELL_OPERATORS:
+            break
+        if tok == "-c":
+            break  # inline code: handled by entry point detection
+        if tok == "-m":
+            if i + 1 < len(tokens):
+                targets.append(tokens[i + 1].replace(".", "/") + ".py")
+            break
+        if tok in _PYTHON_OPTS_WITH_ARG:
+            i += 2
+            continue
+        if tok.startswith("-"):
+            i += 1
+            continue
+        if tok in ("$@", "$*", "${@}", "${*}"):
+            break
+        targets.append(tok)
+        break
+    return targets
+
+
+def _resolve_wrapper_python_target(script_path: str, content: str) -> Path | None:
+    """Find the Python script a shell wrapper executes, inside its project."""
+    variables = {}
+    for m in _SHELL_ASSIGN_RE.finditer(content):
+        variables.setdefault(m.group(1), _strip_shell_quotes(m.group(2)))
+
+    candidates = []
+    for line in content.splitlines():
+        if line.lstrip().startswith("#"):
+            continue
+        m = _PYTHON_CMD_RE.search(line)
+        if m:
+            targets = _python_targets_from_command(m.group(1))
+            # `cd <dir> && python3 main.py`: a relative target lives in <dir>
+            cd = _CD_BEFORE_RE.search(line[: m.start()])
+            if cd:
+                base = _strip_shell_quotes(cd.group(1))
+                targets = [
+                    t if t.startswith(("/", "$")) else f"{base.rstrip('/')}/{t}"
+                    for t in targets
+                ]
+            candidates.extend(targets)
+    # Fallback: any .py path mentioned in the script (assignments included)
+    candidates.extend(re.findall(r"[^\s\"'=]*\.py\b", content))
+
+    script = Path(script_path).resolve()
+    project_root = find_usr_project_root(script.parent) or script.parent.parent
+
+    for raw in candidates:
+        expanded = _expand_shell_vars(raw, variables)
+        suffix = _static_path_suffix(expanded)
+        if not suffix:
+            continue
+        if not suffix[-1].endswith(".py"):
+            # Extension-less target (python3 /usr/share/app/app "$@")
+            literal = project_root.joinpath(*suffix)
+            if literal.is_file():
+                return literal
+            suffix[-1] += ".py"
+        best = _best_suffix_match(project_root, suffix)
+        if best is not None:
+            return best
+    return None
+
+
+def _best_suffix_match(project_root: Path, suffix: list[str]) -> Path | None:
+    """Among files named ``suffix[-1]`` under ``project_root``, pick the one
+    whose path shares the longest trailing component sequence with ``suffix``
+    (ties go to the shallowest path)."""
+    best, best_key = None, None
+    for found in project_root.rglob(suffix[-1]):
+        rel_parts = found.relative_to(project_root).parts
+        if not found.is_file() or any(p in BUILD_ARTIFACT_DIRS for p in rel_parts):
+            continue
+        score = 0
+        for a, b in zip(reversed(rel_parts), reversed(suffix)):
+            if a != b:
+                break
+            score += 1
+        key = (score, -len(rel_parts))
+        if best_key is None or key > best_key:
+            best, best_key = found, key
+    return best
+
+
 def analyze_wrapper_script(script_path: str) -> dict:
     """Analyze wrapper script to detect underlying application type"""
     try:
@@ -62,81 +223,14 @@ def analyze_wrapper_script(script_path: str) -> dict:
         ):
             analysis["type"] = "python_wrapper"
 
-            # Improved regex to capture Python script paths in various formats
-            python_call_patterns = [
-                r'python3?\s+(?:"([^"]+\.py)"|\'([^\']+\.py)\'|([^\s]+\.py))',  # python3 "script.py", 'script.py', or script.py
-                r'python3?\s+(?:"([^"]+)"|\'([^\']+)\'|(\S+))\s+\$@',  # python3 /path/to/script "$@"
-                r"python3?\s+-[mu]\s+(\S+)",  # python3 -m module or python3 -u script
-                r'/usr/bin/python3?\s+(?:"([^"]+)"|\'([^\']+)\'|(\S+))',  # /usr/bin/python3 /path/script
-                r'/usr/bin/env\s+python3?\s+(?:"([^"]+)"|\'([^\']+)\'|(\S+))',  # /usr/bin/env python3 /path/script
-            ]
-
-            target_path_from_script = None
-            for pattern in python_call_patterns:
-                python_match = re.search(pattern, content)
-                if python_match:
-                    # Get the first non-None group (the captured path/module)
-                    groups = [g for g in python_match.groups() if g is not None]
-                    if groups:
-                        target_path_from_script = groups[0]
-                        # If it doesn't end with .py, add it (for module paths)
-                        if not target_path_from_script.endswith(".py"):
-                            # Check if next line or same line has .py file
-                            # This handles cases like: python3 -m package.__main__
-                            if "." in target_path_from_script:
-                                # Convert module path to file path (e.g., package.main -> package/main.py)
-                                target_path_from_script = (
-                                    target_path_from_script.replace(".", "/") + ".py"
-                                )
-                            else:
-                                target_path_from_script += ".py"
-                        break
-
-            if target_path_from_script:
-                # DEBUG: Log wrapper detection
+            target_path = _resolve_wrapper_python_target(script_path, content)
+            if target_path is not None:
                 print(
-                    "[DEBUG analyze_wrapper_script] Detected python wrapper",
+                    f"[DEBUG analyze_wrapper_script] Python target: {target_path}",
                     file=sys.stderr,
                 )
-                print(
-                    f"  target_path_from_script: {target_path_from_script}",
-                    file=sys.stderr,
-                )
-
-                # --- START OF CORRECTED GENERIC LOGIC ---
-
-                # Find the project root by searching upwards from the script's location for a 'usr' directory.
-                # This makes the analysis self-contained and aware of its project context.
-                project_root = Path(script_path).resolve().parent
-                found_root = False
-                for _ in range(5):  # Search up to 5 levels
-                    if project_root.parent == project_root:  # Reached filesystem root
-                        break
-                    if (project_root / "usr").is_dir():
-                        found_root = True
-                        break
-                    project_root = project_root.parent
-
-                if not found_root:
-                    # Fallback if no 'usr' dir is found: assume project root is two levels up from the script.
-                    project_root = Path(script_path).resolve().parent.parent
-
-                # Now, search for the target script within the entire project root. This is more robust.
-                # We use os.path.basename to handle cases where the script path is complex (e.g., "app/main.py").
-                search_filename = os.path.basename(target_path_from_script)
-                found_targets = list(project_root.rglob(search_filename))
-
-                target_path = None
-                if found_targets:
-                    # Take the first match. A more complex heuristic could be added if needed.
-                    target_path = found_targets[0]
-
-                # The final target_executable is the full, correct path on the build system.
-                if target_path is not None and target_path.exists():
-                    analysis["target_executable"] = str(target_path)
-                    analysis["target_type"] = "python"
-
-                # --- END OF CORRECTED GENERIC LOGIC ---
+                analysis["target_executable"] = str(target_path)
+                analysis["target_type"] = "python"
 
         # Look for other interpreters
         elif "node" in content or "nodejs" in content:
@@ -175,15 +269,7 @@ def detect_application_structure(executable_path: str) -> dict:
         wrapper_analysis = analyze_wrapper_script(executable_path)
         if wrapper_analysis.get("type") == "python_wrapper":
             # Even for wrappers, we need to find the project root
-            project_root = None
-            current_dir = path.parent
-            for _ in range(5):
-                if current_dir == current_dir.parent:
-                    break  # Reached filesystem root, stop
-                if (current_dir / "usr").is_dir():
-                    project_root = current_dir
-                    break
-                current_dir = current_dir.parent
+            project_root = find_usr_project_root(path.parent)
 
             # Create structure for python wrapper
             structure = {
@@ -230,15 +316,7 @@ def detect_application_structure(executable_path: str) -> dict:
 
     # Find project root by searching for a 'usr' directory in parent paths
     # but never use the filesystem root as project root
-    project_root = None
-    current_dir = path.parent
-    for _ in range(5):  # Search up to 5 levels up
-        if current_dir == current_dir.parent:
-            break  # Reached filesystem root, stop
-        if (current_dir / "usr").is_dir():
-            project_root = current_dir
-            break
-        current_dir = current_dir.parent
+    project_root = find_usr_project_root(path.parent)
 
     if project_root:
         structure["project_root"] = str(project_root)

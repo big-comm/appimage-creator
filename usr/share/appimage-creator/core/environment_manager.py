@@ -12,6 +12,7 @@ from utils.system import (
     check_host_dependencies,
     get_host_env,
     has_fuse,
+    run_streaming,
 )
 from utils.i18n import _
 from core.build_config import DEPENDENCY_PACKAGES, PACKAGE_NAME_PATTERN
@@ -419,29 +420,9 @@ class EnvironmentManager:
 
             host_env = get_host_env()
 
-            process = subprocess.Popen(
-                cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                bufsize=1,
-                env=host_env,
+            return_code = self._stream_command(
+                cmd, host_env, log_callback, cancel_check, timeout=3600
             )
-            if process.stdout is None:
-                raise RuntimeError("Failed to capture the process output.")
-
-            # Stream output to the log callback
-            if log_callback:
-                for line in iter(process.stdout.readline, ""):
-                    if cancel_check and cancel_check():
-                        process.terminate()
-                        process.stdout.close()
-                        process.wait(timeout=10)
-                        raise RuntimeError(_("Cancelled by user."))
-                    log_callback(line.strip())
-
-            process.stdout.close()
-            return_code = process.wait(timeout=600)
 
             if return_code != 0:
                 raise RuntimeError(
@@ -478,31 +459,9 @@ class EnvironmentManager:
                 if cancel_check and cancel_check():
                     raise RuntimeError(_("Cancelled by user."))
 
-                init_process = subprocess.Popen(
-                    init_cmd,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.STDOUT,
-                    text=True,
-                    bufsize=1,
-                    env=host_env,
+                init_return_code = self._stream_command(
+                    init_cmd, host_env, log_callback, cancel_check, timeout=900
                 )
-                if init_process.stdout is None:
-                    raise RuntimeError("Failed to capture the process output.")
-
-                # Stream initialization output
-                if log_callback:
-                    for line in iter(init_process.stdout.readline, ""):
-                        line = line.strip()
-                        if line:
-                            if cancel_check and cancel_check():
-                                init_process.terminate()
-                                init_process.stdout.close()
-                                init_process.wait(timeout=10)
-                                raise RuntimeError(_("Cancelled by user."))
-                            log_callback(line)
-
-                init_process.stdout.close()
-                init_return_code = init_process.wait(timeout=300)
 
                 if init_return_code != 0:
                     if log_callback:
@@ -610,28 +569,9 @@ class EnvironmentManager:
 
             host_env = get_host_env()
 
-            process = subprocess.Popen(
-                cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                bufsize=1,
-                env=host_env,
+            return_code = self._stream_command(
+                cmd, host_env, log_callback, cancel_check, timeout=3600
             )
-            if process.stdout is None:
-                raise RuntimeError("Failed to capture the process output.")
-
-            if log_callback:
-                for line in iter(process.stdout.readline, ""):
-                    if cancel_check and cancel_check():
-                        process.terminate()
-                        process.stdout.close()
-                        process.wait(timeout=10)
-                        raise RuntimeError(_("Cancelled by user."))
-                    log_callback(line.strip())
-
-            process.stdout.close()
-            return_code = process.wait(timeout=600)
 
             if return_code != 0:
                 raise RuntimeError(
@@ -682,23 +622,9 @@ class EnvironmentManager:
 
             host_env = get_host_env()
 
-            process = subprocess.Popen(
-                cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                bufsize=1,
-                env=host_env,
+            return_code = self._stream_command(
+                cmd, host_env, log_callback, None, timeout=300
             )
-            if process.stdout is None:
-                raise RuntimeError("Failed to capture the process output.")
-
-            if log_callback:
-                for line in iter(process.stdout.readline, ""):
-                    log_callback(line.strip())
-
-            process.stdout.close()
-            return_code = process.wait(timeout=120)
 
             if return_code != 0:
                 raise RuntimeError(_("Failed to remove container."))
@@ -957,6 +883,31 @@ class EnvironmentManager:
                     break
 
         return suggestions
+
+    @staticmethod
+    def _stream_command(cmd, env, log_callback, cancel_check, timeout):
+        """Run a distrobox command streaming output to ``log_callback``.
+
+        Cancelling and the timeout act even while the command is silent
+        (image pulls, first container entry) and whether or not a log
+        callback is set. Returns the exit code."""
+        try:
+            return_code, _lines, cancelled = run_streaming(
+                cmd,
+                env=env,
+                on_line=log_callback,
+                cancel_check=cancel_check,
+                timeout=timeout,
+            )
+        except subprocess.TimeoutExpired:
+            raise RuntimeError(
+                _("Command timed out after {} seconds: {}").format(
+                    int(timeout), " ".join(cmd[:2])
+                )
+            )
+        if cancelled:
+            raise RuntimeError(_("Cancelled by user."))
+        return return_code
 
     def _get_container_name(self, env_id: str) -> str:
         """Generate a consistent container name for our app."""
