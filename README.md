@@ -271,6 +271,6 @@ AppImage Creator is free software released under the **GNU General Public Licens
 
 <div align="center">
 
-Made by the [BigCommunity](https://github.com/big-comm) team · [Report a bug](https://github.com/big-comm/appimage-creator/issues) · [Request a feature](https://github.com/big-comm/appimage-creator/issues)
+Made by [BigCommunity](https://github.com/big-comm) · [Report a bug](https://github.com/big-comm/appimage-creator/issues) · [Request a feature](https://github.com/big-comm/appimage-creator/issues)
 
 </div>
