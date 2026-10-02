@@ -3,10 +3,14 @@ System utilities and helpers
 """
 
 import re
+import signal
 import subprocess
 import shutil
 import os
-from typing import Dict, Optional, List
+import threading
+import time
+from collections import deque
+from typing import Callable, Dict, Optional, List
 from utils.i18n import _
 
 
@@ -96,6 +100,18 @@ def has_fuse() -> bool:
         find_executable_in_path(tool) is not None
         for tool in ("fusermount", "fusermount3", "fusermount2")
     )
+
+
+def canonical_basename(name: Optional[str]) -> str:
+    """Base name shared by the .desktop file, Icon= and StartupWMClass=.
+
+    "Big Video Converter" -> "big-video-converter". Whitespace runs become a
+    single "-", and anything outside [a-z0-9._-] is dropped so the result is
+    always a valid file name and desktop-entry value.
+    """
+    base = re.sub(r"\s+", "-", (name or "").strip().lower())
+    base = re.sub(r"[^a-z0-9._-]", "", base).strip("-.")
+    return base or "app"
 
 
 def sanitize_filename(filename: str) -> str:
@@ -335,3 +351,79 @@ def read_elf_dlopen_names(file_path: str | os.PathLike) -> List[str]:
         return []
 
     return sorted(names)
+
+
+def run_streaming(
+    cmd: List[str],
+    *,
+    env: Optional[Dict[str, str]] = None,
+    cwd=None,
+    on_line: Optional[Callable[[str], None]] = None,
+    cancel_check: Optional[Callable[[], bool]] = None,
+    timeout: Optional[float] = None,
+    keep_lines: int = 500,
+) -> tuple:
+    """Run ``cmd`` streaming its combined stdout/stderr line by line.
+
+    A watchdog polls ``cancel_check`` and the deadline twice a second and
+    kills the whole process group, so cancelling and timing out work even
+    while the command prints nothing (image pulls, mksquashfs...).
+
+    Returns ``(returncode, last_lines, cancelled)``; raises
+    ``subprocess.TimeoutExpired`` when ``timeout`` is exceeded.
+    """
+    process = subprocess.Popen(
+        cmd,
+        env=env,
+        cwd=cwd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        errors="replace",
+        bufsize=1,
+        # Own process group: children are killed too and can't keep the
+        # pipe open after the parent dies.
+        start_new_session=True,
+    )
+    timed_out = threading.Event()
+    cancelled = threading.Event()
+    finished = threading.Event()
+
+    def kill_group():
+        try:
+            os.killpg(process.pid, signal.SIGKILL)
+        except (ProcessLookupError, PermissionError):
+            pass
+
+    def watchdog():
+        deadline = time.monotonic() + timeout if timeout else None
+        while not finished.wait(0.5):
+            if cancel_check and cancel_check():
+                cancelled.set()
+            elif deadline is not None and time.monotonic() > deadline:
+                timed_out.set()
+            else:
+                continue
+            kill_group()
+            return
+
+    threading.Thread(target=watchdog, daemon=True).start()
+    lines: deque = deque(maxlen=keep_lines)
+    try:
+        assert process.stdout is not None
+        for line in process.stdout:
+            line = line.rstrip()
+            lines.append(line)
+            if on_line and line:
+                on_line(line)
+        returncode = process.wait()
+    finally:
+        finished.set()
+        if process.stdout:
+            process.stdout.close()
+        if process.poll() is None:
+            kill_group()
+            process.wait()
+    if timed_out.is_set():
+        raise subprocess.TimeoutExpired(cmd, timeout)
+    return returncode, list(lines), cancelled.is_set()

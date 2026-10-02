@@ -61,22 +61,57 @@ def copy_files_recursively(
                 continue
 
 
+class DownloadCancelled(Exception):
+    """Raised when a download is aborted through ``cancel_check``."""
+
+
 def download_file(
     url: str,
     destination: str | os.PathLike,
     progress_callback: Optional[Callable[[int], None]] = None,
+    cancel_check: Optional[Callable[[], bool]] = None,
+    timeout: float = 30,
 ) -> None:
-    """Download file with optional progress callback"""
+    """Download ``url`` to ``destination``.
 
-    def report_progress(block_num, block_size, total_size):
-        if progress_callback and total_size > 0:
-            downloaded = block_num * block_size
-            percentage = min(100, int(downloaded * 100 / total_size))
-            progress_callback(percentage)
-
+    ``timeout`` bounds every network operation (connect and each read), so a
+    stalled server can't hang the build thread. Data goes to a ``.part`` file
+    renamed on success: an interrupted download never leaves a truncated file
+    that a later build would take as complete. ``cancel_check`` is polled
+    between chunks; when it returns True, DownloadCancelled is raised.
+    """
+    destination = Path(destination)
+    partial = destination.with_name(destination.name + ".part")
     try:
-        urllib.request.urlretrieve(url, destination, reporthook=report_progress)
+        req = urllib.request.Request(url, headers={"User-Agent": "AppImage-Creator"})
+        with urllib.request.urlopen(req, timeout=timeout) as response:
+            total = int(response.headers.get("Content-Length") or 0)
+            downloaded = 0
+            last_pct = -1
+            with open(partial, "wb") as out:
+                while True:
+                    if cancel_check and cancel_check():
+                        raise DownloadCancelled(_("Download cancelled"))
+                    chunk = response.read(131072)
+                    if not chunk:
+                        break
+                    out.write(chunk)
+                    downloaded += len(chunk)
+                    if progress_callback and total > 0:
+                        pct = min(100, downloaded * 100 // total)
+                        if pct != last_pct:
+                            last_pct = pct
+                            progress_callback(pct)
+        if total and downloaded != total:
+            raise OSError(
+                _("incomplete download ({} of {} bytes)").format(downloaded, total)
+            )
+        os.replace(partial, destination)
+    except DownloadCancelled:
+        partial.unlink(missing_ok=True)
+        raise
     except Exception as e:
+        partial.unlink(missing_ok=True)
         raise Exception(_("Failed to download {}: {}").format(url, e))
 
 
@@ -92,16 +127,13 @@ def compute_sha256(file_path: str | os.PathLike) -> str:
 def verify_download_sha256(
     file_path: str | os.PathLike,
     sha256_url: str,
-) -> tuple[bool, str]:
+) -> tuple[bool, str, bool]:
     """Verify a downloaded file against a remote SHA256 checksum.
 
-    Tries to fetch ``sha256_url``.  If the remote file is available, the
-    local file's hash is compared against it.
-
-    Returns (verified, local_hash).  ``verified`` is True when the hash
-    matches, False when it mismatches, and True (with just the local hash)
-    when the remote checksum is unavailable (fail-open for continuous
-    releases that have no checksum file).
+    Returns (verified, local_hash, checked). ``checked`` is False when the
+    remote checksum was unavailable or had no entry for this file; the result
+    is then fail-open (``verified`` True) for continuous releases that ship no
+    checksum, and the caller should warn that the file is unverified.
     """
     local_hash = compute_sha256(file_path)
     filename = Path(file_path).name
@@ -123,13 +155,13 @@ def verify_download_sha256(
             # Bare hash, or a line whose (last) filename field matches exactly
             entry_name = parts[-1].lstrip("*") if len(parts) > 1 else ""
             if len(parts) == 1 or entry_name == filename:
-                return (remote_hash == local_hash, local_hash)
+                return (remote_hash == local_hash, local_hash, True)
 
         # Remote file existed but didn't contain matching entry
-        return (True, local_hash)
+        return (True, local_hash, False)
     except Exception:
         # Remote checksum not available — fail-open
-        return (True, local_hash)
+        return (True, local_hash, False)
 
 
 def scan_directory_structure(directory_path: str | os.PathLike) -> dict:

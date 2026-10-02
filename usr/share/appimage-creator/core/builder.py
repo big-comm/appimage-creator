@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import tempfile
 import threading
+import time
 from pathlib import Path
 from typing import Callable, Optional
 
@@ -22,7 +23,6 @@ from validators.validators import (
 from core.structure_analyzer import detect_application_structure
 from templates.app_templates import get_app_type_from_file
 from generators.icons import (
-    process_icon,
     generate_default_icon,
     convert_svg_to_png,
     select_best_icon,
@@ -44,10 +44,48 @@ from utils.system import (
     get_host_env,
     read_elf_needed,
     read_elf_dlopen_names,
+    run_streaming,
+    canonical_basename as canonical_basename_for,
 )
 from core.dependency_resolver import DependencyResolver, PrePackagingValidator
 from core.app_info import AppInfo
 from utils.i18n import _
+
+# Downloaded tools come from "continuous" releases; refresh monthly
+TOOL_CACHE_MAX_AGE = 30 * 24 * 3600
+
+
+class CommandTimeout(subprocess.TimeoutExpired, RuntimeError):
+    """A build command exceeded its time limit. Subclasses TimeoutExpired so
+    existing handlers keep working, and RuntimeError so the build fails with
+    a readable message instead of a raw subprocess error."""
+
+    def __init__(self, cmd, timeout):
+        super().__init__(cmd, timeout)
+
+    def __str__(self):
+        name = " ".join(str(c) for c in self.cmd[:3]) if self.cmd else "?"
+        return _("Command timed out after {} seconds: {}").format(
+            int(self.timeout or 0), name
+        )
+
+
+def parse_apt_cache_policy(output: str) -> set:
+    """Package names with an installable candidate in ``apt-cache policy``
+    output. Unknown names are not printed at all; virtual or unavailable
+    ones show ``Candidate: (none)``."""
+    available = set()
+    current = None
+    for line in output.splitlines():
+        if line and not line[0].isspace() and line.rstrip().endswith(":"):
+            current = line.rstrip()[:-1].split(":")[0]
+            continue
+        stripped = line.strip()
+        if current and stripped.startswith("Candidate:"):
+            if stripped.split(":", 1)[1].strip() not in ("", "(none)"):
+                available.add(current)
+            current = None
+    return available
 
 
 class AppImageBuilder:
@@ -200,13 +238,21 @@ class AppImageBuilder:
         self.log_callback = callback
 
     def _run_command(self, cmd, env=None, cwd=None, timeout=None, capture_output=True):
-        """Run command, optionally inside container."""
+        """Run command, optionally inside container.
+
+        Raises CommandTimeout (a RuntimeError and a TimeoutExpired) when the
+        command exceeds ``timeout`` seconds."""
         if self.container_name:
             # Run inside container using distrobox-enter
             self.log(_("Running in container: {}").format(" ".join(cmd)))
 
             # Build the full command to run inside container
             cmd_str = " ".join(shlex.quote(str(arg)) for arg in cmd)
+            if timeout:
+                # Killing distrobox-enter on the host does not stop the process
+                # inside the container (apt/dnf would keep running and holding
+                # their locks), so the timeout is enforced in there too.
+                cmd_str = f"timeout -k 10 {int(timeout)} {cmd_str}"
 
             # If there's a working directory, cd into it first
             if cwd:
@@ -227,24 +273,35 @@ class AppImageBuilder:
             if env:
                 merged_env.update(env)
 
-            return subprocess.run(
-                container_cmd,
-                env=merged_env,
-                capture_output=capture_output,
-                text=True,
-                timeout=timeout,
-                cwd=None,
-            )
+            try:
+                result = subprocess.run(
+                    container_cmd,
+                    env=merged_env,
+                    capture_output=capture_output,
+                    text=True,
+                    # Grace period for the in-container timeout to fire first
+                    timeout=timeout + 30 if timeout else None,
+                    cwd=None,
+                )
+            except subprocess.TimeoutExpired as e:
+                raise CommandTimeout(cmd, timeout) from e
+            # coreutils timeout exits 124 when it had to stop the command
+            if timeout and result.returncode == 124:
+                raise CommandTimeout(cmd, timeout)
+            return result
         else:
             # Run locally
-            return subprocess.run(
-                cmd,
-                env=env,
-                capture_output=capture_output,
-                text=True,
-                timeout=timeout,
-                cwd=cwd,
-            )
+            try:
+                return subprocess.run(
+                    cmd,
+                    env=env,
+                    capture_output=capture_output,
+                    text=True,
+                    timeout=timeout,
+                    cwd=cwd,
+                )
+            except subprocess.TimeoutExpired as e:
+                raise CommandTimeout(cmd, timeout) from e
 
     def log(self, message: str) -> None:
         """Log a message"""
@@ -474,9 +531,7 @@ class AppImageBuilder:
             icon_path = self.app_info.icon
             canonical_basename = self.app_info.canonical_basename
             if not canonical_basename:
-                canonical_basename = (
-                    (self.app_info.name or "app").lower().replace(" ", "-")
-                )
+                canonical_basename = canonical_basename_for(self.app_info.name)
 
             if not icon_path and self.app_info.structure_analysis:
                 detected_icons = self.app_info.structure_analysis["detected_files"].get(
@@ -610,9 +665,7 @@ class AppImageBuilder:
                     self.log(
                         _("No desktop file found in AppDir, generating a new one.")
                     )
-                    canonical_basename = (
-                        (self.app_info.name or "app").lower().replace(" ", "-")
-                    )
+                    canonical_basename = canonical_basename_for(self.app_info.name)
                     desktop_content = generate_desktop_file(self.app_info)
                     new_desktop_path = (
                         appdir_desktop_files_dir / f"{canonical_basename}.desktop"
@@ -663,9 +716,7 @@ class AppImageBuilder:
             # Ensure the Icon= field in .desktop matches the canonical icon name
             canonical_basename = self.app_info.canonical_basename
             if not canonical_basename:
-                canonical_basename = (
-                    (self.app_info.name or "app").lower().replace(" ", "-")
-                )
+                canonical_basename = canonical_basename_for(self.app_info.name)
 
             try:
                 with open(main_desktop_file_path, "r", encoding="utf-8") as f:
@@ -918,25 +969,37 @@ class AppImageBuilder:
         (e.g. src/bigocrpdf -> "src"). The bundled venv site-packages is
         already on PYTHONPATH, so packages living only there are skipped.
         """
-        dirs: list[str] = []
-        seen = set()
-        venv_dir = self.appdir_path / "usr" / "python" / "venv"
+        tops = []
         for module in modules:
             top = module.split(".")[0]
-            if not top:
+            if top and top not in tops:
+                tops.append(top)
+        if not tops:
+            return []
+
+        # One walk over the AppDir for all modules, skipping the bundled venv
+        # (tens of thousands of files, and already on PYTHONPATH). The
+        # shallowest package dir named <top> with an __init__.py wins.
+        venv_dir = self.appdir_path / "usr" / "python" / "venv"
+        found: dict[str, tuple[int, str]] = {}
+        wanted = set(tops)
+        for dirpath, dirnames, filenames in os.walk(self.appdir_path):
+            current = Path(dirpath)
+            if current == venv_dir:
+                dirnames[:] = []
                 continue
-            for init in self.appdir_path.rglob(f"{top}/__init__.py"):
-                # Skip copies inside the venv (already importable) and any
-                # nested match where the package dir isn't named exactly <top>
-                if venv_dir in init.parents:
-                    continue
-                if init.parent.name != top:
-                    continue
-                rel = os.path.relpath(init.parent.parent, self.appdir_path)
-                if rel not in seen:
-                    seen.add(rel)
-                    dirs.append(rel)
-                break
+            dirnames.sort()
+            name = current.name
+            if name in wanted and "__init__.py" in filenames:
+                rel = os.path.relpath(current.parent, self.appdir_path)
+                key = (len(current.parts), rel)
+                if name not in found or key < found[name]:
+                    found[name] = key
+
+        dirs: list[str] = []
+        for top in tops:
+            if top in found and found[top][1] not in dirs:
+                dirs.append(found[top][1])
         return dirs
 
     def copy_integration_helpers(self) -> None:
@@ -1368,17 +1431,17 @@ class AppImageBuilder:
         else:
             return []
 
+        # os.walk with in-place pruning: excluded trees (.git, node_modules,
+        # venvs) are never descended into, instead of walked and filtered.
         source_files = []
-        for py_file in root.rglob("*.py"):
-            try:
-                rel_parts = py_file.relative_to(root).parts
-            except ValueError:
-                rel_parts = py_file.parts
-            if any(seg in non_source_segments for seg in rel_parts):
-                continue
-            if py_file.name == "conftest.py" or py_file.name.startswith("test_"):
-                continue
-            source_files.append(py_file)
+        for dirpath, dirnames, filenames in os.walk(root):
+            dirnames[:] = sorted(d for d in dirnames if d not in non_source_segments)
+            for name in sorted(filenames):
+                if not name.endswith(".py"):
+                    continue
+                if name == "conftest.py" or name.startswith("test_"):
+                    continue
+                source_files.append(Path(dirpath) / name)
         return source_files
 
     # Libraries whose presence in an ELF's DT_NEEDED identifies a dependency
@@ -1664,29 +1727,21 @@ class AppImageBuilder:
             if fw in media_package_map:
                 packages_needed.extend(media_package_map[fw])
 
-        packages_needed = list(set(packages_needed))
+        packages_needed = sorted(set(packages_needed))
         self.log(_("Required packages: {}").format(", ".join(packages_needed)))
 
-        # Check which packages are actually missing from the container
-        packages_to_install = []
+        # Check which packages are actually missing from the container (one
+        # query for the whole list instead of one container entry per package)
         self.log(_("Checking for missing packages in the container..."))
-        for pkg in packages_needed:
-            # Use dpkg-query to check package status. It returns non-zero if not installed.
-            # No surrounding quotes: there's no shell to strip them (args are passed
-            # as a list / shlex-quoted), so they would otherwise end up in the output.
-            check_cmd = ["dpkg-query", "-W", "-f=${Status}", pkg]
-            result = self._run_command(check_cmd, capture_output=True)
-            # A successful query contains 'install ok installed'
-            if result.returncode != 0 or "install ok installed" not in result.stdout:
-                packages_to_install.append(pkg)
-                self.log(f"  -> Package '{pkg}' is missing.")
+        installed = self._query_installed_packages(packages_needed, package_manager)
+        packages_to_install = [p for p in packages_needed if p not in installed]
+        for pkg in packages_to_install:
+            self.log(f"  -> Package '{pkg}' is missing.")
 
         # If there's nothing to install, we can stop here.
         if not packages_to_install:
             self.log(_("All required native dependencies are already installed."))
             return
-
-        self.log(_("Packages to install: {}").format(", ".join(packages_to_install)))
 
         # Check for GTK4 on Ubuntu 20.04
         if "gtk4" in dependencies:
@@ -1707,9 +1762,38 @@ class AppImageBuilder:
         # Update repos first
         self.log(_("Updating package lists..."))
         if package_manager == "apt":
-            self._run_command(["sudo", "apt-get", "update"], timeout=120)
+            update = self._run_command(["sudo", "apt-get", "update"], timeout=300)
+            # apt-get update returns non-zero only on real failures
+            update_failed = update.returncode != 0
         else:
-            self._run_command(["sudo", "dnf", "check-update"], timeout=120)
+            update = self._run_command(
+                ["sudo", "dnf", "makecache", "--refresh"], timeout=300
+            )
+            update_failed = update.returncode != 0
+        if update_failed:
+            self.log(
+                _("Warning: package list update failed: {}").format(
+                    (update.stderr or update.stdout or "").strip()[-500:]
+                )
+            )
+
+        # Package names differ between releases (e.g. libgirepository-2.0-0
+        # only exists on newer distros, libgirepository-1.0-1 is gone on the
+        # newest ones). Requesting an unknown name makes the whole install
+        # abort, so only ask for what the repositories actually provide.
+        available = self._query_available_packages(packages_to_install, package_manager)
+        if available is not None:
+            unavailable = [p for p in packages_to_install if p not in available]
+            if unavailable:
+                self.log(
+                    _("Skipping packages not available in this distribution: {}").format(
+                        ", ".join(unavailable)
+                    )
+                )
+            packages_to_install = [p for p in packages_to_install if p in available]
+            if not packages_to_install:
+                self.log(_("All required native dependencies are already installed."))
+                return
 
         # Install packages
         self.log(_("Installing GUI libraries..."))
@@ -1725,7 +1809,7 @@ class AppImageBuilder:
             install_cmd = ["sudo", "dnf", "install", "-y"] + packages_to_install
 
         self.log(_("Running install command: {}").format(" ".join(install_cmd)))
-        result = self._run_command(install_cmd, timeout=300)
+        result = self._run_command(install_cmd, timeout=1800)
 
         if result.returncode == 0:
             self.log(_("Successfully installed GUI dependencies in container."))
@@ -1742,8 +1826,61 @@ class AppImageBuilder:
                 _(
                     "Failed to install required build dependencies in the container: {pkgs}\n\n"
                     "Error details:\n{err}"
-                ).format(pkgs=", ".join(packages_needed), err=error_message)
+                ).format(pkgs=", ".join(packages_to_install), err=error_message)
             )
+
+    def _query_installed_packages(self, packages, package_manager) -> set:
+        """Return the subset of ``packages`` installed in the build environment."""
+        if not packages:
+            return set()
+        if package_manager == "apt":
+            cmd = ["dpkg-query", "-W", "-f=${Package} ${Status}\n"] + list(packages)
+        else:
+            cmd = ["rpm", "-q", "--qf", "%{NAME} installed\n"] + list(packages)
+        try:
+            result = self._run_command(cmd, capture_output=True, timeout=120)
+        except (RuntimeError, OSError) as e:
+            self.log(_("Warning: could not query installed packages: {}").format(e))
+            return set()
+        # Both tools exit non-zero when any package is unknown/not installed,
+        # yet still print the ones they know, so stdout is parsed regardless.
+        installed = set()
+        wanted = set(packages)
+        for line in (result.stdout or "").splitlines():
+            parts = line.split()
+            if not parts:
+                continue
+            name = parts[0].split(":")[0]  # strip multiarch suffix (pkg:amd64)
+            if name not in wanted:
+                continue
+            if package_manager == "apt":
+                if line.rstrip().endswith("install ok installed"):
+                    installed.add(name)
+            elif parts[-1] == "installed" and len(parts) == 2:
+                installed.add(name)
+        return installed
+
+    def _query_available_packages(self, packages, package_manager):
+        """Return the subset of ``packages`` installable from the configured
+        repositories, or None when availability can't be determined (the
+        caller then tries to install everything, as before)."""
+        if not packages:
+            return set()
+        if package_manager == "apt":
+            cmd = ["apt-cache", "policy"] + list(packages)
+        else:
+            cmd = ["dnf", "repoquery", "-q", "--qf", "%{name}\n"] + list(packages)
+        try:
+            result = self._run_command(cmd, capture_output=True, timeout=120)
+        except (RuntimeError, OSError) as e:
+            self.log(_("Warning: could not query available packages: {}").format(e))
+            return None
+        if package_manager == "apt":
+            return parse_apt_cache_policy(result.stdout or "")
+        if result.returncode != 0:
+            return None
+        names = {line.strip() for line in (result.stdout or "").splitlines()}
+        return {p for p in packages if p in names}
 
     def _create_icon_symlinks(self):
         """Create icon symlinks matching desktop file name."""
@@ -1799,6 +1936,74 @@ class AppImageBuilder:
 
         return BinaryBundler(self).detect_binary_dependencies()
 
+    @staticmethod
+    def tools_cache_dir() -> Path:
+        """Persistent cache for downloaded build tools (survives cleanup())."""
+        base = os.environ.get("XDG_CACHE_HOME") or str(Path.home() / ".cache")
+        return Path(base) / "appimage-creator" / "tools"
+
+    def _get_cached_tool(self, filename, url, pct_base, pct_span, label):
+        """Return a cached copy of a downloaded tool, fetching it if needed.
+
+        Tools used to be downloaded into the build directory, which cleanup()
+        removes, so every build fetched them again. Returns None on failure.
+        """
+        cache_dir = self.tools_cache_dir()
+        cached = cache_dir / filename
+        have_cached = cached.is_file() and cached.stat().st_size > 0
+        # Continuous releases: refresh a copy older than TOOL_CACHE_MAX_AGE,
+        # but keep using it if the refresh fails (offline builds).
+        if have_cached and time.time() - cached.stat().st_mtime < TOOL_CACHE_MAX_AGE:
+            make_executable(cached)
+            self.log(_("Using cached {}: {}").format(label, cached))
+            return cached
+        if have_cached:
+            backup = cached.with_name(cached.name + ".old")
+            os.replace(cached, backup)
+            try:
+                fresh = self._fetch_tool(cached, url, pct_base, pct_span, label)
+            except Exception as e:
+                self.log(_("Could not refresh {}: {}").format(label, e))
+                fresh = None
+            if fresh is None:
+                os.replace(backup, cached)
+                self.log(_("Using cached {}: {}").format(label, cached))
+                return cached
+            backup.unlink(missing_ok=True)
+            return fresh
+
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        return self._fetch_tool(cached, url, pct_base, pct_span, label)
+
+    def _fetch_tool(self, cached, url, pct_base, pct_span, label):
+        """Download a tool into the cache and verify it (None on mismatch)."""
+        self.log(_("Downloading {}...").format(label))
+
+        def progress_cb(pct):
+            self.update_progress(
+                pct_base + int(pct * pct_span / 100), _("Downloading {}").format(label)
+            )
+
+        download_file(
+            url, cached, progress_cb, cancel_check=lambda: self.cancel_requested
+        )
+
+        verified, sha256, checked = verify_download_sha256(cached, url + ".sha256")
+        self.log(f"[SHA256] {label}: {sha256}")
+        if not verified:
+            self.log(_("⚠ SHA256 checksum mismatch for {}!").format(label))
+            cached.unlink(missing_ok=True)
+            return None
+        if not checked:
+            self.log(
+                _("⚠ No published checksum for {}; download not verified.").format(
+                    label
+                )
+            )
+
+        make_executable(cached)
+        return cached
+
     def download_appimagetool(self) -> bool:
         """Download or find appimagetool"""
         self.log(_("Setting up appimagetool..."))
@@ -1810,30 +2015,14 @@ class AppImageBuilder:
                 self.log(_("Found appimagetool: {}").format(self.appimagetool_path))
                 return True
 
-            download_path = self.build_dir / "appimagetool-x86_64.AppImage"
-            if download_path.exists():
-                self.appimagetool_path = str(download_path)
-                return True
-
             url = "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
-
-            self.log(_("Downloading appimagetool..."))
-
-            def progress_cb(pct):
-                self.update_progress(75 + int(pct * 0.1), _("Downloading appimagetool"))
-
-            download_file(url, download_path, progress_cb)
-
-            verified, sha256 = verify_download_sha256(download_path, url + ".sha256")
-            self.log(f"[SHA256] appimagetool: {sha256}")
-            if not verified:
-                self.log(_("⚠ SHA256 checksum mismatch for appimagetool!"))
-                download_path.unlink(missing_ok=True)
+            # appimagetool always runs on the host, so the cache is used in place
+            cached = self._get_cached_tool(
+                "appimagetool-x86_64.AppImage", url, 75, 10, "appimagetool"
+            )
+            if cached is None:
                 return False
-
-            make_executable(download_path)
-
-            self.appimagetool_path = str(download_path)
+            self.appimagetool_path = str(cached)
             return True
 
         except Exception as e:
@@ -1853,41 +2042,40 @@ class AppImageBuilder:
                 self.log(_("Found linuxdeploy: {}").format(host_copy))
                 return True
 
-            # For container builds the host's path need not exist inside the
-            # container, but the build directory is shared, so copying a host
-            # installation there keeps the build working offline instead of
-            # forcing a download.
-            if host_copy and not download_path.exists():
-                try:
-                    shutil.copy2(host_copy, download_path)
-                    self.log(_("Reusing host linuxdeploy inside the container"))
-                except OSError as e:
-                    self.log(_("Could not stage host linuxdeploy: {}").format(e))
-
             if download_path.exists():
                 self.linuxdeploy_path = str(download_path)
                 make_executable(download_path)
                 return True
 
-            # Download linuxdeploy
+            # For container builds the host's path need not exist inside the
+            # container, but the build directory is shared, so copying a host
+            # installation there keeps the build working offline instead of
+            # forcing a download.
+            if host_copy:
+                try:
+                    shutil.copy2(host_copy, download_path)
+                    make_executable(download_path)
+                    self.log(_("Reusing host linuxdeploy inside the container"))
+                    self.linuxdeploy_path = str(download_path)
+                    return True
+                except OSError as e:
+                    self.log(_("Could not stage host linuxdeploy: {}").format(e))
+
             url = "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
-
-            self.log(_("Downloading linuxdeploy..."))
-
-            def progress_cb(pct):
-                self.update_progress(55 + int(pct * 0.05), _("Downloading linuxdeploy"))
-
-            download_file(url, download_path, progress_cb)
-
-            verified, sha256 = verify_download_sha256(download_path, url + ".sha256")
-            self.log(f"[SHA256] linuxdeploy: {sha256}")
-            if not verified:
-                self.log(_("⚠ SHA256 checksum mismatch for linuxdeploy!"))
-                download_path.unlink(missing_ok=True)
+            cached = self._get_cached_tool(
+                "linuxdeploy-x86_64.AppImage", url, 55, 5, "linuxdeploy"
+            )
+            if cached is None:
                 return False
 
-            make_executable(download_path)
+            if not self.container_name:
+                self.linuxdeploy_path = str(cached)
+                return True
 
+            # Container builds: stage the cached copy in the shared build dir
+            # (the container's home may be isolated from the host's cache)
+            shutil.copy2(cached, download_path)
+            make_executable(download_path)
             self.linuxdeploy_path = str(download_path)
             return True
 
@@ -1926,30 +2114,38 @@ class AppImageBuilder:
             if self.container_name:
                 self.log(_("Note: appimagetool runs locally on the host"))
 
-            result = subprocess.run(
-                cmd,
-                env=env,
-                capture_output=True,
-                text=True,
-                cwd=Path.cwd(),
-                timeout=300,
+            # Streamed so the UI shows progress during this (possibly long)
+            # step; a large AppDir legitimately takes more than a few minutes.
+            returncode, output = self._run_streaming(
+                cmd, env=env, cwd=Path.cwd(), timeout=1800, prefix="[appimagetool]"
             )
 
-            if result.returncode == 0 and output_path.exists():
+            if returncode == 0 and output_path.exists():
                 self.log(_("AppImage created: {}").format(output_path))
                 return str(output_path)
-            else:
-                error_msg = result.stderr or result.stdout or _("Unknown error")
-                self.log("appimagetool stdout:\n{}".format(result.stdout))
-                self.log("appimagetool stderr:\n{}".format(result.stderr))
-
-                raise RuntimeError(_("Build failed: {}").format(error_msg))
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
+            error_msg = output[-2000:] or _("Unknown error")
+            raise RuntimeError(_("Build failed: {}").format(error_msg))
 
         except subprocess.TimeoutExpired:
             raise RuntimeError(_("Build timed out"))
         except Exception as e:
             self.log(_("Build failed: {}").format(e))
             raise
+
+    def _run_streaming(self, cmd, env=None, cwd=None, timeout=None, prefix=""):
+        """Run a host command logging its output live; honours cancel.
+        Returns (returncode, output). Raises TimeoutExpired."""
+        returncode, lines, _cancelled = run_streaming(
+            cmd,
+            env=env,
+            cwd=cwd,
+            on_line=lambda line: self.log(f"{prefix} {line}" if prefix else line),
+            cancel_check=lambda: self.cancel_requested,
+            timeout=timeout,
+        )
+        return returncode, "\n".join(lines)
 
     def cleanup(self) -> None:
         """Clean up temporary files"""
@@ -2054,7 +2250,11 @@ class AppImageBuilder:
                 )
 
         try:
-            self.cancel_requested = False
+            # cancel_requested is reset by build_async() before the thread
+            # starts; resetting it here would drop a cancel clicked during
+            # the container validation above.
+            if self.cancel_requested:
+                raise RuntimeError(_("Build cancelled"))
 
             # Initialize the build environment
             self.update_progress(0, _("Initializing..."))
@@ -2186,6 +2386,7 @@ class AppImageBuilder:
             self.log(_("Build already in progress"))
             return self._build_thread
 
+        self.cancel_requested = False
         self._build_thread = threading.Thread(target=build_thread, daemon=True)
         self._build_thread.start()
         return self._build_thread

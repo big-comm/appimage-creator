@@ -44,6 +44,7 @@ _SHELL_ASSIGN_RE = re.compile(
 _PYTHON_CMD_RE = re.compile(
     r"(?:^|[\s;&|(`])(?:\S*/)?python(?:3(?:\.\d+)?)?(?=[ \t])(.*)$", re.M
 )
+_CD_BEFORE_RE = re.compile(r"\bcd\s+(\"[^\"]+\"|'[^']+'|\S+)\s*(?:&&|;)")
 _SHELL_VAR_RE = re.compile(r"\$(?:\{([A-Za-z_]\w*)\}|([A-Za-z_]\w*))")
 # Interpreter options that consume the following argument
 _PYTHON_OPTS_WITH_ARG = {"-X", "-W", "-Q"}
@@ -142,7 +143,16 @@ def _resolve_wrapper_python_target(script_path: str, content: str) -> Path | Non
             continue
         m = _PYTHON_CMD_RE.search(line)
         if m:
-            candidates.extend(_python_targets_from_command(m.group(1)))
+            targets = _python_targets_from_command(m.group(1))
+            # `cd <dir> && python3 main.py`: a relative target lives in <dir>
+            cd = _CD_BEFORE_RE.search(line[: m.start()])
+            if cd:
+                base = _strip_shell_quotes(cd.group(1))
+                targets = [
+                    t if t.startswith(("/", "$")) else f"{base.rstrip('/')}/{t}"
+                    for t in targets
+                ]
+            candidates.extend(targets)
     # Fallback: any .py path mentioned in the script (assignments included)
     candidates.extend(re.findall(r"[^\s\"'=]*\.py\b", content))
 
