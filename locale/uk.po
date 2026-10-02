@@ -116,7 +116,7 @@ msgstr "Створення AppImage"
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 46
 #: NEEDS WORK
 msgid "Preparing..."
-msgstr "Preparing..."
+msgstr "Підготовка..."
 # 
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 57
 #: NEEDS WORK
@@ -160,7 +160,7 @@ msgstr "• Спробуйте зібрати з іншим контейнеро
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 180
 #: NEEDS WORK
 msgid "• Add the missing libraries to the 'Additional Libraries' section before building"
-msgstr "• Add the missing libraries to the 'Additional Libraries' section before building"
+msgstr "• Додайте відсутні бібліотеки в розділ «Додаткові бібліотеки» перед збіркою"
 # 
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 183
 #: NEEDS WORK
@@ -260,7 +260,7 @@ msgstr "Скасування..."
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 620
 #: NEEDS WORK
 msgid "Cancelled."
-msgstr "Cancelled."
+msgstr "Скасовано."
 # 
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 292
 #: NEEDS WORK
@@ -343,7 +343,7 @@ msgstr "Команда не вдалася з кодом виходу"
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 499
 #: NEEDS WORK
 msgid "Installation failed."
-msgstr "Installation failed."
+msgstr "Не вдалося встановити."
 # 
 # File: usr/share/appimage-creator/ui/dialogs.py, line: 500
 #: NEEDS WORK
@@ -476,7 +476,7 @@ msgstr "Не вдалося перевірити: {}"
 #: NEEDS WORK
 #, python-brace-format
 msgid "'{}' is unknown to this container's package manager."
-msgstr "'{}' is unknown to this container's package manager."
+msgstr "«{}» невідомий менеджеру пакетів цього контейнера."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 507
 #: NEEDS WORK
@@ -602,12 +602,12 @@ msgstr "Створення контейнера..."
 # File: usr/share/appimage-creator/ui/window.py, line: 528
 #: NEEDS WORK
 msgid "Setup cancelled by user."
-msgstr "Setup cancelled by user."
+msgstr "Налаштування скасовано користувачем."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 521
 #: NEEDS WORK
 msgid "Installing dependencies (this may take a while)..."
-msgstr "Installing dependencies (this may take a while)..."
+msgstr "Встановлення залежностей (це може тривати деякий час)..."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 422
 # File: usr/share/appimage-creator/ui/window.py, line: 470
@@ -693,7 +693,7 @@ msgstr "Вибрано: {}"
 # File: usr/share/appimage-creator/ui/window.py, line: 662
 #: NEEDS WORK
 msgid "Analyzing..."
-msgstr "Analyzing..."
+msgstr "Аналіз..."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 664
 #: NEEDS WORK
@@ -808,10 +808,7 @@ msgid ""
 "The appimagetool utility could not be found or downloaded.\n"
 "\n"
 "Suggestion: Check your internet connection and try again."
-msgstr ""
-"The appimagetool utility could not be found or downloaded.\n"
-"\n"
-"Suggestion: Check your internet connection and try again."
+msgstr "Утиліту appimagetool не вдалося знайти або завантажити.\n\nПорада: перевірте підключення до інтернету та повторіть спробу."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 1163
 #: NEEDS WORK
@@ -819,10 +816,7 @@ msgid ""
 "Could not set up appimagetool.\n"
 "\n"
 "Suggestion: Check your internet connection and available disk space."
-msgstr ""
-"Could not set up appimagetool.\n"
-"\n"
-"Suggestion: Check your internet connection and available disk space."
+msgstr "Не вдалося налаштувати appimagetool.\n\nПорада: перевірте підключення до інтернету та вільне місце на диску."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 1171
 #: NEEDS WORK
@@ -831,11 +825,7 @@ msgid ""
 "\n"
 "Suggestion: Try building again. If the problem persists, check if the build environment is "
 "responsive."
-msgstr ""
-"The build process took too long and was stopped.\n"
-"\n"
-"Suggestion: Try building again. If the problem persists, check if the build environment is "
-"responsive."
+msgstr "Процес збірки тривав надто довго і був зупинений.\n\nПорада: спробуйте зібрати ще раз. Якщо проблема не зникає, перевірте, чи відповідає середовище збірки."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 1178
 #: NEEDS WORK
@@ -848,10 +838,7 @@ msgid ""
 "Distrobox is not installed on your system.\n"
 "\n"
 "Suggestion: Install distrobox from your package manager."
-msgstr ""
-"Distrobox is not installed on your system.\n"
-"\n"
-"Suggestion: Install distrobox from your package manager."
+msgstr "Distrobox не встановлено у вашій системі.\n\nПорада: встановіть distrobox за допомогою менеджера пакетів."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 1190
 #: NEEDS WORK
@@ -881,10 +868,7 @@ msgid ""
 "Could not copy application files to the build directory.\n"
 "\n"
 "Suggestion: Ensure the source files still exist and you have read permissions."
-msgstr ""
-"Could not copy application files to the build directory.\n"
-"\n"
-"Suggestion: Ensure the source files still exist and you have read permissions."
+msgstr "Не вдалося скопіювати файли програми до каталогу збірки.\n\nПорада: переконайтеся, що вихідні файли все ще існують і у вас є права на читання."
 # 
 # File: usr/share/appimage-creator/ui/window.py, line: 1213
 #: NEEDS WORK
@@ -925,15 +909,12 @@ msgid ""
 "A file permission error occurred during the build.\n"
 "\n"
 "Suggestion: Check that you have the necessary permissions for all files."
-msgstr ""
-"A file permission error occurred during the build.\n"
-"\n"
-"Suggestion: Check that you have the necessary permissions for all files."
+msgstr "Під час збірки сталася помилка прав доступу до файлу.\n\nПорада: переконайтеся, що у вас є необхідні права на всі файли."
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 76
 #: NEEDS WORK
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "Ласкаво просимо"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 97
 #: NEEDS WORK
@@ -948,7 +929,7 @@ msgstr "Системні вимоги"
 # File: usr/share/appimage-creator/ui/pages.py, line: 116
 #: NEEDS WORK
 msgid "Container Runtime"
-msgstr "Контейнерний виконуваний середовище"
+msgstr "Середовище виконання контейнерів"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 124
 #: NEEDS WORK
@@ -1120,7 +1101,7 @@ msgstr "Десктопний файл"
 # File: usr/share/appimage-creator/ui/pages.py, line: 345
 #: NEEDS WORK
 msgid "Optional – a default will be generated if not provided"
-msgstr "Optional – a default will be generated if not provided"
+msgstr "Необов'язково – якщо не вказано, буде створено значення за замовчуванням"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 165
 #: NEEDS WORK
@@ -1265,7 +1246,7 @@ msgstr "Виявлений файл робочого столу"
 # File: usr/share/appimage-creator/ui/pages.py, line: 230
 #: NEEDS WORK
 msgid "No desktop file detected"
-msgstr "No desktop file detected"
+msgstr "Файл .desktop не виявлено"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 232
 #: NEEDS WORK
@@ -1314,7 +1295,7 @@ msgstr "Структура AppImage"
 # File: usr/share/appimage-creator/ui/pages.py, line: 363
 #: NEEDS WORK
 msgid "View all files and directories that will be packaged"
-msgstr "View all files and directories that will be packaged"
+msgstr "Переглянути всі файли та каталоги, які будуть упаковані"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 273
 #: NEEDS WORK
@@ -1358,21 +1339,7 @@ msgid ""
 "• myapp-*-x86_64.AppImage  → matches: myapp-v1.2.3-x86_64.AppImage\n"
 "• *-gui-*.AppImage  → matches: converter-gui-1.0.AppImage\n"
 "• calculator-*.AppImage  → matches: calculator-2.5-linux.AppImage"
-msgstr ""
-"<b>GitHub Releases (recommended):</b>\n"
-"Click the button next to Update URL to fill with template, then edit OWNER/REPO\n"
-"\n"
-"<b>Example:</b>\n"
-"https://api.github.com/repos/biglinux/big-video-converter/releases/latest\n"
-"\n"
-"<b>Filename Pattern:</b>\n"
-"Used to identify which file to download from the release.\n"
-"The asterisk (*) matches any text.\n"
-"\n"
-"<b>Pattern Examples:</b>\n"
-"• myapp-*-x86_64.AppImage  → matches: myapp-v1.2.3-x86_64.AppImage\n"
-"• *-gui-*.AppImage  → matches: converter-gui-1.0.AppImage\n"
-"• calculator-*.AppImage  → matches: calculator-2.5-linux.AppImage"
+msgstr "<b>GitHub Releases (рекомендовано):</b>\nНатисніть кнопку поруч з Update URL, щоб заповнити шаблон, потім відредагуйте OWNER/REPO\n\n<b>Приклад:</b>\nhttps://api.github.com/repos/biglinux/big-video-converter/releases/latest\n\n<b>Шаблон імені файлу:</b>\nВикористовується для визначення файлу, який слід завантажити з релізу.\nЗірочка (*) відповідає будь-якому тексту.\n\n<b>Приклади шаблонів:</b>\n• myapp-*-x86_64.AppImage  → відповідає: myapp-v1.2.3-x86_64.AppImage\n• *-gui-*.AppImage  → відповідає: converter-gui-1.0.AppImage\n• calculator-*.AppImage  → відповідає: calculator-2.5-linux.AppImage"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 106
 #: NEEDS WORK
@@ -1468,7 +1435,7 @@ msgstr "Вихідний каталог"
 # File: usr/share/appimage-creator/ui/pages.py, line: 320
 #: NEEDS WORK
 msgid "Choose Folder"
-msgstr "Choose Folder"
+msgstr "Виберіть теку"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 329
 # File: usr/share/appimage-creator/ui/pages.py, line: 333
@@ -1485,7 +1452,7 @@ msgstr "Виберіть, де створити AppImage"
 # File: usr/share/appimage-creator/ui/pages.py, line: 334
 #: NEEDS WORK
 msgid "Select container or use local system"
-msgstr "Select container or use local system"
+msgstr "Виберіть контейнер або використовуйте локальну систему"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
@@ -1608,7 +1575,7 @@ msgstr "GNOME стандартні значки (~2.6MB)"
 # File: usr/share/appimage-creator/ui/pages.py, line: 346
 #: NEEDS WORK
 msgid "Advanced Options"
-msgstr "Advanced Options"
+msgstr "Додаткові параметри"
 # 
 # File: usr/share/appimage-creator/ui/pages.py, line: 355
 #: NEEDS WORK
@@ -1667,7 +1634,7 @@ msgstr "Будівництво в контейнері для максималь
 # File: usr/share/appimage-creator/ui/pages.py, line: 1028
 #: NEEDS WORK
 msgid "No container available — building on the local system"
-msgstr "No container available — building on the local system"
+msgstr "Немає доступного контейнера — збірка в локальній системі"
 # 
 # File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 34
 #: NEEDS WORK
@@ -1675,10 +1642,7 @@ msgid ""
 "Select the main binary or script that starts your application.\n"
 "\n"
 "This is the entry point — the file that will be executed when the user launches the AppImage."
-msgstr ""
-"Select the main binary or script that starts your application.\n"
-"\n"
-"This is the entry point — the file that will be executed when the user launches the AppImage."
+msgstr "Виберіть головний виконуваний файл або скрипт, який запускає вашу програму.\n\nЦе точка входу — файл, який буде виконано, коли користувач запустить AppImage."
 # 
 # File: usr/share/appimage-creator/utils/tooltip_helper.py, line: 39
 #: NEEDS WORK
@@ -1938,7 +1902,7 @@ msgstr "Створення середовища '{}'... Це може зайня
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 576
 #: NEEDS WORK
 msgid "Cancelled by user."
-msgstr "Cancelled by user."
+msgstr "Скасовано користувачем."
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 295
 #: NEEDS WORK
@@ -2030,7 +1994,7 @@ msgstr "Не вдалося встановити залежності. Проц�
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 427
 #: NEEDS WORK
 msgid "Dependencies installed successfully!"
-msgstr "Dependencies installed successfully!"
+msgstr "Залежності успішно встановлено!"
 # 
 # File: usr/share/appimage-creator/core/environment_manager.py, line: 433
 #: NEEDS WORK
@@ -2180,7 +2144,7 @@ msgstr "Python файли"
 # File: usr/share/appimage-creator/core/structure_formatter.py, line: 55
 #: NEEDS WORK
 msgid "Shell Scripts"
-msgstr "Shell Scripts"
+msgstr "Скрипти оболонки"
 # 
 # File: usr/share/appimage-creator/core/structure_formatter.py, line: 56
 #: NEEDS WORK
@@ -2330,7 +2294,7 @@ msgstr "Корінь проєкту не знайдено, копіювання 
 # File: usr/share/appimage-creator/core/builder.py, line: 400
 #: NEEDS WORK
 msgid "Copying desktop integration helper..."
-msgstr "Copying desktop integration helper..."
+msgstr "Копіювання допоміжного засобу інтеграції з робочим столом..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 408
 #: NEEDS WORK
@@ -2403,7 +2367,7 @@ msgstr "Використання виявленої іконки: {}"
 # File: usr/share/appimage-creator/core/builder.py, line: 457
 #: NEEDS WORK
 msgid "No icon provided or found, generating a default one."
-msgstr "No icon provided or found, generating a default one."
+msgstr "Значок не вказано і не знайдено, створюється значок за замовчуванням."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 381
 #: NEEDS WORK
@@ -2452,7 +2416,7 @@ msgstr "Використання користувацького файлу ро�
 # File: usr/share/appimage-creator/core/builder.py, line: 278
 #: NEEDS WORK
 msgid "No desktop file found in AppDir, generating a new one."
-msgstr "No desktop file found in AppDir, generating a new one."
+msgstr "Файл .desktop не знайдено в AppDir, створюється новий."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 282
 #: NEEDS WORK
@@ -2475,7 +2439,7 @@ msgstr "Оновлено поле значка робочого столу: {} -
 # File: usr/share/appimage-creator/core/builder.py, line: 548
 #: NEEDS WORK
 msgid "Fixed NoDisplay=true -> false (AppImages must be visible in menus)"
-msgstr "Fixed NoDisplay=true -> false (AppImages must be visible in menus)"
+msgstr "Виправлено NoDisplay=true -> false (AppImage мають бути видимими в меню)"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 559
 #: NEEDS WORK
@@ -2565,7 +2529,7 @@ msgstr "✓ Скопійовано appimage-cleanup.py"
 #: NEEDS WORK
 #, python-brace-format
 msgid "Warning: appimage-cleanup.py not found at {}"
-msgstr "Warning: appimage-cleanup.py not found at {}"
+msgstr "Попередження: appimage-cleanup.py не знайдено в {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 609
 #: NEEDS WORK
@@ -2654,7 +2618,7 @@ msgstr "Vключення теми значків вимкнено корист�
 # File: usr/share/appimage-creator/core/builder.py, line: 362
 #: NEEDS WORK
 msgid "Dependencies installed successfully."
-msgstr "Dependencies installed successfully."
+msgstr "Залежності успішно встановлено."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 363
 #: NEEDS WORK
@@ -2675,7 +2639,7 @@ msgstr "Вирішення залежностей бібліотеки..."
 #: NEEDS WORK
 #, python-brace-format
 msgid "Warning: {} libraries could not be resolved: {}"
-msgstr "Warning: {} libraries could not be resolved: {}"
+msgstr "Попередження: {} бібліотек не вдалося визначити: {}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 999
 #: NEEDS WORK
@@ -2860,11 +2824,7 @@ msgid ""
 "\n"
 "Error details:\n"
 "{err}"
-msgstr ""
-"Failed to install required build dependencies in the container: {pkgs}\n"
-"\n"
-"Error details:\n"
-"{err}"
+msgstr "Не вдалося встановити необхідні залежності збірки в контейнері: {pkgs}\n\nПодробиці помилки:\n{err}"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1538
 #: NEEDS WORK
@@ -2984,7 +2944,7 @@ msgstr "Збірка не вдалася: {}"
 # File: usr/share/appimage-creator/core/builder.py, line: 1608
 #: NEEDS WORK
 msgid "Build timed out"
-msgstr "Build timed out"
+msgstr "Час очікування збірки вичерпано"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1618
 #: NEEDS WORK
@@ -3092,12 +3052,12 @@ msgstr "Не вдалося налаштувати appimagetool"
 # File: usr/share/appimage-creator/core/builder.py, line: 1466
 #: NEEDS WORK
 msgid "Validating AppDir..."
-msgstr "Validating AppDir..."
+msgstr "Перевірка AppDir..."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1476
 #: NEEDS WORK
 msgid "Warning: Some library dependencies are unresolved. The AppImage may not work on all systems."
-msgstr "Warning: Some library dependencies are unresolved. The AppImage may not work on all systems."
+msgstr "Попередження: деякі залежності бібліотек не визначено. AppImage може працювати не в усіх системах."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1738
 #: NEEDS WORK
@@ -3134,7 +3094,7 @@ msgstr "Обробка зовнішніх бінарних файлів за д�
 # File: usr/share/appimage-creator/core/builder.py, line: 938
 #: NEEDS WORK
 msgid "Warning: linuxdeploy not available, skipping binary bundling"
-msgstr "Warning: linuxdeploy not available, skipping binary bundling"
+msgstr "Попередження: linuxdeploy недоступний, пропускаємо пакування бінарних файлів"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 949
 #: NEEDS WORK
@@ -3156,7 +3116,7 @@ msgstr "Увага: .desktop файл не знайдено, пропускає�
 #: NEEDS WORK
 #, python-brace-format
 msgid "Skipping copy of '{}' executable, as it is treated as a library provider."
-msgstr "Skipping copy of '{}' executable, as it is treated as a library provider."
+msgstr "Пропускаємо копіювання виконуваного файлу «{}», оскільки він розглядається як постачальник бібліотек."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 999
 #: NEEDS WORK
@@ -3170,9 +3130,7 @@ msgstr "Будуть об'єднані: {}"
 msgid ""
 "Note: '{}' is not installed in the build environment; skipping it rather than taking the host's "
 "copy."
-msgstr ""
-"Note: '{}' is not installed in the build environment; skipping it rather than taking the host's "
-"copy."
+msgstr "Примітка: «{}» не встановлено в середовищі збірки; пропускаємо його замість використання копії з хоста."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1243
 #: NEEDS WORK
@@ -3197,7 +3155,7 @@ msgstr "Запуск linuxdeploy всередині контейнера збі�
 # File: usr/share/appimage-creator/core/binary_bundler.py, line: 153
 #: NEEDS WORK
 msgid "Warning: linuxdeploy timed out and was terminated."
-msgstr "Warning: linuxdeploy timed out and was terminated."
+msgstr "Попередження: час очікування linuxdeploy вичерпано, процес завершено."
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 1028
 #: NEEDS WORK
@@ -3340,7 +3298,7 @@ msgstr "Перевірка бібліотеки НЕВДАЛА:"
 # File: usr/share/appimage-creator/core/dependency_resolver.py, line: 328
 #: NEEDS WORK
 msgid "Library validation passed — all dependencies resolved"
-msgstr "Library validation passed — all dependencies resolved"
+msgstr "Перевірку бібліотек пройдено — усі залежності визначено"
 # 
 # File: usr/share/appimage-creator/core/dependency_resolver.py, line: 351
 #: NEEDS WORK
@@ -3678,7 +3636,7 @@ msgstr "Копіювання системного модуля gi до virtualen
 # File: usr/share/appimage-creator/core/builder.py, line: 682
 #: NEEDS WORK
 msgid "Error: System gi module not found"
-msgstr "Error: System gi module not found"
+msgstr "Помилка: системний модуль gi не знайдено"
 # 
 # File: usr/share/appimage-creator/core/builder.py, line: 744
 #: NEEDS WORK
@@ -4014,7 +3972,7 @@ msgstr "Що нового"
 # File: usr/share/appimage-creator/updater/update_window.py, line: 458
 #: NEEDS WORK
 msgid "Release Notes"
-msgstr "Release Notes"
+msgstr "Примітки до випуску"
 # 
 # #-#-#-#-#  appimage-creator.pot (appimage-creator)  #-#-#-#-#
 # 
