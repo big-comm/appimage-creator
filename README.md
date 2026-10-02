@@ -218,7 +218,18 @@ System dependency profiles (libraries and typelibs for GTK, Qt, VTE, MPV…) liv
 
 ### Translations
 
-Translations use gettext. Source catalogs are in `locale/*.po`; the compiled files in `usr/share/locale/` are generated automatically by the GitHub Actions workflow — do not edit them by hand.
+Translations use gettext and are maintained in the repository (CI no longer generates them):
+
+- `locale/<lang>.po` — the main application (`appimage-creator` domain), 28 languages.
+- `locale/appimage-updater/<lang>.po` — the update window bundled into generated AppImages (`appimage-updater` domain).
+
+After adding or changing strings, extract them with `xgettext` into the `.pot`, update every `.po` (each must translate all strings, keeping `{}` placeholders), then compile the `.mo` files:
+
+```bash
+./locale/compile-translations.sh
+```
+
+Do not edit the compiled files in `usr/share/locale/` or `usr/share/appimage-creator/updater/locale/` by hand.
 
 ### Code style
 
