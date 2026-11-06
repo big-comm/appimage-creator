@@ -341,7 +341,7 @@ def _build_entrypoint_dispatch(app_info: "AppInfo", executable: str) -> str:
     import re
 
     entry_points = getattr(app_info, "entry_points", None) or []
-    if not entry_points:
+    if not entry_points and not getattr(app_info, "entry_point_syspath", None):
         return ""
 
     # The primary interpreter path, e.g. "${HERE}/usr/python/venv/bin/python3"

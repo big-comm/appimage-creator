@@ -825,12 +825,19 @@ class AppImageBuilder:
             # Multi-executable: does the selected executable map to a detected
             # entry point (module:func)? If so, the primary runs via that too,
             # which also covers wrappers that have no single target .py file.
+            # Without secondaries this is only a fallback for when no target
+            # script resolves (e.g. `python -m pkg` on a src-layout package),
+            # so single-launcher builds that resolve a script keep the
+            # file-path exec unchanged.
+            structure0 = self.app_info.structure_analysis or {}
+            primary_name = self.app_info.executable_name or Path(
+                self.app_info.executable
+            ).name
+            has_target_script = bool(
+                (structure0.get("wrapper_analysis") or {}).get("target_executable")
+            )
             multi_primary = None
-            if app_info_for_apprun.entry_points:
-                structure0 = self.app_info.structure_analysis or {}
-                primary_name = self.app_info.executable_name or Path(
-                    self.app_info.executable
-                ).name
+            if app_info_for_apprun.entry_points or not has_target_script:
                 multi_primary = next(
                     (
                         e
@@ -897,7 +904,7 @@ class AppImageBuilder:
                 )
 
             # Multi-executable: wire up the selected secondary launchers.
-            if app_info_for_apprun.entry_points:
+            if app_info_for_apprun.entry_points or multi_primary:
                 self._prepare_multi_executable(app_info_for_apprun)
 
             # Create the AppRun file
