@@ -154,12 +154,23 @@ class ValidationWarningDialog(Adw.Window):
                 file_label.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
                 row_box.append(file_label)
 
-                for lib in missing_libs:
-                    lib_label = Gtk.Label()
-                    lib_label.set_text(f"  \u2192 {lib}")
-                    lib_label.set_halign(Gtk.Align.START)
-                    lib_label.add_css_class("error")
-                    row_box.append(lib_label)
+                # One selectable label per file; the global ".error" class
+                # draws a bordered box around every label and garbles the list.
+                libs_label = Gtk.Label()
+                libs_label.set_text(
+                    "\n".join(f"  \u2192 {lib}" for lib in missing_libs)
+                )
+                libs_label.set_halign(Gtk.Align.START)
+                libs_label.set_xalign(0)
+                libs_label.set_selectable(True)
+                libs_label.add_css_class("monospace")
+                row_box.append(libs_label)
+
+            copy_btn = Gtk.Button(label=_("Copy List"))
+            copy_btn.set_halign(Gtk.Align.START)
+            copy_btn.set_margin_top(4)
+            copy_btn.connect("clicked", self._on_copy_list, missing)
+            libs_box.append(copy_btn)
 
         # Suggestion box
         suggestion = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
@@ -207,6 +218,12 @@ class ValidationWarningDialog(Adw.Window):
             open_btn.add_css_class("suggested-action")
             open_btn.connect("clicked", self._on_open_folder, appimage_path)
             btn_box.append(open_btn)
+
+    def _on_copy_list(self, button, missing):
+        """Copy the unique missing library names, one per line."""
+        names = sorted({lib for _elf, libs in missing for lib in libs})
+        button.get_clipboard().set("\n".join(names))
+        button.set_label(_("Copied!"))
 
     def _on_open_folder(self, _button, appimage_path: str):
         folder = os.path.dirname(appimage_path)

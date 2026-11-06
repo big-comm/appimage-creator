@@ -8,10 +8,11 @@ into the AppDir for AppImage packaging.
 
 import os
 import re
+import shlex
 import shutil
 from pathlib import Path
 
-from core.build_config import SYSTEM_DEPENDENCIES
+from core.build_config import HOST_PROVIDED_LIB_PREFIXES, SYSTEM_DEPENDENCIES
 from utils.system import make_executable
 from utils.i18n import _
 
@@ -90,6 +91,76 @@ class LibraryBundler:
             self._execute_library_copy(conflicting_libs, fallback_lib_dir)
 
         self._report_empty_profiles(selected_deps, lib_dir, fallback_lib_dir)
+        self._bundle_dependency_closure([lib_dir, fallback_lib_dir])
+
+    def _bundle_dependency_closure(self, source_dirs) -> None:
+        """
+        Copy the shared-library closure of every bundled library (dependency
+        profiles and user-added extra libraries) into usr/lib-deps.
+
+        The recursive resolver only copies what the *build environment* lacks,
+        and the container has the whole closure installed, so it never reached
+        the AppDir: libmpv from Ubuntu 24.04 failed on Arch for lack of
+        libx265.so.199, libbluray.so.2 and ~25 more. The closure is computed
+        with ldd (no library is named here); HOST_PROVIDED_LIB_PREFIXES skips
+        what every desktop host has. AppRun exposes usr/lib-deps only for the
+        SONAMEs the host lacks, so a bundled copy never shadows the host's.
+        """
+        seeds = sorted(
+            str(f)
+            for d in source_dirs
+            if d.is_dir()
+            for f in d.iterdir()
+            if f.is_file() and ".so" in f.name
+        )
+        if not seeds:
+            return
+
+        self._b.log(_("Resolving dependencies of bundled libraries..."))
+        result = self._b._run_command(["ldd", *seeds], timeout=120)
+        if result.returncode != 0 and not result.stdout:
+            self._b.log(_("Warning: could not list library dependencies."))
+            return
+
+        appdir = self._b.appdir_path
+        present = {
+            f.name for f in appdir.rglob("*.so*") if "python" not in f.parts
+        }
+        closure: dict[str, str] = {}
+        for line in (result.stdout or "").splitlines():
+            parts = line.split()
+            # "libfoo.so.1 => /usr/lib/x86_64-linux-gnu/libfoo.so.1 (0x...)"
+            if len(parts) < 3 or parts[1] != "=>" or not parts[2].startswith("/"):
+                continue
+            soname, path = parts[0], parts[2]
+            if soname in present or soname.startswith(HOST_PROVIDED_LIB_PREFIXES):
+                continue
+            closure.setdefault(soname, path)
+
+        if not closure:
+            return
+
+        deps_dir = appdir / "usr" / "lib-deps"
+        deps_dir.mkdir(parents=True, exist_ok=True)
+        script_lines = ["#!/bin/bash", f"cd {shlex.quote(str(deps_dir))} || exit 1"]
+        for soname, path in sorted(closure.items()):
+            script_lines.append(
+                f"cp -L {shlex.quote(path)} {shlex.quote(soname)} "
+                f"|| echo {shlex.quote('    -> ' + soname + ' not copied')}"
+            )
+        script_path = self._b.build_dir / "copy_lib_deps.sh"
+        script_path.write_text("\n".join(script_lines) + "\n")
+        make_executable(script_path)
+        copy = self._b._run_command([str(script_path)], timeout=300)
+        for line in (copy.stdout or "").splitlines():
+            self._b.log(f"[copy_libs] {line}")
+
+        copied = sorted(f.name for f in deps_dir.iterdir())
+        self._b.log(
+            _("Bundled {} dependency libraries in usr/lib-deps (used only when the host lacks them)").format(
+                len(copied)
+            )
+        )
 
     def _report_empty_profiles(self, selected_deps, lib_dir, fallback_lib_dir):
         """

@@ -235,6 +235,37 @@ if ! ldconfig -p 2>/dev/null | grep -q "libjpeg.so.8"; then
     export LD_LIBRARY_PATH="${{HERE}}/usr/lib-fallback:${{LD_LIBRARY_PATH}}"
 fi
 
+# Dependency closure of the bundled libraries (e.g. libmpv's codecs). Only the
+# SONAMEs the host lacks are exposed, through a directory of symlinks, so a
+# bundled copy never shadows a library the host's own stack loads.
+if [ -d "${{HERE}}/usr/lib-deps" ]; then
+    LIBDEPS_BASE="${{XDG_RUNTIME_DIR:-/tmp}}"
+    # Drop link dirs left by AppImages that are no longer mounted
+    for old_dir in "$LIBDEPS_BASE"/appimage-libdeps.*; do
+        [ -d "$old_dir" ] || continue
+        first_link="$(find "$old_dir" -maxdepth 1 -type l -print -quit 2>/dev/null)"
+        if [ -z "$first_link" ] || [ ! -e "$first_link" ]; then
+            rm -rf "$old_dir"
+        fi
+    done
+    case "$(uname -m)" in
+        x86_64) LIBDEPS_ARCH="x86-64" ;;
+        aarch64) LIBDEPS_ARCH="AArch64" ;;
+        *) LIBDEPS_ARCH="" ;;
+    esac
+    LDCONFIG_BIN="$(command -v ldconfig || echo /sbin/ldconfig)"
+    LIBDEPS_DIR="$(mktemp -d "$LIBDEPS_BASE/appimage-libdeps.XXXXXX" 2>/dev/null)"
+    if [ -n "$LIBDEPS_DIR" ]; then
+        ls -1 "${{HERE}}/usr/lib-deps" | awk -v arch="$LIBDEPS_ARCH" \
+            'NR == FNR {{ if (FNR > 1 && index($0, arch)) host[$1] = 1; next }} !($0 in host)' \
+            <("$LDCONFIG_BIN" -p 2>/dev/null) - |
+        while IFS= read -r lib_name; do
+            ln -s "${{HERE}}/usr/lib-deps/$lib_name" "$LIBDEPS_DIR/$lib_name"
+        done
+        export LD_LIBRARY_PATH="${{LD_LIBRARY_PATH}}:$LIBDEPS_DIR"
+    fi
+fi
+
 # Construct the PATH environment variable with correct priority.
 FINAL_PATH="$PATH"
 FINAL_PATH="${{HERE}}/usr/bin:$FINAL_PATH"

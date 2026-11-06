@@ -306,6 +306,8 @@ class PrePackagingValidator:
         lib_paths = [
             str(appdir / "usr" / "lib"),
             str(appdir / "usr" / "lib-fallback"),
+            # AppRun exposes these for whatever SONAMEs the host lacks
+            str(appdir / "usr" / "lib-deps"),
         ]
 
         # Include pip wheel .libs directories (auditwheel-bundled deps)

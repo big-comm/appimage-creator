@@ -180,6 +180,31 @@ SYSTEM_DEPENDENCIES = {
     },
 }
 
+# Libraries every desktop host provides, never copied into usr/lib-deps when
+# bundling the dependency closure of the bundled libraries. They are either tied to the
+# host's drivers/servers (GL, Vulkan, VA-API, X11, Wayland, audio) or form
+# the GLib/GTK stack the host's own libraries load. Matched as prefixes of
+# the SONAME.
+HOST_PROVIDED_LIB_PREFIXES = (
+    # glibc and the toolchain runtime
+    "ld-linux", "linux-vdso", "libc.so", "libm.so", "libdl.so", "librt.so",
+    "libpthread.so", "libresolv.so", "libutil.so", "libmvec.so",
+    "libcrypt.so", "libnss_", "libstdc++.so", "libgcc_s.so",
+    # graphics drivers and display servers
+    "libGL.so", "libGLX", "libGLdispatch", "libEGL", "libGLES", "libOpenGL",
+    "libgbm.so", "libdrm.so", "libvulkan.so", "libva.so", "libva-",
+    "libvdpau.so", "libOpenCL.so", "libX", "libxcb", "libxkbcommon",
+    "libwayland-",
+    # audio servers
+    "libasound.so", "libpulse", "libjack.so", "libpipewire-",
+    # GLib/GTK stack and core system libraries
+    "libglib-2.0", "libgobject-2.0", "libgio-2.0", "libgmodule-2.0",
+    "libgthread-2.0", "libcairo", "libpango", "libharfbuzz.so",
+    "libfontconfig", "libfreetype", "libfribidi", "libpixman",
+    "libgdk_pixbuf", "libdbus-1", "libsystemd", "libudev", "libselinux",
+    "libmount", "libblkid", "libz.so", "libexpat", "libffi", "libpcre2",
+)
+
 # Master dictionary for system binaries to be detected and bundled
 SYSTEM_BINARIES = {
     "vainfo": {
