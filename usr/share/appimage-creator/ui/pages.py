@@ -745,13 +745,11 @@ class ConfigurationPage:
             row = Adw.SwitchRow()
             kind = _("GUI") if ep.get("is_gui") else _("CLI")
             row.set_title(ep.get("name", "?"))
-            row.set_subtitle(
-                _("{kind} · {module}:{func}").format(
-                    kind=kind,
-                    module=ep.get("module", ""),
-                    func=ep.get("func", "") or "-",
-                )
-            )
+            # `python -m module` entry points have no function to show
+            target = ep.get("module", "")
+            if ep.get("func"):
+                target = f"{target}:{ep['func']}"
+            row.set_subtitle(f"{kind} · {target}")
             # GUI launchers default to on (menu entry); CLI default off
             row.set_active(bool(ep.get("is_gui")))
             row._entry_point = ep  # type: ignore[attr-defined]

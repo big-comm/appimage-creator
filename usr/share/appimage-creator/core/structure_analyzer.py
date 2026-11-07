@@ -200,7 +200,9 @@ def analyze_wrapper_script(script_path: str) -> dict:
     """Analyze wrapper script to detect underlying application type"""
     try:
         with open(script_path, "r", encoding="utf-8", errors="ignore") as f:
-            content = f.read()
+            own_content = f.read()
+        # Include helpers the wrapper sources (the python call may live there)
+        content = _read_with_sourced(script_path, own_content)
 
         analysis = {
             "type": "shell",
@@ -417,10 +419,17 @@ def _detect_compiled_structure(path: Path) -> dict | None:
     return structure
 
 
-def _looks_cli(name: str) -> bool:
-    """Heuristic: does this entry point name denote a command-line tool?"""
+def _looks_cli(name: str, module: str = "") -> bool:
+    """Heuristic: does this entry point denote a command-line tool?
+
+    Looks at the launcher name (``foo-cli``) and at the module it runs: a
+    ``cli`` package/module component (``app.build_iso.cli``,
+    ``app.cli.main_cli``) marks a CLI even when the launcher name is short."""
     low = name.lower()
-    return low.endswith(("-cli", "-cmd", "-term")) or low.endswith("cli")
+    if low.endswith(("-cli", "-cmd", "-term")) or low.endswith("cli"):
+        return True
+    parts = module.lower().split(".") if module else []
+    return any(p == "cli" or p.endswith("_cli") or p.startswith("cli_") for p in parts)
 
 
 def _entry_from_python_c(content: str) -> tuple[str, str] | None:
@@ -435,6 +444,81 @@ def _entry_from_python_c(content: str) -> tuple[str, str] | None:
     m = re.search(r"python3?\s+-m\s+([\w.]+)", content)
     if m:
         return m.group(1), ""  # -m module (no explicit func)
+    return None
+
+
+# `source <file>` / `. <file>` lines in a wrapper
+_SOURCE_RE = re.compile(r"^[ \t]*(?:source|\.)[ \t]+(.+?)[ \t]*$", re.M)
+# Shell function definitions: name() { ... }  (body up to a closing brace
+# at the start of a line)
+_SHELL_FUNC_RE = re.compile(
+    r"^[ \t]*(?:function[ \t]+)?([A-Za-z_][\w-]*)[ \t]*\(\)[ \t]*\{(.*?)^\}",
+    re.M | re.S,
+)
+_SOURCED_MAX_BYTES = 256 * 1024
+
+
+def _read_with_sourced(script_path, content: str) -> str:
+    """Return ``content`` followed by the helper files it sources from its
+    own project (e.g. ``source "$(dirname "$0")/../lib/app/launcher.bash"``).
+
+    Launchers increasingly delegate the actual ``python3`` call to a shared
+    helper; without following it the wrapper looks like a plain shell script.
+    Only files inside the wrapper's project are read, one level deep."""
+    script = Path(script_path).resolve()
+    root = find_usr_project_root(script.parent) or script.parent.parent
+    extra = []
+    for m in _SOURCE_RE.finditer(content):
+        raw = _strip_shell_quotes(m.group(1).split(" #")[0])
+        suffix = _static_path_suffix(raw)
+        if not suffix:
+            continue
+        candidates = [script.parent.joinpath(*suffix)]
+        if raw.startswith("/"):
+            candidates.append(root.joinpath(*[c for c in suffix if c]))
+        for cand in candidates:
+            try:
+                cand = cand.resolve()
+                if root not in cand.parents or not cand.is_file():
+                    continue
+                if cand.stat().st_size > _SOURCED_MAX_BYTES:
+                    continue
+                extra.append(cand.read_text(encoding="utf-8", errors="ignore"))
+                break
+            except OSError:
+                continue
+    return "\n".join([content] + extra)
+
+
+def _python_module_functions(content: str) -> set:
+    """Names of shell functions that run ``python -m`` on their first
+    argument, e.g. ``run_module() { exec python3 -m "$1" "$@"; }`` or the
+    ``local -r module=$1 ... python3 -m "$module"`` form."""
+    names = set()
+    for m in _SHELL_FUNC_RE.finditer(content):
+        name, body = m.group(1), m.group(2)
+        arg_vars = {"1"} | set(
+            re.findall(r"(?:local|readonly|declare)?[ \t-]*(?:-r[ \t]+)?(\w+)=[\"']?\$\{?1\}?", body)
+        )
+        for var in arg_vars:
+            pat = r"python(?:3(?:\.\d+)?)?[ \t]+(?:-\w+[ \t]+)*-m[ \t]+[\"']?\$\{?" + re.escape(var) + r"\}?"
+            if re.search(pat, body):
+                names.add(name)
+                break
+    return names
+
+
+def _entry_from_function_call(own_content: str, full_content: str):
+    """(module, "") when the wrapper calls a ``python -m`` helper function
+    (defined in itself or in a sourced file) with a literal module name."""
+    for fn in _python_module_functions(full_content):
+        m = re.search(
+            r"^[ \t]*(?:exec[ \t]+)?" + re.escape(fn) + r"[ \t]+[\"']?([A-Za-z_][\w.]*)",
+            own_content,
+            re.M,
+        )
+        if m:
+            return m.group(1), ""
     return None
 
 
@@ -467,9 +551,12 @@ def detect_entry_points(project_root: Path) -> list[dict]:
                 content = wrapper.read_text(encoding="utf-8", errors="ignore")
             except OSError:
                 continue
-            if "python" not in content:
+            full = _read_with_sourced(wrapper, content)
+            if "python" not in full:
                 continue
-            parsed = _entry_from_python_c(content)
+            parsed = _entry_from_python_c(content) or _entry_from_function_call(
+                content, full
+            )
             if not parsed:
                 continue
             module, func = parsed
@@ -478,7 +565,7 @@ def detect_entry_points(project_root: Path) -> list[dict]:
                 "name": name,
                 "module": module,
                 "func": func,
-                "is_gui": not _looks_cli(name),
+                "is_gui": not _looks_cli(name, module),
                 "source": "wrapper",
             }
 
@@ -508,7 +595,7 @@ def detect_entry_points(project_root: Path) -> list[dict]:
                         "func": func,
                         # gui-scripts are GUI; scripts are CLI unless the name
                         # says otherwise
-                        "is_gui": is_gui and not _looks_cli(name),
+                        "is_gui": is_gui and not _looks_cli(name, module),
                         "source": "pyproject",
                     }
         except (OSError, ValueError, ImportError):

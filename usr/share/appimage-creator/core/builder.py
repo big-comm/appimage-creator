@@ -117,36 +117,51 @@ class AppImageBuilder:
         A package may ship several .desktop files for the same binary that
         differ only in flags (e.g. `foo %F` vs `foo --edit %F`). The default
         launcher must be the plain one, so among matches we prefer the fewest
-        extra Exec arguments (field codes like %F/%U are ignored). A stable
-        alphabetical order breaks ties and provides the fallback.
+        extra Exec arguments (field codes like %F/%U are ignored).
+
+        Menu entries in an ``applications/`` directory win over other
+        .desktop files that run the same command, such as file-manager
+        actions (kio/servicemenus, thunar/sendto): those are NoDisplay and
+        have no Categories, so appimagetool rejects them as the main entry.
+        A stable alphabetical order breaks ties and provides the fallback.
         """
-        ordered = sorted(desktop_files, key=lambda d: d.name)
+
+        def read(desktop):
+            try:
+                return desktop.read_text(encoding="utf-8", errors="ignore")
+            except OSError:
+                return ""
+
+        def rank(desktop, text):
+            # Lower is better: menu entry first, then visible, then name
+            in_menu = desktop.parent.name == "applications"
+            hidden = "\nNoDisplay=true" in "\n" + text
+            return (0 if in_menu else 1, 1 if hidden else 0)
+
+        texts = {d: read(d) for d in desktop_files}
+        ordered = sorted(desktop_files, key=lambda d: (rank(d, texts[d]), d.name))
         if primary_name:
             best = None
-            best_extra = None
+            best_key = None
             for desktop in ordered:
-                try:
-                    for line in desktop.read_text(
-                        encoding="utf-8", errors="ignore"
-                    ).splitlines():
-                        if not line.startswith("Exec="):
-                            continue
-                        parts = line[len("Exec="):].strip().split()
-                        if not parts or os.path.basename(
-                            parts[0].strip('"')
-                        ) != primary_name:
-                            break
-                        # Count real extra args, ignoring field codes
-                        extra = [
-                            a
-                            for a in parts[1:]
-                            if not (a.startswith("%") and len(a) == 2)
-                        ]
-                        if best_extra is None or len(extra) < best_extra:
-                            best, best_extra = desktop, len(extra)
+                for line in texts[desktop].splitlines():
+                    if not line.startswith("Exec="):
+                        continue
+                    parts = line[len("Exec="):].strip().split()
+                    if not parts or os.path.basename(
+                        parts[0].strip('"')
+                    ) != primary_name:
                         break
-                except OSError:
-                    continue
+                    # Count real extra args, ignoring field codes
+                    extra = [
+                        a
+                        for a in parts[1:]
+                        if not (a.startswith("%") and len(a) == 2)
+                    ]
+                    key = (rank(desktop, texts[desktop]), len(extra))
+                    if best_key is None or key < best_key:
+                        best, best_key = desktop, key
+                    break
             if best is not None:
                 return best
         return ordered[0]
@@ -810,12 +825,19 @@ class AppImageBuilder:
             # Multi-executable: does the selected executable map to a detected
             # entry point (module:func)? If so, the primary runs via that too,
             # which also covers wrappers that have no single target .py file.
+            # Without secondaries this is only a fallback for when no target
+            # script resolves (e.g. `python -m pkg` on a src-layout package),
+            # so single-launcher builds that resolve a script keep the
+            # file-path exec unchanged.
+            structure0 = self.app_info.structure_analysis or {}
+            primary_name = self.app_info.executable_name or Path(
+                self.app_info.executable
+            ).name
+            has_target_script = bool(
+                (structure0.get("wrapper_analysis") or {}).get("target_executable")
+            )
             multi_primary = None
-            if app_info_for_apprun.entry_points:
-                structure0 = self.app_info.structure_analysis or {}
-                primary_name = self.app_info.executable_name or Path(
-                    self.app_info.executable
-                ).name
+            if app_info_for_apprun.entry_points or not has_target_script:
                 multi_primary = next(
                     (
                         e
@@ -882,7 +904,7 @@ class AppImageBuilder:
                 )
 
             # Multi-executable: wire up the selected secondary launchers.
-            if app_info_for_apprun.entry_points:
+            if app_info_for_apprun.entry_points or multi_primary:
                 self._prepare_multi_executable(app_info_for_apprun)
 
             # Create the AppRun file

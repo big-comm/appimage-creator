@@ -8,6 +8,7 @@ shared libraries, and copies them from the build system (host or container).
 import os
 import re
 import subprocess
+import tempfile
 from pathlib import Path
 from typing import Callable, Optional
 
@@ -16,6 +17,28 @@ from utils.i18n import _
 # Pattern for auditwheel-hashed library names (e.g. libXau-154567c4.so.6.0.0)
 # These are bundled inside pip wheel .libs/ directories and resolve via RPATH.
 _AUDITWHEEL_HASH_RE = re.compile(r"^lib.+-[0-9a-f]{8}\.so")
+
+# ldd symbol-version error: "...: /path/libfoo.so.1: version `FOO_1.2' not found"
+_VERSION_ERROR_RE = re.compile(r"(\S+\.so[\w.]*): version `([^']+)' not found")
+
+
+def _host_sonames() -> set:
+    """SONAMEs in the host's linker cache (what AppRun checks with ldconfig)."""
+    for ldconfig in ("ldconfig", "/sbin/ldconfig", "/usr/sbin/ldconfig"):
+        try:
+            out = subprocess.run(
+                [ldconfig, "-p"], capture_output=True, text=True, timeout=10
+            ).stdout
+        except (OSError, subprocess.SubprocessError):
+            continue
+        # Same arch filter as AppRun: ignore 32-bit copies of a SONAME
+        arch = {"x86_64": "x86-64", "aarch64": "AArch64"}.get(os.uname().machine, "")
+        return {
+            line.split()[0]
+            for line in out.splitlines()[1:]
+            if line.strip() and arch in line
+        }
+    return set()
 
 
 class DependencyResolver:
@@ -308,6 +331,20 @@ class PrePackagingValidator:
             str(appdir / "usr" / "lib-fallback"),
         ]
 
+        # usr/lib-deps exactly as AppRun exposes it: only the SONAMEs this
+        # host lacks. Adding the whole directory paired e.g. the host's
+        # libssl (OpenSSL 3.6) with the bundled libcrypto (3.0) and reported
+        # "version OPENSSL_3.4.0 not found" for a combination that never
+        # happens at runtime.
+        deps_view = tempfile.TemporaryDirectory(prefix="appimage-libdeps-check.")
+        deps_dir = appdir / "usr" / "lib-deps"
+        if deps_dir.is_dir():
+            host = _host_sonames()
+            for lib in deps_dir.iterdir():
+                if lib.name not in host:
+                    os.symlink(lib, os.path.join(deps_view.name, lib.name))
+            lib_paths.append(deps_view.name)
+
         # Include pip wheel .libs directories (auditwheel-bundled deps)
         # These use RPATH $ORIGIN at runtime, but ldd may not resolve
         # them correctly during static validation.
@@ -328,7 +365,18 @@ class PrePackagingValidator:
                 )
                 missing = []
                 if result.returncode == 0:
-                    for line in result.stdout.splitlines():
+                    # Symbol-version errors go to stderr:
+                    # "<elf>: <lib path>: version `X' not found (required by ...)"
+                    for line in (result.stdout + result.stderr).splitlines():
+                        version = _VERSION_ERROR_RE.search(line)
+                        if version:
+                            missing.append(
+                                "{} ({})".format(
+                                    os.path.basename(version.group(1)),
+                                    version.group(2),
+                                )
+                            )
+                            continue
                         if "not found" in line:
                             lib_name = line.strip().split()[0]
                             if self._resolver._is_host_only(lib_name):
@@ -341,6 +389,8 @@ class PrePackagingValidator:
                     problems.append((rel_path, missing))
             except Exception:
                 pass
+
+        deps_view.cleanup()
 
         if problems:
             self._log(_("Library validation FAILED:"))
