@@ -180,6 +180,14 @@ SYSTEM_DEPENDENCIES = {
     },
 }
 
+# The two builds of VTE in SYSTEM_DEPENDENCIES["vte"]. Bundling the one the
+# app does not use is not just dead weight: the GTK3 build drags GTK3 itself
+# into usr/lib-deps. Keyed by the GTK major the build links against.
+VTE_VARIANTS = {
+    "gtk3": {"libs": ["libvte-2.91.so*"], "typelibs": ["Vte-2.91.typelib"]},
+    "gtk4": {"libs": ["libvte-2.91-gtk4.so*"], "typelibs": ["Vte-3.91.typelib"]},
+}
+
 # Libraries every desktop host provides, never copied into usr/lib-deps when
 # bundling the dependency closure of the bundled libraries. They are either tied to the
 # host's drivers/servers (GL, Vulkan, VA-API, X11, Wayland, audio) or form

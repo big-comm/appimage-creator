@@ -93,6 +93,7 @@ class AppImageBuilder:
 
     def __init__(self):
         self.app_info = {}
+        self._vte_variants = None  # cache of detect_vte_variants()
         self.build_dir = None
         self.appdir_path = None
         self.appimagetool_path = None
@@ -234,6 +235,7 @@ class AppImageBuilder:
             app_info.description = f"{app_info.name} application"
 
         self.app_info = app_info
+        self._vte_variants = None
 
         # Set build environment
         self.build_environment = app_info.build_environment
@@ -1483,6 +1485,52 @@ class AppImageBuilder:
         # against DT_NEEDED (see read_elf_dlopen_names).
         "appindicator": ["libayatana-appindicator3.so*", "libappindicator3.so*"],
     }
+
+    _VTE_REQUIRE_RE = re.compile(
+        r"require_version\(\s*['\"]Vte['\"]\s*,\s*['\"]([23])\.91['\"]"
+    )
+
+    def detect_vte_variants(self) -> set:
+        """
+        GTK builds of VTE the app uses: a subset of {"gtk3", "gtk4"}, from
+        gi.require_version("Vte", "2.91"/"3.91") in Python sources or from
+        the libvte SONAME a compiled executable links (or dlopens).
+
+        An empty set means "could not tell"; the caller then bundles both
+        builds, as before, so an undetected app is never left without VTE.
+        """
+        if self._vte_variants is not None:
+            return self._vte_variants
+
+        from fnmatch import fnmatch
+
+        from core.build_config import VTE_VARIANTS
+
+        variants = set()
+        app_info = self.app_info
+        structure_analysis = app_info.structure_analysis or {}
+        if structure_analysis.get("type") == "compiled":
+            names = list(read_elf_needed(app_info.executable)) + list(
+                read_elf_dlopen_names(app_info.executable)
+            )
+            for variant, spec in VTE_VARIANTS.items():
+                if any(fnmatch(n, p) for n in names for p in spec["libs"]):
+                    variants.add(variant)
+        else:
+            for py_file in self._collect_source_python_files(app_info):
+                try:
+                    content = Path(py_file).read_text(
+                        encoding="utf-8", errors="ignore"
+                    )
+                except OSError:
+                    continue
+                for major in self._VTE_REQUIRE_RE.findall(content):
+                    variants.add("gtk3" if major == "2" else "gtk4")
+                if len(variants) == len(VTE_VARIANTS):
+                    break
+
+        self._vte_variants = variants
+        return variants
 
     def _detect_elf_dependencies(self, app_info: AppInfo):
         """

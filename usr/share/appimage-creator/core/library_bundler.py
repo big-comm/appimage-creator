@@ -12,7 +12,11 @@ import shlex
 import shutil
 from pathlib import Path
 
-from core.build_config import HOST_PROVIDED_LIB_PREFIXES, SYSTEM_DEPENDENCIES
+from core.build_config import (
+    HOST_PROVIDED_LIB_PREFIXES,
+    SYSTEM_DEPENDENCIES,
+    VTE_VARIANTS,
+)
 from utils.system import make_executable
 from utils.i18n import _
 
@@ -22,6 +26,23 @@ class LibraryBundler:
 
     def __init__(self, builder):
         self._b = builder
+
+    def _profile_entries(self, dep_key: str, field: str) -> list:
+        """SYSTEM_DEPENDENCIES[dep_key][field] ("libs" or "typelibs"),
+        narrowed to the VTE build(s) the app uses when that is known."""
+        entries = SYSTEM_DEPENDENCIES[dep_key].get(field, [])
+        if dep_key != "vte":
+            return entries
+        variants = self._b.detect_vte_variants()
+        if not variants:
+            return entries  # unknown: keep both builds
+        unused = {
+            entry
+            for variant, spec in VTE_VARIANTS.items()
+            if variant not in variants
+            for entry in spec[field]
+        }
+        return [e for e in entries if e not in unused]
 
     # ------------------------------------------------------------------
     # System libraries
@@ -42,10 +63,20 @@ class LibraryBundler:
         for dep_key in selected_deps:
             if dep_key in SYSTEM_DEPENDENCIES:
                 dep_info = SYSTEM_DEPENDENCIES[dep_key]
+                libs = self._profile_entries(dep_key, "libs")
                 if dep_info.get("conflicting", False):
-                    conflicting_libs.extend(dep_info.get("libs", []))
+                    conflicting_libs.extend(libs)
                 else:
-                    required_libs.extend(dep_info.get("libs", []))
+                    required_libs.extend(libs)
+
+        if "vte" in selected_deps:
+            variants = self._b.detect_vte_variants()
+            if len(variants) == 1:
+                self._b.log(
+                    _("VTE: bundling only the {} build").format(
+                        next(iter(variants)).upper()
+                    )
+                )
 
         required_libs = sorted(list(set(required_libs)))
         conflicting_libs = sorted(list(set(conflicting_libs)))
@@ -182,7 +213,8 @@ class LibraryBundler:
                 fallback_lib_dir if dep_info.get("conflicting", False) else lib_dir
             )
             if not any(
-                any(target.glob(pattern)) for pattern in dep_info["libs"]
+                any(target.glob(pattern))
+                for pattern in self._profile_entries(dep_key, "libs")
             ):
                 empty.append(dep_info.get("name", dep_key))
 
@@ -287,7 +319,7 @@ class LibraryBundler:
         for dep_key in selected_deps:
             if dep_key in SYSTEM_DEPENDENCIES:
                 required_typelibs.extend(
-                    SYSTEM_DEPENDENCIES[dep_key].get("typelibs", [])
+                    self._profile_entries(dep_key, "typelibs")
                 )
 
         required_typelibs = sorted(list(set(required_typelibs)))
