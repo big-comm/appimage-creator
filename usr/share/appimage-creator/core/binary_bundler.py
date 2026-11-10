@@ -10,7 +10,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from core.build_config import SYSTEM_BINARIES
+from core.build_config import HOST_PROVIDED_LIB_PREFIXES, SYSTEM_BINARIES
 from utils.system import make_executable
 from utils.i18n import _
 
@@ -204,6 +204,9 @@ class BinaryBundler:
             env = os.environ.copy()
             env.update(linuxdeploy_env)
 
+            lib_dir = self._b.appdir_path / "usr" / "lib"
+            libs_before = set(os.listdir(lib_dir)) if lib_dir.is_dir() else set()
+
             self._b.log(_("Running linuxdeploy..."))
             self._b.update_progress(65, _("Bundling binary dependencies..."))
 
@@ -254,6 +257,8 @@ class BinaryBundler:
             else:
                 self._b.log(_("External binaries bundled successfully"))
 
+            self._drop_host_provided_libs(lib_dir, libs_before)
+
             # Restore custom AppRun FIRST
             if apprun_backup and apprun_backup.exists():
                 if custom_apprun.exists():
@@ -280,6 +285,30 @@ class BinaryBundler:
 
         except Exception as e:
             self._b.log(_("Warning: Binary bundling failed: {}").format(e))
+
+    def _drop_host_provided_libs(self, lib_dir: Path, libs_before: set) -> None:
+        """Remove what linuxdeploy copied into usr/lib that the host must
+        provide itself (VA-API, X11, GL, ...).
+
+        linuxdeploy follows a binary's whole closure, and usr/lib comes first
+        in LD_LIBRARY_PATH: a bundled libva.so.2 from the build distro then
+        shadows the host's, and the host's newer libavutil fails with
+        "undefined symbol: vaMapBuffer2". Libraries the app's own profiles
+        put there before linuxdeploy ran are left alone.
+        """
+        if not lib_dir.is_dir():
+            return
+        dropped = []
+        for name in sorted(set(os.listdir(lib_dir)) - libs_before):
+            if name.startswith(HOST_PROVIDED_LIB_PREFIXES):
+                (lib_dir / name).unlink(missing_ok=True)
+                dropped.append(name)
+        if dropped:
+            self._b.log(
+                _("Left to the host system (not bundled): {}").format(
+                    ", ".join(dropped)
+                )
+            )
 
     def _generate_icon_cache(self) -> None:
         """Generate icon cache inside the AppDir for better integration."""

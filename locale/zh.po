@@ -4121,3 +4121,11 @@ msgstr "警告：无法列出库依赖。"
 # 
 msgid "Bundled {} dependency libraries in usr/lib-deps (used only when the host lacks them)"
 msgstr "已将 {} 个依赖库打包到 usr/lib-deps（仅在系统缺少时使用）"
+
+#, python-brace-format
+msgid "VTE: bundling only the {} build"
+msgstr "VTE：仅打包 {} 版本"
+
+#, python-brace-format
+msgid "Left to the host system (not bundled): {}"
+msgstr "留给宿主系统（不打包）：{}"
